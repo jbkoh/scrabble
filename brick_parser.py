@@ -1,7 +1,8 @@
-
 # coding: utf-8
 
 # In[45]:
+
+from functools import reduce
 
 import rdflib
 from rdflib.namespace import RDFS
@@ -64,12 +65,12 @@ BRICKTAG   = Namespace('http://buildsys.org/ontologies/BrickTag#')
 BUILDING = Namespace('http://buildsys.org/ontologies/building_example#')
 
 g = Graph()
-print "Init Graph"
+print("Init Graph")
 g.parse('../GroundTruth/Brick/Brick.ttl', format='turtle')
-print "Load Brick.ttl"
+print("Load Brick.ttl")
 g.parse('../GroundTruth/Brick/BrickFrame.ttl', format='turtle')
 #g.parse('Brick/BrickTag.ttl', format='turtle')
-print "Load BrickFrame.ttl"
+print("Load BrickFrame.ttl")
 
 g.bind('rdf'  , RDF)
 g.bind('rdfs' , RDFS)
@@ -83,12 +84,12 @@ def printResults(res):
         color = 'green'
     else:
         color = 'red'
-    print colored("-> {0} results".format(len(res)), color, attrs=['bold'])
+    print(colored("-> {0} results".format(len(res)), color, attrs=['bold']))
     
 def printTuples(res):
     for row in res:
         #print map(lambda x: x.split('#')[-1], row)
-        print row[0]
+        print(row[0])
 	
 from collections import Counter
         
@@ -106,14 +107,14 @@ def extract_all_subclasses(g, subclassName, rawFlag=False):
 	try:
 		assert(len(subclassList)==len(set(subclassList)))
 	except:
-		print '------------------------'
-		print len(subclassList)
-		print len(set(subclassList))
+		print('------------------------')
+		print(len(subclassList))
+		print(len(set(subclassList)))
 		subclassCounter = Counter(subclassList)
 		for subclass,cnt in subclassCounter.items():
 			if cnt>1:
-				print subclass
-		print '------------------------'
+				print(subclass)
+		print('------------------------')
 		assert(False)
 	return subclassList
 
@@ -198,7 +199,7 @@ pointTagList = list(set(reduce(lambda x,y: x+y, map(separater,pointTagsetList)))
 locationTagList = list(set(reduce(lambda x,y: x+y, map(separater,locationTagsetList))))
 measureTagList = list(set(reduce(lambda x,y: x+y, map(separater,measureTagsetList))))
 
-tagList.remove('')
+if '' in tagList: tagList.remove('')
 
 
 equipPointDict = dict()
@@ -279,7 +280,7 @@ equipRelationDict['chilled_water_pump'] = set(['chilled_water_system', 'ahu', 'v
 equipRelationDict['hot_water_pump'] = set(['hot_water_system', 'ahu', 'vfd'])
 
 
-for equip, subEquipList in equipRelationDict.items():
+for equip, subEquipList in list(equipRelationDict.items()):
 	for subEquip in subEquipList:
 		equipRelationDict[subEquip].add(equip)
 

@@ -1,0 +1,2470 @@
+===================== 506_0_3001218 ========================== 
+===============================================
+===================== 505_0_3000165 ========================== 
+===============================================
+===================== 506_1_3001791 ========================== 
+X     nae                  none                 network_adapter     
+O     06                   identifier           identifier          
+X     n                    none                 network_adapter     
+O     2                    identifier           identifier          
+O     2                    identifier           identifier          
+O     vma                  vav                  vav                 
+O     129                  identifier           identifier          
+O     htgpid               heating_command      heating_command     
+O     o                    none                 none                
+O     newline              none                 none                
+O     ebu                  building             building            
+O     3                    identifier           identifier          
+O     b                    identifier           identifier          
+O     .                    none                 none                
+O     rm                   room                 room                
+O     -                    none                 none                
+O     4213                 identifier           identifier          
+O     .                    none                 none                
+O     .                    none                 none                
+O     htgpid               heating_command      heating_command     
+O     -                    none                 none                
+O     o                    none                 none                
+O     newline              none                 none                
+O     heating              heating              heating             
+O     command              command              command             
+O     newline              none                 none                
+===============================================
+===================== 506_1_3002680 ========================== 
+===============================================
+===================== 505_1_3000994 ========================== 
+===============================================
+===================== 505_1_3001216 ========================== 
+===============================================
+===================== 506_1_3002374 ========================== 
+===============================================
+===================== 506_1_3000716 ========================== 
+===============================================
+===================== 505_3_3000741 ========================== 
+O     nae                  none                 none                
+O     05                   identifier           identifier          
+O     n                    none                 none                
+O     2                    identifier           identifier          
+O     1                    identifier           identifier          
+O     nae                  none                 none                
+O     5                    identifier           identifier          
+O     t                    identifier           identifier          
+O     1                    identifier           identifier          
+O     vnd                  vnd                  vnd                 
+O     48                   identifier           identifier          
+X     rf                   none                 return_fan          
+O     4                    identifier           identifier          
+O     vfd                  vfd                  vfd                 
+O     48                   identifier           identifier          
+O     status               status               status              
+O     newline              none                 none                
+O     ebu                  building             building            
+O     3                    identifier           identifier          
+O     b                    identifier           identifier          
+O     .                    none                 none                
+O     rf                   return_fan           return_fan          
+O     4                    identifier           identifier          
+O     .                    none                 none                
+O     status               status               status              
+O     newline              none                 none                
+O     run                  run                  run                 
+O     status               status               status              
+O     newline              none                 none                
+===============================================
+===================== 505_0_3000969 ========================== 
+===============================================
+===================== 506_1_3000499 ========================== 
+===============================================
+===================== 506_14_3001837 ========================== 
+===============================================
+===================== 505_1_3001111 ========================== 
+===============================================
+===================== 506_0_3001740 ========================== 
+===============================================
+===================== 505_1_3002021 ========================== 
+===============================================
+===================== 505_3_3015336 ========================== 
+X     nae                  none                 network_adapter     
+O     05                   identifier           identifier          
+X     n                    none                 network_adapter     
+O     2                    identifier           identifier          
+O     2                    identifier           identifier          
+O     vnd                  none                 none                
+O     163                  identifier           identifier          
+O     econocyc             none                 none                
+O     newline              none                 none                
+O     ebu                  building             building            
+O     3                    identifier           identifier          
+O     b                    identifier           identifier          
+O     .                    none                 none                
+O     crac                 crac                 crac                
+O     -                    none                 none                
+O     2                    identifier           identifier          
+O     .                    none                 none                
+O     econocyc             none                 none                
+O     newline              none                 none                
+O     econ                 none                 none                
+O     -                    none                 none                
+O     o                    none                 none                
+O     -                    none                 none                
+O     cycle                none                 none                
+O     on                   none                 none                
+O     -                    none                 none                
+O     off                  command              none                
+O     newline              none                 none                
+===============================================
+===================== 506_1_3015756 ========================== 
+===============================================
+===================== 505_0_3001167 ========================== 
+===============================================
+===================== 505_1_3000901 ========================== 
+===============================================
+===================== 506_1_3001786 ========================== 
+===============================================
+===================== 506_14_3002729 ========================== 
+X     nae                  none                 network_adapter     
+O     06                   identifier           identifier          
+X     n                    none                 network_adapter     
+O     2                    identifier           identifier          
+O     2                    identifier           identifier          
+O     vma                  vav                  vav                 
+O     175                  identifier           identifier          
+O     occ                  occupied             occupied            
+O     cmd                  command              command             
+O     newline              none                 none                
+O     ebu                  building             building            
+O     3                    identifier           identifier          
+O     b                    identifier           identifier          
+O     .                    none                 none                
+O     rm                   room                 room                
+O     -                    none                 none                
+O     4150                 identifier           identifier          
+O     .                    none                 none                
+O     .                    none                 none                
+O     occ                  occupied             occupied            
+O     -                    none                 none                
+O     cmd                  command              command             
+O     newline              none                 none                
+O     occupied             occupied             occupied            
+O     command              command              command             
+O     newline              none                 none                
+===============================================
+===================== 506_1_3001262 ========================== 
+===============================================
+===================== 506_1_3002677 ========================== 
+===============================================
+===================== 505_1_3000534 ========================== 
+X     nae                  none                 network_adapter     
+O     05                   identifier           identifier          
+X     n                    none                 network_adapter     
+O     2                    identifier           identifier          
+O     1                    identifier           identifier          
+X     nae                  none                 network_adapter     
+O     5                    identifier           identifier          
+O     t                    identifier           identifier          
+O     1                    identifier           identifier          
+O     vnd                  vnd                  none                
+O     42                   identifier           identifier          
+X     sf                   none                 supply_fan          
+O     2                    identifier           identifier          
+O     vfd                  vfd                  vfd                 
+O     42                   identifier           identifier          
+O     reference            none                 none                
+O     1                    identifier           identifier          
+O     newline              none                 none                
+O     ebu                  building             building            
+O     3                    identifier           identifier          
+O     b                    identifier           identifier          
+O     .                    none                 none                
+O     sf                   supply_fan           supply_fan          
+O     2                    identifier           identifier          
+O     .                    none                 none                
+O     ref                  room                 none                
+O     -                    none                 none                
+O     1                    identifier           identifier          
+O     newline              none                 none                
+O     reference            none                 none                
+O     1                    identifier           identifier          
+O     newline              none                 none                
+===============================================
+===================== 506_1_3001267 ========================== 
+===============================================
+===================== 505_0_3014592 ========================== 
+O     nae                  none                 none                
+O     05                   identifier           identifier          
+O     n                    none                 none                
+O     2                    identifier           identifier          
+O     1                    identifier           identifier          
+O     vnd                  vnd                  vnd                 
+O     26                   identifier           identifier          
+O     k                    none                 none                
+X     energy               none                 energy              
+O     newline              none                 none                
+O     ebu                  building             building            
+O     3                    identifier           identifier          
+O     b                    identifier           identifier          
+O     .                    none                 none                
+O     chwp                 chilled_water_pump   chilled_water_pump  
+O     3                    identifier           identifier          
+O     -                    none                 none                
+O     vfd                  vfd                  vfd                 
+O     .                    none                 none                
+O     k                    none                 none                
+O     -                    none                 none                
+X     energy               command              energy              
+O     newline              none                 none                
+X     energy               none                 energy              
+O     (                    none                 none                
+O     kwh                  none                 none                
+O     )                    none                 none                
+O     newline              none                 none                
+===============================================
+===================== 506_1_3001663 ========================== 
+X     nae                  none                 network_adapter     
+O     06                   identifier           identifier          
+X     n                    none                 network_adapter     
+O     2                    identifier           identifier          
+O     1                    identifier           identifier          
+O     vma                  vav                  vav                 
+O     125                  identifier           identifier          
+O     supflo               supply_air_flow      supply_air_flow     
+O     sp                   setpoint             setpoint            
+O     newline              none                 none                
+O     ebu                  building             building            
+O     3                    identifier           identifier          
+O     b                    identifier           identifier          
+O     .                    none                 none                
+O     rm                   room                 room                
+O     -                    none                 none                
+O     2266                 identifier           identifier          
+O     .                    none                 none                
+X     .                    none                 identifier          
+O     supflo               supply_air_flow      supply_air_flow     
+O     -                    none                 none                
+O     sp                   setpoint             setpoint            
+O     newline              none                 none                
+O     actual               none                 none                
+O     sup                  supply               supply              
+O     flow                 flow                 flow                
+O     sp                   setpoint             setpoint            
+O     newline              none                 none                
+===============================================
+===================== 506_1_3001661 ========================== 
+===============================================
+===================== 506_1_3000769 ========================== 
+===============================================
+===================== 505_1_3001455 ========================== 
+===============================================
+===================== 506_0_3000349 ========================== 
+===============================================
+===================== 506_1_3003009 ========================== 
+===============================================
+===================== 506_0_3001196 ========================== 
+===============================================
+===================== 506_1_3002176 ========================== 
+X     nae                  none                 network_adapter     
+O     06                   identifier           identifier          
+X     n                    none                 network_adapter     
+O     2                    identifier           identifier          
+O     2                    identifier           identifier          
+O     vma                  vav                  vav                 
+O     148                  identifier           identifier          
+O     clgmaxflo            cooling_max_supply_air_flow_setpoint cooling_max_supply_air_flow_setpoint
+O     newline              none                 none                
+O     ebu                  building             building            
+O     3                    identifier           identifier          
+O     b                    identifier           identifier          
+O     .                    none                 none                
+O     rm                   room                 room                
+O     -                    none                 none                
+O     4250                 identifier           identifier          
+O     .                    none                 none                
+O     .                    none                 none                
+O     clgmaxflo            cooling_max_supply_air_flow_setpoint cooling_max_supply_air_flow_setpoint
+O     newline              none                 none                
+O     cooling              cooling              cooling             
+O     max                  max                  max                 
+O     flow                 flow                 flow                
+O     newline              none                 none                
+===============================================
+===================== 506_1_3003169 ========================== 
+X     nae                  none                 network_adapter     
+O     06                   identifier           identifier          
+X     n                    none                 network_adapter     
+O     2                    identifier           identifier          
+O     2                    identifier           identifier          
+O     vma                  vav                  vav                 
+O     116                  identifier           identifier          
+O     htgflow              heating_supply_air_flow_setpoint heating_supply_air_flow_setpoint
+O     newline              none                 none                
+O     ebu                  building             building            
+O     3                    identifier           identifier          
+O     b                    identifier           identifier          
+O     .                    none                 none                
+O     rm                   room                 room                
+O     -                    none                 none                
+O     3106                 identifier           identifier          
+O     .                    none                 none                
+O     .                    none                 none                
+O     htgflow              heating_supply_air_flow_setpoint heating_supply_air_flow_setpoint
+O     newline              none                 none                
+O     occupied             occupied             occupied            
+O     htg                  heating              heating             
+O     flow                 flow                 flow                
+O     newline              none                 none                
+===============================================
+===================== 505_1_3001750 ========================== 
+X     nae                  none                 network_adapter     
+O     05                   identifier           identifier          
+X     n                    none                 network_adapter     
+O     2                    identifier           identifier          
+O     2                    identifier           identifier          
+O     vma                  vav                  vav                 
+O     109                  identifier           identifier          
+O     supflo               supply_air_flow      supply_air_flow     
+O     sp                   setpoint             setpoint            
+O     newline              none                 none                
+O     ebu                  building             building            
+O     3                    identifier           identifier          
+O     b                    identifier           identifier          
+O     .                    none                 none                
+O     rm                   room                 room                
+O     -                    none                 none                
+O     1213                 identifier           identifier          
+O     .                    none                 none                
+O     .                    none                 none                
+O     supflo               supply_air_flow      supply_air_flow     
+O     -                    none                 none                
+O     sp                   setpoint             setpoint            
+O     newline              none                 none                
+O     actual               none                 none                
+O     sup                  supply               supply              
+O     flow                 flow                 flow                
+O     sp                   setpoint             setpoint            
+O     newline              none                 none                
+===============================================
+===================== 506_0_3001619 ========================== 
+X     nae                  none                 network_adapter     
+O     06                   identifier           identifier          
+X     n                    none                 network_adapter     
+O     2                    identifier           identifier          
+O     1                    identifier           identifier          
+O     vma                  vav                  vav                 
+O     123                  identifier           identifier          
+O     sup                  supply               supply              
+O     flow                 flow                 flow                
+O     newline              none                 none                
+O     ebu                  building             building            
+O     3                    identifier           identifier          
+O     b                    identifier           identifier          
+O     .                    none                 none                
+O     rm                   room                 room                
+O     -                    none                 none                
+O     2229                 identifier           identifier          
+O     a                    identifier           identifier          
+O     .                    none                 none                
+O     .                    none                 none                
+O     sup                  supply               supply              
+O     -                    none                 none                
+O     flow                 flow                 flow                
+O     newline              none                 none                
+O     actual               none                 none                
+O     supply               supply               supply              
+O     flow                 flow                 flow                
+O     newline              none                 none                
+===============================================
+===================== 506_1_3003244 ========================== 
+X     nae                  none                 network_adapter     
+O     06                   identifier           identifier          
+X     n                    none                 network_adapter     
+O     2                    identifier           identifier          
+O     2                    identifier           identifier          
+O     vma                  vav                  vav                 
+O     120                  identifier           identifier          
+O     commonsp             temperature_setpoint temperature_setpoint
+O     newline              none                 none                
+O     ebu                  building             building            
+O     3                    identifier           identifier          
+O     b                    identifier           identifier          
+O     .                    none                 none                
+O     rm                   room                 room                
+O     -                    none                 none                
+O     3152                 identifier           identifier          
+O     .                    none                 none                
+O     .                    none                 none                
+O     commonsp             temperature_setpoint temperature_setpoint
+O     newline              none                 none                
+O     common               none                 none                
+O     setpoint             setpoint             setpoint            
+O     newline              none                 none                
+===============================================
+===================== 506_0_3009420 ========================== 
+O     nae                  none                 none                
+O     06                   identifier           identifier          
+O     n                    none                 none                
+O     2                    identifier           identifier          
+O     1                    identifier           identifier          
+O     vma                  vav                  vav                 
+O     161                  identifier           identifier          
+X     dmprpos              none                 damper_position     
+O     newline              none                 none                
+O     ebu                  building             building            
+O     3                    identifier           identifier          
+O     b                    identifier           identifier          
+O     .                    none                 none                
+O     rm                   room                 room                
+O     -                    none                 none                
+O     3223                 identifier           identifier          
+O     .                    none                 none                
+O     .                    none                 none                
+X     dmprpos              setpoint             damper_position     
+O     newline              none                 none                
+O     damper               damper               damper              
+O     position             position             position            
+O     newline              none                 none                
+===============================================
+===================== 506_1_3015764 ========================== 
+X     nae                  none                 network_adapter     
+O     06                   identifier           identifier          
+X     n                    none                 network_adapter     
+O     2                    identifier           identifier          
+O     2                    identifier           identifier          
+O     vma                  vav                  vav                 
+O     148                  identifier           identifier          
+O     w                    warm                 warm                
+O     c                    cool                 cool                
+O     adj                  adjust               adjust              
+O     newline              none                 none                
+O     ebu                  building             building            
+O     3                    identifier           identifier          
+O     b                    identifier           identifier          
+O     .                    none                 none                
+O     rm                   room                 room                
+O     -                    none                 none                
+O     4250                 identifier           identifier          
+O     .                    none                 none                
+O     .                    none                 none                
+O     w                    warm                 warm                
+O     -                    none                 none                
+O     c                    cool                 cool                
+O     -                    none                 none                
+O     adj                  adjust               adjust              
+O     newline              none                 none                
+O     warm                 warm                 warm                
+O     /                    none                 none                
+O     cool                 cool                 cool                
+O     adjust               adjust               adjust              
+O     newline              none                 none                
+===============================================
+===================== 505_3_3014675 ========================== 
+X     nae                  none                 network_adapter     
+O     05                   identifier           identifier          
+X     n                    none                 network_adapter     
+O     2                    identifier           identifier          
+O     1                    identifier           identifier          
+O     dx                   network_adapter      network_adapter     
+O     12                   identifier           identifier          
+O     file                 none                 none                
+O     server               server               server              
+O     chw                  chilled_water        chilled_water       
+O     system               system               system              
+O     ena                  enable               enable              
+O     chwp                 chilled_water_pump   chilled_water_pump  
+O     3                    identifier           identifier          
+O     newline              none                 none                
+O     ebu                  building             building            
+O     3                    identifier           identifier          
+O     b                    identifier           identifier          
+O     .                    none                 none                
+X     fschw                none                 chilled_water       
+O     .                    none                 none                
+X     ena                  room                 enable              
+O     -                    none                 none                
+O     chwp                 chilled_water_pump   chilled_water_pump  
+O     3                    identifier           identifier          
+O     newline              none                 none                
+X     chilled              none                 chilled             
+X     water                none                 water               
+X     pump                 building             pump                
+O     3                    identifier           identifier          
+O     enable               enable               enable              
+O     newline              none                 none                
+===============================================
+===================== 505_1_3002039 ========================== 
+===============================================
+===================== 505_3_3014644 ========================== 
+X     nae                  none                 network_adapter     
+O     05                   identifier           identifier          
+X     n                    none                 network_adapter     
+O     2                    identifier           identifier          
+O     1                    identifier           identifier          
+O     vnd                  none                 none                
+O     27                   identifier           identifier          
+O     ena                  enable               enable              
+O     sts                  status               status              
+O     newline              none                 none                
+O     ebu                  building             building            
+O     3                    identifier           identifier          
+O     b                    identifier           identifier          
+O     .                    none                 none                
+O     chwp                 chilled_water_pump   chilled_water_pump  
+O     4                    identifier           identifier          
+O     -                    none                 none                
+O     vfd                  vfd                  vfd                 
+O     .                    none                 none                
+X     ena                  room                 enable              
+O     -                    none                 none                
+X     sts                  command              status              
+O     newline              none                 none                
+O     run                  run                  run                 
+O     enable               enable               enable              
+O     status               status               status              
+O     newline              none                 none                
+===============================================
+===================== 505_3_3015243 ========================== 
+X     nae                  none                 network_adapter     
+O     05                   identifier           identifier          
+X     n                    none                 network_adapter     
+O     2                    identifier           identifier          
+O     2                    identifier           identifier          
+O     vnd                  vnd                  none                
+O     161                  identifier           identifier          
+O     local                none                 none                
+O     2                    identifier           identifier          
+O     newline              none                 none                
+O     ebu                  building             building            
+O     3                    identifier           identifier          
+O     b                    identifier           identifier          
+O     .                    none                 none                
+O     crac                 crac                 crac                
+O     -                    none                 none                
+O     3                    identifier           identifier          
+O     .                    none                 none                
+O     local                none                 none                
+O     -                    none                 none                
+O     2                    identifier           identifier          
+O     newline              none                 none                
+O     local                none                 none                
+X     alarm                none                 alarm               
+O     2                    identifier           identifier          
+O     newline              none                 none                
+===============================================
+===================== 505_1_3000935 ========================== 
+===============================================
+===================== 506_1_3015702 ========================== 
+===============================================
+===================== 506_0_3002858 ========================== 
+===============================================
+===================== 506_4_3002869 ========================== 
+O     nae                  none                 none                
+O     06                   identifier           identifier          
+O     n                    none                 none                
+O     2                    identifier           identifier          
+O     2                    identifier           identifier          
+O     vma                  vav                  vav                 
+O     182                  identifier           identifier          
+X     ef                   damper               exhaust_fan         
+O     c                    command              command             
+O     newline              none                 none                
+O     ebu                  building             building            
+O     3                    identifier           identifier          
+O     b                    identifier           identifier          
+O     .                    none                 none                
+O     rm                   room                 room                
+O     -                    none                 none                
+O     4121                 identifier           identifier          
+O     .                    none                 none                
+O     .                    none                 none                
+X     ef                   building             exhaust_fan         
+O     3                    identifier           identifier          
+O     -                    none                 none                
+O     c                    command              command             
+O     newline              none                 none                
+O     exhaust              exhaust              exhaust             
+O     fan                  fan                  fan                 
+O     command              command              command             
+O     newline              none                 none                
+===============================================
+===================== 506_4_3001731 ========================== 
+X     nae                  none                 network_adapter     
+O     06                   identifier           identifier          
+X     n                    none                 network_adapter     
+O     2                    identifier           identifier          
+O     2                    identifier           identifier          
+O     vma                  vav                  vav                 
+O     102                  identifier           identifier          
+O     fan                  fan                  fan                 
+O     c                    command              command             
+O     newline              none                 none                
+O     ebu                  building             building            
+O     3                    identifier           identifier          
+O     b                    identifier           identifier          
+O     .                    none                 none                
+O     rm                   room                 room                
+O     -                    none                 none                
+O     3119                 identifier           identifier          
+O     .                    none                 none                
+O     .                    none                 none                
+X     fan                  room                 fan                 
+O     -                    none                 none                
+O     c                    command              command             
+O     newline              none                 none                
+X     fan                  damper               fan                 
+O     command              command              command             
+O     newline              none                 none                
+===============================================
+===================== 506_1_3003070 ========================== 
+===============================================
+===================== 506_0_3001782 ========================== 
+===============================================
+===================== 506_1_3002662 ========================== 
+X     nae                  none                 network_adapter     
+O     06                   identifier           identifier          
+X     n                    none                 network_adapter     
+O     2                    identifier           identifier          
+O     2                    identifier           identifier          
+O     vma                  vav                  vav                 
+O     172                  identifier           identifier          
+O     htgpid               heating_command      heating_command     
+O     o                    none                 none                
+O     newline              none                 none                
+O     ebu                  building             building            
+O     3                    identifier           identifier          
+O     b                    identifier           identifier          
+O     .                    none                 none                
+O     rm                   room                 room                
+O     -                    none                 none                
+O     4107                 identifier           identifier          
+O     .                    none                 none                
+O     .                    none                 none                
+O     htgpid               heating_command      heating_command     
+O     -                    none                 none                
+O     o                    none                 none                
+O     newline              none                 none                
+O     heating              heating              heating             
+O     command              command              command             
+O     newline              none                 none                
+===============================================
+===================== 506_1_3000092 ========================== 
+===============================================
+===================== 506_1_3001379 ========================== 
+X     nae                  none                 network_adapter     
+O     06                   identifier           identifier          
+X     n                    none                 network_adapter     
+O     2                    identifier           identifier          
+O     1                    identifier           identifier          
+O     vma                  vav                  vav                 
+O     111                  identifier           identifier          
+X     clgmaxflo            cooling_max_supply_air_flow_setpoint occupied_cooling_max_supply_air_flow_setpoint
+O     newline              none                 none                
+O     ebu                  building             building            
+O     3                    identifier           identifier          
+O     b                    identifier           identifier          
+O     .                    none                 none                
+O     rm                   room                 room                
+O     -                    none                 none                
+O     2218                 identifier           identifier          
+O     .                    none                 none                
+O     .                    none                 none                
+O     clgmaxflo            cooling_max_supply_air_flow_setpoint cooling_max_supply_air_flow_setpoint
+O     newline              none                 none                
+O     cooling              cooling              cooling             
+O     max                  max                  max                 
+O     flow                 flow                 flow                
+O     newline              none                 none                
+===============================================
+===================== 505_3_3015524 ========================== 
+O     nae                  none                 none                
+O     05                   identifier           identifier          
+O     n                    none                 none                
+O     2                    identifier           identifier          
+O     1                    identifier           identifier          
+O     vma                  vav                  vav                 
+O     119                  identifier           identifier          
+O     occ                  occupancy            occupancy           
+O     sen                  sensor               sensor              
+O     newline              none                 none                
+O     ebu                  building             building            
+O     3                    identifier           identifier          
+O     b                    identifier           identifier          
+O     .                    none                 none                
+O     rm                   room                 room                
+O     -                    none                 none                
+O     b                    identifier           identifier          
+O     240                  identifier           identifier          
+O     .                    none                 none                
+O     .                    none                 none                
+X     occ                  occupied             occupancy           
+O     -                    none                 none                
+X     sen                  command              sensor              
+O     newline              none                 none                
+O     occupancy            occupancy            occupancy           
+O     sensor               sensor               sensor              
+O     newline              none                 none                
+===============================================
+===================== 505_1_3001332 ========================== 
+===============================================
+===================== 505_1_3001333 ========================== 
+===============================================
+===================== 505_1_3001720 ========================== 
+===============================================
+===================== 506_14_3009396 ========================== 
+X     nae                  none                 network_adapter     
+O     06                   identifier           identifier          
+X     n                    none                 network_adapter     
+O     2                    identifier           identifier          
+O     1                    identifier           identifier          
+O     vma                  vav                  vav                 
+O     151                  identifier           identifier          
+X     boxmode              none                 mode                
+O     newline              none                 none                
+O     ebu                  building             building            
+O     3                    identifier           identifier          
+O     b                    identifier           identifier          
+O     .                    none                 none                
+O     rm                   room                 room                
+O     -                    none                 none                
+O     2127                 identifier           identifier          
+O     .                    none                 none                
+O     .                    none                 none                
+X     boxmode              setpoint             box_mode            
+O     newline              none                 none                
+X     box                  damper               box                 
+X     mode                 command              mode                
+O     newline              none                 none                
+===============================================
+===================== 506_0_3002790 ========================== 
+===============================================
+===================== 506_0_3001348 ========================== 
+===============================================
+===================== 506_1_3000053 ========================== 
+===============================================
+===================== 506_1_3000678 ========================== 
+===============================================
+===================== 506_0_3000883 ========================== 
+===============================================
+===================== 505_3_3015521 ========================== 
+O     nae                  none                 none                
+O     05                   identifier           identifier          
+O     n                    none                 none                
+O     2                    identifier           identifier          
+O     1                    identifier           identifier          
+O     vma                  vav                  vav                 
+O     118                  identifier           identifier          
+O     occ                  occupancy            occupancy           
+O     sen                  sensor               sensor              
+O     newline              none                 none                
+O     ebu                  building             building            
+O     3                    identifier           identifier          
+O     b                    identifier           identifier          
+O     .                    none                 none                
+O     rm                   room                 room                
+O     -                    none                 none                
+O     b                    identifier           identifier          
+O     230                  identifier           identifier          
+O     .                    none                 none                
+O     .                    none                 none                
+X     occ                  occupied             occupancy           
+O     -                    none                 none                
+X     sen                  command              sensor              
+O     newline              none                 none                
+O     occupancy            occupancy            occupancy           
+O     sensor               sensor               sensor              
+O     newline              none                 none                
+===============================================
+===================== 506_1_3001058 ========================== 
+===============================================
+===================== 505_4_3000821 ========================== 
+X     nae                  none                 network_adapter     
+O     05                   identifier           identifier          
+X     n                    none                 network_adapter     
+O     2                    identifier           identifier          
+O     1                    identifier           identifier          
+O     dx                   network_adapter      none                
+O     32                   identifier           identifier          
+X     rf                   none                 return_fan          
+O     2                    identifier           identifier          
+X     ss                   none                 start               
+O     2                    identifier           identifier          
+O     newline              none                 none                
+O     ebu                  building             building            
+O     3                    identifier           identifier          
+O     b                    identifier           identifier          
+O     .                    none                 none                
+X     ah                   none                 ahu                 
+O     1                    identifier           identifier          
+O     -                    none                 none                
+O     1                    identifier           identifier          
+O     .                    none                 none                
+O     rf                   return_fan           return_fan          
+O     1                    identifier           identifier          
+O     -                    none                 none                
+X     ss                   command              stop                
+O     newline              none                 none                
+X     return               none                 return              
+O     fan                  fan                  fan                 
+O     1                    identifier           identifier          
+O     cmd                  command              command             
+O     newline              none                 none                
+===============================================
+===================== 505_0_3001028 ========================== 
+===============================================
+===================== 506_0_3001308 ========================== 
+===============================================
+===================== 505_5_3014453 ========================== 
+X     nae                  none                 network_adapter     
+O     05                   identifier           identifier          
+O     programming          none                 none                
+O     file                 none                 none                
+O     server               server               server              
+O     room                 room                 room                
+X     pager                none                 alarm               
+O     test                 none                 none                
+O     newline              none                 none                
+O     ebu                  building             building            
+O     3                    identifier           identifier          
+O     b                    identifier           identifier          
+O     .                    none                 none                
+O     server               server               server              
+O     room                 room                 room                
+O     .                    none                 none                
+X     pager                none                 alarm               
+O     test                 none                 none                
+O     newline              none                 none                
+O     pager                none                 none                
+O     test                 none                 none                
+X     point                none                 point               
+O     for                  none                 none                
+O     server               server               server              
+O     room                 room                 room                
+O     newline              none                 none                
+===============================================
+===================== 506_1_3000453 ========================== 
+X     nae                  none                 network_adapter     
+O     06                   identifier           identifier          
+X     n                    none                 network_adapter     
+O     2                    identifier           identifier          
+O     1                    identifier           identifier          
+O     vma                  vav                  vav                 
+O     147                  identifier           identifier          
+O     dpr                  damper               damper              
+O     c                    command              command             
+O     newline              none                 none                
+O     ebu                  building             building            
+O     3                    identifier           identifier          
+O     b                    identifier           identifier          
+O     .                    none                 none                
+O     rm                   room                 room                
+O     -                    none                 none                
+O     2105                 identifier           identifier          
+O     .                    none                 none                
+O     .                    none                 none                
+O     dpr                  damper               damper              
+O     -                    none                 none                
+O     c                    command              command             
+O     newline              none                 none                
+O     damper               damper               damper              
+O     command              command              command             
+O     newline              none                 none                
+===============================================
+===================== 506_1_3001202 ========================== 
+===============================================
+===================== 505_0_3001027 ========================== 
+===============================================
+===================== 506_1_3001685 ========================== 
+X     nae                  none                 network_adapter     
+O     06                   identifier           identifier          
+X     n                    none                 network_adapter     
+O     2                    identifier           identifier          
+O     1                    identifier           identifier          
+O     vma                  vav                  vav                 
+O     126                  identifier           identifier          
+O     clgminflo            cooling_min_supply_air_flow_setpoint cooling_min_supply_air_flow_setpoint
+O     newline              none                 none                
+O     ebu                  building             building            
+O     3                    identifier           identifier          
+O     b                    identifier           identifier          
+O     .                    none                 none                
+O     rm                   room                 room                
+O     -                    none                 none                
+O     2270                 identifier           identifier          
+O     .                    none                 none                
+O     .                    none                 none                
+O     clgminflo            cooling_min_supply_air_flow_setpoint cooling_min_supply_air_flow_setpoint
+O     newline              none                 none                
+O     occupied             occupied             occupied            
+O     clg                  cooling              cooling             
+O     min                  min                  min                 
+O     newline              none                 none                
+===============================================
+===================== 506_1_3001684 ========================== 
+===============================================
+===================== 506_1_3002394 ========================== 
+X     nae                  none                 network_adapter     
+X     06                   identifier           network_adapter     
+X     n                    none                 network_adapter     
+O     2                    identifier           identifier          
+O     2                    identifier           identifier          
+O     vma                  vav                  vav                 
+O     159                  identifier           identifier          
+O     rh                   reheat               reheat              
+O     vlv                  valve                valve               
+O     newline              none                 none                
+O     ebu                  building             building            
+O     3                    identifier           identifier          
+O     b                    identifier           identifier          
+O     .                    none                 none                
+O     rm                   room                 room                
+O     -                    none                 none                
+O     4138                 identifier           identifier          
+O     .                    none                 none                
+O     .                    none                 none                
+O     rh                   reheat               reheat              
+O     -                    none                 none                
+O     vlv                  valve                valve               
+O     newline              none                 none                
+O     reheat               reheat               reheat              
+O     valve                valve                valve               
+O     command              command              command             
+O     newline              none                 none                
+===============================================
+===================== 506_1_3002395 ========================== 
+===============================================
+===================== 505_0_3000215 ========================== 
+===============================================
+===================== 506_1_3002259 ========================== 
+X     nae                  none                 network_adapter     
+O     06                   identifier           identifier          
+X     n                    none                 network_adapter     
+O     2                    identifier           identifier          
+O     2                    identifier           identifier          
+O     vma                  vav                  vav                 
+O     152                  identifier           identifier          
+O     clgpid               cooling_command      cooling_command     
+O     o                    none                 none                
+O     newline              none                 none                
+O     ebu                  building             building            
+O     3                    identifier           identifier          
+O     b                    identifier           identifier          
+O     .                    none                 none                
+O     rm                   room                 room                
+O     -                    none                 none                
+O     4256                 identifier           identifier          
+O     .                    none                 none                
+O     .                    none                 none                
+O     clgpid               cooling_command      cooling_command     
+O     -                    none                 none                
+O     o                    none                 none                
+O     newline              none                 none                
+O     cooling              cooling              cooling             
+O     command              command              command             
+O     newline              none                 none                
+===============================================
+===================== 505_1_3000899 ========================== 
+X     nae                  none                 network_adapter     
+O     05                   identifier           identifier          
+X     n                    none                 network_adapter     
+O     2                    identifier           identifier          
+O     1                    identifier           identifier          
+O     vma                  vav                  vav                 
+O     102                  identifier           identifier          
+O     clgminflo            cooling_min_supply_air_flow_setpoint cooling_min_supply_air_flow_setpoint
+O     newline              none                 none                
+O     ebu                  building             building            
+O     3                    identifier           identifier          
+O     b                    identifier           identifier          
+O     .                    none                 none                
+O     rm                   room                 room                
+O     -                    none                 none                
+O     b                    identifier           identifier          
+O     109                  identifier           identifier          
+O     .                    none                 none                
+O     .                    none                 none                
+O     clgminflo            cooling_min_supply_air_flow_setpoint cooling_min_supply_air_flow_setpoint
+O     newline              none                 none                
+O     occupied             occupied             occupied            
+O     clg                  cooling              cooling             
+O     min                  min                  min                 
+O     newline              none                 none                
+===============================================
+===================== 505_0_3002073 ========================== 
+===============================================
+===================== 506_1_3000974 ========================== 
+===============================================
+===================== 505_4_3000309 ========================== 
+===============================================
+===================== 506_0_3003295 ========================== 
+===============================================
+===================== 506_0_3001839 ========================== 
+X     nae                  none                 network_adapter     
+O     06                   identifier           identifier          
+X     n                    none                 network_adapter     
+O     2                    identifier           identifier          
+O     2                    identifier           identifier          
+O     vma                  vav                  vav                 
+O     132                  identifier           identifier          
+O     zn                   zone                 zone                
+O     t                    temperature          temperature         
+O     newline              none                 none                
+O     ebu                  building             building            
+O     3                    identifier           identifier          
+O     b                    identifier           identifier          
+O     .                    none                 none                
+O     rm                   room                 room                
+O     -                    none                 none                
+O     4154                 identifier           identifier          
+O     .                    none                 none                
+O     .                    none                 none                
+O     zn                   zone                 zone                
+O     -                    none                 none                
+O     t                    temperature          temperature         
+O     newline              none                 none                
+O     zone                 zone                 zone                
+O     temperature          temperature          temperature         
+O     newline              none                 none                
+===============================================
+===================== 506_1_3001853 ========================== 
+===============================================
+===================== 505_0_3015202 ========================== 
+O     nae                  none                 none                
+O     05                   identifier           identifier          
+O     n                    none                 none                
+O     2                    identifier           identifier          
+O     2                    identifier           identifier          
+O     vnd                  vnd                  vnd                 
+O     161                  identifier           identifier          
+X     hihum                none                 humidity            
+O     stpt                 setpoint             setpoint            
+O     newline              none                 none                
+O     ebu                  building             building            
+O     3                    identifier           identifier          
+O     b                    identifier           identifier          
+O     .                    none                 none                
+O     crac                 crac                 crac                
+O     -                    none                 none                
+O     3                    identifier           identifier          
+O     .                    none                 none                
+X     hihum                room                 humidity            
+O     -                    none                 none                
+O     stpt                 setpoint             setpoint            
+O     newline              none                 none                
+X     high                 none                 high                
+X     humidity             none                 humidity            
+O     setpoint             setpoint             setpoint            
+O     newline              none                 none                
+===============================================
+===================== 506_1_3002797 ========================== 
+===============================================
+===================== 505_1_3000241 ========================== 
+===============================================
+===================== 505_1_3001535 ========================== 
+===============================================
+===================== 506_0_3000653 ========================== 
+===============================================
+===================== 505_1_3026025 ========================== 
+X     nae                  none                 network_adapter     
+O     05                   identifier           identifier          
+X     n                    none                 network_adapter     
+O     2                    identifier           identifier          
+O     2                    identifier           identifier          
+O     vma                  vav                  vav                 
+O     146                  identifier           identifier          
+O     w                    warm                 warm                
+O     c                    cool                 cool                
+O     adj                  adjust               adjust              
+O     newline              none                 none                
+O     ebu                  building             building            
+O     3                    identifier           identifier          
+O     b                    identifier           identifier          
+O     .                    none                 none                
+O     rm                   room                 room                
+O     -                    none                 none                
+O     1133                 identifier           identifier          
+O     .                    none                 none                
+O     .                    none                 none                
+O     w                    warm                 warm                
+O     -                    none                 none                
+O     c                    cool                 cool                
+O     -                    none                 none                
+O     adj                  adjust               adjust              
+O     newline              none                 none                
+O     warm                 warm                 warm                
+O     /                    none                 none                
+O     cool                 cool                 cool                
+O     adjust               adjust               adjust              
+O     newline              none                 none                
+===============================================
+===================== 506_0_3000404 ========================== 
+===============================================
+===================== 506_1_3002093 ========================== 
+X     nae                  none                 network_adapter     
+O     06                   identifier           identifier          
+X     n                    none                 network_adapter     
+O     2                    identifier           identifier          
+O     2                    identifier           identifier          
+O     vma                  vav                  vav                 
+O     144                  identifier           identifier          
+O     dpr                  damper               damper              
+O     c                    command              command             
+O     newline              none                 none                
+O     ebu                  building             building            
+O     3                    identifier           identifier          
+O     b                    identifier           identifier          
+O     .                    none                 none                
+O     rm                   room                 room                
+O     -                    none                 none                
+O     4219                 identifier           identifier          
+O     .                    none                 none                
+O     .                    none                 none                
+O     dpr                  damper               damper              
+O     -                    none                 none                
+O     c                    command              command             
+O     newline              none                 none                
+O     damper               damper               damper              
+O     command              command              command             
+O     newline              none                 none                
+===============================================
+===================== 505_14_3002027 ========================== 
+X     nae                  none                 network_adapter     
+O     05                   identifier           identifier          
+X     n                    none                 network_adapter     
+O     2                    identifier           identifier          
+O     2                    identifier           identifier          
+O     vma                  vav                  vav                 
+O     123                  identifier           identifier          
+O     occ                  occupied             occupied            
+O     cmd                  command              command             
+O     newline              none                 none                
+O     ebu                  building             building            
+O     3                    identifier           identifier          
+O     b                    identifier           identifier          
+O     .                    none                 none                
+O     rm                   room                 room                
+O     -                    none                 none                
+O     1221                 identifier           identifier          
+O     .                    none                 none                
+O     .                    none                 none                
+O     occ                  occupied             occupied            
+O     -                    none                 none                
+O     cmd                  command              command             
+O     newline              none                 none                
+O     occupied             occupied             occupied            
+O     command              command              command             
+O     newline              none                 none                
+===============================================
+===================== 505_3_3014667 ========================== 
+O     nae                  none                 none                
+O     05                   identifier           identifier          
+O     n                    none                 none                
+O     2                    identifier           identifier          
+O     1                    identifier           identifier          
+O     dx                   network_adapter      network_adapter     
+O     12                   identifier           identifier          
+O     file                 none                 none                
+O     server               server               server              
+O     chw                  chilled_water        chilled_water       
+O     system               system               system              
+O     chwp                 chilled_water_pump   chilled_water_pump  
+O     4                    identifier           identifier          
+O     alm                  alarm                alarm               
+O     newline              none                 none                
+O     ebu                  building             building            
+O     3                    identifier           identifier          
+O     b                    identifier           identifier          
+O     .                    none                 none                
+X     fschw                none                 chilled_water       
+O     .                    none                 none                
+O     chwp                 chilled_water_pump   chilled_water_pump  
+O     4                    identifier           identifier          
+O     -                    none                 none                
+O     alm                  alarm                alarm               
+O     newline              none                 none                
+X     chilled              none                 chilled             
+X     water                none                 water               
+X     pump                 none                 pump                
+O     4                    identifier           identifier          
+O     alarm                alarm                alarm               
+O     newline              none                 none                
+===============================================
+===================== 505_1_3000156 ========================== 
+X     nae                  none                 network_adapter     
+O     05                   identifier           identifier          
+X     n                    none                 network_adapter     
+O     2                    identifier           identifier          
+O     1                    identifier           identifier          
+O     vma                  vav                  vav                 
+O     116                  identifier           identifier          
+O     htgflow              heating_supply_air_flow_setpoint heating_supply_air_flow_setpoint
+O     newline              none                 none                
+O     ebu                  building             building            
+O     3                    identifier           identifier          
+O     b                    identifier           identifier          
+O     .                    none                 none                
+O     rm                   room                 room                
+O     -                    none                 none                
+O     b                    identifier           identifier          
+O     210                  identifier           identifier          
+O     .                    none                 none                
+O     .                    none                 none                
+O     htgflow              heating_supply_air_flow_setpoint heating_supply_air_flow_setpoint
+O     newline              none                 none                
+O     occupied             occupied             occupied            
+O     htg                  heating              heating             
+O     flow                 flow                 flow                
+O     newline              none                 none                
+===============================================
+===================== 506_1_3000179 ========================== 
+===============================================
+===================== 505_0_3001627 ========================== 
+===============================================
+===================== 506_0_3002387 ========================== 
+===============================================
+===================== 506_1_3000681 ========================== 
+===============================================
+===================== 505_1_3001941 ========================== 
+===============================================
+===================== 505_1_3001942 ========================== 
+===============================================
+===================== 506_1_3002436 ========================== 
+X     nae                  none                 network_adapter     
+O     06                   identifier           identifier          
+X     n                    none                 network_adapter     
+O     2                    identifier           identifier          
+O     2                    identifier           identifier          
+O     vma                  vav                  vav                 
+O     161                  identifier           identifier          
+O     dpr                  damper               damper              
+O     c                    command              command             
+O     newline              none                 none                
+O     ebu                  building             building            
+O     3                    identifier           identifier          
+O     b                    identifier           identifier          
+O     .                    none                 none                
+O     rm                   room                 room                
+O     -                    none                 none                
+O     4134                 identifier           identifier          
+O     .                    none                 none                
+O     .                    none                 none                
+O     dpr                  damper               damper              
+O     -                    none                 none                
+O     c                    command              command             
+O     newline              none                 none                
+O     damper               damper               damper              
+O     command              command              command             
+O     newline              none                 none                
+===============================================
+===================== 506_0_3001314 ========================== 
+X     nae                  none                 network_adapter     
+O     06                   identifier           identifier          
+X     n                    none                 network_adapter     
+O     2                    identifier           identifier          
+O     1                    identifier           identifier          
+O     vma                  vav                  vav                 
+O     108                  identifier           identifier          
+O     sup                  supply               supply              
+O     flow                 flow                 flow                
+O     newline              none                 none                
+O     ebu                  building             building            
+O     3                    identifier           identifier          
+O     b                    identifier           identifier          
+O     .                    none                 none                
+O     rm                   room                 room                
+O     -                    none                 none                
+O     2208                 identifier           identifier          
+O     .                    none                 none                
+O     .                    none                 none                
+O     sup                  supply               supply              
+O     -                    none                 none                
+O     flow                 flow                 flow                
+O     newline              none                 none                
+O     actual               none                 none                
+O     supply               supply               supply              
+O     flow                 flow                 flow                
+O     newline              none                 none                
+===============================================
+===================== 506_14_3002505 ========================== 
+X     nae                  none                 network_adapter     
+O     06                   identifier           identifier          
+X     n                    none                 network_adapter     
+O     2                    identifier           identifier          
+O     2                    identifier           identifier          
+O     vma                  vav                  vav                 
+O     164                  identifier           identifier          
+O     occ                  occupied             occupied            
+O     cmd                  command              command             
+O     newline              none                 none                
+O     ebu                  building             building            
+O     3                    identifier           identifier          
+O     b                    identifier           identifier          
+O     .                    none                 none                
+O     rm                   room                 room                
+O     -                    none                 none                
+O     4126                 identifier           identifier          
+O     .                    none                 none                
+O     .                    none                 none                
+O     occ                  occupied             occupied            
+O     -                    none                 none                
+O     cmd                  command              command             
+O     newline              none                 none                
+O     occupied             occupied             occupied            
+O     command              command              command             
+O     newline              none                 none                
+===============================================
+===================== 506_0_3001312 ========================== 
+===============================================
+===================== 506_0_3002835 ========================== 
+X     nae                  none                 network_adapter     
+O     06                   identifier           identifier          
+X     n                    none                 network_adapter     
+O     2                    identifier           identifier          
+O     2                    identifier           identifier          
+O     vma                  vav                  vav                 
+O     181                  identifier           identifier          
+O     actclgsp             effective_cooling_temperature_setpoint effective_cooling_temperature_setpoint
+O     newline              none                 none                
+O     ebu                  building             building            
+O     3                    identifier           identifier          
+O     b                    identifier           identifier          
+O     .                    none                 none                
+O     rm                   room                 room                
+O     -                    none                 none                
+O     4128                 identifier           identifier          
+O     .                    none                 none                
+O     .                    none                 none                
+O     actclgsp             effective_cooling_temperature_setpoint effective_cooling_temperature_setpoint
+O     newline              none                 none                
+O     actual               effective            effective           
+O     cooling              cooling              cooling             
+O     setpoint             setpoint             setpoint            
+O     newline              none                 none                
+===============================================
+===================== 506_1_3001357 ========================== 
+===============================================
+===================== 505_0_3014456 ========================== 
+X     nae                  none                 network_adapter     
+O     05                   identifier           identifier          
+X     n                    none                 network_adapter     
+O     2                    identifier           identifier          
+O     1                    identifier           identifier          
+O     vma                  vav                  vav                 
+O     117                  identifier           identifier          
+X     co                   none                 co2                 
+O     2                    identifier           none                
+X     lvl                  none                 level               
+O     newline              none                 none                
+O     ebu                  building             building            
+O     3                    identifier           identifier          
+O     b                    identifier           identifier          
+O     .                    none                 none                
+O     rm                   room                 room                
+O     -                    none                 none                
+O     b                    identifier           identifier          
+O     220                  identifier           identifier          
+O     .                    none                 none                
+O     .                    none                 none                
+X     co                   none                 co2                 
+O     2                    identifier           none                
+O     -                    none                 none                
+X     level                command              level               
+O     newline              none                 none                
+X     co                   none                 co2                 
+X     2                    identifier           co2                 
+X     level                none                 level               
+O     newline              none                 none                
+===============================================
+===================== 506_1_3001751 ========================== 
+===============================================
+===================== 506_0_3000785 ========================== 
+===============================================
+===================== 505_1_3001252 ========================== 
+===============================================
+===================== 506_0_3002047 ========================== 
+===============================================
+===================== 506_1_3002521 ========================== 
+===============================================
+===================== 505_3_3015178 ========================== 
+X     nae                  none                 network_adapter     
+O     05                   identifier           identifier          
+X     n                    none                 network_adapter     
+O     2                    identifier           identifier          
+O     2                    identifier           identifier          
+O     vnd                  none                 none                
+O     160                  identifier           identifier          
+X     local                none                 locally             
+O     1                    identifier           identifier          
+O     newline              none                 none                
+O     ebu                  building             building            
+O     3                    identifier           identifier          
+O     b                    identifier           identifier          
+O     .                    none                 none                
+O     crac                 crac                 crac                
+O     -                    none                 none                
+O     4                    identifier           identifier          
+O     .                    none                 none                
+X     local                none                 locally             
+O     -                    none                 none                
+O     1                    identifier           identifier          
+O     newline              none                 none                
+X     local                none                 locally             
+O     alarm                alarm                alarm               
+O     1                    identifier           identifier          
+O     newline              none                 none                
+===============================================
+===================== 506_0_3002043 ========================== 
+===============================================
+===================== 506_1_3000594 ========================== 
+===============================================
+===================== 505_0_3000143 ========================== 
+===============================================
+===================== 506_1_3000656 ========================== 
+===============================================
+===================== 505_1_3001654 ========================== 
+===============================================
+===================== 506_1_3000293 ========================== 
+X     nae                  none                 network_adapter     
+O     06                   identifier           identifier          
+X     n                    none                 network_adapter     
+O     2                    identifier           identifier          
+O     1                    identifier           identifier          
+O     vma                  vav                  vav                 
+O     139                  identifier           identifier          
+O     dpr                  damper               damper              
+O     c                    command              command             
+O     newline              none                 none                
+O     ebu                  building             building            
+O     3                    identifier           identifier          
+O     b                    identifier           identifier          
+O     .                    none                 none                
+O     rm                   room                 room                
+O     -                    none                 none                
+O     2122                 identifier           identifier          
+O     .                    none                 none                
+O     .                    none                 none                
+O     dpr                  damper               damper              
+O     -                    none                 none                
+O     c                    command              command             
+O     newline              none                 none                
+O     damper               damper               damper              
+O     command              command              command             
+O     newline              none                 none                
+===============================================
+===================== 506_14_3002914 ========================== 
+===============================================
+===================== 506_0_3000627 ========================== 
+===============================================
+===================== 506_1_3002117 ========================== 
+===============================================
+===================== 505_1_3000920 ========================== 
+===============================================
+===================== 505_1_3025999 ========================== 
+===============================================
+===================== 505_3_3015373 ========================== 
+X     nae                  none                 network_adapter     
+O     05                   identifier           identifier          
+X     n                    none                 network_adapter     
+O     2                    identifier           identifier          
+O     2                    identifier           identifier          
+O     vnd                  none                 none                
+O     163                  identifier           identifier          
+X     off                  none                 off                 
+X     remt                 none                 remotely            
+O     newline              none                 none                
+O     ebu                  building             building            
+O     3                    identifier           identifier          
+O     b                    identifier           identifier          
+O     .                    none                 none                
+O     crac                 crac                 crac                
+O     -                    none                 none                
+O     2                    identifier           identifier          
+O     .                    none                 none                
+X     off                  room                 off                 
+O     -                    none                 none                
+X     remt                 command              remotely            
+O     newline              none                 none                
+X     unit                 none                 unit                
+X     turned               none                 turn                
+X     off                  none                 off                 
+X     remotely             none                 remotely            
+O     newline              none                 none                
+===============================================
+===================== 505_4_3000122 ========================== 
+X     nae                  none                 network_adapter     
+O     05                   identifier           identifier          
+X     n                    none                 network_adapter     
+O     2                    identifier           identifier          
+O     1                    identifier           identifier          
+O     vma                  vav                  vav                 
+O     114                  identifier           identifier          
+X     ef                   identifier           exhaust_fan         
+O     1                    identifier           identifier          
+O     c                    command              command             
+O     newline              none                 none                
+O     ebu                  building             building            
+O     3                    identifier           identifier          
+O     b                    identifier           identifier          
+O     .                    none                 none                
+O     rm                   room                 room                
+O     -                    none                 none                
+O     b                    identifier           identifier          
+O     103                  identifier           identifier          
+O     a                    identifier           identifier          
+O     .                    none                 none                
+O     .                    none                 none                
+O     ef                   exhaust_fan          exhaust_fan         
+O     1                    identifier           identifier          
+O     -                    none                 none                
+O     c                    command              command             
+O     newline              none                 none                
+O     exhaust              exhaust              exhaust             
+O     fan                  fan                  fan                 
+O     1                    identifier           identifier          
+O     cmd                  command              command             
+O     newline              none                 none                
+===============================================
+===================== 505_4_3000587 ========================== 
+===============================================
+===================== 506_1_3000433 ========================== 
+X     nae                  none                 network_adapter     
+O     06                   identifier           identifier          
+X     n                    none                 network_adapter     
+O     2                    identifier           identifier          
+O     1                    identifier           identifier          
+O     vma                  vav                  vav                 
+O     146                  identifier           identifier          
+O     dpr                  damper               damper              
+O     c                    command              command             
+O     newline              none                 none                
+O     ebu                  building             building            
+O     3                    identifier           identifier          
+O     b                    identifier           identifier          
+O     .                    none                 none                
+O     rm                   room                 room                
+O     -                    none                 none                
+O     2102                 identifier           identifier          
+O     .                    none                 none                
+O     .                    none                 none                
+O     dpr                  damper               damper              
+O     -                    none                 none                
+O     c                    command              command             
+O     newline              none                 none                
+O     damper               damper               damper              
+O     command              command              command             
+O     newline              none                 none                
+===============================================
+===================== 505_3_3000065 ========================== 
+O     nae                  none                 none                
+O     05                   identifier           identifier          
+O     n                    none                 none                
+O     2                    identifier           identifier          
+O     1                    identifier           identifier          
+O     dx                   network_adapter      network_adapter     
+O     12                   identifier           identifier          
+X     hwp                  none                 hot_water_pump      
+O     1                    identifier           identifier          
+O     alm                  alarm                alarm               
+O     newline              none                 none                
+O     ebu                  building             building            
+O     3                    identifier           identifier          
+O     b                    identifier           identifier          
+O     .                    none                 none                
+X     hw                   room                 hot_water           
+O     -                    none                 none                
+X     sys                  identifier           system              
+O     .                    none                 none                
+O     hwp                  hot_water_pump       hot_water_pump      
+O     1                    identifier           identifier          
+O     -                    none                 none                
+O     alm                  alarm                alarm               
+O     newline              none                 none                
+X     hw                   none                 hot_water           
+X     pump                 none                 pump                
+O     1                    identifier           identifier          
+O     alarm                alarm                alarm               
+O     newline              none                 none                
+===============================================
+===================== 506_1_3002155 ========================== 
+===============================================
+===================== 506_1_3000438 ========================== 
+===============================================
+===================== 506_1_3002422 ========================== 
+===============================================
+===================== 505_0_3001464 ========================== 
+===============================================
+===================== 506_1_3000994 ========================== 
+X     nae                  none                 network_adapter     
+O     06                   identifier           identifier          
+X     n                    none                 network_adapter     
+O     2                    identifier           identifier          
+O     1                    identifier           identifier          
+O     vma                  vav                  vav                 
+O     174                  identifier           identifier          
+O     commonsp             temperature_setpoint temperature_setpoint
+O     newline              none                 none                
+O     ebu                  building             building            
+O     3                    identifier           identifier          
+O     b                    identifier           identifier          
+O     .                    none                 none                
+O     rm                   room                 room                
+O     -                    none                 none                
+O     3250                 identifier           identifier          
+O     .                    none                 none                
+O     .                    none                 none                
+O     commonsp             temperature_setpoint temperature_setpoint
+O     newline              none                 none                
+O     common               none                 none                
+O     setpoint             setpoint             setpoint            
+O     newline              none                 none                
+===============================================
+===================== 506_1_3003028 ========================== 
+===============================================
+===================== 506_14_3001511 ========================== 
+===============================================
+===================== 506_1_3009391 ========================== 
+O     nae                  none                 none                
+O     06                   identifier           identifier          
+O     n                    none                 none                
+O     2                    identifier           identifier          
+O     1                    identifier           identifier          
+O     vma                  vav                  vav                 
+O     151                  identifier           identifier          
+X     supflosp             none                 supply_air_flow_setpoint
+O     newline              none                 none                
+O     ebu                  building             building            
+O     3                    identifier           identifier          
+O     b                    identifier           identifier          
+O     .                    none                 none                
+O     rm                   room                 room                
+O     -                    none                 none                
+O     2127                 identifier           identifier          
+O     .                    none                 none                
+O     .                    none                 none                
+X     suplosp              setpoint             supply_air_flow_setpoint
+O     newline              none                 none                
+O     actual               none                 none                
+O     sup                  supply               supply              
+O     flow                 flow                 flow                
+O     sp                   setpoint             setpoint            
+O     newline              none                 none                
+===============================================
+===================== 506_0_3001925 ========================== 
+X     nae                  none                 network_adapter     
+O     06                   identifier           identifier          
+X     n                    none                 network_adapter     
+O     2                    identifier           identifier          
+O     2                    identifier           identifier          
+O     vma                  vav                  vav                 
+O     136                  identifier           identifier          
+O     acthtgsp             effective_heating_temperature_setpoint effective_heating_temperature_setpoint
+O     newline              none                 none                
+O     ebu                  building             building            
+O     3                    identifier           identifier          
+O     b                    identifier           identifier          
+O     .                    none                 none                
+O     rm                   room                 room                
+O     -                    none                 none                
+O     4208                 identifier           identifier          
+O     .                    none                 none                
+O     .                    none                 none                
+O     acthtgsp             effective_heating_temperature_setpoint effective_heating_temperature_setpoint
+O     newline              none                 none                
+O     actual               effective            effective           
+O     heating              heating              heating             
+O     setpoint             setpoint             setpoint            
+O     newline              none                 none                
+===============================================
+===================== 505_1_3000862 ========================== 
+O     nae                  none                 none                
+O     05                   identifier           identifier          
+O     n                    none                 none                
+O     2                    identifier           identifier          
+O     1                    identifier           identifier          
+O     dx                   network_adapter      network_adapter     
+O     32                   identifier           identifier          
+O     clg                  cooling              cooling             
+O     vlv                  valve                valve               
+O     1                    identifier           identifier          
+O     newline              none                 none                
+O     ebu                  building             building            
+O     3                    identifier           identifier          
+O     b                    identifier           identifier          
+O     .                    none                 none                
+X     ah                   none                 ahu                 
+O     1                    identifier           identifier          
+O     -                    none                 none                
+O     1                    identifier           identifier          
+O     .                    none                 none                
+X     clg                  room                 cooling             
+O     -                    none                 none                
+O     vlv                  valve                valve               
+O     1                    identifier           identifier          
+O     newline              none                 none                
+O     cooling              cooling              cooling             
+O     valve                valve                valve               
+O     1                    identifier           identifier          
+O     cmd                  command              command             
+O     newline              none                 none                
+===============================================
+===================== 505_1_3000267 ========================== 
+===============================================
+===================== 506_1_3002238 ========================== 
+===============================================
+===================== 506_1_3000916 ========================== 
+===============================================
+===================== 505_0_3001063 ========================== 
+===============================================
+===================== 505_0_3000433 ========================== 
+X     nae                  none                 network_adapter     
+O     05                   identifier           identifier          
+X     n                    none                 network_adapter     
+O     2                    identifier           identifier          
+O     1                    identifier           identifier          
+X     nae                  none                 network_adapter     
+O     5                    identifier           identifier          
+O     t                    identifier           identifier          
+O     1                    identifier           identifier          
+O     vnd                  vnd                  vnd                 
+O     24                   identifier           identifier          
+X     hwp                  none                 hot_water_pump      
+O     2                    identifier           identifier          
+O     vfd                  vfd                  vfd                 
+O     1                    identifier           identifier          
+X     current              none                 current             
+O     newline              none                 none                
+O     ebu                  building             building            
+O     3                    identifier           identifier          
+O     b                    identifier           identifier          
+O     .                    none                 none                
+X     hwp                  none                 hot_water_pump      
+O     2                    identifier           identifier          
+O     .                    none                 none                
+X     current              setpoint             current             
+O     newline              none                 none                
+X     current              none                 current             
+O     newline              none                 none                
+===============================================
+===================== 506_1_3001624 ========================== 
+===============================================
+===================== 506_0_3000368 ========================== 
+===============================================
+===================== 505_14_3000163 ========================== 
+X     nae                  none                 network_adapter     
+O     05                   identifier           identifier          
+X     n                    none                 network_adapter     
+O     2                    identifier           identifier          
+O     1                    identifier           identifier          
+O     vma                  vav                  vav                 
+O     116                  identifier           identifier          
+O     occ                  occupied             occupied            
+O     cmd                  command              command             
+O     newline              none                 none                
+O     ebu                  building             building            
+O     3                    identifier           identifier          
+O     b                    identifier           identifier          
+O     .                    none                 none                
+O     rm                   room                 room                
+O     -                    none                 none                
+O     b                    identifier           identifier          
+O     210                  identifier           identifier          
+O     .                    none                 none                
+O     .                    none                 none                
+O     occ                  occupied             occupied            
+O     -                    none                 none                
+O     cmd                  command              command             
+O     newline              none                 none                
+O     occupied             occupied             occupied            
+O     command              command              command             
+O     newline              none                 none                
+===============================================
+===================== 505_1_3001168 ========================== 
+===============================================
+===================== 506_1_3015644 ========================== 
+===============================================
+===================== 505_14_3001723 ========================== 
+X     nae                  none                 network_adapter     
+O     05                   identifier           identifier          
+X     n                    none                 network_adapter     
+O     2                    identifier           identifier          
+O     2                    identifier           identifier          
+O     vma                  vav                  vav                 
+O     107                  identifier           identifier          
+O     occ                  occupied             occupied            
+O     cmd                  command              command             
+O     newline              none                 none                
+O     ebu                  building             building            
+O     3                    identifier           identifier          
+O     b                    identifier           identifier          
+O     .                    none                 none                
+O     rm                   room                 room                
+X     -                    none                 room                
+O     1207                 identifier           identifier          
+O     .                    none                 none                
+O     .                    none                 none                
+O     occ                  occupied             occupied            
+O     -                    none                 none                
+O     cmd                  command              command             
+X     newline              none                 command             
+O     occupied             occupied             occupied            
+O     command              command              command             
+O     newline              none                 none                
+===============================================
+===================== 506_0_3001391 ========================== 
+X     nae                  none                 network_adapter     
+O     06                   identifier           identifier          
+X     n                    none                 network_adapter     
+O     2                    identifier           identifier          
+O     1                    identifier           identifier          
+O     vma                  vav                  vav                 
+O     112                  identifier           identifier          
+O     actclgsp             effective_cooling_temperature_setpoint effective_cooling_temperature_setpoint
+O     newline              none                 none                
+O     ebu                  building             building            
+O     3                    identifier           identifier          
+O     b                    identifier           identifier          
+O     .                    none                 none                
+O     rm                   room                 room                
+O     -                    none                 none                
+O     2226                 identifier           identifier          
+O     .                    none                 none                
+O     .                    none                 none                
+O     actclgsp             effective_cooling_temperature_setpoint effective_cooling_temperature_setpoint
+O     newline              none                 none                
+O     actual               effective            effective           
+O     cooling              cooling              cooling             
+O     setpoint             setpoint             setpoint            
+O     newline              none                 none                
+===============================================
+===================== 505_1_3001822 ========================== 
+===============================================
+===================== 506_1_3000355 ========================== 
+===============================================
+===================== 505_1_3001418 ========================== 
+===============================================
+===================== 506_0_3001334 ========================== 
+===============================================
+===================== 506_1_3001081 ========================== 
+X     nae                  none                 network_adapter     
+O     06                   identifier           identifier          
+X     n                    none                 network_adapter     
+O     2                    identifier           identifier          
+O     1                    identifier           identifier          
+O     vma                  vav                  vav                 
+O     178                  identifier           identifier          
+O     clgmaxflo            cooling_max_supply_air_flow_setpoint cooling_max_supply_air_flow_setpoint
+O     newline              none                 none                
+O     ebu                  building             building            
+O     3                    identifier           identifier          
+O     b                    identifier           identifier          
+O     .                    none                 none                
+O     rm                   room                 room                
+O     -                    none                 none                
+O     3258                 identifier           identifier          
+O     .                    none                 none                
+O     .                    none                 none                
+O     clgmaxflo            cooling_max_supply_air_flow_setpoint cooling_max_supply_air_flow_setpoint
+O     newline              none                 none                
+O     cooling              cooling              cooling             
+O     max                  max                  max                 
+O     flow                 flow                 flow                
+O     newline              none                 none                
+===============================================
+===================== 506_1_3000033 ========================== 
+===============================================
+===================== 506_1_3000032 ========================== 
+X     nae                  none                 network_adapter     
+O     06                   identifier           identifier          
+X     n                    none                 network_adapter     
+O     2                    identifier           identifier          
+X     1                    identifier           network_adapter     
+O     vma                  vav                  vav                 
+O     102                  identifier           identifier          
+O     dpr                  damper               damper              
+O     c                    command              command             
+O     newline              none                 none                
+O     ebu                  building             building            
+O     3                    identifier           identifier          
+O     b                    identifier           identifier          
+O     .                    none                 none                
+O     rm                   room                 room                
+O     -                    none                 none                
+O     2140                 identifier           identifier          
+O     .                    none                 none                
+O     .                    none                 none                
+O     dpr                  damper               damper              
+O     -                    none                 none                
+O     c                    command              command             
+O     newline              none                 none                
+O     damper               damper               damper              
+O     command              command              command             
+O     newline              none                 none                
+===============================================
+===================== 506_0_3002815 ========================== 
+===============================================
+===================== 505_0_3000237 ========================== 
+===============================================
+===================== 505_1_3026027 ========================== 
+===============================================
+===================== 505_1_3001373 ========================== 
+X     nae                  none                 network_adapter     
+O     05                   identifier           identifier          
+X     n                    none                 network_adapter     
+O     2                    identifier           identifier          
+O     2                    identifier           identifier          
+O     vma                  vav                  vav                 
+O     139                  identifier           identifier          
+O     clgmaxflo            cooling_max_supply_air_flow_setpoint cooling_max_supply_air_flow_setpoint
+O     newline              none                 none                
+O     ebu                  building             building            
+O     3                    identifier           identifier          
+O     b                    identifier           identifier          
+O     .                    none                 none                
+O     rm                   room                 room                
+O     -                    none                 none                
+O     1154                 identifier           identifier          
+O     .                    none                 none                
+O     .                    none                 none                
+O     clgmaxflo            cooling_max_supply_air_flow_setpoint cooling_max_supply_air_flow_setpoint
+O     newline              none                 none                
+O     cooling              cooling              cooling             
+O     max                  max                  max                 
+O     flow                 flow                 flow                
+O     newline              none                 none                
+===============================================
+===================== 506_1_3003210 ========================== 
+===============================================
+===================== 506_1_3003211 ========================== 
+===============================================
+===================== 506_1_3002456 ========================== 
+X     nae                  none                 network_adapter     
+O     06                   identifier           identifier          
+X     n                    none                 network_adapter     
+O     2                    identifier           identifier          
+O     2                    identifier           identifier          
+O     vma                  vav                  vav                 
+O     162                  identifier           identifier          
+O     dpr                  damper               damper              
+O     c                    command              command             
+O     newline              none                 none                
+O     ebu                  building             building            
+O     3                    identifier           identifier          
+O     b                    identifier           identifier          
+O     .                    none                 none                
+O     rm                   room                 room                
+O     -                    none                 none                
+O     4132                 identifier           identifier          
+O     .                    none                 none                
+O     .                    none                 none                
+O     dpr                  damper               damper              
+O     -                    none                 none                
+O     c                    command              command             
+O     newline              none                 none                
+O     damper               damper               damper              
+O     command              command              command             
+O     newline              none                 none                
+===============================================
+===================== 506_1_3001789 ========================== 
+X     nae                  none                 network_adapter     
+O     06                   identifier           identifier          
+X     n                    none                 network_adapter     
+O     2                    identifier           identifier          
+O     2                    identifier           identifier          
+O     vma                  vav                  vav                 
+O     129                  identifier           identifier          
+O     htgflow              heating_supply_air_flow_setpoint heating_supply_air_flow_setpoint
+O     newline              none                 none                
+O     ebu                  building             building            
+O     3                    identifier           identifier          
+O     b                    identifier           identifier          
+O     .                    none                 none                
+O     rm                   room                 room                
+O     -                    none                 none                
+O     4213                 identifier           identifier          
+O     .                    none                 none                
+O     .                    none                 none                
+O     htgflow              heating_supply_air_flow_setpoint heating_supply_air_flow_setpoint
+O     newline              none                 none                
+O     occupied             occupied             occupied            
+O     htg                  heating              heating             
+O     flow                 flow                 flow                
+O     newline              none                 none                
+===============================================
+===================== 506_1_3002341 ========================== 
+===============================================
+===================== 506_1_3002340 ========================== 
+===============================================
+===================== 505_4_3014616 ========================== 
+O     nae                  none                 none                
+O     05                   identifier           identifier          
+O     n                    none                 none                
+O     2                    identifier           identifier          
+O     1                    identifier           identifier          
+O     vnd                  vnd                  vnd                 
+O     26                   identifier           identifier          
+X     flt                  none                 fault               
+O     rst                  reset                reset               
+O     newline              none                 none                
+O     ebu                  building             building            
+O     3                    identifier           identifier          
+O     b                    identifier           identifier          
+O     .                    none                 none                
+O     chwp                 chilled_water_pump   chilled_water_pump  
+O     3                    identifier           identifier          
+O     -                    none                 none                
+O     vfd                  vfd                  vfd                 
+O     .                    none                 none                
+X     flt                  room                 fault               
+O     -                    none                 none                
+X     rst                  command              reset               
+O     newline              none                 none                
+X     fault                filter               fault               
+O     reset                reset                reset               
+O     newline              none                 none                
+===============================================
+===================== 505_1_3001276 ========================== 
+X     nae                  none                 network_adapter     
+O     05                   identifier           identifier          
+X     n                    none                 network_adapter     
+O     2                    identifier           identifier          
+O     2                    identifier           identifier          
+O     vma                  vav                  vav                 
+O     134                  identifier           identifier          
+O     htgpid               heating_command      heating_command     
+O     o                    none                 none                
+O     newline              none                 none                
+O     ebu                  building             building            
+O     3                    identifier           identifier          
+O     b                    identifier           identifier          
+O     .                    none                 none                
+O     rm                   room                 room                
+O     -                    none                 none                
+O     1124                 identifier           identifier          
+O     .                    none                 none                
+O     .                    none                 none                
+O     htgpid               heating_command      heating_command     
+O     -                    none                 none                
+O     o                    none                 none                
+O     newline              none                 none                
+O     heating              heating              heating             
+O     command              command              command             
+O     newline              none                 none                
+===============================================
+===================== 506_0_3001721 ========================== 
+===============================================
+===================== 506_0_3000688 ========================== 
+X     nae                  none                 network_adapter     
+O     06                   identifier           identifier          
+X     n                    none                 network_adapter     
+O     2                    identifier           identifier          
+O     1                    identifier           identifier          
+O     vma                  vav                  vav                 
+O     159                  identifier           identifier          
+O     zn                   zone                 zone                
+O     t                    temperature          temperature         
+O     newline              none                 none                
+O     ebu                  building             building            
+O     3                    identifier           identifier          
+O     b                    identifier           identifier          
+O     .                    none                 none                
+O     rm                   room                 room                
+O     -                    none                 none                
+O     3205                 identifier           identifier          
+O     .                    none                 none                
+O     .                    none                 none                
+O     zn                   zone                 zone                
+O     -                    none                 none                
+O     t                    temperature          temperature         
+O     newline              none                 none                
+O     zone                 zone                 zone                
+O     temperature          temperature          temperature         
+O     newline              none                 none                
+===============================================
+===================== 506_0_3002513 ========================== 
+X     nae                  none                 network_adapter     
+O     06                   identifier           identifier          
+X     n                    none                 network_adapter     
+O     2                    identifier           identifier          
+O     2                    identifier           identifier          
+O     vma                  vav                  vav                 
+O     165                  identifier           identifier          
+O     sup                  supply               supply              
+O     flow                 flow                 flow                
+O     newline              none                 none                
+O     ebu                  building             building            
+O     3                    identifier           identifier          
+O     b                    identifier           identifier          
+O     .                    none                 none                
+O     rm                   room                 room                
+O     -                    none                 none                
+O     4122                 identifier           identifier          
+O     .                    none                 none                
+O     .                    none                 none                
+O     sup                  supply               supply              
+O     -                    none                 none                
+O     flow                 flow                 flow                
+O     newline              none                 none                
+O     actual               none                 none                
+O     supply               supply               supply              
+O     flow                 flow                 flow                
+O     newline              none                 none                
+===============================================
+===================== 505_1_3000894 ========================== 
+===============================================
+===================== 505_1_3000077 ========================== 
+X     nae                  none                 network_adapter     
+O     05                   identifier           identifier          
+X     n                    none                 network_adapter     
+O     2                    identifier           identifier          
+O     1                    identifier           identifier          
+O     vma                  vav                  vav                 
+O     112                  identifier           identifier          
+O     rh                   reheat               reheat              
+O     vlv                  valve                valve               
+O     newline              none                 none                
+O     ebu                  building             building            
+O     3                    identifier           identifier          
+O     b                    identifier           identifier          
+O     .                    none                 none                
+O     rm                   room                 room                
+O     -                    none                 none                
+O     b                    identifier           identifier          
+O     200                  identifier           identifier          
+O     c                    identifier           identifier          
+O     .                    none                 none                
+O     .                    none                 none                
+O     rh                   reheat               reheat              
+O     -                    none                 none                
+O     vlv                  valve                valve               
+O     newline              none                 none                
+O     reheat               reheat               reheat              
+O     valve                valve                valve               
+O     command              command              command             
+O     newline              none                 none                
+===============================================
+===================== 506_0_3002694 ========================== 
+===============================================
+===================== 506_0_3000565 ========================== 
+X     nae                  none                 network_adapter     
+O     06                   identifier           identifier          
+X     n                    none                 network_adapter     
+O     2                    identifier           identifier          
+O     1                    identifier           identifier          
+O     vma                  vav                  vav                 
+O     153                  identifier           identifier          
+O     zn                   zone                 zone                
+O     t                    temperature          temperature         
+O     newline              none                 none                
+O     ebu                  building             building            
+O     3                    identifier           identifier          
+O     b                    identifier           identifier          
+O     .                    none                 none                
+O     rm                   room                 room                
+O     -                    none                 none                
+O     2144                 identifier           identifier          
+O     .                    none                 none                
+O     .                    none                 none                
+O     zn                   zone                 zone                
+O     -                    none                 none                
+O     t                    temperature          temperature         
+O     newline              none                 none                
+O     zone                 zone                 zone                
+O     temperature          temperature          temperature         
+O     newline              none                 none                
+===============================================
+===================== 505_1_3001170 ========================== 
+X     nae                  none                 network_adapter     
+O     05                   identifier           identifier          
+X     n                    none                 network_adapter     
+O     2                    identifier           identifier          
+O     2                    identifier           identifier          
+O     vma                  vav                  vav                 
+O     129                  identifier           identifier          
+O     dpr                  damper               damper              
+O     c                    command              command             
+O     newline              none                 none                
+O     ebu                  building             building            
+O     3                    identifier           identifier          
+O     b                    identifier           identifier          
+O     .                    none                 none                
+O     rm                   room                 room                
+O     -                    none                 none                
+O     1110                 identifier           identifier          
+O     .                    none                 none                
+O     .                    none                 none                
+O     dpr                  damper               damper              
+O     -                    none                 none                
+O     c                    command              command             
+O     newline              none                 none                
+O     damper               damper               damper              
+O     command              command              command             
+O     newline              none                 none                
+===============================================
+===================== 505_3_3015214 ========================== 
+O     nae                  none                 none                
+O     05                   identifier           identifier          
+O     n                    none                 none                
+O     2                    identifier           identifier          
+O     2                    identifier           identifier          
+O     vnd                  vnd                  vnd                 
+O     161                  identifier           identifier          
+X     hi                   none                 high                
+X     head                 none                 head                
+O     2                    identifier           identifier          
+O     newline              none                 none                
+O     ebu                  building             building            
+O     3                    identifier           identifier          
+O     b                    identifier           identifier          
+O     .                    none                 none                
+O     crac                 crac                 crac                
+O     -                    none                 none                
+O     3                    identifier           identifier          
+O     .                    none                 none                
+X     hi                   room                 high                
+O     -                    none                 none                
+X     head                 none                 head                
+O     2                    identifier           identifier          
+O     newline              none                 none                
+X     high                 none                 high                
+X     head                 none                 head                
+X     pressure             none                 pressure            
+O     2                    identifier           identifier          
+O     newline              none                 none                
+===============================================
+===================== 505_3_3015350 ========================== 
+O     nae                  none                 none                
+O     05                   identifier           identifier          
+O     n                    none                 none                
+O     2                    identifier           identifier          
+O     2                    identifier           identifier          
+X     vnd                  none                 vnd                 
+O     163                  identifier           identifier          
+X     lo                   none                 low                 
+O     temp                 temperature          temperature         
+O     newline              none                 none                
+O     ebu                  building             building            
+O     3                    identifier           identifier          
+O     b                    identifier           identifier          
+O     .                    none                 none                
+O     crac                 crac                 crac                
+O     -                    none                 none                
+O     2                    identifier           identifier          
+O     .                    none                 none                
+X     lo                   room                 low                 
+O     -                    none                 none                
+O     temp                 temperature          temperature         
+O     newline              none                 none                
+X     low                  zone                 low                 
+O     temperature          temperature          temperature         
+O     newline              none                 none                
+===============================================
+===================== 505_0_3001124 ========================== 
+===============================================
+===================== 506_1_3000794 ========================== 
+===============================================
+===================== 505_1_3000097 ========================== 
+===============================================
+===================== 506_1_3000259 ========================== 
+===============================================
+===================== 506_0_3002734 ========================== 
+===============================================
+===================== 506_1_3000555 ========================== 
+===============================================
+===================== 506_1_3003344 ========================== 
+X     nae                  none                 network_adapter     
+O     06                   identifier           identifier          
+X     n                    none                 network_adapter     
+O     2                    identifier           identifier          
+O     2                    identifier           identifier          
+O     vma                  vav                  vav                 
+O     125                  identifier           identifier          
+O     rh                   reheat               reheat              
+O     vlv                  valve                valve               
+O     newline              none                 none                
+O     ebu                  building             building            
+O     3                    identifier           identifier          
+O     b                    identifier           identifier          
+O     .                    none                 none                
+O     rm                   room                 room                
+O     -                    none                 none                
+O     3144                 identifier           identifier          
+O     .                    none                 none                
+O     .                    none                 none                
+O     rh                   reheat               reheat              
+O     -                    none                 none                
+O     vlv                  valve                valve               
+O     newline              none                 none                
+O     reheat               reheat               reheat              
+O     valve                valve                valve               
+O     command              command              command             
+O     newline              none                 none                
+===============================================
+===================== 505_1_3000050 ========================== 
+O     nae                  none                 none                
+O     05                   identifier           identifier          
+O     n                    none                 none                
+O     2                    identifier           identifier          
+O     1                    identifier           identifier          
+O     dx                   network_adapter      network_adapter     
+O     12                   identifier           identifier          
+X     hx                   none                 heat_exchanger      
+O     1                    identifier           identifier          
+O     a                    identifier           identifier          
+O     vlv                  valve                valve               
+O     newline              none                 none                
+O     ebu                  building             building            
+O     3                    identifier           identifier          
+O     b                    identifier           identifier          
+O     .                    none                 none                
+X     hw                   room                 hot_water           
+O     -                    none                 none                
+X     sys                  identifier           system              
+O     .                    none                 none                
+O     hx                   heat_exchanger       heat_exchanger      
+O     1                    identifier           identifier          
+O     a                    identifier           identifier          
+O     -                    none                 none                
+O     vlv                  valve                valve               
+O     newline              none                 none                
+X     hx                   building             heat_exchanger      
+O     1                    identifier           identifier          
+X     a                    reheat               identifier          
+O     valve                valve                valve               
+O     cmd                  command              command             
+O     1                    identifier           identifier          
+O     /                    none                 none                
+O     3                    identifier           identifier          
+O     newline              none                 none                
+===============================================
+===================== 506_1_3001014 ========================== 
+===============================================
+===================== 506_0_3000712 ========================== 
+X     nae                  none                 network_adapter     
+O     06                   identifier           identifier          
+X     n                    none                 network_adapter     
+O     2                    identifier           identifier          
+O     1                    identifier           identifier          
+O     vma                  vav                  vav                 
+O     160                  identifier           identifier          
+O     acthtgsp             effective_heating_temperature_setpoint effective_heating_temperature_setpoint
+O     newline              none                 none                
+O     ebu                  building             building            
+O     3                    identifier           identifier          
+O     b                    identifier           identifier          
+O     .                    none                 none                
+O     rm                   room                 room                
+O     -                    none                 none                
+O     3202                 identifier           identifier          
+O     .                    none                 none                
+O     .                    none                 none                
+O     acthtgsp             effective_heating_temperature_setpoint effective_heating_temperature_setpoint
+O     newline              none                 none                
+O     actual               effective            effective           
+O     heating              heating              heating             
+O     setpoint             setpoint             setpoint            
+O     newline              none                 none                
+===============================================
+===================== 506_1_3003251 ========================== 
+===============================================
+===================== 505_0_3000187 ========================== 
+===============================================
+===================== 506_0_3003121 ========================== 
+X     nae                  none                 network_adapter     
+O     06                   identifier           identifier          
+X     n                    none                 network_adapter     
+O     2                    identifier           identifier          
+O     2                    identifier           identifier          
+O     vma                  vav                  vav                 
+O     114                  identifier           identifier          
+O     dmpr                 damper               damper              
+O     pos                  position             position            
+O     newline              none                 none                
+O     ebu                  building             building            
+O     3                    identifier           identifier          
+O     b                    identifier           identifier          
+O     .                    none                 none                
+O     rm                   room                 room                
+O     -                    none                 none                
+O     3114                 identifier           identifier          
+O     .                    none                 none                
+O     .                    none                 none                
+O     dmpr                 damper               damper              
+O     -                    none                 none                
+O     pos                  position             position            
+O     newline              none                 none                
+O     damper               damper               damper              
+O     position             position             position            
+O     newline              none                 none                
+===============================================
+===================== 506_1_3001648 ========================== 
+===============================================
+===================== 505_1_3026026 ========================== 
+===============================================
+===================== 505_1_3001068 ========================== 
+X     nae                  none                 network_adapter     
+O     05                   identifier           identifier          
+X     n                    none                 network_adapter     
+O     2                    identifier           identifier          
+O     1                    identifier           identifier          
+O     vma                  vav                  vav                 
+O     111                  identifier           identifier          
+O     supflo               supply_air_flow      supply_air_flow     
+O     sp                   setpoint             setpoint            
+O     newline              none                 none                
+O     ebu                  building             building            
+O     3                    identifier           identifier          
+O     b                    identifier           identifier          
+O     .                    none                 none                
+O     rm                   room                 room                
+O     -                    none                 none                
+O     b                    identifier           identifier          
+O     200                  identifier           identifier          
+O     b                    identifier           identifier          
+O     .                    none                 none                
+O     .                    none                 none                
+O     supflo               supply_air_flow      supply_air_flow     
+O     -                    none                 none                
+O     sp                   setpoint             setpoint            
+O     newline              none                 none                
+O     actual               none                 none                
+O     sup                  supply               supply              
+O     flow                 flow                 flow                
+O     sp                   setpoint             setpoint            
+O     newline              none                 none                
+===============================================
+===================== 506_1_3000333 ========================== 
+===============================================
+===================== 505_0_3000457 ========================== 
+O     nae                  none                 none                
+O     05                   identifier           identifier          
+O     n                    none                 none                
+O     2                    identifier           identifier          
+O     1                    identifier           identifier          
+O     nae                  none                 none                
+O     5                    identifier           identifier          
+O     t                    identifier           identifier          
+O     1                    identifier           identifier          
+O     vnd                  vnd                  vnd                 
+O     41                   identifier           identifier          
+O     sf                   supply_fan           supply_fan          
+O     1                    identifier           identifier          
+O     vfd                  vfd                  vfd                 
+O     41                   identifier           identifier          
+X     freq                 none                 frequency           
+X     output               none                 output              
+O     newline              none                 none                
+O     ebu                  building             building            
+O     3                    identifier           identifier          
+O     b                    identifier           identifier          
+O     .                    none                 none                
+O     sf                   supply_fan           supply_fan          
+O     1                    identifier           identifier          
+O     .                    none                 none                
+X     freq                 room                 frequency           
+O     -                    none                 none                
+X     output               command              output              
+O     newline              none                 none                
+X     frequency            damper               frequency           
+X     output               command              output              
+O     newline              none                 none                
+===============================================
+===================== 506_14_3001272 ========================== 
+===============================================
+0.931777909037212
