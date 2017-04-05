@@ -89,3 +89,5 @@ ENV/
 .ropeproject
 
 bacnet_devices.json
+data/
+*secret*

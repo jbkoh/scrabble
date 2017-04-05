@@ -72,6 +72,8 @@ def structure_metadata(buildingName=None, tokenType=None, bigramFlag=False, vali
         naeDict['ap_m'] = ['514', '513','604']
         naeDict['bsb'] = ['519', '568', '567', '566', '564', '565']
         naeDict['ebu3b'] = ["505", "506"]
+        naeDict['music'] = ['523']
+        naeDict['sme'] = ['572', '573', '574']
         naeList = naeDict[buildingName]
 
         sensor_list = []
@@ -97,8 +99,8 @@ def structure_metadata(buildingName=None, tokenType=None, bigramFlag=False, vali
                 for sensor in device['objs']:
                         h_obj = sensor['props']
                         source_id = str(h_dev['device_id']) + '_' + str(h_obj['type']) + '_' + str(h_obj['instance'])
-                        if not source_id in validSrcidList:
-                                continue
+#                        if not source_id in validSrcidList:
+#                                continue
                         if h_obj['type'] not in (0,1,2,3,4,5,13,14,19):
                                 continue
                         if source_id in source_id_set:
@@ -111,13 +113,20 @@ def structure_metadata(buildingName=None, tokenType=None, bigramFlag=False, vali
                         descSentence = tokenize(tokenType, sensor['desc'], mappedWordMap=mappedWordMap)
 
                         if not sensor['unit']==None:
-                                unitStr = unitMap.loc[sensor['unit']].tolist()[0]
-                                if type(unitStr) != str:
-                                        if np.isnan(unitStr):
-                                                unitStr = ''
-                                        else:
-                                                print "Error in unit map file"
-                                                assert(False)
+                                try:
+                                    unitStr = unitMap.loc[sensor['unit']].tolist()[0]
+                                    if type(unitStr) != str:
+                                            if np.isnan(unitStr):
+                                                    unitStr = ''
+                                            else:
+                                                    print("Error in unit map file")
+                                                    assert(False)
+                                except:
+                                    print("===================")
+                                    print(sensor['unit'])
+                                    print(sensor)
+                                    print("===================")
+                                    assert(False)
                         else:
                                 unitStr = ''
                         unitSentence = tokenize(tokenType, unitStr)
@@ -128,7 +137,7 @@ def structure_metadata(buildingName=None, tokenType=None, bigramFlag=False, vali
                                         if np.isnan(typeStr):
                                                 typeStr = ''
                                         else:
-                                                print "Error in bacnettype map file"
+                                                print("Error in bacnettype map file")
                                                 assert(False)
                         else:
                                 typeStr = ''

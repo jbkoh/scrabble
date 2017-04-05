@@ -3,18 +3,18 @@
 
 # In[1]:
 
-from functools import reduce
-import pycrfsuite
-import json
-import pandas as pd
-import numpy as np
-#import brick_parser
-#reload(brick_parser)
+from functools import reduce                                                    
+import pycrfsuite                                                               
+import json                                                                     
+import pandas as pd                                                             
+import numpy as np                                                              
+#import brick_parser                                                            
+#reload(brick_parser)                                                           
 #from brick_parser import tagList, tagsetList, equipTagsetList, pointTagsetList, locationTagsetList,equalDict, pointTagList, equipTagList, locationTagList, equipPointDict
 import random
 
 
-# In[ ]:
+# In[2]:
 
 buildingName = 'ebu3b'
 with open('metadata/%s_label_dict.json'%buildingName, 'r') as fp:
@@ -23,13 +23,14 @@ with open("metadata/%s_sentence_dict.json"%buildingName, "r") as fp:
     sentenceDict = json.load(fp)
 
 
-# In[ ]:
+
+# In[3]:
 
 adder = lambda x,y:x+y
 totalWordSet = set(reduce(adder, sentenceDict.values(), []))
 
 
-# In[ ]:
+# In[4]:
 
 #def calc_features(sentence,labels):
 def calc_features(sentence):
@@ -56,82 +57,93 @@ def calc_features(sentence):
     return sentenceFeatures
 
 
-# In[ ]:
+# In[5]:
 
-#get_ipython().run_cell_magic(u'time', u'', u'trainer = pycrfsuite.Trainer(verbose=False)\n#for srcid, setence in sentenceDict.items():\n\nrandomIdxList = random.sample(range(0,60),60)\nfor i, (srcid, labels) in enumerate(labelListDict.items()):\n    if i not in randomIdxList:\n        continue\n    sentence = sentenceDict[srcid]\n    #trainer.append(pycrfsuite.ItemSequence(calc_features(sentence, labels)), labels)\n    trainer.append(pycrfsuite.ItemSequence(calc_features(sentence)), labels)')
-trainer = pycrfsuite.Trainer(verbose=False)
-#for srcid, setence in sentenceDict.items():
+iter_num = 15
+sample_num = 300
+precision_list = list()
+for c in range(0,iter_num):
+    print(c)
+    #%%time
+    trainer = pycrfsuite.Trainer(verbose=False)
+    #for srcid, setence in sentenceDict.items():
 
-randomIdxList = random.sample(range(0,len(labelListDict)),len(labelListDict))
-for i, (srcid, labels) in enumerate(labelListDict.items()):
-    if i not in randomIdxList:
-        continue
-    sentence = sentenceDict[srcid]
-    trainer.append(pycrfsuite.ItemSequence(calc_features(sentence)), labels)
-
-
-# In[ ]:
-
-trainer.train('random.crfsuite')
-
-
-# In[ ]:
-
-tagger = pycrfsuite.Tagger()
-tagger.open('random.crfsuite')
+    randomIdxList = random.sample(range(0,len(labelListDict)),sample_num)
+    for i, (srcid, labels) in enumerate(labelListDict.items()):
+        if i not in randomIdxList:
+            continue
+        sentence = sentenceDict[srcid]
+        #trainer.append(pycrfsuite.ItemSequence(calc_features(sentence, labels)), labels)
+        trainer.append(pycrfsuite.ItemSequence(calc_features(sentence)), labels)
 
 
-# In[ ]:
+    # In[6]:
 
-predictedDict = dict()
-for srcid, sentence in sentenceDict.items():
-    predicted = tagger.tag(calc_features(sentence))
-    predictedDict[srcid] = predicted
-
-# In[ ]:
-
-#srcid = '505_14_3001723'
-precisionOfTrainingDataset = 0.0
-totalWordCount = 0.0
-
-randIdxList = random.sample(range(0,4000), 20)
-for srcid in labelListDict.keys():
-#for i, srcid in enumerate(sentenceDict.keys()):
-    #if not i in randIdxList:
-    #    continue
-    print("===================== %s ========================== "%srcid)
-    sentence = sentenceDict[srcid]
-    predicted = predictedDict[srcid]
-    if not srcid in labelListDict.keys():
-        for word, predTag in zip(sentence, predicted):
-            print('{:20s} {:20s}'.format(word,predTag))
-    else:
-        printing_pairs = list()
-        for word, predTag, origLabel in zip(sentence, predicted, labelListDict[srcid]):
-            printing_pair = [word,predTag,origLabel]
-            if origLabel!='none':
-                if predTag==origLabel:
-                    precisionOfTrainingDataset += 1
-                    printing_pair = ['O'] + printing_pair
-                else:
-                    printing_pair = ['X'] + printing_pair
-                    #print("WRONG BEGIN")
-                    #print('{:20s} {:20s} {:20s}'.format(word,predTag,origLabel))
-                    #print("WRONG END")
-                totalWordCount += 1
-            else:
-                printing_pair = ['O'] + printing_pair
-            printing_pairs.append(printing_pair)
-        if 'X' in [pair[0] for pair in printing_pairs]:
-            for (flag, word, predTag, origLabel) in printing_pairs:
-                print('{:5s} {:20s} {:20s} {:20s}'\
-                        .format(flag, word, predTag, origLabel))
+    #%%time
+    trainer.train('random.crfsuite')
 
 
-    print("===============================================")
+    # In[7]:
+
+    tagger = pycrfsuite.Tagger()
+    tagger.open('random.crfsuite')
 
 
-# In[ ]:
+    # In[8]:
 
-print(precisionOfTrainingDataset/totalWordCount)
+    #%%time
+    predictedDict = dict()
+    for srcid, sentence in sentenceDict.items():
+        predicted = tagger.tag(calc_features(sentence))
+        predictedDict[srcid] = predicted
 
+
+    # In[9]:
+
+    DEBUG = False
+    precisionOfTrainingDataset = 0.0                                                
+    totalWordCount = 0.0                                                            
+    labeledSrcidList = list(labelListDict.keys())
+    randomSrcidList = [labeledSrcidList[idx] for idx in randomIdxList]
+
+    for srcid in labelListDict.keys():                                              
+        if srcid in randomSrcidList:
+            continue
+    #for i, srcid in enumerate(sentenceDict.keys()):                                
+        #if not i in randIdxList:                                                   
+        #    continue                                                               
+        if DEBUG:
+            print("===================== %s ========================== "%srcid)         
+        sentence = sentenceDict[srcid]                                              
+        predicted = predictedDict[srcid]                                            
+        if not srcid in labelListDict.keys():                                       
+            for word, predTag in zip(sentence, predicted):                          
+                print('{:20s} {:20s}'.format(word,predTag))                         
+        else:                                                                       
+            printing_pairs = list()                                                 
+            for word, predTag, origLabel \
+                    in zip(sentence, predicted, labelListDict[srcid]):
+                printing_pair = [word,predTag,origLabel]                            
+                if not origLabel in ['none', 'identifier', 'network_adapter', 'rm']: 
+                    if predTag==origLabel:                                          
+                        precisionOfTrainingDataset += 1                             
+                        printing_pair = ['O'] + printing_pair                       
+                    else:                                                           
+                        printing_pair = ['X'] + printing_pair                                       
+                    totalWordCount += 1                                             
+                else:                                                               
+                    printing_pair = ['O'] + printing_pair                           
+                printing_pairs.append(printing_pair)                                
+            if 'X' in [pair[0] for pair in printing_pairs]:                         
+                for (flag, word, predTag, origLabel) in printing_pairs:
+                    if DEBUG:
+                        print('{:5s} {:20s} {:20s} {:20s}'\
+                                .format(flag, word, predTag, origLabel))                                          
+
+    precision_list.append(precisionOfTrainingDataset/totalWordCount)
+
+
+print("# Learning Sample: ",len(randomSrcidList))
+print("# Learning Sample: ",len(labelListDict) - len(randomSrcidList))
+print("Precision (mean): ", np.mean(precision_list))
+print("Precision (std. dev.): ", np.std(precision_list))
