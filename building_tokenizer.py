@@ -4,6 +4,7 @@ import re
 import pandas as pd
 import json
 import pickle
+import pdb
 
 # Vectorization
 
@@ -56,6 +57,98 @@ def tokenize(tokenType, raw, mappedWordMap=None):
                                 word = word.replace(alphaWord, '_'+'_'.join(mappedWordMap[alphaWord])+'_')
                 retSentence = retSentence + remove_emptystr(word.split('_'))
         return retSentence
+
+def parse_sentence(sentence):
+    return re.findall("([a-zA-Z]+|\d+|[^0-9a-z])", sentence.lower())
+
+
+def parse_sentences(building_name):
+    unitMap = pd.read_csv('metadata/unit_mapping.csv').set_index('unit')
+    bacnettypeMap = pd.read_csv('metadata/bacnettype_mapping.csv').set_index('bacnet_type_str')
+    with open('metadata/bacnet_devices.json', 'r') as fp:
+        sensor_dict = json.load(fp)
+    naeDict = dict()
+    naeDict['bonner'] = ["607", "608", "609", "557", "610"]
+    naeDict['ap_m'] = ['514', '513','604']
+    naeDict['bsb'] = ['519', '568', '567', '566', '564', '565']
+    naeDict['ebu3b'] = ["505", "506"]
+    naeDict['music'] = ['523']
+    naeDict['sme'] = ['572', '573', '574']
+    naeList = naeDict[building_name]
+
+    sensor_list = []
+    name_list = []
+    desc_list = []
+    unit_list = []
+    bacnettype_list = []
+    jciname_list = list()
+    source_id_set = set([])
+    source_id_list = list()
+    
+    for nae in naeList:
+        device = sensor_dict[nae]
+        h_dev = device['props']
+        for sensor in device['objs']:
+            h_obj = sensor['props']
+            source_id = str(h_dev['device_id']) + '_' + str(h_obj['type']) + '_' + str(h_obj['instance'])
+            #                        if not source_id in validSrcidList:
+            #                                continue
+            if h_obj['type'] not in (0,1,2,3,4,5,13,14,19):
+                continue
+            if source_id in source_id_set:
+                continue
+            else:
+                source_id_set.add(source_id)
+            source_id_list.append(source_id) 
+            jciname_list.append(parse_sentence(sensor['jci_name']))
+            name_list.append(parse_sentence(sensor['name']))
+            desc_list.append(parse_sentence(sensor['desc']))
+            if not sensor['unit']==None:
+                try:
+                    unit_str = unitMap.loc[sensor['unit']].tolist()[0]
+                    if type(unit_str) != str:
+                        if np.isnan(unit_str):
+                            unit_str = ''
+                        else:
+                            print("Error in unit map file")
+                            assert(False)
+                except:
+                    print("===================")
+                    print(sensor['unit'])
+                    print(sensor)
+                    print("===================")
+                    assert(False)
+            else:
+                unit_str = ''
+            unit_list.append([unit_str])
+                    
+            if not sensor['props']['type_str']==None:
+                typeStr = bacnettypeMap.loc[sensor['props']['type_str']].tolist()[0]
+                if type(typeStr)!=str:
+                    if np.isnan(typeStr):
+                        typeStr = ''
+                    else:
+                        print("Error in bacnettype map file")
+                        assert(False)
+            else:
+                typeStr = ''
+            bacnettype_list.append([typeStr])
+            
+            sensor_list.append({'source_id': source_id, 
+                                'name': sensor['name'], 
+                                'description': sensor['desc'],
+                                'unit': sensor['unit'],
+                                'type_string': h_obj['type_str'],
+                                'type': h_obj['type'],
+                                #'device_id': h_obj['device_id'],
+                                'jci_name': sensor['jci_name'],
+                                #add data related characteristics here
+                                })
+    sensor_df = pd.DataFrame(sensor_list)
+    return sensor_df, source_id_list, name_list, jciname_list, desc_list, \
+           unit_list, bacnettype_list
+
+
 
 def structure_metadata(buildingName=None, tokenType=None, bigramFlag=False, validSrcidList=[], mappedWordMap=None, withDotFlag=True):
 

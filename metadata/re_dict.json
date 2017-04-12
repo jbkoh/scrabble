@@ -1,0 +1,178 @@
+{
+  "ebu3b": {
+    "k": [
+      ["k.energy", "none"]
+    ],
+    "mtr": [
+      ["mtr.speed", "motor"]
+    ],
+    "e": [
+      ["no.e.pow", "emergency"]
+    ],
+    "th": [
+      ["\\d+th", "right_identifier"]
+    ],
+    "s": [
+      ["occ.s", "status"],
+      ["\\d+s", "left_identifier"]
+    ],
+    "main":[
+      ["main.fan", "right_identifier"]
+    ],
+    "v": [
+      ["\\d+ v", "left_identifier"]
+    ],
+    "t": [
+      ["zn.t", "temperature"], 
+      ["t\\d", "network_adapter"], 
+      ["t.occ", "temporary"],
+      ["chwr\\d t", "temperature"],
+      ["oa.t", "temperature"],
+      ["\\d.t\n", "temperature"]
+    ],
+    "h": [
+      ["h2o", "none"]
+    ],
+    "o": [
+      ["h2o", "none"]
+    ],
+    "flt": [
+      ["flt-rst", "fault"],
+      ["flt.reset", "filter"]
+    ],
+    "rd": [["3rd", "right_identifier"]],
+    "c": [
+      ["dpr.c", "command"], 
+      ["w.c", "cool"], 
+      ["fan.c", "command"],
+      ["ef\\d.c", "command"],
+      ["\\d+c", "left_identifier"]
+    ],
+    "d": [
+      ["\\d+d", "left_identifier"]
+    ],
+    "occ": [
+      ["occ.cmd", "occupied"], 
+      ["occ.sen", "occupancy"], 
+      ["t.occ", "occupancy"],
+      ["temp.occ", "occupancy"],
+      ["occ.sts", "occupancy"],
+      ["occ.s ", "occupancy"]
+    ],
+    "actual": [["actual heating", "effective"], ["actual cooling", "effective"], ["actual sup", "none"], ["actual\n", "none"]],
+    "sp": [
+      ["flow sp", "setpoint"], 
+      ["supflo.sp", "setpoint"], 
+      ["hx\\d.sp", "setpoint"],
+      ["ocmnc.sp", "setpoint"]
+    ],
+    "temp": [
+      [".temp\n", "temperature"],
+      ["temp.setpoint", "temperature"], 
+      ["lo.temp", "temperature"], 
+      ["low.temp", "temperature"], 
+      ["ret.temp", "temperature"],
+      ["temp.occ", "temporary"],
+      ["air.temp", "temperature"]
+    ],
+    "f": [["\\d.f", "flow"], ["ef\\d.s", "status"]],
+    "nd": [["\\dnd", "right_identifier"]],
+    "st": [
+      ["\\dst", "right_identifier"]
+    ],
+    "humd": [
+      ["humd.tol", "humidity"],
+      ["humd.set", "humidity"],
+      ["low.humd", "humidity"],
+      ["hi.humd", "humidity"]
+    ],
+    "set":[
+      ["humd.set", "setpoint"]
+    ]
+  },
+  "ap_m": {
+    "a": [
+      ["\\d+a", "left_identifier"]
+    ],
+    "c": [
+      ["\\d+c", "left_identifier"],
+      ["dpr.c", "command"]
+    ],
+    "tmp": [
+      ["drv.tmp", "temperature"]
+    ],
+    "l": [
+      ["lvfd", "right_identifier"]
+    ],
+    "t": [
+      ["zn.t", "temperature"],
+      ["delta.t", "temperature"],
+      ["mtw.t", "temperature"],
+      ["chws.t", "temperature"],
+      ["sa.t", "temperature"]
+    ],
+    "e": [
+      ["e\\d", "network_adapter"],
+      ["e.sp", "exhaust_air"],
+      ["\\d+e", "left_identifier"],
+      ["evfd", "exhaust_fan"]
+    ],
+    "dt": [
+      ["chw.dt", "differential_temperature"]
+    ],
+    "sp": [
+      ["sa.sp", "setpoint"],
+      ["flow.sp", "setpoint"],
+      ["aclg.sp", "setpoint"],
+      ["sp reset", "static_pressure"]
+    ],
+    "s": [
+      ["s-\\d", "name"]
+    ],
+    "th": [
+      ["\\dth", "right_identifier"]
+    ],
+    "com": [
+      ["com.stpt", "temperature"]
+    ],
+    "p": [
+      ["( |\\.)p\\d", "pump"]
+    ],
+    "d": [
+      ["\\d+d", "left_identifier"]
+    ],
+    "st": [
+      ["fwdrev.st", "status"]
+    ],
+    "i": [
+      ["\\d+i", "left_identifier"]
+    ],
+    "j": [
+      ["\\d+j", "left_identifier"]
+    ],
+    "h": [
+      ["\\d+h", "left_identifier"]
+    ],
+    "north": [
+      ["north.ex", "right_identifier"]
+    ],
+    "ex": [
+      ["ex.fans", "exhaust"]
+    ],
+    "dis": [
+      ["stg.dis", "disable"],
+      ["fans.dis", "disable"]
+    ],
+    "w": [
+      ["\\d+w", "left_identifier"]
+    ],
+    "temp": [
+      ["temp.setpoint", "temperature"]
+    ]
+  },
+  "music": {
+  },
+  "sme": {
+  }
+}
+

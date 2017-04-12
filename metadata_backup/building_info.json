@@ -1,0 +1,182 @@
+{
+"AP_M": {
+	"naes": [514, 604, 513],
+	"location":
+		{
+			"latitude":  32.879029 ,
+			"longitude": -117.241073
+		}
+},
+"Bio Med Lib": {"naes": [510]},
+"Bonner Hall": {
+	"naes": [607, 608, 609, 557, 610],
+	"location":{
+		"latitude":32.875419,
+		"longitude":-117.240403
+	}
+},
+"BSB": {"naes": [519, 568, 567, 566, 565, 564]},
+"Cal IT": {
+	"naes": [537, 651, 503, 502, 504],
+	"location":{
+		"latitude":32.882506,
+		"longitude":-117.234597
+	}
+},
+"CMG": {"naes": [530]},
+"CMM": {"naes": [554, 600, 592, 593, 591, 594, 595, 602, 601]},
+"CMRR": {"naes": [531]},
+"CNCB/CMG": {"naes": [669, 670]},
+"CRB": {"naes": [577]},
+"CRSF": {"naes": [636]},
+"CSB": {"naes": [576]},
+"CUP": {"naes": [648, 631]},
+"EBU1": {"naes": [620, 621, 622, 623, 650, 639, 638, 642, 643, 640, 641, 637, 646, 644, 645]},
+"EBU3A":  {
+	"naes": [563, 562, 561],
+	"location":{
+		"latitude":32.881496,
+		"longitude":-117.234345
+	}
+},
+"EBU3B":  {
+	"naes": [506, 505],
+	"location":
+	{
+		"latitude": 32.881835,
+		"longitude": -117.233634
+	}
+},
+"ECCP": {"naes": [596]},
+"GALB HALL": {
+	"naes": [556, 625],
+	"location":{
+		"latitude":32.873793,
+		"longitude":-117.241071
+	}
+},
+"H&SS": {"naes": [558]},
+"HSBRF2": {"naes": [624, 613, 612, 615, 614, 617, 611]},
+"Hubbs": {"naes": [626, 598],
+	"location":{
+		"latitude":32.867407,
+		"longitude":-117.253409
+	}
+},
+"JERBOA": {"naes": [632]},
+"Leichtag": {"naes": [633, 635, 634]},
+"Lib": {
+	"naes": [581, 583, 582, 629],
+	"location":{
+		"latitude":32.881174,
+		"longitude":-117.237759
+	}
+},
+"Literature Building": {
+	"naes": [553],
+	"location":{
+		"latitude":32.880520,
+		"longitude":-117.233817
+	}
+},
+"Mandeville": {"naes": [605, 599]},
+"Mayer": {
+	"naes": [528, 616, 527, 526, 522, 521, 664, 665, 666, 662, 663],
+	"location":{
+		"latitude":32.875266,
+		"longitude":-117.240309
+	}
+},
+"McGill": {"naes": [580, 529]},
+"MESOM": {"naes": [628]},
+"MTF": {"naes": [559]},
+"Muir Bio": {"naes": [630]},
+"Music": {
+	"naes": [523],
+	"location":
+	{
+		"latitude":32.878080,
+		"longitude":-117.234694
+	}
+},
+"NAE-07-EMERSVCS": {"naes": [507]},
+"NIE-98": {"naes": [98]},
+"Nierenberg Hall": {"naes": [544]},
+"Node B": {"naes": [603]},
+"Node M": {"naes": [649]},
+"North Torrey Pines": {"naes": [543, 542]},
+"NSB": {"naes": [569, 570, 571]},
+"Otterson": {
+	"naes": [518, 517, 589, 590],
+	"location":{
+		"latitude":32.886520,
+		"longitude":-117.240926
+	}
+},
+"Pac Hall": {
+	"naes": [550, 551, 545, 547, 546, 549, 548],
+	"location":{
+		"latitude":32.875940,
+		"longitude":-117.242006
+	}
+},
+"Pharm": {"naes": [509, 508]},
+"Rec Gym": {
+	"naes": [661],
+	"location":{
+		"latitude":32.877277,
+		"longitude":-117.241235
+	}
+},
+"Robert Paine Center": {"naes": [525]},
+"SAS": {"naes": [516, 515]},
+"SDSC": {
+	"naes": [668, 575, 524, 520],
+	"location":{
+		"latitude":32.884265,
+		"longitude":-117.239868
+	}
+},
+"SIO Library": {"naes": [597]},
+"SIO Munk Lab": {"naes": [539]},
+"SME": {
+	"naes": [572, 573, 574],
+	"location":{
+		"latitude":32.879846,
+		"longitude":-117.233196
+	}
+},
+"Solis Hall": {"naes": [647]},
+"Speiss Hall" : {"naes": [536]},
+"Stein": {
+	"naes": [511, 501, 500],
+	"location":{
+		"latitude":32.876121,
+		"longitude":-117.234056
+	}
+},
+"Sverdrup": {
+	"naes": [538, 588],
+	"location":{
+		"latitude":32.864446,
+		"longitude":-117.253299
+	}
+},
+"TeleMed": {"naes": [535, 534, 540, 541]},
+"Urey Hall": {
+	"naes": [532, 533, 512],
+	"location":{
+		"latitude":32.875532,
+		"longitude":-117.241139
+	}
+},
+"Vaughn Hall":   {"naes": [560]},
+"Warren Lecture Hall": {
+	"naes": [555, 552],
+	"location":{
+		"latitude":32.880534,
+		"longitude":-117.234384
+	}
+},
+"York Hall": {"naes": [655, 654, 657, 656, 653, 652, 659, 658, 618, 619]}
+}

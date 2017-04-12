@@ -1,0 +1,8 @@
+{
+  "505_1_11111": {
+    "char_sentence": ["a","a","c"],
+    "predicted_token_label":["B_a", "L_a", "U_c"],
+    "original_token_label": ["U_a", "U_a", "Uc"],
+    "predicted_word_label": ["aa", "c"],
+    "original_word_label": ["a", "a", "c"]
+}
