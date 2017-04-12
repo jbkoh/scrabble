@@ -1,0 +1,14 @@
+{
+  "specification": {
+    "source_building": "ebu3b",
+    "target_building": "ap_m",
+    "source_sample_num": 50,
+    "label_type": "label",
+    "token_type": "justseparate",
+    "use_cluster_flag": true
+  },
+  "char_precision": 0.7102683990468912,
+  "phrase_precision": 0.6866534224309193,
+  "phrase_recall": 0.6092948717948717,
+  "date": "2017-04-12 05:46:37.225850+00:00"
+}

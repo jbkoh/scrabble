@@ -1,6 +1,13 @@
 {
-  "specification": {},
-  "char_precision": 0.9490232077799133,
-  "phrase_precision": 0.9640433450087565,
-  "phrase_recall": 0.9191234020349596
+  "specification": {
+    "source_building": "ebu3b",
+    "target_building": "ebu3b",
+    "source_sample_num": 50,
+    "label_type": "label",
+    "token_type": "justseparate",
+    "use_cluster_flag": true
+  },
+  "char_precision": 0.9477609799477896,
+  "phrase_precision": 0.9631676882661997,
+  "phrase_recall": 0.9180490349504434
 }

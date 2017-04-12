@@ -1,6 +1,13 @@
 {
-  "specification": {},
-  "char_precision": 0.972463246864182,
-  "phrase_precision": 0.9737222322557342,
-  "phrase_recall": 0.9539945147306025
+  "specification": {
+    "source_building": "ap_m",
+    "target_building": "ap_m",
+    "source_sample_num": 50,
+    "label_type": "label",
+    "token_type": "justseparate",
+    "use_cluster_flag": true
+  },
+  "char_precision": 0.972530683810637,
+  "phrase_precision": 0.9748058515441574,
+  "phrase_recall": 0.951352780470609
 }

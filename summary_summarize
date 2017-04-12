@@ -1,0 +1,37 @@
+#!/home/jbkoh/anaconda3/bin/python
+
+from copy import copy
+from collections import defaultdict
+
+from pymongo import MongoClient
+import pandas as pd
+
+from mongo_models import summary_query_template
+
+
+coll = MongoClient()\
+        .get_database('scrabble')\
+        .get_collection('summary')
+
+results = coll.find()
+
+
+result_dict = defaultdict(list)
+
+for result in results:
+    result_dict['source_building'].append(result['source_building'])
+    result_dict['target_building'].append(result['target_building'])
+    result_dict['source_sample_num'].append(result['source_sample_num'])
+    result_dict['use_cluster_flag'].append(result['use_cluster_flag'])
+    result_dict['char_precision'].append(result['summary']['char_precision'])
+    result_dict['phrase_precision'].append(result['summary']['phrase_precision'])
+    result_dict['phrase_recall'].append(result['summary']['phrase_recall'])
+
+cols = ['source_building',
+        'target_building',
+        'source_sample_num',
+        'use_cluster_flag',
+        'char_precision',
+        'phrase_recall',
+        'phrase_precision']
+pd.DataFrame(data=result_dict, columns=cols).to_csv('summary.csv')

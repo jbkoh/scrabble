@@ -12,5 +12,5 @@ cluster_flag_list = [False, True]
 for n in n_list:
     for building_name in building_list:
         for cluster_flag in cluster_flag_list:
-            os.system('python crf_trainer_char_level.py -b {0} -n {1} -c {2} &'\
+            os.system('python crf_trainer_char_level.py learn -b {0} -n {1} -c {2} &'\
                     .format(building_name, n, cluster_flag))

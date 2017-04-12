@@ -1,0 +1,14 @@
+{
+  "specification": {
+    "source_building": "ap_m",
+    "target_building": "ap_m",
+    "source_sample_num": 100,
+    "label_type": "label",
+    "token_type": "justseparate",
+    "use_cluster_flag": false
+  },
+  "char_precision": 0.9718787933282381,
+  "phrase_precision": 0.9711034856420444,
+  "phrase_recall": 0.9532842833082174,
+  "date": "2017-04-12 05:46:25.439073+00:00"
+}
