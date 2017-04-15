@@ -91,3 +91,5 @@ ENV/
 bacnet_devices.json
 data/
 *secret*
+
+logs/
