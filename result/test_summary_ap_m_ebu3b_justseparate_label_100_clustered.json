@@ -7,8 +7,10 @@
     "token_type": "justseparate",
     "use_cluster_flag": true
   },
-  "char_precision": 0.7539803207206174,
-  "phrase_precision": 0.7780757443082311,
-  "phrase_recall": 0.710352753072849,
-  "date": "2017-04-12 05:47:13.408655+00:00"
+  "char_precision": 0.733029702970297,
+  "phrase_precision": 0.7768101265822784,
+  "phrase_recall": 0.6837507799269097,
+  "pessimistic_phrase_precision": 0.5979448250324014,
+  "pessimistic_phrase_recall": 0.4765031353744006,
+  "date": "2017-04-15 22:27:13.526884+00:00"
 }

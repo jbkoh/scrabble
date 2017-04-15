@@ -15,13 +15,13 @@ unit,word
 17,energy
 18,energy
 19,energy
-21,thermal energy
+21,thermal_energy
 125,energy
 126,energy
 146,energy
-20,thermal energy
+20,thermal_energy
 147,thermal enregy
-148,thermal energy
+148,thermal_energy
 23,enthalpy
 24,enthalpy
 117,enthalpy
@@ -120,7 +120,7 @@ unit,word
 98,percent
 96,co2
 97,co2
-104,motor speed
+104,motor_speed
 90,direction
 302,
 264,

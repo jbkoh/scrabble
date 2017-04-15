@@ -294,3 +294,7 @@ locationRelationDict['floor'] = ['room']
 locationRelationDict['building'] = ['basement','floor','room']
 locationRelationDict['room'] = ['basement', 'floor', 'building']
 
+
+if __name__=='__main__':
+    with open('metadata/brick_tags.json', 'w') as fp:
+        json.dump(tagList, fp)

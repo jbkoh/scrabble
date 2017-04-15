@@ -26,12 +26,16 @@ for result in results:
     result_dict['char_precision'].append(result['summary']['char_precision'])
     result_dict['phrase_precision'].append(result['summary']['phrase_precision'])
     result_dict['phrase_recall'].append(result['summary']['phrase_recall'])
+    result_dict['pessimistic_phrase_precision'].append(result['summary']['pessimistic_phrase_precision'])
+    result_dict['pessimistic_phrase_recall'].append(result['summary']['pessimistic_phrase_recall'])
 
 cols = ['source_building',
         'target_building',
         'source_sample_num',
         'use_cluster_flag',
         'char_precision',
+        'phrase_precision',
         'phrase_recall',
-        'phrase_precision']
+        'pessimistic_phrase_precision',
+        'pessimistic_phrase_recall']
 pd.DataFrame(data=result_dict, columns=cols).to_csv('summary.csv')

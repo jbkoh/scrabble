@@ -1,13 +1,21 @@
 {
   "ebu3b": {
+    "curr": [
+      ["cur.lmt", "current"]
+    ],
+    "lmt": [
+      ["cur.lmt", "limit"]
+    ],
     "k": [
       ["k.energy", "none"]
     ],
     "mtr": [
-      ["mtr.speed", "motor"]
+      ["mtr.speed", "motor"],
+      ["mtr.spd", "motor"]
     ],
     "e": [
-      ["no.e.pow", "emergency"]
+      ["no.e.pow", "emergency"],
+      ["e.econ", "right_identifier"]
     ],
     "th": [
       ["\\d+th", "right_identifier"]
@@ -22,16 +30,28 @@
     "v": [
       ["\\d+ v", "left_identifier"]
     ],
+    "m": [
+      ["m.energy", "none"]
+    ],
     "t": [
       ["zn.t", "temperature"], 
-      ["t\\d", "network_adapter"], 
+      ["t\\d", "network_adapter-t"], 
       ["t.occ", "temporary"],
       ["chwr\\d t", "temperature"],
+      ["mtwru.t", "temperature"],
+      ["mtws.t", "temperature"],
+      ["mtw.t", "temperature"],
       ["oa.t", "temperature"],
-      ["\\d.t\n", "temperature"]
+      ["osa.t", "temperature"],
+      ["\\d.t\n", "temperature"],
+      ["air.t\n", "temperature"],
+      ["ma.t", "temperature"],
+      ["sa.t", "temperature"],
+      ["chws.t", "temperature"]
     ],
     "h": [
-      ["h2o", "none"]
+      ["h2o", "none"],
+      ["rm.h", "humidity"]
     ],
     "o": [
       ["h2o", "none"]
@@ -46,6 +66,7 @@
       ["w.c", "cool"], 
       ["fan.c", "command"],
       ["ef\\d.c", "command"],
+      ["ef.c", "command"],
       ["\\d+c", "left_identifier"]
     ],
     "d": [
@@ -62,9 +83,19 @@
     "actual": [["actual heating", "effective"], ["actual cooling", "effective"], ["actual sup", "none"], ["actual\n", "none"]],
     "sp": [
       ["flow sp", "setpoint"], 
+      ["econ.sp", "setpoint"], 
       ["supflo.sp", "setpoint"], 
       ["hx\\d.sp", "setpoint"],
-      ["ocmnc.sp", "setpoint"]
+      ["ocmnc.sp", "setpoint"],
+      ["aclg.sp", "setpoint"],
+      ["oa.sp", "setpoint"],
+      ["ahtg.sp", "setpoint"],
+      ["mtwdp.sp", "setpoint"],
+      ["chwdp.sp", "setpoint"],
+      ["cwdp.sp", "setpoint"],
+      ["dhw.sp", "setpoint"],
+      ["hwdp.sp", "setpoint"],
+      ["sa.sp", "static_pressure"]
     ],
     "temp": [
       [".temp\n", "temperature"],
@@ -75,7 +106,11 @@
       ["temp.occ", "temporary"],
       ["air.temp", "temperature"]
     ],
-    "f": [["\\d.f", "flow"], ["ef\\d.s", "status"]],
+    "f": [
+      ["\\d.f", "flow"], 
+      ["ef\\d.s", "status"],
+      ["tempsetf", "none"]
+    ],
     "nd": [["\\dnd", "right_identifier"]],
     "st": [
       ["\\dst", "right_identifier"]
@@ -84,6 +119,7 @@
       ["humd.tol", "humidity"],
       ["humd.set", "humidity"],
       ["low.humd", "humidity"],
+      ["lo.humd", "humidity"],
       ["hi.humd", "humidity"]
     ],
     "set":[
@@ -92,27 +128,36 @@
   },
   "ap_m": {
     "a": [
-      ["\\d+a", "left_identifier"]
+      ["\\d+a", "left_identifier"],
+      ["\\d.a", "left_identifier"]
     ],
     "c": [
       ["\\d+c", "left_identifier"],
-      ["dpr.c", "command"]
+      ["dpr.c", "command"],
+      ["w.c", "cool"],
+      ["chwp-c", "command"]
     ],
     "tmp": [
       ["drv.tmp", "temperature"]
     ],
     "l": [
-      ["lvfd", "right_identifier"]
+      ["lvfd", "right_identifier"],
+      ["\\dl", "left_identifier"]
     ],
     "t": [
       ["zn.t", "temperature"],
       ["delta.t", "temperature"],
       ["mtw.t", "temperature"],
-      ["chws.t", "temperature"],
-      ["sa.t", "temperature"]
+      ["chw..t", "temperature"],
+      ["sa.t", "temperature"],
+      ["ra.t", "temperature"],
+      ["ma.t", "temperature"],
+      ["uflr.t", "temperature"],
+      ["hthwr.t", "temperature"],
+      ["oa.t", "temperature"]
     ],
     "e": [
-      ["e\\d", "network_adapter"],
+      ["e\\d", "network_adapter-e"],
       ["e.sp", "exhaust_air"],
       ["\\d+e", "left_identifier"],
       ["evfd", "exhaust_fan"]
@@ -122,12 +167,20 @@
     ],
     "sp": [
       ["sa.sp", "setpoint"],
+      ["htg.sp", "setpoint"],
       ["flow.sp", "setpoint"],
       ["aclg.sp", "setpoint"],
-      ["sp reset", "static_pressure"]
+      ["sp reset", "static_pressure"],
+      ["building.sp.ease", "unknown"],
+      ["chwdp.sp", "setpoint"],
+      ["ocmnc.sp", "setpoint"],
+      ["e.sp", "static_pressure"],
+      ["mtw.sp", "setpoint"]
     ],
     "s": [
-      ["s-\\d", "name"]
+      ["s\\d", "supply_fan"],
+      ["s\\-\\d", "network_adapter-s"],
+      ["chwp.s\\n", "status"]
     ],
     "th": [
       ["\\dth", "right_identifier"]
@@ -136,13 +189,15 @@
       ["com.stpt", "temperature"]
     ],
     "p": [
-      ["( |\\.)p\\d", "pump"]
+      ["( |\\.)p\\d", "pump"],
+      ["dpr.p", "position"]
     ],
     "d": [
       ["\\d+d", "left_identifier"]
     ],
     "st": [
-      ["fwdrev.st", "status"]
+      ["fwdrev.st", "status"],
+      ["\\dst", "right_identifier"]
     ],
     "i": [
       ["\\d+i", "left_identifier"]
@@ -153,9 +208,6 @@
     "h": [
       ["\\d+h", "left_identifier"]
     ],
-    "north": [
-      ["north.ex", "right_identifier"]
-    ],
     "ex": [
       ["ex.fans", "exhaust"]
     ],
@@ -164,10 +216,33 @@
       ["fans.dis", "disable"]
     ],
     "w": [
-      ["\\d+w", "left_identifier"]
+      ["\\d+w", "left_identifier"],
+      ["w.c", "warm"]
     ],
     "temp": [
-      ["temp.setpoint", "temperature"]
+      ["temp.setpoint", "temperature"],
+      ["high.temp", "temperature"],
+      ["medium.temp", "temperature"]
+    ],
+    "left": [
+      ["left.vfd", "right_identifier"]
+    ],
+    "right": [
+      ["right.vfd", "right_identifier"]
+    ],
+    "cm": [
+      ["fwdrev.cm", "command"]
+    ],
+    "n": [
+      ["nef", "right_identifier"]
+    ],
+    "var":[
+      ["saspstst.var", "none"],
+      ["saspstpt.var", "none"],
+      ["satstpt.var", "none"]
+    ],
+    "variable":[
+      ["system variable", "none"]
     ]
   },
   "music": {

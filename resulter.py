@@ -1,6 +1,7 @@
 import json
 from collections import defaultdict, OrderedDict
 from copy import copy
+import pdb
 
 from pymongo import MongoClient
 import arrow
@@ -51,14 +52,20 @@ class Resulter():
         for label in orig_phrase_labels:
             if pessimistic_flag and label in ['left_identifier', 
                                              'right_identifier', 
-                                             'room', 
-                                             'building']:
+                                             'room',
+                                             'building',
+                                             'network_adapter']:
+                # TODO: need to be fixed.
+                if label in pred_phrase_labels:
+                    pred_phrase_labels.remove(label)
+                    found_label_num -= 1
                 continue
             total_label_num += 1
             if label in pred_phrase_labels:
                 correct_label_num += 1
                 pred_phrase_labels.remove(label)
         incorrect_label_num = total_label_num - correct_label_num
+
         return found_label_num, correct_label_num, incorrect_label_num
     
     def measure_accuracy_by_token(self, pred_token_labels, orig_token_labels):
@@ -82,6 +89,10 @@ class Resulter():
         correct_phrase_cnt = 0
         incorrect_phrase_cnt = 0
         predicted_phrase_cnt = 0
+        
+        pess_correct_phrase_cnt = 0
+        pess_incorrect_phrase_cnt = 0
+        pess_predicted_phrase_cnt = 0
 
         for srcid, result in self.result_dict.items():
             correct_cnt, incorrect_cnt = self.measure_accuracy_by_token(\
@@ -90,25 +101,33 @@ class Resulter():
             char_correct_cnt += correct_cnt
             char_total_cnt += (correct_cnt + incorrect_cnt)
             found, correct, incorrect  = self.measure_accuracy_by_phrase(
-                                            result['pred_phrase_labels'],
-                                            result['orig_phrase_labels'])
+                                            copy(result['pred_phrase_labels']),
+                                            copy(result['orig_phrase_labels']))
             correct_phrase_cnt += correct
             incorrect_phrase_cnt += incorrect
             predicted_phrase_cnt += found
             
-            pess_found, pess_correct, pess_incorrect  = self.measure_accuracy_by_phrase(
-                                            result['pred_phrase_labels'],
-                                            result['orig_phrase_labels'])
-            correct_phrase_cnt += correct
-            incorrect_phrase_cnt += incorrect
-            predicted_phrase_cnt += found
+            pess_found, pess_correct, pess_incorrect = \
+                    self.measure_accuracy_by_phrase(
+                            copy(result['pred_phrase_labels']),
+                            copy(result['orig_phrase_labels']),
+                            pessimistic_flag=True)
+            pess_correct_phrase_cnt += pess_correct
+            pess_incorrect_phrase_cnt += pess_incorrect
+            pess_predicted_phrase_cnt += pess_found
 
         self.summary['char_precision'] = \
-                                float(char_correct_cnt)/char_total_cnt
+                float(char_correct_cnt)/char_total_cnt
         self.summary['phrase_precision'] = \
-        float(correct_phrase_cnt) / (correct_phrase_cnt + incorrect_phrase_cnt)
+                float(correct_phrase_cnt) \
+                / (correct_phrase_cnt + incorrect_phrase_cnt)
         self.summary['phrase_recall'] = \
-        float(correct_phrase_cnt) / (predicted_phrase_cnt)
+                float(correct_phrase_cnt) / (predicted_phrase_cnt)
+        self.summary['pessimistic_phrase_precision'] = \
+                float(pess_correct_phrase_cnt) \
+                / (pess_correct_phrase_cnt + pess_incorrect_phrase_cnt)
+        self.summary['pessimistic_phrase_recall'] = \
+                float(pess_correct_phrase_cnt) / (pess_predicted_phrase_cnt)
         self.summary['date'] = str(arrow.get().datetime)
         
     
@@ -168,6 +187,9 @@ class Resulter():
                 phrase_labels.append(label[2:])
             else:
                 print('Tag is incorrect in: {0}.'.format(label))
-                assert(False)
+                try:
+                    assert(False)
+                except:
+                    pdb.set_trace()
         return phrase_labels
 

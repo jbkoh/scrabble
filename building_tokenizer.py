@@ -5,6 +5,17 @@ import pandas as pd
 import json
 import pickle
 import pdb
+    
+with open('metadata/bacnet_devices.json', 'r') as fp:
+    sensor_dict = json.load(fp)
+        
+naeDict = dict()
+naeDict['bonner'] = ["607", "608", "609", "557", "610"]
+naeDict['ap_m'] = ['514', '513','604']
+naeDict['bsb'] = ['519', '568', '567', '566', '564', '565']
+naeDict['ebu3b'] = ["505", "506"]
+naeDict['music'] = ['523']
+naeDict['sme'] = ['572', '573', '574']
 
 # Vectorization
 
@@ -61,19 +72,94 @@ def tokenize(tokenType, raw, mappedWordMap=None):
 def parse_sentence(sentence):
     return re.findall("([a-zA-Z]+|\d+|[^0-9a-z])", sentence.lower())
 
+def get_bacnettype_dict(building_name):
+    bacnettypeMap = pd.read_csv('metadata/bacnettype_mapping.csv').set_index('bacnet_type_str')
+    naeList = naeDict[building_name]
+
+    source_id_set = set([])
+    bacnettype_dict = dict()
+    bacnettype_code_dict = dict()
+
+
+    for nae in naeList:
+        device = sensor_dict[nae]
+        h_dev = device['props']
+        for sensor in device['objs']:
+            h_obj = sensor['props']
+            source_id = str(h_dev['device_id']) + '_' + str(h_obj['type']) + '_' + str(h_obj['instance'])
+#                        if not source_id in validSrcidList:
+#                                continue
+            if h_obj['type'] not in (0,1,2,3,4,5,13,14,19):
+                    continue
+            if source_id in source_id_set:
+                    continue
+            else:
+                    source_id_set.add(source_id)
+
+            if sensor['props']['type_str']:
+                typeStr = bacnettypeMap.loc[sensor['props']['type_str']].tolist()[0]
+                if type(typeStr)!=str:
+                    if np.isnan(typeStr):
+                        typeStr = ''
+                    else:
+                        print("Error in bacnettype map file")
+                        assert(False)
+            else:
+                    typeStr = ''
+            bacnettype_dict[source_id] = typeStr
+            bacnettype_code_dict[source_id] = sensor['props']['type_str']
+
+    return bacnettype_dict
+
+def get_unit_dict(building_name):
+    unitMap = pd.read_csv('metadata/unit_mapping.csv').set_index('unit')
+    naeList = naeDict[building_name]
+
+    unit_code_dict = dict()
+    unit_dict = dict()
+    source_id_set = set([])
+
+    for nae in naeList:
+        device = sensor_dict[nae]
+        h_dev = device['props']
+        for sensor in device['objs']:
+            h_obj = sensor['props']
+            source_id = str(h_dev['device_id']) + '_' + str(h_obj['type']) + '_' + str(h_obj['instance'])
+            #                        if not source_id in validSrcidList:
+            #                                continue
+            if h_obj['type'] not in (0,1,2,3,4,5,13,14,19):
+                continue
+            if source_id in source_id_set:
+                continue
+            else:
+                source_id_set.add(source_id)
+
+            if sensor['unit']:
+                try:
+                    unit_str = unitMap.loc[sensor['unit']].tolist()[0]
+                    if type(unit_str) != str:
+                        if np.isnan(unit_str):
+                            unit_str = ''
+                        else:
+                            print("Error in unit map file")
+                            assert(False)
+                except:
+                    print("===================")
+                    print(sensor['unit'])
+                    print(sensor)
+                    print("===================")
+                    assert(False)
+            else:
+                unit_str = ''
+            unit_code_dict[source_id] = sensor['unit']
+            unit_dict[source_id] = unit_str
+
+    return unit_dict
+
 
 def parse_sentences(building_name):
     unitMap = pd.read_csv('metadata/unit_mapping.csv').set_index('unit')
     bacnettypeMap = pd.read_csv('metadata/bacnettype_mapping.csv').set_index('bacnet_type_str')
-    with open('metadata/bacnet_devices.json', 'r') as fp:
-        sensor_dict = json.load(fp)
-    naeDict = dict()
-    naeDict['bonner'] = ["607", "608", "609", "557", "610"]
-    naeDict['ap_m'] = ['514', '513','604']
-    naeDict['bsb'] = ['519', '568', '567', '566', '564', '565']
-    naeDict['ebu3b'] = ["505", "506"]
-    naeDict['music'] = ['523']
-    naeDict['sme'] = ['572', '573', '574']
     naeList = naeDict[building_name]
 
     sensor_list = []
@@ -154,19 +240,9 @@ def structure_metadata(buildingName=None, tokenType=None, bigramFlag=False, vali
 
         unitMap = pd.read_csv('metadata/unit_mapping.csv').set_index('unit')
         bacnettypeMap = pd.read_csv('metadata/bacnettype_mapping.csv').set_index('bacnet_type_str')
-        with open('metadata/bacnet_devices.json', 'r') as fp:
-            sensor_dict = json.load(fp)
-        #sensor_dict = shelve.open('metadata/bacnet_devices.shelve','r')
         if bigramFlag:
                 with open('data/bigrammer_'+buildingName+'_'+tokenType+'.pkl', 'rb') as fp:
                         bigrammer = pickle.load(fp)
-        naeDict = dict()
-        naeDict['bonner'] = ["607", "608", "609", "557", "610"]
-        naeDict['ap_m'] = ['514', '513','604']
-        naeDict['bsb'] = ['519', '568', '567', '566', '564', '565']
-        naeDict['ebu3b'] = ["505", "506"]
-        naeDict['music'] = ['523']
-        naeDict['sme'] = ['572', '573', '574']
         naeList = naeDict[buildingName]
 
         sensor_list = []
