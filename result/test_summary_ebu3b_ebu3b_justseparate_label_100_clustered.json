@@ -1,16 +1,13 @@
 {
   "specification": {
-    "source_building": "ebu3b",
-    "target_building": "ebu3b",
-    "source_sample_num": 100,
     "label_type": "label",
     "token_type": "justseparate",
     "use_cluster_flag": true
   },
-  "char_precision": 0.979049504950495,
-  "phrase_precision": 0.986632911392405,
-  "phrase_recall": 0.9719672785315243,
-  "pessimistic_phrase_precision": 0.9776893167931865,
-  "pessimistic_phrase_recall": 0.9494740627528544,
-  "date": "2017-04-15 22:27:18.859457+00:00"
+  "char_precision": 0.9766732673267327,
+  "phrase_precision": 0.9830379746835443,
+  "phrase_recall": 0.9683774751857948,
+  "pessimistic_phrase_precision": 0.9726902425476763,
+  "pessimistic_phrase_recall": 0.9430930796158334,
+  "date": "2017-04-16 10:04:08.997117+00:00"
 }

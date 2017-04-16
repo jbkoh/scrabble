@@ -6,11 +6,11 @@ from scrabble import learn_crf_model
 
 
 n_list = [100]
-building_list = ['ap_m', 'ebu3b']
+building_list = ['ap_m']
 cluster_flag_list = [True]
 
 for n in n_list:
     for building_name in building_list:
         for cluster_flag in cluster_flag_list:
-            os.system('python scrabble.py learn -b {0} -n {1} -c {2} &'\
+            os.system('python scrabble.py learn -bl {0} -nl {1} -c {2} &'\
                     .format(building_name, n, cluster_flag))

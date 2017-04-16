@@ -10,6 +10,7 @@ from itertools import islice
 import argparse
 import logging
 from imp import reload
+from uuid import uuid4 as gen_uuid
 
 import pycrfsuite                                                               
 import pandas as pd                                                             
@@ -17,8 +18,16 @@ import numpy as np
 from IPython.display import Audio
 import matplotlib.pyplot as plt
 from matplotlib.backends.backend_pdf import PdfPages
+from bson.binary import Binary as BsonBinary
+import arrow
 
 from resulter import Resulter
+from mongo_models import store_model, get_model
+
+temp_dir = 'temp'
+if not os.path.isdir(temp_dir):
+    os.mkdir(temp_dir)
+
 
 def save_fig(fig, name, dpi=400):
     pp = PdfPages(name)
@@ -54,25 +63,43 @@ def calc_features(sentence, ts_features=None):
     return sentenceFeatures
 
 
-def learn_crf_model(building_name, 
-                    N, 
+def learn_crf_model(building_list, 
+                    source_sample_num_list, 
                     token_type='justseparate', 
                     label_type='label', 
                     use_cluster_flag=False,
                     debug_flag=False,
                     use_brick_flag=False):
-    spec = {
-            'source_building': building_name,
-            'target_building': building_name,
-            'source_sample_num': N,
+    """spec = {
+            'source_building': building_list[0],
+            'target_building': building_list[1] \
+                                if len(building_list)>1 \
+                                else building_list[0],
+            'source_sample_num': source_sample_num_list[0],
             'label_type': label_type,
             'token_type': token_type,
             'use_cluster_flag': use_cluster_flag
             }
+            """
+    sample_dict = dict()
+    assert(isinstance(building_list, list))
+    assert(isinstance(source_sample_num_list, list))
+    assert(len(building_list)==len(source_sample_num_list))
+
     # It does training and testing on the same building but different points.
+    
+    """
+    crf_model_file = 'model/crf_params_char_{0}_{1}_{2}_{3}_{4}.crfsuite'\
+            .format(building_list[0], 
+                    token_type, 
+                    label_type, 
+                    source_sample_num_list[0],
+                    'clustered' if use_cluster_flag else 'notclustered')
+    """
+    crf_model_file = 'temp/{0}.crfsuite'.format(gen_uuid())
 
     log_filename = 'logs/training_{0}_{1}_{2}_{3}_{4}.log'\
-            .format(building_name, N, token_type, label_type, \
+            .format(building_list[0], source_sample_num_list[0], token_type, label_type, \
                     'clustered' if use_cluster_flag else 'unclustered')
     logging.basicConfig(filename=log_filename, 
                         level=logging.DEBUG,
@@ -80,88 +107,89 @@ def learn_crf_model(building_name,
     logging.info("Started!!!")
 
     ### TRAINING ###
-
-    data_available_buildings = []
-
-    with open("metadata/%s_char_sentence_dict_%s.json" % (building_name, token_type), "r") as fp:
-        sentence_dict = json.load(fp)
-    sentence_dict = dict((srcid, [char for char in sentence]) for (srcid, sentence) in sentence_dict.items())
         
-    with open('metadata/{0}_char_category_dict.json'.format(building_name), 'r') as fp:
-        char_category_dict = json.load(fp)
-    with open('metadata/{0}_char_label_dict.json'.format(building_name), 'r') as fp:
-        char_label_dict = json.load(fp)
-        
-    if label_type=='label':
-        label_dict = char_label_dict
-    elif label_Type=='category':
-        label_dict = char_category_dict
-
-    if building_name in data_available_buildings:
-        with open("model/fe_%s.json"%building_name, "r") as fp:
-            data_feature_dict = json.load(fp)
-        with open("model/fe_%s.json"%building_name, "r") as fp:
-            normalized_data_feature_dict = json.load(fp)
-        for srcid in sentence_dict.keys():
-            if not normalized_data_feature_dict.get(srcid):
-                normalized_data_feature_dict[srcid] = None
-
-    cluster_filename = 'model/%s_word_clustering_%s.json' % (building_name, token_type)
-    if os.path.isfile(cluster_filename):
-        with open(cluster_filename, 'r') as fp:
-            cluster_dict = json.load(fp)
-
-    # Learning Sample Selection
-    SAMPLE_NUM = N
-
-    sample_srcid_list = set()
-    length_counter = lambda x:len(x[1])
-    ander = lambda x,y:x and y
-    labeled_srcid_list = list(label_dict.keys())
-    if use_cluster_flag:
-        sample_cnt = 0
-        sorted_cluster_dict = OrderedDict(
-                sorted(cluster_dict.items(), key=length_counter, reverse=True))
-        while len(sample_srcid_list) < SAMPLE_NUM:
-            for cluster_num, srcid_list in sorted_cluster_dict.items():
-                valid_srcid_list = set(srcid_list)\
-                        .intersection(set(labeled_srcid_list))\
-                        .difference(set(sample_srcid_list))
-                if len(valid_srcid_list) > 0:
-                    sample_srcid_list.add(\
-                            random.choice(list(valid_srcid_list)))
-                if len(sample_srcid_list) >= SAMPLE_NUM:
-                    break
-    else:
-        random_idx_list = random.sample(\
-                            range(0,len(labeled_srcid_list)),SAMPLE_NUM)
-        sample_srcid_list = [labeled_srcid_list[i] for i in random_idx_list]
-
-    # Cluster counting (remove later)
-    cluster_counter_dict = dict((cluster_id,0)
-                                  for cluster_id 
-                                  in cluster_dict.keys())
-
-    for srcid in sample_srcid_list:
-        for cluster_id, srcid_list in cluster_dict.items():
-            if srcid in srcid_list:
-                cluster_counter_dict[cluster_id] += 1
-
-
     trainer = pycrfsuite.Trainer(verbose=False, algorithm='pa')
     # algorithm: {‘lbfgs’, ‘l2sgd’, ‘ap’, ‘pa’, ‘arow’}
     trainer.set_params({'feature.possible_states': True,
                         'feature.possible_transitions': True})
-    for srcid in sample_srcid_list:
-        sentence = list(map(itemgetter(0), label_dict[srcid]))
-        labels = list(map(itemgetter(1), label_dict[srcid]))
-        if building_name in data_available_buildings:
-            data_features = normalized_data_feature_dict[srcid]
-        else:
-            data_features = None
-        trainer.append(pycrfsuite.ItemSequence(
-            calc_features(sentence, data_features)), labels)
 
+    data_available_buildings = []
+    for building, source_sample_num in zip(building_list, source_sample_num_list):
+        with open("metadata/%s_char_sentence_dict_%s.json" % (building, token_type), "r") as fp:
+            sentence_dict = json.load(fp)
+        sentence_dict = dict((srcid, [char for char in sentence]) for (srcid, sentence) in sentence_dict.items())
+            
+        with open('metadata/{0}_char_category_dict.json'.format(building), 'r') as fp:
+            char_category_dict = json.load(fp)
+        with open('metadata/{0}_char_label_dict.json'.format(building), 'r') as fp:
+            char_label_dict = json.load(fp)
+            
+        if label_type=='label':
+            label_dict = char_label_dict
+        elif label_Type=='category':
+            label_dict = char_category_dict
+
+        if building in data_available_buildings:
+            with open("model/fe_%s.json"%building, "r") as fp:
+                data_feature_dict = json.load(fp)
+            with open("model/fe_%s.json"%building, "r") as fp:
+                normalized_data_feature_dict = json.load(fp)
+            for srcid in sentence_dict.keys():
+                if not normalized_data_feature_dict.get(srcid):
+                    normalized_data_feature_dict[srcid] = None
+
+        cluster_filename = 'model/%s_word_clustering_%s.json' % (building, token_type)
+        if os.path.isfile(cluster_filename):
+            with open(cluster_filename, 'r') as fp:
+                cluster_dict = json.load(fp)
+
+        # Learning Sample Selection
+        sample_srcid_list = set()
+        length_counter = lambda x:len(x[1])
+        ander = lambda x,y:x and y
+        labeled_srcid_list = list(label_dict.keys())
+        if use_cluster_flag:
+            sample_cnt = 0
+            sorted_cluster_dict = OrderedDict(
+                    sorted(cluster_dict.items(), key=length_counter, reverse=True))
+            while len(sample_srcid_list) < source_sample_num:
+                for cluster_num, srcid_list in sorted_cluster_dict.items():
+                    valid_srcid_list = set(srcid_list)\
+                            .intersection(set(labeled_srcid_list))\
+                            .difference(set(sample_srcid_list))
+                    if len(valid_srcid_list) > 0:
+                        sample_srcid_list.add(\
+                                random.choice(list(valid_srcid_list)))
+                    if len(sample_srcid_list) >= source_sample_num:
+                        break
+        else:
+            random_idx_list = random.sample(\
+                                range(0,len(labeled_srcid_list)),source_sample_num)
+            sample_srcid_list = [labeled_srcid_list[i] for i in random_idx_list]
+
+        # Cluster counting (remove later)
+        cluster_counter_dict = dict((cluster_id,0)
+                                      for cluster_id 
+                                      in cluster_dict.keys())
+
+        for srcid in sample_srcid_list:
+            for cluster_id, srcid_list in cluster_dict.items():
+                if srcid in srcid_list:
+                    cluster_counter_dict[cluster_id] += 1
+
+
+        for srcid in sample_srcid_list:
+            sentence = list(map(itemgetter(0), label_dict[srcid]))
+            labels = list(map(itemgetter(1), label_dict[srcid]))
+            if building in data_available_buildings:
+                data_features = normalized_data_feature_dict[srcid]
+            else:
+                data_features = None
+            trainer.append(pycrfsuite.ItemSequence(
+                calc_features(sentence, data_features)), labels)
+
+        sample_dict[building] = list(sample_srcid_list)
+        
     # Learn Brick tags
 
 #    if use_brick_flag:
@@ -173,17 +201,23 @@ def learn_crf_model(building_name,
 #            trainer.append(pycrfsuite.ItemSequence(
 #                calc_features(char_tags, None)), char_labels)
 
-    crf_model_file = 'model/crf_params_char_{0}_{1}_{2}_{3}_{4}.crfsuite'\
-            .format(building_name, 
-                    token_type, 
-                    label_type, 
-                    str(SAMPLE_NUM), 
-                    'clustered' if use_cluster_flag else 'notclustered')
 
     # Train and store the model file
     trainer.train(crf_model_file)
+    with open(crf_model_file, 'rb') as fp:
+        model_bin = fp.read()
+    model = {
+            'source_list': sample_dict,
+            'gen_time': arrow.get().datetime,
+            'use_cluster_flag': use_cluster_flag,
+            'token_type': 'justseparate',
+            'label_type': 'label',
+            'model_binary': BsonBinary(model_bin)
+            }
+    store_model(model)
+    os.remove(crf_model_file)
 
-
+    """
     ### TEST ###
     tagger = pycrfsuite.Tagger()
     tagger.open(crf_model_file)
@@ -191,7 +225,7 @@ def learn_crf_model(building_name,
     predicted_dict = dict()
     score_dict = dict()
     for srcid, sentence in sentence_dict.items():
-        if building_name in data_available_buildings:
+        if building in data_available_buildings:
             data_features = normalized_data_feature_dict[srcid]
         else:
             data_features = None
@@ -251,16 +285,16 @@ def learn_crf_model(building_name,
     
     
     result_file = 'result/result_{0}_{1}_{2}_{3}_{4}.json'\
-                    .format(building_name, 
+                    .format(building, 
                             token_type, 
                             label_type, 
-                            str(SAMPLE_NUM),
+                            str(source_sample_num),
                             'clustered' if use_cluster_flag else 'unclustered')
     summary_file = 'result/summary_{0}_{1}_{2}_{3}_{4}.json'\
-                    .format(building_name, 
+                    .format(building, 
                             token_type, 
                             label_type, 
-                            str(SAMPLE_NUM),
+                            str(source_sample_num),
                             'clustered' if use_cluster_flag else 'unclustered')
 
     resulter.serialize_result(result_file)
@@ -270,27 +304,44 @@ def learn_crf_model(building_name,
 
     len(label_list)
 
+    """
     logging.info("Finished!!!")
     sound_file = 'etc/fins_success.wav'
     Audio(url=sound_file, autoplay=True)
 
 
-def crf_test(source_building_name, 
-             target_building_name,
-             source_sample_num,
-             token_type='justseparate',
-             label_type='label',
-             use_cluster_flag=False):
+def crf_test(building_list, 
+        source_sample_num_list, 
+        target_building_name,
+        token_type='justseparate', 
+        label_type='label', 
+        use_cluster_flag=False,
+        use_brick_flag=False):
+    assert(len(building_list)==len(source_sample_num_list))
+
     
+    source_building_name = building_list[0] #TODO: remove this to use the list
+
+    model_query = {'$and':[]}
     spec = {
-            'source_building': source_building_name,
-            'target_building': target_building_name,
-            'source_sample_num': source_sample_num,
             'label_type': label_type,
             'token_type': token_type,
             'use_cluster_flag': use_cluster_flag
             }
+    for building, source_sample_num in \
+            zip(building_list, source_sample_num_list):
+        model_query['$and'].append(
+                {'source_list.{0}'.format(building): {'$exists': True}})
+        model_query['$and'].append({'$where': 
+            'this.source_list.{0}.length={1}'.\
+                    format(building, source_sample_num)})
+    model_query['$and'].append(spec)
+    model = get_model(model_query)
     
+    crf_model_file = 'temp/{0}.crfsuite'.format(gen_uuid())
+    with open(crf_model_file, 'wb') as fp:
+        fp.write(model['model_binary'])
+
     resulter = Resulter(spec=spec)
     log_filename = 'logs/test_{0}_{1}_{2}_{3}_{4}_{5}.log'\
             .format(source_building_name, 
@@ -303,9 +354,6 @@ def crf_test(source_building_name,
                         level=logging.DEBUG,
                         format='%(asctime)s %(message)s')
     logging.info("Started!!!")
-    #token_types = ['alphaandnum', 'justseparate']
-    label_type = 'label'
-    #label_types = ['label', 'category']
 
     data_available_buildings = []
 
@@ -324,12 +372,12 @@ def crf_test(source_building_name,
                          for srcid, sentence 
                          in sentence_dict.items() 
                          if target_label_dict.get(srcid))
-    crf_model_file = 'model/crf_params_char_{0}_{1}_{2}_{3}_{4}.crfsuite'\
-                        .format(source_building_name, 
-                                token_type, 
-                                label_type, 
-                                str(source_sample_num),
-                                'clustered' if use_cluster_flag else 'notclustered')
+#    crf_model_file = 'model/crf_params_char_{0}_{1}_{2}_{3}_{4}.crfsuite'\
+#                        .format(source_building_name, 
+#                                token_type, 
+#                                label_type, 
+#                                str(source_sample_num),
+#                                'clustered' if use_cluster_flag else 'notclustered')
 
     tagger = pycrfsuite.Tagger()
     tagger.open(crf_model_file)
@@ -387,7 +435,7 @@ def crf_test(source_building_name,
     resulter.serialize_result(result_file)
     resulter.summarize_result()
     resulter.serialize_summary(summary_file)
-    resulter.store_result_db()
+#    resulter.store_result_db()
 
     score_list = list()
     error_rate_list = list()
@@ -429,9 +477,19 @@ def str2bool(v):
     else:
         assert(False)
 
+def str2slist(s):
+    s.replace(' ', '')
+    return s.split(',')
+
+def str2ilist(s):
+    s.replace(' ', '')
+    return [int(c) for c in s.split(',')]
+
 if __name__=='__main__':
     parser = argparse.ArgumentParser()
     parser.register('type','bool',str2bool)
+    parser.register('type','slist', str2slist)
+    parser.register('type','ilist', str2ilist)
 
     parser.add_argument(choices=['learn', 'predict'],
                         dest = 'prog')
@@ -439,7 +497,7 @@ if __name__=='__main__':
     parser.add_argument('predict', 
                          action='store_true',
                          default=False)
-
+    
     parser.add_argument('-b', 
                         type=str, 
                         help='Learning source building name',
@@ -448,6 +506,15 @@ if __name__=='__main__':
                         type=int, 
                         help='The number of learning sample',
                         dest='sample_num')
+
+    parser.add_argument('-bl', 
+                        type='slist', 
+                        help='Learning source building name list',
+                        dest='source_building_list')
+    parser.add_argument('-nl', 
+                        type='ilist', 
+                        help='A list of the number of learning sample',
+                        dest='sample_num_list')
     parser.add_argument('-l', 
                         type=str, 
                         help='Label type (either label or category',
@@ -477,20 +544,21 @@ if __name__=='__main__':
     args = parser.parse_args()
 
     if args.prog=='learn':
-        learn_crf_model(building_name = args.source_building, 
-                        N = args.sample_num, 
+        learn_crf_model(building_list = args.source_building_list, 
+                        source_sample_num_list = args.sample_num_list, 
                         token_type = 'justseparate',
                         label_type = args.label_type,
                         use_cluster_flag = args.use_cluster_flag,
                         debug_flag = args.debug_flag,
                         use_brick_flag=args.use_brick_flag)
     elif args.prog=='predict':
-        crf_test(source_building_name = args.source_building, 
-                 target_building_name = args.target_building,
-                 source_sample_num = args.sample_num,
-                 token_type='justseparate',
-                 label_type = args.label_type,
-                 use_cluster_flag = args.use_cluster_flag)
+        crf_test(building_list = args.source_building_list, 
+                source_sample_num_list = args.sample_num_list, 
+                target_building_name = args.target_building,
+                token_type = 'justseparate',
+                label_type = args.label_type,
+                use_cluster_flag = args.use_cluster_flag,
+                use_brick_flag=args.use_brick_flag)
     else:
         print('Either learn or predict should be provided')
         assert(False)

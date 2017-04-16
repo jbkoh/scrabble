@@ -13,5 +13,5 @@ for n in n_list:
                 pass
 #                continue
             for cluster_flag in cluster_flag_list:
-                os.system('python scrabble.py predict -b {0} -t {1} -n {2} -c {3} &'\
+                os.system('python scrabble.py predict -bl {0} -t {1} -nl {2} -c {3} &'\
                         .format(source_building, target_building, n, cluster_flag))
