@@ -1,16 +1,25 @@
 #!/home/jbkoh/anaconda3/bin/python
 
 import os
+import time
 
 from scrabble import learn_crf_model
 
 
-n_list = [100]
-building_list = ['ap_m']
+n_list = [50, 100, 200]
+sub_n_list = [10, 50]
+building_list = ['ebu3b', 'ap_m']
 cluster_flag_list = [True]
 
-for n in n_list:
-    for building_name in building_list:
+for source_building in building_list:
+    for sub_building in building_list:
+        if source_building==sub_building:
+            continue
         for cluster_flag in cluster_flag_list:
-            os.system('python scrabble.py learn -bl {0} -nl {1} -c {2} &'\
-                    .format(building_name, n, cluster_flag))
+            for n in n_list:
+                os.system('python scrabble.py learn -bl {0} -nl {1} -c {2} &'\
+                        .format(source_building, n, cluster_flag))
+                for sub_n in sub_n_list:
+                    os.system('python scrabble.py learn -bl {0},{1} -nl {2},{3} -c {4} &'\
+                            .format(source_building, sub_building, n, sub_n, cluster_flag))
+        time.sleep(700)
