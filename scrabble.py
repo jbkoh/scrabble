@@ -1,6 +1,6 @@
 import os
 from functools import reduce
-import json                                                                     
+import json
 import random
 from collections import OrderedDict
 import pdb
@@ -12,8 +12,8 @@ import logging
 from imp import reload
 from uuid import uuid4 as gen_uuid
 
-import pycrfsuite                                                               
-import pandas as pd                                                             
+import pycrfsuite
+import pandas as pd
 import numpy as np                    
 from IPython.display import Audio
 import matplotlib.pyplot as plt
@@ -212,7 +212,8 @@ def learn_crf_model(building_list,
             'use_cluster_flag': use_cluster_flag,
             'token_type': 'justseparate',
             'label_type': 'label',
-            'model_binary': BsonBinary(model_bin)
+            'model_binary': BsonBinary(model_bin),
+            'source_building_count': len(building_list)
             }
     store_model(model)
     os.remove(crf_model_file)
@@ -312,7 +313,7 @@ def learn_crf_model(building_list,
 
 def crf_test(building_list, 
         source_sample_num_list, 
-        target_building_name,
+        target_building,
         token_type='justseparate', 
         label_type='label', 
         use_cluster_flag=False,
@@ -323,11 +324,15 @@ def crf_test(building_list,
     source_building_name = building_list[0] #TODO: remove this to use the list
 
     model_query = {'$and':[]}
-    spec = {
+    model_metadata = {
             'label_type': label_type,
             'token_type': token_type,
-            'use_cluster_flag': use_cluster_flag
+            'use_cluster_flag': use_cluster_flag,
+            'source_building_count': len(building_list)
             }
+    result_metadata = deepcopy(model_metadata)
+    result_metadata['source_cnt_list'] = []
+    result_metadata['target_building'] = target_building
     for building, source_sample_num in \
             zip(building_list, source_sample_num_list):
         model_query['$and'].append(
@@ -335,17 +340,19 @@ def crf_test(building_list,
         model_query['$and'].append({'$where': 
             'this.source_list.{0}.length={1}'.\
                     format(building, source_sample_num)})
-    model_query['$and'].append(spec)
+        result_metadata['source_cnt_list'].append([building, source_sample_num])
+    model_query['$and'].append(model_metadata)
+    model_query['$and'].append({'source_building_count':len(building_list)})
     model = get_model(model_query)
     
     crf_model_file = 'temp/{0}.crfsuite'.format(gen_uuid())
     with open(crf_model_file, 'wb') as fp:
         fp.write(model['model_binary'])
 
-    resulter = Resulter(spec=spec)
+    resulter = Resulter(spec=result_metadata)
     log_filename = 'logs/test_{0}_{1}_{2}_{3}_{4}_{5}.log'\
             .format(source_building_name, 
-                    target_building_name,
+                    target_building,
                     source_sample_num, 
                     token_type, 
                     label_type, \
@@ -358,13 +365,13 @@ def crf_test(building_list,
     data_available_buildings = []
 
     with open('metadata/{0}_char_label_dict.json'\
-                .format(target_building_name), 'r') as fp:
+                .format(target_building), 'r') as fp:
         target_label_dict = json.load(fp)
     with open('metadata/{0}_char_sentence_dict_{1}.json'\
-                .format(target_building_name, token_type), 'r') as fp:
+                .format(target_building, token_type), 'r') as fp:
         char_sentence_dict = json.load(fp)
     with open('metadata/{0}_sentence_dict_{1}.json'\
-                .format(target_building_name, token_type), 'r') as fp:
+                .format(target_building, token_type), 'r') as fp:
         word_sentence_dict = json.load(fp)
 
     sentence_dict = char_sentence_dict
@@ -400,7 +407,8 @@ def crf_test(building_list,
         printing_pairs = list()
         orig_label_list = list(map(itemgetter(1), sentence_label))
         resulter.add_one_result(srcid, sentence, predicted, orig_label_list)
-        for word, predTag, origLabel in zip(sentence, predicted, orig_label_list):
+        for word, predTag, origLabel in \
+                zip(sentence, predicted, orig_label_list):
             printing_pair = [word,predTag,origLabel]                            
             if predTag==origLabel:                                          
                 precisionOfTrainingDataset += 1                             
@@ -411,7 +419,8 @@ def crf_test(building_list,
             printing_pairs.append(printing_pair)                                
         logging.info("=========== {0} ==== {1} ==================="\
                         .format(srcid, score_dict[srcid]))
-        error_rate_dict[srcid] = sum([pair[0]=='X' for pair in printing_pairs])/float(len(sentence))
+        error_rate_dict[srcid] = sum([pair[0]=='X' for pair in printing_pairs])\
+                                    /float(len(sentence))
         if 'X' in [pair[0] for pair in printing_pairs]:
             for (flag, word, predTag, origLabel) in printing_pairs:
                 logging.info('{:5s} {:20s} {:20s} {:20s}'\
@@ -419,14 +428,14 @@ def crf_test(building_list,
     
     result_file = 'result/test_result_{0}_{1}_{2}_{3}_{4}_{5}.json'\
                     .format(source_building_name,
-                            target_building_name,
+                            target_building,
                             token_type, 
                             label_type, 
                             source_sample_num,
                             'clustered' if use_cluster_flag else 'unclustered')
     summary_file = 'result/test_summary_{0}_{1}_{2}_{3}_{4}_{5}.json'\
                     .format(source_building_name, 
-                            target_building_name,
+                            target_building,
                             token_type, 
                             label_type, 
                             source_sample_num,
@@ -435,7 +444,7 @@ def crf_test(building_list,
     resulter.serialize_result(result_file)
     resulter.summarize_result()
     resulter.serialize_summary(summary_file)
-#    resulter.store_result_db()
+    resulter.store_result_db()
 
     score_list = list()
     error_rate_list = list()
@@ -455,7 +464,7 @@ def crf_test(building_list,
 
     error_plot_file = 'figs/error_plotting_{0}_{1}_{2}_{3}_{4}_{5}.pdf'\
                     .format(source_building_name, 
-                            target_building_name,
+                            target_building,
                             token_type, 
                             label_type, 
                             source_sample_num,
@@ -554,7 +563,7 @@ if __name__=='__main__':
     elif args.prog=='predict':
         crf_test(building_list = args.source_building_list, 
                 source_sample_num_list = args.sample_num_list, 
-                target_building_name = args.target_building,
+                target_building = args.target_building,
                 token_type = 'justseparate',
                 label_type = args.label_type,
                 use_cluster_flag = args.use_cluster_flag,

@@ -28,6 +28,16 @@ model_template = {
         'label_type': 'label'
         }
 
+result_template = {
+        # Metadata
+        'label_type': '',
+        'token_type': '',
+        'use_cluster_flag': '',
+        'source_cnt_list': [['building1', 100], ['building2', 10]],
+        'target_building': 'building3',
+        # Result
+        }
+
 def get_model(query):
     docs = db.get_collection('model').find(query)
     if not query.get('gen_time'):

@@ -81,7 +81,7 @@ class Resulter():
 
     def summarize_result(self):
 
-        self.summary = {'specification': self.spec}
+        #self.summary = {'specification': self.spec}
         # Calculate character level accuracy
         char_correct_cnt = 0
         char_total_cnt = 0
@@ -141,19 +141,17 @@ class Resulter():
             json.dump(self.result_dict, fp, indent=2)
 
     def store_result_db(self):
-        spec = self.spec
-        summary_query = copy(summary_query_template)
-        summary_query['source_building'] = spec['source_building']
-        summary_query['target_building'] = spec['target_building']
-        summary_query['source_sample_num'] = spec['source_sample_num']
-        summary_query['label_type'] = spec['label_type']
-        summary_query['token_type'] = spec['token_type']
-        summary_query['use_cluster_flag'] = spec['use_cluster_flag']
-        doc = copy(summary_query)
-        doc.update(summary = self.summary)
-        self.summary_coll.update(summary_query, 
-                                 doc,
-                                 upsert=True)
+        #summary_query = copy(summary_query_template)
+        #summary_query['source_building'] = spec['source_building']
+        #summary_query['target_building'] = spec['target_building']
+        #summary_query['source_sample_num'] = spec['source_sample_num']
+        #summary_query['label_type'] = spec['label_type']
+        #summary_query['token_type'] = spec['token_type']
+        #summary_query['use_cluster_flag'] = spec['use_cluster_flag']
+        #doc = copy(summary_query)
+        doc = copy(self.spec)
+        doc.update(self.summary)
+        self.summary_coll.insert(doc)
 
     def _bilou_phraser(self, token_labels):
         phrase_labels = list()

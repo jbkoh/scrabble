@@ -1,0 +1,14 @@
+{
+  "specification": {
+    "label_type": "label",
+    "token_type": "justseparate",
+    "use_cluster_flag": true,
+    "source_building_count": 1
+  },
+  "char_precision": 0.7696597667117588,
+  "phrase_precision": 0.7371751993825573,
+  "phrase_recall": 0.7059026409144659,
+  "pessimistic_phrase_precision": 0.6130727033917948,
+  "pessimistic_phrase_recall": 0.570699079401611,
+  "date": "2017-04-19 05:23:10.420562+00:00"
+}
