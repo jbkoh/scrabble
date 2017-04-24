@@ -1,21 +1,8 @@
 {
-  "specification": {
-    "label_type": "label",
-    "token_type": "justseparate",
-    "use_cluster_flag": true,
-    "source_building_count": 1,
-    "source_cnt_list": [
-      [
-        "ebu3b",
-        200
-      ]
-    ],
-    "target_building": "ebu3b"
-  },
   "char_precision": 0.9947986798679868,
   "phrase_precision": 0.9992405063291139,
   "phrase_recall": 0.996515855382751,
   "pessimistic_phrase_precision": 0.9993519718570635,
   "pessimistic_phrase_recall": 0.9936487481590575,
-  "date": "2017-04-19 06:39:31.432907+00:00"
+  "date": "2017-04-20 02:07:43.767516+00:00"
 }

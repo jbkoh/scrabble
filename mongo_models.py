@@ -14,7 +14,7 @@ summary_query_template = {
         'token_type': None,
         'use_cluster_flag': None
         }
-        
+
 def get_summary_query_template():
     return copy(summary_query_template)
 
@@ -46,3 +46,10 @@ def get_model(query):
 
 def store_model(model):
     db.get_collection('model').insert_one(model)
+
+def get_tags_mapping(query):
+    docs = db.get_collection('results').find(query)
+    if not query.get('gen_time'):
+        docs = docs.sort('gen_time',-1).limit(1)
+    doc = docs[0]
+    return doc['result']

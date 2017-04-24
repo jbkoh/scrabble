@@ -1,0 +1,809 @@
+{
+  "505_3_3015367": [
+    "network_adapter-nae",
+    "network_adapter-n",
+    "building-ebu3b"
+  ],
+  "505_3_3015308": [
+    "network_adapter-nae",
+    "network_adapter-n",
+    "building-ebu3b"
+  ],
+  "505_3_3000542": [
+    "vfd",
+    "network_adapter-nae",
+    "network_adapter-t",
+    "network_adapter-n",
+    "building-ebu3b"
+  ],
+  "505_0_3015265": [
+    "crac",
+    "network_adapter-nae",
+    "network_adapter-n",
+    "building-ebu3b"
+  ],
+  "505_0_3000856": [
+    "network_adapter-nae",
+    "network_adapter-n",
+    "building-ebu3b"
+  ],
+  "505_4_3000182": [
+    "fan_command",
+    "room",
+    "fan",
+    "vav",
+    "network_adapter-nae",
+    "network_adapter-n",
+    "building-ebu3b"
+  ],
+  "505_3_3000742": [
+    "return_fan",
+    "vfd",
+    "network_adapter-nae",
+    "network_adapter-t",
+    "network_adapter-n",
+    "building-ebu3b"
+  ],
+  "505_3_3015296": [
+    "network_adapter-nae",
+    "network_adapter-n",
+    "building-ebu3b"
+  ],
+  "505_3_3014467": [
+    "room",
+    "vav",
+    "network_adapter-nae",
+    "network_adapter-n",
+    "building-ebu3b"
+  ],
+  "505_0_3015259": [
+    "network_adapter-nae",
+    "network_adapter-n",
+    "building-ebu3b"
+  ],
+  "505_1_3000801": [
+    "network_adapter-nae",
+    "network_adapter-n",
+    "building-ebu3b"
+  ],
+  "505_4_3000629": [
+    "vfd",
+    "network_adapter-nae",
+    "network_adapter-t",
+    "network_adapter-n",
+    "building-ebu3b"
+  ],
+  "505_4_3000019": [
+    "network_adapter-dx",
+    "network_adapter-nae",
+    "network_adapter-n",
+    "building-ebu3b"
+  ],
+  "506_1_3009391": [
+    "room",
+    "vav",
+    "network_adapter-nae",
+    "network_adapter-n",
+    "building-ebu3b"
+  ],
+  "505_1_3000031": [
+    "vfd",
+    "network_adapter-nae",
+    "network_adapter-t",
+    "network_adapter-n",
+    "building-ebu3b"
+  ],
+  "505_1_3014610": [
+    "chilled_water_pump",
+    "vfd",
+    "network_adapter-nae",
+    "network_adapter-n",
+    "building-ebu3b"
+  ],
+  "506_2_3015079": [
+    "room",
+    "network_adapter-nae",
+    "building-ebu3b"
+  ],
+  "506_2_3010317": [
+    "network_adapter-nae",
+    "building-ebu3b"
+  ],
+  "506_2_3011378": [
+    "room",
+    "vav",
+    "network_adapter-nae",
+    "network_adapter-n",
+    "building-ebu3b"
+  ],
+  "505_2_3013659": [
+    "room",
+    "vav",
+    "network_adapter-nae",
+    "network_adapter-n",
+    "building-ebu3b"
+  ],
+  "505_0_3000851": [
+    "network_adapter-nae",
+    "network_adapter-n",
+    "building-ebu3b"
+  ],
+  "505_0_3000497": [
+    "vfd",
+    "network_adapter-nae",
+    "network_adapter-t",
+    "network_adapter-n",
+    "building-ebu3b"
+  ],
+  "506_0_3000668": [
+    "zone",
+    "room",
+    "zone_temperature_sensor",
+    "vav",
+    "network_adapter-nae",
+    "network_adapter-n",
+    "building-ebu3b"
+  ],
+  "505_3_3014473": [
+    "room",
+    "vav",
+    "network_adapter-nae",
+    "network_adapter-n",
+    "building-ebu3b"
+  ],
+  "505_4_3000751": [
+    "vfd",
+    "network_adapter-nae",
+    "network_adapter-t",
+    "network_adapter-n",
+    "building-ebu3b"
+  ],
+  "505_3_3015341": [
+    "crac",
+    "network_adapter-nae",
+    "network_adapter-n",
+    "building-ebu3b"
+  ],
+  "505_4_3000505": [
+    "vfd",
+    "network_adapter-nae",
+    "network_adapter-t",
+    "network_adapter-n",
+    "building-ebu3b"
+  ],
+  "505_1_3002596": [
+    "network_adapter-nae",
+    "network_adapter-n",
+    "building-ebu3b"
+  ],
+  "505_0_3014631": [
+    "chilled_water_pump",
+    "vfd",
+    "network_adapter-nae",
+    "network_adapter-t",
+    "network_adapter-n",
+    "building-ebu3b"
+  ],
+  "505_3_3014608": [
+    "chilled_water_pump",
+    "vfd",
+    "network_adapter-nae",
+    "network_adapter-n",
+    "building-ebu3b"
+  ],
+  "505_2_3002376": [
+    "network_adapter-nae",
+    "building-ebu3b"
+  ],
+  "506_2_3009740": [
+    "network_adapter-nae",
+    "network_adapter-n",
+    "building-ebu3b"
+  ],
+  "505_3_3000062": [
+    "network_adapter-dx",
+    "network_adapter-nae",
+    "network_adapter-n",
+    "building-ebu3b"
+  ],
+  "505_4_3000665": [
+    "return_fan",
+    "vfd",
+    "network_adapter-nae",
+    "network_adapter-t",
+    "network_adapter-n",
+    "building-ebu3b"
+  ],
+  "505_3_3000743": [
+    "vfd",
+    "unknown",
+    "network_adapter-nae",
+    "network_adapter-t",
+    "network_adapter-n",
+    "building-ebu3b"
+  ],
+  "505_3_3015352": [
+    "crac",
+    "network_adapter-nae",
+    "network_adapter-n",
+    "building-ebu3b"
+  ],
+  "505_3_3014640": [
+    "chilled_water_pump",
+    "vfd",
+    "network_adapter-nae",
+    "network_adapter-n",
+    "building-ebu3b"
+  ],
+  "506_2_3010316": [
+    "network_adapter-nae",
+    "building-ebu3b"
+  ],
+  "505_1_3000694": [
+    "vfd",
+    "unknown",
+    "network_adapter-nae",
+    "network_adapter-t",
+    "network_adapter-n",
+    "building-ebu3b"
+  ],
+  "505_4_3000820": [
+    "network_adapter-nae",
+    "network_adapter-n",
+    "building-ebu3b"
+  ],
+  "505_0_3014586": [
+    "chilled_water_pump",
+    "vfd",
+    "network_adapter-nae",
+    "network_adapter-n",
+    "building-ebu3b"
+  ],
+  "505_1_3014684": [
+    "chilled_water_pump",
+    "network_adapter-dx",
+    "network_adapter-nae",
+    "network_adapter-n",
+    "building-ebu3b"
+  ],
+  "505_3_3015174": [
+    "network_adapter-nae",
+    "network_adapter-n",
+    "building-ebu3b"
+  ],
+  "505_3_3015173": [
+    "network_adapter-nae",
+    "network_adapter-n",
+    "building-ebu3b"
+  ],
+  "505_5_3013657": [
+    "room",
+    "vav",
+    "network_adapter-nae",
+    "network_adapter-n",
+    "building-ebu3b"
+  ],
+  "505_0_3015196": [
+    "network_adapter-nae",
+    "network_adapter-n",
+    "building-ebu3b"
+  ],
+  "505_3_3015295": [
+    "crac",
+    "network_adapter-nae",
+    "network_adapter-n",
+    "building-ebu3b"
+  ],
+  "505_3_3000702": [
+    "return_fan",
+    "vfd",
+    "network_adapter-nae",
+    "network_adapter-t",
+    "network_adapter-n",
+    "building-ebu3b"
+  ],
+  "505_2_3026073": [
+    "network_adapter-nae",
+    "building-ebu3b"
+  ],
+  "505_3_3015304": [
+    "crac",
+    "network_adapter-nae",
+    "network_adapter-n",
+    "building-ebu3b"
+  ],
+  "505_1_3014612": [
+    "chilled_water_pump",
+    "vfd",
+    "network_adapter-nae",
+    "network_adapter-n",
+    "building-ebu3b"
+  ],
+  "505_2_3022109": [
+    "room",
+    "vav",
+    "network_adapter-nae",
+    "network_adapter-n",
+    "building-ebu3b"
+  ],
+  "505_1_3000653": [
+    "vfd",
+    "network_adapter-nae",
+    "network_adapter-t",
+    "network_adapter-n",
+    "building-ebu3b"
+  ],
+  "505_1_3000051": [
+    "network_adapter-dx",
+    "network_adapter-nae",
+    "network_adapter-n",
+    "building-ebu3b"
+  ],
+  "505_3_3014641": [
+    "chilled_water_pump",
+    "vfd",
+    "network_adapter-nae",
+    "network_adapter-n",
+    "building-ebu3b"
+  ],
+  "506_2_3015086": [
+    "room",
+    "network_adapter-nae",
+    "building-ebu3b"
+  ],
+  "505_3_3015337": [
+    "network_adapter-nae",
+    "network_adapter-n",
+    "building-ebu3b"
+  ],
+  "505_3_3015166": [
+    "crac",
+    "network_adapter-nae",
+    "network_adapter-n",
+    "building-ebu3b"
+  ],
+  "505_0_3014622": [
+    "chilled_water_pump",
+    "vfd",
+    "network_adapter-nae",
+    "network_adapter-n",
+    "building-ebu3b"
+  ],
+  "506_2_3009758": [
+    "network_adapter-nae",
+    "network_adapter-n",
+    "building-ebu3b"
+  ],
+  "505_3_3015179": [
+    "network_adapter-nae",
+    "network_adapter-n",
+    "building-ebu3b"
+  ],
+  "505_1_3000539": [
+    "vfd",
+    "unknown",
+    "network_adapter-nae",
+    "network_adapter-t",
+    "network_adapter-n",
+    "building-ebu3b"
+  ],
+  "505_0_3000594": [
+    "vfd",
+    "network_adapter-nae",
+    "network_adapter-t",
+    "network_adapter-n",
+    "building-ebu3b"
+  ],
+  "505_4_3000709": [
+    "vfd",
+    "network_adapter-nae",
+    "network_adapter-t",
+    "network_adapter-n",
+    "building-ebu3b"
+  ],
+  "506_2_3009737": [
+    "building-ebu3b"
+  ],
+  "505_0_3000433": [
+    "vfd",
+    "network_adapter-nae",
+    "network_adapter-t",
+    "network_adapter-n",
+    "building-ebu3b"
+  ],
+  "505_3_3015152": [
+    "crac",
+    "network_adapter-nae",
+    "network_adapter-n",
+    "building-ebu3b"
+  ],
+  "505_3_3014643": [
+    "chilled_water_pump",
+    "vfd",
+    "network_adapter-nae",
+    "network_adapter-n",
+    "building-ebu3b"
+  ],
+  "505_0_3000641": [
+    "vfd",
+    "unknown",
+    "network_adapter-nae",
+    "network_adapter-t",
+    "network_adapter-n",
+    "building-ebu3b"
+  ],
+  "505_0_3000765": [
+    "vfd",
+    "unknown",
+    "network_adapter-nae",
+    "network_adapter-t",
+    "network_adapter-n",
+    "building-ebu3b"
+  ],
+  "505_3_3015225": [
+    "network_adapter-nae",
+    "network_adapter-n",
+    "building-ebu3b"
+  ],
+  "505_3_3015270": [
+    "network_adapter-nae",
+    "network_adapter-n",
+    "building-ebu3b"
+  ],
+  "505_3_3015283": [
+    "network_adapter-nae",
+    "network_adapter-n",
+    "building-ebu3b"
+  ],
+  "505_3_3000808": [
+    "network_adapter-nae",
+    "network_adapter-n",
+    "building-ebu3b"
+  ],
+  "505_1_3000739": [
+    "return_fan",
+    "vfd",
+    "network_adapter-nae",
+    "network_adapter-t",
+    "network_adapter-n",
+    "building-ebu3b"
+  ],
+  "505_4_3000009": [
+    "network_adapter-dx",
+    "network_adapter-nae",
+    "network_adapter-n",
+    "building-ebu3b"
+  ],
+  "505_1_3000027": [
+    "vfd",
+    "network_adapter-nae",
+    "network_adapter-t",
+    "network_adapter-n",
+    "building-ebu3b"
+  ],
+  "506_2_3010315": [
+    "network_adapter-nae",
+    "building-ebu3b"
+  ],
+  "505_3_3014477": [
+    "room",
+    "vav",
+    "network_adapter-nae",
+    "network_adapter-n",
+    "building-ebu3b"
+  ],
+  "505_0_3000553": [
+    "vfd",
+    "network_adapter-nae",
+    "network_adapter-t",
+    "network_adapter-n",
+    "building-ebu3b"
+  ],
+  "505_3_3015470": [
+    "room",
+    "vav",
+    "network_adapter-nae",
+    "network_adapter-n",
+    "building-ebu3b"
+  ],
+  "505_1_3000494": [
+    "vfd",
+    "unknown",
+    "network_adapter-nae",
+    "network_adapter-t",
+    "network_adapter-n",
+    "building-ebu3b"
+  ],
+  "505_0_3000314": [
+    "chilled_water_pump",
+    "vfd",
+    "unknown",
+    "network_adapter-nae",
+    "network_adapter-t",
+    "network_adapter-n",
+    "building-ebu3b"
+  ],
+  "505_4_3000545": [
+    "vfd",
+    "network_adapter-nae",
+    "network_adapter-t",
+    "network_adapter-n",
+    "building-ebu3b"
+  ],
+  "505_2_3002407": [
+    "network_adapter-nae",
+    "network_adapter-n",
+    "building-ebu3b"
+  ],
+  "505_1_3015312": [
+    "crac",
+    "network_adapter-nae",
+    "network_adapter-n",
+    "building-ebu3b"
+  ],
+  "505_0_3000043": [
+    "network_adapter-nae",
+    "network_adapter-n",
+    "building-ebu3b"
+  ],
+  "505_3_3015332": [
+    "crac",
+    "network_adapter-nae",
+    "network_adapter-n",
+    "building-ebu3b"
+  ],
+  "505_4_3000823": [
+    "network_adapter-nae",
+    "network_adapter-n",
+    "building-ebu3b"
+  ],
+  "505_0_3015324": [
+    "network_adapter-nae",
+    "network_adapter-n",
+    "building-ebu3b"
+  ],
+  "505_3_3014603": [
+    "chilled_water_pump",
+    "vfd",
+    "network_adapter-nae",
+    "network_adapter-n",
+    "building-ebu3b"
+  ],
+  "506_2_3015076": [
+    "room",
+    "network_adapter-nae",
+    "building-ebu3b"
+  ],
+  "506_2_3009732": [
+    "building-ebu3b"
+  ],
+  "505_4_3000667": [
+    "return_fan",
+    "vfd",
+    "network_adapter-nae",
+    "network_adapter-t",
+    "network_adapter-n",
+    "building-ebu3b"
+  ],
+  "505_4_3000707": [
+    "return_fan",
+    "vfd",
+    "network_adapter-nae",
+    "network_adapter-t",
+    "network_adapter-n",
+    "building-ebu3b"
+  ],
+  "505_3_3015238": [
+    "network_adapter-nae",
+    "network_adapter-n",
+    "building-ebu3b"
+  ],
+  "505_1_3000057": [
+    "network_adapter-nae",
+    "network_adapter-n",
+    "building-ebu3b"
+  ],
+  "505_1_3025889": [
+    "network_adapter-nae",
+    "network_adapter-n",
+    "building-ebu3b"
+  ],
+  "505_0_3015134": [
+    "crac",
+    "temperature_sensor",
+    "network_adapter-nae",
+    "network_adapter-n",
+    "building-ebu3b"
+  ],
+  "506_2_3015065": [
+    "room",
+    "network_adapter-nae",
+    "building-ebu3b"
+  ],
+  "505_4_3014650": [
+    "chilled_water_pump",
+    "vfd",
+    "network_adapter-nae",
+    "network_adapter-n",
+    "building-ebu3b"
+  ],
+  "505_0_3000645": [
+    "vfd",
+    "unknown",
+    "network_adapter-nae",
+    "network_adapter-t",
+    "network_adapter-n",
+    "building-ebu3b"
+  ],
+  "505_4_3000509": [
+    "filter",
+    "filter_reset_command",
+    "hot_water_pump",
+    "vfd",
+    "network_adapter-nae",
+    "network_adapter-t",
+    "network_adapter-n",
+    "building-ebu3b"
+  ],
+  "505_3_3015268": [
+    "crac",
+    "network_adapter-nae",
+    "network_adapter-n",
+    "building-ebu3b"
+  ],
+  "505_3_3000422": [
+    "vfd",
+    "network_adapter-nae",
+    "network_adapter-t",
+    "network_adapter-n",
+    "building-ebu3b"
+  ],
+  "506_2_3015066": [
+    "room",
+    "network_adapter-nae",
+    "building-ebu3b"
+  ],
+  "505_3_3014605": [
+    "chilled_water_pump",
+    "vfd",
+    "network_adapter-nae",
+    "network_adapter-n",
+    "building-ebu3b"
+  ],
+  "505_5_3014228": [
+    "room",
+    "vav",
+    "network_adapter-nae",
+    "network_adapter-n",
+    "building-ebu3b"
+  ],
+  "506_2_3015089": [
+    "room",
+    "network_adapter-nae",
+    "building-ebu3b"
+  ],
+  "505_0_3000394": [
+    "hot_water_pump",
+    "vfd",
+    "unknown",
+    "network_adapter-nae",
+    "network_adapter-t",
+    "network_adapter-n",
+    "building-ebu3b"
+  ],
+  "505_1_3014679": [
+    "network_adapter-nae",
+    "network_adapter-n",
+    "building-ebu3b"
+  ],
+  "505_3_3015275": [
+    "crac",
+    "network_adapter-nae",
+    "network_adapter-n",
+    "building-ebu3b"
+  ],
+  "505_0_3000457": [
+    "vfd",
+    "network_adapter-nae",
+    "network_adapter-t",
+    "network_adapter-n",
+    "building-ebu3b"
+  ],
+  "505_0_3015199": [
+    "crac",
+    "network_adapter-nae",
+    "network_adapter-n",
+    "building-ebu3b"
+  ],
+  "505_0_3000337": [
+    "chilled_water_pump",
+    "vfd",
+    "network_adapter-nae",
+    "network_adapter-t",
+    "network_adapter-n",
+    "building-ebu3b"
+  ],
+  "505_4_3000385": [
+    "vfd",
+    "unknown",
+    "network_adapter-nae",
+    "network_adapter-t",
+    "network_adapter-n",
+    "building-ebu3b"
+  ],
+  "506_2_3010314": [
+    "network_adapter-nae",
+    "building-ebu3b"
+  ],
+  "505_3_3000502": [
+    "vfd",
+    "network_adapter-nae",
+    "network_adapter-t",
+    "network_adapter-n",
+    "building-ebu3b"
+  ],
+  "506_0_3015816": [
+    "room",
+    "vav",
+    "network_adapter-nae",
+    "network_adapter-n",
+    "building-ebu3b"
+  ],
+  "505_3_3015335": [
+    "network_adapter-nae",
+    "network_adapter-n",
+    "building-ebu3b"
+  ],
+  "505_0_3014673": [
+    "network_adapter-nae",
+    "network_adapter-n",
+    "building-ebu3b"
+  ],
+  "505_0_3015198": [
+    "crac",
+    "temperature_sensor",
+    "network_adapter-nae",
+    "network_adapter-n",
+    "building-ebu3b"
+  ],
+  "505_3_3015140": [
+    "crac",
+    "network_adapter-nae",
+    "network_adapter-n",
+    "building-ebu3b"
+  ],
+  "505_0_3000418": [
+    "hot_water_pump",
+    "vfd",
+    "unknown",
+    "network_adapter-nae",
+    "network_adapter-t",
+    "network_adapter-n",
+    "building-ebu3b"
+  ],
+  "505_3_3015141": [
+    "crac",
+    "network_adapter-nae",
+    "network_adapter-n",
+    "building-ebu3b"
+  ],
+  "505_3_3000810": [
+    "network_adapter-nae",
+    "network_adapter-n",
+    "building-ebu3b"
+  ],
+  "505_1_3014646": [
+    "chilled_water_pump",
+    "vfd",
+    "network_adapter-nae",
+    "network_adapter-n",
+    "building-ebu3b"
+  ],
+  "505_4_3000587": [
+    "vfd",
+    "network_adapter-nae",
+    "network_adapter-t",
+    "network_adapter-n",
+    "building-ebu3b"
+  ]
+}

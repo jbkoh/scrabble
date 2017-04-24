@@ -41,7 +41,7 @@ class Resulter():
         self.result_dict[srcid]['orig_phrase_labels'] \
                 = phraser(orig_token_labels)
 
-    def measure_accuracy_by_phrase(self, 
+    def measure_accuracy_by_phrase(self,
                                    pred_phrase_labels, 
                                    orig_phrase_labels,
                                    pessimistic_flag=False):
@@ -89,7 +89,7 @@ class Resulter():
         correct_phrase_cnt = 0
         incorrect_phrase_cnt = 0
         predicted_phrase_cnt = 0
-        
+
         pess_correct_phrase_cnt = 0
         pess_incorrect_phrase_cnt = 0
         pess_predicted_phrase_cnt = 0
@@ -106,7 +106,7 @@ class Resulter():
             correct_phrase_cnt += correct
             incorrect_phrase_cnt += incorrect
             predicted_phrase_cnt += found
-            
+
             pess_found, pess_correct, pess_incorrect = \
                     self.measure_accuracy_by_phrase(
                             copy(result['pred_phrase_labels']),
@@ -129,8 +129,8 @@ class Resulter():
         self.summary['pessimistic_phrase_recall'] = \
                 float(pess_correct_phrase_cnt) / (pess_predicted_phrase_cnt)
         self.summary['date'] = str(arrow.get().datetime)
-        
-    
+
+
     def serialize_summary(self, filename):
         with open(filename, 'w') as fp:
             json.dump(self.summary, fp, indent=2)
@@ -151,7 +151,8 @@ class Resulter():
         #doc = copy(summary_query)
         doc = copy(self.spec)
         doc.update(self.summary)
-        self.summary_coll.insert(doc)
+        doc['result'] = self.result_dict
+        self.result_coll.insert(doc)
 
     def _bilou_phraser(self, token_labels):
         phrase_labels = list()
