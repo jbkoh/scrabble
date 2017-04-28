@@ -15,27 +15,27 @@
     ],
     "e": [
       ["no.e.pow", "emergency"],
-      ["e.econ", "right_identifier"]
+      ["e.econ", "rightidentifier"]
     ],
     "th": [
-      ["\\d+th", "right_identifier"]
+      ["\\d+th", "rightidentifier"]
     ],
     "s": [
       ["occ.s", "status"],
-      ["\\d+s", "left_identifier"]
+      ["\\d+s", "leftidentifier"]
     ],
     "main":[
-      ["main.fan", "right_identifier"]
+      ["main.fan", "rightidentifier"]
     ],
     "v": [
-      ["\\d+ v", "left_identifier"]
+      ["\\d+ v", "leftidentifier"]
     ],
     "m": [
       ["m.energy", "none"]
     ],
     "t": [
       ["zn.t", "temperature"], 
-      ["t\\d", "network_adapter-t"], 
+      ["t\\d", "networkadapter-t"], 
       ["t.occ", "temporary"],
       ["chwr\\d t", "temperature"],
       ["mtwru.t", "temperature"],
@@ -60,17 +60,17 @@
       ["flt-rst", "fault"],
       ["flt.reset", "filter"]
     ],
-    "rd": [["3rd", "right_identifier"]],
+    "rd": [["3rd", "rightidentifier"]],
     "c": [
       ["dpr.c", "command"], 
       ["w.c", "cool"], 
       ["fan.c", "command"],
       ["ef\\d.c", "command"],
       ["ef.c", "command"],
-      ["\\d+c", "left_identifier"]
+      ["\\d+c", "leftidentifier"]
     ],
     "d": [
-      ["\\d+d", "left_identifier"]
+      ["\\d+d", "leftidentifier"]
     ],
     "occ": [
       ["occ.cmd", "occupied"], 
@@ -111,9 +111,9 @@
       ["ef\\d.s", "status"],
       ["tempsetf", "none"]
     ],
-    "nd": [["\\dnd", "right_identifier"]],
+    "nd": [["\\dnd", "rightidentifier"]],
     "st": [
-      ["\\dst", "right_identifier"]
+      ["\\dst", "rightidentifier"]
     ],
     "humd": [
       ["humd.tol", "humidity"],
@@ -128,11 +128,11 @@
   },
   "ap_m": {
     "a": [
-      ["\\d+a", "left_identifier"],
-      ["\\d.a", "left_identifier"]
+      ["\\d+a", "leftidentifier"],
+      ["\\d.a", "leftidentifier"]
     ],
     "c": [
-      ["\\d+c", "left_identifier"],
+      ["\\d+c", "leftidentifier"],
       ["dpr.c", "command"],
       ["w.c", "cool"],
       ["chwp-c", "command"]
@@ -141,8 +141,8 @@
       ["drv.tmp", "temperature"]
     ],
     "l": [
-      ["lvfd", "right_identifier"],
-      ["\\dl", "left_identifier"]
+      ["lvfd", "rightidentifier"],
+      ["\\dl", "leftidentifier"]
     ],
     "t": [
       ["zn.t", "temperature"],
@@ -157,9 +157,9 @@
       ["oa.t", "temperature"]
     ],
     "e": [
-      ["e\\d", "network_adapter-e"],
+      ["e\\d", "networkadapter-e"],
       ["e.sp", "exhaust_air"],
-      ["\\d+e", "left_identifier"],
+      ["\\d+e", "leftidentifier"],
       ["evfd", "exhaust_fan"]
     ],
     "dt": [
@@ -179,11 +179,11 @@
     ],
     "s": [
       ["s\\d", "supply_fan"],
-      ["s\\-\\d", "network_adapter-s"],
+      ["s\\-\\d", "networkadapter-s"],
       ["chwp.s\\n", "status"]
     ],
     "th": [
-      ["\\dth", "right_identifier"]
+      ["\\dth", "rightidentifier"]
     ],
     "com": [
       ["com.stpt", "temperature"]
@@ -193,20 +193,20 @@
       ["dpr.p", "position"]
     ],
     "d": [
-      ["\\d+d", "left_identifier"]
+      ["\\d+d", "leftidentifier"]
     ],
     "st": [
       ["fwdrev.st", "status"],
-      ["\\dst", "right_identifier"]
+      ["\\dst", "rightidentifier"]
     ],
     "i": [
-      ["\\d+i", "left_identifier"]
+      ["\\d+i", "leftidentifier"]
     ],
     "j": [
-      ["\\d+j", "left_identifier"]
+      ["\\d+j", "leftidentifier"]
     ],
     "h": [
-      ["\\d+h", "left_identifier"]
+      ["\\d+h", "leftidentifier"]
     ],
     "ex": [
       ["ex.fans", "exhaust"]
@@ -216,7 +216,7 @@
       ["fans.dis", "disable"]
     ],
     "w": [
-      ["\\d+w", "left_identifier"],
+      ["\\d+w", "leftidentifier"],
       ["w.c", "warm"]
     ],
     "temp": [
@@ -225,16 +225,16 @@
       ["medium.temp", "temperature"]
     ],
     "left": [
-      ["left.vfd", "right_identifier"]
+      ["left.vfd", "rightidentifier"]
     ],
     "right": [
-      ["right.vfd", "right_identifier"]
+      ["right.vfd", "rightidentifier"]
     ],
     "cm": [
       ["fwdrev.cm", "command"]
     ],
     "n": [
-      ["nef", "right_identifier"]
+      ["nef", "rightidentifier"]
     ],
     "var":[
       ["saspstst.var", "none"],

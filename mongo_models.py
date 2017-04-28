@@ -42,6 +42,7 @@ def get_model(query):
     docs = db.get_collection('model').find(query)
     if not query.get('gen_time'):
         docs = docs.sort('gen_time',-1).limit(1)
+    print('Using the model generated at {0}'.format(docs[0]['gen_time']))
     return docs[0]
 
 def store_model(model):

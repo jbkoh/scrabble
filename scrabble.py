@@ -1,8 +1,8 @@
 import os
-from functools import reduce
+from functools import reduce, partial
 import json
 import random
-from collections import OrderedDict, defaultdict
+from collections import OrderedDict, defaultdict, Counter
 import pdb
 from copy import deepcopy
 from operator import itemgetter
@@ -11,6 +11,7 @@ import argparse
 import logging
 from imp import reload
 from uuid import uuid4 as gen_uuid
+from math import isclose
 
 import pycrfsuite
 import pandas as pd
@@ -20,24 +21,66 @@ import matplotlib.pyplot as plt
 from matplotlib.backends.backend_pdf import PdfPages
 from bson.binary import Binary as BsonBinary
 import arrow
+from pygame import mixer
+
+from sklearn.feature_extraction.text import TfidfVectorizer, CountVectorizer
+from sklearn.ensemble import RandomForestClassifier, AdaBoostClassifier
+from sklearn.tree import DecisionTreeClassifier
+from sklearn.svm import LinearSVC, SVC
+from sklearn.multiclass import OneVsRestClassifier
+from scipy.sparse import vstack
+from sklearn.preprocessing import MultiLabelBinarizer
+from sklearn.neural_network import MLPClassifier
 
 from resulter import Resulter
 from mongo_models import store_model, get_model, get_tags_mapping
 from entity_recognition import learn_brick_tagsets, \
                                test_brick_tagset, \
                                batch_test_brick_tagset
+from brick_parser import pointTagsetList as point_tagsets,\
+                         tagsetList as tagset_list
+tagset_list = list(set(tagset_list))
 
-temp_dir = 'temp'
-if not os.path.isdir(temp_dir):
-    os.mkdir(temp_dir)
+point_tagsets += ['unknown', 'run_command', \
+                  'low_outside_air_temperature_enable_differential_setpoint', \
+                  'co2_differential_setpoint', 'pump_flow_status', \
+                  'supply_air_temperature_increase_decrease_step_setpoint',\
+                  'average exhaust air pressure setpoint',\
+                  'highest_floor_demand', \
+                  'average_exhaust_air_static_pressure_setpoint', \
+                  'chilled_water_differential_pressure_load_shed_command', \
+                  'average_exhaust_air_static_pressure',\
+                  'discharge_air_demand',\
+                  'average_exhaust_air_static_pressure_setpoint',\
+                  # AP_M
+                  'co2_differential_setpoint',\
+                  'average_exhaust_air_static_pressure_setpoint',\
+                  'discharge_air_demand_setpoint',\
+                  'average_exhaust_air_pressure_setpoint', 'pump_flow_status',\
+                  'chilled_water_differential_pressure_load_shed_command',\
+                  'low_outside_air_temperature_enable_differential_setpoint',\
+                  'supply_air_temperature_increase_decrease_step_setpoint',
+                  'chilled_water_temperature_differential_setpoint',
+                  'outside_air_lockout_temperature_differential_setpoint',
+                  'vfd_command']
 
+def play_end_alarm():
+    mixer.init()
+    mixer.music.load('etc/fins_success.wav')
+    mixer.music.play()
+
+def adder(x,y):
+    return x+y
+
+def splitter(s):
+    return s.split('_')
 
 def save_fig(fig, name, dpi=400):
     pp = PdfPages(name)
     pp.savefig(fig, bbox_inches='tight', pad_inches=0, dpi=dpi)
     pp.close()
 
-def calc_features(sentence, ts_features=None):
+def calc_base_features(sentence):
     sentenceFeatures = list()
     sentence = ['$' if c.isdigit() else c for c in sentence]
     for i, word in enumerate(sentence):
@@ -57,11 +100,67 @@ def calc_features(sentence, ts_features=None):
             features['+1:word.lower='+sentence[i+1].lower()] = 1.0
         else:
             features['EOS'] = 1.0
-        if ts_features:
-            for j, feat in enumerate(ts_features):
-                features['ts_feat_'+str(j)] = feat
         sentenceFeatures.append(features)
     return sentenceFeatures
+
+
+def calc_features(sentence, building=None):
+    sentenceFeatures = list()
+    sentence = ['$' if c.isdigit() else c for c in sentence]
+    for i, word in enumerate(sentence):
+        features = {
+            'word.lower='+word.lower(): 1.0,
+            'word.isdigit': float(word.isdigit())
+        }
+        if i==0:
+            features['BOS'] = 1.0
+        else:
+            features['-1:word.lower=' + sentence[i-1].lower()] = 1.0
+        if i in [0,1]:
+            features['SECOND'] = 1.0
+        else:
+            features['-2:word.lower=' + sentence[i-2].lower()] = 1.0
+        if i<len(sentence)-1:
+            features['+1:word.lower='+sentence[i+1].lower()] = 1.0
+        else:
+            features['EOS'] = 1.0
+        sentenceFeatures.append(features)
+    return sentenceFeatures
+
+
+def select_random_samples(building, \
+                          srcids, \
+                          n, \
+                          use_cluster_flag,\
+                          token_type='justseparate'):
+    cluster_filename = 'model/%s_word_clustering_%s.json' % (building, token_type)
+    with open(cluster_filename, 'r') as fp:
+        cluster_dict = json.load(fp)
+
+    # Learning Sample Selection
+    sample_srcids = set()
+    length_counter = lambda x: len(x[1])
+    ander = lambda x, y: x and y
+    if use_cluster_flag:
+        sample_cnt = 0
+        sorted_cluster_dict = OrderedDict(
+            sorted(cluster_dict.items(), key=length_counter, reverse=True))
+        while len(sample_srcids) < n:
+            for cluster_num, srcid_list in sorted_cluster_dict.items():
+                valid_srcid_list = set(srcid_list)\
+                        .intersection(set(srcids))\
+                        .difference(set(sample_srcids))
+                if len(valid_srcid_list) > 0:
+                    sample_srcids.add(\
+                            random.choice(list(valid_srcid_list)))
+                if len(sample_srcids) >= n:
+                    break
+    else:
+#        random_idx_list = random.sample(\
+#                            range(0,len(srcids)),n)
+#        sample_srcids = [labeled_srcid_list[i] for i in random_idx_list]
+        sample_srcids = random.sample(srcids, n)
+    return list(sample_srcids)
 
 
 def learn_crf_model(building_list,
@@ -88,7 +187,7 @@ def learn_crf_model(building_list,
     assert(len(building_list)==len(source_sample_num_list))
 
     # It does training and testing on the same building but different points.
-    
+
     """
     crf_model_file = 'model/crf_params_char_{0}_{1}_{2}_{3}_{4}.crfsuite'\
             .format(building_list[0], 
@@ -139,6 +238,7 @@ def learn_crf_model(building_list,
                 if not normalized_data_feature_dict.get(srcid):
                     normalized_data_feature_dict[srcid] = None
 
+        """
         cluster_filename = 'model/%s_word_clustering_%s.json' % (building, token_type)
         if os.path.isfile(cluster_filename):
             with open(cluster_filename, 'r') as fp:
@@ -167,7 +267,13 @@ def learn_crf_model(building_list,
             random_idx_list = random.sample(\
                                 range(0,len(labeled_srcid_list)),source_sample_num)
             sample_srcid_list = [labeled_srcid_list[i] for i in random_idx_list]
+        """
+        sample_srcid_list = select_random_samples(building, \
+                                                  label_dict.keys(), \
+                                                  source_sample_num, \
+                                                  use_cluster_flag)
 
+        """
         # Cluster counting (remove later)
         cluster_counter_dict = dict((cluster_id,0)
                                       for cluster_id 
@@ -177,6 +283,7 @@ def learn_crf_model(building_list,
             for cluster_id, srcid_list in cluster_dict.items():
                 if srcid in srcid_list:
                     cluster_counter_dict[cluster_id] += 1
+        """
 
 
         for srcid in sample_srcid_list:
@@ -220,8 +327,7 @@ def learn_crf_model(building_list,
     os.remove(crf_model_file)
 
     logging.info("Finished!!!")
-    sound_file = 'etc/fins_success.wav'
-    Audio(url=sound_file, autoplay=True)
+    play_end_alarm()
 
 
 def crf_test(building_list, 
@@ -257,7 +363,7 @@ def crf_test(building_list,
     model_query['$and'].append(model_metadata)
     model_query['$and'].append({'source_building_count':len(building_list)})
     model = get_model(model_query)
-    
+
     crf_model_file = 'temp/{0}.crfsuite'.format(gen_uuid())
     with open(crf_model_file, 'wb') as fp:
         fp.write(model['model_binary'])
@@ -396,27 +502,110 @@ def sub_dict_by_key_set(d, ks):
     #return dict((k,v) for k, v in d.items() if k in ks)
     return dict([(k,d[k]) for k in ks])
 
-def entity_recognition_from_ground_truth(building_list,
-        source_sample_num_list,
-        target_building,
-        token_type='justseparate',
-        label_type='label',
-        use_cluster_flag=False,
-        use_brick_flag=False):
-    assert(len(building_list)==len(source_sample_num_list))
+def leave_one_word(s, w):
+    if w in s:
+        s = s.replace(w, '')
+        s = w + '-' + s
+    return s
 
-    ## Learning stage
+def _bilou_tagset_phraser(sentence, token_labels):
+    phrase_labels = list()
+    curr_phrase = ''
+    for i, (c, label) in enumerate(zip(sentence, token_labels)):
+        if label[2:] in ['right_identifier', 'left_identifier']:
+            continue
+        tag = label[0]
+        if tag=='B':
+            if curr_phrase:
+            # Below is redundant if the other tags handles correctly.       
+                phrase_labels.append(curr_phrase)
+            curr_phrase = label[2:]
+        elif tag == 'I':
+            if curr_phrase != label[2:]:
+                phrase_labels.append(curr_phrase)
+                curr_phrase = label[2:]
+        elif tag == 'L':
+            if curr_phrase != label[2:]:
+                # Add if the previous label is different                    
+                phrase_labels.append(curr_phrase)
+            # Add current label                                             
+            phrase_labels.append(label[2:])
+            curr_phrase = ''
+        elif tag == 'O':
+            # Do nothing other than pushing the previous label
+            if curr_phrase:
+                phrase_labels.append(curr_phrase)
+            curr_phrase = ''
+        elif tag == 'U':
+            if curr_phrase:
+                phrase_labels.append(curr_phrase)
+            phrase_labels.append(label[2:])
+        else:
+            print('Tag is incorrect in: {0}.'.format(label))
+            try:
+                assert False
+            except:
+                pdb.set_trace()
+    if curr_phrase != '':
+        phrase_labels.append(curr_phrase)
+    phrase_labels = [leave_one_word(\
+                         leave_one_word(phrase_label, 'left_identifier'),\
+                            'right_identifier')\
+                        for phrase_label in phrase_labels]
+    phrase_labels = list(reduce(adder, map(splitter, phrase_labels), []))
+    return phrase_labels
+
+
+def find_key(tv, d, crit):
+    for k, v in d.items():
+        if crit(tv, v):
+            return k
+    return None
+
+def check_in(x,y):
+    return x in y
+
+def make_phrase_dict(sentence_dict, token_label_dict, srcid_dict, \
+                     eda_flag=False):
+    phrase_dict = OrderedDict()
+    for srcid, sentence in sentence_dict.items():
+        token_labels = token_label_dict[srcid]
+        phrases = _bilou_tagset_phraser(sentence, token_labels)
+        if eda_flag:
+            building_name = find_key(srcid, srcid_dict, check_in)
+            assert building_name
+            prefixer = partial(adder, building_name+'#')
+            phrases = phrases + list(map(prefixer, phrases))
+        phrase_dict[srcid] = phrases + phrases
+    return phrase_dict
+
+
+def entity_recognition_from_ground_truth(building_list,
+                                         source_sample_num_list,
+                                         target_building,
+                                         token_type='justseparate',
+                                         label_type='label',
+                                         use_cluster_flag=False,
+                                         use_brick_flag=False,
+                                         debug_flag=False,
+                                         eda_flag=True):
+    assert len(building_list) == len(source_sample_num_list)
+
+    ########################## DATA INITIATION ##########################
     # construct source data information data structure
-    source_cnt_list = [[building,cnt]\
+    source_cnt_list = [[building, cnt]\
                        for building, cnt\
                        in zip(building_list, source_sample_num_list)]
 
 
     # Construct inputs for learning a classifier
     learning_sentence_dict = dict()
-    token_label_dict = dict()
+    learning_token_label_dict = dict()
     learning_truths_dict = dict()
     sample_srcid_list_dict = dict()
+    found_points = list()
+    learning_weights = list()
+    learning_srcids = list()
     for building, sample_num in zip(building_list, source_sample_num_list):
         with open('metadata/{0}_char_sentence_dict_{1}.json'\
                   .format(building, token_type), 'r') as fp:
@@ -427,24 +616,132 @@ def entity_recognition_from_ground_truth(building_list,
         with open('metadata/{0}_ground_truth.json'\
                   .format(building), 'r') as fp:
             truths_dict = json.load(fp)
-        sample_srcid_list = random.sample(sentence_label_dict.keys(), sample_num)
+        sample_srcid_list = select_random_samples(building,\
+                                                  sentence_label_dict.keys(),\
+                                                  sample_num, \
+                                                  use_cluster_flag,\
+                                                  token_type=token_type)
         sample_srcid_list_dict[building] = sample_srcid_list
+        learning_srcids += sample_srcid_list
         learning_sentence_dict.update(\
             sub_dict_by_key_set(sentence_dict, sample_srcid_list))
         label_dict = dict((srcid, list(map(itemgetter(1), labels))) \
                           for srcid, labels in sentence_label_dict.items())
-        token_label_dict.update(\
+        learning_token_label_dict.update(\
             sub_dict_by_key_set(label_dict, sample_srcid_list))
         learning_truths_dict.update(\
             sub_dict_by_key_set(truths_dict, sample_srcid_list))
+        found_points += [tagset for tagset \
+                         in reduce(adder, learning_truths_dict.values(), []) \
+                         if tagset in point_tagsets]
+#        learning_weights += [1.0/np.log10(sample_num) \
+#                            for i in range(0,sample_num)]
+        learning_weights += [1 for i in range(0, sample_num)]
+    found_point_cnt_dict = Counter(found_points)
+    found_points = set(found_points)
 
-    # Correct so far.
-    tagset_classifier, tagset_vectorizer = learn_brick_tagsets(\
-                                                learning_sentence_dict,\
-                                                token_label_dict,\
-                                                learning_truths_dict)
 
-    ## Test stage
+
+    ###########################  LEARNING  ####################################
+
+    #tagset_classifier = DecisionTreeClassifier(random_state=0)
+    tagset_classifier = RandomForestClassifier(n_estimators=40, \
+                                               #this should be 100 at some point
+                                               random_state=0,\
+                                               n_jobs=-1)
+    #base_classifier = MLPClassifier()
+#    base_classifier = AdaBoostClassifier(DecisionTreeClassifier(max_depth=2),\
+#                                         n_estimators=600,\
+#                                         learning_rate=1)
+    #base_classifier = SVC(gamma=2, C=1)
+    #tagset_classifier = OneVsRestClassifier(base_classifier)
+
+    tokenizer = lambda x: x.split()
+    #tagset_vectorizer = TfidfVectorizer(#ngram_range=(1, 2),\
+    #                                    tokenizer=tokenizer)
+    tagset_vectorizer = CountVectorizer(tokenizer=tokenizer)
+
+    #tagset_classifier, tagset_vectorizer = learn_brick_tagsets(\
+    #                                            learning_sentence_dict,\
+    #                                            learning_token_label_dict,\
+    #                                            learning_truths_dict,\
+    #                                            classifier=tagset_classifier,\
+    #                                            vectorizer=tagset_vectorizer)
+
+    phrase_dict = make_phrase_dict(learning_sentence_dict, \
+                                   learning_token_label_dict, \
+                                   sample_srcid_list_dict,\
+                                   eda_flag)
+    with open('temp/phrases_{0}.json'.format(building_list[0]), 'w') as fp:
+        json.dump(phrase_dict, fp, indent=2)
+
+    # Add tagsets (names) not defined in Brick
+    undefined_tagsets = set()
+    for srcid in learning_sentence_dict.keys():
+        truths = learning_truths_dict[srcid]
+        for truth in truths:
+            if truth not in tagset_list:
+                undefined_tagsets.add(truth)
+    print('Undefined tagsets: {0}'.format(undefined_tagsets))
+    tagset_list.extend(list(undefined_tagsets))
+    tagset_binerizer = MultiLabelBinarizer()
+    tagset_binerizer.fit([tagset_list])
+
+    ## Define Vectorizer
+    tag_list = [' '.join(reduce(adder, map(splitter, tagset_list), []))]
+    tagset_vectorizer.fit(tag_list)
+
+    ## Transform learning samples
+    learning_doc = [' '.join(phrase_dict[srcid]) for srcid in learning_srcids]
+    learning_vect_doc = tagset_vectorizer.transform(learning_doc)
+    #learning_vect_doc = tagset_vectorizer.fit_transform(learning_doc)
+
+    truth_mat = [tagset_binerizer.transform(\
+                    [learning_truths_dict[srcid]])[0]\
+                        for srcid in learning_srcids]
+
+    ### TEMPORARY (TODO: DELETE THIS)
+    """
+    truth_mat += [tagset_binerizer.transform([['ahu']])[0]]
+    truth_mat += [tagset_binerizer.transform([['ahu']])[0]]
+    truth_mat += [tagset_binerizer.transform([['ahu']])[0]]
+    truth_mat += [tagset_binerizer.transform([['ahu']])[0]]
+    truth_mat += [tagset_binerizer.transform([['ahu']])[0]]
+    truth_mat += [tagset_binerizer.transform([['ahu']])[0]]
+    learning_vect_doc = vstack([learning_vect_doc, tagset_vectorizer.transform(['ahu'])])
+    learning_vect_doc = vstack([learning_vect_doc, tagset_vectorizer.transform(['ahu'])])
+    learning_vect_doc = vstack([learning_vect_doc, tagset_vectorizer.transform(['ahu'])])
+    learning_vect_doc = vstack([learning_vect_doc, tagset_vectorizer.transform(['ahu'])])
+    learning_vect_doc = vstack([learning_vect_doc, tagset_vectorizer.transform(['ahu'])])
+    learning_vect_doc = vstack([learning_vect_doc, tagset_vectorizer.transform(['ahu'])])
+    """
+
+    tagset_classifier.fit(learning_vect_doc, \
+                          np.asarray(truth_mat))
+                          #learning_weights)
+
+    ###########################################################################
+
+    ## Validate with self prediction
+    # TODO: Below needs to be updated not to use the library
+    pred_tagsets_dict, certainty_dict = batch_test_brick_tagset(\
+                                            learning_sentence_dict,\
+                                            learning_token_label_dict,\
+                                            tagset_classifier,\
+                                            tagset_vectorizer,\
+                                            tagset_list=tagset_list,
+                                            binerizer=tagset_binerizer)
+    cnt = 0
+    for srcid, tagsets in pred_tagsets_dict.items():
+        true_tagsets = learning_truths_dict[srcid]
+        if set(tagsets)==set(true_tagsets):
+            cnt +=1
+        else:
+#            pdb.set_trace()
+            pass
+    print(cnt/len(learning_sentence_dict))
+
+    ################ Test stage #######################
     # get test dataset
     with open('metadata/{0}_char_sentence_dict_{1}.json'\
               .format(target_building, token_type), 'r') as fp:
@@ -454,49 +751,175 @@ def entity_recognition_from_ground_truth(building_list,
         sentence_label_dict = json.load(fp)
     with open('metadata/{0}_ground_truth.json'\
               .format(target_building), 'r') as fp:
-        truths_dict = json.load(fp)
+        test_truths_dict = json.load(fp)
     test_srcid_list = [srcid for srcid in sentence_label_dict.keys() \
-                       if srcid not in sample_srcid_list_dict[target_building]]
+                       if srcid not in \
+                       reduce(adder, sample_srcid_list_dict.values())]
+    test_srcid_dict = {target_building: test_srcid_list}
     test_sentence_dict = sub_dict_by_key_set(sentence_dict, test_srcid_list)
     token_label_dict = dict((srcid, list(map(itemgetter(1), labels))) \
                             for srcid, labels in sentence_label_dict.items())
-    test_token_label_dict = sub_dict_by_key_set(token_label_dict, test_srcid_list)
-#    truths_dict = sub_dict_by_key_set(truths_dict, test_srcid_list)
+    test_token_label_dict = sub_dict_by_key_set(token_label_dict, \
+                                                test_srcid_list)
+
+    test_phrase_dict = make_phrase_dict(test_sentence_dict, \
+                                        token_label_dict, \
+                                        test_srcid_dict, \
+                                        eda_flag
+                                       )
+    test_doc = [' '.join(test_phrase_dict[srcid]) for srcid in test_srcid_list]
+    test_vect_doc = tagset_vectorizer.transform(test_doc)
 
 
-    correct_cnt = 0
-    """
-    for srcid in test_srcid_list:
-        #pdb.set_trace()
-        pred_dict[srcid] = test_brick_tagset(sentence=test_sentence_dict[srcid],\
-                                         token_labels=test_token_label_dict[srcid],\
-                                         classifier=tagset_classifier,\
-                                         vectorizer=tagset_vectorizer)
-        if set(truths_dict[srcid]) == set(pred_dict[srcid]):
-            correct_cnt += 1
-    """
-    pred_tagsets_dict, prob_dict = batch_test_brick_tagset(test_sentence_dict,\
-                                                test_token_label_dict,\
-                                                tagset_classifier,
-                                                tagset_vectorizer)
+    ####################      TEST      #################
+    certainty_dict = dict()
+    pred_tagsets_dict = dict()
+    pred_mat = tagset_classifier.predict(test_vect_doc)
+    #prob_mat = tagset_classifier.predict_proba(vect_doc)
+    for i, (srcid, pred) in enumerate(zip(test_srcid_list, pred_mat)):
+        pred_tagsets_dict[srcid] = tagset_binerizer.inverse_transform(\
+                                        np.asarray([pred]))[0]
+        #pred_tagsets_dict[srcid] = translate_tagset_vector(pred, tagset_list)
+        # TODO: Don't remove below. Activate this when using RandomForest
+        #pred_vec = [prob[i][0] for prob in prob_mat]
+        #certainty_dict[srcid] = sum(pred_vec) / float(len(pred)-sum(pred))
+        certainty_dict[srcid] = 0
+
+
+    ############## EVALUATE TESTS #############
+    # Evaluate result TODO: Check if fault predictions are related to unincluded point tagsets
+    found_point_tagsets = set([tagset for tagset \
+                               in reduce(adder, \
+                                         learning_truths_dict.values(), \
+                                         [])])
     result_dict = defaultdict(dict)
+    sorted_result_dict = OrderedDict()
     incorrect_tagsets_dict = dict()
+    correct_cnt = 0
+    incorrect_cnt = 0
+    point_correct_cnt = 0
+    point_incorrect_cnt = 0
+    empty_point_cnt = 0
+    unknown_reason_cnt = 0
+    undiscovered_point_cnt = 0
+    unfound_points = set()
     for srcid, pred_tagsets in pred_tagsets_dict.items():
+        true_tagsets = test_truths_dict[srcid]
         one_result = {
             'tagsets': pred_tagsets,
-            'certainty': prob_dict[srcid]
+            'certainty': certainty_dict[srcid]
         }
-        if set(truths_dict[srcid]) == set(pred_tagsets):
+        if set(true_tagsets) == set(pred_tagsets):
             correct_cnt += 1
+            one_result['correct?'] = True
             result_dict['correct'][srcid] = one_result
             #result_dict['correct'][srcid] = pred_tagsets
+            point_correct_cnt += 1
         else:
+            incorrect_cnt += 1
+            one_result['correct?'] = False
             result_dict['incorrect'][srcid] = one_result
+            true_point = None
+            for tagset in true_tagsets:
+                if tagset in point_tagsets:
+                    true_point = tagset
+                    break
+            try:
+                assert true_point
+                if true_point not in found_points:
+                    unfound_points.add(true_point)
+                if true_point not in found_points or true_point=='unknown':
+                    undiscovered_point_cnt += 1
+                found_point = None
+                for tagset in pred_tagsets:
+                    if tagset in point_tagsets:
+                        found_point = tagset
+                        break
+                if not found_point:
+                    empty_point_cnt += 1
+                elif found_point != true_point:
+                    point_incorrect_cnt += 1
+                    print("INCORRECT POINT FOUND: {0} -> {1}"\
+                          .format(true_point, found_point))
+                else:
+                    unknown_reason_cnt += 1
+                    point_correct_cnt += 1
+                #    pdb.set_trace()
+            except:
+                print('point not found')
+                pdb.set_trace()
+                unknown_reason_cnt += 1
+            if debug_flag:
+                print('####################################################')
+                print('TRUE: {0}'.format(true_tagsets))
+                print('PRED: {0}'.format(pred_tagsets))
+                if true_point:
+                    print('point num in source bld: {0}'.format(found_point_cnt_dict[true_point]))
+                else:
+                    print('no point is included here')
+                source_srcid = None
+                source_idx = None
+                for temp_srcid, tagsets in learning_truths_dict.items():
+                    if true_point and true_point in tagsets:
+                        source_srcid = temp_srcid
+                        source_idx = learning_srcids.index(source_srcid)
+                        source_doc = learning_doc[source_idx]
+                        source_vect = learning_vect_doc[source_idx]
+                        break
+                test_idx = test_srcid_list.index(srcid)
+                target_doc = test_doc[test_idx]
+                target_vect = test_vect_doc[test_idx]
+                print('####################################################')
+                if not found_point and true_point in found_points\
+                   and true_point not in ['unknown',\
+                        'effective_heating_temperature_setpoint',\
+                        'effective_cooling_temperature_setpoint',\
+                        'supply_air_flow_setpoint',\
+                        'output_frequency_sensor']:
+
+                    pdb.set_trace()
+                    pass
+        sorted_result_dict[srcid] = one_result
+
+    point_precision = float(point_correct_cnt) \
+                        / (point_correct_cnt + point_incorrect_cnt)
+    point_recall = float(point_correct_cnt) \
+                        / (point_correct_cnt + empty_point_cnt)
+    print('------------------------------------result---------------')
+    print('point precision: {0}'.format(point_precision))
+    print('point recall: {0}'.format(point_recall))
+    print(len(unfound_points))
+    print(len(found_points))
+    if empty_point_cnt>0:
+        print('rate points not found in source \
+              among sensors where point is not found: \n\t{0}'\
+              .format(undiscovered_point_cnt / float(empty_point_cnt)))
+    print('sensors where a point is not found: ', empty_point_cnt\
+                                               /float(incorrect_cnt),\
+                                empty_point_cnt)
+    print('sensors where incorrect points are found: ', point_incorrect_cnt\
+                                                     /float(incorrect_cnt),\
+                                      point_incorrect_cnt)
+    print('unknown reason: ', unknown_reason_cnt\
+                              /float(incorrect_cnt),\
+                              unknown_reason_cnt)
+    print('-----------')
+
+    def certainty_getter(x):
+        return x[1]['certainty']
+
+    sorted_result_dict = OrderedDict(\
+                            sorted(sorted_result_dict.items(), \
+                                   key=certainty_getter))
+    sorted_result_dict['samples'] = sample_srcid_list
+    result_dict['samples'] = sample_srcid_list
 
     print('precision')
     print(float(correct_cnt) / len(test_srcid_list))
     with open('result/tagset_{0}.json'.format(building), 'w') as fp:
         json.dump(result_dict, fp, indent=2)
+    with open('result/sorted_tagset_{0}.json'.format(building), 'w') as fp:
+        json.dump(sorted_result_dict, fp, indent=2)
 #    with open('result/incorrect_tagset_{0}.json'.format(building), 'w') as fp:
 #        json.dump(incorrect_tagsets_dict, fp, indent=2)
 
@@ -567,38 +990,45 @@ if __name__=='__main__':
                         type=str, 
                         help='Target buildling name',
                         dest='target_building')
+    parser.add_argument('-eda', 
+                        type='bool', 
+                        help='Flag to use Easy Domain Adapatation',
+                        default=False,
+                        dest='eda_flag')
     parser.add_argument('-ub', 
                         type='bool', 
                         help='Use Brick when learning',
                         default=False,
                         dest='use_brick_flag')
-    
+
     args = parser.parse_args()
 
-    if args.prog=='learn':
-        learn_crf_model(building_list = args.source_building_list, 
-                        source_sample_num_list = args.sample_num_list, 
-                        token_type = 'justseparate',
-                        label_type = args.label_type,
-                        use_cluster_flag = args.use_cluster_flag,
-                        debug_flag = args.debug_flag,
+    if args.prog == 'learn':
+        learn_crf_model(building_list=args.source_building_list,
+                        source_sample_num_list=args.sample_num_list,
+                        token_type='justseparate',
+                        label_type=args.label_type,
+                        use_cluster_flag=args.use_cluster_flag,
+                        debug_flag=args.debug_flag,
                         use_brick_flag=args.use_brick_flag)
-    elif args.prog=='predict':
-        crf_test(building_list = args.source_building_list, 
-                source_sample_num_list = args.sample_num_list, 
-                target_building = args.target_building,
-                token_type = 'justseparate',
-                label_type = args.label_type,
-                use_cluster_flag = args.use_cluster_flag,
-                use_brick_flag=args.use_brick_flag)
-    elif args.prog=='entity':
-        entity_recognition_from_ground_truth(building_list = args.source_building_list,
-                source_sample_num_list = args.sample_num_list, 
-                target_building = args.target_building,
-                token_type = 'justseparate',
-                label_type = args.label_type,
-                use_cluster_flag = args.use_cluster_flag,
-                use_brick_flag=args.use_brick_flag)
+    elif args.prog == 'predict':
+        crf_test(building_list=args.source_building_list,
+                 source_sample_num_list=args.sample_num_list,
+                 target_building=args.target_building,
+                 token_type='justseparate',
+                 label_type=args.label_type,
+                 use_cluster_flag=args.use_cluster_flag,
+                 use_brick_flag=args.use_brick_flag)
+    elif args.prog == 'entity':
+        entity_recognition_from_ground_truth(\
+                building_list=args.source_building_list,
+                source_sample_num_list=args.sample_num_list,
+                target_building=args.target_building,
+                token_type='justseparate',
+                label_type=args.label_type,
+                use_cluster_flag=args.use_cluster_flag,
+                use_brick_flag=args.use_brick_flag,
+                debug_flag=args.debug_flag)
     else:
         print('Either learn or predict should be provided')
         assert(False)

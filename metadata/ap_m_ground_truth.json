@@ -1,0 +1,8944 @@
+{
+  "604_0_3013438": [
+    "vfd",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "output_frequency_sensor",
+    "networkadapter-nae"
+  ],
+  "604_0_3012634": [
+    "building-apm",
+    "damper",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "damper_position_sensor",
+    "networkadapter-nae"
+  ],
+  "604_4_3013447": [
+    "panel_lockout_command",
+    "vfd",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "513_0_3007387": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "supply_air_flow_sensor",
+    "networkadapter-nae"
+  ],
+  "513_14_3005549": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "occupied_command",
+    "networkadapter-nae"
+  ],
+  "604_14_3012556": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "occupied_command",
+    "networkadapter-nae"
+  ],
+  "514_0_3007099": [
+    "building-apm",
+    "damper",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "damper_position_sensor",
+    "networkadapter-nae"
+  ],
+  "514_1_3007255": [
+    "building-apm",
+    "valve",
+    "room",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "heating_valve_command",
+    "networkadapter-nae"
+  ],
+  "604_1_3012932": [
+    "building-apm",
+    "valve",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "heating_valve_command",
+    "networkadapter-nae"
+  ],
+  "513_1_3006101": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "supply_air_flow_setpoint",
+    "networkadapter-nae"
+  ],
+  "514_1_3006625": [
+    "building-apm",
+    "valve",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "heating_valve_command",
+    "networkadapter-nae"
+  ],
+  "604_4_3012461": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "occupied_command",
+    "networkadapter-nae"
+  ],
+  "513_1_3005303": [
+    "building-apm",
+    "valve",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "heating_valve_command",
+    "networkadapter-nae"
+  ],
+  "604_1_3012981": [
+    "building-apm",
+    "room",
+    "occupied_heating_temperature_setpoint",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "513_0_3006152": [
+    "building-apm",
+    "room",
+    "effective_cooling_temperature_setpoint",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "604_0_3013609": [
+    "room",
+    "vav",
+    "networkadapter-n",
+    "warm_cool_adjust_sensor",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "513_4_3004845": [
+    "building-apm",
+    "vav",
+    "networkadapter-n",
+    "basement",
+    "room-lobby",
+    "networkadapter-trunk",
+    "occupied_command",
+    "networkadapter-nae"
+  ],
+  "514_1_3008175": [
+    "vav",
+    "networkadapter-n",
+    "unknown",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "604_0_3013123": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "warm_cool_adjust_sensor",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "604_0_3012448": [
+    "building-apm",
+    "effective_heating_temperature_setpoint",
+    "vav",
+    "networkadapter-n",
+    "room-hall",
+    "networkadapter-trunk",
+    "room-fle",
+    "networkadapter-nae"
+  ],
+  "514_1_3006700": [
+    "building-apm",
+    "room",
+    "occupied_heating_temperature_setpoint",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "514_1_3007031": [
+    "building-apm",
+    "occupied_heating_min_discharge_air_flow_setpoint",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "513_1_3006927": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "supply_air_flow_setpoint",
+    "networkadapter-nae"
+  ],
+  "513_1_3005871": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "supply_air_flow_setpoint",
+    "networkadapter-nae"
+  ],
+  "514_4_3007446": [
+    "building-apm",
+    "room",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "occupied_command",
+    "networkadapter-nae"
+  ],
+  "604_1_3012996": [
+    "building-apm",
+    "room",
+    "occupied_heating_temperature_setpoint",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "513_1_3004963": [
+    "building-apm",
+    "occupied_heating_min_discharge_air_flow_setpoint",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "513_1_3004889": [
+    "building-apm",
+    "valve",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "heating_valve_command",
+    "networkadapter-nae"
+  ],
+  "513_1_3005286": [
+    "building-apm",
+    "room",
+    "occupied_heating_temperature_setpoint",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "513_0_3011325": [
+    "building-apm",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "ahu",
+    "chilled_water_return_temperature_sensor",
+    "networkadapter-nae"
+  ],
+  "514_4_3006650": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "occupied_command",
+    "networkadapter-nae"
+  ],
+  "513_2_3018696": [
+    "building",
+    "unknown",
+    "networkadapter-nae"
+  ],
+  "513_14_3006753": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "occupied_command",
+    "networkadapter-nae"
+  ],
+  "513_1_3005660": [
+    "building-apm",
+    "room",
+    "occupied_heating_temperature_setpoint",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "604_1_3013083": [
+    "building-apm",
+    "occupied_cooling_max_supply_air_flow_setpoint",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "514_1_3006376": [
+    "supply_air_static_pressure_integral_time_setpoint",
+    "building-apm",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "ahu",
+    "networkadapter-s",
+    "networkadapter-nae"
+  ],
+  "604_0_3012897": [
+    "building-apm",
+    "room",
+    "effective_cooling_temperature_setpoint",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "514_0_3011246": [
+    "building-apm",
+    "supply_air_velocity_pressure_sensor",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "513_3_3005407": [
+    "building-apm",
+    "vfd",
+    "vfd_start_stop_status",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "ahu",
+    "networkadapter-nae"
+  ],
+  "513_1_3007000": [
+    "building-apm",
+    "cooling_max_discharge_air_flow_setpoint",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "513_0_3006489": [
+    "building-apm",
+    "zone_temperature_sensor",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "zone",
+    "networkadapter-nae"
+  ],
+  "604_1_3013043": [
+    "building-apm",
+    "occupied_heating_temperature_setpoint",
+    "vav",
+    "networkadapter-n",
+    "room-hall",
+    "networkadapter-trunk",
+    "room-fle",
+    "networkadapter-nae"
+  ],
+  "514_1_3006506": [
+    "building-apm",
+    "valve",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "heating_valve_command",
+    "networkadapter-nae"
+  ],
+  "604_0_3012883": [
+    "building-apm",
+    "room",
+    "effective_heating_temperature_setpoint",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "514_0_3007301": [
+    "building-apm",
+    "room",
+    "effective_cooling_temperature_setpoint",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "604_0_3013436": [
+    "vfd",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "energy_sensor",
+    "networkadapter-nae"
+  ],
+  "513_0_3005574": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "supply_air_flow_sensor",
+    "networkadapter-nae"
+  ],
+  "604_1_3013318": [
+    "building-apm",
+    "vfd",
+    "vfd_speed_command",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "exhaust_fan",
+    "networkadapter-nae"
+  ],
+  "604_0_3012847": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "co2_sensor",
+    "networkadapter-nae"
+  ],
+  "604_14_3012675": [
+    "building-apm",
+    "vav_box_mode_command",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "513_3_3004528": [
+    "discharge_air_smoke_detected_alarm",
+    "building-apm",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "ahu",
+    "networkadapter-nae"
+  ],
+  "513_1_3005867": [
+    "building-apm",
+    "room",
+    "occupied_heating_temperature_setpoint",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "513_0_3007413": [
+    "building-apm",
+    "zone_temperature_sensor",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "zone",
+    "networkadapter-nae"
+  ],
+  "514_0_3007039": [
+    "building-apm",
+    "zone_temperature_sensor",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "zone",
+    "networkadapter-nae"
+  ],
+  "604_1_3013099": [
+    "building-apm",
+    "damper",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "damper_command",
+    "networkadapter-nae"
+  ],
+  "604_4_3012956": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "occupied_command",
+    "networkadapter-nae"
+  ],
+  "513_0_3006594": [
+    "building-apm",
+    "zone_temperature_sensor",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "zone",
+    "networkadapter-nae"
+  ],
+  "513_19_3019207": [
+    "building-apm",
+    "load_shed_command",
+    "networkadapter-nae"
+  ],
+  "513_1_3006067": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "occupied_heating_max_supply_air_flow_setpoint",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "604_1_3013006": [
+    "building-apm",
+    "occupied_cooling_max_supply_air_flow_setpoint",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "513_2_3015530": [
+    "ahu",
+    "max_supply_air_temperature_setpoint",
+    "networkadapter-nae"
+  ],
+  "513_14_3007104": [
+    "building-apm",
+    "vav_box_mode_command",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "513_1_3006418": [
+    "building-apm",
+    "occupied_heating_min_discharge_air_flow_setpoint",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "513_0_3006995": [
+    "building-apm",
+    "room",
+    "effective_cooling_temperature_setpoint",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "604_14_3013546": [
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "occupied_command",
+    "networkadapter-nae"
+  ],
+  "514_1_3006766": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "occupied_cooling_temperature_setpoint",
+    "networkadapter-nae"
+  ],
+  "604_0_3013441": [
+    "vfd",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "motor_torque_sensor",
+    "networkadapter-nae"
+  ],
+  "513_0_3006195": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "warm_cool_adjust_sensor",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "514_1_3006722": [
+    "building-apm",
+    "occupied_heating_min_discharge_air_flow_setpoint",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "604_4_3012864": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "occupied_command",
+    "networkadapter-nae"
+  ],
+  "514_1_3007186": [
+    "building-apm",
+    "room",
+    "occupied_heating_temperature_setpoint",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "604_0_3012489": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "warm_cool_adjust_sensor",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "604_1_3013072": [
+    "building-apm",
+    "occupied_heating_min_discharge_air_flow_setpoint",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "514_0_3007321": [
+    "building-apm",
+    "damper",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "damper_position_sensor",
+    "networkadapter-nae"
+  ],
+  "604_1_3012964": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "occupied_cooling_min_discharge_air_flow_setpoint",
+    "networkadapter-nae"
+  ],
+  "513_0_3005150": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "supply_air_flow_sensor",
+    "networkadapter-nae"
+  ],
+  "514_1_3007045": [
+    "building-apm",
+    "occupied_cooling_max_supply_air_flow_setpoint",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "513_1_3005231": [
+    "building-apm",
+    "damper",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "damper_command",
+    "networkadapter-nae"
+  ],
+  "513_0_3005265": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "supply_air_flow_sensor",
+    "networkadapter-nae"
+  ],
+  "513_14_3006438": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "occupied_command",
+    "networkadapter-nae"
+  ],
+  "513_1_3006733": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "occupied_cooling_min_discharge_air_flow_setpoint",
+    "networkadapter-nae"
+  ],
+  "513_1_3007385": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "occupied_heating_discharge_air_flow_setpoint",
+    "networkadapter-nae"
+  ],
+  "513_0_3004768": [
+    "building-apm",
+    "room",
+    "effective_heating_temperature_setpoint",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "513_0_3007394": [
+    "building-apm",
+    "room",
+    "effective_cooling_temperature_setpoint",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "604_1_3013060": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "supply_air_flow_setpoint",
+    "networkadapter-nae"
+  ],
+  "604_0_3013201": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "supply_air_flow_sensor",
+    "networkadapter-nae"
+  ],
+  "513_0_3005320": [
+    "building-apm",
+    "room",
+    "effective_heating_temperature_setpoint",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "514_4_3006418": [
+    "building-apm",
+    "exhaust_fan_start_stop_command",
+    "fan",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "exhaust_fan",
+    "networkadapter-e",
+    "networkadapter-nae"
+  ],
+  "514_0_3006642": [
+    "building-apm",
+    "room",
+    "effective_heating_temperature_setpoint",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "514_1_3006455": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "occupied_cooling_min_discharge_air_flow_setpoint",
+    "networkadapter-nae"
+  ],
+  "513_1_3005239": [
+    "building-apm",
+    "occupied_heating_min_discharge_air_flow_setpoint",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "514_4_3006364": [
+    "building-apm",
+    "ahu_system_enable_command",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "ahu",
+    "networkadapter-s",
+    "networkadapter-nae"
+  ],
+  "513_1_3006045": [
+    "building-apm",
+    "valve",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "heating_valve_command",
+    "networkadapter-nae"
+  ],
+  "604_1_3012842": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "occupied_heating_discharge_air_flow_setpoint",
+    "networkadapter-nae"
+  ],
+  "513_1_3006087": [
+    "building-apm",
+    "occupied_cooling_max_supply_air_flow_setpoint",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "513_0_3007371": [
+    "building-apm",
+    "zone_temperature_sensor",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "zone",
+    "networkadapter-nae"
+  ],
+  "513_14_3007482": [
+    "building-apm",
+    "vav_box_mode_command",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "604_0_3012650": [
+    "building-apm",
+    "damper",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "damper_position_sensor",
+    "networkadapter-nae"
+  ],
+  "513_1_3004643": [
+    "building-apm",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "exhaust_air_static_pressure_proportional_band_setpoint",
+    "ahu",
+    "exhaust_fan",
+    "networkadapter-nae"
+  ],
+  "514_1_3007513": [
+    "building-apm",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "exhaust_air_static_pressure_setpoint",
+    "exhaust_fan",
+    "networkadapter-nae"
+  ],
+  "513_0_3007139": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "warm_cool_adjust_sensor",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "513_1_3011820": [
+    "building-apm",
+    "vfd",
+    "crac",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "pump",
+    "vfd_command",
+    "networkadapter-nae"
+  ],
+  "513_14_3007488": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "occupied_command",
+    "networkadapter-nae"
+  ],
+  "604_1_3013259": [
+    "building-apm",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "exhaust_air_static_pressure_integral_time_setpoint",
+    "exhaust_fan",
+    "networkadapter-e",
+    "networkadapter-nae"
+  ],
+  "513_0_3005376": [
+    "building-apm",
+    "vfd",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "last_fault_code_status",
+    "ahu",
+    "networkadapter-nae"
+  ],
+  "513_1_3004816": [
+    "building-apm",
+    "occupied_cooling_max_supply_air_flow_setpoint",
+    "vav",
+    "networkadapter-n",
+    "room-hall",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "604_5_3016757": [
+    "crac",
+    "unit_failed_alarm",
+    "networkadapter-nae"
+  ],
+  "513_1_3006248": [
+    "building-apm",
+    "occupied_cooling_max_supply_air_flow_setpoint",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "513_1_3004895": [
+    "building-apm",
+    "room",
+    "occupied_heating_temperature_setpoint",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "604_4_3012941": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "occupied_command",
+    "networkadapter-nae"
+  ],
+  "513_0_3006834": [
+    "building-apm",
+    "damper",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "damper_position_sensor",
+    "networkadapter-nae"
+  ],
+  "513_4_3004630": [
+    "building-apm",
+    "exhaust_fan_start_stop_command",
+    "fan",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "ahu",
+    "exhaust_fan",
+    "networkadapter-nae"
+  ],
+  "514_2_3003573": [
+    "building-apm",
+    "floor",
+    "supply_fan",
+    "discharge_air_demand_setpoint",
+    "networkadapter-nae"
+  ],
+  "513_1_3005072": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "occupied_heating_max_supply_air_flow_setpoint",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "513_1_3007454": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "warm_cool_adjust_sensor",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "604_0_3013507": [
+    "damper",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "damper_position_sensor",
+    "networkadapter-nae"
+  ],
+  "604_1_3013264": [
+    "building-apm",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "exhaust_fan",
+    "average_exhaust_air_pressure_setpoint",
+    "networkadapter-e",
+    "networkadapter-nae"
+  ],
+  "513_1_3006304": [
+    "building-apm",
+    "room",
+    "occupied_heating_temperature_setpoint",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "513_1_3004616": [
+    "building-apm",
+    "heating_discharge_air_temperature_proportional_band_setpoint",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "ahu",
+    "networkadapter-nae"
+  ],
+  "513_0_3007282": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "supply_air_flow_sensor",
+    "networkadapter-nae"
+  ],
+  "514_3_3006395": [
+    "building-apm",
+    "fan",
+    "exhaust_fan_status",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "exhaust_fan",
+    "networkadapter-e",
+    "networkadapter-nae"
+  ],
+  "514_3_3006352": [
+    "discharge_air_smoke_detected_alarm",
+    "building-apm",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "ahu",
+    "networkadapter-s",
+    "networkadapter-nae"
+  ],
+  "604_1_3013679": [
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "occupied_cooling_min_discharge_air_flow_setpoint",
+    "networkadapter-nae"
+  ],
+  "513_0_3004879": [
+    "building-apm",
+    "zone_temperature_sensor",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "zone",
+    "networkadapter-nae"
+  ],
+  "513_0_3007527": [
+    "building-apm",
+    "damper",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "damper_position_sensor",
+    "networkadapter-nae"
+  ],
+  "513_0_3005365": [
+    "building-apm",
+    "vfd",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "ahu",
+    "current_sensor",
+    "networkadapter-nae"
+  ],
+  "514_0_3007109": [
+    "building-apm",
+    "room",
+    "effective_cooling_temperature_setpoint",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "514_4_3007016": [
+    "building-apm",
+    "vfd",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "exhaust_fan",
+    "run_enable_command",
+    "networkadapter-nae"
+  ],
+  "513_14_3006816": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "occupied_command",
+    "networkadapter-nae"
+  ],
+  "513_2_3003257": [
+    "building-apm",
+    "floor",
+    "ahu",
+    "discharge_air_flow_demand_setpoint",
+    "networkadapter-nae"
+  ],
+  "514_1_3007336": [
+    "building-apm",
+    "cooling_max_discharge_air_flow_setpoint",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "604_1_3013056": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "occupied_cooling_min_discharge_air_flow_setpoint",
+    "networkadapter-nae"
+  ],
+  "513_0_3006827": [
+    "building-apm",
+    "room",
+    "effective_cooling_temperature_setpoint",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "513_0_3005920": [
+    "building-apm",
+    "zone_temperature_sensor",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "zone",
+    "networkadapter-nae"
+  ],
+  "513_1_3005122": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "occupied_cooling_temperature_setpoint",
+    "networkadapter-nae"
+  ],
+  "513_1_3005193": [
+    "building-apm",
+    "occupied_heating_min_discharge_air_flow_setpoint",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "513_1_3006539": [
+    "building-apm",
+    "room",
+    "zone_temperature_setpoint",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "604_1_3012857": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "occupied_cooling_min_discharge_air_flow_setpoint",
+    "networkadapter-nae"
+  ],
+  "514_1_3009067": [
+    "building-apm",
+    "occupied_heating_min_discharge_air_flow_setpoint",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "513_1_3005165": [
+    "building-apm",
+    "valve",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "heating_valve_command",
+    "networkadapter-nae"
+  ],
+  "514_1_3006621": [
+    "building-apm",
+    "occupied_cooling_max_supply_air_flow_setpoint",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "513_2_3015661": [
+    "min_vfd_speed_setpoint",
+    "ahu",
+    "vfd",
+    "networkadapter-nae"
+  ],
+  "604_1_3013544": [
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "occupied_cooling_min_discharge_air_flow_setpoint",
+    "networkadapter-nae"
+  ],
+  "513_0_3006575": [
+    "building-apm",
+    "room",
+    "effective_cooling_temperature_setpoint",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "604_14_3012735": [
+    "building-apm",
+    "vav_box_mode_command",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "604_0_3012602": [
+    "building-apm",
+    "room",
+    "effective_heating_temperature_setpoint",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "604_1_3013180": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "occupied_heating_max_supply_air_flow_setpoint",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "604_3_3013284": [
+    "vfd_alarm",
+    "vfd",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "513_3_3004562": [
+    "building-apm",
+    "networkadapter-n",
+    "economizer_mode_status",
+    "networkadapter-trunk",
+    "economizer",
+    "ahu",
+    "networkadapter-nae"
+  ],
+  "513_0_3005448": [
+    "building-apm",
+    "vfd",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "ahu",
+    "motor_torque_sensor",
+    "networkadapter-nae"
+  ],
+  "514_1_3006840": [
+    "building-apm",
+    "room",
+    "occupied_heating_temperature_setpoint",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "513_1_3005194": [
+    "building-apm",
+    "room",
+    "occupied_heating_temperature_setpoint",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "514_0_3006437": [
+    "building-apm",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "high_temperature_hot_water_return_temperature_sensor",
+    "networkadapter-nae"
+  ],
+  "513_1_3006562": [
+    "building-apm",
+    "valve",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "heating_valve_command",
+    "networkadapter-nae"
+  ],
+  "604_1_3013213": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "occupied_cooling_min_discharge_air_flow_setpoint",
+    "networkadapter-nae"
+  ],
+  "514_1_3009043": [
+    "building-apm",
+    "damper",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "damper_command",
+    "networkadapter-nae"
+  ],
+  "513_1_3007510": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "occupied_cooling_min_discharge_air_flow_setpoint",
+    "networkadapter-nae"
+  ],
+  "513_1_3006587": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "occupied_heating_discharge_air_flow_setpoint",
+    "networkadapter-nae"
+  ],
+  "513_1_3006625": [
+    "building-apm",
+    "valve",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "heating_valve_command",
+    "networkadapter-nae"
+  ],
+  "514_1_3006488": [
+    "building-apm",
+    "occupied_heating_min_discharge_air_flow_setpoint",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "604_4_3013445": [
+    "vfd",
+    "networkadapter-n",
+    "fault_reset_command",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "513_1_3005474": [
+    "building-apm",
+    "vfd",
+    "networkadapter-n",
+    "current_limit_setpoint",
+    "networkadapter-trunk",
+    "ahu",
+    "networkadapter-nae"
+  ],
+  "604_0_3012773": [
+    "building-apm",
+    "zone_temperature_sensor",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "zone",
+    "networkadapter-nae"
+  ],
+  "513_1_3005073": [
+    "building-apm",
+    "valve",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "heating_valve_command",
+    "networkadapter-nae"
+  ],
+  "513_1_3005077": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "occupied_cooling_min_discharge_air_flow_setpoint",
+    "networkadapter-nae"
+  ],
+  "514_1_3007343": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "occupied_heating_discharge_air_flow_setpoint",
+    "networkadapter-nae"
+  ],
+  "513_2_3007954": [
+    "unknown",
+    "networkadapter-nae"
+  ],
+  "514_0_3006799": [
+    "building-apm",
+    "zone_temperature_sensor",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "zone",
+    "networkadapter-nae"
+  ],
+  "513_0_3005086": [
+    "building-apm",
+    "zone_temperature_sensor",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "zone",
+    "networkadapter-nae"
+  ],
+  "604_1_3012420": [
+    "building-apm",
+    "occupied_cooling_max_supply_air_flow_setpoint",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "604_4_3013376": [
+    "vfd",
+    "networkadapter-n",
+    "vfd_start_stop_command",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "513_0_3006076": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "supply_air_flow_sensor",
+    "networkadapter-nae"
+  ],
+  "604_1_3012512": [
+    "building-apm",
+    "valve",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "heating_valve_command",
+    "networkadapter-nae"
+  ],
+  "513_1_3005680": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "occupied_cooling_temperature_setpoint",
+    "networkadapter-nae"
+  ],
+  "514_0_3006903": [
+    "building-apm",
+    "room",
+    "effective_heating_temperature_setpoint",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "513_0_3006477": [
+    "building-apm",
+    "damper",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "damper_position_sensor",
+    "networkadapter-nae"
+  ],
+  "513_0_3004998": [
+    "building-apm",
+    "room",
+    "effective_heating_temperature_setpoint",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "514_1_3006740": [
+    "building-apm",
+    "valve",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "heating_valve_command",
+    "networkadapter-nae"
+  ],
+  "513_4_3006208": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "occupied_command",
+    "networkadapter-nae"
+  ],
+  "604_1_3013482": [
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "supply_air_flow_setpoint",
+    "networkadapter-nae"
+  ],
+  "514_0_3007181": [
+    "building-apm",
+    "room",
+    "effective_heating_temperature_setpoint",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "513_0_3007287": [
+    "building-apm",
+    "zone_temperature_sensor",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "zone",
+    "networkadapter-nae"
+  ],
+  "513_0_3005311": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "supply_air_flow_sensor",
+    "networkadapter-nae"
+  ],
+  "513_1_3005650": [
+    "building-apm",
+    "occupied_cooling_max_supply_air_flow_setpoint",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "514_1_3006562": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "supply_air_flow_setpoint",
+    "networkadapter-nae"
+  ],
+  "513_0_3006290": [
+    "building-apm",
+    "room",
+    "effective_cooling_temperature_setpoint",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "513_0_3007345": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "supply_air_flow_sensor",
+    "networkadapter-nae"
+  ],
+  "513_0_3007608": [
+    "effective_heating_temperature_setpoint",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "604_3_3013307": [
+    "building-apm",
+    "vfd_alarm",
+    "vfd",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "exhaust_fan",
+    "networkadapter-nae"
+  ],
+  "514_0_3007242": [
+    "building-apm",
+    "zone_temperature_sensor",
+    "room",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "zone",
+    "networkadapter-nae"
+  ],
+  "513_14_3006564": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "occupied_command",
+    "networkadapter-nae"
+  ],
+  "513_0_3012738": [
+    "vfd",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "energy_sensor",
+    "networkadapter-nae"
+  ],
+  "513_1_3005240": [
+    "building-apm",
+    "room",
+    "occupied_heating_temperature_setpoint",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "604_1_3012923": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "supply_air_flow_setpoint",
+    "networkadapter-nae"
+  ],
+  "514_1_3011262": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "unoccupied_cooling_discharge_air_flow_setpoint",
+    "networkadapter-nae"
+  ],
+  "513_0_3006582": [
+    "building-apm",
+    "damper",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "damper_position_sensor",
+    "networkadapter-nae"
+  ],
+  "513_14_3007362": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "occupied_command",
+    "networkadapter-nae"
+  ],
+  "513_1_3004625": [
+    "building-apm",
+    "fan",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "ahu",
+    "exhaust_fan",
+    "vfd_command",
+    "networkadapter-e",
+    "networkadapter-nae"
+  ],
+  "604_1_3012908": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "supply_air_flow_setpoint",
+    "networkadapter-nae"
+  ],
+  "513_1_3007923": [
+    "cooling_max_discharge_air_flow_setpoint",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "604_1_3014148": [
+    "building-apm",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "exhaust_air_static_pressure_proportional_band_setpoint",
+    "exhaust_fan",
+    "networkadapter-nae"
+  ],
+  "513_1_3005487": [
+    "building-apm",
+    "vfd",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "ahu",
+    "max_frequency_command",
+    "networkadapter-nae"
+  ],
+  "513_2_3012932": [
+    "average_exhaust_air_static_pressure_setpoint",
+    "networkadapter-nae"
+  ],
+  "604_1_3012393": [
+    "building-apm",
+    "valve",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "heating_valve_command",
+    "networkadapter-nae"
+  ],
+  "513_0_3004971": [
+    "building-apm",
+    "zone_temperature_sensor",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "zone",
+    "networkadapter-nae"
+  ],
+  "514_1_3007136": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "occupied_heating_discharge_air_flow_setpoint",
+    "networkadapter-nae"
+  ],
+  "604_1_3013660": [
+    "room",
+    "zone_temperature_setpoint",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "604_0_3013538": [
+    "room",
+    "effective_cooling_temperature_setpoint",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "604_1_3012707": [
+    "building-apm",
+    "room",
+    "zone_temperature_setpoint",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "604_0_3013361": [
+    "vfd",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "current_sensor",
+    "networkadapter-nae"
+  ],
+  "514_1_3006928": [
+    "building-apm",
+    "occupied_cooling_max_supply_air_flow_setpoint",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "604_0_3013348": [
+    "building-apm",
+    "vfd",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "output_frequency_sensor",
+    "exhaust_fan",
+    "networkadapter-nae"
+  ],
+  "513_4_3004516": [
+    "pump_start_stop_command",
+    "building-apm",
+    "heat_exchanger",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "ahu",
+    "pump",
+    "networkadapter-nae"
+  ],
+  "514_0_3009026": [
+    "building-apm",
+    "damper",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "damper_command",
+    "networkadapter-nae"
+  ],
+  "513_1_3006544": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "occupied_cooling_min_discharge_air_flow_setpoint",
+    "networkadapter-nae"
+  ],
+  "514_1_3007219": [
+    "building-apm",
+    "valve",
+    "room",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "heating_valve_command",
+    "networkadapter-nae"
+  ],
+  "514_5_3011211": [
+    "medium_temperature_hot_water_supply_temperature_load_shed_status",
+    "building-apm",
+    "networkadapter-nae"
+  ],
+  "513_1_3006206": [
+    "building-apm",
+    "valve",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "heating_valve_command",
+    "networkadapter-nae"
+  ],
+  "514_5_3004141": [
+    "building-apm",
+    "fan",
+    "exhaust_fan_disable_command",
+    "exhaust_fan",
+    "networkadapter-nae"
+  ],
+  "513_1_3005949": [
+    "building-apm",
+    "occupied_cooling_max_supply_air_flow_setpoint",
+    "vav",
+    "networkadapter-n",
+    "room-hall",
+    "networkadapter-trunk",
+    "room-fle",
+    "networkadapter-nae"
+  ],
+  "513_1_3005032": [
+    "building-apm",
+    "occupied_heating_min_discharge_air_flow_setpoint",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "514_0_3006387": [
+    "building-apm",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "exhaust_fan",
+    "exhaust_air_static_pressure_sensor",
+    "networkadapter-e",
+    "networkadapter-nae"
+  ],
+  "604_1_3012936": [
+    "building-apm",
+    "room",
+    "occupied_heating_temperature_setpoint",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "514_0_3006801": [
+    "building-apm",
+    "room",
+    "effective_cooling_temperature_setpoint",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "514_0_3007138": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "supply_air_flow_sensor",
+    "networkadapter-nae"
+  ],
+  "513_0_3007471": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "supply_air_flow_sensor",
+    "networkadapter-nae"
+  ],
+  "604_1_3012944": [
+    "building-apm",
+    "occupied_cooling_max_supply_air_flow_setpoint",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "513_0_3004952": [
+    "building-apm",
+    "room",
+    "effective_heating_temperature_setpoint",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "513_1_3005145": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "occupied_cooling_temperature_setpoint",
+    "networkadapter-nae"
+  ],
+  "513_1_3007111": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "occupied_cooling_min_discharge_air_flow_setpoint",
+    "networkadapter-nae"
+  ],
+  "513_1_3006545": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "occupied_heating_discharge_air_flow_setpoint",
+    "networkadapter-nae"
+  ],
+  "604_0_3012475": [
+    "building-apm",
+    "zone_temperature_sensor",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "zone",
+    "networkadapter-nae"
+  ],
+  "513_1_3006961": [
+    "building-apm",
+    "valve",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "heating_valve_command",
+    "networkadapter-nae"
+  ],
+  "513_0_3005800": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "supply_air_flow_sensor",
+    "networkadapter-nae"
+  ],
+  "513_1_3005050": [
+    "building-apm",
+    "valve",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "heating_valve_command",
+    "networkadapter-nae"
+  ],
+  "513_1_3005547": [
+    "building-apm",
+    "valve",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "heating_valve_command",
+    "networkadapter-nae"
+  ],
+  "514_3_3006349": [
+    "building-apm",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "filter",
+    "ahu",
+    "pre_filter_status",
+    "pre_filter",
+    "networkadapter-s",
+    "networkadapter-nae"
+  ],
+  "604_1_3012935": [
+    "building-apm",
+    "occupied_heating_min_discharge_air_flow_setpoint",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "514_1_3006381": [
+    "building-apm",
+    "heating_discharge_air_temperature_proportional_band_setpoint",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "ahu",
+    "networkadapter-s",
+    "networkadapter-nae"
+  ],
+  "514_1_3007174": [
+    "building-apm",
+    "valve",
+    "room",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "heating_valve_command",
+    "networkadapter-nae"
+  ],
+  "513_0_3006745": [
+    "building-apm",
+    "room",
+    "effective_heating_temperature_setpoint",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "514_2_3003526": [
+    "building-apm",
+    "floor",
+    "supply_fan",
+    "discharge_air_demand_setpoint",
+    "networkadapter-nae"
+  ],
+  "513_4_3005384": [
+    "building-apm",
+    "vfd",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "ahu",
+    "run_enable_command",
+    "networkadapter-nae"
+  ],
+  "604_0_3012738": [
+    "building-apm",
+    "damper",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "damper_position_sensor",
+    "networkadapter-nae"
+  ],
+  "604_0_3013639": [
+    "room",
+    "vav",
+    "networkadapter-n",
+    "warm_cool_adjust_sensor",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "604_14_3013621": [
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "occupied_command",
+    "networkadapter-nae"
+  ],
+  "513_1_3019443": [
+    "building-apm",
+    "damper",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "damper_command",
+    "networkadapter-nae"
+  ],
+  "513_0_3007270": [
+    "building-apm",
+    "room",
+    "effective_heating_temperature_setpoint",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "513_1_3006050": [
+    "building-apm",
+    "occupied_heating_min_discharge_air_flow_setpoint",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "513_1_3007169": [
+    "building-apm",
+    "room",
+    "zone_temperature_setpoint",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "514_1_3009065": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "occupied_cooling_temperature_setpoint",
+    "networkadapter-nae"
+  ],
+  "514_1_3006919": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "supply_air_flow_setpoint",
+    "networkadapter-nae"
+  ],
+  "513_2_3017170": [
+    "supply_air_static_pressure_setpoint",
+    "ahu",
+    "networkadapter-nae"
+  ],
+  "513_14_3007020": [
+    "building-apm",
+    "vav_box_mode_command",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "513_0_3005874": [
+    "building-apm",
+    "zone_temperature_sensor",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "zone",
+    "networkadapter-nae"
+  ],
+  "513_1_3005024": [
+    "building-apm",
+    "damper",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "damper_command",
+    "networkadapter-nae"
+  ],
+  "513_1_3006366": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "occupied_heating_max_supply_air_flow_setpoint",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "513_0_3005759": [
+    "building-apm",
+    "zone_temperature_sensor",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "zone",
+    "networkadapter-nae"
+  ],
+  "513_1_3004977": [
+    "building-apm",
+    "occupied_cooling_max_supply_air_flow_setpoint",
+    "vav",
+    "networkadapter-n",
+    "room-hall",
+    "networkadapter-trunk",
+    "room-fle",
+    "networkadapter-nae"
+  ],
+  "514_0_3007259": [
+    "building-apm",
+    "room",
+    "networkadapter-n",
+    "warm_cool_adjust_sensor",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "514_0_3007064": [
+    "building-apm",
+    "room",
+    "effective_cooling_temperature_setpoint",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "514_3_3008512": [
+    "building-apm",
+    "heat_exchanger",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "pump_flow_status",
+    "ahu",
+    "pump",
+    "networkadapter-nae"
+  ],
+  "604_1_3013596": [
+    "valve",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "heating_valve_command",
+    "networkadapter-nae"
+  ],
+  "514_0_3007018": [
+    "building-apm",
+    "room",
+    "effective_cooling_temperature_setpoint",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "513_1_3007190": [
+    "building-apm",
+    "room",
+    "zone_temperature_setpoint",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "604_4_3012402": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "occupied_command",
+    "networkadapter-nae"
+  ],
+  "604_1_3012524": [
+    "building-apm",
+    "occupied_cooling_max_supply_air_flow_setpoint",
+    "vav",
+    "networkadapter-n",
+    "room-hall",
+    "networkadapter-trunk",
+    "room-fle",
+    "networkadapter-nae"
+  ],
+  "513_0_3007310": [
+    "building-apm",
+    "room",
+    "effective_cooling_temperature_setpoint",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "513_1_3006327": [
+    "building-apm",
+    "room",
+    "occupied_heating_temperature_setpoint",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "513_1_3007011": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "supply_air_flow_setpoint",
+    "networkadapter-nae"
+  ],
+  "513_0_3005993": [
+    "building-apm",
+    "room",
+    "effective_heating_temperature_setpoint",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "513_1_3004847": [
+    "building-apm",
+    "vav",
+    "networkadapter-n",
+    "basement",
+    "room-lobby",
+    "networkadapter-trunk",
+    "occupied_cooling_min_discharge_air_flow_setpoint",
+    "networkadapter-nae"
+  ],
+  "604_0_3012940": [
+    "building-apm",
+    "zone_temperature_sensor",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "zone",
+    "networkadapter-nae"
+  ],
+  "513_1_3007252": [
+    "building-apm",
+    "cooling_max_discharge_air_flow_setpoint",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "513_0_3005708": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "supply_air_flow_sensor",
+    "networkadapter-nae"
+  ],
+  "604_1_3013529": [
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "occupied_cooling_min_discharge_air_flow_setpoint",
+    "networkadapter-nae"
+  ],
+  "604_0_3012606": [
+    "building-apm",
+    "damper",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "damper_position_sensor",
+    "networkadapter-nae"
+  ],
+  "514_1_3006962": [
+    "building-apm",
+    "occupied_heating_min_discharge_air_flow_setpoint",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "604_1_3012823": [
+    "building-apm",
+    "room",
+    "zone_temperature_setpoint",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "513_14_3007335": [
+    "building-apm",
+    "vav_box_mode_command",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "513_1_3005571": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "occupied_cooling_min_discharge_air_flow_setpoint",
+    "networkadapter-nae"
+  ],
+  "513_14_3005564": [
+    "building-apm",
+    "vav_box_mode_command",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "604_1_3013691": [
+    "building-apm",
+    "crac",
+    "zone_temperature_setpoint",
+    "networkadapter-mig",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "604_0_3013674": [
+    "room",
+    "effective_heating_temperature_setpoint",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "604_1_3013588": [
+    "cooling_max_discharge_air_flow_setpoint",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "604_1_3013590": [
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "occupied_heating_discharge_air_flow_setpoint",
+    "networkadapter-nae"
+  ],
+  "513_0_3006666": [
+    "building-apm",
+    "damper",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "damper_position_sensor",
+    "networkadapter-nae"
+  ],
+  "514_4_3007392": [
+    "building-apm",
+    "room",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "occupied_command",
+    "networkadapter-nae"
+  ],
+  "513_1_3005430": [
+    "building-apm",
+    "vfd",
+    "networkadapter-n",
+    "current_limit_setpoint",
+    "networkadapter-trunk",
+    "ahu",
+    "networkadapter-nae"
+  ],
+  "513_0_3004588": [
+    "building-apm",
+    "supply_air_static_pressure_sensor",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "ahu",
+    "networkadapter-nae"
+  ],
+  "604_0_3013219": [
+    "building-apm",
+    "zone_temperature_sensor",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "zone",
+    "networkadapter-nae"
+  ],
+  "604_1_3013007": [
+    "building-apm",
+    "damper",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "damper_command",
+    "networkadapter-nae"
+  ],
+  "513_1_3006344": [
+    "building-apm",
+    "valve",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "heating_valve_command",
+    "networkadapter-nae"
+  ],
+  "513_0_3007436": [
+    "building-apm",
+    "room",
+    "effective_cooling_temperature_setpoint",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "604_1_3012806": [
+    "building-apm",
+    "cooling_max_discharge_air_flow_setpoint",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "513_1_3007405": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "occupied_cooling_min_discharge_air_flow_setpoint",
+    "networkadapter-nae"
+  ],
+  "514_0_3006433": [
+    "building-apm",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "chilled_water_system",
+    "chilled_water_supply_temperature_sensor",
+    "networkadapter-nae"
+  ],
+  "513_0_3005541": [
+    "building-apm",
+    "room",
+    "effective_heating_temperature_setpoint",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "513_1_3006251": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "occupied_heating_max_supply_air_flow_setpoint",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "604_0_3013324": [
+    "building-apm",
+    "vfd",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "current_sensor",
+    "exhaust_fan",
+    "networkadapter-nae"
+  ],
+  "513_1_3004669": [
+    "building-apm",
+    "fan",
+    "supply_fan",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "ahu",
+    "vfd_command",
+    "networkadapter-nae"
+  ],
+  "513_0_3005970": [
+    "building-apm",
+    "room",
+    "effective_heating_temperature_setpoint",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "604_14_3012746": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "occupied_command",
+    "networkadapter-nae"
+  ],
+  "514_3_3007479": [
+    "building-apm",
+    "vfd",
+    "run_direction_status",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "exhaust_fan",
+    "networkadapter-nae"
+  ],
+  "604_1_3013195": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "occupied_heating_max_supply_air_flow_setpoint",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "513_2_3007960": [
+    "unknown",
+    "networkadapter-nae"
+  ],
+  "513_4_3005418": [
+    "building-apm",
+    "vfd",
+    "run_direction_command",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "ahu",
+    "networkadapter-nae"
+  ],
+  "514_4_3007522": [
+    "building-apm",
+    "exhaust_fan_start_stop_command",
+    "fan",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "exhaust_fan",
+    "networkadapter-nae"
+  ],
+  "604_4_3013289": [
+    "vfd",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "run_enable_command",
+    "networkadapter-nae"
+  ],
+  "604_4_3013422": [
+    "building-apm",
+    "vfd",
+    "run_direction_command",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "exhaust_fan",
+    "networkadapter-nae"
+  ],
+  "604_1_3013122": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "supply_air_flow_setpoint",
+    "networkadapter-nae"
+  ],
+  "513_0_3005433": [
+    "building-apm",
+    "vfd",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "energy_sensor",
+    "ahu",
+    "networkadapter-nae"
+  ],
+  "513_1_3005099": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "occupied_cooling_temperature_setpoint",
+    "networkadapter-nae"
+  ],
+  "513_4_3005328": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "occupied_command",
+    "networkadapter-nae"
+  ],
+  "604_0_3013171": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "warm_cool_adjust_sensor",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "604_0_3013623": [
+    "zone_temperature_sensor",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "zone",
+    "networkadapter-nae"
+  ],
+  "513_1_3006325": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "occupied_cooling_min_discharge_air_flow_setpoint",
+    "networkadapter-nae"
+  ],
+  "513_1_3004731": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "occupied_cooling_temperature_setpoint",
+    "networkadapter-nae"
+  ],
+  "604_1_3012683": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "supply_air_flow_setpoint",
+    "networkadapter-nae"
+  ],
+  "514_0_3006656": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "supply_air_flow_sensor",
+    "networkadapter-nae"
+  ],
+  "513_1_3006839": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "occupied_heating_discharge_air_flow_setpoint",
+    "networkadapter-nae"
+  ],
+  "604_1_3013181": [
+    "building-apm",
+    "valve",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "heating_valve_command",
+    "networkadapter-nae"
+  ],
+  "513_1_3004498": [
+    "building-apm",
+    "valve",
+    "networkadapter-n",
+    "cooling_valve_command",
+    "networkadapter-trunk",
+    "ahu",
+    "networkadapter-nae"
+  ],
+  "513_14_3007131": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "occupied_command",
+    "networkadapter-nae"
+  ],
+  "513_2_3011632": [
+    "chilled_water_temperature_differential_setpoint",
+    "ahu",
+    "networkadapter-nae"
+  ],
+  "513_1_3005953": [
+    "building-apm",
+    "valve",
+    "vav",
+    "networkadapter-n",
+    "room-hall",
+    "networkadapter-trunk",
+    "heating_valve_command",
+    "room-fle",
+    "networkadapter-nae"
+  ],
+  "513_0_3006463": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "supply_air_flow_sensor",
+    "networkadapter-nae"
+  ],
+  "513_14_3007110": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "occupied_command",
+    "networkadapter-nae"
+  ],
+  "604_1_3013271": [
+    "building-apm",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "exhaust_air_static_pressure_proportional_band_setpoint",
+    "exhaust_fan",
+    "networkadapter-e",
+    "networkadapter-nae"
+  ],
+  "514_1_3006408": [
+    "building-apm",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "exhaust_air_static_pressure_setpoint",
+    "exhaust_fan",
+    "networkadapter-e",
+    "networkadapter-nae"
+  ],
+  "604_4_3013340": [
+    "building-apm",
+    "vfd",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "exhaust_fan",
+    "run_enable_command",
+    "networkadapter-nae"
+  ],
+  "513_4_3005415": [
+    "building-apm",
+    "vfd",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "fault_reset_command",
+    "ahu",
+    "networkadapter-nae"
+  ],
+  "513_0_3005297": [
+    "building-apm",
+    "room",
+    "effective_heating_temperature_setpoint",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "513_1_3005843": [
+    "building-apm",
+    "occupied_heating_min_discharge_air_flow_setpoint",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "513_1_3005959": [
+    "building-apm",
+    "occupied_heating_temperature_setpoint",
+    "vav",
+    "networkadapter-n",
+    "room-hall",
+    "networkadapter-trunk",
+    "room-fle",
+    "networkadapter-nae"
+  ],
+  "513_1_3005233": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "occupied_heating_max_supply_air_flow_setpoint",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "604_1_3013162": [
+    "building-apm",
+    "damper",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "damper_command",
+    "networkadapter-nae"
+  ],
+  "604_0_3012987": [
+    "building-apm",
+    "room",
+    "effective_cooling_temperature_setpoint",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "604_0_3013405": [
+    "building-apm",
+    "vfd",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "last_fault_code_status",
+    "exhaust_fan",
+    "networkadapter-nae"
+  ],
+  "604_0_3013597": [
+    "damper",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "damper_position_sensor",
+    "networkadapter-nae"
+  ],
+  "513_2_3015249": [
+    "ahu",
+    "min_supply_air_temperature_setpoint",
+    "networkadapter-nae"
+  ],
+  "513_3_3005375": [
+    "building-apm",
+    "vfd",
+    "run_direction_status",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "ahu",
+    "networkadapter-nae"
+  ],
+  "513_1_3006524": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "occupied_heating_discharge_air_flow_setpoint",
+    "networkadapter-nae"
+  ],
+  "604_1_3012454": [
+    "building-apm",
+    "vav",
+    "networkadapter-n",
+    "room-hall",
+    "networkadapter-trunk",
+    "occupied_cooling_min_discharge_air_flow_setpoint",
+    "room-fle",
+    "networkadapter-nae"
+  ],
+  "604_1_3012767": [
+    "building-apm",
+    "valve",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "heating_valve_command",
+    "networkadapter-nae"
+  ],
+  "513_0_3005367": [
+    "building-apm",
+    "vfd",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "energy_sensor",
+    "ahu",
+    "networkadapter-nae"
+  ],
+  "513_1_3005653": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "occupied_heating_max_supply_air_flow_setpoint",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "513_0_3005398": [
+    "building-apm",
+    "vfd",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "last_fault_code_status",
+    "ahu",
+    "networkadapter-nae"
+  ],
+  "604_14_3013562": [
+    "vav_box_mode_command",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "513_1_3005774": [
+    "building-apm",
+    "occupied_heating_min_discharge_air_flow_setpoint",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "513_1_3006461": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "occupied_heating_discharge_air_flow_setpoint",
+    "networkadapter-nae"
+  ],
+  "513_0_3006103": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "warm_cool_adjust_sensor",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "604_0_3013305": [
+    "building-apm",
+    "vfd",
+    "motor_speed_sensor",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "exhaust_fan",
+    "networkadapter-nae"
+  ],
+  "513_1_3006602": [
+    "building-apm",
+    "room",
+    "zone_temperature_setpoint",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "513_2_3011639": [
+    "chilled_water_temperature_differential_setpoint",
+    "ahu",
+    "networkadapter-nae"
+  ],
+  "514_1_3009061": [
+    "building-apm",
+    "damper",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "damper_command",
+    "networkadapter-nae"
+  ],
+  "513_1_3004888": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "occupied_heating_max_supply_air_flow_setpoint",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "604_0_3013267": [
+    "building-apm",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "exhaust_fan",
+    "exhaust_air_static_pressure_sensor",
+    "networkadapter-e",
+    "networkadapter-nae"
+  ],
+  "513_1_3007279": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "occupied_cooling_min_discharge_air_flow_setpoint",
+    "networkadapter-nae"
+  ],
+  "513_1_3004842": [
+    "building-apm",
+    "vav",
+    "networkadapter-n",
+    "basement",
+    "room-lobby",
+    "networkadapter-trunk",
+    "occupied_heating_max_supply_air_flow_setpoint",
+    "networkadapter-nae"
+  ],
+  "513_4_3005840": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "occupied_command",
+    "networkadapter-nae"
+  ],
+  "513_0_3006219": [
+    "building-apm",
+    "zone_temperature_sensor",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "zone",
+    "networkadapter-nae"
+  ],
+  "514_0_3011245": [
+    "building-apm",
+    "supply_air_velocity_pressure_sensor",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "604_1_3012861": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "supply_air_flow_setpoint",
+    "networkadapter-nae"
+  ],
+  "513_1_3006018": [
+    "building-apm",
+    "occupied_cooling_max_supply_air_flow_setpoint",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "513_0_3006428": [
+    "building-apm",
+    "room",
+    "effective_cooling_temperature_setpoint",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "514_1_3006471": [
+    "building-apm",
+    "room",
+    "occupied_heating_temperature_setpoint",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "513_1_3006517": [
+    "building-apm",
+    "cooling_max_discharge_air_flow_setpoint",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "604_0_3013569": [
+    "room",
+    "effective_heating_temperature_setpoint",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "513_1_3006071": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "occupied_cooling_temperature_setpoint",
+    "networkadapter-nae"
+  ],
+  "513_0_3007719": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "co2_sensor",
+    "networkadapter-nae"
+  ],
+  "514_1_3007147": [
+    "building-apm",
+    "valve",
+    "room",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "heating_valve_command",
+    "networkadapter-nae"
+  ],
+  "513_1_3004955": [
+    "building-apm",
+    "damper",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "damper_command",
+    "networkadapter-nae"
+  ],
+  "514_1_3006704": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "supply_air_flow_setpoint",
+    "networkadapter-nae"
+  ],
+  "604_1_3013273": [
+    "building-apm",
+    "vfd",
+    "fan",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "exhaust_fan",
+    "vfd_command",
+    "networkadapter-e",
+    "networkadapter-nae"
+  ],
+  "513_1_3006643": [
+    "building-apm",
+    "cooling_max_discharge_air_flow_setpoint",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "514_0_3007073": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "supply_air_flow_sensor",
+    "networkadapter-nae"
+  ],
+  "513_0_3006766": [
+    "building-apm",
+    "room",
+    "effective_heating_temperature_setpoint",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "604_1_3012858": [
+    "building-apm",
+    "occupied_heating_min_discharge_air_flow_setpoint",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "513_0_3005067": [
+    "building-apm",
+    "room",
+    "effective_heating_temperature_setpoint",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "513_1_3006790": [
+    "building-apm",
+    "cooling_max_discharge_air_flow_setpoint",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "513_0_3006992": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "warm_cool_adjust_sensor",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "604_1_3013119": [
+    "building-apm",
+    "occupied_heating_min_discharge_air_flow_setpoint",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "513_14_3006984": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "occupied_command",
+    "networkadapter-nae"
+  ],
+  "513_14_3006879": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "occupied_command",
+    "networkadapter-nae"
+  ],
+  "514_0_3007280": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "supply_air_flow_sensor",
+    "networkadapter-nae"
+  ],
+  "604_0_3013475": [
+    "supply_air_velocity_pressure_sensor",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "604_1_3013336": [
+    "building-apm",
+    "vfd",
+    "vfd_speed_command",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "exhaust_fan",
+    "networkadapter-nae"
+  ],
+  "513_0_3006336": [
+    "building-apm",
+    "room",
+    "effective_cooling_temperature_setpoint",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "513_0_3006380": [
+    "building-apm",
+    "zone_temperature_sensor",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "zone",
+    "networkadapter-nae"
+  ],
+  "513_1_3007360": [
+    "building-apm",
+    "valve",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "heating_valve_command",
+    "networkadapter-nae"
+  ],
+  "604_1_3013146": [
+    "building-apm",
+    "occupied_cooling_max_supply_air_flow_setpoint",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "604_1_3013084": [
+    "building-apm",
+    "damper",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "damper_command",
+    "networkadapter-nae"
+  ],
+  "514_0_3006445": [
+    "building-apm",
+    "room",
+    "effective_heating_temperature_setpoint",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "604_0_3012504": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "warm_cool_adjust_sensor",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "514_1_3006814": [
+    "building-apm",
+    "occupied_heating_min_discharge_air_flow_setpoint",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "514_4_3007530": [
+    "building-apm",
+    "exhaust_fan_start_stop_command",
+    "fan",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "exhaust_fan",
+    "networkadapter-nae"
+  ],
+  "513_1_3006751": [
+    "building-apm",
+    "valve",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "heating_valve_command",
+    "networkadapter-nae"
+  ],
+  "514_1_3007477": [
+    "building-apm",
+    "vfd",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "exhaust_fan",
+    "frequency_command",
+    "networkadapter-nae"
+  ],
+  "513_1_3006707": [
+    "building-apm",
+    "room",
+    "zone_temperature_setpoint",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "513_1_3005191": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "occupied_cooling_temperature_setpoint",
+    "networkadapter-nae"
+  ],
+  "513_1_3015234": [
+    "building-apm",
+    "networkadapter-n",
+    "outside_air_temperature_sensor",
+    "networkadapter-trunk",
+    "ahu",
+    "outside",
+    "networkadapter-nae"
+  ],
+  "514_1_3006956": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "occupied_heating_max_supply_air_flow_setpoint",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "514_1_3011254": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "unoccupied_cooling_discharge_air_flow_setpoint",
+    "networkadapter-nae"
+  ],
+  "604_1_3012723": [
+    "building-apm",
+    "valve",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "heating_valve_command",
+    "networkadapter-nae"
+  ],
+  "513_0_3005242": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "supply_air_flow_sensor",
+    "networkadapter-nae"
+  ],
+  "514_3_3007548": [
+    "building-apm",
+    "vfd",
+    "networkadapter-n",
+    "supply_fan",
+    "fault_status",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "604_0_3013523": [
+    "room",
+    "effective_cooling_temperature_setpoint",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "604_0_3013065": [
+    "building-apm",
+    "room",
+    "effective_heating_temperature_setpoint",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "514_1_3006454": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "occupied_cooling_temperature_setpoint",
+    "networkadapter-nae"
+  ],
+  "604_3_3013433": [
+    "building-apm",
+    "vfd",
+    "vfd_start_stop_status",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "exhaust_fan",
+    "networkadapter-nae"
+  ],
+  "513_1_3005055": [
+    "building-apm",
+    "occupied_heating_min_discharge_air_flow_setpoint",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "513_0_3006740": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "warm_cool_adjust_sensor",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "514_1_3006556": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "occupied_cooling_min_discharge_air_flow_setpoint",
+    "networkadapter-nae"
+  ],
+  "513_0_3007102": [
+    "building-apm",
+    "room",
+    "effective_heating_temperature_setpoint",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "604_2_3015004": [
+    "supply_air_static_pressure_setpoint",
+    "ahu",
+    "networkadapter-nae"
+  ],
+  "514_0_3006817": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "supply_air_flow_sensor",
+    "networkadapter-nae"
+  ],
+  "514_1_3007381": [
+    "building-apm",
+    "valve",
+    "room",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "heating_valve_command",
+    "networkadapter-nae"
+  ],
+  "513_1_3007174": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "occupied_cooling_min_discharge_air_flow_setpoint",
+    "networkadapter-nae"
+  ],
+  "513_0_3004828": [
+    "building-apm",
+    "vav",
+    "networkadapter-n",
+    "room-hall",
+    "networkadapter-trunk",
+    "supply_air_flow_sensor",
+    "networkadapter-nae"
+  ],
+  "514_0_3007345": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "supply_air_flow_sensor",
+    "networkadapter-nae"
+  ],
+  "513_1_3005523": [
+    "building-apm",
+    "cooling_max_discharge_air_flow_setpoint",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "514_1_3006493": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "supply_air_flow_setpoint",
+    "networkadapter-nae"
+  ],
+  "604_1_3012550": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "occupied_cooling_min_discharge_air_flow_setpoint",
+    "networkadapter-nae"
+  ],
+  "513_14_3006621": [
+    "building-apm",
+    "vav_box_mode_command",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "513_1_3006460": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "occupied_cooling_min_discharge_air_flow_setpoint",
+    "networkadapter-nae"
+  ],
+  "513_1_3005696": [
+    "building-apm",
+    "occupied_cooling_max_supply_air_flow_setpoint",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "513_0_3012741": [
+    "vfd",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "last_fault_code_status",
+    "networkadapter-nae"
+  ],
+  "513_1_3006454": [
+    "building-apm",
+    "cooling_max_discharge_air_flow_setpoint",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "514_0_3007187": [
+    "building-apm",
+    "room",
+    "networkadapter-n",
+    "warm_cool_adjust_sensor",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "513_1_3005046": [
+    "building-apm",
+    "occupied_cooling_max_supply_air_flow_setpoint",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "513_0_3006154": [
+    "building-apm",
+    "room",
+    "effective_heating_temperature_setpoint",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "604_1_3013261": [
+    "building-apm",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "exhaust_air_static_pressure_proportional_band_setpoint",
+    "exhaust_fan",
+    "networkadapter-e",
+    "networkadapter-nae"
+  ],
+  "604_1_3013184": [
+    "building-apm",
+    "occupied_heating_min_discharge_air_flow_setpoint",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "514_1_3006812": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "occupied_cooling_temperature_setpoint",
+    "networkadapter-nae"
+  ],
+  "604_1_3013333": [
+    "building-apm",
+    "vfd",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "max_frequency_command",
+    "exhaust_fan",
+    "networkadapter-nae"
+  ],
+  "514_1_3009060": [
+    "building-apm",
+    "cooling_max_discharge_air_flow_setpoint",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "513_0_3005479": [
+    "building-apm",
+    "vfd",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "energy_sensor",
+    "ahu",
+    "networkadapter-nae"
+  ],
+  "604_0_3012775": [
+    "building-apm",
+    "room",
+    "effective_cooling_temperature_setpoint",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "513_0_3005044": [
+    "building-apm",
+    "room",
+    "effective_heating_temperature_setpoint",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "513_0_3006971": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "warm_cool_adjust_sensor",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "513_1_3006717": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "supply_air_flow_setpoint",
+    "networkadapter-nae"
+  ],
+  "514_1_3007320": [
+    "building-apm",
+    "room",
+    "zone_temperature_setpoint",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "604_1_3012792": [
+    "building-apm",
+    "cooling_max_discharge_air_flow_setpoint",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "513_1_3006699": [
+    "building-apm",
+    "zone_temperature_sensor",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "zone",
+    "networkadapter-nae"
+  ],
+  "604_1_3013226": [
+    "building-apm",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "exhaust_air_static_pressure_integral_time_setpoint",
+    "exhaust_fan",
+    "networkadapter-e",
+    "networkadapter-nae"
+  ],
+  "514_14_3007318": [
+    "building-apm",
+    "vav_box_mode_command",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "513_2_3007968": [
+    "unknown",
+    "networkadapter-nae"
+  ],
+  "604_0_3013049": [
+    "building-apm",
+    "room",
+    "effective_cooling_temperature_setpoint",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "514_3_3006427": [
+    "building-apm",
+    "fan",
+    "exhaust_fan_status",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "exhaust_fan",
+    "networkadapter-e",
+    "networkadapter-nae"
+  ],
+  "604_0_3013203": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "warm_cool_adjust_sensor",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "513_0_3007366": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "supply_air_flow_sensor",
+    "networkadapter-nae"
+  ],
+  "513_1_3004872": [
+    "building-apm",
+    "room",
+    "occupied_heating_temperature_setpoint",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "604_4_3013063": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "occupied_command",
+    "networkadapter-nae"
+  ],
+  "514_1_3009029": [
+    "building-apm",
+    "room",
+    "occupied_heating_temperature_setpoint",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "513_1_3004803": [
+    "building-apm",
+    "room",
+    "occupied_heating_temperature_setpoint",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "514_1_3006380": [
+    "building-apm",
+    "heating_discharge_air_temperature_dead_band_setpoint",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "ahu",
+    "networkadapter-s",
+    "networkadapter-nae"
+  ],
+  "604_14_3013501": [
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "occupied_command",
+    "networkadapter-nae"
+  ],
+  "604_2_3014445": [
+    "average_exhaust_air_static_pressure_setpoint",
+    "networkadapter-nae"
+  ],
+  "604_1_3012918": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "occupied_cooling_temperature_setpoint",
+    "networkadapter-nae"
+  ],
+  "513_14_3005585": [
+    "building-apm",
+    "vav_box_mode_command",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "513_0_3006640": [
+    "building-apm",
+    "room",
+    "effective_heating_temperature_setpoint",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "604_1_3012793": [
+    "building-apm",
+    "room",
+    "zone_temperature_setpoint",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "513_0_3004906": [
+    "building-apm",
+    "room",
+    "effective_heating_temperature_setpoint",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "604_1_3013251": [
+    "building-apm",
+    "vfd",
+    "fan",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "exhaust_fan",
+    "vfd_command",
+    "networkadapter-e",
+    "networkadapter-nae"
+  ],
+  "513_0_3006470": [
+    "building-apm",
+    "room",
+    "effective_cooling_temperature_setpoint",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "513_0_3004837": [
+    "building-apm",
+    "effective_heating_temperature_setpoint",
+    "vav",
+    "networkadapter-n",
+    "basement",
+    "room-lobby",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "514_0_3007406": [
+    "building-apm",
+    "room",
+    "effective_heating_temperature_setpoint",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "604_3_3013358": [
+    "building-apm",
+    "vfd_alarm",
+    "vfd",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "exhaust_fan",
+    "networkadapter-nae"
+  ],
+  "513_1_3005162": [
+    "building-apm",
+    "damper",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "damper_command",
+    "networkadapter-nae"
+  ],
+  "604_1_3013396": [
+    "building-apm",
+    "vfd",
+    "networkadapter-n",
+    "current_limit_setpoint",
+    "networkadapter-trunk",
+    "exhaust_fan",
+    "networkadapter-nae"
+  ],
+  "513_1_3011830": [
+    "building-apm",
+    "crac",
+    "differential_pressure_integral_time_setpoint",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "pump",
+    "networkadapter-nae"
+  ],
+  "513_4_3005437": [
+    "building-apm",
+    "vfd",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "fault_reset_command",
+    "ahu",
+    "networkadapter-nae"
+  ],
+  "604_1_3013664": [
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "occupied_cooling_min_discharge_air_flow_setpoint",
+    "networkadapter-nae"
+  ],
+  "513_1_3005636": [
+    "building-apm",
+    "occupied_heating_min_discharge_air_flow_setpoint",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "513_1_3006179": [
+    "building-apm",
+    "occupied_cooling_max_supply_air_flow_setpoint",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "604_14_3012788": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "occupied_command",
+    "networkadapter-nae"
+  ],
+  "513_0_3006246": [
+    "building-apm",
+    "room",
+    "effective_heating_temperature_setpoint",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "513_0_3005341": [
+    "building-apm",
+    "room",
+    "effective_cooling_temperature_setpoint",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "604_0_3013703": [
+    "building-apm",
+    "crac",
+    "networkadapter-mig",
+    "networkadapter-n",
+    "capacity_sensor",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "514_0_3009069": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "supply_air_flow_sensor",
+    "networkadapter-nae"
+  ],
+  "604_4_3013407": [
+    "building-apm",
+    "panel_lockout_command",
+    "vfd",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "exhaust_fan",
+    "networkadapter-nae"
+  ],
+  "513_0_3004835": [
+    "building-apm",
+    "effective_cooling_temperature_setpoint",
+    "vav",
+    "networkadapter-n",
+    "basement",
+    "room-lobby",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "513_1_3007189": [
+    "building-apm",
+    "cooling_max_discharge_air_flow_setpoint",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "513_0_3006405": [
+    "building-apm",
+    "room",
+    "effective_cooling_temperature_setpoint",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "604_0_3013265": [
+    "building-apm",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "exhaust_fan",
+    "exhaust_air_static_pressure_sensor",
+    "networkadapter-e",
+    "networkadapter-nae"
+  ],
+  "514_1_3008178": [
+    "vav",
+    "networkadapter-n",
+    "unknown",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "514_1_3007267": [
+    "building-apm",
+    "room",
+    "occupied_heating_temperature_setpoint",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "513_2_3011664": [
+    "building",
+    "chilled_water_temperature_differential_setpoint",
+    "networkadapter-nae"
+  ],
+  "604_1_3013540": [
+    "room",
+    "zone_temperature_setpoint",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "514_4_3006861": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "occupied_command",
+    "networkadapter-nae"
+  ],
+  "513_14_3007083": [
+    "building-apm",
+    "vav_box_mode_command",
+    "vav",
+    "networkadapter-n",
+    "room-hall",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "513_0_3005223": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "warm_cool_adjust_sensor",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "604_1_3013260": [
+    "building-apm",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "exhaust_air_static_pressure_proportional_band_setpoint",
+    "exhaust_fan",
+    "networkadapter-e",
+    "networkadapter-nae"
+  ],
+  "514_0_3006637": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "warm_cool_adjust_sensor",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "513_1_3005354": [
+    "building-apm",
+    "occupied_heating_min_discharge_air_flow_setpoint",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "513_1_3004708": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "occupied_cooling_temperature_setpoint",
+    "networkadapter-nae"
+  ],
+  "513_0_3005786": [
+    "building-apm",
+    "room",
+    "effective_heating_temperature_setpoint",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "513_0_3006782": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "warm_cool_adjust_sensor",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "513_0_3007412": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "warm_cool_adjust_sensor",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "604_1_3013179": [
+    "building-apm",
+    "damper",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "damper_command",
+    "networkadapter-nae"
+  ],
+  "513_0_3006850": [
+    "building-apm",
+    "room",
+    "effective_heating_temperature_setpoint",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "513_1_3006324": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "occupied_cooling_temperature_setpoint",
+    "networkadapter-nae"
+  ],
+  "604_0_3013204": [
+    "building-apm",
+    "zone_temperature_sensor",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "zone",
+    "networkadapter-nae"
+  ],
+  "513_1_3006124": [
+    "building-apm",
+    "vav",
+    "networkadapter-n",
+    "room-hall",
+    "networkadapter-trunk",
+    "supply_air_flow_setpoint",
+    "room-fle",
+    "networkadapter-nae"
+  ],
+  "604_3_3013370": [
+    "vfd_alarm",
+    "vfd",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "513_1_3005659": [
+    "building-apm",
+    "occupied_heating_min_discharge_air_flow_setpoint",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "604_1_3013530": [
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "occupied_heating_discharge_air_flow_setpoint",
+    "networkadapter-nae"
+  ],
+  "513_1_3005865": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "occupied_cooling_min_discharge_air_flow_setpoint",
+    "networkadapter-nae"
+  ],
+  "513_0_3007072": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "supply_air_flow_sensor",
+    "networkadapter-nae"
+  ],
+  "604_0_3012540": [
+    "building-apm",
+    "vfd",
+    "vfd_power_meter",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "exhaust_fan",
+    "networkadapter-nae"
+  ],
+  "514_0_3006826": [
+    "building-apm",
+    "room",
+    "effective_heating_temperature_setpoint",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "604_1_3013377": [
+    "building-apm",
+    "vfd",
+    "networkadapter-n",
+    "current_limit_setpoint",
+    "networkadapter-trunk",
+    "exhaust_fan",
+    "networkadapter-nae"
+  ],
+  "604_1_3013015": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "supply_air_flow_setpoint",
+    "networkadapter-nae"
+  ],
+  "513_0_3007055": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "warm_cool_adjust_sensor",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "513_0_3006083": [
+    "building-apm",
+    "room",
+    "effective_cooling_temperature_setpoint",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "604_4_3013288": [
+    "panel_lockout_command",
+    "vfd",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "513_0_3007114": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "supply_air_flow_sensor",
+    "networkadapter-nae"
+  ],
+  "514_3_3006415": [
+    "building-apm",
+    "fan",
+    "exhaust_fan_status",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "exhaust_fan",
+    "networkadapter-e",
+    "networkadapter-nae"
+  ],
+  "604_0_3013625": [
+    "supply_air_velocity_pressure_sensor",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "604_1_3012841": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "occupied_cooling_min_discharge_air_flow_setpoint",
+    "networkadapter-nae"
+  ],
+  "604_0_3013391": [
+    "building-apm",
+    "vfd",
+    "motor_speed_sensor",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "exhaust_fan",
+    "networkadapter-nae"
+  ],
+  "514_0_3006464": [
+    "building-apm",
+    "zone_temperature_sensor",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "zone",
+    "networkadapter-nae"
+  ],
+  "514_1_3006509": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "occupied_cooling_temperature_setpoint",
+    "networkadapter-nae"
+  ],
+  "514_0_3006778": [
+    "building-apm",
+    "room",
+    "effective_cooling_temperature_setpoint",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "513_0_3006526": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "supply_air_flow_sensor",
+    "networkadapter-nae"
+  ],
+  "513_1_3007049": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "occupied_heating_discharge_air_flow_setpoint",
+    "networkadapter-nae"
+  ],
+  "604_0_3012728": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "warm_cool_adjust_sensor",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "513_0_3006265": [
+    "building-apm",
+    "zone_temperature_sensor",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "zone",
+    "networkadapter-nae"
+  ],
+  "604_0_3012613": [
+    "building-apm",
+    "zone_temperature_sensor",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "zone",
+    "networkadapter-nae"
+  ],
+  "513_1_3005215": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "occupied_cooling_min_discharge_air_flow_setpoint",
+    "networkadapter-nae"
+  ],
+  "513_0_3006722": [
+    "building-apm",
+    "room",
+    "effective_cooling_temperature_setpoint",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "513_0_3008149": [
+    "building-apm",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "ahu",
+    "outside_air_co2_sensor",
+    "networkadapter-nae"
+  ],
+  "604_0_3013427": [
+    "building-apm",
+    "vfd",
+    "vfd_power_meter",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "exhaust_fan",
+    "networkadapter-nae"
+  ],
+  "604_0_3012997": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "supply_air_flow_sensor",
+    "networkadapter-nae"
+  ],
+  "513_0_3007100": [
+    "building-apm",
+    "room",
+    "effective_cooling_temperature_setpoint",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "604_0_3012770": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "supply_air_flow_sensor",
+    "networkadapter-nae"
+  ],
+  "604_1_3012531": [
+    "building-apm",
+    "occupied_heating_temperature_setpoint",
+    "vav",
+    "networkadapter-n",
+    "room-hall",
+    "networkadapter-trunk",
+    "room-fle",
+    "networkadapter-nae"
+  ],
+  "513_0_3005689": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "warm_cool_adjust_sensor",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "513_4_3011821": [
+    "pump_start_stop_command",
+    "building-apm",
+    "crac",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "pump",
+    "networkadapter-nae"
+  ],
+  "513_1_3006416": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "occupied_cooling_temperature_setpoint",
+    "networkadapter-nae"
+  ],
+  "604_0_3013539": [
+    "room",
+    "effective_heating_temperature_setpoint",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "604_0_3013293": [
+    "building-apm",
+    "vfd",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "exhaust_fan",
+    "drive_temperature_sensor",
+    "networkadapter-nae"
+  ],
+  "604_1_3013615": [
+    "room",
+    "zone_temperature_setpoint",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "604_4_3013394": [
+    "building-apm",
+    "vfd",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "exhaust_fan",
+    "run_enable_command",
+    "networkadapter-nae"
+  ],
+  "513_1_3005037": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "supply_air_flow_setpoint",
+    "networkadapter-nae"
+  ],
+  "604_1_3012496": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "occupied_heating_max_supply_air_flow_setpoint",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "514_1_3006953": [
+    "building-apm",
+    "occupied_cooling_max_supply_air_flow_setpoint",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "514_1_3011267": [
+    "building-apm",
+    "damper",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "damper_command",
+    "networkadapter-nae"
+  ],
+  "604_1_3012405": [
+    "building-apm",
+    "occupied_cooling_max_supply_air_flow_setpoint",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "513_0_3006488": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "warm_cool_adjust_sensor",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "513_1_3005023": [
+    "building-apm",
+    "occupied_cooling_max_supply_air_flow_setpoint",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "514_1_3007160": [
+    "building-apm",
+    "room",
+    "networkadapter-n",
+    "warm_cool_adjust_sensor",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "514_1_3006461": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "supply_air_flow_setpoint",
+    "networkadapter-nae"
+  ],
+  "513_0_3004975": [
+    "building-apm",
+    "effective_heating_temperature_setpoint",
+    "vav",
+    "networkadapter-n",
+    "room-hall",
+    "networkadapter-trunk",
+    "room-fle",
+    "networkadapter-nae"
+  ],
+  "514_0_3007349": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "warm_cool_adjust_sensor",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "513_0_3006589": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "supply_air_flow_sensor",
+    "networkadapter-nae"
+  ],
+  "513_1_3006481": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "occupied_cooling_min_discharge_air_flow_setpoint",
+    "networkadapter-nae"
+  ],
+  "604_0_3013460": [
+    "building-apm",
+    "vfd",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "last_fault_code_status",
+    "exhaust_fan",
+    "networkadapter-nae"
+  ],
+  "604_0_3012654": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "supply_air_flow_sensor",
+    "networkadapter-nae"
+  ],
+  "513_1_3005913": [
+    "building-apm",
+    "room",
+    "occupied_heating_temperature_setpoint",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "513_1_3007300": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "occupied_cooling_min_discharge_air_flow_setpoint",
+    "networkadapter-nae"
+  ],
+  "513_4_3005378": [
+    "building-apm",
+    "panel_lockout_command",
+    "vfd",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "ahu",
+    "networkadapter-nae"
+  ],
+  "514_0_3007546": [
+    "building-apm",
+    "vfd",
+    "networkadapter-n",
+    "supply_fan",
+    "networkadapter-trunk",
+    "last_fault_code_status",
+    "networkadapter-nae"
+  ],
+  "604_0_3013380": [
+    "building-apm",
+    "vfd",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "energy_sensor",
+    "exhaust_fan",
+    "networkadapter-nae"
+  ],
+  "604_0_3013416": [
+    "building-apm",
+    "vfd",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "current_sensor",
+    "exhaust_fan",
+    "networkadapter-nae"
+  ],
+  "513_1_3006209": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "occupied_cooling_temperature_setpoint",
+    "networkadapter-nae"
+  ],
+  "604_0_3013518": [
+    "zone_temperature_sensor",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "zone",
+    "networkadapter-nae"
+  ],
+  "604_1_3012469": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "occupied_cooling_min_discharge_air_flow_setpoint",
+    "networkadapter-nae"
+  ],
+  "604_1_3013649": [
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "occupied_cooling_min_discharge_air_flow_setpoint",
+    "networkadapter-nae"
+  ],
+  "513_1_3007305": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "supply_air_flow_setpoint",
+    "networkadapter-nae"
+  ],
+  "604_0_3012798": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "supply_air_flow_sensor",
+    "networkadapter-nae"
+  ],
+  "604_1_3012953": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "supply_air_flow_setpoint",
+    "networkadapter-nae"
+  ],
+  "604_4_3013317": [
+    "building-apm",
+    "panel_lockout_command",
+    "vfd",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "exhaust_fan",
+    "networkadapter-nae"
+  ],
+  "514_0_3006430": [
+    "building-apm",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "chilled_water_return_temperature_sensor",
+    "networkadapter-nae"
+  ],
+  "604_0_3012537": [
+    "building-apm",
+    "vfd",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "output_frequency_sensor",
+    "exhaust_fan",
+    "networkadapter-nae"
+  ],
+  "513_0_3005850": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "warm_cool_adjust_sensor",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "514_4_3007547": [
+    "building-apm",
+    "vfd",
+    "networkadapter-n",
+    "supply_fan",
+    "networkadapter-trunk",
+    "fault_reset_command",
+    "networkadapter-nae"
+  ],
+  "514_3_3007495": [
+    "building-apm",
+    "vfd",
+    "run_direction_status",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "exhaust_fan",
+    "networkadapter-nae"
+  ],
+  "604_0_3013173": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "co2_sensor",
+    "networkadapter-nae"
+  ],
+  "513_1_3006281": [
+    "building-apm",
+    "room",
+    "occupied_heating_temperature_setpoint",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "513_0_3006761": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "warm_cool_adjust_sensor",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "513_0_3005062": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "warm_cool_adjust_sensor",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "604_3_3013414": [
+    "building-apm",
+    "vfd",
+    "vfd_start_stop_status",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "exhaust_fan",
+    "networkadapter-nae"
+  ],
+  "514_4_3006426": [
+    "building-apm",
+    "exhaust_fan_start_stop_command",
+    "fan",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "exhaust_fan",
+    "networkadapter-e",
+    "networkadapter-nae"
+  ],
+  "513_0_3007475": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "warm_cool_adjust_sensor",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "513_1_3005277": [
+    "building-apm",
+    "damper",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "damper_command",
+    "networkadapter-nae"
+  ],
+  "604_1_3012855": [
+    "building-apm",
+    "valve",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "heating_valve_command",
+    "networkadapter-nae"
+  ],
+  "604_1_3012409": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "occupied_cooling_temperature_setpoint",
+    "networkadapter-nae"
+  ],
+  "604_0_3012907": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "supply_air_flow_sensor",
+    "networkadapter-nae"
+  ],
+  "604_0_3013106": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "supply_air_flow_sensor",
+    "networkadapter-nae"
+  ],
+  "604_0_3012401": [
+    "building-apm",
+    "zone_temperature_sensor",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "zone",
+    "networkadapter-nae"
+  ],
+  "513_0_3007016": [
+    "building-apm",
+    "room",
+    "effective_cooling_temperature_setpoint",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "514_1_3006783": [
+    "building-apm",
+    "damper",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "damper_command",
+    "networkadapter-nae"
+  ],
+  "514_2_3003973": [
+    "building-apm",
+    "heat_exchanger",
+    "outside_air_lockout_temperature_differential_setpoint",
+    "networkadapter-nae"
+  ],
+  "513_1_3005705": [
+    "building-apm",
+    "occupied_heating_min_discharge_air_flow_setpoint",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "513_14_3006459": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "occupied_command",
+    "networkadapter-nae"
+  ],
+  "514_0_3006491": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "supply_air_flow_sensor",
+    "networkadapter-nae"
+  ],
+  "513_1_3005883": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "occupied_heating_max_supply_air_flow_setpoint",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "513_1_3005566": [
+    "building-apm",
+    "room",
+    "zone_temperature_setpoint",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "513_1_3004536": [
+    "building-apm",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "supply_air_static_pressure_setpoint",
+    "ahu",
+    "networkadapter-nae"
+  ],
+  "604_1_3013633": [
+    "cooling_max_discharge_air_flow_setpoint",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "513_14_3005522": [
+    "building-apm",
+    "vav_box_mode_command",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "513_1_3005607": [
+    "building-apm",
+    "cooling_max_discharge_air_flow_setpoint",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "604_1_3012693": [
+    "building-apm",
+    "room",
+    "zone_temperature_setpoint",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "604_0_3013315": [
+    "building-apm",
+    "vfd",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "last_fault_code_status",
+    "exhaust_fan",
+    "networkadapter-nae"
+  ],
+  "514_1_3007071": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "occupied_cooling_min_discharge_air_flow_setpoint",
+    "networkadapter-nae"
+  ],
+  "604_14_3012818": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "occupied_command",
+    "networkadapter-nae"
+  ],
+  "604_1_3013066": [
+    "building-apm",
+    "occupied_cooling_max_supply_air_flow_setpoint",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "514_0_3007487": [
+    "building-apm",
+    "vfd",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "energy_sensor",
+    "exhaust_fan",
+    "networkadapter-nae"
+  ],
+  "513_0_3006883": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "supply_air_flow_sensor",
+    "networkadapter-nae"
+  ],
+  "513_1_3006650": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "occupied_heating_discharge_air_flow_setpoint",
+    "networkadapter-nae"
+  ],
+  "513_0_3004699": [
+    "building-apm",
+    "room",
+    "effective_heating_temperature_setpoint",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "514_0_3011251": [
+    "building-apm",
+    "supply_air_velocity_pressure_sensor",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "513_1_3005676": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "occupied_heating_max_supply_air_flow_setpoint",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "513_1_3006065": [
+    "building-apm",
+    "damper",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "damper_command",
+    "networkadapter-nae"
+  ],
+  "604_1_3012422": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "occupied_heating_max_supply_air_flow_setpoint",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "513_0_3006913": [
+    "building-apm",
+    "room",
+    "effective_heating_temperature_setpoint",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "514_1_3006890": [
+    "building-apm",
+    "room",
+    "occupied_heating_temperature_setpoint",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "604_0_3012808": [
+    "building-apm",
+    "damper",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "damper_position_sensor",
+    "networkadapter-nae"
+  ],
+  "514_0_3007338": [
+    "building-apm",
+    "damper",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "damper_position_sensor",
+    "networkadapter-nae"
+  ],
+  "513_0_3007740": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "co2_sensor",
+    "networkadapter-nae"
+  ],
+  "513_0_3007268": [
+    "building-apm",
+    "room",
+    "effective_cooling_temperature_setpoint",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "514_0_3007358": [
+    "building-apm",
+    "room",
+    "networkadapter-n",
+    "warm_cool_adjust_sensor",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "513_1_3006874": [
+    "building-apm",
+    "cooling_max_discharge_air_flow_setpoint",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "514_1_3006670": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "occupied_heating_max_supply_air_flow_setpoint",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "514_1_3006651": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "occupied_cooling_temperature_setpoint",
+    "networkadapter-nae"
+  ],
+  "513_0_3006260": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "supply_air_flow_sensor",
+    "networkadapter-nae"
+  ],
+  "513_1_3007505": [
+    "building-apm",
+    "room",
+    "zone_temperature_setpoint",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "604_1_3012632": [
+    "building-apm",
+    "cooling_max_discharge_air_flow_setpoint",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "604_0_3012534": [
+    "building-apm",
+    "vav",
+    "networkadapter-n",
+    "warm_cool_adjust_sensor",
+    "room-hall",
+    "networkadapter-trunk",
+    "room-fle",
+    "networkadapter-nae"
+  ],
+  "513_14_3006942": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "occupied_command",
+    "networkadapter-nae"
+  ],
+  "604_0_3012656": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "warm_cool_adjust_sensor",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "514_1_3007366": [
+    "building-apm",
+    "room",
+    "occupied_heating_temperature_setpoint",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "604_1_3012514": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "occupied_cooling_min_discharge_air_flow_setpoint",
+    "networkadapter-nae"
+  ],
+  "604_1_3012962": [
+    "building-apm",
+    "valve",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "heating_valve_command",
+    "networkadapter-nae"
+  ],
+  "514_0_3007350": [
+    "building-apm",
+    "zone_temperature_sensor",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "zone",
+    "networkadapter-nae"
+  ],
+  "513_1_3005618": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "supply_air_flow_setpoint",
+    "networkadapter-nae"
+  ],
+  "514_0_3006748": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "supply_air_flow_sensor",
+    "networkadapter-nae"
+  ],
+  "604_1_3012623": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "occupied_heating_discharge_air_flow_setpoint",
+    "networkadapter-nae"
+  ],
+  "604_1_3012561": [
+    "building-apm",
+    "room",
+    "zone_temperature_setpoint",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "513_0_3006131": [
+    "building-apm",
+    "room",
+    "effective_heating_temperature_setpoint",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "513_1_3005811": [
+    "building-apm",
+    "occupied_cooling_max_supply_air_flow_setpoint",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "513_1_3005726": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "occupied_cooling_temperature_setpoint",
+    "networkadapter-nae"
+  ],
+  "514_2_3003975": [
+    "low_outside_air_temperature_enable_differential_setpoint",
+    "building-apm",
+    "heat_exchanger",
+    "networkadapter-nae"
+  ],
+  "513_0_3007289": [
+    "building-apm",
+    "room",
+    "effective_cooling_temperature_setpoint",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "513_1_3005141": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "occupied_heating_max_supply_air_flow_setpoint",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "513_1_3005299": [
+    "building-apm",
+    "occupied_cooling_max_supply_air_flow_setpoint",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "604_0_3013050": [
+    "building-apm",
+    "room",
+    "effective_heating_temperature_setpoint",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "604_0_3012747": [
+    "building-apm",
+    "room",
+    "effective_cooling_temperature_setpoint",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "513_0_3007198": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "supply_air_flow_sensor",
+    "networkadapter-nae"
+  ],
+  "604_0_3013364": [
+    "building-apm",
+    "vfd",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "energy_sensor",
+    "networkadapter-nae"
+  ],
+  "513_1_3006026": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "occupied_cooling_min_discharge_air_flow_setpoint",
+    "networkadapter-nae"
+  ],
+  "513_14_3006663": [
+    "building-apm",
+    "vav_box_mode_command",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "604_0_3013206": [
+    "building-apm",
+    "room",
+    "effective_cooling_temperature_setpoint",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "514_0_3009024": [
+    "building-apm",
+    "room",
+    "effective_heating_temperature_setpoint",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "513_1_3006232": [
+    "building-apm",
+    "vav",
+    "networkadapter-n",
+    "room-hall",
+    "networkadapter-trunk",
+    "occupied_cooling_temperature_setpoint",
+    "room-fle",
+    "networkadapter-nae"
+  ],
+  "513_4_3011358": [
+    "building-apm",
+    "chilled_water_bypass_valve_command",
+    "chilled_water_pump",
+    "valve",
+    "building",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-dx",
+    "networkadapter-nae"
+  ],
+  "604_1_3013274": [
+    "building-apm",
+    "vfd",
+    "fan",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "exhaust_fan",
+    "vfd_command",
+    "networkadapter-e",
+    "networkadapter-nae"
+  ],
+  "513_2_3007970": [
+    "unknown",
+    "networkadapter-nae"
+  ],
+  "514_0_3007020": [
+    "building-apm",
+    "room",
+    "effective_heating_temperature_setpoint",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "513_0_3005442": [
+    "building-apm",
+    "vfd",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "last_fault_code_status",
+    "ahu",
+    "networkadapter-nae"
+  ],
+  "513_0_3006498": [
+    "building-apm",
+    "damper",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "damper_position_sensor",
+    "networkadapter-nae"
+  ],
+  "513_1_3006417": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "occupied_cooling_min_discharge_air_flow_setpoint",
+    "networkadapter-nae"
+  ],
+  "513_1_3006838": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "occupied_cooling_min_discharge_air_flow_setpoint",
+    "networkadapter-nae"
+  ],
+  "513_0_3005177": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "warm_cool_adjust_sensor",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "604_1_3012622": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "occupied_cooling_min_discharge_air_flow_setpoint",
+    "networkadapter-nae"
+  ],
+  "604_3_3013393": [
+    "building-apm",
+    "vfd_alarm",
+    "vfd",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "exhaust_fan",
+    "networkadapter-nae"
+  ],
+  "513_1_3007421": [
+    "building-apm",
+    "room",
+    "zone_temperature_setpoint",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "604_0_3013365": [
+    "vfd",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "output_frequency_sensor",
+    "networkadapter-nae"
+  ],
+  "513_0_3007207": [
+    "building-apm",
+    "room",
+    "effective_heating_temperature_setpoint",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "604_0_3013526": [
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "supply_air_flow_sensor",
+    "networkadapter-nae"
+  ],
+  "513_1_3004931": [
+    "building-apm",
+    "occupied_cooling_max_supply_air_flow_setpoint",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "514_1_3007275": [
+    "building-apm",
+    "room",
+    "zone_temperature_setpoint",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "513_1_3007053": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "supply_air_flow_setpoint",
+    "networkadapter-nae"
+  ],
+  "604_1_3012395": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "occupied_cooling_min_discharge_air_flow_setpoint",
+    "networkadapter-nae"
+  ],
+  "513_0_3005477": [
+    "building-apm",
+    "vfd",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "energy_sensor",
+    "ahu",
+    "networkadapter-nae"
+  ],
+  "604_1_3013656": [
+    "valve",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "heating_valve_command",
+    "networkadapter-nae"
+  ],
+  "604_0_3013509": [
+    "room",
+    "effective_heating_temperature_setpoint",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "514_1_3007161": [
+    "building-apm",
+    "zone_temperature_sensor",
+    "room",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "zone",
+    "networkadapter-nae"
+  ],
+  "514_4_3006345": [
+    "pump_start_stop_command",
+    "building-apm",
+    "heat_exchanger",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "ahu",
+    "pump",
+    "networkadapter-nae"
+  ],
+  "604_1_3012873": [
+    "building-apm",
+    "occupied_heating_min_discharge_air_flow_setpoint",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "513_1_3006147": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "supply_air_flow_setpoint",
+    "networkadapter-nae"
+  ],
+  "513_1_3007596": [
+    "cooling_max_discharge_air_flow_setpoint",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "513_1_3006692": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "occupied_heating_discharge_air_flow_setpoint",
+    "networkadapter-nae"
+  ],
+  "513_2_3012972": [
+    "damper",
+    "unknown",
+    "networkadapter-nae"
+  ],
+  "513_1_3006901": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "occupied_cooling_min_discharge_air_flow_setpoint",
+    "networkadapter-nae"
+  ],
+  "604_0_3012583": [
+    "building-apm",
+    "zone_temperature_sensor",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "zone",
+    "networkadapter-nae"
+  ],
+  "514_0_3007476": [
+    "building-apm",
+    "vfd",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "output_frequency_sensor",
+    "exhaust_fan",
+    "networkadapter-nae"
+  ],
+  "513_1_3015240": [
+    "networkadapter-n",
+    "unknown",
+    "networkadapter-trunk",
+    "ahu",
+    "networkadapter-nae"
+  ],
+  "514_0_3006843": [
+    "building-apm",
+    "zone_temperature_sensor",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "514_1_3006698": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "occupied_cooling_min_discharge_air_flow_setpoint",
+    "networkadapter-nae"
+  ],
+  "513_0_3005943": [
+    "building-apm",
+    "zone_temperature_sensor",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "zone",
+    "networkadapter-nae"
+  ],
+  "514_0_3011250": [
+    "building-apm",
+    "supply_air_velocity_pressure_sensor",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "513_1_3004591": [
+    "building-apm",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "supply_air_static_pressure_setpoint",
+    "ahu",
+    "networkadapter-nae"
+  ],
+  "604_1_3012807": [
+    "building-apm",
+    "room",
+    "zone_temperature_setpoint",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "514_1_3006360": [
+    "building-apm",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "supply_air_static_pressure_setpoint",
+    "ahu",
+    "networkadapter-s",
+    "networkadapter-nae"
+  ],
+  "514_1_3006533": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "occupied_cooling_min_discharge_air_flow_setpoint",
+    "networkadapter-nae"
+  ],
+  "514_4_3007257": [
+    "building-apm",
+    "room",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "occupied_command",
+    "networkadapter-nae"
+  ],
+  "604_1_3012976": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "occupied_heating_max_supply_air_flow_setpoint",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "514_1_3006502": [
+    "building-apm",
+    "occupied_cooling_max_supply_air_flow_setpoint",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "513_0_3006736": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "supply_air_flow_sensor",
+    "networkadapter-nae"
+  ],
+  "514_1_3006951": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "zone",
+    "average_zone_temperature_sensor",
+    "networkadapter-nae"
+  ],
+  "604_4_3012536": [
+    "building-apm",
+    "vfd",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "fault_reset_command",
+    "exhaust_fan",
+    "networkadapter-nae"
+  ],
+  "604_3_3013697": [
+    "building-apm",
+    "crac",
+    "fan",
+    "networkadapter-mig",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "fan_overload_alarm",
+    "networkadapter-nae"
+  ],
+  "513_14_3006522": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "occupied_command",
+    "networkadapter-nae"
+  ],
+  "514_1_3011269": [
+    "building-apm",
+    "damper",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "damper_command",
+    "networkadapter-nae"
+  ],
+  "604_0_3013337": [
+    "building-apm",
+    "vfd",
+    "motor_speed_sensor",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "exhaust_fan",
+    "networkadapter-nae"
+  ],
+  "514_0_3006926": [
+    "building-apm",
+    "room",
+    "effective_heating_temperature_setpoint",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "513_1_3007427": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "occupied_heating_discharge_air_flow_setpoint",
+    "networkadapter-nae"
+  ],
+  "513_0_3005343": [
+    "building-apm",
+    "room",
+    "effective_heating_temperature_setpoint",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "604_1_3012677": [
+    "building-apm",
+    "room",
+    "zone_temperature_setpoint",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "604_1_3013202": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "supply_air_flow_setpoint",
+    "networkadapter-nae"
+  ],
+  "513_1_3006350": [
+    "building-apm",
+    "room",
+    "occupied_heating_temperature_setpoint",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "604_0_3013659": [
+    "room",
+    "effective_heating_temperature_setpoint",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "514_5_3004145": [
+    "building-apm",
+    "fan",
+    "exhaust_fan_disable_command",
+    "exhaust_fan",
+    "networkadapter-nae"
+  ],
+  "604_1_3012977": [
+    "building-apm",
+    "valve",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "heating_valve_command",
+    "networkadapter-nae"
+  ],
+  "604_1_3012785": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "supply_air_flow_setpoint",
+    "networkadapter-nae"
+  ],
+  "513_0_3006030": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "supply_air_flow_sensor",
+    "networkadapter-nae"
+  ],
+  "513_1_3004863": [
+    "building-apm",
+    "damper",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "damper_command",
+    "networkadapter-nae"
+  ],
+  "513_1_3004554": [
+    "building-apm",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "economizer",
+    "ahu",
+    "economizer_discharge_air_temperature_proportional_band_setpoint",
+    "networkadapter-nae"
+  ],
+  "514_1_3007393": [
+    "building-apm",
+    "room",
+    "occupied_heating_temperature_setpoint",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "514_1_3007107": [
+    "building-apm",
+    "zone_temperature_sensor",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "zone",
+    "networkadapter-nae"
+  ],
+  "513_1_3006986": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "occupied_heating_discharge_air_flow_setpoint",
+    "networkadapter-nae"
+  ],
+  "513_1_3006274": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "occupied_heating_max_supply_air_flow_setpoint",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "513_1_3005641": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "supply_air_flow_setpoint",
+    "networkadapter-nae"
+  ],
+  "513_1_3006520": [
+    "building-apm",
+    "valve",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "heating_valve_command",
+    "networkadapter-nae"
+  ],
+  "513_1_3007284": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "supply_air_flow_setpoint",
+    "networkadapter-nae"
+  ],
+  "514_1_3007357": [
+    "building-apm",
+    "room",
+    "occupied_heating_temperature_setpoint",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "514_1_3009042": [
+    "building-apm",
+    "cooling_max_discharge_air_flow_setpoint",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "604_4_3012881": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "occupied_command",
+    "networkadapter-nae"
+  ],
+  "604_1_3012574": [
+    "building-apm",
+    "cooling_max_discharge_air_flow_setpoint",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "513_0_3006638": [
+    "building-apm",
+    "room",
+    "effective_cooling_temperature_setpoint",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "513_0_3007506": [
+    "building-apm",
+    "damper",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "damper_position_sensor",
+    "networkadapter-nae"
+  ],
+  "604_3_3013283": [
+    "vfd",
+    "run_direction_status",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "604_0_3013631": [
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "supply_air_flow_sensor",
+    "networkadapter-nae"
+  ],
+  "604_0_3012955": [
+    "building-apm",
+    "zone_temperature_sensor",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "zone",
+    "networkadapter-nae"
+  ],
+  "513_0_3006614": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "warm_cool_adjust_sensor",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "604_4_3013298": [
+    "building-apm",
+    "vfd",
+    "run_direction_command",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "exhaust_fan",
+    "networkadapter-nae"
+  ],
+  "513_4_3005006": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "occupied_command",
+    "networkadapter-nae"
+  ],
+  "604_1_3013647": [
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "supply_air_flow_setpoint",
+    "networkadapter-nae"
+  ],
+  "514_1_3006855": [
+    "building-apm",
+    "occupied_cooling_max_supply_air_flow_setpoint",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "513_2_3015662": [
+    "max_vfd_speed_setpoint",
+    "ahu",
+    "vfd",
+    "networkadapter-nae"
+  ],
+  "513_1_3015243": [
+    "networkadapter-n",
+    "unknown",
+    "networkadapter-trunk",
+    "ahu",
+    "networkadapter-nae"
+  ],
+  "514_1_3006858": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "occupied_heating_max_supply_air_flow_setpoint",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "604_5_3016967": [
+    "crac",
+    "hold_status",
+    "networkadapter-nae"
+  ],
+  "513_0_3006741": [
+    "building-apm",
+    "zone_temperature_sensor",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "zone",
+    "networkadapter-nae"
+  ],
+  "604_1_3012470": [
+    "building-apm",
+    "occupied_heating_min_discharge_air_flow_setpoint",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "514_0_3006475": [
+    "building-apm",
+    "room",
+    "effective_cooling_temperature_setpoint",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "513_1_3005677": [
+    "building-apm",
+    "valve",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "heating_valve_command",
+    "networkadapter-nae"
+  ],
+  "514_0_3007379": [
+    "building-apm",
+    "room",
+    "effective_heating_temperature_setpoint",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "513_1_3005630": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "occupied_heating_max_supply_air_flow_setpoint",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "513_0_3006150": [
+    "building-apm",
+    "zone_temperature_sensor",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "zone",
+    "networkadapter-nae"
+  ],
+  "513_1_3006549": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "supply_air_flow_setpoint",
+    "networkadapter-nae"
+  ],
+  "514_0_3007306": [
+    "building-apm",
+    "damper",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "damper_position_sensor",
+    "networkadapter-nae"
+  ],
+  "513_0_3005180": [
+    "building-apm",
+    "room",
+    "effective_cooling_temperature_setpoint",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "513_1_3005963": [
+    "building-apm",
+    "vav",
+    "networkadapter-n",
+    "room-hall",
+    "networkadapter-trunk",
+    "supply_air_flow_setpoint",
+    "room-fle",
+    "networkadapter-nae"
+  ],
+  "604_0_3012954": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "warm_cool_adjust_sensor",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "513_4_3004891": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "occupied_command",
+    "networkadapter-nae"
+  ],
+  "513_1_3006262": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "supply_air_flow_setpoint",
+    "networkadapter-nae"
+  ],
+  "513_14_3006900": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "occupied_command",
+    "networkadapter-nae"
+  ],
+  "514_1_3007290": [
+    "building-apm",
+    "room",
+    "zone_temperature_setpoint",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "513_0_3006099": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "supply_air_flow_sensor",
+    "networkadapter-nae"
+  ],
+  "604_1_3013147": [
+    "building-apm",
+    "damper",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "damper_command",
+    "networkadapter-nae"
+  ],
+  "604_0_3013306": [
+    "building-apm",
+    "vfd",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "exhaust_fan",
+    "motor_torque_sensor",
+    "networkadapter-nae"
+  ],
+  "604_0_3012523": [
+    "building-apm",
+    "effective_heating_temperature_setpoint",
+    "vav",
+    "networkadapter-n",
+    "room-hall",
+    "networkadapter-trunk",
+    "room-fle",
+    "networkadapter-nae"
+  ],
+  "514_1_3007029": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "occupied_cooling_temperature_setpoint",
+    "networkadapter-nae"
+  ],
+  "513_2_3015663": [
+    "supply_air_temperature_increase_decrease_step_setpoint",
+    "ahu",
+    "networkadapter-nae"
+  ],
+  "514_0_3007088": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "supply_air_flow_sensor",
+    "networkadapter-nae"
+  ],
+  "604_1_3012853": [
+    "building-apm",
+    "damper",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "damper_command",
+    "networkadapter-nae"
+  ],
+  "513_1_3006278": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "occupied_cooling_temperature_setpoint",
+    "networkadapter-nae"
+  ],
+  "604_1_3012720": [
+    "building-apm",
+    "cooling_max_discharge_air_flow_setpoint",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "513_0_3005525": [
+    "building-apm",
+    "damper",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "damper_position_sensor",
+    "networkadapter-nae"
+  ],
+  "514_1_3007026": [
+    "building-apm",
+    "valve",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "heating_valve_command",
+    "networkadapter-nae"
+  ],
+  "514_0_3006709": [
+    "building-apm",
+    "room",
+    "effective_cooling_temperature_setpoint",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "604_0_3013599": [
+    "room",
+    "effective_heating_temperature_setpoint",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "513_0_3004582": [
+    "building-apm",
+    "networkadapter-n",
+    "supply_air_temperature_sensor",
+    "networkadapter-trunk",
+    "ahu",
+    "networkadapter-nae"
+  ],
+  "604_14_3012777": [
+    "building-apm",
+    "vav_box_mode_command",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "513_0_3006845": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "warm_cool_adjust_sensor",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "513_0_3006533": [
+    "building-apm",
+    "room",
+    "effective_cooling_temperature_setpoint",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "604_4_3013308": [
+    "building-apm",
+    "vfd",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "exhaust_fan",
+    "run_enable_command",
+    "networkadapter-nae"
+  ],
+  "514_4_3006959": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "occupied_command",
+    "networkadapter-nae"
+  ],
+  "604_0_3013563": [
+    "zone_temperature_sensor",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "zone",
+    "networkadapter-nae"
+  ],
+  "514_0_3007469": [
+    "building-apm",
+    "vfd",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "current_sensor",
+    "exhaust_fan",
+    "networkadapter-nae"
+  ],
+  "513_1_3005208": [
+    "building-apm",
+    "damper",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "damper_command",
+    "networkadapter-nae"
+  ],
+  "513_1_3007148": [
+    "building-apm",
+    "room",
+    "zone_temperature_setpoint",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "514_0_3006771": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "supply_air_flow_sensor",
+    "networkadapter-nae"
+  ],
+  "513_1_3005152": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "supply_air_flow_setpoint",
+    "networkadapter-nae"
+  ],
+  "604_2_3015000": [
+    "min_supply_air_static_pressure_setpoint",
+    "ahu",
+    "networkadapter-nae"
+  ],
+  "513_1_3007368": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "supply_air_flow_setpoint",
+    "networkadapter-nae"
+  ],
+  "604_1_3012635": [
+    "building-apm",
+    "valve",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "heating_valve_command",
+    "networkadapter-nae"
+  ],
+  "513_0_3007450": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "supply_air_flow_sensor",
+    "networkadapter-nae"
+  ],
+  "514_0_3006340": [
+    "building-apm",
+    "networkadapter-n",
+    "outside_air_temperature_sensor",
+    "networkadapter-trunk",
+    "ahu",
+    "networkadapter-s",
+    "outside",
+    "networkadapter-nae"
+  ],
+  "604_0_3013627": [
+    "damper",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "damper_position_sensor",
+    "networkadapter-nae"
+  ],
+  "514_0_3007458": [
+    "building-apm",
+    "zone_temperature_sensor",
+    "room",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "zone",
+    "networkadapter-nae"
+  ],
+  "514_0_3006874": [
+    "building-apm",
+    "room",
+    "effective_cooling_temperature_setpoint",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "513_1_3005728": [
+    "building-apm",
+    "occupied_heating_min_discharge_air_flow_setpoint",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "514_1_3006510": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "occupied_cooling_min_discharge_air_flow_setpoint",
+    "networkadapter-nae"
+  ],
+  "513_1_3007175": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "occupied_heating_discharge_air_flow_setpoint",
+    "networkadapter-nae"
+  ],
+  "513_0_3006384": [
+    "building-apm",
+    "room",
+    "effective_heating_temperature_setpoint",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "514_0_3006707": [
+    "building-apm",
+    "zone_temperature_sensor",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "zone",
+    "networkadapter-nae"
+  ],
+  "514_0_3006803": [
+    "building-apm",
+    "room",
+    "effective_heating_temperature_setpoint",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "513_1_3005095": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "occupied_heating_max_supply_air_flow_setpoint",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "513_0_3005602": [
+    "building-apm",
+    "room",
+    "effective_cooling_temperature_setpoint",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "513_1_3004839": [
+    "building-apm",
+    "occupied_cooling_max_supply_air_flow_setpoint",
+    "vav",
+    "networkadapter-n",
+    "basement",
+    "room-lobby",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "604_14_3013606": [
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "occupied_command",
+    "networkadapter-nae"
+  ],
+  "604_4_3013353": [
+    "building-apm",
+    "panel_lockout_command",
+    "vfd",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "exhaust_fan",
+    "networkadapter-nae"
+  ],
+  "514_1_3007132": [
+    "building-apm",
+    "valve",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "heating_valve_command",
+    "networkadapter-nae"
+  ],
+  "513_1_3006413": [
+    "building-apm",
+    "valve",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "heating_valve_command",
+    "networkadapter-nae"
+  ],
+  "513_1_3005123": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "occupied_cooling_min_discharge_air_flow_setpoint",
+    "networkadapter-nae"
+  ],
+  "604_1_3012903": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "occupied_cooling_temperature_setpoint",
+    "networkadapter-nae"
+  ],
+  "513_1_3004653": [
+    "building-apm",
+    "damper",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "ahu",
+    "outside_air_damper_min_position_setpoint",
+    "networkadapter-nae"
+  ],
+  "513_1_3007223": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "warm_cool_adjust_sensor",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "513_0_3005270": [
+    "building-apm",
+    "zone_temperature_sensor",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "zone",
+    "networkadapter-nae"
+  ],
+  "604_4_3013302": [
+    "building-apm",
+    "panel_lockout_command",
+    "vfd",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "exhaust_fan",
+    "networkadapter-nae"
+  ],
+  "513_0_3004973": [
+    "building-apm",
+    "effective_cooling_temperature_setpoint",
+    "vav",
+    "networkadapter-n",
+    "room-hall",
+    "networkadapter-trunk",
+    "room-fle",
+    "networkadapter-nae"
+  ],
+  "513_1_3005555": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "supply_air_flow_setpoint",
+    "networkadapter-nae"
+  ],
+  "514_1_3007023": [
+    "building-apm",
+    "damper",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "damper_command",
+    "networkadapter-nae"
+  ],
+  "513_14_3006795": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "occupied_command",
+    "networkadapter-nae"
+  ],
+  "514_14_3007277": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "occupied_command",
+    "networkadapter-nae"
+  ],
+  "604_1_3013619": [
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "occupied_cooling_min_discharge_air_flow_setpoint",
+    "networkadapter-nae"
+  ],
+  "513_1_3005003": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "occupied_heating_max_supply_air_flow_setpoint",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "604_1_3013626": [
+    "valve",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "heating_valve_command",
+    "networkadapter-nae"
+  ],
+  "514_0_3007433": [
+    "building-apm",
+    "room",
+    "effective_heating_temperature_setpoint",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "513_1_3005798": [
+    "building-apm",
+    "room",
+    "occupied_heating_temperature_setpoint",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "514_1_3009048": [
+    "building-apm",
+    "occupied_heating_min_discharge_air_flow_setpoint",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "513_0_3005226": [
+    "building-apm",
+    "room",
+    "effective_cooling_temperature_setpoint",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "514_1_3006905": [
+    "building-apm",
+    "occupied_cooling_max_supply_air_flow_setpoint",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "513_0_3006997": [
+    "building-apm",
+    "room",
+    "effective_heating_temperature_setpoint",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "513_1_3007490": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "occupied_heating_discharge_air_flow_setpoint",
+    "networkadapter-nae"
+  ],
+  "513_1_3005060": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "supply_air_flow_setpoint",
+    "networkadapter-nae"
+  ],
+  "513_1_3005751": [
+    "building-apm",
+    "occupied_heating_min_discharge_air_flow_setpoint",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "513_14_3007062": [
+    "building-apm",
+    "vav_box_mode_command",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "513_1_3005026": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "occupied_heating_max_supply_air_flow_setpoint",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "604_1_3013009": [
+    "building-apm",
+    "valve",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "heating_valve_command",
+    "networkadapter-nae"
+  ],
+  "604_1_3013310": [
+    "building-apm",
+    "vfd",
+    "networkadapter-n",
+    "current_limit_setpoint",
+    "networkadapter-trunk",
+    "exhaust_fan",
+    "networkadapter-nae"
+  ],
+  "513_1_3004702": [
+    "building-apm",
+    "damper",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "damper_command",
+    "networkadapter-nae"
+  ],
+  "513_1_3007486": [
+    "building-apm",
+    "valve",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "heating_valve_command",
+    "networkadapter-nae"
+  ],
+  "604_0_3013610": [
+    "supply_air_velocity_pressure_sensor",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "604_1_3012989": [
+    "building-apm",
+    "occupied_cooling_max_supply_air_flow_setpoint",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "514_0_3006521": [
+    "building-apm",
+    "room",
+    "effective_cooling_temperature_setpoint",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "513_0_3005922": [
+    "building-apm",
+    "room",
+    "effective_cooling_temperature_setpoint",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "513_0_3006652": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "supply_air_flow_sensor",
+    "networkadapter-nae"
+  ],
+  "513_0_3005219": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "supply_air_flow_sensor",
+    "networkadapter-nae"
+  ],
+  "604_1_3012639": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "supply_air_flow_setpoint",
+    "networkadapter-nae"
+  ],
+  "514_0_3007152": [
+    "building-apm",
+    "zone_temperature_sensor",
+    "room",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "zone",
+    "networkadapter-nae"
+  ],
+  "513_1_3005353": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "occupied_cooling_min_discharge_air_flow_setpoint",
+    "networkadapter-nae"
+  ],
+  "513_3_3005405": [
+    "building-apm",
+    "vfd_alarm",
+    "vfd",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "ahu",
+    "networkadapter-nae"
+  ],
+  "514_1_3006450": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "occupied_heating_max_supply_air_flow_setpoint",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "514_3_3007017": [
+    "building-apm",
+    "vfd",
+    "vfd_start_stop_status",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "exhaust_fan",
+    "networkadapter-nae"
+  ],
+  "514_1_3006864": [
+    "building-apm",
+    "occupied_heating_min_discharge_air_flow_setpoint",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "604_0_3013595": [
+    "supply_air_velocity_pressure_sensor",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "513_1_3011819": [
+    "building-apm",
+    "vfd",
+    "crac",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "pump",
+    "vfd_command",
+    "networkadapter-nae"
+  ],
+  "604_0_3013097": [
+    "building-apm",
+    "room",
+    "effective_heating_temperature_setpoint",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "513_4_3006277": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "occupied_command",
+    "networkadapter-nae"
+  ],
+  "604_0_3013492": [
+    "damper",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "damper_position_sensor",
+    "networkadapter-nae"
+  ],
+  "514_1_3007444": [
+    "building-apm",
+    "valve",
+    "room",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "heating_valve_command",
+    "networkadapter-nae"
+  ],
+  "513_1_3007357": [
+    "building-apm",
+    "cooling_max_discharge_air_flow_setpoint",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "513_14_3006432": [
+    "building-apm",
+    "vav_box_mode_command",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "604_0_3012601": [
+    "building-apm",
+    "room",
+    "effective_cooling_temperature_setpoint",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "513_1_3006917": [
+    "building-apm",
+    "room",
+    "zone_temperature_setpoint",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "513_4_3004753": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "occupied_command",
+    "networkadapter-nae"
+  ],
+  "604_1_3012397": [
+    "building-apm",
+    "room",
+    "occupied_heating_temperature_setpoint",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "514_0_3007534": [
+    "building-apm",
+    "fan",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "exhaust_fan",
+    "exhaust_air_velocity_pressure_sensor",
+    "networkadapter-nae"
+  ],
+  "513_0_3006039": [
+    "building-apm",
+    "room",
+    "effective_heating_temperature_setpoint",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "513_0_3005738": [
+    "building-apm",
+    "room",
+    "effective_cooling_temperature_setpoint",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "514_1_3007404": [
+    "building-apm",
+    "zone_temperature_sensor",
+    "room",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "zone",
+    "networkadapter-nae"
+  ],
+  "604_0_3012752": [
+    "building-apm",
+    "damper",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "damper_position_sensor",
+    "networkadapter-nae"
+  ],
+  "513_0_3005758": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "warm_cool_adjust_sensor",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "513_0_3005539": [
+    "building-apm",
+    "room",
+    "effective_cooling_temperature_setpoint",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "513_1_3005710": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "supply_air_flow_setpoint",
+    "networkadapter-nae"
+  ],
+  "513_0_3011341": [
+    "building-apm",
+    "chilled_water_pump",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "chilled_water_differential_pressure_sensor",
+    "networkadapter-dx",
+    "networkadapter-nae"
+  ],
+  "514_4_3007519": [
+    "building-apm",
+    "fan",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "exhaust_fan",
+    "exhaust_fan_enable_command",
+    "networkadapter-nae"
+  ],
+  "514_4_3007555": [
+    "building-apm",
+    "vfd",
+    "networkadapter-n",
+    "supply_fan",
+    "vfd_start_stop_command",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "513_0_3007732": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "co2_sensor",
+    "networkadapter-nae"
+  ],
+  "514_4_3006414": [
+    "building-apm",
+    "exhaust_fan_start_stop_command",
+    "fan",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "exhaust_fan",
+    "networkadapter-e",
+    "networkadapter-nae"
+  ],
+  "604_1_3012826": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "occupied_cooling_min_discharge_air_flow_setpoint",
+    "networkadapter-nae"
+  ],
+  "514_1_3009022": [
+    "building-apm",
+    "valve",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "heating_valve_command",
+    "networkadapter-nae"
+  ],
+  "513_0_3006824": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "warm_cool_adjust_sensor",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "604_1_3012434": [
+    "building-apm",
+    "occupied_cooling_max_supply_air_flow_setpoint",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "513_1_3006604": [
+    "building-apm",
+    "valve",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "heating_valve_command",
+    "networkadapter-nae"
+  ],
+  "513_0_3005205": [
+    "building-apm",
+    "room",
+    "effective_heating_temperature_setpoint",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "604_0_3013074": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "supply_air_flow_sensor",
+    "networkadapter-nae"
+  ],
+  "604_4_3013110": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "occupied_command",
+    "networkadapter-nae"
+  ],
+  "514_1_3006957": [
+    "building-apm",
+    "valve",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "heating_valve_command",
+    "networkadapter-nae"
+  ],
+  "514_1_3006644": [
+    "building-apm",
+    "occupied_cooling_max_supply_air_flow_setpoint",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "513_3_3004502": [
+    "building-apm",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "condensate_leak_alarm",
+    "ahu",
+    "networkadapter-nae"
+  ],
+  "604_0_3013108": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "warm_cool_adjust_sensor",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "604_4_3012971": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "occupied_command",
+    "networkadapter-nae"
+  ],
+  "514_0_3007094": [
+    "building-apm",
+    "room",
+    "effective_cooling_temperature_setpoint",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "514_3_3006399": [
+    "building-apm",
+    "fan",
+    "exhaust_fan_status",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "exhaust_fan",
+    "networkadapter-e",
+    "networkadapter-nae"
+  ],
+  "513_1_3007006": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "occupied_cooling_min_discharge_air_flow_setpoint",
+    "networkadapter-nae"
+  ],
+  "514_1_3006880": [
+    "building-apm",
+    "occupied_cooling_max_supply_air_flow_setpoint",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "513_0_3004860": [
+    "building-apm",
+    "room",
+    "effective_heating_temperature_setpoint",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "513_1_3005164": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "occupied_heating_max_supply_air_flow_setpoint",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "604_0_3013519": [
+    "room",
+    "vav",
+    "networkadapter-n",
+    "warm_cool_adjust_sensor",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "514_4_3007543": [
+    "building-apm",
+    "vfd",
+    "networkadapter-n",
+    "supply_fan",
+    "networkadapter-trunk",
+    "emergency_power_off_switch_command",
+    "networkadapter-nae"
+  ],
+  "514_0_3006354": [
+    "building-apm",
+    "supply_air_static_pressure_sensor",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "ahu",
+    "networkadapter-s",
+    "networkadapter-nae"
+  ],
+  "513_1_3005982": [
+    "building-apm",
+    "room",
+    "occupied_heating_temperature_setpoint",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "604_0_3013669": [
+    "room",
+    "vav",
+    "networkadapter-n",
+    "warm_cool_adjust_sensor",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "513_1_3011345": [
+    "chilled_water_differential_pressure_setpoint",
+    "building-apm",
+    "chilled_water_pump",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-dx",
+    "networkadapter-nae"
+  ],
+  "513_4_3006254": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "occupied_command",
+    "networkadapter-nae"
+  ],
+  "513_1_3006817": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "occupied_cooling_min_discharge_air_flow_setpoint",
+    "networkadapter-nae"
+  ],
+  "513_0_3006619": [
+    "building-apm",
+    "room",
+    "effective_heating_temperature_setpoint",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "604_1_3012951": [
+    "building-apm",
+    "room",
+    "occupied_heating_temperature_setpoint",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "604_1_3012890": [
+    "building-apm",
+    "occupied_heating_min_discharge_air_flow_setpoint",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "513_0_3007184": [
+    "building-apm",
+    "room",
+    "effective_cooling_temperature_setpoint",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "604_14_3012614": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "occupied_command",
+    "networkadapter-nae"
+  ],
+  "513_1_3007350": [
+    "building-apm",
+    "zone_temperature_sensor",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "zone",
+    "networkadapter-nae"
+  ],
+  "514_1_3007411": [
+    "building-apm",
+    "room",
+    "occupied_heating_temperature_setpoint",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "513_1_3006833": [
+    "building-apm",
+    "room",
+    "zone_temperature_setpoint",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "513_0_3005869": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "supply_air_flow_sensor",
+    "networkadapter-nae"
+  ],
+  "513_1_3006649": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "occupied_cooling_min_discharge_air_flow_setpoint",
+    "networkadapter-nae"
+  ],
+  "513_1_3006042": [
+    "building-apm",
+    "damper",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "damper_command",
+    "networkadapter-nae"
+  ],
+  "604_1_3013483": [
+    "cooling_max_discharge_air_flow_setpoint",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "604_1_3012796": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "occupied_cooling_min_discharge_air_flow_setpoint",
+    "networkadapter-nae"
+  ],
+  "514_14_3007273": [
+    "building-apm",
+    "vav_box_mode_command",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "604_0_3013189": [
+    "building-apm",
+    "zone_temperature_sensor",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "zone",
+    "networkadapter-nae"
+  ],
+  "513_14_3006873": [
+    "building-apm",
+    "vav_box_mode_command",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "513_0_3007478": [
+    "building-apm",
+    "room",
+    "effective_cooling_temperature_setpoint",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "514_0_3007179": [
+    "building-apm",
+    "zone_temperature_sensor",
+    "room",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "zone",
+    "networkadapter-nae"
+  ],
+  "604_0_3013343": [
+    "building-apm",
+    "vfd",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "current_sensor",
+    "exhaust_fan",
+    "networkadapter-nae"
+  ],
+  "513_1_3005587": [
+    "building-apm",
+    "room",
+    "zone_temperature_setpoint",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "513_1_3004840": [
+    "building-apm",
+    "damper",
+    "vav",
+    "networkadapter-n",
+    "basement",
+    "room-lobby",
+    "networkadapter-trunk",
+    "damper_command",
+    "networkadapter-nae"
+  ],
+  "513_1_3005529": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "occupied_cooling_min_discharge_air_flow_setpoint",
+    "networkadapter-nae"
+  ],
+  "604_1_3013012": [
+    "building-apm",
+    "occupied_heating_min_discharge_air_flow_setpoint",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "514_1_3006759": [
+    "building-apm",
+    "occupied_cooling_max_supply_air_flow_setpoint",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "514_4_3007203": [
+    "building-apm",
+    "room",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "occupied_command",
+    "networkadapter-nae"
+  ],
+  "513_1_3005326": [
+    "building-apm",
+    "valve",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "heating_valve_command",
+    "networkadapter-nae"
+  ],
+  "604_1_3013136": [
+    "building-apm",
+    "occupied_heating_min_discharge_air_flow_setpoint",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "513_0_3005200": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "warm_cool_adjust_sensor",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "604_0_3013629": [
+    "room",
+    "effective_heating_temperature_setpoint",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "513_14_3011788": [
+    "vav_box_mode_command",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "513_0_3005919": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "warm_cool_adjust_sensor",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "514_0_3006542": [
+    "building-apm",
+    "zone_temperature_sensor",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "zone",
+    "networkadapter-nae"
+  ],
+  "514_3_3006423": [
+    "building-apm",
+    "fan",
+    "exhaust_fan_status",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "exhaust_fan",
+    "networkadapter-e",
+    "networkadapter-nae"
+  ],
+  "604_0_3012846": [
+    "building-apm",
+    "zone_temperature_sensor",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "zone",
+    "networkadapter-nae"
+  ],
+  "514_3_3007015": [
+    "building-apm",
+    "vfd_alarm",
+    "vfd",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "exhaust_fan",
+    "networkadapter-nae"
+  ],
+  "513_0_3007144": [
+    "building-apm",
+    "room",
+    "effective_heating_temperature_setpoint",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "513_4_3004914": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "occupied_command",
+    "networkadapter-nae"
+  ],
+  "513_0_3006729": [
+    "building-apm",
+    "damper",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "damper_position_sensor",
+    "networkadapter-nae"
+  ],
+  "604_1_3013133": [
+    "building-apm",
+    "valve",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "heating_valve_command",
+    "networkadapter-nae"
+  ],
+  "513_1_3011828": [
+    "building-apm",
+    "crac",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "differential_pressure_setpoint",
+    "pump",
+    "networkadapter-nae"
+  ],
+  "604_4_3012896": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "occupied_command",
+    "networkadapter-nae"
+  ],
+  "604_1_3013165": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "occupied_cooling_temperature_setpoint",
+    "networkadapter-nae"
+  ],
+  "604_1_3012740": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "occupied_cooling_min_discharge_air_flow_setpoint",
+    "networkadapter-nae"
+  ],
+  "513_0_3006244": [
+    "building-apm",
+    "room",
+    "effective_cooling_temperature_setpoint",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "513_1_3004876": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "supply_air_flow_setpoint",
+    "networkadapter-nae"
+  ],
+  "604_14_3013637": [
+    "vav_box_mode_command",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "513_14_3007041": [
+    "building-apm",
+    "vav_box_mode_command",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "513_0_3004722": [
+    "building-apm",
+    "room",
+    "effective_heating_temperature_setpoint",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "513_0_3007177": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "supply_air_flow_sensor",
+    "networkadapter-nae"
+  ],
+  "514_1_3006681": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "supply_air_flow_setpoint",
+    "networkadapter-nae"
+  ],
+  "604_1_3012975": [
+    "building-apm",
+    "damper",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "damper_command",
+    "networkadapter-nae"
+  ],
+  "604_0_3012958": [
+    "building-apm",
+    "room",
+    "effective_heating_temperature_setpoint",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "513_14_3007377": [
+    "building-apm",
+    "vav_box_mode_command",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "513_1_3005106": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "supply_air_flow_setpoint",
+    "networkadapter-nae"
+  ],
+  "604_4_3013413": [
+    "building-apm",
+    "vfd",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "exhaust_fan",
+    "run_enable_command",
+    "networkadapter-nae"
+  ],
+  "604_14_3013532": [
+    "vav_box_mode_command",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "513_0_3007333": [
+    "building-apm",
+    "room",
+    "effective_heating_temperature_setpoint",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "513_1_3005254": [
+    "building-apm",
+    "damper",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "damper_command",
+    "networkadapter-nae"
+  ],
+  "513_0_3006929": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "warm_cool_adjust_sensor",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "513_3_3004575": [
+    "building-apm",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "filter",
+    "ahu",
+    "filter_status",
+    "networkadapter-nae"
+  ],
+  "513_1_3004642": [
+    "building-apm",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "ahu",
+    "exhaust_air_static_pressure_integral_time_setpoint",
+    "exhaust_fan",
+    "networkadapter-nae"
+  ],
+  "514_4_3006836": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "occupied_command",
+    "networkadapter-nae"
+  ],
+  "604_1_3013057": [
+    "building-apm",
+    "occupied_heating_min_discharge_air_flow_setpoint",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "513_0_3005876": [
+    "building-apm",
+    "room",
+    "effective_cooling_temperature_setpoint",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "513_0_3006806": [
+    "building-apm",
+    "room",
+    "effective_cooling_temperature_setpoint",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "513_0_3005827": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "warm_cool_adjust_sensor",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "513_0_3005671": [
+    "building-apm",
+    "room",
+    "effective_heating_temperature_setpoint",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "604_1_3012680": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "occupied_cooling_min_discharge_air_flow_setpoint",
+    "networkadapter-nae"
+  ],
+  "513_1_3006880": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "occupied_cooling_min_discharge_air_flow_setpoint",
+    "networkadapter-nae"
+  ],
+  "513_1_3007295": [
+    "building-apm",
+    "room",
+    "zone_temperature_setpoint",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "513_4_3005978": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "occupied_command",
+    "networkadapter-nae"
+  ],
+  "514_4_3007010": [
+    "building-apm",
+    "panel_lockout_command",
+    "vfd",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "exhaust_fan",
+    "networkadapter-nae"
+  ],
+  "514_1_3006630": [
+    "building-apm",
+    "occupied_heating_min_discharge_air_flow_setpoint",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "513_0_3005781": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "warm_cool_adjust_sensor",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "514_2_3010475": [
+    "static_pressure_max_setpoint",
+    "networkadapter-nae"
+  ],
+  "513_1_3006142": [
+    "building-apm",
+    "occupied_heating_min_discharge_air_flow_setpoint",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "513_2_3007966": [
+    "unknown",
+    "networkadapter-nae"
+  ],
+  "513_1_3004515": [
+    "building-apm",
+    "damper",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "ahu",
+    "outside_air_damper_min_position_setpoint",
+    "networkadapter-nae"
+  ],
+  "513_0_3006352": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "supply_air_flow_sensor",
+    "networkadapter-nae"
+  ],
+  "604_14_3012805": [
+    "building-apm",
+    "vav_box_mode_command",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "514_4_3007248": [
+    "building-apm",
+    "room",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "occupied_command",
+    "networkadapter-nae"
+  ],
+  "513_1_3007321": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "occupied_cooling_min_discharge_air_flow_setpoint",
+    "networkadapter-nae"
+  ],
+  "604_1_3012886": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "occupied_heating_max_supply_air_flow_setpoint",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "514_0_3007448": [
+    "building-apm",
+    "room",
+    "networkadapter-n",
+    "warm_cool_adjust_sensor",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "604_4_3012506": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "occupied_command",
+    "networkadapter-nae"
+  ],
+  "604_1_3013161": [
+    "building-apm",
+    "occupied_cooling_max_supply_air_flow_setpoint",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "513_1_3004570": [
+    "building-apm",
+    "damper",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "ahu",
+    "outside_air_damper_min_position_setpoint",
+    "networkadapter-nae"
+  ],
+  "514_1_3007030": [
+    "building-apm",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "occupied_cooling_min_discharge_air_flow_setpoint",
+    "networkadapter-nae"
+  ],
+  "513_1_3004843": [
+    "building-apm",
+    "valve",
+    "vav",
+    "networkadapter-n",
+    "basement",
+    "room-lobby",
+    "networkadapter-trunk",
+    "heating_valve_command",
+    "networkadapter-nae"
+  ],
+  "513_1_3005697": [
+    "building-apm",
+    "damper",
+    "room",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "damper_command",
+    "networkadapter-nae"
+  ],
+  "604_5_3016756": [
+    "crac",
+    "unit_failed_alarm",
+    "networkadapter-nae"
+  ],
+  "513_1_3004558": [
+    "building-apm",
+    "valve",
+    "networkadapter-n",
+    "cooling_valve_command",
+    "networkadapter-trunk",
+    "ahu",
+    "networkadapter-nae"
+  ],
+  "514_0_3006665": [
+    "building-apm",
+    "room",
+    "effective_heating_temperature_setpoint",
+    "vav",
+    "networkadapter-n",
+    "networkadapter-trunk",
+    "networkadapter-nae"
+  ],
+  "604_0_3012860": [
+    "room",
+    "building-apm",
+    "vav",
+    "supply_air_flow_sensor"
+  ],
+  "604_0_3013076": [
+    "room",
+    "building-apm",
+    "vav",
+    "warm_cool_adjust_sensor"
+  ],
+  "514_1_3007308": [
+    "room",
+    "building-apm",
+    "vav",
+    "occupied_cooling_min_discharge_air_flow_setpoint"
+  ],
+  "513_1_3005958": [
+    "building-apm",
+    "occupied_heating_min_discharge_air_flow_setpoint",
+    "vav",
+    "room-hall",
+    "room-fle"
+  ],
+  "513_1_3005101": [
+    "room",
+    "building-apm",
+    "vav",
+    "occupied_heating_min_discharge_air_flow_setpoint"
+  ],
+  "604_0_3013078": [
+    "room",
+    "building-apm",
+    "vav",
+    "co2_sensor"
+  ],
+  "604_0_3013624": [
+    "room",
+    "vav",
+    "warm_cool_adjust_sensor"
+  ],
+  "514_1_3007009": [
+    "building-apm",
+    "max_frequency_command",
+    "vfd",
+    "exhaust_fan"
+  ]
+}

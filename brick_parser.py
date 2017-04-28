@@ -63,7 +63,7 @@ else:
     subclassesQuery = lambda subclassName: ("""
             PREFIX rdf:<http://www.w3.org/1999/02/22-rdf-syntax-ns#>
             PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
-            PREFIX brick: <http://buildsys.org/ontologies/Brick#>
+            PREFIX brick: <https://brickschema.org/schema/1.0.1/Brick#>
             SELECT ?anything
             WHERE{
                 ?anything rdfs:subClassOf* %s.
@@ -75,15 +75,16 @@ else:
 
     # In[46]:
 
-    BRICK      = Namespace('http://buildsys.org/ontologies/Brick#')
-    BRICKFRAME = Namespace('http://buildsys.org/ontologies/BrickFrame#')
-    BRICKTAG   = Namespace('http://buildsys.org/ontologies/BrickTag#')
+    BRICK      = Namespace('https://brickschema.org/schema/1.0.1/Brick#')
+    BRICKFRAME = Namespace('https://brickschema.org/schema/1.0.1/BrickFrame#')
+    BRICKTAG   = Namespace('https://brickschema.org/schema/1.0.1/BrickTag#')
 
-    BUILDING = Namespace('http://buildsys.org/ontologies/building_example#')
+    BUILDING = Namespace('https://brickschema.org/schema/1.0.1/building_example#')
 
     g = Graph()
     print("Init Graph")
-    g.parse('../GroundTruth/Brick/Brick.ttl', format='turtle')
+    g.parse('/home/jbkoh/repo/Brick_jbkoh/dist/Brick.ttl', format='turtle')
+    #g.parse('../GroundTruth/Brick/Brick.ttl', format='turtle')
     print("Load Brick.ttl")
     g.parse('../GroundTruth/Brick/BrickFrame.ttl', format='turtle')
     #g.parse('Brick/BrickTag.ttl', format='turtle')
@@ -227,8 +228,8 @@ else:
             query = """
             PREFIX rdf:<http://www.w3.org/1999/02/22-rdf-syntax-ns#>
             PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
-            PREFIX brick: <http://buildsys.org/ontologies/Brick#>
-                    PREFIX bf: <http://buildsys.org/ontologies/BrickFrame#>
+            PREFIX brick: <https://brickschema.org/schema/1.0.1/Brick#>
+                    PREFIX bf: <https://brickschema.org/schema/1.0.1/BrickFrame#>
             SELECT ?point
             WHERE{
                             BIND (%s AS ?start)

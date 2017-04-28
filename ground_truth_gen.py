@@ -6,7 +6,7 @@ import pandas as pd
 from brick_parser import equipTagsetList as equip_tagsets, \
                         locationTagsetList as location_tagsets
 
-building = 'ebu3b'
+building = 'ap_m'
 
 sensor_df = pd.read_csv('metadata/{0}_sensor_types_location.csv'\
                         .format(building)).set_index('Unique Identifier')
@@ -18,7 +18,7 @@ with open('metadata/{0}_sentence_dict_justseparate.json'\
             .format(building), 'r') as fp:
     sentence_dict = json.load(fp)
 
-nonpoint_tagsets = equip_tagsets + location_tagsets + ['network_adapter']
+nonpoint_tagsets = equip_tagsets + location_tagsets + ['networkadapter']
 
 def find_nonpoint_tagsets(tagset):
     if tagset.split('-')[0] in nonpoint_tagsets:
@@ -37,10 +37,10 @@ for srcid, label_list in label_dict.items():
                          if label not in ['none', 'unknown']]
     right_identifier_buffer = ''
     for (token, label) in sentence_meanings:
-        if label=='left_identifier':
+        if label=='leftidentifier':
 #            phrase_list[-1] += ('-' + token)
             continue
-        elif label=='right_identifier':
+        elif label=='rightidentifier':
 #            right_identifier_buffer += token
             continue
 
