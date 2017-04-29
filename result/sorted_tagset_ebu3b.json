@@ -31,11 +31,10 @@
       "networkadapter-n",
       "networkadapter-nae",
       "room",
-      "temperature_setpoint",
       "vav"
     ],
     "certainty": 0,
-    "correct?": true
+    "correct?": false
   },
   "506_1_3000093": {
     "tagsets": [
@@ -70,12 +69,12 @@
       "networkadapter-nae",
       "networkadapter-t",
       "networkadapter-vnd",
-      "output_frequency_sensor",
       "return_fan",
+      "unknown",
       "vfd"
     ],
     "certainty": 0,
-    "correct?": true
+    "correct?": false
   },
   "506_1_3000098": {
     "tagsets": [
@@ -95,11 +94,10 @@
       "networkadapter-n",
       "networkadapter-nae",
       "room",
-      "temperature_setpoint",
       "vav"
     ],
     "certainty": 0,
-    "correct?": true
+    "correct?": false
   },
   "506_0_3002450": {
     "tagsets": [
@@ -143,12 +141,10 @@
       "networkadapter-n",
       "networkadapter-nae",
       "room",
-      "vav",
-      "zone",
-      "zone_temperature_sensor"
+      "vav"
     ],
     "certainty": 0,
-    "correct?": true
+    "correct?": false
   },
   "506_1_3003325": {
     "tagsets": [
@@ -296,17 +292,27 @@
     "certainty": 0,
     "correct?": true
   },
+  "505_3_3015308": {
+    "tagsets": [
+      "building-ebu3b",
+      "crac",
+      "networkadapter-n",
+      "networkadapter-nae",
+      "networkadapter-vnd"
+    ],
+    "certainty": 0,
+    "correct?": false
+  },
   "506_1_3000392": {
     "tagsets": [
       "building-ebu3b",
       "networkadapter-n",
       "networkadapter-nae",
       "room",
-      "temperature_setpoint",
       "vav"
     ],
     "certainty": 0,
-    "correct?": true
+    "correct?": false
   },
   "505_3_3000542": {
     "tagsets": [
@@ -315,12 +321,23 @@
       "networkadapter-nae",
       "networkadapter-t",
       "networkadapter-vnd",
-      "run_direction_status",
       "supply_fan",
+      "unknown",
       "vfd"
     ],
     "certainty": 0,
-    "correct?": true
+    "correct?": false
+  },
+  "505_2_3025844": {
+    "tagsets": [
+      "building-ebu3b",
+      "floor",
+      "networkadapter-nae",
+      "room",
+      "unknown"
+    ],
+    "certainty": 0,
+    "correct?": false
   },
   "506_1_3015780": {
     "tagsets": [
@@ -383,18 +400,6 @@
     "certainty": 0,
     "correct?": true
   },
-  "506_0_3002312": {
-    "tagsets": [
-      "building-ebu3b",
-      "effective_heating_temperature_setpoint",
-      "networkadapter-n",
-      "networkadapter-nae",
-      "room",
-      "vav"
-    ],
-    "certainty": 0,
-    "correct?": true
-  },
   "506_1_3003305": {
     "tagsets": [
       "building-ebu3b",
@@ -403,6 +408,20 @@
       "room",
       "supply_air_flow_setpoint",
       "vav"
+    ],
+    "certainty": 0,
+    "correct?": true
+  },
+  "505_1_3000492": {
+    "tagsets": [
+      "building-ebu3b",
+      "networkadapter-n",
+      "networkadapter-nae",
+      "networkadapter-t",
+      "networkadapter-vnd",
+      "supply_fan",
+      "unknown",
+      "vfd"
     ],
     "certainty": 0,
     "correct?": true
@@ -443,17 +462,26 @@
     "certainty": 0,
     "correct?": true
   },
+  "505_0_3000856": {
+    "tagsets": [
+      "building-ebu3b",
+      "networkadapter-n",
+      "networkadapter-nae",
+      "networkadapter-vnd"
+    ],
+    "certainty": 0,
+    "correct?": false
+  },
   "505_1_3001209": {
     "tagsets": [
       "building-ebu3b",
       "networkadapter-n",
       "networkadapter-nae",
       "room",
-      "temperature_setpoint",
       "vav"
     ],
     "certainty": 0,
-    "correct?": true
+    "correct?": false
   },
   "506_1_3000439": {
     "tagsets": [
@@ -528,6 +556,19 @@
     ],
     "certainty": 0,
     "correct?": true
+  },
+  "505_4_3000349": {
+    "tagsets": [
+      "building-ebu3b",
+      "networkadapter-n",
+      "networkadapter-nae",
+      "networkadapter-t",
+      "networkadapter-vnd",
+      "unknown",
+      "vfd"
+    ],
+    "certainty": 0,
+    "correct?": false
   },
   "506_0_3002049": {
     "tagsets": [
@@ -651,6 +692,18 @@
     "certainty": 0,
     "correct?": true
   },
+  "505_14_3001622": {
+    "tagsets": [
+      "building-ebu3b",
+      "networkadapter-n",
+      "networkadapter-nae",
+      "occupied_command",
+      "room",
+      "vav"
+    ],
+    "certainty": 0,
+    "correct?": true
+  },
   "506_0_3000149": {
     "tagsets": [
       "building-ebu3b",
@@ -682,11 +735,10 @@
       "networkadapter-n",
       "networkadapter-nae",
       "room",
-      "temperature_setpoint",
       "vav"
     ],
     "certainty": 0,
-    "correct?": true
+    "correct?": false
   },
   "505_0_3001950": {
     "tagsets": [
@@ -694,12 +746,10 @@
       "networkadapter-n",
       "networkadapter-nae",
       "room",
-      "vav",
-      "zone",
-      "zone_temperature_sensor"
+      "vav"
     ],
     "certainty": 0,
-    "correct?": true
+    "correct?": false
   },
   "506_0_3000949": {
     "tagsets": [
@@ -886,6 +936,19 @@
     "certainty": 0,
     "correct?": true
   },
+  "505_4_3000182": {
+    "tagsets": [
+      "building-ebu3b",
+      "fan",
+      "fan_command",
+      "networkadapter-n",
+      "networkadapter-nae",
+      "room",
+      "vav"
+    ],
+    "certainty": 0,
+    "correct?": false
+  },
   "506_1_3000417": {
     "tagsets": [
       "building-ebu3b",
@@ -952,11 +1015,10 @@
       "networkadapter-n",
       "networkadapter-nae",
       "room",
-      "temperature_setpoint",
       "vav"
     ],
     "certainty": 0,
-    "correct?": true
+    "correct?": false
   },
   "505_1_3000994": {
     "tagsets": [
@@ -991,11 +1053,11 @@
       "networkadapter-t",
       "networkadapter-vnd",
       "return_fan",
-      "run_direction_status",
+      "unknown",
       "vfd"
     ],
     "certainty": 0,
-    "correct?": true
+    "correct?": false
   },
   "506_0_3002224": {
     "tagsets": [
@@ -1003,12 +1065,10 @@
       "networkadapter-n",
       "networkadapter-nae",
       "room",
-      "vav",
-      "zone",
-      "zone_temperature_sensor"
+      "vav"
     ],
     "certainty": 0,
-    "correct?": true
+    "correct?": false
   },
   "506_0_3000768": {
     "tagsets": [
@@ -1035,17 +1095,50 @@
     "certainty": 0,
     "correct?": true
   },
+  "505_3_3015296": {
+    "tagsets": [
+      "building-ebu3b",
+      "crac",
+      "networkadapter-n",
+      "networkadapter-nae",
+      "networkadapter-vnd"
+    ],
+    "certainty": 0,
+    "correct?": false
+  },
+  "505_3_3014467": {
+    "tagsets": [
+      "building-ebu3b",
+      "co2_high_alarm",
+      "networkadapter-n",
+      "networkadapter-nae",
+      "room",
+      "vav"
+    ],
+    "certainty": 0,
+    "correct?": true
+  },
   "506_1_3000372": {
     "tagsets": [
       "building-ebu3b",
       "networkadapter-n",
       "networkadapter-nae",
       "room",
-      "temperature_setpoint",
       "vav"
     ],
     "certainty": 0,
-    "correct?": true
+    "correct?": false
+  },
+  "505_0_3015259": {
+    "tagsets": [
+      "building-ebu3b",
+      "crac",
+      "networkadapter-n",
+      "networkadapter-nae",
+      "networkadapter-vnd"
+    ],
+    "certainty": 0,
+    "correct?": false
   },
   "505_1_3026013": {
     "tagsets": [
@@ -1120,6 +1213,16 @@
     "certainty": 0,
     "correct?": true
   },
+  "505_1_3000801": {
+    "tagsets": [
+      "building-ebu3b",
+      "networkadapter-n",
+      "networkadapter-nae",
+      "networkadapter-vnd"
+    ],
+    "certainty": 0,
+    "correct?": false
+  },
   "506_1_3000722": {
     "tagsets": [
       "building-ebu3b",
@@ -1163,12 +1266,10 @@
       "networkadapter-n",
       "networkadapter-nae",
       "room",
-      "vav",
-      "zone",
-      "zone_temperature_sensor"
+      "vav"
     ],
     "certainty": 0,
-    "correct?": true
+    "correct?": false
   },
   "505_0_3001430": {
     "tagsets": [
@@ -1182,19 +1283,33 @@
     "certainty": 0,
     "correct?": true
   },
-  "505_0_3000714": {
+  "505_4_3000629": {
     "tagsets": [
       "building-ebu3b",
-      "motor_torque_sensor",
       "networkadapter-n",
       "networkadapter-nae",
       "networkadapter-t",
       "networkadapter-vnd",
       "return_fan",
+      "unknown",
       "vfd"
     ],
     "certainty": 0,
-    "correct?": true
+    "correct?": false
+  },
+  "505_0_3000714": {
+    "tagsets": [
+      "building-ebu3b",
+      "networkadapter-n",
+      "networkadapter-nae",
+      "networkadapter-t",
+      "networkadapter-vnd",
+      "return_fan",
+      "unknown",
+      "vfd"
+    ],
+    "certainty": 0,
+    "correct?": false
   },
   "506_1_3002319": {
     "tagsets": [
@@ -1220,18 +1335,44 @@
     "certainty": 0,
     "correct?": true
   },
+  "505_4_3000019": {
+    "tagsets": [
+      "building-ebu3b",
+      "networkadapter-n",
+      "networkadapter-nae"
+    ],
+    "certainty": 0,
+    "correct?": false
+  },
+  "506_1_3009391": {
+    "tagsets": [
+      "building-ebu3b",
+      "networkadapter-n",
+      "networkadapter-nae",
+      "room",
+      "supply_air_flow_setpoint",
+      "vav"
+    ],
+    "certainty": 0,
+    "correct?": true
+  },
+  "505_1_3000031": {
+    "tagsets": [
+      "networkadapter-nae"
+    ],
+    "certainty": 0,
+    "correct?": false
+  },
   "506_0_3002527": {
     "tagsets": [
       "building-ebu3b",
       "networkadapter-n",
       "networkadapter-nae",
       "room",
-      "vav",
-      "zone",
-      "zone_temperature_sensor"
+      "vav"
     ],
     "certainty": 0,
-    "correct?": true
+    "correct?": false
   },
   "505_0_3000146": {
     "tagsets": [
@@ -1270,6 +1411,17 @@
     "certainty": 0,
     "correct?": true
   },
+  "505_1_3014610": {
+    "tagsets": [
+      "building-ebu3b",
+      "crac",
+      "networkadapter-n",
+      "networkadapter-nae",
+      "networkadapter-vnd"
+    ],
+    "certainty": 0,
+    "correct?": false
+  },
   "506_1_3001975": {
     "tagsets": [
       "building-ebu3b",
@@ -1282,17 +1434,27 @@
     "certainty": 0,
     "correct?": true
   },
+  "506_2_3015079": {
+    "tagsets": [
+      "building-ebu3b",
+      "floor",
+      "networkadapter-nae",
+      "room",
+      "unknown"
+    ],
+    "certainty": 0,
+    "correct?": true
+  },
   "505_1_3001189": {
     "tagsets": [
       "building-ebu3b",
       "networkadapter-n",
       "networkadapter-nae",
       "room",
-      "temperature_setpoint",
       "vav"
     ],
     "certainty": 0,
-    "correct?": true
+    "correct?": false
   },
   "506_0_3000691": {
     "tagsets": [
@@ -1305,6 +1467,41 @@
     ],
     "certainty": 0,
     "correct?": true
+  },
+  "506_2_3010317": {
+    "tagsets": [],
+    "certainty": 0,
+    "correct?": false
+  },
+  "506_2_3011378": {
+    "tagsets": [
+      "building-ebu3b",
+      "networkadapter-nae",
+      "room"
+    ],
+    "certainty": 0,
+    "correct?": false
+  },
+  "505_2_3013659": {
+    "tagsets": [
+      "building-ebu3b",
+      "networkadapter-n",
+      "networkadapter-nae",
+      "room",
+      "vav"
+    ],
+    "certainty": 0,
+    "correct?": false
+  },
+  "505_0_3000851": {
+    "tagsets": [
+      "building-ebu3b",
+      "networkadapter-n",
+      "networkadapter-nae",
+      "networkadapter-vnd"
+    ],
+    "certainty": 0,
+    "correct?": false
   },
   "506_0_3002271": {
     "tagsets": [
@@ -1350,12 +1547,12 @@
       "networkadapter-nae",
       "networkadapter-t",
       "networkadapter-vnd",
-      "output_frequency_sensor",
       "supply_fan",
+      "unknown",
       "vfd"
     ],
     "certainty": 0,
-    "correct?": true
+    "correct?": false
   },
   "506_1_3001105": {
     "tagsets": [
@@ -1419,6 +1616,15 @@
     "certainty": 0,
     "correct?": true
   },
+  "505_2_3026077": {
+    "tagsets": [
+      "building-ebu3b",
+      "networkadapter-n",
+      "networkadapter-nae"
+    ],
+    "certainty": 0,
+    "correct?": false
+  },
   "506_1_3003049": {
     "tagsets": [
       "building-ebu3b",
@@ -1474,12 +1680,10 @@
       "networkadapter-n",
       "networkadapter-nae",
       "room",
-      "vav",
-      "zone",
-      "zone_temperature_sensor"
+      "vav"
     ],
     "certainty": 0,
-    "correct?": true
+    "correct?": false
   },
   "506_1_3002111": {
     "tagsets": [
@@ -1525,12 +1729,10 @@
       "networkadapter-n",
       "networkadapter-nae",
       "room",
-      "vav",
-      "zone",
-      "zone_temperature_sensor"
+      "vav"
     ],
     "certainty": 0,
-    "correct?": true
+    "correct?": false
   },
   "506_1_3000558": {
     "tagsets": [
@@ -1562,11 +1764,21 @@
       "networkadapter-n",
       "networkadapter-nae",
       "room",
-      "temperature_setpoint",
       "vav"
     ],
     "certainty": 0,
-    "correct?": true
+    "correct?": false
+  },
+  "506_0_3002104": {
+    "tagsets": [
+      "building-ebu3b",
+      "networkadapter-n",
+      "networkadapter-nae",
+      "room",
+      "vav"
+    ],
+    "certainty": 0,
+    "correct?": false
   },
   "505_0_3001745": {
     "tagsets": [
@@ -1646,12 +1858,10 @@
       "networkadapter-n",
       "networkadapter-nae",
       "room",
-      "vav",
-      "zone",
-      "zone_temperature_sensor"
+      "vav"
     ],
     "certainty": 0,
-    "correct?": true
+    "correct?": false
   },
   "505_1_3001885": {
     "tagsets": [
@@ -1807,12 +2017,10 @@
       "networkadapter-n",
       "networkadapter-nae",
       "room",
-      "vav",
-      "zone",
-      "zone_temperature_sensor"
+      "vav"
     ],
     "certainty": 0,
-    "correct?": true
+    "correct?": false
   },
   "506_1_3003151": {
     "tagsets": [
@@ -1826,16 +2034,41 @@
     "certainty": 0,
     "correct?": true
   },
-  "505_1_3002596": {
+  "505_4_3000505": {
     "tagsets": [
-      "ahu",
       "building-ebu3b",
-      "networkadapter-dx",
       "networkadapter-n",
-      "networkadapter-nae"
+      "networkadapter-nae",
+      "networkadapter-t",
+      "networkadapter-vnd",
+      "supply_fan",
+      "unknown",
+      "vfd"
     ],
     "certainty": 0,
     "correct?": false
+  },
+  "505_1_3002596": {
+    "tagsets": [
+      "building-ebu3b",
+      "networkadapter-n",
+      "networkadapter-nae",
+      "networkadapter-vnd"
+    ],
+    "certainty": 0,
+    "correct?": false
+  },
+  "505_14_3001360": {
+    "tagsets": [
+      "building-ebu3b",
+      "networkadapter-n",
+      "networkadapter-nae",
+      "occupied_command",
+      "room",
+      "vav"
+    ],
+    "certainty": 0,
+    "correct?": true
   },
   "506_0_3001944": {
     "tagsets": [
@@ -1848,6 +2081,17 @@
     ],
     "certainty": 0,
     "correct?": true
+  },
+  "505_0_3014631": {
+    "tagsets": [
+      "building-ebu3b",
+      "crac",
+      "networkadapter-n",
+      "networkadapter-nae",
+      "networkadapter-vnd"
+    ],
+    "certainty": 0,
+    "correct?": false
   },
   "506_1_3001457": {
     "tagsets": [
@@ -1904,12 +2148,10 @@
       "networkadapter-n",
       "networkadapter-nae",
       "room",
-      "vav",
-      "zone",
-      "zone_temperature_sensor"
+      "vav"
     ],
     "certainty": 0,
-    "correct?": true
+    "correct?": false
   },
   "506_0_3000613": {
     "tagsets": [
@@ -1923,17 +2165,27 @@
     "certainty": 0,
     "correct?": true
   },
+  "505_0_3001687": {
+    "tagsets": [
+      "building-ebu3b",
+      "networkadapter-n",
+      "networkadapter-nae",
+      "room",
+      "vav"
+    ],
+    "certainty": 0,
+    "correct?": false
+  },
   "505_1_3000173": {
     "tagsets": [
       "building-ebu3b",
       "networkadapter-n",
       "networkadapter-nae",
       "room",
-      "temperature_setpoint",
       "vav"
     ],
     "certainty": 0,
-    "correct?": true
+    "correct?": false
   },
   "505_1_3026043": {
     "tagsets": [
@@ -1953,11 +2205,10 @@
       "networkadapter-n",
       "networkadapter-nae",
       "room",
-      "temperature_setpoint",
       "vav"
     ],
     "certainty": 0,
-    "correct?": true
+    "correct?": false
   },
   "506_1_3000071": {
     "tagsets": [
@@ -2065,11 +2316,10 @@
       "networkadapter-n",
       "networkadapter-nae",
       "room",
-      "temperature_setpoint",
       "vav"
     ],
     "certainty": 0,
-    "correct?": true
+    "correct?": false
   },
   "506_0_3000647": {
     "tagsets": [
@@ -2077,12 +2327,10 @@
       "networkadapter-n",
       "networkadapter-nae",
       "room",
-      "vav",
-      "zone",
-      "zone_temperature_sensor"
+      "vav"
     ],
     "certainty": 0,
-    "correct?": true
+    "correct?": false
   },
   "506_0_3000088": {
     "tagsets": [
@@ -2124,15 +2372,13 @@
   "505_3_3014608": {
     "tagsets": [
       "building-ebu3b",
-      "chilled_water_pump",
-      "drive_ready_status",
+      "crac",
       "networkadapter-n",
       "networkadapter-nae",
-      "networkadapter-vnd",
-      "vfd"
+      "networkadapter-vnd"
     ],
     "certainty": 0,
-    "correct?": true
+    "correct?": false
   },
   "506_1_3002477": {
     "tagsets": [
@@ -2142,6 +2388,20 @@
       "room",
       "supply_air_flow_setpoint",
       "vav"
+    ],
+    "certainty": 0,
+    "correct?": true
+  },
+  "505_1_3000460": {
+    "tagsets": [
+      "building-ebu3b",
+      "networkadapter-n",
+      "networkadapter-nae",
+      "networkadapter-t",
+      "networkadapter-vnd",
+      "supply_fan",
+      "unknown",
+      "vfd"
     ],
     "certainty": 0,
     "correct?": true
@@ -2164,12 +2424,10 @@
       "networkadapter-n",
       "networkadapter-nae",
       "room",
-      "vav",
-      "zone",
-      "zone_temperature_sensor"
+      "vav"
     ],
     "certainty": 0,
-    "correct?": true
+    "correct?": false
   },
   "505_0_3001713": {
     "tagsets": [
@@ -2191,6 +2449,18 @@
       "room",
       "vav",
       "warm_cool_adjust_sensor"
+    ],
+    "certainty": 0,
+    "correct?": true
+  },
+  "505_0_3001204": {
+    "tagsets": [
+      "building-ebu3b",
+      "effective_cooling_temperature_setpoint",
+      "networkadapter-n",
+      "networkadapter-nae",
+      "room",
+      "vav"
     ],
     "certainty": 0,
     "correct?": true
@@ -2244,6 +2514,14 @@
     "certainty": 0,
     "correct?": true
   },
+  "505_2_3002376": {
+    "tagsets": [
+      "building-ebu3b",
+      "networkadapter-nae"
+    ],
+    "certainty": 0,
+    "correct?": false
+  },
   "506_0_3001800": {
     "tagsets": [
       "building-ebu3b",
@@ -2262,12 +2540,10 @@
       "networkadapter-n",
       "networkadapter-nae",
       "room",
-      "vav",
-      "zone",
-      "zone_temperature_sensor"
+      "vav"
     ],
     "certainty": 0,
-    "correct?": true
+    "correct?": false
   },
   "506_1_3015717": {
     "tagsets": [
@@ -2287,11 +2563,10 @@
       "networkadapter-n",
       "networkadapter-nae",
       "room",
-      "temperature_setpoint",
       "vav"
     ],
     "certainty": 0,
-    "correct?": true
+    "correct?": false
   },
   "506_0_3001673": {
     "tagsets": [
@@ -2299,12 +2574,10 @@
       "networkadapter-n",
       "networkadapter-nae",
       "room",
-      "vav",
-      "zone",
-      "zone_temperature_sensor"
+      "vav"
     ],
     "certainty": 0,
-    "correct?": true
+    "correct?": false
   },
   "505_0_3000212": {
     "tagsets": [
@@ -2322,6 +2595,18 @@
     "tagsets": [
       "building-ebu3b",
       "cooling_command",
+      "networkadapter-n",
+      "networkadapter-nae",
+      "room",
+      "vav"
+    ],
+    "certainty": 0,
+    "correct?": true
+  },
+  "506_0_3000208": {
+    "tagsets": [
+      "building-ebu3b",
+      "effective_heating_temperature_setpoint",
       "networkadapter-n",
       "networkadapter-nae",
       "room",
@@ -2366,6 +2651,17 @@
     ],
     "certainty": 0,
     "correct?": true
+  },
+  "505_1_3001958": {
+    "tagsets": [
+      "building-ebu3b",
+      "networkadapter-n",
+      "networkadapter-nae",
+      "room",
+      "vav"
+    ],
+    "certainty": 0,
+    "correct?": false
   },
   "506_1_3002343": {
     "tagsets": [
@@ -2440,6 +2736,23 @@
     "certainty": 0,
     "correct?": true
   },
+  "506_2_3009740": {
+    "tagsets": [
+      "networkadapter-nae"
+    ],
+    "certainty": 0,
+    "correct?": false
+  },
+  "505_3_3000062": {
+    "tagsets": [
+      "building-ebu3b",
+      "networkadapter-n",
+      "networkadapter-nae",
+      "networkadapter-vnd"
+    ],
+    "certainty": 0,
+    "correct?": false
+  },
   "506_1_3002255": {
     "tagsets": [
       "building-ebu3b",
@@ -2458,11 +2771,10 @@
       "networkadapter-n",
       "networkadapter-nae",
       "room",
-      "temperature_setpoint",
       "vav"
     ],
     "certainty": 0,
-    "correct?": true
+    "correct?": false
   },
   "506_1_3000894": {
     "tagsets": [
@@ -2494,12 +2806,10 @@
       "networkadapter-n",
       "networkadapter-nae",
       "room",
-      "vav",
-      "zone",
-      "zone_temperature_sensor"
+      "vav"
     ],
     "certainty": 0,
-    "correct?": true
+    "correct?": false
   },
   "506_1_3001543": {
     "tagsets": [
@@ -2534,18 +2844,6 @@
       "room",
       "vav",
       "warm_cool_adjust_sensor"
-    ],
-    "certainty": 0,
-    "correct?": true
-  },
-  "506_0_3002573": {
-    "tagsets": [
-      "building-ebu3b",
-      "networkadapter-n",
-      "networkadapter-nae",
-      "room",
-      "supply_air_flow_sensor",
-      "vav"
     ],
     "certainty": 0,
     "correct?": true
@@ -2647,18 +2945,27 @@
     "certainty": 0,
     "correct?": true
   },
+  "505_4_3015314": {
+    "tagsets": [
+      "building-ebu3b",
+      "crac",
+      "networkadapter-n",
+      "networkadapter-nae",
+      "networkadapter-vnd"
+    ],
+    "certainty": 0,
+    "correct?": false
+  },
   "505_0_3001322": {
     "tagsets": [
       "building-ebu3b",
       "networkadapter-n",
       "networkadapter-nae",
       "room",
-      "vav",
-      "zone",
-      "zone_temperature_sensor"
+      "vav"
     ],
     "certainty": 0,
-    "correct?": true
+    "correct?": false
   },
   "505_1_3001998": {
     "tagsets": [
@@ -2666,11 +2973,10 @@
       "networkadapter-n",
       "networkadapter-nae",
       "room",
-      "temperature_setpoint",
       "vav"
     ],
     "certainty": 0,
-    "correct?": true
+    "correct?": false
   },
   "505_1_3001801": {
     "tagsets": [
@@ -2702,11 +3008,10 @@
       "networkadapter-n",
       "networkadapter-nae",
       "room",
-      "temperature_setpoint",
       "vav"
     ],
     "certainty": 0,
-    "correct?": true
+    "correct?": false
   },
   "506_0_3001196": {
     "tagsets": [
@@ -2744,6 +3049,19 @@
     "certainty": 0,
     "correct?": true
   },
+  "505_1_3000329": {
+    "tagsets": [
+      "building-ebu3b",
+      "networkadapter-n",
+      "networkadapter-nae",
+      "networkadapter-t",
+      "networkadapter-vnd",
+      "unknown",
+      "vfd"
+    ],
+    "certainty": 0,
+    "correct?": false
+  },
   "505_1_3001210": {
     "tagsets": [
       "building-ebu3b",
@@ -2757,17 +3075,30 @@
     "certainty": 0,
     "correct?": true
   },
+  "505_1_3000613": {
+    "tagsets": [
+      "building-ebu3b",
+      "networkadapter-n",
+      "networkadapter-nae",
+      "networkadapter-t",
+      "networkadapter-vnd",
+      "supply_fan",
+      "unknown",
+      "vfd"
+    ],
+    "certainty": 0,
+    "correct?": true
+  },
   "506_1_3000052": {
     "tagsets": [
       "building-ebu3b",
       "networkadapter-n",
       "networkadapter-nae",
       "room",
-      "temperature_setpoint",
       "vav"
     ],
     "certainty": 0,
-    "correct?": true
+    "correct?": false
   },
   "505_1_3001883": {
     "tagsets": [
@@ -2780,6 +3111,20 @@
     ],
     "certainty": 0,
     "correct?": true
+  },
+  "505_4_3000665": {
+    "tagsets": [
+      "building-ebu3b",
+      "networkadapter-n",
+      "networkadapter-nae",
+      "networkadapter-t",
+      "networkadapter-vnd",
+      "return_fan",
+      "unknown",
+      "vfd"
+    ],
+    "certainty": 0,
+    "correct?": false
   },
   "506_0_3001218": {
     "tagsets": [
@@ -2854,6 +3199,20 @@
     "certainty": 0,
     "correct?": true
   },
+  "505_3_3000743": {
+    "tagsets": [
+      "building-ebu3b",
+      "networkadapter-n",
+      "networkadapter-nae",
+      "networkadapter-t",
+      "networkadapter-vnd",
+      "return_fan",
+      "unknown",
+      "vfd"
+    ],
+    "certainty": 0,
+    "correct?": false
+  },
   "505_1_3001336": {
     "tagsets": [
       "building-ebu3b",
@@ -2878,6 +3237,18 @@
     "certainty": 0,
     "correct?": true
   },
+  "505_0_3001588": {
+    "tagsets": [
+      "building-ebu3b",
+      "effective_heating_temperature_setpoint",
+      "networkadapter-n",
+      "networkadapter-nae",
+      "room",
+      "vav"
+    ],
+    "certainty": 0,
+    "correct?": true
+  },
   "505_1_3002785": {
     "tagsets": [
       "building-ebu3b",
@@ -2892,7 +3263,6 @@
   },
   "505_2_3025845": {
     "tagsets": [
-      "basement",
       "building-ebu3b",
       "floor",
       "networkadapter-nae",
@@ -2900,7 +3270,7 @@
       "unknown"
     ],
     "certainty": 0,
-    "correct?": true
+    "correct?": false
   },
   "505_1_3001495": {
     "tagsets": [
@@ -2910,6 +3280,18 @@
       "networkadapter-nae",
       "room",
       "vav"
+    ],
+    "certainty": 0,
+    "correct?": true
+  },
+  "506_1_3015764": {
+    "tagsets": [
+      "building-ebu3b",
+      "networkadapter-n",
+      "networkadapter-nae",
+      "room",
+      "vav",
+      "warm_cool_adjust_sensor"
     ],
     "certainty": 0,
     "correct?": true
@@ -2950,6 +3332,22 @@
     ],
     "certainty": 0,
     "correct?": true
+  },
+  "505_3_3014640": {
+    "tagsets": [
+      "building-ebu3b",
+      "crac",
+      "networkadapter-n",
+      "networkadapter-nae",
+      "networkadapter-vnd"
+    ],
+    "certainty": 0,
+    "correct?": false
+  },
+  "506_2_3010316": {
+    "tagsets": [],
+    "certainty": 0,
+    "correct?": false
   },
   "506_1_3001608": {
     "tagsets": [
@@ -3066,12 +3464,10 @@
       "networkadapter-n",
       "networkadapter-nae",
       "room",
-      "vav",
-      "zone",
-      "zone_temperature_sensor"
+      "vav"
     ],
     "certainty": 0,
-    "correct?": true
+    "correct?": false
   },
   "506_1_3001852": {
     "tagsets": [
@@ -3103,12 +3499,10 @@
       "networkadapter-n",
       "networkadapter-nae",
       "room",
-      "vav",
-      "zone",
-      "zone_temperature_sensor"
+      "vav"
     ],
     "certainty": 0,
-    "correct?": true
+    "correct?": false
   },
   "506_1_3001706": {
     "tagsets": [
@@ -3208,6 +3602,19 @@
     "certainty": 0,
     "correct?": true
   },
+  "506_0_3002894": {
+    "tagsets": [
+      "building-ebu3b",
+      "networkadapter-n",
+      "networkadapter-nae",
+      "room",
+      "vav",
+      "zone",
+      "zone_temperature_sensor"
+    ],
+    "certainty": 0,
+    "correct?": false
+  },
   "505_0_3000093": {
     "tagsets": [
       "building-ebu3b",
@@ -3243,6 +3650,19 @@
     ],
     "certainty": 0,
     "correct?": true
+  },
+  "505_1_3000419": {
+    "tagsets": [
+      "building-ebu3b",
+      "networkadapter-n",
+      "networkadapter-nae",
+      "networkadapter-t",
+      "networkadapter-vnd",
+      "unknown",
+      "vfd"
+    ],
+    "certainty": 0,
+    "correct?": false
   },
   "506_14_3000840": {
     "tagsets": [
@@ -3305,6 +3725,15 @@
     "certainty": 0,
     "correct?": true
   },
+  "505_4_3000820": {
+    "tagsets": [
+      "building-ebu3b",
+      "networkadapter-n",
+      "networkadapter-nae"
+    ],
+    "certainty": 0,
+    "correct?": false
+  },
   "506_1_3015718": {
     "tagsets": [
       "building-ebu3b",
@@ -3341,6 +3770,17 @@
     "certainty": 0,
     "correct?": true
   },
+  "505_0_3014586": {
+    "tagsets": [
+      "building-ebu3b",
+      "crac",
+      "networkadapter-n",
+      "networkadapter-nae",
+      "networkadapter-vnd"
+    ],
+    "certainty": 0,
+    "correct?": false
+  },
   "506_14_3001611": {
     "tagsets": [
       "building-ebu3b",
@@ -3371,11 +3811,10 @@
       "networkadapter-n",
       "networkadapter-nae",
       "room",
-      "temperature_setpoint",
       "vav"
     ],
     "certainty": 0,
-    "correct?": true
+    "correct?": false
   },
   "506_1_3000094": {
     "tagsets": [
@@ -3397,19 +3836,6 @@
       "reheat_valve_command",
       "room",
       "valve",
-      "vav"
-    ],
-    "certainty": 0,
-    "correct?": true
-  },
-  "506_1_3002436": {
-    "tagsets": [
-      "building-ebu3b",
-      "damper",
-      "damper_command",
-      "networkadapter-n",
-      "networkadapter-nae",
-      "room",
       "vav"
     ],
     "certainty": 0,
@@ -3445,11 +3871,10 @@
       "networkadapter-n",
       "networkadapter-nae",
       "room",
-      "temperature_setpoint",
       "vav"
     ],
     "certainty": 0,
-    "correct?": true
+    "correct?": false
   },
   "506_1_3001167": {
     "tagsets": [
@@ -3531,12 +3956,10 @@
       "networkadapter-n",
       "networkadapter-nae",
       "room",
-      "vav",
-      "zone",
-      "zone_temperature_sensor"
+      "vav"
     ],
     "certainty": 0,
-    "correct?": true
+    "correct?": false
   },
   "506_1_3002968": {
     "tagsets": [
@@ -3637,17 +4060,23 @@
     "certainty": 0,
     "correct?": true
   },
-  "506_1_3001442": {
+  "505_4_3000012": {
     "tagsets": [
       "building-ebu3b",
       "networkadapter-n",
-      "networkadapter-nae",
-      "occupied_heating_supply_air_flow_setpoint",
-      "room",
-      "vav"
+      "networkadapter-nae"
     ],
     "certainty": 0,
-    "correct?": true
+    "correct?": false
+  },
+  "505_1_3014684": {
+    "tagsets": [
+      "building-ebu3b",
+      "networkadapter-n",
+      "networkadapter-nae"
+    ],
+    "certainty": 0,
+    "correct?": false
   },
   "505_1_3001981": {
     "tagsets": [
@@ -3686,6 +4115,17 @@
     "certainty": 0,
     "correct?": true
   },
+  "506_0_3002084": {
+    "tagsets": [
+      "building-ebu3b",
+      "networkadapter-n",
+      "networkadapter-nae",
+      "room",
+      "vav"
+    ],
+    "certainty": 0,
+    "correct?": false
+  },
   "506_1_3002904": {
     "tagsets": [
       "building-ebu3b",
@@ -3697,6 +4137,11 @@
     ],
     "certainty": 0,
     "correct?": true
+  },
+  "506_2_3009735": {
+    "tagsets": [],
+    "certainty": 0,
+    "correct?": false
   },
   "506_1_3001035": {
     "tagsets": [
@@ -3792,12 +4237,21 @@
       "networkadapter-n",
       "networkadapter-nae",
       "room",
-      "vav",
-      "zone",
-      "zone_temperature_sensor"
+      "vav"
     ],
     "certainty": 0,
-    "correct?": true
+    "correct?": false
+  },
+  "505_3_3015173": {
+    "tagsets": [
+      "building-ebu3b",
+      "crac",
+      "networkadapter-n",
+      "networkadapter-nae",
+      "networkadapter-vnd"
+    ],
+    "certainty": 0,
+    "correct?": false
   },
   "506_1_3002435": {
     "tagsets": [
@@ -3805,11 +4259,21 @@
       "networkadapter-n",
       "networkadapter-nae",
       "room",
-      "temperature_setpoint",
       "vav"
     ],
     "certainty": 0,
-    "correct?": true
+    "correct?": false
+  },
+  "505_5_3013657": {
+    "tagsets": [
+      "building-ebu3b",
+      "networkadapter-n",
+      "networkadapter-nae",
+      "room",
+      "vav"
+    ],
+    "certainty": 0,
+    "correct?": false
   },
   "506_14_3000382": {
     "tagsets": [
@@ -3914,16 +4378,14 @@
       "networkadapter-n",
       "networkadapter-nae",
       "room",
-      "temperature_setpoint",
       "vav"
     ],
     "certainty": 0,
-    "correct?": true
+    "correct?": false
   },
   "505_1_3000373": {
     "tagsets": [
       "building-ebu3b",
-      "chilled_water_pump",
       "networkadapter-n",
       "networkadapter-nae",
       "networkadapter-t",
@@ -3932,7 +4394,7 @@
       "vfd"
     ],
     "certainty": 0,
-    "correct?": true
+    "correct?": false
   },
   "506_0_3003161": {
     "tagsets": [
@@ -3990,11 +4452,10 @@
       "networkadapter-n",
       "networkadapter-nae",
       "room",
-      "temperature_setpoint",
       "vav"
     ],
     "certainty": 0,
-    "correct?": true
+    "correct?": false
   },
   "506_1_3001122": {
     "tagsets": [
@@ -4008,6 +4469,27 @@
     "certainty": 0,
     "correct?": true
   },
+  "506_1_3003370": {
+    "tagsets": [
+      "building-ebu3b",
+      "networkadapter-n",
+      "networkadapter-nae",
+      "occupied_cooling_min_supply_air_flow_setpoint",
+      "room",
+      "vav"
+    ],
+    "certainty": 0,
+    "correct?": true
+  },
+  "505_4_3000015": {
+    "tagsets": [
+      "building-ebu3b",
+      "networkadapter-n",
+      "networkadapter-nae"
+    ],
+    "certainty": 0,
+    "correct?": false
+  },
   "506_1_3001339": {
     "tagsets": [
       "building-ebu3b",
@@ -4019,6 +4501,17 @@
     ],
     "certainty": 0,
     "correct?": true
+  },
+  "505_0_3015196": {
+    "tagsets": [
+      "building-ebu3b",
+      "crac",
+      "networkadapter-n",
+      "networkadapter-nae",
+      "networkadapter-vnd"
+    ],
+    "certainty": 0,
+    "correct?": false
   },
   "506_1_3015772": {
     "tagsets": [
@@ -4086,11 +4579,10 @@
       "networkadapter-n",
       "networkadapter-nae",
       "room",
-      "temperature_setpoint",
       "vav"
     ],
     "certainty": 0,
-    "correct?": true
+    "correct?": false
   },
   "505_0_3001041": {
     "tagsets": [
@@ -4098,12 +4590,10 @@
       "networkadapter-n",
       "networkadapter-nae",
       "room",
-      "vav",
-      "zone",
-      "zone_temperature_sensor"
+      "vav"
     ],
     "certainty": 0,
-    "correct?": true
+    "correct?": false
   },
   "506_1_3002357": {
     "tagsets": [
@@ -4148,9 +4638,19 @@
       "networkadapter-n",
       "networkadapter-nae",
       "room",
-      "vav",
-      "zone",
-      "zone_temperature_sensor"
+      "vav"
+    ],
+    "certainty": 0,
+    "correct?": false
+  },
+  "505_1_3001194": {
+    "tagsets": [
+      "building-ebu3b",
+      "networkadapter-n",
+      "networkadapter-nae",
+      "occupied_heating_supply_air_flow_setpoint",
+      "room",
+      "vav"
     ],
     "certainty": 0,
     "correct?": true
@@ -4174,18 +4674,6 @@
       "networkadapter-n",
       "networkadapter-nae",
       "room",
-      "vav"
-    ],
-    "certainty": 0,
-    "correct?": true
-  },
-  "506_1_3000292": {
-    "tagsets": [
-      "building-ebu3b",
-      "networkadapter-n",
-      "networkadapter-nae",
-      "room",
-      "temperature_setpoint",
       "vav"
     ],
     "certainty": 0,
@@ -4215,6 +4703,20 @@
     "certainty": 0,
     "correct?": true
   },
+  "505_3_3000702": {
+    "tagsets": [
+      "building-ebu3b",
+      "networkadapter-n",
+      "networkadapter-nae",
+      "networkadapter-t",
+      "networkadapter-vnd",
+      "return_fan",
+      "unknown",
+      "vfd"
+    ],
+    "certainty": 0,
+    "correct?": false
+  },
   "506_1_3001298": {
     "tagsets": [
       "building-ebu3b",
@@ -4228,6 +4730,26 @@
     "certainty": 0,
     "correct?": true
   },
+  "505_2_3026073": {
+    "tagsets": [
+      "building-ebu3b",
+      "networkadapter-n",
+      "networkadapter-nae"
+    ],
+    "certainty": 0,
+    "correct?": false
+  },
+  "505_0_3014633": {
+    "tagsets": [
+      "building-ebu3b",
+      "crac",
+      "networkadapter-n",
+      "networkadapter-nae",
+      "networkadapter-vnd"
+    ],
+    "certainty": 0,
+    "correct?": false
+  },
   "505_1_3001150": {
     "tagsets": [
       "building-ebu3b",
@@ -4240,6 +4762,17 @@
     ],
     "certainty": 0,
     "correct?": true
+  },
+  "505_1_3014612": {
+    "tagsets": [
+      "building-ebu3b",
+      "crac",
+      "networkadapter-n",
+      "networkadapter-nae",
+      "networkadapter-vnd"
+    ],
+    "certainty": 0,
+    "correct?": false
   },
   "506_1_3000979": {
     "tagsets": [
@@ -4259,12 +4792,21 @@
       "networkadapter-n",
       "networkadapter-nae",
       "room",
-      "vav",
-      "zone",
-      "zone_temperature_sensor"
+      "vav"
     ],
     "certainty": 0,
-    "correct?": true
+    "correct?": false
+  },
+  "505_2_3022109": {
+    "tagsets": [
+      "building-ebu3b",
+      "networkadapter-n",
+      "networkadapter-nae",
+      "room",
+      "vav"
+    ],
+    "certainty": 0,
+    "correct?": false
   },
   "506_1_3000814": {
     "tagsets": [
@@ -4296,12 +4838,10 @@
       "networkadapter-n",
       "networkadapter-nae",
       "room",
-      "vav",
-      "zone",
-      "zone_temperature_sensor"
+      "vav"
     ],
     "certainty": 0,
-    "correct?": true
+    "correct?": false
   },
   "505_0_3001853": {
     "tagsets": [
@@ -4346,12 +4886,10 @@
       "networkadapter-n",
       "networkadapter-nae",
       "room",
-      "vav",
-      "zone",
-      "zone_temperature_sensor"
+      "vav"
     ],
     "certainty": 0,
-    "correct?": true
+    "correct?": false
   },
   "505_0_3001083": {
     "tagsets": [
@@ -4409,18 +4947,6 @@
       "damper_command",
       "networkadapter-n",
       "networkadapter-nae",
-      "room",
-      "vav"
-    ],
-    "certainty": 0,
-    "correct?": true
-  },
-  "505_14_3000982": {
-    "tagsets": [
-      "building-ebu3b",
-      "networkadapter-n",
-      "networkadapter-nae",
-      "occupied_command",
       "room",
       "vav"
     ],
@@ -4503,11 +5029,24 @@
   "505_0_3000326": {
     "tagsets": [
       "building-ebu3b",
-      "chilled_water_pump",
       "networkadapter-n",
       "networkadapter-nae",
       "networkadapter-t",
       "networkadapter-vnd",
+      "unknown",
+      "vfd"
+    ],
+    "certainty": 0,
+    "correct?": false
+  },
+  "505_1_3000653": {
+    "tagsets": [
+      "building-ebu3b",
+      "networkadapter-n",
+      "networkadapter-nae",
+      "networkadapter-t",
+      "networkadapter-vnd",
+      "return_fan",
       "unknown",
       "vfd"
     ],
@@ -4517,7 +5056,6 @@
   "505_1_3000413": {
     "tagsets": [
       "building-ebu3b",
-      "hot_water_pump",
       "networkadapter-n",
       "networkadapter-nae",
       "networkadapter-t",
@@ -4526,7 +5064,7 @@
       "vfd"
     ],
     "certainty": 0,
-    "correct?": true
+    "correct?": false
   },
   "506_1_3002777": {
     "tagsets": [
@@ -4534,11 +5072,24 @@
       "networkadapter-n",
       "networkadapter-nae",
       "room",
-      "temperature_setpoint",
       "vav"
     ],
     "certainty": 0,
-    "correct?": true
+    "correct?": false
+  },
+  "505_0_3000753": {
+    "tagsets": [
+      "building-ebu3b",
+      "networkadapter-n",
+      "networkadapter-nae",
+      "networkadapter-t",
+      "networkadapter-vnd",
+      "return_fan",
+      "unknown",
+      "vfd"
+    ],
+    "certainty": 0,
+    "correct?": false
   },
   "505_0_3000214": {
     "tagsets": [
@@ -4549,6 +5100,18 @@
       "networkadapter-nae",
       "room",
       "vav"
+    ],
+    "certainty": 0,
+    "correct?": true
+  },
+  "505_3_3015159": {
+    "tagsets": [
+      "building-ebu3b",
+      "crac",
+      "high_humidity_alarm",
+      "networkadapter-n",
+      "networkadapter-nae",
+      "networkadapter-vnd"
     ],
     "certainty": 0,
     "correct?": true
@@ -4583,12 +5146,10 @@
       "networkadapter-n",
       "networkadapter-nae",
       "room",
-      "vav",
-      "zone",
-      "zone_temperature_sensor"
+      "vav"
     ],
     "certainty": 0,
-    "correct?": true
+    "correct?": false
   },
   "506_1_3003310": {
     "tagsets": [
@@ -4633,11 +5194,10 @@
       "networkadapter-n",
       "networkadapter-nae",
       "room",
-      "temperature_setpoint",
       "vav"
     ],
     "certainty": 0,
-    "correct?": true
+    "correct?": false
   },
   "506_1_3002097": {
     "tagsets": [
@@ -4650,6 +5210,27 @@
     ],
     "certainty": 0,
     "correct?": true
+  },
+  "506_1_3002866": {
+    "tagsets": [
+      "building-ebu3b",
+      "cooling_command",
+      "networkadapter-n",
+      "networkadapter-nae",
+      "room",
+      "vav"
+    ],
+    "certainty": 0,
+    "correct?": true
+  },
+  "505_1_3000051": {
+    "tagsets": [
+      "building-ebu3b",
+      "networkadapter-n",
+      "networkadapter-nae"
+    ],
+    "certainty": 0,
+    "correct?": false
   },
   "505_0_3001305": {
     "tagsets": [
@@ -4784,6 +5365,17 @@
     "certainty": 0,
     "correct?": true
   },
+  "505_3_3014641": {
+    "tagsets": [
+      "building-ebu3b",
+      "crac",
+      "networkadapter-n",
+      "networkadapter-nae",
+      "networkadapter-vnd"
+    ],
+    "certainty": 0,
+    "correct?": false
+  },
   "506_1_3003246": {
     "tagsets": [
       "building-ebu3b",
@@ -4816,6 +5408,17 @@
       "room",
       "supply_air_flow_setpoint",
       "vav"
+    ],
+    "certainty": 0,
+    "correct?": true
+  },
+  "506_2_3015086": {
+    "tagsets": [
+      "building-ebu3b",
+      "floor",
+      "networkadapter-nae",
+      "room",
+      "unknown"
     ],
     "certainty": 0,
     "correct?": true
@@ -4868,6 +5471,17 @@
     "certainty": 0,
     "correct?": true
   },
+  "505_3_3015337": {
+    "tagsets": [
+      "building-ebu3b",
+      "crac",
+      "networkadapter-n",
+      "networkadapter-nae",
+      "networkadapter-vnd"
+    ],
+    "certainty": 0,
+    "correct?": false
+  },
   "506_1_3002140": {
     "tagsets": [
       "building-ebu3b",
@@ -4917,6 +5531,18 @@
     "certainty": 0,
     "correct?": true
   },
+  "505_1_3026036": {
+    "tagsets": [
+      "building-ebu3b",
+      "networkadapter-n",
+      "networkadapter-nae",
+      "room",
+      "vav",
+      "warm_cool_adjust_sensor"
+    ],
+    "certainty": 0,
+    "correct?": true
+  },
   "506_1_3000680": {
     "tagsets": [
       "building-ebu3b",
@@ -4940,6 +5566,17 @@
     ],
     "certainty": 0,
     "correct?": true
+  },
+  "505_0_3014622": {
+    "tagsets": [
+      "building-ebu3b",
+      "crac",
+      "networkadapter-n",
+      "networkadapter-nae",
+      "networkadapter-vnd"
+    ],
+    "certainty": 0,
+    "correct?": false
   },
   "506_1_3000796": {
     "tagsets": [
@@ -5088,6 +5725,14 @@
     "certainty": 0,
     "correct?": true
   },
+  "506_2_3009758": {
+    "tagsets": [
+      "building-ebu3b",
+      "networkadapter-nae"
+    ],
+    "certainty": 0,
+    "correct?": false
+  },
   "506_1_3001914": {
     "tagsets": [
       "building-ebu3b",
@@ -5124,6 +5769,20 @@
     "certainty": 0,
     "correct?": true
   },
+  "505_1_3000539": {
+    "tagsets": [
+      "building-ebu3b",
+      "networkadapter-n",
+      "networkadapter-nae",
+      "networkadapter-t",
+      "networkadapter-vnd",
+      "supply_fan",
+      "unknown",
+      "vfd"
+    ],
+    "certainty": 0,
+    "correct?": false
+  },
   "506_1_3001079": {
     "tagsets": [
       "building-ebu3b",
@@ -5155,11 +5814,10 @@
       "networkadapter-n",
       "networkadapter-nae",
       "room",
-      "temperature_setpoint",
       "vav"
     ],
     "certainty": 0,
-    "correct?": true
+    "correct?": false
   },
   "506_14_3000964": {
     "tagsets": [
@@ -5273,17 +5931,18 @@
     "certainty": 0,
     "correct?": true
   },
-  "506_1_3015777": {
+  "505_1_3000335": {
     "tagsets": [
       "building-ebu3b",
       "networkadapter-n",
       "networkadapter-nae",
-      "room",
-      "vav",
-      "warm_cool_adjust_sensor"
+      "networkadapter-t",
+      "networkadapter-vnd",
+      "unknown",
+      "vfd"
     ],
     "certainty": 0,
-    "correct?": true
+    "correct?": false
   },
   "506_1_3001399": {
     "tagsets": [
@@ -5333,17 +5992,30 @@
     "certainty": 0,
     "correct?": true
   },
+  "505_0_3000594": {
+    "tagsets": [
+      "building-ebu3b",
+      "networkadapter-n",
+      "networkadapter-nae",
+      "networkadapter-t",
+      "networkadapter-vnd",
+      "supply_fan",
+      "unknown",
+      "vfd"
+    ],
+    "certainty": 0,
+    "correct?": false
+  },
   "506_1_3002009": {
     "tagsets": [
       "building-ebu3b",
       "networkadapter-n",
       "networkadapter-nae",
       "room",
-      "temperature_setpoint",
       "vav"
     ],
     "certainty": 0,
-    "correct?": true
+    "correct?": false
   },
   "506_0_3002571": {
     "tagsets": [
@@ -5356,6 +6028,20 @@
     ],
     "certainty": 0,
     "correct?": true
+  },
+  "505_4_3000709": {
+    "tagsets": [
+      "building-ebu3b",
+      "networkadapter-n",
+      "networkadapter-nae",
+      "networkadapter-t",
+      "networkadapter-vnd",
+      "return_fan",
+      "unknown",
+      "vfd"
+    ],
+    "certainty": 0,
+    "correct?": false
   },
   "505_1_3001072": {
     "tagsets": [
@@ -5411,11 +6097,10 @@
       "networkadapter-n",
       "networkadapter-nae",
       "room",
-      "temperature_setpoint",
       "vav"
     ],
     "certainty": 0,
-    "correct?": true
+    "correct?": false
   },
   "505_1_3001698": {
     "tagsets": [
@@ -5441,6 +6126,11 @@
     "certainty": 0,
     "correct?": true
   },
+  "506_2_3009737": {
+    "tagsets": [],
+    "certainty": 0,
+    "correct?": false
+  },
   "506_1_3015795": {
     "tagsets": [
       "building-ebu3b",
@@ -5460,6 +6150,18 @@
       "networkadapter-nae",
       "room",
       "supply_air_flow_setpoint",
+      "vav"
+    ],
+    "certainty": 0,
+    "correct?": true
+  },
+  "505_0_3014472": {
+    "tagsets": [
+      "building-ebu3b",
+      "co2_sensor",
+      "networkadapter-n",
+      "networkadapter-nae",
+      "room",
       "vav"
     ],
     "certainty": 0,
@@ -5514,6 +6216,32 @@
     "certainty": 0,
     "correct?": true
   },
+  "505_4_3000391": {
+    "tagsets": [
+      "building-ebu3b",
+      "networkadapter-n",
+      "networkadapter-nae",
+      "networkadapter-t",
+      "networkadapter-vnd",
+      "unknown",
+      "vfd"
+    ],
+    "certainty": 0,
+    "correct?": false
+  },
+  "505_0_3000433": {
+    "tagsets": [
+      "building-ebu3b",
+      "networkadapter-n",
+      "networkadapter-nae",
+      "networkadapter-t",
+      "networkadapter-vnd",
+      "unknown",
+      "vfd"
+    ],
+    "certainty": 0,
+    "correct?": false
+  },
   "506_1_3015727": {
     "tagsets": [
       "building-ebu3b",
@@ -5551,30 +6279,16 @@
     "certainty": 0,
     "correct?": true
   },
-  "506_0_3002874": {
-    "tagsets": [
-      "building-ebu3b",
-      "networkadapter-n",
-      "networkadapter-nae",
-      "room",
-      "vav",
-      "zone",
-      "zone_temperature_sensor"
-    ],
-    "certainty": 0,
-    "correct?": true
-  },
   "505_1_3000895": {
     "tagsets": [
       "building-ebu3b",
       "networkadapter-n",
       "networkadapter-nae",
       "room",
-      "temperature_setpoint",
       "vav"
     ],
     "certainty": 0,
-    "correct?": true
+    "correct?": false
   },
   "506_0_3001864": {
     "tagsets": [
@@ -5594,11 +6308,10 @@
       "networkadapter-n",
       "networkadapter-nae",
       "room",
-      "temperature_setpoint",
       "vav"
     ],
     "certainty": 0,
-    "correct?": true
+    "correct?": false
   },
   "506_0_3002006": {
     "tagsets": [
@@ -5625,6 +6338,17 @@
     "certainty": 0,
     "correct?": true
   },
+  "505_3_3014643": {
+    "tagsets": [
+      "building-ebu3b",
+      "crac",
+      "networkadapter-n",
+      "networkadapter-nae",
+      "networkadapter-vnd"
+    ],
+    "certainty": 0,
+    "correct?": false
+  },
   "505_0_3002055": {
     "tagsets": [
       "building-ebu3b",
@@ -5633,6 +6357,20 @@
       "room",
       "supply_air_flow_sensor",
       "vav"
+    ],
+    "certainty": 0,
+    "correct?": true
+  },
+  "505_0_3000641": {
+    "tagsets": [
+      "building-ebu3b",
+      "networkadapter-n",
+      "networkadapter-nae",
+      "networkadapter-t",
+      "networkadapter-vnd",
+      "return_fan",
+      "unknown",
+      "vfd"
     ],
     "certainty": 0,
     "correct?": true
@@ -5685,18 +6423,6 @@
     "certainty": 0,
     "correct?": true
   },
-  "506_3_3001086": {
-    "tagsets": [
-      "building-ebu3b",
-      "networkadapter-n",
-      "networkadapter-nae",
-      "room",
-      "temporary_occupancy_status",
-      "vav"
-    ],
-    "certainty": 0,
-    "correct?": true
-  },
   "506_1_3003352": {
     "tagsets": [
       "building-ebu3b",
@@ -5733,6 +6459,19 @@
     "certainty": 0,
     "correct?": true
   },
+  "505_4_3000389": {
+    "tagsets": [
+      "building-ebu3b",
+      "networkadapter-n",
+      "networkadapter-nae",
+      "networkadapter-t",
+      "networkadapter-vnd",
+      "unknown",
+      "vfd"
+    ],
+    "certainty": 0,
+    "correct?": false
+  },
   "506_1_3002457": {
     "tagsets": [
       "building-ebu3b",
@@ -5758,6 +6497,17 @@
     "certainty": 0,
     "correct?": true
   },
+  "505_3_3015225": {
+    "tagsets": [
+      "building-ebu3b",
+      "crac",
+      "networkadapter-n",
+      "networkadapter-nae",
+      "networkadapter-vnd"
+    ],
+    "certainty": 0,
+    "correct?": false
+  },
   "506_1_3002231": {
     "tagsets": [
       "building-ebu3b",
@@ -5770,6 +6520,14 @@
     ],
     "certainty": 0,
     "correct?": true
+  },
+  "505_2_3017930": {
+    "tagsets": [
+      "building-ebu3b",
+      "networkadapter-nae"
+    ],
+    "certainty": 0,
+    "correct?": false
   },
   "506_1_3001726": {
     "tagsets": [
@@ -5850,11 +6608,10 @@
       "networkadapter-n",
       "networkadapter-nae",
       "room",
-      "temperature_setpoint",
       "vav"
     ],
     "certainty": 0,
-    "correct?": true
+    "correct?": false
   },
   "505_0_3000910": {
     "tagsets": [
@@ -5886,11 +6643,10 @@
       "networkadapter-n",
       "networkadapter-nae",
       "room",
-      "temperature_setpoint",
       "vav"
     ],
     "certainty": 0,
-    "correct?": true
+    "correct?": false
   },
   "506_0_3003322": {
     "tagsets": [
@@ -5935,26 +6691,23 @@
       "networkadapter-n",
       "networkadapter-nae",
       "room",
-      "temperature_setpoint",
       "vav"
     ],
     "certainty": 0,
-    "correct?": true
+    "correct?": false
   },
   "505_4_3000429": {
     "tagsets": [
       "building-ebu3b",
-      "filter",
-      "filter_reset_command",
-      "hot_water_pump",
       "networkadapter-n",
       "networkadapter-nae",
       "networkadapter-t",
       "networkadapter-vnd",
+      "unknown",
       "vfd"
     ],
     "certainty": 0,
-    "correct?": true
+    "correct?": false
   },
   "505_0_3000967": {
     "tagsets": [
@@ -6035,12 +6788,34 @@
       "networkadapter-n",
       "networkadapter-nae",
       "room",
-      "vav",
-      "zone",
-      "zone_temperature_sensor"
+      "vav"
     ],
     "certainty": 0,
-    "correct?": true
+    "correct?": false
+  },
+  "505_0_3000365": {
+    "tagsets": [
+      "building-ebu3b",
+      "networkadapter-n",
+      "networkadapter-nae",
+      "networkadapter-t",
+      "networkadapter-vnd",
+      "unknown",
+      "vfd"
+    ],
+    "certainty": 0,
+    "correct?": false
+  },
+  "505_3_3015283": {
+    "tagsets": [
+      "building-ebu3b",
+      "crac",
+      "networkadapter-n",
+      "networkadapter-nae",
+      "networkadapter-vnd"
+    ],
+    "certainty": 0,
+    "correct?": false
   },
   "506_0_3000187": {
     "tagsets": [
@@ -6097,11 +6872,10 @@
       "networkadapter-n",
       "networkadapter-nae",
       "room",
-      "temperature_setpoint",
       "vav"
     ],
     "certainty": 0,
-    "correct?": true
+    "correct?": false
   },
   "506_1_3001994": {
     "tagsets": [
@@ -6181,11 +6955,10 @@
       "networkadapter-n",
       "networkadapter-nae",
       "room",
-      "temperature_setpoint",
       "vav"
     ],
     "certainty": 0,
-    "correct?": true
+    "correct?": false
   },
   "505_1_3001534": {
     "tagsets": [
@@ -6211,6 +6984,19 @@
     "certainty": 0,
     "correct?": true
   },
+  "506_0_3001333": {
+    "tagsets": [
+      "building-ebu3b",
+      "damper",
+      "damper_position_sensor",
+      "networkadapter-n",
+      "networkadapter-nae",
+      "room",
+      "vav"
+    ],
+    "certainty": 0,
+    "correct?": true
+  },
   "506_0_3002692": {
     "tagsets": [
       "building-ebu3b",
@@ -6225,17 +7011,13 @@
   },
   "505_3_3000808": {
     "tagsets": [
-      "ahu",
       "building-ebu3b",
-      "fan",
-      "networkadapter-dx",
       "networkadapter-n",
       "networkadapter-nae",
-      "supply_fan",
-      "supply_fan_status"
+      "networkadapter-vnd"
     ],
     "certainty": 0,
-    "correct?": true
+    "correct?": false
   },
   "505_0_3001894": {
     "tagsets": [
@@ -6286,17 +7068,30 @@
     "certainty": 0,
     "correct?": true
   },
+  "505_1_3000739": {
+    "tagsets": [
+      "building-ebu3b",
+      "networkadapter-n",
+      "networkadapter-nae",
+      "networkadapter-t",
+      "networkadapter-vnd",
+      "return_fan",
+      "unknown",
+      "vfd"
+    ],
+    "certainty": 0,
+    "correct?": false
+  },
   "506_1_3000332": {
     "tagsets": [
       "building-ebu3b",
       "networkadapter-n",
       "networkadapter-nae",
       "room",
-      "temperature_setpoint",
       "vav"
     ],
     "certainty": 0,
-    "correct?": true
+    "correct?": false
   },
   "506_1_3003066": {
     "tagsets": [
@@ -6305,6 +7100,28 @@
       "networkadapter-nae",
       "room",
       "supply_air_flow_setpoint",
+      "vav"
+    ],
+    "certainty": 0,
+    "correct?": true
+  },
+  "505_4_3000009": {
+    "tagsets": [
+      "building-ebu3b",
+      "networkadapter-n",
+      "networkadapter-nae",
+      "networkadapter-vnd"
+    ],
+    "certainty": 0,
+    "correct?": false
+  },
+  "505_0_3014470": {
+    "tagsets": [
+      "building-ebu3b",
+      "co2_sensor",
+      "networkadapter-n",
+      "networkadapter-nae",
+      "room",
       "vav"
     ],
     "certainty": 0,
@@ -6328,11 +7145,17 @@
       "networkadapter-n",
       "networkadapter-nae",
       "room",
-      "temperature_setpoint",
       "vav"
     ],
     "certainty": 0,
-    "correct?": true
+    "correct?": false
+  },
+  "505_1_3000027": {
+    "tagsets": [
+      "networkadapter-nae"
+    ],
+    "certainty": 0,
+    "correct?": false
   },
   "505_1_3001918": {
     "tagsets": [
@@ -6340,11 +7163,10 @@
       "networkadapter-n",
       "networkadapter-nae",
       "room",
-      "temperature_setpoint",
       "vav"
     ],
     "certainty": 0,
-    "correct?": true
+    "correct?": false
   },
   "506_1_3001644": {
     "tagsets": [
@@ -6361,16 +7183,21 @@
   "505_0_3000634": {
     "tagsets": [
       "building-ebu3b",
-      "motor_torque_sensor",
       "networkadapter-n",
       "networkadapter-nae",
       "networkadapter-t",
       "networkadapter-vnd",
       "return_fan",
+      "unknown",
       "vfd"
     ],
     "certainty": 0,
-    "correct?": true
+    "correct?": false
+  },
+  "506_2_3010315": {
+    "tagsets": [],
+    "certainty": 0,
+    "correct?": false
   },
   "505_1_3000222": {
     "tagsets": [
@@ -6482,6 +7309,20 @@
     "certainty": 0,
     "correct?": true
   },
+  "505_0_3000553": {
+    "tagsets": [
+      "building-ebu3b",
+      "networkadapter-n",
+      "networkadapter-nae",
+      "networkadapter-t",
+      "networkadapter-vnd",
+      "supply_fan",
+      "unknown",
+      "vfd"
+    ],
+    "certainty": 0,
+    "correct?": false
+  },
   "506_0_3000992": {
     "tagsets": [
       "building-ebu3b",
@@ -6506,6 +7347,17 @@
     ],
     "certainty": 0,
     "correct?": true
+  },
+  "505_3_3015470": {
+    "tagsets": [
+      "building-ebu3b",
+      "networkadapter-n",
+      "networkadapter-nae",
+      "room",
+      "vav"
+    ],
+    "certainty": 0,
+    "correct?": false
   },
   "506_0_3001394": {
     "tagsets": [
@@ -6567,6 +7419,17 @@
     "certainty": 0,
     "correct?": true
   },
+  "506_1_3001356": {
+    "tagsets": [
+      "building-ebu3b",
+      "networkadapter-n",
+      "networkadapter-nae",
+      "room",
+      "vav"
+    ],
+    "certainty": 0,
+    "correct?": false
+  },
   "505_1_3000569": {
     "tagsets": [
       "building-ebu3b",
@@ -6577,18 +7440,6 @@
       "supply_fan",
       "unknown",
       "vfd"
-    ],
-    "certainty": 0,
-    "correct?": true
-  },
-  "506_1_3003146": {
-    "tagsets": [
-      "building-ebu3b",
-      "networkadapter-n",
-      "networkadapter-nae",
-      "room",
-      "supply_air_flow_setpoint",
-      "vav"
     ],
     "certainty": 0,
     "correct?": true
@@ -6641,6 +7492,20 @@
     "certainty": 0,
     "correct?": true
   },
+  "505_1_3000494": {
+    "tagsets": [
+      "building-ebu3b",
+      "networkadapter-n",
+      "networkadapter-nae",
+      "networkadapter-t",
+      "networkadapter-vnd",
+      "supply_fan",
+      "unknown",
+      "vfd"
+    ],
+    "certainty": 0,
+    "correct?": false
+  },
   "506_1_3000054": {
     "tagsets": [
       "building-ebu3b",
@@ -6664,6 +7529,19 @@
     ],
     "certainty": 0,
     "correct?": true
+  },
+  "505_0_3000314": {
+    "tagsets": [
+      "building-ebu3b",
+      "networkadapter-n",
+      "networkadapter-nae",
+      "networkadapter-t",
+      "networkadapter-vnd",
+      "unknown",
+      "vfd"
+    ],
+    "certainty": 0,
+    "correct?": false
   },
   "506_0_3003342": {
     "tagsets": [
@@ -6739,6 +7617,29 @@
     "certainty": 0,
     "correct?": true
   },
+  "505_4_3000545": {
+    "tagsets": [
+      "building-ebu3b",
+      "networkadapter-n",
+      "networkadapter-nae",
+      "networkadapter-t",
+      "networkadapter-vnd",
+      "supply_fan",
+      "unknown",
+      "vfd"
+    ],
+    "certainty": 0,
+    "correct?": false
+  },
+  "505_2_3002407": {
+    "tagsets": [
+      "building-ebu3b",
+      "networkadapter-n",
+      "networkadapter-nae"
+    ],
+    "certainty": 0,
+    "correct?": false
+  },
   "506_1_3001063": {
     "tagsets": [
       "building-ebu3b",
@@ -6763,6 +7664,15 @@
     ],
     "certainty": 0,
     "correct?": true
+  },
+  "505_1_3000048": {
+    "tagsets": [
+      "building-ebu3b",
+      "networkadapter-n",
+      "networkadapter-nae"
+    ],
+    "certainty": 0,
+    "correct?": false
   },
   "505_1_3001271": {
     "tagsets": [
@@ -6800,6 +7710,19 @@
     "certainty": 0,
     "correct?": true
   },
+  "505_1_3000330": {
+    "tagsets": [
+      "building-ebu3b",
+      "networkadapter-n",
+      "networkadapter-nae",
+      "networkadapter-t",
+      "networkadapter-vnd",
+      "unknown",
+      "vfd"
+    ],
+    "certainty": 0,
+    "correct?": false
+  },
   "505_1_3001999": {
     "tagsets": [
       "building-ebu3b",
@@ -6831,12 +7754,10 @@
       "networkadapter-n",
       "networkadapter-nae",
       "room",
-      "vav",
-      "zone",
-      "zone_temperature_sensor"
+      "vav"
     ],
     "certainty": 0,
-    "correct?": true
+    "correct?": false
   },
   "506_1_3000681": {
     "tagsets": [
@@ -6850,18 +7771,51 @@
     "certainty": 0,
     "correct?": true
   },
+  "505_1_3000201": {
+    "tagsets": [
+      "building-ebu3b",
+      "cooling_command",
+      "networkadapter-n",
+      "networkadapter-nae",
+      "room",
+      "vav"
+    ],
+    "certainty": 0,
+    "correct?": true
+  },
   "505_0_3001850": {
     "tagsets": [
       "building-ebu3b",
       "networkadapter-n",
       "networkadapter-nae",
       "room",
-      "vav",
-      "zone",
-      "zone_temperature_sensor"
+      "vav"
     ],
     "certainty": 0,
-    "correct?": true
+    "correct?": false
+  },
+  "505_0_3000737": {
+    "tagsets": [
+      "building-ebu3b",
+      "networkadapter-n",
+      "networkadapter-nae",
+      "networkadapter-t",
+      "networkadapter-vnd",
+      "return_fan",
+      "unknown",
+      "vfd"
+    ],
+    "certainty": 0,
+    "correct?": false
+  },
+  "505_0_3000043": {
+    "tagsets": [
+      "building-ebu3b",
+      "networkadapter-n",
+      "networkadapter-nae"
+    ],
+    "certainty": 0,
+    "correct?": false
   },
   "505_1_3001019": {
     "tagsets": [
@@ -6903,14 +7857,13 @@
   "505_3_3015332": {
     "tagsets": [
       "building-ebu3b",
-      "cooling_on_off_status",
       "crac",
       "networkadapter-n",
       "networkadapter-nae",
       "networkadapter-vnd"
     ],
     "certainty": 0,
-    "correct?": true
+    "correct?": false
   },
   "506_1_3015645": {
     "tagsets": [
@@ -6923,6 +7876,16 @@
     ],
     "certainty": 0,
     "correct?": true
+  },
+  "505_4_3000823": {
+    "tagsets": [
+      "building-ebu3b",
+      "networkadapter-n",
+      "networkadapter-nae",
+      "networkadapter-vnd"
+    ],
+    "certainty": 0,
+    "correct?": false
   },
   "505_14_3002067": {
     "tagsets": [
@@ -6966,16 +7929,26 @@
       "networkadapter-n",
       "networkadapter-nae",
       "room",
-      "temperature_setpoint",
       "vav"
     ],
     "certainty": 0,
-    "correct?": true
+    "correct?": false
   },
-  "505_0_3001447": {
+  "505_0_3015324": {
     "tagsets": [
       "building-ebu3b",
-      "effective_cooling_temperature_setpoint",
+      "crac",
+      "networkadapter-n",
+      "networkadapter-nae",
+      "networkadapter-vnd"
+    ],
+    "certainty": 0,
+    "correct?": false
+  },
+  "506_1_3001688": {
+    "tagsets": [
+      "building-ebu3b",
+      "heating_command",
       "networkadapter-n",
       "networkadapter-nae",
       "room",
@@ -6984,10 +7957,10 @@
     "certainty": 0,
     "correct?": true
   },
-  "506_1_3001688": {
+  "506_1_3000517": {
     "tagsets": [
       "building-ebu3b",
-      "heating_command",
+      "cooling_max_discharge_air_flow_setpoint",
       "networkadapter-n",
       "networkadapter-nae",
       "room",
@@ -7117,6 +8090,14 @@
     "certainty": 0,
     "correct?": true
   },
+  "505_5_3017910": {
+    "tagsets": [
+      "building-ebu3b",
+      "networkadapter-nae"
+    ],
+    "certainty": 0,
+    "correct?": false
+  },
   "506_1_3001955": {
     "tagsets": [
       "building-ebu3b",
@@ -7185,12 +8166,10 @@
       "networkadapter-n",
       "networkadapter-nae",
       "room",
-      "vav",
-      "zone",
-      "zone_temperature_sensor"
+      "vav"
     ],
     "certainty": 0,
-    "correct?": true
+    "correct?": false
   },
   "505_0_3001524": {
     "tagsets": [
@@ -7198,12 +8177,10 @@
       "networkadapter-n",
       "networkadapter-nae",
       "room",
-      "vav",
-      "zone",
-      "zone_temperature_sensor"
+      "vav"
     ],
     "certainty": 0,
-    "correct?": true
+    "correct?": false
   },
   "506_1_3000471": {
     "tagsets": [
@@ -7218,17 +8195,16 @@
     "certainty": 0,
     "correct?": true
   },
-  "506_1_3002641": {
+  "505_3_3014603": {
     "tagsets": [
       "building-ebu3b",
-      "cooling_command",
+      "crac",
       "networkadapter-n",
       "networkadapter-nae",
-      "room",
-      "vav"
+      "networkadapter-vnd"
     ],
     "certainty": 0,
-    "correct?": true
+    "correct?": false
   },
   "506_1_3000597": {
     "tagsets": [
@@ -7278,6 +8254,19 @@
     "certainty": 0,
     "correct?": true
   },
+  "506_4_3001813": {
+    "tagsets": [
+      "building-ebu3b",
+      "fan",
+      "fan_command",
+      "networkadapter-n",
+      "networkadapter-nae",
+      "room",
+      "vav"
+    ],
+    "certainty": 0,
+    "correct?": true
+  },
   "506_1_3000931": {
     "tagsets": [
       "building-ebu3b",
@@ -7297,12 +8286,10 @@
       "networkadapter-n",
       "networkadapter-nae",
       "room",
-      "vav",
-      "zone",
-      "zone_temperature_sensor"
+      "vav"
     ],
     "certainty": 0,
-    "correct?": true
+    "correct?": false
   },
   "505_1_3001944": {
     "tagsets": [
@@ -7340,6 +8327,11 @@
     "certainty": 0,
     "correct?": true
   },
+  "506_2_3009732": {
+    "tagsets": [],
+    "certainty": 0,
+    "correct?": false
+  },
   "506_1_3003083": {
     "tagsets": [
       "building-ebu3b",
@@ -7352,6 +8344,32 @@
     ],
     "certainty": 0,
     "correct?": true
+  },
+  "505_1_3000409": {
+    "tagsets": [
+      "building-ebu3b",
+      "networkadapter-n",
+      "networkadapter-nae",
+      "networkadapter-t",
+      "networkadapter-vnd",
+      "unknown",
+      "vfd"
+    ],
+    "certainty": 0,
+    "correct?": false
+  },
+  "505_4_3000431": {
+    "tagsets": [
+      "building-ebu3b",
+      "networkadapter-n",
+      "networkadapter-nae",
+      "networkadapter-t",
+      "networkadapter-vnd",
+      "unknown",
+      "vfd"
+    ],
+    "certainty": 0,
+    "correct?": false
   },
   "506_1_3000919": {
     "tagsets": [
@@ -7395,11 +8413,10 @@
       "networkadapter-n",
       "networkadapter-nae",
       "room",
-      "temperature_setpoint",
       "vav"
     ],
     "certainty": 0,
-    "correct?": true
+    "correct?": false
   },
   "506_1_3000715": {
     "tagsets": [
@@ -7422,11 +8439,25 @@
       "networkadapter-t",
       "networkadapter-vnd",
       "return_fan",
-      "run_enable_command",
+      "unknown",
       "vfd"
     ],
     "certainty": 0,
-    "correct?": true
+    "correct?": false
+  },
+  "505_4_3000707": {
+    "tagsets": [
+      "building-ebu3b",
+      "networkadapter-n",
+      "networkadapter-nae",
+      "networkadapter-t",
+      "networkadapter-vnd",
+      "return_fan",
+      "unknown",
+      "vfd"
+    ],
+    "certainty": 0,
+    "correct?": false
   },
   "506_1_3002678": {
     "tagsets": [
@@ -7436,6 +8467,31 @@
       "networkadapter-nae",
       "room",
       "vav"
+    ],
+    "certainty": 0,
+    "correct?": true
+  },
+  "506_1_3001077": {
+    "tagsets": [
+      "building-ebu3b",
+      "networkadapter-n",
+      "networkadapter-nae",
+      "reheat_valve_command",
+      "room",
+      "valve",
+      "vav"
+    ],
+    "certainty": 0,
+    "correct?": true
+  },
+  "505_3_3015238": {
+    "tagsets": [
+      "building-ebu3b",
+      "crac",
+      "networkadapter-n",
+      "networkadapter-nae",
+      "networkadapter-vnd",
+      "power_loss_alarm"
     ],
     "certainty": 0,
     "correct?": true
@@ -7451,6 +8507,16 @@
     ],
     "certainty": 0,
     "correct?": true
+  },
+  "505_1_3000057": {
+    "tagsets": [
+      "building-ebu3b",
+      "networkadapter-n",
+      "networkadapter-nae",
+      "networkadapter-vnd"
+    ],
+    "certainty": 0,
+    "correct?": false
   },
   "506_14_3002102": {
     "tagsets": [
@@ -7550,6 +8616,27 @@
     "certainty": 0,
     "correct?": true
   },
+  "505_1_3025889": {
+    "tagsets": [
+      "building-ebu3b",
+      "networkadapter-n",
+      "networkadapter-nae",
+      "networkadapter-vnd"
+    ],
+    "certainty": 0,
+    "correct?": false
+  },
+  "505_0_3015134": {
+    "tagsets": [
+      "building-ebu3b",
+      "crac",
+      "networkadapter-n",
+      "networkadapter-nae",
+      "networkadapter-vnd"
+    ],
+    "certainty": 0,
+    "correct?": false
+  },
   "506_1_3000154": {
     "tagsets": [
       "building-ebu3b",
@@ -7568,11 +8655,10 @@
       "networkadapter-n",
       "networkadapter-nae",
       "room",
-      "temperature_setpoint",
       "vav"
     ],
     "certainty": 0,
-    "correct?": true
+    "correct?": false
   },
   "505_1_3001176": {
     "tagsets": [
@@ -7628,9 +8714,19 @@
       "networkadapter-n",
       "networkadapter-nae",
       "room",
-      "vav",
-      "zone",
-      "zone_temperature_sensor"
+      "vav"
+    ],
+    "certainty": 0,
+    "correct?": false
+  },
+  "506_3_3002705": {
+    "tagsets": [
+      "building-ebu3b",
+      "networkadapter-n",
+      "networkadapter-nae",
+      "room",
+      "temporary_occupancy_status",
+      "vav"
     ],
     "certainty": 0,
     "correct?": true
@@ -7653,11 +8749,10 @@
       "networkadapter-n",
       "networkadapter-nae",
       "room",
-      "temperature_setpoint",
       "vav"
     ],
     "certainty": 0,
-    "correct?": true
+    "correct?": false
   },
   "506_0_3002689": {
     "tagsets": [
@@ -7665,12 +8760,10 @@
       "networkadapter-n",
       "networkadapter-nae",
       "room",
-      "vav",
-      "zone",
-      "zone_temperature_sensor"
+      "vav"
     ],
     "certainty": 0,
-    "correct?": true
+    "correct?": false
   },
   "506_1_3001805": {
     "tagsets": [
@@ -7678,11 +8771,10 @@
       "networkadapter-n",
       "networkadapter-nae",
       "room",
-      "temperature_setpoint",
       "vav"
     ],
     "certainty": 0,
-    "correct?": true
+    "correct?": false
   },
   "506_1_3000719": {
     "tagsets": [
@@ -7733,17 +8825,27 @@
     "certainty": 0,
     "correct?": true
   },
+  "505_4_3014650": {
+    "tagsets": [
+      "building-ebu3b",
+      "crac",
+      "networkadapter-n",
+      "networkadapter-nae",
+      "networkadapter-vnd"
+    ],
+    "certainty": 0,
+    "correct?": false
+  },
   "505_1_3000151": {
     "tagsets": [
       "building-ebu3b",
       "networkadapter-n",
       "networkadapter-nae",
       "room",
-      "temperature_setpoint",
       "vav"
     ],
     "certainty": 0,
-    "correct?": true
+    "correct?": false
   },
   "506_14_3000242": {
     "tagsets": [
@@ -7775,9 +8877,21 @@
       "networkadapter-n",
       "networkadapter-nae",
       "room",
-      "vav",
-      "zone",
-      "zone_temperature_sensor"
+      "vav"
+    ],
+    "certainty": 0,
+    "correct?": false
+  },
+  "505_0_3000645": {
+    "tagsets": [
+      "building-ebu3b",
+      "networkadapter-n",
+      "networkadapter-nae",
+      "networkadapter-t",
+      "networkadapter-vnd",
+      "return_fan",
+      "unknown",
+      "vfd"
     ],
     "certainty": 0,
     "correct?": true
@@ -7854,19 +8968,6 @@
     "certainty": 0,
     "correct?": true
   },
-  "506_0_3000847": {
-    "tagsets": [
-      "building-ebu3b",
-      "damper",
-      "damper_position_sensor",
-      "networkadapter-n",
-      "networkadapter-nae",
-      "room",
-      "vav"
-    ],
-    "certainty": 0,
-    "correct?": true
-  },
   "505_1_3001681": {
     "tagsets": [
       "building-ebu3b",
@@ -7879,14 +8980,14 @@
     "certainty": 0,
     "correct?": true
   },
-  "505_1_3001471": {
+  "506_0_3001866": {
     "tagsets": [
       "building-ebu3b",
+      "damper",
+      "damper_position_sensor",
       "networkadapter-n",
       "networkadapter-nae",
-      "reheat_valve_command",
       "room",
-      "valve",
       "vav"
     ],
     "certainty": 0,
@@ -7911,12 +9012,10 @@
       "networkadapter-n",
       "networkadapter-nae",
       "room",
-      "vav",
-      "zone",
-      "zone_temperature_sensor"
+      "vav"
     ],
     "certainty": 0,
-    "correct?": true
+    "correct?": false
   },
   "506_0_3002815": {
     "tagsets": [
@@ -7929,6 +9028,19 @@
     ],
     "certainty": 0,
     "correct?": true
+  },
+  "505_1_3000455": {
+    "tagsets": [
+      "building-ebu3b",
+      "networkadapter-n",
+      "networkadapter-nae",
+      "networkadapter-t",
+      "networkadapter-vnd",
+      "unknown",
+      "vfd"
+    ],
+    "certainty": 0,
+    "correct?": false
   },
   "506_1_3002340": {
     "tagsets": [
@@ -7954,6 +9066,20 @@
     ],
     "certainty": 0,
     "correct?": true
+  },
+  "505_4_3000509": {
+    "tagsets": [
+      "building-ebu3b",
+      "networkadapter-n",
+      "networkadapter-nae",
+      "networkadapter-t",
+      "networkadapter-vnd",
+      "supply_fan",
+      "unknown",
+      "vfd"
+    ],
+    "certainty": 0,
+    "correct?": false
   },
   "506_1_3002845": {
     "tagsets": [
@@ -7985,11 +9111,10 @@
       "networkadapter-n",
       "networkadapter-nae",
       "room",
-      "temperature_setpoint",
       "vav"
     ],
     "certainty": 0,
-    "correct?": true
+    "correct?": false
   },
   "505_0_3000984": {
     "tagsets": [
@@ -7997,12 +9122,10 @@
       "networkadapter-n",
       "networkadapter-nae",
       "room",
-      "vav",
-      "zone",
-      "zone_temperature_sensor"
+      "vav"
     ],
     "certainty": 0,
-    "correct?": true
+    "correct?": false
   },
   "505_1_3026048": {
     "tagsets": [
@@ -8094,12 +9217,10 @@
       "networkadapter-n",
       "networkadapter-nae",
       "room",
-      "vav",
-      "zone",
-      "zone_temperature_sensor"
+      "vav"
     ],
     "certainty": 0,
-    "correct?": true
+    "correct?": false
   },
   "505_0_3001428": {
     "tagsets": [
@@ -8143,9 +9264,31 @@
       "networkadapter-n",
       "networkadapter-nae",
       "room",
-      "vav",
-      "zone",
-      "zone_temperature_sensor"
+      "vav"
+    ],
+    "certainty": 0,
+    "correct?": false
+  },
+  "505_3_3000422": {
+    "tagsets": [
+      "building-ebu3b",
+      "networkadapter-n",
+      "networkadapter-nae",
+      "networkadapter-t",
+      "networkadapter-vnd",
+      "unknown",
+      "vfd"
+    ],
+    "certainty": 0,
+    "correct?": false
+  },
+  "506_2_3015066": {
+    "tagsets": [
+      "building-ebu3b",
+      "floor",
+      "networkadapter-nae",
+      "room",
+      "unknown"
     ],
     "certainty": 0,
     "correct?": true
@@ -8153,12 +9296,22 @@
   "505_3_3014605": {
     "tagsets": [
       "building-ebu3b",
-      "chilled_water_pump",
-      "manual_auto_status",
+      "crac",
       "networkadapter-n",
       "networkadapter-nae",
-      "networkadapter-vnd",
-      "vfd"
+      "networkadapter-vnd"
+    ],
+    "certainty": 0,
+    "correct?": false
+  },
+  "506_0_3000287": {
+    "tagsets": [
+      "building-ebu3b",
+      "effective_cooling_temperature_setpoint",
+      "networkadapter-n",
+      "networkadapter-nae",
+      "room",
+      "vav"
     ],
     "certainty": 0,
     "correct?": true
@@ -8241,11 +9394,10 @@
       "networkadapter-n",
       "networkadapter-nae",
       "room",
-      "temperature_setpoint",
       "vav"
     ],
     "certainty": 0,
-    "correct?": true
+    "correct?": false
   },
   "506_0_3000227": {
     "tagsets": [
@@ -8357,6 +9509,19 @@
     "certainty": 0,
     "correct?": true
   },
+  "505_3_3015356": {
+    "tagsets": [
+      "building-ebu3b",
+      "compressor",
+      "compressor_overload_alarm",
+      "crac",
+      "networkadapter-n",
+      "networkadapter-nae",
+      "networkadapter-vnd"
+    ],
+    "certainty": 0,
+    "correct?": true
+  },
   "505_0_3001450": {
     "tagsets": [
       "building-ebu3b",
@@ -8381,6 +9546,19 @@
     "certainty": 0,
     "correct?": true
   },
+  "505_1_3000372": {
+    "tagsets": [
+      "building-ebu3b",
+      "networkadapter-n",
+      "networkadapter-nae",
+      "networkadapter-t",
+      "networkadapter-vnd",
+      "unknown",
+      "vfd"
+    ],
+    "certainty": 0,
+    "correct?": false
+  },
   "506_0_3002473": {
     "tagsets": [
       "building-ebu3b",
@@ -8400,6 +9578,19 @@
       "networkadapter-nae",
       "room",
       "supply_air_flow_sensor",
+      "vav"
+    ],
+    "certainty": 0,
+    "correct?": true
+  },
+  "505_1_3000240": {
+    "tagsets": [
+      "building-ebu3b",
+      "damper",
+      "damper_command",
+      "networkadapter-n",
+      "networkadapter-nae",
+      "room",
       "vav"
     ],
     "certainty": 0,
@@ -8447,18 +9638,6 @@
       "building-ebu3b",
       "damper",
       "damper_position_sensor",
-      "networkadapter-n",
-      "networkadapter-nae",
-      "room",
-      "vav"
-    ],
-    "certainty": 0,
-    "correct?": true
-  },
-  "506_1_3000935": {
-    "tagsets": [
-      "building-ebu3b",
-      "cooling_max_discharge_air_flow_setpoint",
       "networkadapter-n",
       "networkadapter-nae",
       "room",
@@ -8515,6 +9694,28 @@
     "certainty": 0,
     "correct?": true
   },
+  "505_5_3014228": {
+    "tagsets": [
+      "building-ebu3b",
+      "networkadapter-n",
+      "networkadapter-nae",
+      "room",
+      "vav"
+    ],
+    "certainty": 0,
+    "correct?": false
+  },
+  "505_0_3014620": {
+    "tagsets": [
+      "building-ebu3b",
+      "crac",
+      "networkadapter-n",
+      "networkadapter-nae",
+      "networkadapter-vnd"
+    ],
+    "certainty": 0,
+    "correct?": false
+  },
   "506_1_3001422": {
     "tagsets": [
       "building-ebu3b",
@@ -8533,11 +9734,10 @@
       "networkadapter-n",
       "networkadapter-nae",
       "room",
-      "temperature_setpoint",
       "vav"
     ],
     "certainty": 0,
-    "correct?": true
+    "correct?": false
   },
   "505_1_3002038": {
     "tagsets": [
@@ -8595,12 +9795,10 @@
       "networkadapter-n",
       "networkadapter-nae",
       "room",
-      "vav",
-      "zone",
-      "zone_temperature_sensor"
+      "vav"
     ],
     "certainty": 0,
-    "correct?": true
+    "correct?": false
   },
   "506_0_3000806": {
     "tagsets": [
@@ -8638,18 +9836,29 @@
     "certainty": 0,
     "correct?": true
   },
+  "506_1_3001522": {
+    "tagsets": [
+      "building-ebu3b",
+      "damper",
+      "damper_command",
+      "networkadapter-n",
+      "networkadapter-nae",
+      "room",
+      "vav"
+    ],
+    "certainty": 0,
+    "correct?": true
+  },
   "505_0_3000165": {
     "tagsets": [
       "building-ebu3b",
       "networkadapter-n",
       "networkadapter-nae",
       "room",
-      "vav",
-      "zone",
-      "zone_temperature_sensor"
+      "vav"
     ],
     "certainty": 0,
-    "correct?": true
+    "correct?": false
   },
   "506_0_3002433": {
     "tagsets": [
@@ -8711,6 +9920,29 @@
     "certainty": 0,
     "correct?": true
   },
+  "505_0_3000394": {
+    "tagsets": [
+      "building-ebu3b",
+      "networkadapter-n",
+      "networkadapter-nae",
+      "networkadapter-t",
+      "networkadapter-vnd",
+      "unknown",
+      "vfd"
+    ],
+    "certainty": 0,
+    "correct?": false
+  },
+  "505_1_3014679": {
+    "tagsets": [
+      "building-ebu3b",
+      "networkadapter-n",
+      "networkadapter-nae",
+      "networkadapter-vnd"
+    ],
+    "certainty": 0,
+    "correct?": false
+  },
   "506_1_3002781": {
     "tagsets": [
       "building-ebu3b",
@@ -8754,11 +9986,10 @@
       "networkadapter-n",
       "networkadapter-nae",
       "room",
-      "temperature_setpoint",
       "vav"
     ],
     "certainty": 0,
-    "correct?": true
+    "correct?": false
   },
   "506_14_3001068": {
     "tagsets": [
@@ -8802,11 +10033,10 @@
       "networkadapter-n",
       "networkadapter-nae",
       "room",
-      "temperature_setpoint",
       "vav"
     ],
     "certainty": 0,
-    "correct?": true
+    "correct?": false
   },
   "506_1_3003267": {
     "tagsets": [
@@ -8941,6 +10171,30 @@
     "certainty": 0,
     "correct?": true
   },
+  "505_1_3001312": {
+    "tagsets": [
+      "building-ebu3b",
+      "networkadapter-n",
+      "networkadapter-nae",
+      "room",
+      "supply_air_flow_setpoint",
+      "vav"
+    ],
+    "certainty": 0,
+    "correct?": true
+  },
+  "506_0_3003343": {
+    "tagsets": [
+      "building-ebu3b",
+      "networkadapter-n",
+      "networkadapter-nae",
+      "room",
+      "supply_air_flow_sensor",
+      "vav"
+    ],
+    "certainty": 0,
+    "correct?": true
+  },
   "506_1_3000895": {
     "tagsets": [
       "building-ebu3b",
@@ -8959,11 +10213,10 @@
       "networkadapter-n",
       "networkadapter-nae",
       "room",
-      "temperature_setpoint",
       "vav"
     ],
     "certainty": 0,
-    "correct?": true
+    "correct?": false
   },
   "506_1_3002094": {
     "tagsets": [
@@ -9095,12 +10348,10 @@
       "networkadapter-n",
       "networkadapter-nae",
       "room",
-      "vav",
-      "zone",
-      "zone_temperature_sensor"
+      "vav"
     ],
     "certainty": 0,
-    "correct?": true
+    "correct?": false
   },
   "505_0_3000074": {
     "tagsets": [
@@ -9120,11 +10371,10 @@
       "networkadapter-n",
       "networkadapter-nae",
       "room",
-      "temperature_setpoint",
       "vav"
     ],
     "certainty": 0,
-    "correct?": true
+    "correct?": false
   },
   "505_0_3001567": {
     "tagsets": [
@@ -9212,6 +10462,17 @@
     "certainty": 0,
     "correct?": true
   },
+  "505_3_3015275": {
+    "tagsets": [
+      "building-ebu3b",
+      "crac",
+      "networkadapter-n",
+      "networkadapter-nae",
+      "networkadapter-vnd"
+    ],
+    "certainty": 0,
+    "correct?": false
+  },
   "506_0_3005844": {
     "tagsets": [
       "building-ebu3b",
@@ -9223,6 +10484,20 @@
     ],
     "certainty": 0,
     "correct?": true
+  },
+  "505_0_3000457": {
+    "tagsets": [
+      "building-ebu3b",
+      "networkadapter-n",
+      "networkadapter-nae",
+      "networkadapter-t",
+      "networkadapter-vnd",
+      "supply_fan",
+      "unknown",
+      "vfd"
+    ],
+    "certainty": 0,
+    "correct?": false
   },
   "506_1_3000938": {
     "tagsets": [
@@ -9285,6 +10560,31 @@
     "certainty": 0,
     "correct?": true
   },
+  "506_1_3001421": {
+    "tagsets": [
+      "building-ebu3b",
+      "networkadapter-n",
+      "networkadapter-nae",
+      "occupied_heating_supply_air_flow_setpoint",
+      "room",
+      "vav"
+    ],
+    "certainty": 0,
+    "correct?": true
+  },
+  "505_0_3000337": {
+    "tagsets": [
+      "building-ebu3b",
+      "networkadapter-n",
+      "networkadapter-nae",
+      "networkadapter-t",
+      "networkadapter-vnd",
+      "unknown",
+      "vfd"
+    ],
+    "certainty": 0,
+    "correct?": false
+  },
   "506_1_3002180": {
     "tagsets": [
       "building-ebu3b",
@@ -9322,6 +10622,19 @@
     "certainty": 0,
     "correct?": true
   },
+  "505_4_3000385": {
+    "tagsets": [
+      "building-ebu3b",
+      "networkadapter-n",
+      "networkadapter-nae",
+      "networkadapter-t",
+      "networkadapter-vnd",
+      "unknown",
+      "vfd"
+    ],
+    "certainty": 0,
+    "correct?": false
+  },
   "506_0_3003220": {
     "tagsets": [
       "building-ebu3b",
@@ -9352,11 +10665,10 @@
       "networkadapter-n",
       "networkadapter-nae",
       "room",
-      "temperature_setpoint",
       "vav"
     ],
     "certainty": 0,
-    "correct?": true
+    "correct?": false
   },
   "506_0_3001842": {
     "tagsets": [
@@ -9370,6 +10682,11 @@
     "certainty": 0,
     "correct?": true
   },
+  "506_2_3010314": {
+    "tagsets": [],
+    "certainty": 0,
+    "correct?": false
+  },
   "506_0_3000845": {
     "tagsets": [
       "building-ebu3b",
@@ -9381,6 +10698,20 @@
     ],
     "certainty": 0,
     "correct?": true
+  },
+  "505_0_3000674": {
+    "tagsets": [
+      "building-ebu3b",
+      "networkadapter-n",
+      "networkadapter-nae",
+      "networkadapter-t",
+      "networkadapter-vnd",
+      "return_fan",
+      "unknown",
+      "vfd"
+    ],
+    "certainty": 0,
+    "correct?": false
   },
   "505_1_3000979": {
     "tagsets": [
@@ -9437,11 +10768,10 @@
       "networkadapter-n",
       "networkadapter-nae",
       "room",
-      "temperature_setpoint",
       "vav"
     ],
     "certainty": 0,
-    "correct?": true
+    "correct?": false
   },
   "505_1_3000918": {
     "tagsets": [
@@ -9454,6 +10784,14 @@
     ],
     "certainty": 0,
     "correct?": true
+  },
+  "505_5_3017932": {
+    "tagsets": [
+      "building-ebu3b",
+      "networkadapter-nae"
+    ],
+    "certainty": 0,
+    "correct?": false
   },
   "505_1_3001519": {
     "tagsets": [
@@ -9557,12 +10895,10 @@
       "networkadapter-n",
       "networkadapter-nae",
       "room",
-      "vav",
-      "zone",
-      "zone_temperature_sensor"
+      "vav"
     ],
     "certainty": 0,
-    "correct?": true
+    "correct?": false
   },
   "506_0_3002431": {
     "tagsets": [
@@ -9575,6 +10911,20 @@
     ],
     "certainty": 0,
     "correct?": true
+  },
+  "505_3_3000502": {
+    "tagsets": [
+      "building-ebu3b",
+      "networkadapter-n",
+      "networkadapter-nae",
+      "networkadapter-t",
+      "networkadapter-vnd",
+      "supply_fan",
+      "unknown",
+      "vfd"
+    ],
+    "certainty": 0,
+    "correct?": false
   },
   "505_1_3026026": {
     "tagsets": [
@@ -9636,6 +10986,17 @@
     "certainty": 0,
     "correct?": true
   },
+  "506_0_3015816": {
+    "tagsets": [
+      "building-ebu3b",
+      "networkadapter-n",
+      "networkadapter-nae",
+      "room",
+      "vav"
+    ],
+    "certainty": 0,
+    "correct?": false
+  },
   "506_1_3001602": {
     "tagsets": [
       "building-ebu3b",
@@ -9655,11 +11016,10 @@
       "networkadapter-n",
       "networkadapter-nae",
       "room",
-      "temperature_setpoint",
       "vav"
     ],
     "certainty": 0,
-    "correct?": true
+    "correct?": false
   },
   "506_0_3001924": {
     "tagsets": [
@@ -9709,6 +11069,19 @@
     "certainty": 0,
     "correct?": true
   },
+  "505_0_3000321": {
+    "tagsets": [
+      "building-ebu3b",
+      "networkadapter-n",
+      "networkadapter-nae",
+      "networkadapter-t",
+      "networkadapter-vnd",
+      "unknown",
+      "vfd"
+    ],
+    "certainty": 0,
+    "correct?": false
+  },
   "506_1_3001462": {
     "tagsets": [
       "building-ebu3b",
@@ -9739,12 +11112,10 @@
       "networkadapter-n",
       "networkadapter-nae",
       "room",
-      "vav",
-      "zone",
-      "zone_temperature_sensor"
+      "vav"
     ],
     "certainty": 0,
-    "correct?": true
+    "correct?": false
   },
   "506_1_3015833": {
     "tagsets": [
@@ -9752,24 +11123,10 @@
       "networkadapter-n",
       "networkadapter-nae",
       "room",
-      "temperature_setpoint",
       "vav"
     ],
     "certainty": 0,
-    "correct?": true
-  },
-  "505_4_3001095": {
-    "tagsets": [
-      "building-ebu3b",
-      "fan",
-      "fan_command",
-      "networkadapter-n",
-      "networkadapter-nae",
-      "room",
-      "vav"
-    ],
-    "certainty": 0,
-    "correct?": true
+    "correct?": false
   },
   "506_0_3001411": {
     "tagsets": [
@@ -9789,12 +11146,10 @@
       "networkadapter-n",
       "networkadapter-nae",
       "room",
-      "vav",
-      "zone",
-      "zone_temperature_sensor"
+      "vav"
     ],
     "certainty": 0,
-    "correct?": true
+    "correct?": false
   },
   "506_1_3002725": {
     "tagsets": [
@@ -9808,17 +11163,25 @@
     "certainty": 0,
     "correct?": true
   },
+  "505_0_3014673": {
+    "tagsets": [
+      "building-ebu3b",
+      "networkadapter-n",
+      "networkadapter-nae"
+    ],
+    "certainty": 0,
+    "correct?": false
+  },
   "506_1_3001057": {
     "tagsets": [
       "building-ebu3b",
       "networkadapter-n",
       "networkadapter-nae",
       "room",
-      "temperature_setpoint",
       "vav"
     ],
     "certainty": 0,
-    "correct?": true
+    "correct?": false
   },
   "506_14_3000322": {
     "tagsets": [
@@ -9851,11 +11214,10 @@
       "networkadapter-n",
       "networkadapter-nae",
       "room",
-      "temperature_setpoint",
       "vav"
     ],
     "certainty": 0,
-    "correct?": true
+    "correct?": false
   },
   "506_0_3002063": {
     "tagsets": [
@@ -9863,12 +11225,10 @@
       "networkadapter-n",
       "networkadapter-nae",
       "room",
-      "vav",
-      "zone",
-      "zone_temperature_sensor"
+      "vav"
     ],
     "certainty": 0,
-    "correct?": true
+    "correct?": false
   },
   "505_1_3001191": {
     "tagsets": [
@@ -9948,11 +11308,10 @@
       "networkadapter-n",
       "networkadapter-nae",
       "room",
-      "temperature_setpoint",
       "vav"
     ],
     "certainty": 0,
-    "correct?": true
+    "correct?": false
   },
   "506_0_3001639": {
     "tagsets": [
@@ -10088,6 +11447,31 @@
     "certainty": 0,
     "correct?": true
   },
+  "506_3_3002181": {
+    "tagsets": [
+      "building-ebu3b",
+      "networkadapter-n",
+      "networkadapter-nae",
+      "room",
+      "temporary_occupancy_status",
+      "vav"
+    ],
+    "certainty": 0,
+    "correct?": true
+  },
+  "505_4_3000350": {
+    "tagsets": [
+      "building-ebu3b",
+      "networkadapter-n",
+      "networkadapter-nae",
+      "networkadapter-t",
+      "networkadapter-vnd",
+      "unknown",
+      "vfd"
+    ],
+    "certainty": 0,
+    "correct?": false
+  },
   "505_1_3001394": {
     "tagsets": [
       "building-ebu3b",
@@ -10124,6 +11508,17 @@
     "certainty": 0,
     "correct?": true
   },
+  "505_0_3015198": {
+    "tagsets": [
+      "building-ebu3b",
+      "crac",
+      "networkadapter-n",
+      "networkadapter-nae",
+      "networkadapter-vnd"
+    ],
+    "certainty": 0,
+    "correct?": false
+  },
   "505_1_3001172": {
     "tagsets": [
       "building-ebu3b",
@@ -10149,24 +11544,24 @@
     "certainty": 0,
     "correct?": true
   },
+  "506_0_3002251": {
+    "tagsets": [
+      "building-ebu3b",
+      "networkadapter-n",
+      "networkadapter-nae",
+      "room",
+      "supply_air_flow_sensor",
+      "vav"
+    ],
+    "certainty": 0,
+    "correct?": true
+  },
   "506_0_3000886": {
     "tagsets": [
       "building-ebu3b",
       "effective_cooling_temperature_setpoint",
       "networkadapter-n",
       "networkadapter-nae",
-      "room",
-      "vav"
-    ],
-    "certainty": 0,
-    "correct?": true
-  },
-  "506_1_3002599": {
-    "tagsets": [
-      "building-ebu3b",
-      "networkadapter-n",
-      "networkadapter-nae",
-      "occupied_cooling_min_supply_air_flow_setpoint",
       "room",
       "vav"
     ],
@@ -10198,6 +11593,18 @@
     "certainty": 0,
     "correct?": true
   },
+  "506_1_3002801": {
+    "tagsets": [
+      "building-ebu3b",
+      "cooling_max_discharge_air_flow_setpoint",
+      "networkadapter-n",
+      "networkadapter-nae",
+      "room",
+      "vav"
+    ],
+    "certainty": 0,
+    "correct?": true
+  },
   "506_1_3002238": {
     "tagsets": [
       "building-ebu3b",
@@ -10209,6 +11616,17 @@
     ],
     "certainty": 0,
     "correct?": true
+  },
+  "505_3_3015140": {
+    "tagsets": [
+      "building-ebu3b",
+      "crac",
+      "networkadapter-n",
+      "networkadapter-nae",
+      "networkadapter-vnd"
+    ],
+    "certainty": 0,
+    "correct?": false
   },
   "506_0_3002148": {
     "tagsets": [
@@ -10228,7 +11646,18 @@
       "networkadapter-n",
       "networkadapter-nae",
       "room",
-      "temperature_setpoint",
+      "vav"
+    ],
+    "certainty": 0,
+    "correct?": false
+  },
+  "506_1_3001188": {
+    "tagsets": [
+      "building-ebu3b",
+      "heating_command",
+      "networkadapter-n",
+      "networkadapter-nae",
+      "room",
       "vav"
     ],
     "certainty": 0,
@@ -10237,15 +11666,11 @@
   "505_1_3000050": {
     "tagsets": [
       "building-ebu3b",
-      "heat_exchanger",
-      "heat_exchanger_valve_command",
-      "networkadapter-dx",
       "networkadapter-n",
-      "networkadapter-nae",
-      "valve"
+      "networkadapter-nae"
     ],
     "certainty": 0,
-    "correct?": true
+    "correct?": false
   },
   "506_0_3001096": {
     "tagsets": [
@@ -10284,18 +11709,6 @@
     "certainty": 0,
     "correct?": true
   },
-  "505_0_3014468": {
-    "tagsets": [
-      "building-ebu3b",
-      "co2_sensor",
-      "networkadapter-n",
-      "networkadapter-nae",
-      "room",
-      "vav"
-    ],
-    "certainty": 0,
-    "correct?": true
-  },
   "506_1_3002217": {
     "tagsets": [
       "building-ebu3b",
@@ -10314,12 +11727,10 @@
       "networkadapter-n",
       "networkadapter-nae",
       "room",
-      "vav",
-      "zone",
-      "zone_temperature_sensor"
+      "vav"
     ],
     "certainty": 0,
-    "correct?": true
+    "correct?": false
   },
   "506_14_3001490": {
     "tagsets": [
@@ -10357,6 +11768,19 @@
     "certainty": 0,
     "correct?": true
   },
+  "505_0_3000418": {
+    "tagsets": [
+      "building-ebu3b",
+      "networkadapter-n",
+      "networkadapter-nae",
+      "networkadapter-t",
+      "networkadapter-vnd",
+      "unknown",
+      "vfd"
+    ],
+    "certainty": 0,
+    "correct?": false
+  },
   "506_1_3001968": {
     "tagsets": [
       "building-ebu3b",
@@ -10369,6 +11793,19 @@
     ],
     "certainty": 0,
     "correct?": true
+  },
+  "505_3_3000342": {
+    "tagsets": [
+      "building-ebu3b",
+      "networkadapter-n",
+      "networkadapter-nae",
+      "networkadapter-t",
+      "networkadapter-vnd",
+      "unknown",
+      "vfd"
+    ],
+    "certainty": 0,
+    "correct?": false
   },
   "506_1_3002358": {
     "tagsets": [
@@ -10400,12 +11837,10 @@
       "networkadapter-n",
       "networkadapter-nae",
       "room",
-      "vav",
-      "zone",
-      "zone_temperature_sensor"
+      "vav"
     ],
     "certainty": 0,
-    "correct?": true
+    "correct?": false
   },
   "506_1_3002516": {
     "tagsets": [
@@ -10453,6 +11888,19 @@
       "networkadapter-n",
       "networkadapter-nae",
       "room",
+      "vav"
+    ],
+    "certainty": 0,
+    "correct?": true
+  },
+  "506_1_3003123": {
+    "tagsets": [
+      "building-ebu3b",
+      "networkadapter-n",
+      "networkadapter-nae",
+      "reheat_valve_command",
+      "room",
+      "valve",
       "vav"
     ],
     "certainty": 0,
@@ -10508,6 +11956,27 @@
     "certainty": 0,
     "correct?": true
   },
+  "505_3_3000810": {
+    "tagsets": [
+      "building-ebu3b",
+      "networkadapter-n",
+      "networkadapter-nae",
+      "networkadapter-vnd"
+    ],
+    "certainty": 0,
+    "correct?": false
+  },
+  "505_1_3014646": {
+    "tagsets": [
+      "building-ebu3b",
+      "crac",
+      "networkadapter-n",
+      "networkadapter-nae",
+      "networkadapter-vnd"
+    ],
+    "certainty": 0,
+    "correct?": false
+  },
   "505_3_3015357": {
     "tagsets": [
       "building-ebu3b",
@@ -10533,6 +12002,18 @@
     "certainty": 0,
     "correct?": true
   },
+  "506_1_3001320": {
+    "tagsets": [
+      "building-ebu3b",
+      "networkadapter-n",
+      "networkadapter-nae",
+      "occupied_cooling_min_supply_air_flow_setpoint",
+      "room",
+      "vav"
+    ],
+    "certainty": 0,
+    "correct?": true
+  },
   "506_1_3001059": {
     "tagsets": [
       "building-ebu3b",
@@ -10551,12 +12032,10 @@
       "networkadapter-n",
       "networkadapter-nae",
       "room",
-      "vav",
-      "zone",
-      "zone_temperature_sensor"
+      "vav"
     ],
     "certainty": 0,
-    "correct?": true
+    "correct?": false
   },
   "505_1_3001451": {
     "tagsets": [
@@ -10566,6 +12045,31 @@
       "reheat_valve_command",
       "room",
       "valve",
+      "vav"
+    ],
+    "certainty": 0,
+    "correct?": true
+  },
+  "505_3_3015240": {
+    "tagsets": [
+      "building-ebu3b",
+      "crac",
+      "fan",
+      "networkadapter-n",
+      "networkadapter-nae",
+      "networkadapter-vnd",
+      "standby_fan_status"
+    ],
+    "certainty": 0,
+    "correct?": true
+  },
+  "506_1_3001338": {
+    "tagsets": [
+      "building-ebu3b",
+      "networkadapter-n",
+      "networkadapter-nae",
+      "room",
+      "supply_air_flow_setpoint",
       "vav"
     ],
     "certainty": 0,
@@ -10601,12 +12105,10 @@
       "networkadapter-n",
       "networkadapter-nae",
       "room",
-      "vav",
-      "zone",
-      "zone_temperature_sensor"
+      "vav"
     ],
     "certainty": 0,
-    "correct?": true
+    "correct?": false
   },
   "506_1_3002440": {
     "tagsets": [
@@ -10619,6 +12121,20 @@
     ],
     "certainty": 0,
     "correct?": true
+  },
+  "505_4_3000587": {
+    "tagsets": [
+      "building-ebu3b",
+      "networkadapter-n",
+      "networkadapter-nae",
+      "networkadapter-t",
+      "networkadapter-vnd",
+      "supply_fan",
+      "unknown",
+      "vfd"
+    ],
+    "certainty": 0,
+    "correct?": false
   },
   "506_1_3003187": {
     "tagsets": [
@@ -10645,205 +12161,55 @@
     "correct?": true
   },
   "samples": [
-    "505_3_3015268",
-    "505_3_3015296",
-    "505_3_3015335",
-    "506_0_3002084",
-    "505_4_3000012",
-    "505_0_3000457",
-    "505_1_3000739",
-    "505_3_3015166",
-    "506_4_3001813",
-    "505_3_3014467",
-    "505_2_3022109",
-    "505_0_3000856",
-    "505_1_3014646",
-    "505_1_3000335",
-    "505_4_3000015",
-    "506_0_3000668",
-    "505_3_3015367",
-    "505_3_3015308",
-    "506_2_3009737",
-    "505_3_3015152",
-    "505_4_3000385",
-    "505_0_3014620",
-    "506_2_3015066",
-    "505_1_3014610",
-    "505_1_3000329",
-    "505_0_3000765",
-    "505_4_3000629",
-    "505_0_3000394",
-    "505_0_3015265",
-    "505_4_3000545",
-    "506_1_3001188",
-    "506_1_3001320",
-    "505_3_3015337",
-    "505_0_3000674",
-    "505_4_3000009",
-    "505_3_3015270",
-    "505_1_3014679",
-    "505_0_3014470",
-    "505_1_3000653",
-    "505_3_3014643",
-    "505_0_3000641",
-    "505_1_3001965",
-    "505_0_3000043",
-    "505_3_3000062",
-    "505_4_3014650",
-    "506_1_3002866",
-    "505_3_3000422",
-    "505_1_3014684",
-    "506_1_3003123",
-    "505_4_3015314",
-    "506_2_3009732",
-    "505_3_3014473",
-    "505_3_3014603",
-    "505_1_3000694",
-    "505_2_3002376",
-    "506_1_3001338",
-    "505_0_3015134",
-    "505_1_3000801",
-    "505_0_3001204",
-    "505_4_3000511",
-    "506_2_3015065",
-    "505_1_3000027",
-    "506_2_3015076",
-    "506_1_3002801",
-    "505_3_3015295",
-    "506_3_3002181",
-    "505_1_3001194",
-    "505_3_3000502",
-    "506_2_3015089",
-    "505_3_3015229",
-    "505_3_3015341",
-    "505_4_3000182",
-    "505_2_3026073",
-    "505_4_3000431",
-    "505_0_3015199",
-    "505_1_3000539",
-    "505_3_3000702",
-    "505_1_3000048",
-    "506_1_3000517",
-    "505_1_3026036",
-    "506_0_3002894",
-    "506_2_3009740",
-    "506_1_3015764",
-    "505_4_3000509",
-    "505_1_3000372",
-    "505_3_3015225",
-    "505_14_3001622",
-    "505_4_3000665",
-    "505_3_3015179",
-    "506_2_3010315",
-    "506_2_3010316",
-    "505_3_3015275",
-    "505_0_3000737",
-    "505_0_3000553",
-    "505_1_3000201",
-    "505_0_3001588",
-    "505_3_3015173",
-    "506_2_3009735",
-    "505_0_3014631",
-    "505_0_3014622",
-    "505_5_3013657",
-    "505_3_3015283",
-    "505_5_3017910",
-    "506_0_3000287",
-    "505_4_3000587",
-    "505_4_3000350",
-    "505_1_3000494",
-    "505_1_3000455",
-    "505_1_3000057",
-    "506_1_3001522",
-    "505_0_3015255",
-    "506_0_3000208",
-    "506_1_3001356",
-    "505_1_3000492",
-    "505_1_3000051",
-    "505_0_3014673",
-    "506_1_3001421",
-    "505_5_3017932",
-    "506_0_3015816",
-    "505_0_3000418",
-    "505_4_3000391",
-    "505_4_3000505",
-    "505_0_3000321",
     "505_3_3015304",
-    "505_3_3014640",
-    "506_0_3001333",
-    "505_2_3017930",
-    "505_2_3025844",
-    "505_3_3014641",
-    "506_1_3009391",
-    "505_1_3001958",
-    "505_1_3014612",
-    "505_0_3014633",
-    "506_2_3011378",
-    "505_3_3000743",
-    "505_1_3000419",
-    "505_3_3015159",
-    "505_3_3015287",
-    "505_1_3000460",
-    "505_1_3025889",
-    "505_0_3000753",
-    "505_2_3002407",
-    "505_3_3015356",
-    "505_3_3015240",
-    "505_2_3013659",
-    "505_4_3000019",
-    "505_0_3015198",
-    "506_3_3002705",
-    "505_1_3000240",
-    "505_3_3015352",
-    "505_3_3015174",
-    "506_2_3009758",
-    "505_0_3015324",
-    "505_1_3000330",
-    "505_0_3000314",
-    "505_0_3014586",
-    "505_4_3000389",
-    "505_1_3000031",
-    "505_0_3014472",
-    "505_3_3015299",
-    "506_0_3002104",
-    "505_3_3015470",
-    "506_2_3010314",
-    "505_2_3026077",
-    "505_3_3000810",
-    "505_0_3000645",
-    "505_5_3014228",
-    "505_4_3000707",
-    "505_0_3015196",
-    "505_0_3000605",
-    "505_0_3015259",
-    "505_4_3000823",
-    "505_3_3015238",
-    "506_0_3002251",
-    "506_1_3001077",
-    "505_1_3015312",
-    "505_3_3015140",
-    "506_0_3001866",
-    "505_4_3000751",
-    "505_0_3000365",
-    "505_3_3000342",
-    "505_1_3000575",
-    "505_0_3001687",
-    "505_0_3000594",
-    "505_1_3000613",
-    "505_0_3000433",
-    "506_0_3003343",
-    "505_1_3001312",
-    "505_0_3000337",
-    "506_1_3003370",
-    "505_4_3000820",
+    "506_1_3015777",
+    "505_3_3015295",
+    "505_3_3015152",
+    "506_3_3001086",
     "505_3_3015141",
-    "506_2_3010317",
-    "505_0_3000851",
-    "505_1_3000409",
-    "506_2_3015086",
-    "505_4_3000349",
-    "505_4_3000709",
-    "505_14_3001360",
-    "506_2_3015079"
+    "506_1_3003146",
+    "505_1_3001965",
+    "505_0_3000765",
+    "505_0_3015255",
+    "506_0_3002312",
+    "505_1_3000575",
+    "505_3_3015166",
+    "505_3_3015335",
+    "505_1_3000694",
+    "506_2_3015089",
+    "505_1_3015312",
+    "506_1_3002599",
+    "505_3_3015367",
+    "505_0_3015265",
+    "505_1_3001471",
+    "506_0_3002573",
+    "506_0_3002874",
+    "505_3_3015229",
+    "505_3_3014473",
+    "505_3_3015174",
+    "506_1_3000292",
+    "505_4_3000751",
+    "506_2_3015076",
+    "505_3_3015179",
+    "505_3_3015268",
+    "506_0_3000668",
+    "505_3_3015352",
+    "506_2_3015065",
+    "505_3_3015299",
+    "505_0_3014468",
+    "506_1_3001442",
+    "505_3_3015287",
+    "505_0_3000605",
+    "505_3_3015270",
+    "505_0_3001447",
+    "505_0_3015199",
+    "505_3_3015341",
+    "505_4_3001095",
+    "506_1_3002436",
+    "506_1_3000935",
+    "506_0_3000847",
+    "505_14_3000982",
+    "506_1_3002641",
+    "505_4_3000511"
   ]
 }

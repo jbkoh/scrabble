@@ -12,6 +12,7 @@ import logging
 from imp import reload
 from uuid import uuid4 as gen_uuid
 from math import isclose
+from multiprocessing import Pool, Manager, Process
 
 import pycrfsuite
 import pandas as pd
@@ -565,16 +566,20 @@ def find_key(tv, d, crit):
 def check_in(x,y):
     return x in y
 
+def build_prefixer(building_name):
+    return partial(adder, building_name+'#')
+
 def make_phrase_dict(sentence_dict, token_label_dict, srcid_dict, \
                      eda_flag=False):
-    phrase_dict = OrderedDict()
+    #phrase_dict = OrderedDict()
+    phrase_dict = dict()
     for srcid, sentence in sentence_dict.items():
         token_labels = token_label_dict[srcid]
         phrases = _bilou_tagset_phraser(sentence, token_labels)
         if eda_flag:
             building_name = find_key(srcid, srcid_dict, check_in)
             assert building_name
-            prefixer = partial(adder, building_name+'#')
+            prefixer = build_prefixer(building_name)
             phrases = phrases + list(map(prefixer, phrases))
         phrase_dict[srcid] = phrases + phrases
     return phrase_dict
@@ -588,7 +593,7 @@ def entity_recognition_from_ground_truth(building_list,
                                          use_cluster_flag=False,
                                          use_brick_flag=False,
                                          debug_flag=False,
-                                         eda_flag=True):
+                                         eda_flag=False):
     assert len(building_list) == len(source_sample_num_list)
 
     ########################## DATA INITIATION ##########################
@@ -598,7 +603,7 @@ def entity_recognition_from_ground_truth(building_list,
                        in zip(building_list, source_sample_num_list)]
 
 
-    # Construct inputs for learning a classifier
+    ### Learning Data
     learning_sentence_dict = dict()
     learning_token_label_dict = dict()
     learning_truths_dict = dict()
@@ -641,6 +646,27 @@ def entity_recognition_from_ground_truth(building_list,
     found_points = set(found_points)
 
 
+    ### Test Data
+    # get test dataset
+    with open('metadata/{0}_char_sentence_dict_{1}.json'\
+              .format(target_building, token_type), 'r') as fp:
+        sentence_dict = json.load(fp)
+    with open('metadata/{0}_char_label_dict.json'\
+              .format(target_building), 'r') as fp:
+        sentence_label_dict = json.load(fp)
+    with open('metadata/{0}_ground_truth.json'\
+              .format(target_building), 'r') as fp:
+        test_truths_dict = json.load(fp)
+    test_srcid_list = [srcid for srcid in sentence_label_dict.keys() \
+                       if srcid not in \
+                       reduce(adder, sample_srcid_list_dict.values())]
+    test_srcid_dict = {target_building: test_srcid_list}
+    test_sentence_dict = sub_dict_by_key_set(sentence_dict, test_srcid_list)
+    token_label_dict = dict((srcid, list(map(itemgetter(1), labels))) \
+                            for srcid, labels in sentence_label_dict.items())
+    test_token_label_dict = sub_dict_by_key_set(token_label_dict, \
+                                                test_srcid_list)
+
 
     ###########################  LEARNING  ####################################
 
@@ -655,11 +681,6 @@ def entity_recognition_from_ground_truth(building_list,
 #                                         learning_rate=1)
     #base_classifier = SVC(gamma=2, C=1)
     #tagset_classifier = OneVsRestClassifier(base_classifier)
-
-    tokenizer = lambda x: x.split()
-    #tagset_vectorizer = TfidfVectorizer(#ngram_range=(1, 2),\
-    #                                    tokenizer=tokenizer)
-    tagset_vectorizer = CountVectorizer(tokenizer=tokenizer)
 
     #tagset_classifier, tagset_vectorizer = learn_brick_tagsets(\
     #                                            learning_sentence_dict,\
@@ -688,41 +709,73 @@ def entity_recognition_from_ground_truth(building_list,
     tagset_binerizer.fit([tagset_list])
 
     ## Define Vectorizer
-    tag_list = [' '.join(reduce(adder, map(splitter, tagset_list), []))]
-    tagset_vectorizer.fit(tag_list)
+    #TODO: enable this.
+#    tag_list = [' '.join(reduce(adder, map(splitter, tagset_list), []))]))
+    raw_tag_list = list(set(reduce(adder, map(splitter, tagset_list))))
+    tag_list = deepcopy(raw_tag_list)
+    tag_list_dict = dict()
+
+    # Extend tag_list with prefixes
+    if eda_flag:
+        for building in set(building_list + [target_building]):
+            prefixer = build_prefixer(building)
+            building_tag_list = list(map(prefixer, raw_tag_list))
+            tag_list = tag_list + building_tag_list
+            tag_list_dict[building] = building_tag_list
+
+    vocab_dict = dict([(tag, i) for i, tag in enumerate(tag_list)])
+
+    tokenizer = lambda x: x.split()
+    #tagset_vectorizer = TfidfVectorizer(#ngram_range=(1, 2),\
+    #                                    tokenizer=tokenizer,\
+    #                                    vocabulary=vocab_dict)
+    tagset_vectorizer = CountVectorizer(tokenizer=tokenizer,\
+                                        vocabulary=vocab_dict)
+
+#    tagset_vectorizer.fit([' '.join(tag_list)])
+
+    if eda_flag:
+        unlabeled_phrase_dict = make_phrase_dict(test_sentence_dict, \
+                                                 test_token_label_dict, \
+                                                 test_srcid_dict, \
+                                                 False)
+        prefixer = build_prefixer(target_building)
+        unlabeled_target_doc = [' '.join(\
+                                map(prefixer, unlabeled_phrase_dict[srcid]))\
+                                for srcid in test_srcid_list]
+        unlabeled_vect_doc = - tagset_vectorizer.transform(unlabeled_target_doc)
+        for building in building_list:
+            if building == target_building:
+                continue
+            prefixer = build_prefixer(building)
+            doc = [' '.join(map(prefixer, unlabeled_phrase_dict[srcid]))\
+                   for srcid in test_srcid_list]
+            unlabeled_vect_doc += tagset_vectorizer.transform(doc)
+
 
     ## Transform learning samples
     learning_doc = [' '.join(phrase_dict[srcid]) for srcid in learning_srcids]
+
+    #TODO: Test below and remove if not necessary
+    tagset_vectorizer.fit(learning_doc)
+
     learning_vect_doc = tagset_vectorizer.transform(learning_doc)
     #learning_vect_doc = tagset_vectorizer.fit_transform(learning_doc)
-
-    truth_mat = [tagset_binerizer.transform(\
+    truth_mat = np.asarray([tagset_binerizer.transform(\
                     [learning_truths_dict[srcid]])[0]\
-                        for srcid in learning_srcids]
-
-    ### TEMPORARY (TODO: DELETE THIS)
-    """
-    truth_mat += [tagset_binerizer.transform([['ahu']])[0]]
-    truth_mat += [tagset_binerizer.transform([['ahu']])[0]]
-    truth_mat += [tagset_binerizer.transform([['ahu']])[0]]
-    truth_mat += [tagset_binerizer.transform([['ahu']])[0]]
-    truth_mat += [tagset_binerizer.transform([['ahu']])[0]]
-    truth_mat += [tagset_binerizer.transform([['ahu']])[0]]
-    learning_vect_doc = vstack([learning_vect_doc, tagset_vectorizer.transform(['ahu'])])
-    learning_vect_doc = vstack([learning_vect_doc, tagset_vectorizer.transform(['ahu'])])
-    learning_vect_doc = vstack([learning_vect_doc, tagset_vectorizer.transform(['ahu'])])
-    learning_vect_doc = vstack([learning_vect_doc, tagset_vectorizer.transform(['ahu'])])
-    learning_vect_doc = vstack([learning_vect_doc, tagset_vectorizer.transform(['ahu'])])
-    learning_vect_doc = vstack([learning_vect_doc, tagset_vectorizer.transform(['ahu'])])
-    """
+                        for srcid in learning_srcids])
+    if eda_flag:
+        truth_mat = vstack([truth_mat, tagset_binerizer.transform(\
+                        [[] for i in range(0, unlabeled_vect_doc.shape[0])])])\
+                    .toarray()
+        learning_vect_doc = vstack([learning_vect_doc, unlabeled_vect_doc])\
+                            .toarray()
 
     tagset_classifier.fit(learning_vect_doc, \
                           np.asarray(truth_mat))
                           #learning_weights)
 
-    ###########################################################################
-
-    ## Validate with self prediction
+    ### Validate with self prediction
     # TODO: Below needs to be updated not to use the library
     pred_tagsets_dict, certainty_dict = batch_test_brick_tagset(\
                                             learning_sentence_dict,\
@@ -741,37 +794,16 @@ def entity_recognition_from_ground_truth(building_list,
             pass
     print(cnt/len(learning_sentence_dict))
 
-    ################ Test stage #######################
-    # get test dataset
-    with open('metadata/{0}_char_sentence_dict_{1}.json'\
-              .format(target_building, token_type), 'r') as fp:
-        sentence_dict = json.load(fp)
-    with open('metadata/{0}_char_label_dict.json'\
-              .format(target_building), 'r') as fp:
-        sentence_label_dict = json.load(fp)
-    with open('metadata/{0}_ground_truth.json'\
-              .format(target_building), 'r') as fp:
-        test_truths_dict = json.load(fp)
-    test_srcid_list = [srcid for srcid in sentence_label_dict.keys() \
-                       if srcid not in \
-                       reduce(adder, sample_srcid_list_dict.values())]
-    test_srcid_dict = {target_building: test_srcid_list}
-    test_sentence_dict = sub_dict_by_key_set(sentence_dict, test_srcid_list)
-    token_label_dict = dict((srcid, list(map(itemgetter(1), labels))) \
-                            for srcid, labels in sentence_label_dict.items())
-    test_token_label_dict = sub_dict_by_key_set(token_label_dict, \
-                                                test_srcid_list)
-
+    ####################      TEST      #################
     test_phrase_dict = make_phrase_dict(test_sentence_dict, \
-                                        token_label_dict, \
+                                        test_token_label_dict, \
                                         test_srcid_dict, \
                                         eda_flag
                                        )
     test_doc = [' '.join(test_phrase_dict[srcid]) for srcid in test_srcid_list]
-    test_vect_doc = tagset_vectorizer.transform(test_doc)
+    #TODO: Test below and remove if not necessary
+    test_vect_doc = tagset_vectorizer.fit_transform(test_doc)
 
-
-    ####################      TEST      #################
     certainty_dict = dict()
     pred_tagsets_dict = dict()
     pred_mat = tagset_classifier.predict(test_vect_doc)
@@ -923,6 +955,60 @@ def entity_recognition_from_ground_truth(building_list,
 #    with open('result/incorrect_tagset_{0}.json'.format(building), 'w') as fp:
 #        json.dump(incorrect_tagsets_dict, fp, indent=2)
 
+    return point_precision, point_recall
+
+
+def parallel_func(orig_func, return_idx, return_dict, *args):
+    return_dict[return_idx] = orig_func(*args)
+
+
+#TODO: Make this more generic to apply to other functions
+def entity_recognition_from_ground_truth_get_avg(N,
+                                         building_list,
+                                         source_sample_num_list,
+                                         target_building,
+                                         token_type='justseparate',
+                                         label_type='label',
+                                         use_cluster_flag=False,
+                                         use_brick_flag=False,
+                                         eda_flag=True):
+    worker_num = 5
+
+    manager = Manager()
+    return_dict = manager.dict()
+    jobs = []
+
+    args = (building_list,\
+            source_sample_num_list,\
+            target_building,\
+            token_type,
+            label_type,
+            use_cluster_flag,
+            use_brick_flag,
+            False,
+            eda_flag)
+
+    for i in range(0,N):
+        p = Process(target=parallel_func, args=(\
+                entity_recognition_from_ground_truth, i, return_dict, *args))
+        jobs.append(p)
+        p.start()
+        if i % worker_num == worker_num-1:
+            for proc in jobs:
+                proc.join()
+            jobs = []
+
+    for proc in jobs:
+        proc.join()
+
+    avg_prec = np.mean(list(map(itemgetter(0), return_dict.values())))
+    avg_recall  = np.mean(list(map(itemgetter(1), return_dict.values())))
+    print('=======================================================')
+    print ('Averaged Point Precision: {0}'.format(avg_prec))
+    print ('Averaged Point Recall: {0}'.format(avg_recall))
+
+    print("FIN")
+
 
 def str2bool(v):
     if v in ['true', 'True']:
@@ -953,6 +1039,7 @@ if __name__=='__main__':
                          action='store_true',
                          default=False)
 
+    """
     parser.add_argument('-b',
                         type=str,
                         help='Learning source building name',
@@ -961,45 +1048,52 @@ if __name__=='__main__':
                         type=int, 
                         help='The number of learning sample',
                         dest='sample_num')
+    """
 
-    parser.add_argument('-bl', 
-                        type='slist', 
+    parser.add_argument('-bl',
+                        type='slist',
                         help='Learning source building name list',
                         dest='source_building_list')
-    parser.add_argument('-nl', 
-                        type='ilist', 
+    parser.add_argument('-nl',
+                        type='ilist',
                         help='A list of the number of learning sample',
                         dest='sample_num_list')
-    parser.add_argument('-l', 
-                        type=str, 
+    parser.add_argument('-l',
+                        type=str,
                         help='Label type (either label or category',
                         default='label',
                         dest='label_type')
-    parser.add_argument('-c', 
-                        type='bool', 
+    parser.add_argument('-c',
+                        type='bool',
                         help='flag to indicate use hierarchical cluster \
                                 to select learning samples.',
                         default=False,
                         dest='use_cluster_flag')
-    parser.add_argument('-d', 
-                        type='bool', 
-                        help='Debug mode flag', 
+    parser.add_argument('-d',
+                        type='bool',
+                        help='Debug mode flag',
                         default=False,
                         dest='debug_flag')
-    parser.add_argument('-t', 
-                        type=str, 
+    parser.add_argument('-t',
+                        type=str,
                         help='Target buildling name',
                         dest='target_building')
-    parser.add_argument('-eda', 
-                        type='bool', 
+    parser.add_argument('-eda',
+                        type='bool',
                         help='Flag to use Easy Domain Adapatation',
                         default=False,
                         dest='eda_flag')
-    parser.add_argument('-ub', 
-                        type='bool', 
+    parser.add_argument('-ub',
+                        type='bool',
                         help='Use Brick when learning',
                         default=False,
                         dest='use_brick_flag')
+
+    parser.add_argument('-avgnum',
+                        type=int,
+                        help='Number of exp to get avg. If 1, ran once',
+                        dest='avgnum',
+                        default=1)
 
     args = parser.parse_args()
 
@@ -1020,7 +1114,8 @@ if __name__=='__main__':
                  use_cluster_flag=args.use_cluster_flag,
                  use_brick_flag=args.use_brick_flag)
     elif args.prog == 'entity':
-        entity_recognition_from_ground_truth(\
+        if args.avgnum == 1:
+            entity_recognition_from_ground_truth(\
                 building_list=args.source_building_list,
                 source_sample_num_list=args.sample_num_list,
                 target_building=args.target_building,
@@ -1028,7 +1123,18 @@ if __name__=='__main__':
                 label_type=args.label_type,
                 use_cluster_flag=args.use_cluster_flag,
                 use_brick_flag=args.use_brick_flag,
-                debug_flag=args.debug_flag)
+                debug_flag=args.debug_flag,
+                eda_flag=args.eda_flag)
+        elif args.avgnum>1:
+            entity_recognition_from_ground_truth_get_avg(args.avgnum,
+                building_list=args.source_building_list,
+                source_sample_num_list=args.sample_num_list,
+                target_building=args.target_building,
+                token_type='justseparate',
+                label_type=args.label_type,
+                use_cluster_flag=args.use_cluster_flag,
+                use_brick_flag=args.use_brick_flag)
+
     else:
         print('Either learn or predict should be provided')
         assert(False)

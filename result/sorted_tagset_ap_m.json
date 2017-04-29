@@ -82,6 +82,7 @@
   },
   "514_1_3007255": {
     "tagsets": [
+      "building-apm",
       "networkadapter-n",
       "networkadapter-nae",
       "networkadapter-trunk",
@@ -93,6 +94,7 @@
   },
   "604_1_3012932": {
     "tagsets": [
+      "building-apm",
       "heating_valve_command",
       "networkadapter-n",
       "networkadapter-nae",
@@ -102,7 +104,7 @@
       "vav"
     ],
     "certainty": 0,
-    "correct?": false
+    "correct?": true
   },
   "513_1_3006101": {
     "tagsets": [
@@ -119,6 +121,7 @@
   },
   "514_1_3006625": {
     "tagsets": [
+      "building-apm",
       "heating_valve_command",
       "networkadapter-n",
       "networkadapter-nae",
@@ -128,7 +131,7 @@
       "vav"
     ],
     "certainty": 0,
-    "correct?": false
+    "correct?": true
   },
   "604_4_3012461": {
     "tagsets": [
@@ -145,6 +148,7 @@
   },
   "513_1_3005303": {
     "tagsets": [
+      "building-apm",
       "heating_valve_command",
       "networkadapter-n",
       "networkadapter-nae",
@@ -154,12 +158,11 @@
       "vav"
     ],
     "certainty": 0,
-    "correct?": false
+    "correct?": true
   },
   "604_1_3012981": {
     "tagsets": [
       "building-apm",
-      "effective_heating_temperature_setpoint",
       "networkadapter-n",
       "networkadapter-nae",
       "networkadapter-trunk",
@@ -189,17 +192,18 @@
       "networkadapter-nae",
       "networkadapter-trunk",
       "room",
-      "vav",
-      "warm_cool_adjust_sensor"
+      "vav"
     ],
     "certainty": 0,
     "correct?": false
   },
   "513_4_3004845": {
     "tagsets": [
+      "building-apm",
       "networkadapter-n",
       "networkadapter-nae",
       "networkadapter-trunk",
+      "occupied_command",
       "room",
       "vav"
     ],
@@ -208,8 +212,12 @@
   },
   "514_1_3008175": {
     "tagsets": [
+      "building-apm",
       "networkadapter-n",
-      "networkadapter-nae"
+      "networkadapter-nae",
+      "networkadapter-trunk",
+      "room",
+      "vav"
     ],
     "certainty": 0,
     "correct?": false
@@ -242,7 +250,6 @@
   "514_1_3006700": {
     "tagsets": [
       "building-apm",
-      "effective_heating_temperature_setpoint",
       "networkadapter-n",
       "networkadapter-nae",
       "networkadapter-trunk",
@@ -305,7 +312,6 @@
   "604_1_3012996": {
     "tagsets": [
       "building-apm",
-      "effective_heating_temperature_setpoint",
       "networkadapter-n",
       "networkadapter-nae",
       "networkadapter-trunk",
@@ -329,6 +335,7 @@
   },
   "513_1_3004889": {
     "tagsets": [
+      "building-apm",
       "heating_valve_command",
       "networkadapter-n",
       "networkadapter-nae",
@@ -338,12 +345,11 @@
       "vav"
     ],
     "certainty": 0,
-    "correct?": false
+    "correct?": true
   },
   "513_1_3005286": {
     "tagsets": [
       "building-apm",
-      "effective_heating_temperature_setpoint",
       "networkadapter-n",
       "networkadapter-nae",
       "networkadapter-trunk",
@@ -355,7 +361,6 @@
   },
   "513_0_3011325": {
     "tagsets": [
-      "building-ebu3b",
       "networkadapter-n",
       "networkadapter-nae"
     ],
@@ -376,10 +381,7 @@
     "correct?": true
   },
   "513_2_3018696": {
-    "tagsets": [
-      "building-ebu3b",
-      "networkadapter-nae"
-    ],
+    "tagsets": [],
     "certainty": 0,
     "correct?": false
   },
@@ -399,7 +401,6 @@
   "513_1_3005660": {
     "tagsets": [
       "building-apm",
-      "effective_heating_temperature_setpoint",
       "networkadapter-n",
       "networkadapter-nae",
       "networkadapter-trunk",
@@ -412,19 +413,18 @@
   "604_1_3013083": {
     "tagsets": [
       "building-apm",
+      "cooling_max_discharge_air_flow_setpoint",
       "networkadapter-n",
       "networkadapter-nae",
       "networkadapter-trunk",
-      "occupied_cooling_max_supply_air_flow_setpoint",
       "room",
       "vav"
     ],
     "certainty": 0,
-    "correct?": true
+    "correct?": false
   },
   "514_1_3006376": {
     "tagsets": [
-      "building-ebu3b",
       "networkadapter-n",
       "networkadapter-nae"
     ],
@@ -468,15 +468,15 @@
   "513_1_3007000": {
     "tagsets": [
       "building-apm",
+      "cooling_max_discharge_air_flow_setpoint",
       "networkadapter-n",
       "networkadapter-nae",
       "networkadapter-trunk",
-      "occupied_cooling_max_supply_air_flow_setpoint",
       "room",
       "vav"
     ],
     "certainty": 0,
-    "correct?": false
+    "correct?": true
   },
   "513_0_3006489": {
     "tagsets": [
@@ -506,6 +506,7 @@
   },
   "514_1_3006506": {
     "tagsets": [
+      "building-apm",
       "heating_valve_command",
       "networkadapter-n",
       "networkadapter-nae",
@@ -515,7 +516,7 @@
       "vav"
     ],
     "certainty": 0,
-    "correct?": false
+    "correct?": true
   },
   "604_0_3012883": {
     "tagsets": [
@@ -600,8 +601,7 @@
   },
   "513_3_3004528": {
     "tagsets": [
-      "ahu",
-      "building-ebu3b",
+      "networkadapter-n",
       "networkadapter-nae"
     ],
     "certainty": 0,
@@ -610,7 +610,6 @@
   "513_1_3005867": {
     "tagsets": [
       "building-apm",
-      "effective_heating_temperature_setpoint",
       "networkadapter-n",
       "networkadapter-nae",
       "networkadapter-trunk",
@@ -689,7 +688,6 @@
   },
   "513_19_3019207": {
     "tagsets": [
-      "building-ebu3b",
       "networkadapter-nae"
     ],
     "certainty": 0,
@@ -710,20 +708,18 @@
   "604_1_3013006": {
     "tagsets": [
       "building-apm",
+      "cooling_max_discharge_air_flow_setpoint",
       "networkadapter-n",
       "networkadapter-nae",
       "networkadapter-trunk",
-      "occupied_cooling_max_supply_air_flow_setpoint",
       "room",
       "vav"
     ],
     "certainty": 0,
-    "correct?": true
+    "correct?": false
   },
   "513_2_3015530": {
     "tagsets": [
-      "ahu",
-      "building-ebu3b",
       "networkadapter-nae"
     ],
     "certainty": 0,
@@ -772,7 +768,6 @@
       "networkadapter-n",
       "networkadapter-nae",
       "networkadapter-trunk",
-      "occupied_command",
       "room",
       "vav"
     ],
@@ -916,15 +911,15 @@
   "514_1_3007045": {
     "tagsets": [
       "building-apm",
+      "cooling_max_discharge_air_flow_setpoint",
       "networkadapter-n",
       "networkadapter-nae",
       "networkadapter-trunk",
-      "occupied_cooling_max_supply_air_flow_setpoint",
       "room",
       "vav"
     ],
     "certainty": 0,
-    "correct?": true
+    "correct?": false
   },
   "513_1_3005231": {
     "tagsets": [
@@ -1056,7 +1051,6 @@
   },
   "514_4_3006418": {
     "tagsets": [
-      "building-ebu3b",
       "networkadapter-n",
       "networkadapter-nae"
     ],
@@ -1103,7 +1097,6 @@
   },
   "514_4_3006364": {
     "tagsets": [
-      "building-ebu3b",
       "networkadapter-n",
       "networkadapter-nae"
     ],
@@ -1112,6 +1105,7 @@
   },
   "513_1_3006045": {
     "tagsets": [
+      "building-apm",
       "heating_valve_command",
       "networkadapter-n",
       "networkadapter-nae",
@@ -1121,7 +1115,7 @@
       "vav"
     ],
     "certainty": 0,
-    "correct?": false
+    "correct?": true
   },
   "604_1_3012842": {
     "tagsets": [
@@ -1138,15 +1132,15 @@
   "513_1_3006087": {
     "tagsets": [
       "building-apm",
+      "cooling_max_discharge_air_flow_setpoint",
       "networkadapter-n",
       "networkadapter-nae",
       "networkadapter-trunk",
-      "occupied_cooling_max_supply_air_flow_setpoint",
       "room",
       "vav"
     ],
     "certainty": 0,
-    "correct?": true
+    "correct?": false
   },
   "513_0_3007371": {
     "tagsets": [
@@ -1196,7 +1190,6 @@
   },
   "514_1_3007513": {
     "tagsets": [
-      "building-ebu3b",
       "networkadapter-n",
       "networkadapter-nae"
     ],
@@ -1220,8 +1213,7 @@
     "tagsets": [
       "building-ebu3b",
       "networkadapter-n",
-      "networkadapter-nae",
-      "networkadapter-vnd"
+      "networkadapter-nae"
     ],
     "certainty": 0,
     "correct?": false
@@ -1269,30 +1261,14 @@
     "correct?": false
   },
   "604_5_3016757": {
-    "tagsets": [
-      "building-ebu3b",
-      "networkadapter-nae"
-    ],
+    "tagsets": [],
     "certainty": 0,
     "correct?": false
   },
   "513_1_3006248": {
     "tagsets": [
       "building-apm",
-      "networkadapter-n",
-      "networkadapter-nae",
-      "networkadapter-trunk",
-      "occupied_cooling_max_supply_air_flow_setpoint",
-      "room",
-      "vav"
-    ],
-    "certainty": 0,
-    "correct?": true
-  },
-  "513_1_3004895": {
-    "tagsets": [
-      "building-apm",
-      "effective_heating_temperature_setpoint",
+      "cooling_max_discharge_air_flow_setpoint",
       "networkadapter-n",
       "networkadapter-nae",
       "networkadapter-trunk",
@@ -1301,6 +1277,31 @@
     ],
     "certainty": 0,
     "correct?": false
+  },
+  "513_1_3004895": {
+    "tagsets": [
+      "building-apm",
+      "networkadapter-n",
+      "networkadapter-nae",
+      "networkadapter-trunk",
+      "room",
+      "vav"
+    ],
+    "certainty": 0,
+    "correct?": false
+  },
+  "604_4_3012941": {
+    "tagsets": [
+      "building-apm",
+      "networkadapter-n",
+      "networkadapter-nae",
+      "networkadapter-trunk",
+      "occupied_command",
+      "room",
+      "vav"
+    ],
+    "certainty": 0,
+    "correct?": true
   },
   "513_0_3006834": {
     "tagsets": [
@@ -1316,7 +1317,6 @@
   },
   "513_4_3004630": {
     "tagsets": [
-      "building-ebu3b",
       "networkadapter-n",
       "networkadapter-nae"
     ],
@@ -1325,7 +1325,6 @@
   },
   "514_2_3003573": {
     "tagsets": [
-      "building-ebu3b",
       "networkadapter-nae"
     ],
     "certainty": 0,
@@ -1358,6 +1357,7 @@
   },
   "604_0_3013507": {
     "tagsets": [
+      "building-apm",
       "networkadapter-n",
       "networkadapter-nae",
       "networkadapter-trunk",
@@ -1370,7 +1370,8 @@
   "604_1_3013264": {
     "tagsets": [
       "networkadapter-n",
-      "networkadapter-nae"
+      "networkadapter-nae",
+      "room"
     ],
     "certainty": 0,
     "correct?": false
@@ -1378,7 +1379,6 @@
   "513_1_3006304": {
     "tagsets": [
       "building-apm",
-      "effective_heating_temperature_setpoint",
       "networkadapter-n",
       "networkadapter-nae",
       "networkadapter-trunk",
@@ -1390,7 +1390,6 @@
   },
   "513_1_3004616": {
     "tagsets": [
-      "building-ebu3b",
       "networkadapter-n",
       "networkadapter-nae"
     ],
@@ -1412,7 +1411,6 @@
   },
   "514_3_3006395": {
     "tagsets": [
-      "building-ebu3b",
       "networkadapter-n",
       "networkadapter-nae"
     ],
@@ -1421,7 +1419,6 @@
   },
   "514_3_3006352": {
     "tagsets": [
-      "building-ebu3b",
       "networkadapter-n",
       "networkadapter-nae"
     ],
@@ -1434,6 +1431,7 @@
       "networkadapter-n",
       "networkadapter-nae",
       "networkadapter-trunk",
+      "occupied_cooling_min_discharge_air_flow_setpoint",
       "room",
       "vav"
     ],
@@ -1512,21 +1510,7 @@
   },
   "513_2_3003257": {
     "tagsets": [
-      "building-ebu3b",
       "networkadapter-nae"
-    ],
-    "certainty": 0,
-    "correct?": false
-  },
-  "514_1_3007336": {
-    "tagsets": [
-      "building-apm",
-      "networkadapter-n",
-      "networkadapter-nae",
-      "networkadapter-trunk",
-      "occupied_cooling_max_supply_air_flow_setpoint",
-      "room",
-      "vav"
     ],
     "certainty": 0,
     "correct?": false
@@ -1607,27 +1591,26 @@
     "certainty": 0,
     "correct?": false
   },
-  "514_1_3009067": {
+  "604_1_3012857": {
     "tagsets": [
       "building-apm",
-      "effective_heating_temperature_setpoint",
       "networkadapter-n",
       "networkadapter-nae",
       "networkadapter-trunk",
+      "occupied_cooling_min_discharge_air_flow_setpoint",
       "room",
       "vav"
     ],
     "certainty": 0,
-    "correct?": false
+    "correct?": true
   },
-  "513_1_3005165": {
+  "514_1_3009067": {
     "tagsets": [
-      "heating_valve_command",
+      "building-apm",
       "networkadapter-n",
       "networkadapter-nae",
       "networkadapter-trunk",
       "room",
-      "valve",
       "vav"
     ],
     "certainty": 0,
@@ -1636,15 +1619,15 @@
   "514_1_3006621": {
     "tagsets": [
       "building-apm",
+      "cooling_max_discharge_air_flow_setpoint",
       "networkadapter-n",
       "networkadapter-nae",
       "networkadapter-trunk",
-      "occupied_cooling_max_supply_air_flow_setpoint",
       "room",
       "vav"
     ],
     "certainty": 0,
-    "correct?": true
+    "correct?": false
   },
   "513_2_3015661": {
     "tagsets": [
@@ -1660,6 +1643,7 @@
       "networkadapter-n",
       "networkadapter-nae",
       "networkadapter-trunk",
+      "occupied_cooling_min_discharge_air_flow_setpoint",
       "room",
       "vav"
     ],
@@ -1727,7 +1711,6 @@
   },
   "513_3_3004562": {
     "tagsets": [
-      "building-ebu3b",
       "networkadapter-n",
       "networkadapter-nae"
     ],
@@ -1746,7 +1729,6 @@
   "514_1_3006840": {
     "tagsets": [
       "building-apm",
-      "effective_heating_temperature_setpoint",
       "networkadapter-n",
       "networkadapter-nae",
       "networkadapter-trunk",
@@ -1759,7 +1741,6 @@
   "513_1_3005194": {
     "tagsets": [
       "building-apm",
-      "effective_heating_temperature_setpoint",
       "networkadapter-n",
       "networkadapter-nae",
       "networkadapter-trunk",
@@ -1771,7 +1752,6 @@
   },
   "514_0_3006437": {
     "tagsets": [
-      "building-ebu3b",
       "networkadapter-n",
       "networkadapter-nae"
     ],
@@ -1780,6 +1760,7 @@
   },
   "513_1_3006562": {
     "tagsets": [
+      "building-apm",
       "heating_valve_command",
       "networkadapter-n",
       "networkadapter-nae",
@@ -1789,7 +1770,7 @@
       "vav"
     ],
     "certainty": 0,
-    "correct?": false
+    "correct?": true
   },
   "604_1_3013213": {
     "tagsets": [
@@ -1843,6 +1824,7 @@
   },
   "513_1_3006625": {
     "tagsets": [
+      "building-apm",
       "heating_valve_command",
       "networkadapter-n",
       "networkadapter-nae",
@@ -1852,7 +1834,7 @@
       "vav"
     ],
     "certainty": 0,
-    "correct?": false
+    "correct?": true
   },
   "514_1_3006488": {
     "tagsets": [
@@ -1900,6 +1882,7 @@
   },
   "513_1_3005073": {
     "tagsets": [
+      "building-apm",
       "heating_valve_command",
       "networkadapter-n",
       "networkadapter-nae",
@@ -1909,7 +1892,7 @@
       "vav"
     ],
     "certainty": 0,
-    "correct?": false
+    "correct?": true
   },
   "513_1_3005077": {
     "tagsets": [
@@ -1937,12 +1920,23 @@
     "correct?": false
   },
   "513_2_3007954": {
-    "tagsets": [
-      "building-ebu3b",
-      "networkadapter-nae"
-    ],
+    "tagsets": [],
     "certainty": 0,
     "correct?": false
+  },
+  "514_0_3006799": {
+    "tagsets": [
+      "building-apm",
+      "networkadapter-n",
+      "networkadapter-nae",
+      "networkadapter-trunk",
+      "room",
+      "vav",
+      "zone",
+      "zone_temperature_sensor"
+    ],
+    "certainty": 0,
+    "correct?": true
   },
   "513_0_3005086": {
     "tagsets": [
@@ -1961,15 +1955,15 @@
   "604_1_3012420": {
     "tagsets": [
       "building-apm",
+      "cooling_max_discharge_air_flow_setpoint",
       "networkadapter-n",
       "networkadapter-nae",
       "networkadapter-trunk",
-      "occupied_cooling_max_supply_air_flow_setpoint",
       "room",
       "vav"
     ],
     "certainty": 0,
-    "correct?": true
+    "correct?": false
   },
   "604_4_3013376": {
     "tagsets": [
@@ -1995,6 +1989,7 @@
   },
   "604_1_3012512": {
     "tagsets": [
+      "building-apm",
       "heating_valve_command",
       "networkadapter-n",
       "networkadapter-nae",
@@ -2004,7 +1999,7 @@
       "vav"
     ],
     "certainty": 0,
-    "correct?": false
+    "correct?": true
   },
   "513_1_3005680": {
     "tagsets": [
@@ -2043,21 +2038,9 @@
     "certainty": 0,
     "correct?": false
   },
-  "513_0_3004998": {
-    "tagsets": [
-      "building-apm",
-      "effective_heating_temperature_setpoint",
-      "networkadapter-n",
-      "networkadapter-nae",
-      "networkadapter-trunk",
-      "room",
-      "vav"
-    ],
-    "certainty": 0,
-    "correct?": true
-  },
   "514_1_3006740": {
     "tagsets": [
+      "building-apm",
       "heating_valve_command",
       "networkadapter-n",
       "networkadapter-nae",
@@ -2067,7 +2050,7 @@
       "vav"
     ],
     "certainty": 0,
-    "correct?": false
+    "correct?": true
   },
   "513_4_3006208": {
     "tagsets": [
@@ -2098,7 +2081,6 @@
   "514_0_3007181": {
     "tagsets": [
       "building-apm",
-      "effective_heating_temperature_setpoint",
       "networkadapter-n",
       "networkadapter-nae",
       "networkadapter-trunk",
@@ -2138,15 +2120,15 @@
   "513_1_3005650": {
     "tagsets": [
       "building-apm",
+      "cooling_max_discharge_air_flow_setpoint",
       "networkadapter-n",
       "networkadapter-nae",
       "networkadapter-trunk",
-      "occupied_cooling_max_supply_air_flow_setpoint",
       "room",
       "vav"
     ],
     "certainty": 0,
-    "correct?": true
+    "correct?": false
   },
   "514_1_3006562": {
     "tagsets": [
@@ -2189,8 +2171,10 @@
   },
   "513_0_3007608": {
     "tagsets": [
+      "building-apm",
       "networkadapter-n",
       "networkadapter-nae",
+      "networkadapter-trunk",
       "room",
       "vav"
     ],
@@ -2213,9 +2197,7 @@
       "networkadapter-nae",
       "networkadapter-trunk",
       "room",
-      "vav",
-      "zone",
-      "zone_temperature_sensor"
+      "vav"
     ],
     "certainty": 0,
     "correct?": false
@@ -2245,7 +2227,6 @@
   "513_1_3005240": {
     "tagsets": [
       "building-apm",
-      "effective_heating_temperature_setpoint",
       "networkadapter-n",
       "networkadapter-nae",
       "networkadapter-trunk",
@@ -2307,7 +2288,6 @@
   },
   "513_1_3004625": {
     "tagsets": [
-      "building-ebu3b",
       "networkadapter-n",
       "networkadapter-nae"
     ],
@@ -2329,8 +2309,10 @@
   },
   "513_1_3007923": {
     "tagsets": [
+      "building-apm",
       "networkadapter-n",
       "networkadapter-nae",
+      "networkadapter-trunk",
       "room",
       "vav"
     ],
@@ -2356,7 +2338,6 @@
   },
   "513_2_3012932": {
     "tagsets": [
-      "building-ebu3b",
       "networkadapter-nae"
     ],
     "certainty": 0,
@@ -2364,6 +2345,7 @@
   },
   "604_1_3012393": {
     "tagsets": [
+      "building-apm",
       "heating_valve_command",
       "networkadapter-n",
       "networkadapter-nae",
@@ -2373,7 +2355,7 @@
       "vav"
     ],
     "certainty": 0,
-    "correct?": false
+    "correct?": true
   },
   "513_0_3004971": {
     "tagsets": [
@@ -2450,15 +2432,15 @@
   "514_1_3006928": {
     "tagsets": [
       "building-apm",
+      "cooling_max_discharge_air_flow_setpoint",
       "networkadapter-n",
       "networkadapter-nae",
       "networkadapter-trunk",
-      "occupied_cooling_max_supply_air_flow_setpoint",
       "room",
       "vav"
     ],
     "certainty": 0,
-    "correct?": true
+    "correct?": false
   },
   "604_0_3013348": {
     "tagsets": [
@@ -2471,7 +2453,6 @@
   },
   "513_4_3004516": {
     "tagsets": [
-      "building-ebu3b",
       "networkadapter-n",
       "networkadapter-nae"
     ],
@@ -2505,6 +2486,7 @@
   },
   "514_1_3007219": {
     "tagsets": [
+      "building-apm",
       "networkadapter-n",
       "networkadapter-nae",
       "networkadapter-trunk",
@@ -2516,15 +2498,14 @@
   },
   "514_5_3011211": {
     "tagsets": [
-      "building-ebu3b",
-      "networkadapter-nae",
-      "unknown"
+      "networkadapter-nae"
     ],
     "certainty": 0,
     "correct?": false
   },
   "513_1_3006206": {
     "tagsets": [
+      "building-apm",
       "heating_valve_command",
       "networkadapter-n",
       "networkadapter-nae",
@@ -2534,11 +2515,10 @@
       "vav"
     ],
     "certainty": 0,
-    "correct?": false
+    "correct?": true
   },
   "514_5_3004141": {
     "tagsets": [
-      "building-ebu3b",
       "networkadapter-nae"
     ],
     "certainty": 0,
@@ -2579,7 +2559,6 @@
   "604_1_3012936": {
     "tagsets": [
       "building-apm",
-      "effective_heating_temperature_setpoint",
       "networkadapter-n",
       "networkadapter-nae",
       "networkadapter-trunk",
@@ -2615,18 +2594,31 @@
     "certainty": 0,
     "correct?": true
   },
-  "604_1_3012944": {
+  "513_0_3007471": {
     "tagsets": [
       "building-apm",
       "networkadapter-n",
       "networkadapter-nae",
       "networkadapter-trunk",
-      "occupied_cooling_max_supply_air_flow_setpoint",
       "room",
+      "supply_air_flow_sensor",
       "vav"
     ],
     "certainty": 0,
     "correct?": true
+  },
+  "604_1_3012944": {
+    "tagsets": [
+      "building-apm",
+      "cooling_max_discharge_air_flow_setpoint",
+      "networkadapter-n",
+      "networkadapter-nae",
+      "networkadapter-trunk",
+      "room",
+      "vav"
+    ],
+    "certainty": 0,
+    "correct?": false
   },
   "513_0_3004952": {
     "tagsets": [
@@ -2694,6 +2686,7 @@
   },
   "513_1_3006961": {
     "tagsets": [
+      "building-apm",
       "heating_valve_command",
       "networkadapter-n",
       "networkadapter-nae",
@@ -2703,7 +2696,7 @@
       "vav"
     ],
     "certainty": 0,
-    "correct?": false
+    "correct?": true
   },
   "513_0_3005800": {
     "tagsets": [
@@ -2720,6 +2713,7 @@
   },
   "513_1_3005050": {
     "tagsets": [
+      "building-apm",
       "heating_valve_command",
       "networkadapter-n",
       "networkadapter-nae",
@@ -2729,10 +2723,11 @@
       "vav"
     ],
     "certainty": 0,
-    "correct?": false
+    "correct?": true
   },
   "513_1_3005547": {
     "tagsets": [
+      "building-apm",
       "heating_valve_command",
       "networkadapter-n",
       "networkadapter-nae",
@@ -2742,11 +2737,10 @@
       "vav"
     ],
     "certainty": 0,
-    "correct?": false
+    "correct?": true
   },
   "514_3_3006349": {
     "tagsets": [
-      "building-ebu3b",
       "networkadapter-n",
       "networkadapter-nae"
     ],
@@ -2767,7 +2761,6 @@
   },
   "514_1_3006381": {
     "tagsets": [
-      "building-ebu3b",
       "networkadapter-n",
       "networkadapter-nae"
     ],
@@ -2776,6 +2769,7 @@
   },
   "514_1_3007174": {
     "tagsets": [
+      "building-apm",
       "networkadapter-n",
       "networkadapter-nae",
       "networkadapter-trunk",
@@ -2800,7 +2794,6 @@
   },
   "514_2_3003526": {
     "tagsets": [
-      "building-ebu3b",
       "networkadapter-nae"
     ],
     "certainty": 0,
@@ -2834,8 +2827,7 @@
       "networkadapter-nae",
       "networkadapter-trunk",
       "room",
-      "vav",
-      "warm_cool_adjust_sensor"
+      "vav"
     ],
     "certainty": 0,
     "correct?": false
@@ -2846,7 +2838,6 @@
       "networkadapter-n",
       "networkadapter-nae",
       "networkadapter-trunk",
-      "occupied_command",
       "room",
       "vav"
     ],
@@ -3038,7 +3029,6 @@
   },
   "514_3_3008512": {
     "tagsets": [
-      "building-ebu3b",
       "networkadapter-n",
       "networkadapter-nae"
     ],
@@ -3047,6 +3037,7 @@
   },
   "604_1_3013596": {
     "tagsets": [
+      "building-apm",
       "heating_valve_command",
       "networkadapter-n",
       "networkadapter-nae",
@@ -3056,7 +3047,7 @@
       "vav"
     ],
     "certainty": 0,
-    "correct?": true
+    "correct?": false
   },
   "514_0_3007018": {
     "tagsets": [
@@ -3124,7 +3115,6 @@
   "513_1_3006327": {
     "tagsets": [
       "building-apm",
-      "effective_heating_temperature_setpoint",
       "networkadapter-n",
       "networkadapter-nae",
       "networkadapter-trunk",
@@ -3166,6 +3156,7 @@
       "networkadapter-n",
       "networkadapter-nae",
       "networkadapter-trunk",
+      "occupied_cooling_min_discharge_air_flow_setpoint",
       "room",
       "vav"
     ],
@@ -3189,15 +3180,15 @@
   "513_1_3007252": {
     "tagsets": [
       "building-apm",
+      "cooling_max_discharge_air_flow_setpoint",
       "networkadapter-n",
       "networkadapter-nae",
       "networkadapter-trunk",
-      "occupied_cooling_max_supply_air_flow_setpoint",
       "room",
       "vav"
     ],
     "certainty": 0,
-    "correct?": false
+    "correct?": true
   },
   "513_0_3005708": {
     "tagsets": [
@@ -3218,6 +3209,7 @@
       "networkadapter-n",
       "networkadapter-nae",
       "networkadapter-trunk",
+      "occupied_cooling_min_discharge_air_flow_setpoint",
       "room",
       "vav"
     ],
@@ -3299,7 +3291,6 @@
   },
   "604_1_3013691": {
     "tagsets": [
-      "building-ebu3b",
       "networkadapter-n",
       "networkadapter-nae"
     ],
@@ -3322,10 +3313,10 @@
   "604_1_3013588": {
     "tagsets": [
       "building-apm",
+      "cooling_max_discharge_air_flow_setpoint",
       "networkadapter-n",
       "networkadapter-nae",
       "networkadapter-trunk",
-      "occupied_cooling_max_supply_air_flow_setpoint",
       "room",
       "vav"
     ],
@@ -3379,8 +3370,6 @@
   },
   "513_0_3004588": {
     "tagsets": [
-      "ahu",
-      "building-ebu3b",
       "networkadapter-n",
       "networkadapter-nae"
     ],
@@ -3415,6 +3404,7 @@
   },
   "513_1_3006344": {
     "tagsets": [
+      "building-apm",
       "heating_valve_command",
       "networkadapter-n",
       "networkadapter-nae",
@@ -3424,7 +3414,7 @@
       "vav"
     ],
     "certainty": 0,
-    "correct?": false
+    "correct?": true
   },
   "513_0_3007436": {
     "tagsets": [
@@ -3442,15 +3432,15 @@
   "604_1_3012806": {
     "tagsets": [
       "building-apm",
+      "cooling_max_discharge_air_flow_setpoint",
       "networkadapter-n",
       "networkadapter-nae",
       "networkadapter-trunk",
-      "occupied_cooling_max_supply_air_flow_setpoint",
       "room",
       "vav"
     ],
     "certainty": 0,
-    "correct?": false
+    "correct?": true
   },
   "513_1_3007405": {
     "tagsets": [
@@ -3467,12 +3457,24 @@
   },
   "514_0_3006433": {
     "tagsets": [
-      "building-ebu3b",
       "networkadapter-n",
       "networkadapter-nae"
     ],
     "certainty": 0,
     "correct?": false
+  },
+  "513_0_3005541": {
+    "tagsets": [
+      "building-apm",
+      "effective_heating_temperature_setpoint",
+      "networkadapter-n",
+      "networkadapter-nae",
+      "networkadapter-trunk",
+      "room",
+      "vav"
+    ],
+    "certainty": 0,
+    "correct?": true
   },
   "513_1_3006251": {
     "tagsets": [
@@ -3497,9 +3499,6 @@
   },
   "513_1_3004669": {
     "tagsets": [
-      "ahu",
-      "building-ebu3b",
-      "fan",
       "networkadapter-n",
       "networkadapter-nae"
     ],
@@ -3554,10 +3553,7 @@
     "correct?": false
   },
   "513_2_3007960": {
-    "tagsets": [
-      "building-ebu3b",
-      "networkadapter-nae"
-    ],
+    "tagsets": [],
     "certainty": 0,
     "correct?": false
   },
@@ -3572,7 +3568,6 @@
   },
   "514_4_3007522": {
     "tagsets": [
-      "building-ebu3b",
       "networkadapter-n",
       "networkadapter-nae"
     ],
@@ -3590,25 +3585,11 @@
   },
   "604_4_3013422": {
     "tagsets": [
-      "building-ebu3b",
       "networkadapter-n",
       "networkadapter-nae"
     ],
     "certainty": 0,
     "correct?": false
-  },
-  "604_1_3013122": {
-    "tagsets": [
-      "building-apm",
-      "networkadapter-n",
-      "networkadapter-nae",
-      "networkadapter-trunk",
-      "room",
-      "supply_air_flow_setpoint",
-      "vav"
-    ],
-    "certainty": 0,
-    "correct?": true
   },
   "513_0_3005433": {
     "tagsets": [
@@ -3736,6 +3717,7 @@
   },
   "604_1_3013181": {
     "tagsets": [
+      "building-apm",
       "heating_valve_command",
       "networkadapter-n",
       "networkadapter-nae",
@@ -3745,11 +3727,10 @@
       "vav"
     ],
     "certainty": 0,
-    "correct?": false
+    "correct?": true
   },
   "513_1_3004498": {
     "tagsets": [
-      "building-ebu3b",
       "networkadapter-n",
       "networkadapter-nae"
     ],
@@ -3771,8 +3752,6 @@
   },
   "513_2_3011632": {
     "tagsets": [
-      "building-ebu3b",
-      "networkadapter-n",
       "networkadapter-nae"
     ],
     "certainty": 0,
@@ -3780,10 +3759,13 @@
   },
   "513_1_3005953": {
     "tagsets": [
+      "building-apm",
+      "heating_valve_command",
       "networkadapter-n",
       "networkadapter-nae",
       "networkadapter-trunk",
       "room",
+      "valve",
       "vav"
     ],
     "certainty": 0,
@@ -3910,19 +3892,6 @@
     "certainty": 0,
     "correct?": false
   },
-  "604_0_3012987": {
-    "tagsets": [
-      "building-apm",
-      "effective_cooling_temperature_setpoint",
-      "networkadapter-n",
-      "networkadapter-nae",
-      "networkadapter-trunk",
-      "room",
-      "vav"
-    ],
-    "certainty": 0,
-    "correct?": true
-  },
   "604_0_3013405": {
     "tagsets": [
       "building-ebu3b",
@@ -3934,6 +3903,7 @@
   },
   "604_0_3013597": {
     "tagsets": [
+      "building-apm",
       "networkadapter-n",
       "networkadapter-nae",
       "networkadapter-trunk",
@@ -3945,7 +3915,6 @@
   },
   "513_2_3015249": {
     "tagsets": [
-      "building-ebu3b",
       "networkadapter-nae"
     ],
     "certainty": 0,
@@ -3978,6 +3947,7 @@
       "networkadapter-n",
       "networkadapter-nae",
       "networkadapter-trunk",
+      "occupied_cooling_min_discharge_air_flow_setpoint",
       "room",
       "vav"
     ],
@@ -3986,6 +3956,7 @@
   },
   "604_1_3012767": {
     "tagsets": [
+      "building-apm",
       "heating_valve_command",
       "networkadapter-n",
       "networkadapter-nae",
@@ -3995,7 +3966,7 @@
       "vav"
     ],
     "certainty": 0,
-    "correct?": false
+    "correct?": true
   },
   "513_0_3005367": {
     "tagsets": [
@@ -4099,8 +4070,6 @@
   },
   "513_2_3011639": {
     "tagsets": [
-      "building-ebu3b",
-      "networkadapter-n",
       "networkadapter-nae"
     ],
     "certainty": 0,
@@ -4163,19 +4132,6 @@
     "certainty": 0,
     "correct?": false
   },
-  "513_4_3005840": {
-    "tagsets": [
-      "building-apm",
-      "networkadapter-n",
-      "networkadapter-nae",
-      "networkadapter-trunk",
-      "occupied_command",
-      "room",
-      "vav"
-    ],
-    "certainty": 0,
-    "correct?": true
-  },
   "513_0_3006219": {
     "tagsets": [
       "building-apm",
@@ -4218,15 +4174,15 @@
   "513_1_3006018": {
     "tagsets": [
       "building-apm",
+      "cooling_max_discharge_air_flow_setpoint",
       "networkadapter-n",
       "networkadapter-nae",
       "networkadapter-trunk",
-      "occupied_cooling_max_supply_air_flow_setpoint",
       "room",
       "vav"
     ],
     "certainty": 0,
-    "correct?": true
+    "correct?": false
   },
   "513_0_3006428": {
     "tagsets": [
@@ -4244,7 +4200,6 @@
   "514_1_3006471": {
     "tagsets": [
       "building-apm",
-      "effective_heating_temperature_setpoint",
       "networkadapter-n",
       "networkadapter-nae",
       "networkadapter-trunk",
@@ -4257,15 +4212,15 @@
   "513_1_3006517": {
     "tagsets": [
       "building-apm",
+      "cooling_max_discharge_air_flow_setpoint",
       "networkadapter-n",
       "networkadapter-nae",
       "networkadapter-trunk",
-      "occupied_cooling_max_supply_air_flow_setpoint",
       "room",
       "vav"
     ],
     "certainty": 0,
-    "correct?": false
+    "correct?": true
   },
   "604_0_3013569": {
     "tagsets": [
@@ -4306,6 +4261,7 @@
   },
   "514_1_3007147": {
     "tagsets": [
+      "building-apm",
       "networkadapter-n",
       "networkadapter-nae",
       "networkadapter-trunk",
@@ -4352,15 +4308,15 @@
   "513_1_3006643": {
     "tagsets": [
       "building-apm",
+      "cooling_max_discharge_air_flow_setpoint",
       "networkadapter-n",
       "networkadapter-nae",
       "networkadapter-trunk",
-      "occupied_cooling_max_supply_air_flow_setpoint",
       "room",
       "vav"
     ],
     "certainty": 0,
-    "correct?": false
+    "correct?": true
   },
   "514_0_3007073": {
     "tagsets": [
@@ -4416,15 +4372,15 @@
   "513_1_3006790": {
     "tagsets": [
       "building-apm",
+      "cooling_max_discharge_air_flow_setpoint",
       "networkadapter-n",
       "networkadapter-nae",
       "networkadapter-trunk",
-      "occupied_cooling_max_supply_air_flow_setpoint",
       "room",
       "vav"
     ],
     "certainty": 0,
-    "correct?": false
+    "correct?": true
   },
   "513_0_3006992": {
     "tagsets": [
@@ -4540,6 +4496,7 @@
   },
   "513_1_3007360": {
     "tagsets": [
+      "building-apm",
       "heating_valve_command",
       "networkadapter-n",
       "networkadapter-nae",
@@ -4549,20 +4506,20 @@
       "vav"
     ],
     "certainty": 0,
-    "correct?": false
+    "correct?": true
   },
   "604_1_3013146": {
     "tagsets": [
       "building-apm",
+      "cooling_max_discharge_air_flow_setpoint",
       "networkadapter-n",
       "networkadapter-nae",
       "networkadapter-trunk",
-      "occupied_cooling_max_supply_air_flow_setpoint",
       "room",
       "vav"
     ],
     "certainty": 0,
-    "correct?": true
+    "correct?": false
   },
   "604_1_3013084": {
     "tagsets": [
@@ -4616,7 +4573,6 @@
   },
   "514_4_3007530": {
     "tagsets": [
-      "building-ebu3b",
       "networkadapter-n",
       "networkadapter-nae"
     ],
@@ -4625,6 +4581,7 @@
   },
   "513_1_3006751": {
     "tagsets": [
+      "building-apm",
       "heating_valve_command",
       "networkadapter-n",
       "networkadapter-nae",
@@ -4634,7 +4591,7 @@
       "vav"
     ],
     "certainty": 0,
-    "correct?": false
+    "correct?": true
   },
   "514_1_3007477": {
     "tagsets": [
@@ -4671,7 +4628,6 @@
   },
   "513_1_3015234": {
     "tagsets": [
-      "building-ebu3b",
       "networkadapter-n",
       "networkadapter-nae"
     ],
@@ -4704,6 +4660,7 @@
   },
   "604_1_3012723": {
     "tagsets": [
+      "building-apm",
       "heating_valve_command",
       "networkadapter-n",
       "networkadapter-nae",
@@ -4713,7 +4670,7 @@
       "vav"
     ],
     "certainty": 0,
-    "correct?": false
+    "correct?": true
   },
   "513_0_3005242": {
     "tagsets": [
@@ -4858,6 +4815,7 @@
   },
   "514_1_3007381": {
     "tagsets": [
+      "building-apm",
       "networkadapter-n",
       "networkadapter-nae",
       "networkadapter-trunk",
@@ -4887,6 +4845,7 @@
       "networkadapter-nae",
       "networkadapter-trunk",
       "room",
+      "supply_air_flow_sensor",
       "vav"
     ],
     "certainty": 0,
@@ -4908,15 +4867,15 @@
   "513_1_3005523": {
     "tagsets": [
       "building-apm",
+      "cooling_max_discharge_air_flow_setpoint",
       "networkadapter-n",
       "networkadapter-nae",
       "networkadapter-trunk",
-      "occupied_cooling_max_supply_air_flow_setpoint",
       "room",
       "vav"
     ],
     "certainty": 0,
-    "correct?": false
+    "correct?": true
   },
   "514_1_3006493": {
     "tagsets": [
@@ -4972,15 +4931,15 @@
   "513_1_3005696": {
     "tagsets": [
       "building-apm",
+      "cooling_max_discharge_air_flow_setpoint",
       "networkadapter-n",
       "networkadapter-nae",
       "networkadapter-trunk",
-      "occupied_cooling_max_supply_air_flow_setpoint",
       "room",
       "vav"
     ],
     "certainty": 0,
-    "correct?": true
+    "correct?": false
   },
   "513_0_3012741": {
     "tagsets": [
@@ -4994,15 +4953,15 @@
   "513_1_3006454": {
     "tagsets": [
       "building-apm",
+      "cooling_max_discharge_air_flow_setpoint",
       "networkadapter-n",
       "networkadapter-nae",
       "networkadapter-trunk",
-      "occupied_cooling_max_supply_air_flow_setpoint",
       "room",
       "vav"
     ],
     "certainty": 0,
-    "correct?": false
+    "correct?": true
   },
   "514_0_3007187": {
     "tagsets": [
@@ -5019,15 +4978,15 @@
   "513_1_3005046": {
     "tagsets": [
       "building-apm",
+      "cooling_max_discharge_air_flow_setpoint",
       "networkadapter-n",
       "networkadapter-nae",
       "networkadapter-trunk",
-      "occupied_cooling_max_supply_air_flow_setpoint",
       "room",
       "vav"
     ],
     "certainty": 0,
-    "correct?": true
+    "correct?": false
   },
   "513_0_3006154": {
     "tagsets": [
@@ -5086,7 +5045,6 @@
   "514_1_3009060": {
     "tagsets": [
       "building-apm",
-      "effective_cooling_temperature_setpoint",
       "networkadapter-n",
       "networkadapter-nae",
       "networkadapter-trunk",
@@ -5172,15 +5130,15 @@
   "604_1_3012792": {
     "tagsets": [
       "building-apm",
+      "cooling_max_discharge_air_flow_setpoint",
       "networkadapter-n",
       "networkadapter-nae",
       "networkadapter-trunk",
-      "occupied_cooling_max_supply_air_flow_setpoint",
       "room",
       "vav"
     ],
     "certainty": 0,
-    "correct?": false
+    "correct?": true
   },
   "513_1_3006699": {
     "tagsets": [
@@ -5217,10 +5175,7 @@
     "correct?": false
   },
   "513_2_3007968": {
-    "tagsets": [
-      "building-ebu3b",
-      "networkadapter-nae"
-    ],
+    "tagsets": [],
     "certainty": 0,
     "correct?": false
   },
@@ -5239,7 +5194,6 @@
   },
   "514_3_3006427": {
     "tagsets": [
-      "building-ebu3b",
       "networkadapter-n",
       "networkadapter-nae"
     ],
@@ -5275,7 +5229,6 @@
   "513_1_3004872": {
     "tagsets": [
       "building-apm",
-      "effective_heating_temperature_setpoint",
       "networkadapter-n",
       "networkadapter-nae",
       "networkadapter-trunk",
@@ -5301,7 +5254,6 @@
   "514_1_3009029": {
     "tagsets": [
       "building-apm",
-      "effective_heating_temperature_setpoint",
       "networkadapter-n",
       "networkadapter-nae",
       "networkadapter-trunk",
@@ -5314,7 +5266,6 @@
   "513_1_3004803": {
     "tagsets": [
       "building-apm",
-      "effective_heating_temperature_setpoint",
       "networkadapter-n",
       "networkadapter-nae",
       "networkadapter-trunk",
@@ -5326,7 +5277,6 @@
   },
   "514_1_3006380": {
     "tagsets": [
-      "building-ebu3b",
       "networkadapter-n",
       "networkadapter-nae"
     ],
@@ -5339,7 +5289,6 @@
       "networkadapter-n",
       "networkadapter-nae",
       "networkadapter-trunk",
-      "occupied_command",
       "room",
       "vav"
     ],
@@ -5348,7 +5297,6 @@
   },
   "604_2_3014445": {
     "tagsets": [
-      "building-ebu3b",
       "networkadapter-nae"
     ],
     "certainty": 0,
@@ -5453,7 +5401,6 @@
   "514_0_3007406": {
     "tagsets": [
       "building-apm",
-      "effective_heating_temperature_setpoint",
       "networkadapter-n",
       "networkadapter-nae",
       "networkadapter-trunk",
@@ -5495,7 +5442,6 @@
   },
   "513_1_3011830": {
     "tagsets": [
-      "building-ebu3b",
       "networkadapter-n",
       "networkadapter-nae"
     ],
@@ -5517,6 +5463,7 @@
       "networkadapter-n",
       "networkadapter-nae",
       "networkadapter-trunk",
+      "occupied_cooling_min_discharge_air_flow_setpoint",
       "room",
       "vav"
     ],
@@ -5538,15 +5485,15 @@
   "513_1_3006179": {
     "tagsets": [
       "building-apm",
+      "cooling_max_discharge_air_flow_setpoint",
       "networkadapter-n",
       "networkadapter-nae",
       "networkadapter-trunk",
-      "occupied_cooling_max_supply_air_flow_setpoint",
       "room",
       "vav"
     ],
     "certainty": 0,
-    "correct?": true
+    "correct?": false
   },
   "604_14_3012788": {
     "tagsets": [
@@ -5589,7 +5536,6 @@
   },
   "604_0_3013703": {
     "tagsets": [
-      "building-ebu3b",
       "networkadapter-n",
       "networkadapter-nae"
     ],
@@ -5603,10 +5549,11 @@
       "networkadapter-nae",
       "networkadapter-trunk",
       "room",
+      "supply_air_flow_sensor",
       "vav"
     ],
     "certainty": 0,
-    "correct?": false
+    "correct?": true
   },
   "604_4_3013407": {
     "tagsets": [
@@ -5632,15 +5579,15 @@
   "513_1_3007189": {
     "tagsets": [
       "building-apm",
+      "cooling_max_discharge_air_flow_setpoint",
       "networkadapter-n",
       "networkadapter-nae",
       "networkadapter-trunk",
-      "occupied_cooling_max_supply_air_flow_setpoint",
       "room",
       "vav"
     ],
     "certainty": 0,
-    "correct?": false
+    "correct?": true
   },
   "513_0_3006405": {
     "tagsets": [
@@ -5665,8 +5612,12 @@
   },
   "514_1_3008178": {
     "tagsets": [
+      "building-apm",
       "networkadapter-n",
-      "networkadapter-nae"
+      "networkadapter-nae",
+      "networkadapter-trunk",
+      "room",
+      "vav"
     ],
     "certainty": 0,
     "correct?": false
@@ -5685,7 +5636,6 @@
   },
   "513_2_3011664": {
     "tagsets": [
-      "building-ebu3b",
       "networkadapter-nae"
     ],
     "certainty": 0,
@@ -5883,6 +5833,7 @@
       "networkadapter-nae",
       "networkadapter-trunk",
       "room",
+      "supply_air_flow_setpoint",
       "vav"
     ],
     "certainty": 0,
@@ -6041,7 +5992,6 @@
   },
   "514_3_3006415": {
     "tagsets": [
-      "building-ebu3b",
       "networkadapter-n",
       "networkadapter-nae"
     ],
@@ -6215,7 +6165,6 @@
   },
   "513_0_3008149": {
     "tagsets": [
-      "building-ebu3b",
       "networkadapter-n",
       "networkadapter-nae"
     ],
@@ -6297,7 +6246,6 @@
   },
   "513_4_3011821": {
     "tagsets": [
-      "building-ebu3b",
       "networkadapter-n",
       "networkadapter-nae"
     ],
@@ -6331,7 +6279,6 @@
   },
   "604_0_3013293": {
     "tagsets": [
-      "building-ebu3b",
       "networkadapter-n",
       "networkadapter-nae"
     ],
@@ -6387,15 +6334,15 @@
   "514_1_3006953": {
     "tagsets": [
       "building-apm",
+      "cooling_max_discharge_air_flow_setpoint",
       "networkadapter-n",
       "networkadapter-nae",
       "networkadapter-trunk",
-      "occupied_cooling_max_supply_air_flow_setpoint",
       "room",
       "vav"
     ],
     "certainty": 0,
-    "correct?": true
+    "correct?": false
   },
   "514_1_3011267": {
     "tagsets": [
@@ -6412,15 +6359,15 @@
   "604_1_3012405": {
     "tagsets": [
       "building-apm",
+      "cooling_max_discharge_air_flow_setpoint",
       "networkadapter-n",
       "networkadapter-nae",
       "networkadapter-trunk",
-      "occupied_cooling_max_supply_air_flow_setpoint",
       "room",
       "vav"
     ],
     "certainty": 0,
-    "correct?": true
+    "correct?": false
   },
   "513_0_3006488": {
     "tagsets": [
@@ -6438,15 +6385,15 @@
   "513_1_3005023": {
     "tagsets": [
       "building-apm",
+      "cooling_max_discharge_air_flow_setpoint",
       "networkadapter-n",
       "networkadapter-nae",
       "networkadapter-trunk",
-      "occupied_cooling_max_supply_air_flow_setpoint",
       "room",
       "vav"
     ],
     "certainty": 0,
-    "correct?": true
+    "correct?": false
   },
   "514_1_3007160": {
     "tagsets": [
@@ -6549,7 +6496,6 @@
   "513_1_3005913": {
     "tagsets": [
       "building-apm",
-      "effective_heating_temperature_setpoint",
       "networkadapter-n",
       "networkadapter-nae",
       "networkadapter-trunk",
@@ -6653,6 +6599,7 @@
       "networkadapter-n",
       "networkadapter-nae",
       "networkadapter-trunk",
+      "occupied_cooling_min_discharge_air_flow_setpoint",
       "room",
       "vav"
     ],
@@ -6709,7 +6656,6 @@
   },
   "514_0_3006430": {
     "tagsets": [
-      "building-ebu3b",
       "networkadapter-n",
       "networkadapter-nae"
     ],
@@ -6771,7 +6717,6 @@
   "513_1_3006281": {
     "tagsets": [
       "building-apm",
-      "effective_heating_temperature_setpoint",
       "networkadapter-n",
       "networkadapter-nae",
       "networkadapter-trunk",
@@ -6782,6 +6727,19 @@
     "correct?": false
   },
   "513_0_3006761": {
+    "tagsets": [
+      "building-apm",
+      "networkadapter-n",
+      "networkadapter-nae",
+      "networkadapter-trunk",
+      "room",
+      "vav",
+      "warm_cool_adjust_sensor"
+    ],
+    "certainty": 0,
+    "correct?": true
+  },
+  "513_0_3005062": {
     "tagsets": [
       "building-apm",
       "networkadapter-n",
@@ -6805,7 +6763,6 @@
   },
   "514_4_3006426": {
     "tagsets": [
-      "building-ebu3b",
       "networkadapter-n",
       "networkadapter-nae"
     ],
@@ -6839,6 +6796,7 @@
   },
   "604_1_3012855": {
     "tagsets": [
+      "building-apm",
       "heating_valve_command",
       "networkadapter-n",
       "networkadapter-nae",
@@ -6848,7 +6806,7 @@
       "vav"
     ],
     "certainty": 0,
-    "correct?": false
+    "correct?": true
   },
   "604_1_3012409": {
     "tagsets": [
@@ -6929,7 +6887,6 @@
   },
   "514_2_3003973": {
     "tagsets": [
-      "building-ebu3b",
       "networkadapter-nae"
     ],
     "certainty": 0,
@@ -6999,8 +6956,6 @@
   },
   "513_1_3004536": {
     "tagsets": [
-      "ahu",
-      "building-ebu3b",
       "networkadapter-n",
       "networkadapter-nae"
     ],
@@ -7010,10 +6965,10 @@
   "604_1_3013633": {
     "tagsets": [
       "building-apm",
+      "cooling_max_discharge_air_flow_setpoint",
       "networkadapter-n",
       "networkadapter-nae",
       "networkadapter-trunk",
-      "occupied_cooling_max_supply_air_flow_setpoint",
       "room",
       "vav"
     ],
@@ -7035,15 +6990,15 @@
   "513_1_3005607": {
     "tagsets": [
       "building-apm",
+      "cooling_max_discharge_air_flow_setpoint",
       "networkadapter-n",
       "networkadapter-nae",
       "networkadapter-trunk",
-      "occupied_cooling_max_supply_air_flow_setpoint",
       "room",
       "vav"
     ],
     "certainty": 0,
-    "correct?": false
+    "correct?": true
   },
   "604_1_3012693": {
     "tagsets": [
@@ -7072,11 +7027,12 @@
       "networkadapter-n",
       "networkadapter-nae",
       "networkadapter-trunk",
+      "occupied_cooling_min_discharge_air_flow_setpoint",
       "room",
       "vav"
     ],
     "certainty": 0,
-    "correct?": false
+    "correct?": true
   },
   "604_14_3012818": {
     "tagsets": [
@@ -7094,15 +7050,15 @@
   "604_1_3013066": {
     "tagsets": [
       "building-apm",
+      "cooling_max_discharge_air_flow_setpoint",
       "networkadapter-n",
       "networkadapter-nae",
       "networkadapter-trunk",
-      "occupied_cooling_max_supply_air_flow_setpoint",
       "room",
       "vav"
     ],
     "certainty": 0,
-    "correct?": true
+    "correct?": false
   },
   "514_0_3007487": {
     "tagsets": [
@@ -7215,7 +7171,6 @@
   "514_1_3006890": {
     "tagsets": [
       "building-apm",
-      "effective_heating_temperature_setpoint",
       "networkadapter-n",
       "networkadapter-nae",
       "networkadapter-trunk",
@@ -7289,15 +7244,15 @@
   "513_1_3006874": {
     "tagsets": [
       "building-apm",
+      "cooling_max_discharge_air_flow_setpoint",
       "networkadapter-n",
       "networkadapter-nae",
       "networkadapter-trunk",
-      "occupied_cooling_max_supply_air_flow_setpoint",
       "room",
       "vav"
     ],
     "certainty": 0,
-    "correct?": false
+    "correct?": true
   },
   "514_1_3006670": {
     "tagsets": [
@@ -7351,15 +7306,15 @@
   "604_1_3012632": {
     "tagsets": [
       "building-apm",
+      "cooling_max_discharge_air_flow_setpoint",
       "networkadapter-n",
       "networkadapter-nae",
       "networkadapter-trunk",
-      "occupied_cooling_max_supply_air_flow_setpoint",
       "room",
       "vav"
     ],
     "certainty": 0,
-    "correct?": false
+    "correct?": true
   },
   "604_0_3012534": {
     "tagsets": [
@@ -7426,6 +7381,7 @@
   },
   "604_1_3012962": {
     "tagsets": [
+      "building-apm",
       "heating_valve_command",
       "networkadapter-n",
       "networkadapter-nae",
@@ -7435,7 +7391,7 @@
       "vav"
     ],
     "certainty": 0,
-    "correct?": false
+    "correct?": true
   },
   "514_0_3007350": {
     "tagsets": [
@@ -7517,15 +7473,15 @@
   "513_1_3005811": {
     "tagsets": [
       "building-apm",
+      "cooling_max_discharge_air_flow_setpoint",
       "networkadapter-n",
       "networkadapter-nae",
       "networkadapter-trunk",
-      "occupied_cooling_max_supply_air_flow_setpoint",
       "room",
       "vav"
     ],
     "certainty": 0,
-    "correct?": true
+    "correct?": false
   },
   "513_1_3005726": {
     "tagsets": [
@@ -7541,7 +7497,6 @@
   },
   "514_2_3003975": {
     "tagsets": [
-      "building-ebu3b",
       "networkadapter-nae"
     ],
     "certainty": 0,
@@ -7575,15 +7530,15 @@
   "513_1_3005299": {
     "tagsets": [
       "building-apm",
+      "cooling_max_discharge_air_flow_setpoint",
       "networkadapter-n",
       "networkadapter-nae",
       "networkadapter-trunk",
-      "occupied_cooling_max_supply_air_flow_setpoint",
       "room",
       "vav"
     ],
     "certainty": 0,
-    "correct?": true
+    "correct?": false
   },
   "604_0_3013050": {
     "tagsets": [
@@ -7698,8 +7653,6 @@
   },
   "513_4_3011358": {
     "tagsets": [
-      "building-ebu3b",
-      "networkadapter-dx",
       "networkadapter-n",
       "networkadapter-nae"
     ],
@@ -7716,10 +7669,7 @@
     "correct?": false
   },
   "513_2_3007970": {
-    "tagsets": [
-      "building-ebu3b",
-      "networkadapter-nae"
-    ],
+    "tagsets": [],
     "certainty": 0,
     "correct?": false
   },
@@ -7868,15 +7818,15 @@
   "513_1_3004931": {
     "tagsets": [
       "building-apm",
+      "cooling_max_discharge_air_flow_setpoint",
       "networkadapter-n",
       "networkadapter-nae",
       "networkadapter-trunk",
-      "occupied_cooling_max_supply_air_flow_setpoint",
       "room",
       "vav"
     ],
     "certainty": 0,
-    "correct?": true
+    "correct?": false
   },
   "514_1_3007275": {
     "tagsets": [
@@ -7927,6 +7877,7 @@
   },
   "604_1_3013656": {
     "tagsets": [
+      "building-apm",
       "heating_valve_command",
       "networkadapter-n",
       "networkadapter-nae",
@@ -7936,7 +7887,7 @@
       "vav"
     ],
     "certainty": 0,
-    "correct?": true
+    "correct?": false
   },
   "604_0_3013509": {
     "tagsets": [
@@ -7958,16 +7909,13 @@
       "networkadapter-nae",
       "networkadapter-trunk",
       "room",
-      "vav",
-      "zone",
-      "zone_temperature_sensor"
+      "vav"
     ],
     "certainty": 0,
     "correct?": false
   },
   "514_4_3006345": {
     "tagsets": [
-      "building-ebu3b",
       "networkadapter-n",
       "networkadapter-nae"
     ],
@@ -8001,8 +7949,10 @@
   },
   "513_1_3007596": {
     "tagsets": [
+      "building-apm",
       "networkadapter-n",
       "networkadapter-nae",
+      "networkadapter-trunk",
       "room",
       "vav"
     ],
@@ -8022,10 +7972,7 @@
     "correct?": false
   },
   "513_2_3012972": {
-    "tagsets": [
-      "building-ebu3b",
-      "networkadapter-nae"
-    ],
+    "tagsets": [],
     "certainty": 0,
     "correct?": false
   },
@@ -8067,8 +8014,6 @@
   },
   "513_1_3015240": {
     "tagsets": [
-      "building-ebu3b",
-      "networkadapter-n",
       "networkadapter-nae"
     ],
     "certainty": 0,
@@ -8081,7 +8026,9 @@
       "networkadapter-nae",
       "networkadapter-trunk",
       "room",
-      "vav"
+      "vav",
+      "zone",
+      "zone_temperature_sensor"
     ],
     "certainty": 0,
     "correct?": false
@@ -8127,8 +8074,6 @@
   },
   "513_1_3004591": {
     "tagsets": [
-      "ahu",
-      "building-ebu3b",
       "networkadapter-n",
       "networkadapter-nae"
     ],
@@ -8149,7 +8094,6 @@
   },
   "514_1_3006360": {
     "tagsets": [
-      "building-ebu3b",
       "networkadapter-n",
       "networkadapter-nae"
     ],
@@ -8196,15 +8140,15 @@
   "514_1_3006502": {
     "tagsets": [
       "building-apm",
+      "cooling_max_discharge_air_flow_setpoint",
       "networkadapter-n",
       "networkadapter-nae",
       "networkadapter-trunk",
-      "occupied_cooling_max_supply_air_flow_setpoint",
       "room",
       "vav"
     ],
     "certainty": 0,
-    "correct?": true
+    "correct?": false
   },
   "513_0_3006736": {
     "tagsets": [
@@ -8244,7 +8188,6 @@
   },
   "604_3_3013697": {
     "tagsets": [
-      "building-ebu3b",
       "networkadapter-n",
       "networkadapter-nae"
     ],
@@ -8351,7 +8294,6 @@
   "513_1_3006350": {
     "tagsets": [
       "building-apm",
-      "effective_heating_temperature_setpoint",
       "networkadapter-n",
       "networkadapter-nae",
       "networkadapter-trunk",
@@ -8376,7 +8318,6 @@
   },
   "514_5_3004145": {
     "tagsets": [
-      "building-ebu3b",
       "networkadapter-nae"
     ],
     "certainty": 0,
@@ -8384,6 +8325,7 @@
   },
   "604_1_3012977": {
     "tagsets": [
+      "building-apm",
       "heating_valve_command",
       "networkadapter-n",
       "networkadapter-nae",
@@ -8393,7 +8335,7 @@
       "vav"
     ],
     "certainty": 0,
-    "correct?": false
+    "correct?": true
   },
   "604_1_3012785": {
     "tagsets": [
@@ -8435,7 +8377,6 @@
   },
   "513_1_3004554": {
     "tagsets": [
-      "building-ebu3b",
       "networkadapter-n",
       "networkadapter-nae"
     ],
@@ -8507,6 +8448,7 @@
   },
   "513_1_3006520": {
     "tagsets": [
+      "building-apm",
       "heating_valve_command",
       "networkadapter-n",
       "networkadapter-nae",
@@ -8516,7 +8458,7 @@
       "vav"
     ],
     "certainty": 0,
-    "correct?": false
+    "correct?": true
   },
   "513_1_3007284": {
     "tagsets": [
@@ -8546,7 +8488,6 @@
   "514_1_3009042": {
     "tagsets": [
       "building-apm",
-      "effective_cooling_temperature_setpoint",
       "networkadapter-n",
       "networkadapter-nae",
       "networkadapter-trunk",
@@ -8572,15 +8513,15 @@
   "604_1_3012574": {
     "tagsets": [
       "building-apm",
+      "cooling_max_discharge_air_flow_setpoint",
       "networkadapter-n",
       "networkadapter-nae",
       "networkadapter-trunk",
-      "occupied_cooling_max_supply_air_flow_setpoint",
       "room",
       "vav"
     ],
     "certainty": 0,
-    "correct?": false
+    "correct?": true
   },
   "513_0_3006638": {
     "tagsets": [
@@ -8658,7 +8599,6 @@
   },
   "604_4_3013298": {
     "tagsets": [
-      "building-ebu3b",
       "networkadapter-n",
       "networkadapter-nae"
     ],
@@ -8694,15 +8634,15 @@
   "514_1_3006855": {
     "tagsets": [
       "building-apm",
+      "cooling_max_discharge_air_flow_setpoint",
       "networkadapter-n",
       "networkadapter-nae",
       "networkadapter-trunk",
-      "occupied_cooling_max_supply_air_flow_setpoint",
       "room",
       "vav"
     ],
     "certainty": 0,
-    "correct?": true
+    "correct?": false
   },
   "513_2_3015662": {
     "tagsets": [
@@ -8714,8 +8654,6 @@
   },
   "513_1_3015243": {
     "tagsets": [
-      "building-ebu3b",
-      "networkadapter-n",
       "networkadapter-nae"
     ],
     "certainty": 0,
@@ -8734,26 +8672,9 @@
     "correct?": false
   },
   "604_5_3016967": {
-    "tagsets": [
-      "building-ebu3b",
-      "networkadapter-nae"
-    ],
+    "tagsets": [],
     "certainty": 0,
     "correct?": false
-  },
-  "513_0_3006741": {
-    "tagsets": [
-      "building-apm",
-      "networkadapter-n",
-      "networkadapter-nae",
-      "networkadapter-trunk",
-      "room",
-      "vav",
-      "zone",
-      "zone_temperature_sensor"
-    ],
-    "certainty": 0,
-    "correct?": true
   },
   "604_1_3012470": {
     "tagsets": [
@@ -8782,6 +8703,7 @@
   },
   "513_1_3005677": {
     "tagsets": [
+      "building-apm",
       "heating_valve_command",
       "networkadapter-n",
       "networkadapter-nae",
@@ -8791,12 +8713,11 @@
       "vav"
     ],
     "certainty": 0,
-    "correct?": false
+    "correct?": true
   },
   "514_0_3007379": {
     "tagsets": [
       "building-apm",
-      "effective_heating_temperature_setpoint",
       "networkadapter-n",
       "networkadapter-nae",
       "networkadapter-trunk",
@@ -8877,23 +8798,11 @@
       "networkadapter-nae",
       "networkadapter-trunk",
       "room",
+      "supply_air_flow_setpoint",
       "vav"
     ],
     "certainty": 0,
     "correct?": false
-  },
-  "604_0_3012954": {
-    "tagsets": [
-      "building-apm",
-      "networkadapter-n",
-      "networkadapter-nae",
-      "networkadapter-trunk",
-      "room",
-      "vav",
-      "warm_cool_adjust_sensor"
-    ],
-    "certainty": 0,
-    "correct?": true
   },
   "513_4_3004891": {
     "tagsets": [
@@ -9006,8 +8915,6 @@
   },
   "513_2_3015663": {
     "tagsets": [
-      "ahu",
-      "building-ebu3b",
       "networkadapter-nae"
     ],
     "certainty": 0,
@@ -9053,15 +8960,15 @@
   "604_1_3012720": {
     "tagsets": [
       "building-apm",
+      "cooling_max_discharge_air_flow_setpoint",
       "networkadapter-n",
       "networkadapter-nae",
       "networkadapter-trunk",
-      "occupied_cooling_max_supply_air_flow_setpoint",
       "room",
       "vav"
     ],
     "certainty": 0,
-    "correct?": false
+    "correct?": true
   },
   "513_0_3005525": {
     "tagsets": [
@@ -9077,6 +8984,7 @@
   },
   "514_1_3007026": {
     "tagsets": [
+      "building-apm",
       "heating_valve_command",
       "networkadapter-n",
       "networkadapter-nae",
@@ -9086,7 +8994,7 @@
       "vav"
     ],
     "certainty": 0,
-    "correct?": false
+    "correct?": true
   },
   "514_0_3006709": {
     "tagsets": [
@@ -9116,7 +9024,6 @@
   },
   "513_0_3004582": {
     "tagsets": [
-      "building-ebu3b",
       "networkadapter-n",
       "networkadapter-nae"
     ],
@@ -9258,8 +9165,6 @@
   },
   "604_2_3015000": {
     "tagsets": [
-      "ahu",
-      "building-ebu3b",
       "networkadapter-nae"
     ],
     "certainty": 0,
@@ -9280,6 +9185,7 @@
   },
   "604_1_3012635": {
     "tagsets": [
+      "building-apm",
       "heating_valve_command",
       "networkadapter-n",
       "networkadapter-nae",
@@ -9289,7 +9195,7 @@
       "vav"
     ],
     "certainty": 0,
-    "correct?": false
+    "correct?": true
   },
   "513_0_3007450": {
     "tagsets": [
@@ -9306,7 +9212,6 @@
   },
   "514_0_3006340": {
     "tagsets": [
-      "building-ebu3b",
       "networkadapter-n",
       "networkadapter-nae"
     ],
@@ -9315,6 +9220,7 @@
   },
   "604_0_3013627": {
     "tagsets": [
+      "building-apm",
       "networkadapter-n",
       "networkadapter-nae",
       "networkadapter-trunk",
@@ -9331,9 +9237,7 @@
       "networkadapter-nae",
       "networkadapter-trunk",
       "room",
-      "vav",
-      "zone",
-      "zone_temperature_sensor"
+      "vav"
     ],
     "certainty": 0,
     "correct?": false
@@ -9471,7 +9375,6 @@
       "networkadapter-n",
       "networkadapter-nae",
       "networkadapter-trunk",
-      "occupied_command",
       "room",
       "vav"
     ],
@@ -9489,6 +9392,7 @@
   },
   "514_1_3007132": {
     "tagsets": [
+      "building-apm",
       "heating_valve_command",
       "networkadapter-n",
       "networkadapter-nae",
@@ -9498,10 +9402,11 @@
       "vav"
     ],
     "certainty": 0,
-    "correct?": false
+    "correct?": true
   },
   "513_1_3006413": {
     "tagsets": [
+      "building-apm",
       "heating_valve_command",
       "networkadapter-n",
       "networkadapter-nae",
@@ -9511,7 +9416,7 @@
       "vav"
     ],
     "certainty": 0,
-    "correct?": false
+    "correct?": true
   },
   "513_1_3005123": {
     "tagsets": [
@@ -9540,7 +9445,6 @@
   },
   "513_1_3004653": {
     "tagsets": [
-      "building-ebu3b",
       "networkadapter-n",
       "networkadapter-nae"
     ],
@@ -9652,6 +9556,7 @@
       "networkadapter-n",
       "networkadapter-nae",
       "networkadapter-trunk",
+      "occupied_cooling_min_discharge_air_flow_setpoint",
       "room",
       "vav"
     ],
@@ -9670,10 +9575,23 @@
     "certainty": 0,
     "correct?": false
   },
+  "604_1_3013626": {
+    "tagsets": [
+      "building-apm",
+      "heating_valve_command",
+      "networkadapter-n",
+      "networkadapter-nae",
+      "networkadapter-trunk",
+      "room",
+      "valve",
+      "vav"
+    ],
+    "certainty": 0,
+    "correct?": false
+  },
   "514_0_3007433": {
     "tagsets": [
       "building-apm",
-      "effective_heating_temperature_setpoint",
       "networkadapter-n",
       "networkadapter-nae",
       "networkadapter-trunk",
@@ -9686,7 +9604,6 @@
   "513_1_3005798": {
     "tagsets": [
       "building-apm",
-      "effective_heating_temperature_setpoint",
       "networkadapter-n",
       "networkadapter-nae",
       "networkadapter-trunk",
@@ -9724,15 +9641,15 @@
   "514_1_3006905": {
     "tagsets": [
       "building-apm",
+      "cooling_max_discharge_air_flow_setpoint",
       "networkadapter-n",
       "networkadapter-nae",
       "networkadapter-trunk",
-      "occupied_cooling_max_supply_air_flow_setpoint",
       "room",
       "vav"
     ],
     "certainty": 0,
-    "correct?": true
+    "correct?": false
   },
   "513_0_3006997": {
     "tagsets": [
@@ -9810,6 +9727,7 @@
   },
   "604_1_3013009": {
     "tagsets": [
+      "building-apm",
       "heating_valve_command",
       "networkadapter-n",
       "networkadapter-nae",
@@ -9819,7 +9737,7 @@
       "vav"
     ],
     "certainty": 0,
-    "correct?": false
+    "correct?": true
   },
   "604_1_3013310": {
     "tagsets": [
@@ -9844,6 +9762,7 @@
   },
   "513_1_3007486": {
     "tagsets": [
+      "building-apm",
       "heating_valve_command",
       "networkadapter-n",
       "networkadapter-nae",
@@ -9853,7 +9772,7 @@
       "vav"
     ],
     "certainty": 0,
-    "correct?": false
+    "correct?": true
   },
   "604_0_3013610": {
     "tagsets": [
@@ -9870,15 +9789,15 @@
   "604_1_3012989": {
     "tagsets": [
       "building-apm",
+      "cooling_max_discharge_air_flow_setpoint",
       "networkadapter-n",
       "networkadapter-nae",
       "networkadapter-trunk",
-      "occupied_cooling_max_supply_air_flow_setpoint",
       "room",
       "vav"
     ],
     "certainty": 0,
-    "correct?": true
+    "correct?": false
   },
   "514_0_3006521": {
     "tagsets": [
@@ -9952,25 +9871,10 @@
       "networkadapter-nae",
       "networkadapter-trunk",
       "room",
-      "vav",
-      "zone",
-      "zone_temperature_sensor"
-    ],
-    "certainty": 0,
-    "correct?": false
-  },
-  "513_1_3005353": {
-    "tagsets": [
-      "building-apm",
-      "networkadapter-n",
-      "networkadapter-nae",
-      "networkadapter-trunk",
-      "occupied_cooling_min_discharge_air_flow_setpoint",
-      "room",
       "vav"
     ],
     "certainty": 0,
-    "correct?": true
+    "correct?": false
   },
   "513_3_3005405": {
     "tagsets": [
@@ -10030,8 +9934,7 @@
     "tagsets": [
       "building-ebu3b",
       "networkadapter-n",
-      "networkadapter-nae",
-      "networkadapter-vnd"
+      "networkadapter-nae"
     ],
     "certainty": 0,
     "correct?": false
@@ -10064,6 +9967,7 @@
   },
   "604_0_3013492": {
     "tagsets": [
+      "building-apm",
       "networkadapter-n",
       "networkadapter-nae",
       "networkadapter-trunk",
@@ -10075,6 +9979,7 @@
   },
   "514_1_3007444": {
     "tagsets": [
+      "building-apm",
       "networkadapter-n",
       "networkadapter-nae",
       "networkadapter-trunk",
@@ -10087,15 +9992,15 @@
   "513_1_3007357": {
     "tagsets": [
       "building-apm",
+      "cooling_max_discharge_air_flow_setpoint",
       "networkadapter-n",
       "networkadapter-nae",
       "networkadapter-trunk",
-      "occupied_cooling_max_supply_air_flow_setpoint",
       "room",
       "vav"
     ],
     "certainty": 0,
-    "correct?": false
+    "correct?": true
   },
   "513_14_3006432": {
     "tagsets": [
@@ -10150,7 +10055,6 @@
   "604_1_3012397": {
     "tagsets": [
       "building-apm",
-      "effective_heating_temperature_setpoint",
       "networkadapter-n",
       "networkadapter-nae",
       "networkadapter-trunk",
@@ -10162,7 +10066,6 @@
   },
   "514_0_3007534": {
     "tagsets": [
-      "building-ebu3b",
       "networkadapter-n",
       "networkadapter-nae"
     ],
@@ -10202,9 +10105,7 @@
       "networkadapter-nae",
       "networkadapter-trunk",
       "room",
-      "vav",
-      "zone",
-      "zone_temperature_sensor"
+      "vav"
     ],
     "certainty": 0,
     "correct?": false
@@ -10247,10 +10148,21 @@
     "certainty": 0,
     "correct?": true
   },
+  "513_1_3005710": {
+    "tagsets": [
+      "building-apm",
+      "networkadapter-n",
+      "networkadapter-nae",
+      "networkadapter-trunk",
+      "room",
+      "supply_air_flow_setpoint",
+      "vav"
+    ],
+    "certainty": 0,
+    "correct?": true
+  },
   "513_0_3011341": {
     "tagsets": [
-      "building-ebu3b",
-      "networkadapter-dx",
       "networkadapter-n",
       "networkadapter-nae"
     ],
@@ -10259,7 +10171,6 @@
   },
   "514_4_3007519": {
     "tagsets": [
-      "building-ebu3b",
       "networkadapter-n",
       "networkadapter-nae"
     ],
@@ -10289,7 +10200,6 @@
   },
   "514_4_3006414": {
     "tagsets": [
-      "building-ebu3b",
       "networkadapter-n",
       "networkadapter-nae"
     ],
@@ -10311,6 +10221,7 @@
   },
   "514_1_3009022": {
     "tagsets": [
+      "building-apm",
       "heating_valve_command",
       "networkadapter-n",
       "networkadapter-nae",
@@ -10320,7 +10231,7 @@
       "vav"
     ],
     "certainty": 0,
-    "correct?": false
+    "correct?": true
   },
   "513_0_3006824": {
     "tagsets": [
@@ -10338,18 +10249,19 @@
   "604_1_3012434": {
     "tagsets": [
       "building-apm",
+      "cooling_max_discharge_air_flow_setpoint",
       "networkadapter-n",
       "networkadapter-nae",
       "networkadapter-trunk",
-      "occupied_cooling_max_supply_air_flow_setpoint",
       "room",
       "vav"
     ],
     "certainty": 0,
-    "correct?": true
+    "correct?": false
   },
   "513_1_3006604": {
     "tagsets": [
+      "building-apm",
       "heating_valve_command",
       "networkadapter-n",
       "networkadapter-nae",
@@ -10359,7 +10271,7 @@
       "vav"
     ],
     "certainty": 0,
-    "correct?": false
+    "correct?": true
   },
   "513_0_3005205": {
     "tagsets": [
@@ -10369,19 +10281,6 @@
       "networkadapter-nae",
       "networkadapter-trunk",
       "room",
-      "vav"
-    ],
-    "certainty": 0,
-    "correct?": true
-  },
-  "604_0_3013074": {
-    "tagsets": [
-      "building-apm",
-      "networkadapter-n",
-      "networkadapter-nae",
-      "networkadapter-trunk",
-      "room",
-      "supply_air_flow_sensor",
       "vav"
     ],
     "certainty": 0,
@@ -10402,6 +10301,7 @@
   },
   "514_1_3006957": {
     "tagsets": [
+      "building-apm",
       "heating_valve_command",
       "networkadapter-n",
       "networkadapter-nae",
@@ -10411,24 +10311,23 @@
       "vav"
     ],
     "certainty": 0,
-    "correct?": false
+    "correct?": true
   },
   "514_1_3006644": {
     "tagsets": [
       "building-apm",
+      "cooling_max_discharge_air_flow_setpoint",
       "networkadapter-n",
       "networkadapter-nae",
       "networkadapter-trunk",
-      "occupied_cooling_max_supply_air_flow_setpoint",
       "room",
       "vav"
     ],
     "certainty": 0,
-    "correct?": true
+    "correct?": false
   },
   "513_3_3004502": {
     "tagsets": [
-      "building-ebu3b",
       "networkadapter-n",
       "networkadapter-nae"
     ],
@@ -10476,7 +10375,6 @@
   },
   "514_3_3006399": {
     "tagsets": [
-      "building-ebu3b",
       "networkadapter-n",
       "networkadapter-nae"
     ],
@@ -10495,6 +10393,19 @@
     ],
     "certainty": 0,
     "correct?": true
+  },
+  "514_1_3006880": {
+    "tagsets": [
+      "building-apm",
+      "cooling_max_discharge_air_flow_setpoint",
+      "networkadapter-n",
+      "networkadapter-nae",
+      "networkadapter-trunk",
+      "room",
+      "vav"
+    ],
+    "certainty": 0,
+    "correct?": false
   },
   "513_0_3004860": {
     "tagsets": [
@@ -10528,8 +10439,7 @@
       "networkadapter-nae",
       "networkadapter-trunk",
       "room",
-      "vav",
-      "warm_cool_adjust_sensor"
+      "vav"
     ],
     "certainty": 0,
     "correct?": false
@@ -10545,7 +10455,6 @@
   },
   "514_0_3006354": {
     "tagsets": [
-      "building-ebu3b",
       "networkadapter-n",
       "networkadapter-nae"
     ],
@@ -10555,7 +10464,6 @@
   "513_1_3005982": {
     "tagsets": [
       "building-apm",
-      "effective_heating_temperature_setpoint",
       "networkadapter-n",
       "networkadapter-nae",
       "networkadapter-trunk",
@@ -10572,16 +10480,13 @@
       "networkadapter-nae",
       "networkadapter-trunk",
       "room",
-      "vav",
-      "warm_cool_adjust_sensor"
+      "vav"
     ],
     "certainty": 0,
     "correct?": false
   },
   "513_1_3011345": {
     "tagsets": [
-      "building-ebu3b",
-      "networkadapter-dx",
       "networkadapter-n",
       "networkadapter-nae"
     ],
@@ -10630,7 +10535,6 @@
   "604_1_3012951": {
     "tagsets": [
       "building-apm",
-      "effective_heating_temperature_setpoint",
       "networkadapter-n",
       "networkadapter-nae",
       "networkadapter-trunk",
@@ -10757,10 +10661,10 @@
   "604_1_3013483": {
     "tagsets": [
       "building-apm",
+      "cooling_max_discharge_air_flow_setpoint",
       "networkadapter-n",
       "networkadapter-nae",
       "networkadapter-trunk",
-      "occupied_cooling_max_supply_air_flow_setpoint",
       "room",
       "vav"
     ],
@@ -10838,9 +10742,7 @@
       "networkadapter-nae",
       "networkadapter-trunk",
       "room",
-      "vav",
-      "zone",
-      "zone_temperature_sensor"
+      "vav"
     ],
     "certainty": 0,
     "correct?": false
@@ -10868,8 +10770,10 @@
   },
   "513_1_3004840": {
     "tagsets": [
+      "building-apm",
       "networkadapter-n",
       "networkadapter-nae",
+      "networkadapter-trunk",
       "room",
       "vav"
     ],
@@ -10904,15 +10808,15 @@
   "514_1_3006759": {
     "tagsets": [
       "building-apm",
+      "cooling_max_discharge_air_flow_setpoint",
       "networkadapter-n",
       "networkadapter-nae",
       "networkadapter-trunk",
-      "occupied_cooling_max_supply_air_flow_setpoint",
       "room",
       "vav"
     ],
     "certainty": 0,
-    "correct?": true
+    "correct?": false
   },
   "514_4_3007203": {
     "tagsets": [
@@ -10928,6 +10832,7 @@
   },
   "513_1_3005326": {
     "tagsets": [
+      "building-apm",
       "heating_valve_command",
       "networkadapter-n",
       "networkadapter-nae",
@@ -10937,7 +10842,7 @@
       "vav"
     ],
     "certainty": 0,
-    "correct?": false
+    "correct?": true
   },
   "604_1_3013136": {
     "tagsets": [
@@ -10979,8 +10884,10 @@
   },
   "513_14_3011788": {
     "tagsets": [
+      "building-apm",
       "networkadapter-n",
       "networkadapter-nae",
+      "networkadapter-trunk",
       "room",
       "vav"
     ],
@@ -11016,7 +10923,6 @@
   },
   "514_3_3006423": {
     "tagsets": [
-      "building-ebu3b",
       "networkadapter-n",
       "networkadapter-nae"
     ],
@@ -11086,6 +10992,7 @@
   },
   "604_1_3013133": {
     "tagsets": [
+      "building-apm",
       "heating_valve_command",
       "networkadapter-n",
       "networkadapter-nae",
@@ -11095,11 +11002,10 @@
       "vav"
     ],
     "certainty": 0,
-    "correct?": false
+    "correct?": true
   },
   "513_1_3011828": {
     "tagsets": [
-      "building-ebu3b",
       "networkadapter-n",
       "networkadapter-nae"
     ],
@@ -11344,7 +11250,6 @@
   },
   "513_3_3004575": {
     "tagsets": [
-      "building-ebu3b",
       "networkadapter-n",
       "networkadapter-nae"
     ],
@@ -11385,6 +11290,19 @@
     "correct?": false
   },
   "513_0_3005876": {
+    "tagsets": [
+      "building-apm",
+      "effective_cooling_temperature_setpoint",
+      "networkadapter-n",
+      "networkadapter-nae",
+      "networkadapter-trunk",
+      "room",
+      "vav"
+    ],
+    "certainty": 0,
+    "correct?": true
+  },
+  "513_0_3006806": {
     "tagsets": [
       "building-apm",
       "effective_cooling_temperature_setpoint",
@@ -11510,7 +11428,6 @@
   },
   "514_2_3010475": {
     "tagsets": [
-      "building-ebu3b",
       "networkadapter-nae"
     ],
     "certainty": 0,
@@ -11529,16 +11446,12 @@
     "correct?": false
   },
   "513_2_3007966": {
-    "tagsets": [
-      "building-ebu3b",
-      "networkadapter-nae"
-    ],
+    "tagsets": [],
     "certainty": 0,
     "correct?": false
   },
   "513_1_3004515": {
     "tagsets": [
-      "building-ebu3b",
       "networkadapter-n",
       "networkadapter-nae"
     ],
@@ -11635,19 +11548,18 @@
   "604_1_3013161": {
     "tagsets": [
       "building-apm",
+      "cooling_max_discharge_air_flow_setpoint",
       "networkadapter-n",
       "networkadapter-nae",
       "networkadapter-trunk",
-      "occupied_cooling_max_supply_air_flow_setpoint",
       "room",
       "vav"
     ],
     "certainty": 0,
-    "correct?": true
+    "correct?": false
   },
   "513_1_3004570": {
     "tagsets": [
-      "building-ebu3b",
       "networkadapter-n",
       "networkadapter-nae"
     ],
@@ -11669,10 +11581,13 @@
   },
   "513_1_3004843": {
     "tagsets": [
+      "building-apm",
+      "heating_valve_command",
       "networkadapter-n",
       "networkadapter-nae",
       "networkadapter-trunk",
       "room",
+      "valve",
       "vav"
     ],
     "certainty": 0,
@@ -11691,16 +11606,12 @@
     "correct?": false
   },
   "604_5_3016756": {
-    "tagsets": [
-      "building-ebu3b",
-      "networkadapter-nae"
-    ],
+    "tagsets": [],
     "certainty": 0,
     "correct?": false
   },
   "513_1_3004558": {
     "tagsets": [
-      "building-ebu3b",
       "networkadapter-n",
       "networkadapter-nae"
     ],
@@ -11735,11 +11646,12 @@
   },
   "604_0_3013076": {
     "tagsets": [
+      "building-apm",
       "networkadapter-n",
       "networkadapter-nae",
+      "networkadapter-trunk",
       "room",
-      "vav",
-      "warm_cool_adjust_sensor"
+      "vav"
     ],
     "certainty": 0,
     "correct?": false
@@ -11757,7 +11669,12 @@
     "correct?": false
   },
   "513_1_3005958": {
-    "tagsets": [],
+    "tagsets": [
+      "networkadapter-n",
+      "networkadapter-nae",
+      "room",
+      "vav"
+    ],
     "certainty": 0,
     "correct?": false
   },
@@ -11775,8 +11692,10 @@
   },
   "604_0_3013078": {
     "tagsets": [
+      "building-apm",
       "networkadapter-n",
       "networkadapter-nae",
+      "networkadapter-trunk",
       "room",
       "vav"
     ],
@@ -11785,9 +11704,10 @@
   },
   "604_0_3013624": {
     "tagsets": [
-      "building-ebu3b",
+      "building-apm",
       "networkadapter-n",
       "networkadapter-nae",
+      "networkadapter-trunk",
       "room",
       "vav"
     ],
@@ -11796,21 +11716,22 @@
   },
   "514_1_3007009": {
     "tagsets": [
-      "building-ebu3b"
+      "building-ebu3b",
+      "networkadapter-nae"
     ],
     "certainty": 0,
     "correct?": false
   },
   "samples": [
-    "514_0_3006799",
-    "514_1_3006880",
-    "513_1_3005710",
-    "513_0_3006806",
-    "513_0_3005062",
-    "604_4_3012941",
-    "513_0_3005541",
-    "513_0_3007471",
-    "604_1_3012857",
-    "604_1_3013626"
+    "513_1_3005165",
+    "513_0_3006741",
+    "604_0_3012954",
+    "514_1_3007336",
+    "513_0_3004998",
+    "604_1_3013122",
+    "513_1_3005353",
+    "513_4_3005840",
+    "604_0_3012987",
+    "604_0_3013074"
   ]
 }
