@@ -23,10 +23,10 @@ end_time_bd2_1 = arrow.get(datetime(2017,2,8), PST).datetime
 begin_time_bd2_2 = arrow.get(datetime(2016,3,10), PST).datetime
 end_time_bd2_2 = arrow.get(datetime(2016,3,30), PST).datetime
 
-building_name_list = ['AP_M']
+#building_name_list = ['AP_M']
 #building_name_list = ['Music']
 #building_name_list = ['AP_M', 'EBU3B', 'SME', 'Music']
-#building_name_list = ['EBU3B']
+building_name_list = ['EBU3B']
 basedir = "data"
 header = ['value']
 index_label="time"
