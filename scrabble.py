@@ -585,6 +585,10 @@ def make_phrase_dict(sentence_dict, token_label_dict, srcid_dict, \
     return phrase_dict
 
 
+def cross_validation():
+    pass
+
+
 def entity_recognition_from_ground_truth(building_list,
                                          source_sample_num_list,
                                          target_building,
@@ -596,9 +600,10 @@ def entity_recognition_from_ground_truth(building_list,
                                          eda_flag=False,
                                          prev_step_data={
                                              'learning_srcids':[],
-                                             'iter_num':0
+                                             'iter_cnt':0
                                          }
                                         ):
+    pdb.set_trace()
     assert len(building_list) == len(source_sample_num_list)
 
     ########################## DATA INITIATION ##########################
@@ -612,8 +617,8 @@ def entity_recognition_from_ground_truth(building_list,
     prev_test_srcids = prev_step_data.get('test_srcids')
     prev_pred_tagsets_dict = prev_step_data.get('pred_tagsets_dict')
     prev_pred_certainty_dict = prev_step_data.get('pred_certainty_dict')
-    prev_iter_num = prev_step_data.get('iter_num')
-    iter_num = prev_step_data['iter_num'] + 1
+    prev_iter_cnt = prev_step_data.get('iter_cnt')
+    iter_cnt = prev_step_data['iter_cnt'] + 1
 
 
     ### Learning Data
@@ -623,7 +628,6 @@ def entity_recognition_from_ground_truth(building_list,
     sample_srcid_list_dict = dict()
     found_points = list()
     learning_weights = list()
-#    learning_srcids = list()
     for building, sample_num in zip(building_list, source_sample_num_list):
         with open('metadata/{0}_char_sentence_dict_{1}.json'\
                   .format(building, token_type), 'r') as fp:
@@ -635,25 +639,27 @@ def entity_recognition_from_ground_truth(building_list,
                   .format(building), 'r') as fp:
             truths_dict = json.load(fp)
 
-        sample_srcid_list = select_random_samples(building,\
-                                                  sentence_label_dict.keys(),\
-                                                  sample_num, \
-                                                  use_cluster_flag,\
-                                                  token_type=token_type)
-        if iter_num == 1:
+        if iter_cnt == 1:
+            sample_srcid_list = select_random_samples(\
+                                    building,\
+                                    sentence_label_dict.keys(),\
+                                    sample_num, \
+                                    use_cluster_flag,\
+                                    token_type=token_type)
             sample_srcid_list_dict[building] = sample_srcid_list
             learning_srcids += sample_srcid_list
+        else:
+            sample_srcid_list_dict[building] = [srcid for srcid\
+                                                in sentence_label_dict.keys()\
+                                                if srcid in learning_srcids]
         learning_sentence_dict.update(\
             sub_dict_by_key_set(sentence_dict, learning_srcids))
-            #sub_dict_by_key_set(sentence_dict, sample_srcid_list))
         label_dict = dict((srcid, list(map(itemgetter(1), labels))) \
                           for srcid, labels in sentence_label_dict.items())
         learning_token_label_dict.update(\
             sub_dict_by_key_set(label_dict, learning_srcids))
-            #sub_dict_by_key_set(label_dict, sample_srcid_list))
         learning_truths_dict.update(\
             sub_dict_by_key_set(truths_dict, learning_srcids))
-            #sub_dict_by_key_set(truths_dict, sample_srcid_list))
         found_points += [tagset for tagset \
                          in reduce(adder, learning_truths_dict.values(), []) \
                          if tagset in point_tagsets]
@@ -676,8 +682,7 @@ def entity_recognition_from_ground_truth(building_list,
               .format(target_building), 'r') as fp:
         test_truths_dict = json.load(fp)
     test_srcids = [srcid for srcid in sentence_label_dict.keys() \
-                       if srcid not in \
-                       reduce(adder, sample_srcid_list_dict.values())]
+                       if srcid not in learning_srcids]
     test_srcid_dict = {target_building: test_srcids}
     test_sentence_dict = sub_dict_by_key_set(sentence_dict, test_srcids)
     token_label_dict = dict((srcid, list(map(itemgetter(1), labels))) \
@@ -964,8 +969,8 @@ def entity_recognition_from_ground_truth(building_list,
     sorted_result_dict = OrderedDict(\
                             sorted(sorted_result_dict.items(), \
                                    key=certainty_getter))
-    sorted_result_dict['samples'] = sample_srcid_list
-    result_dict['samples'] = sample_srcid_list
+    sorted_result_dict['samples'] = learning_srcids
+    result_dict['samples'] = learning_srcids
 
     print('precision')
     print(float(correct_cnt) / len(test_srcids))
@@ -979,14 +984,36 @@ def entity_recognition_from_ground_truth(building_list,
         'learning_srcids': learning_srcids,
         'test_srcids': test_srcids,
         'pred_certainty_dict': pred_certainty_dict,
-        'iter_num': iter_num
+        'iter_cnt': iter_cnt
     }
 
     return point_precision, point_recall, next_step_data
 
 
+def make_ontology():
+    pass
+
+
 def parallel_func(orig_func, return_idx, return_dict, *args):
     return_dict[return_idx] = orig_func(*args)
+
+
+def entity_recognition_iteration(iter_num, *args):
+    step_data = {
+        'learning_srcids': [],
+        'iter_cnt': 0}
+    for i in range(0, iter_num):
+        _, _, step_data = entity_recognition_from_ground_truth(\
+                              building_list = args[0],\
+                              source_sample_num_list = args[1],\
+                              target_building = args[2],\
+                              token_type = args[3],\
+                              label_type = args[4],\
+                              use_cluster_flag = args[5],\
+                              use_brick_flag = args[6],\
+                              debug_flag = args[7],\
+                              eda_flag = args[8],\
+                              prev_step_data = step_data)
 
 
 #TODO: Make this more generic to apply to other functions
@@ -1115,11 +1142,15 @@ if __name__=='__main__':
                         help='Use Brick when learning',
                         default=False,
                         dest='use_brick_flag')
-
     parser.add_argument('-avg',
                         type=int,
                         help='Number of exp to get avg. If 1, ran once',
                         dest='avgnum',
+                        default=1)
+    parser.add_argument('-iter',
+                        type=int,
+                        help='Number of iteration for the given work',
+                        dest='iter_num',
                         default=1)
 
     args = parser.parse_args()
@@ -1142,6 +1173,17 @@ if __name__=='__main__':
                  use_brick_flag=args.use_brick_flag)
     elif args.prog == 'entity':
         if args.avgnum == 1:
+            entity_recognition_iteration(args.iter_num,\
+                args.source_building_list,\
+                args.sample_num_list,\
+                args.target_building,\
+                'justseparate',\
+                args.label_type,\
+                args.use_cluster_flag,\
+                args.use_brick_flag,\
+                args.debug_flag,\
+                args.eda_flag)
+            """
             entity_recognition_from_ground_truth(\
                 building_list=args.source_building_list,
                 source_sample_num_list=args.sample_num_list,
@@ -1152,6 +1194,7 @@ if __name__=='__main__':
                 use_brick_flag=args.use_brick_flag,
                 debug_flag=args.debug_flag,
                 eda_flag=args.eda_flag)
+            """
         elif args.avgnum>1:
             entity_recognition_from_ground_truth_get_avg(args.avgnum,
                 building_list=args.source_building_list,
