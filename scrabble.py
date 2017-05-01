@@ -13,6 +13,7 @@ from imp import reload
 from uuid import uuid4 as gen_uuid
 from math import isclose
 from multiprocessing import Pool, Manager, Process
+import code
 
 import pycrfsuite
 import pandas as pd
@@ -577,6 +578,7 @@ def make_phrase_dict(sentence_dict, token_label_dict, srcid_dict, \
         token_labels = token_label_dict[srcid]
         phrases = _bilou_tagset_phraser(sentence, token_labels)
         if eda_flag:
+    #        phrases += phrases
             building_name = find_key(srcid, srcid_dict, check_in)
             assert building_name
             prefixer = build_prefixer(building_name)
@@ -585,9 +587,39 @@ def make_phrase_dict(sentence_dict, token_label_dict, srcid_dict, \
     return phrase_dict
 
 
-def cross_validation():
+def get_building_data(building, srcids, eda_flag=False, token_type='justseparate'):
+    with open('metadata/{0}_char_sentence_dict_{1}.json'\
+              .format(building, token_type), 'r') as fp:
+        sentence_dict = json.load(fp)
+    with open('metadata/{0}_char_label_dict.json'\
+              .format(building), 'r') as fp:
+        sentence_label_dict = json.load(fp)
+    with open('metadata/{0}_ground_truth.json'\
+              .format(building), 'r') as fp:
+        truths_dict = json.load(fp)
+#    srcids = [srcid for srcid in sentence_label_dict.keys() \
+#                       if srcid not in excluding_srcids]
+    srcid_dict = {building: srcids}
+    sentence_dict = sub_dict_by_key_set(sentence_dict, srcids)
+    token_label_dict = dict((srcid, list(map(itemgetter(1), labels))) \
+                            for srcid, labels in sentence_label_dict.items())
+    token_label_dict = sub_dict_by_key_set(token_label_dict, \
+                                                srcids)
+
+    phrase_dict = make_phrase_dict(sentence_dict, token_label_dict, \
+                                   srcid_dict, eda_flag)
+    return sentence_dict, token_label_dict, phrase_dict,\
+            truths_dict, srcid_dict
+
+
+def cross_validation(building_list, learning_srcids, test_srcids, result_dict,\
+                     learning_ground_truth_dict, test_ground_truth_dict
+                     ):
     pass
 
+
+def certainty_getter(x):
+    return x[1]['certainty']
 
 def entity_recognition_from_ground_truth(building_list,
                                          source_sample_num_list,
@@ -603,7 +635,7 @@ def entity_recognition_from_ground_truth(building_list,
                                              'iter_cnt':0
                                          }
                                         ):
-    pdb.set_trace()
+    #pdb.set_trace()
     assert len(building_list) == len(source_sample_num_list)
 
     ########################## DATA INITIATION ##########################
@@ -617,9 +649,9 @@ def entity_recognition_from_ground_truth(building_list,
     prev_test_srcids = prev_step_data.get('test_srcids')
     prev_pred_tagsets_dict = prev_step_data.get('pred_tagsets_dict')
     prev_pred_certainty_dict = prev_step_data.get('pred_certainty_dict')
+    prev_result_dict = prev_step_data.get('result_dict')
     prev_iter_cnt = prev_step_data.get('iter_cnt')
     iter_cnt = prev_step_data['iter_cnt'] + 1
-
 
     ### Learning Data
     learning_sentence_dict = dict()
@@ -627,7 +659,6 @@ def entity_recognition_from_ground_truth(building_list,
     learning_truths_dict = dict()
     sample_srcid_list_dict = dict()
     found_points = list()
-    learning_weights = list()
     for building, sample_num in zip(building_list, source_sample_num_list):
         with open('metadata/{0}_char_sentence_dict_{1}.json'\
                   .format(building, token_type), 'r') as fp:
@@ -663,38 +694,40 @@ def entity_recognition_from_ground_truth(building_list,
         found_points += [tagset for tagset \
                          in reduce(adder, learning_truths_dict.values(), []) \
                          if tagset in point_tagsets]
-#        learning_weights += [1.0/np.log10(sample_num) \
-#                            for i in range(0,sample_num)]
-        learning_weights += [1 for i in range(0, sample_num)]
     found_point_cnt_dict = Counter(found_points)
     found_points = set(found_points)
 
 
-    ### Test Data
-    # get test dataset
-    with open('metadata/{0}_char_sentence_dict_{1}.json'\
-              .format(target_building, token_type), 'r') as fp:
-        sentence_dict = json.load(fp)
+    ### Get Test Data
+    #with open('metadata/{0}_char_sentence_dict_{1}.json'\
+    #          .format(target_building, token_type), 'r') as fp:
+    #    sentence_dict = json.load(fp)
     with open('metadata/{0}_char_label_dict.json'\
               .format(target_building), 'r') as fp:
         sentence_label_dict = json.load(fp)
-    with open('metadata/{0}_ground_truth.json'\
-              .format(target_building), 'r') as fp:
-        test_truths_dict = json.load(fp)
+    #with open('metadata/{0}_ground_truth.json'\
+    #          .format(target_building), 'r') as fp:
+    #    test_truths_dict = json.load(fp)
     test_srcids = [srcid for srcid in sentence_label_dict.keys() \
                        if srcid not in learning_srcids]
-    test_srcid_dict = {target_building: test_srcids}
-    test_sentence_dict = sub_dict_by_key_set(sentence_dict, test_srcids)
-    token_label_dict = dict((srcid, list(map(itemgetter(1), labels))) \
-                            for srcid, labels in sentence_label_dict.items())
-    test_token_label_dict = sub_dict_by_key_set(token_label_dict, \
-                                                test_srcids)
+    #test_srcid_dict = {target_building: test_srcids}
+    #test_sentence_dict = sub_dict_by_key_set(sentence_dict, test_srcids)
+    #token_label_dict = dict((srcid, list(map(itemgetter(1), labels))) \
+    #                        for srcid, labels in sentence_label_dict.items())
+    #test_token_label_dict = sub_dict_by_key_set(token_label_dict, \
+    #                                            test_srcids)
 
-    test_phrase_dict = make_phrase_dict(test_sentence_dict, \
-                                        test_token_label_dict, \
-                                        test_srcid_dict, \
-                                        eda_flag)
+    #test_phrase_dict = make_phrase_dict(test_sentence_dict, \
+    #                                    test_token_label_dict, \
+    #                                    test_srcid_dict, \
+    #                                    eda_flag)
 
+    test_sentence_dict,\
+    test_token_label_dict,\
+    test_phrase_dict,\
+    test_truths_dict,\
+    test_srcid_dict = get_building_data(target_building, test_srcids,\
+                                                eda_flag, token_type)
 
     ###########################  LEARNING  ####################################
 
@@ -804,7 +837,6 @@ def entity_recognition_from_ground_truth(building_list,
 
     tagset_classifier.fit(learning_vect_doc, \
                           np.asarray(truth_mat))
-                          #learning_weights)
 
     ### Validate with self prediction
     # TODO: Below needs to be updated not to use the library
@@ -842,6 +874,8 @@ def entity_recognition_from_ground_truth(building_list,
         pred_vec = [prob[i][0] for prob in prob_mat]
         pred_certainty_dict[srcid] = sum(pred_vec) / float(len(pred)-sum(pred))
         #pred_certainty_dict[srcid] = 0
+    pred_certainty_dict = OrderedDict(sorted(pred_certainty_dict.items(), \
+                                             key=itemgetter(1), reverse=True))
 
 
     ############## EVALUATE TESTS #############
@@ -912,7 +946,8 @@ def entity_recognition_from_ground_truth(building_list,
                 print('TRUE: {0}'.format(true_tagsets))
                 print('PRED: {0}'.format(pred_tagsets))
                 if true_point:
-                    print('point num in source bld: {0}'.format(found_point_cnt_dict[true_point]))
+                    print('point num in source building: {0}'\
+                          .format(found_point_cnt_dict[true_point]))
                 else:
                     print('no point is included here')
                 source_srcid = None
@@ -963,8 +998,6 @@ def entity_recognition_from_ground_truth(building_list,
                               unknown_reason_cnt)
     print('-----------')
 
-    def certainty_getter(x):
-        return x[1]['certainty']
 
     sorted_result_dict = OrderedDict(\
                             sorted(sorted_result_dict.items(), \
@@ -984,8 +1017,11 @@ def entity_recognition_from_ground_truth(building_list,
         'learning_srcids': learning_srcids,
         'test_srcids': test_srcids,
         'pred_certainty_dict': pred_certainty_dict,
-        'iter_cnt': iter_cnt
+        'iter_cnt': iter_cnt,
+        'result_dict': result_dict
     }
+
+    #pdb.set_trace()
 
     return point_precision, point_recall, next_step_data
 
