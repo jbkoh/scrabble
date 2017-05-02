@@ -30,9 +30,11 @@ from sklearn.ensemble import RandomForestClassifier, AdaBoostClassifier
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.svm import LinearSVC, SVC
 from sklearn.multiclass import OneVsRestClassifier
-from scipy.sparse import vstack
+from scipy.sparse import vstack, coo_matrix
 from sklearn.preprocessing import MultiLabelBinarizer
 from sklearn.neural_network import MLPClassifier
+from scipy.cluster.hierarchy import linkage
+import scipy.cluster.hierarchy as hier
 
 from resulter import Resulter
 from mongo_models import store_model, get_model, get_tags_mapping
@@ -586,6 +588,29 @@ def make_phrase_dict(sentence_dict, token_label_dict, srcid_dict, \
         phrase_dict[srcid] = phrases + phrases
     return phrase_dict
 
+def get_multi_buildings_data(building_list, srcids=[], \
+                             eda_flag=False, token_type='justseparate'):
+    sentence_dict = dict()
+    token_label_dict = dict()
+    truths_dict = dict()
+    sample_srcid_list_dict = dict()
+    phrase_dict = dict()
+    found_points = list()
+    for building in building_list:
+        temp_sentence_dict,\
+        temp_token_label_dict,\
+        temp_phrase_dict,\
+        temp_truths_dict,\
+        temp_srcid_dict = get_building_data(building, srcids,\
+                                                    eda_flag, token_type)
+        sentence_dict.update(temp_sentence_dict)
+        token_label_dict.update(temp_token_label_dict)
+        truths_dict.update(temp_truths_dict)
+        phrase_dict.update(temp_phrase_dict)
+
+    assert set(srcids) == set(phrase_dict.keys())
+    return sentence_dict, token_label_dict, truths_dict, phrase_dict
+
 
 def get_building_data(building, srcids, eda_flag=False, token_type='justseparate'):
     with open('metadata/{0}_char_sentence_dict_{1}.json'\
@@ -597,8 +622,6 @@ def get_building_data(building, srcids, eda_flag=False, token_type='justseparate
     with open('metadata/{0}_ground_truth.json'\
               .format(building), 'r') as fp:
         truths_dict = json.load(fp)
-#    srcids = [srcid for srcid in sentence_label_dict.keys() \
-#                       if srcid not in excluding_srcids]
     srcid_dict = {building: srcids}
     sentence_dict = sub_dict_by_key_set(sentence_dict, srcids)
     token_label_dict = dict((srcid, list(map(itemgetter(1), labels))) \
@@ -608,14 +631,360 @@ def get_building_data(building, srcids, eda_flag=False, token_type='justseparate
 
     phrase_dict = make_phrase_dict(sentence_dict, token_label_dict, \
                                    srcid_dict, eda_flag)
+
     return sentence_dict, token_label_dict, phrase_dict,\
             truths_dict, srcid_dict
 
+def lengther(x):
+    return len(x)
 
-def cross_validation(building_list, learning_srcids, test_srcids, result_dict,\
-                     learning_ground_truth_dict, test_ground_truth_dict
-                     ):
-    pass
+def value_lengther(x): 
+    return len(x[1])
+
+def hier_clustering(d):
+    srcids = d.keys()
+    tokenizer = lambda x: x.split()
+    vectorizer = TfidfVectorizer(tokenizer=tokenizer)
+    assert isinstance(d, dict)
+    assert isinstance(list(d.values())[0], list)
+    assert isinstance(list(d.values())[0][0], str)
+    doc = [' '.join(d[srcid]) for srcid in srcids]
+    vect = vectorizer.fit_transform(doc)
+    #TODO: Make vect aligned to the required format
+    z = linkage(vect.toarray(), metric='cityblock', method='complete')
+    dists = list(set(z[:,2]))
+    th = 3
+    #th = (dists[2] + dists[3]) / 2
+    b = hier.fcluster(z, th, criterion='distance')
+    cluster_dict = defaultdict(list)
+    for srcid, cluster_id in zip(srcids, b):
+        cluster_dict[str(cluster_id)].append(srcid)
+    return OrderedDict(\
+               sorted(cluster_dict.items(), key=value_lengther, reverse=True))
+
+def tagsets_prediction(classifier, vectorizer, binerizer, \
+                           phrase_dict, srcids):
+    doc = [' '.join(phrase_dict[srcid]) for srcid in srcids]
+    vect_doc = vectorizer.transform(doc)
+
+    certainty_dict = dict()
+    tagsets_dict = dict()
+    pred_mat = classifier.predict(vect_doc)
+    prob_mat = classifier.predict_proba(vect_doc)
+    pred_tagsets_dict = dict()
+    pred_certainty_dict = dict()
+    for i, (srcid, pred) in enumerate(zip(srcids, pred_mat)):
+        pred_tagsets_dict[srcid] = binerizer.inverse_transform(\
+                                        np.asarray([pred]))[0]
+        pred_vec = [prob[i][0] for prob in prob_mat]
+        pred_certainty_dict[srcid] = pred_vec
+    pred_certainty_dict = OrderedDict(sorted(pred_certainty_dict.items(), \
+                                             key=itemgetter(1), reverse=True))
+    return pred_tagsets_dict, pred_certainty_dict
+
+def tagsets_evaluation(truths_dict, pred_tagsets_dict, pred_certainty_dict,\
+                       srcids):
+    result_dict = defaultdict(dict)
+    sorted_result_dict = OrderedDict()
+    incorrect_tagsets_dict = dict()
+    correct_cnt = 0
+    incorrect_cnt = 0
+    point_correct_cnt = 0
+    point_incorrect_cnt = 0
+    empty_point_cnt = 0
+    unknown_reason_cnt = 0
+    undiscovered_point_cnt = 0
+#    for srcid, pred_tagsets in pred_tagsets_dict.items():
+    for srcid in srcids:
+        pred_tagsets = pred_tagsets_dict[srcid]
+        true_tagsets = truths_dict[srcid]
+        one_result = {
+            'tagsets': pred_tagsets,
+            'certainty': pred_certainty_dict[srcid]
+        }
+        if set(true_tagsets) == set(pred_tagsets):
+            correct_cnt += 1
+            one_result['correct?'] = True
+            result_dict['correct'][srcid] = one_result
+            #result_dict['correct'][srcid] = pred_tagsets
+            point_correct_cnt += 1
+        else:
+            incorrect_cnt += 1
+            one_result['correct?'] = False
+            result_dict['incorrect'][srcid] = one_result
+            true_point = None
+            for tagset in true_tagsets:
+                if tagset in point_tagsets:
+                    true_point = tagset
+                    break
+            try:
+                assert true_point
+                found_point = None
+                for tagset in pred_tagsets:
+                    if tagset in point_tagsets:
+                        found_point = tagset
+                        break
+                if not found_point:
+                    empty_point_cnt += 1
+                elif found_point != true_point:
+                    point_incorrect_cnt += 1
+                    print("INCORRECT POINT FOUND: {0} -> {1}"\
+                          .format(true_point, found_point))
+                else:
+                    unknown_reason_cnt += 1
+                    point_correct_cnt += 1
+                #    pdb.set_trace()
+            except:
+                print('point not found')
+                pdb.set_trace()
+                unknown_reason_cnt += 1
+            if False:
+                print('####################################################')
+                print('TRUE: {0}'.format(true_tagsets))
+                print('PRED: {0}'.format(pred_tagsets))
+                if true_point:
+                    print('point num in source building: {0}'\
+                          .format(found_point_cnt_dict[true_point]))
+                else:
+                    print('no point is included here')
+                source_srcid = None
+                source_idx = None
+                for temp_srcid, tagsets in learning_truths_dict.items():
+                    if true_point and true_point in tagsets:
+                        source_srcid = temp_srcid
+                        source_idx = learning_srcids.index(source_srcid)
+                        source_doc = learning_doc[source_idx]
+                        source_vect = learning_vect_doc[source_idx]
+                        break
+                test_idx = test_srcids.index(srcid)
+                target_doc = test_doc[test_idx]
+                target_vect = test_vect_doc[test_idx]
+                print('####################################################')
+                if not found_point and true_point in found_points\
+                   and true_point not in ['unknown',\
+                        'effective_heating_temperature_setpoint',\
+                        'effective_cooling_temperature_setpoint',\
+                        'supply_air_flow_setpoint',\
+                        'output_frequency_sensor']:
+
+                    pdb.set_trace()
+                    pass
+        sorted_result_dict[srcid] = one_result
+
+    point_precision = float(point_correct_cnt) \
+                        / (point_correct_cnt + point_incorrect_cnt)
+    point_recall = float(point_correct_cnt) \
+                        / (point_correct_cnt + empty_point_cnt)
+    precision = float(correct_cnt) / len(srcids)
+    print('------------------------------------result---------------')
+    print('point precision: {0}'.format(point_precision))
+    print('point recall: {0}'.format(point_recall))
+    if empty_point_cnt > 0:
+        print('rate points not found in source \
+              among sensors where point is not found: \n\t{0}'\
+              .format(undiscovered_point_cnt / float(empty_point_cnt)))
+    print('sensors where a point is not found: ', empty_point_cnt\
+                                               /float(incorrect_cnt),\
+                                empty_point_cnt)
+    print('sensors where incorrect points are found: ', point_incorrect_cnt\
+                                                     /float(incorrect_cnt),\
+                                      point_incorrect_cnt)
+    print('unknown reason: ', unknown_reason_cnt\
+                              /float(incorrect_cnt),\
+                              unknown_reason_cnt)
+    print('-----------')
+    result_dict['point_precision'] = point_precision
+    result_dict['precision'] = precision
+    result_dict['point_recall'] = point_recall
+    return result_dict
+
+
+
+def build_tagset_classifier(building_list, target_building,\
+                            test_sentence_dict, test_token_label_dict,\
+                            learning_phrase_dict, test_phrase_dict,\
+                            learning_truths_dict, test_truths_dict,\
+                            learning_srcids, test_srcids,\
+                            tagset_list, eda_flag
+                           ):
+    tagset_classifier = RandomForestClassifier(n_estimators=40, \
+                                               #this should be 100 at some point
+                                               random_state=0,\
+                                               n_jobs=-1)
+    tagset_binerizer = MultiLabelBinarizer()
+    tagset_binerizer.fit([tagset_list])
+
+    ## Define Vectorizer
+    raw_tag_list = list(set(reduce(adder, map(splitter, tagset_list))))
+    tag_list = deepcopy(raw_tag_list)
+
+    # Extend tag_list with prefixes
+    if eda_flag:
+        for building in set(building_list + [target_building]):
+            prefixer = build_prefixer(building)
+            building_tag_list = list(map(prefixer, raw_tag_list))
+            tag_list = tag_list + building_tag_list
+    vocab_dict = dict([(tag, i) for i, tag in enumerate(tag_list)])
+    tokenizer = lambda x: x.split()
+    tagset_vectorizer = TfidfVectorizer(tokenizer=tokenizer,\
+                                        vocabulary=vocab_dict)
+
+    ## Transform learning samples
+    learning_doc = [' '.join(learning_phrase_dict[srcid]) \
+                    for srcid in learning_srcids]
+    test_doc = [' '.join(test_phrase_dict[srcid]) \
+                for srcid in test_srcids]
+    tagset_vectorizer.fit(learning_doc + test_doc)
+    if eda_flag:
+        unlabeled_phrase_dict = make_phrase_dict(\
+                                    test_sentence_dict, \
+                                    test_token_label_dict, \
+                                    {target_building:test_srcids},\
+                                    False)
+        prefixer = build_prefixer(target_building)
+        unlabeled_target_doc = [' '.join(\
+                                map(prefixer, unlabeled_phrase_dict[srcid]))\
+                                for srcid in test_srcids]
+        unlabeled_vect_doc = - tagset_vectorizer\
+                               .transform(unlabeled_target_doc)
+        for building in building_list:
+            if building == target_building:
+                continue
+            prefixer = build_prefixer(building)
+            doc = [' '.join(map(prefixer, unlabeled_phrase_dict[srcid]))\
+                   for srcid in test_srcids]
+            unlabeled_vect_doc += tagset_vectorizer.transform(doc)
+
+    learning_vect_doc = tagset_vectorizer.transform(learning_doc)
+    truth_mat = np.asarray([tagset_binerizer.transform(\
+                    [learning_truths_dict[srcid]])[0]\
+                        for srcid in learning_srcids])
+    if eda_flag:
+        truth_mat = vstack([truth_mat, tagset_binerizer.transform(\
+                        [[] for i in range(0, unlabeled_vect_doc.shape[0])])])\
+                    .toarray()
+        learning_vect_doc = vstack([learning_vect_doc, unlabeled_vect_doc])\
+                            .toarray()
+
+    tagset_classifier.fit(learning_vect_doc, \
+                          np.asarray(truth_mat))
+
+    return tagset_classifier, tagset_vectorizer, tagset_binerizer
+
+
+def cross_validation(building_list, n_list,
+                     target_building, \
+                     learning_srcids, test_srcids, \
+                     pred_phrase_dict, pred_tagsets_dict,
+                     result_dict, k=2, \
+                     eda_flag=False, token_type='justseparate'):
+
+    learning_sentence_dict, \
+    learning_token_label_dict, \
+    learning_truths_dict, \
+    learning_phrase_dict = get_multi_buildings_data(building_list, \
+                                           learning_srcids, \
+                                           eda_flag,\
+                                           token_type)
+    chosen_learning_srcids = random.sample(learning_srcids,\
+                                           int(len(learning_srcids)/k))
+#    validation_srcids = [srcid for srcid in learning_srcids \
+#                         if srcid not in chosen_learning_srcids]
+    validation_srcids = list()
+    for building, n in zip(building_list, n_list):
+        validation_srcids += select_random_samples(building, learning_srcids,\
+                                                   n/k, use_cluster_flag=True)
+
+
+    validation_sentence_dict, \
+    validation_token_label_dict, \
+    validation_truths_dict, \
+    validation_phrase_dict = get_multi_buildings_data(building_list, \
+                                           validation_srcids, \
+                                           eda_flag,\
+                                           token_type)
+    test_sentence_dict,\
+    test_token_label_dict,\
+    _,\
+    test_truths_dict,\
+    _               = get_building_data(target_building, test_srcids,\
+                                                eda_flag, token_type)
+
+
+    cluster_dict = hier_clustering(pred_phrase_dict)
+    cluster_dict = OrderedDict(\
+        sorted(cluster_dict.items(), key=value_lengther, reverse=True))
+    evaluated_srcids = list()
+    precision_dict = dict()
+    recall_dict = dict()
+    validation_result_dict = dict()
+    for cid, cluster_srcids in sorted(cluster_dict.items(), key=itemgetter(1)):
+        building_list_1 = deepcopy(building_list)
+        if target_building not in building_list_1:
+            buliding_list_1.append(target_building)
+        phrase_dict_1 = deepcopy(learning_phrase_dict)
+        phrase_dict_1.update(pred_phrase_dict)
+        truths_dict_1 = deepcopy(learning_truths_dict)
+        truths_dict_1.update(pred_tagsets_dict)
+        truths_dict_2 = deepcopy(learning_truths_dict)
+        sentence_dict_2 = deepcopy(learning_sentence_dict)
+        token_label_dict_2 = deepcopy(learning_token_label_dict)
+        phrase_dict_2 = deepcopy(learning_phrase_dict)
+        validation_building = building_list[0]
+
+
+        try:
+            if len(cluster_srcids)==1:
+                pdb.set_trace()
+            tagset_classifier, tagset_vectorizer, tagset_binerizer = \
+                build_tagset_classifier(building_list_1, validation_building,\
+                                validation_sentence_dict, \
+                                validation_token_label_dict,\
+                                phrase_dict_1, phrase_dict_2,\
+                                truths_dict_1, truths_dict_2,\
+                                chosen_learning_srcids+cluster_srcids, \
+                                validation_srcids,\
+                                tagset_list, eda_flag
+                               )
+        except:
+            pdb.set_trace()
+
+        # TODO: Add evaluation process here.
+        validation_pred_tagsets_dict, validation_pred_certainty_dict = \
+                tagsets_prediction(tagset_classifier, tagset_vectorizer, \
+                                   tagset_binerizer, validation_phrase_dict, \
+                                   validation_srcids)
+        curr_result_dict = tagsets_evaluation(validation_truths_dict, \
+                                         validation_pred_tagsets_dict, \
+                                         validation_pred_certainty_dict,\
+                                         validation_srcids)
+
+        precision_dict[cid] = curr_result_dict['point_precision']
+        recall_dict[cid] = curr_result_dict['point_recall']
+        true_found_points = list()
+        pred_found_points = list()
+        for srcid in cluster_srcids:
+            true_tagsets = test_truths_dict[srcid]
+            pred_tagsets = pred_tagsets_dict[srcid]
+            for tagset in true_tagsets:
+                if tagset in point_tagsets:
+                    true_found_points.append(tagset)
+            for tagset in pred_tagsets:
+                if tagset in point_tagsets:
+                    pred_found_points.append(tagset)
+
+        validation_result_dict[cid] = {
+            'srcids': cluster_srcids,
+            'common_pred_points': [],
+            'common_true_points': [],
+            'point_precision': precision_dict[cid],
+            'point_recall': recall_dict[cid]
+        }
+        if False: #success: #TODO: Implement this.
+            evaluated_srcids += cluster_srcids
+    pdb.set_trace()
+
+    return learning_srcids
 
 
 def certainty_getter(x):
@@ -649,27 +1018,27 @@ def entity_recognition_from_ground_truth(building_list,
     prev_test_srcids = prev_step_data.get('test_srcids')
     prev_pred_tagsets_dict = prev_step_data.get('pred_tagsets_dict')
     prev_pred_certainty_dict = prev_step_data.get('pred_certainty_dict')
+    prev_pred_phrase_dict = prev_step_data.get('pred_phrase_dict')
     prev_result_dict = prev_step_data.get('result_dict')
     prev_iter_cnt = prev_step_data.get('iter_cnt')
     iter_cnt = prev_step_data['iter_cnt'] + 1
 
+
+    if iter_cnt>1:
+        cross_validation(building_list, source_sample_num_list, \
+                         target_building, \
+                         learning_srcids, prev_test_srcids, \
+                         prev_pred_phrase_dict, prev_pred_tagsets_dict,
+                         prev_result_dict, 4, \
+                         eda_flag, token_type)
+
+
     ### Learning Data
-    learning_sentence_dict = dict()
-    learning_token_label_dict = dict()
-    learning_truths_dict = dict()
     sample_srcid_list_dict = dict()
-    found_points = list()
     for building, sample_num in zip(building_list, source_sample_num_list):
-        with open('metadata/{0}_char_sentence_dict_{1}.json'\
-                  .format(building, token_type), 'r') as fp:
-            sentence_dict = json.load(fp)
         with open('metadata/{0}_char_label_dict.json'\
                   .format(building), 'r') as fp:
             sentence_label_dict = json.load(fp)
-        with open('metadata/{0}_ground_truth.json'\
-                  .format(building), 'r') as fp:
-            truths_dict = json.load(fp)
-
         if iter_cnt == 1:
             sample_srcid_list = select_random_samples(\
                                     building,\
@@ -683,79 +1052,32 @@ def entity_recognition_from_ground_truth(building_list,
             sample_srcid_list_dict[building] = [srcid for srcid\
                                                 in sentence_label_dict.keys()\
                                                 if srcid in learning_srcids]
-        learning_sentence_dict.update(\
-            sub_dict_by_key_set(sentence_dict, learning_srcids))
-        label_dict = dict((srcid, list(map(itemgetter(1), labels))) \
-                          for srcid, labels in sentence_label_dict.items())
-        learning_token_label_dict.update(\
-            sub_dict_by_key_set(label_dict, learning_srcids))
-        learning_truths_dict.update(\
-            sub_dict_by_key_set(truths_dict, learning_srcids))
-        found_points += [tagset for tagset \
-                         in reduce(adder, learning_truths_dict.values(), []) \
-                         if tagset in point_tagsets]
+    learning_sentence_dict, \
+    learning_token_label_dict, \
+    learning_truths_dict, \
+    phrase_dict = get_multi_buildings_data(building_list, \
+                  #                         source_sample_num_list,\
+                                           learning_srcids, \
+                                           eda_flag,\
+                                           token_type)
+    found_points = [tagset for tagset \
+                     in reduce(adder, learning_truths_dict.values(), []) \
+                             if tagset in point_tagsets]
     found_point_cnt_dict = Counter(found_points)
     found_points = set(found_points)
 
-
     ### Get Test Data
-    #with open('metadata/{0}_char_sentence_dict_{1}.json'\
-    #          .format(target_building, token_type), 'r') as fp:
-    #    sentence_dict = json.load(fp)
     with open('metadata/{0}_char_label_dict.json'\
               .format(target_building), 'r') as fp:
         sentence_label_dict = json.load(fp)
-    #with open('metadata/{0}_ground_truth.json'\
-    #          .format(target_building), 'r') as fp:
-    #    test_truths_dict = json.load(fp)
     test_srcids = [srcid for srcid in sentence_label_dict.keys() \
                        if srcid not in learning_srcids]
-    #test_srcid_dict = {target_building: test_srcids}
-    #test_sentence_dict = sub_dict_by_key_set(sentence_dict, test_srcids)
-    #token_label_dict = dict((srcid, list(map(itemgetter(1), labels))) \
-    #                        for srcid, labels in sentence_label_dict.items())
-    #test_token_label_dict = sub_dict_by_key_set(token_label_dict, \
-    #                                            test_srcids)
-
-    #test_phrase_dict = make_phrase_dict(test_sentence_dict, \
-    #                                    test_token_label_dict, \
-    #                                    test_srcid_dict, \
-    #                                    eda_flag)
-
     test_sentence_dict,\
     test_token_label_dict,\
     test_phrase_dict,\
     test_truths_dict,\
     test_srcid_dict = get_building_data(target_building, test_srcids,\
                                                 eda_flag, token_type)
-
-    ###########################  LEARNING  ####################################
-
-    #tagset_classifier = DecisionTreeClassifier(random_state=0)
-    tagset_classifier = RandomForestClassifier(n_estimators=40, \
-                                               #this should be 100 at some point
-                                               random_state=0,\
-                                               n_jobs=-1)
-    #base_classifier = MLPClassifier()
-#    base_classifier = AdaBoostClassifier(DecisionTreeClassifier(max_depth=2),\
-#                                         n_estimators=600,\
-#                                         learning_rate=1)
-    #base_classifier = SVC(gamma=2, C=1)
-    #tagset_classifier = OneVsRestClassifier(base_classifier)
-
-    #tagset_classifier, tagset_vectorizer = learn_brick_tagsets(\
-    #                                            learning_sentence_dict,\
-    #                                            learning_token_label_dict,\
-    #                                            learning_truths_dict,\
-    #                                            classifier=tagset_classifier,\
-    #                                            vectorizer=tagset_vectorizer)
-
-    phrase_dict = make_phrase_dict(learning_sentence_dict, \
-                                   learning_token_label_dict, \
-                                   sample_srcid_list_dict,\
-                                   eda_flag)
-    with open('temp/phrases_{0}.json'.format(building_list[0]), 'w') as fp:
-        json.dump(phrase_dict, fp, indent=2)
 
     # Add tagsets (names) not defined in Brick
     undefined_tagsets = set()
@@ -771,13 +1093,35 @@ def entity_recognition_from_ground_truth(building_list,
                 undefined_tagsets.add(truth)
     print('Undefined tagsets: {0}'.format(undefined_tagsets))
     tagset_list.extend(list(undefined_tagsets))
+
+    tagset_classifier, tagset_vectorizer, tagset_binerizer = \
+            build_tagset_classifier(building_list, target_building,\
+            #                learning_sentence_dict, ,\
+                            test_sentence_dict,\
+            #                learning_token_label_dict,\
+                            test_token_label_dict,\
+                            phrase_dict, test_phrase_dict,\
+                            learning_truths_dict, test_truths_dict,\
+                            learning_srcids, test_srcids,\
+                            tagset_list, eda_flag
+                           )
+
+    """
+    ###########################  LEARNING  ####################################
+    tagset_classifier = RandomForestClassifier(n_estimators=40, \
+                                               #this should be 100 at some point
+                                               random_state=0,\
+                                               n_jobs=-1)
+
+    with open('temp/phrases_{0}.json'.format(building_list[0]), 'w') as fp:
+        json.dump(phrase_dict, fp, indent=2)
+
     tagset_binerizer = MultiLabelBinarizer()
     tagset_binerizer.fit([tagset_list])
 
     ## Define Vectorizer
     raw_tag_list = list(set(reduce(adder, map(splitter, tagset_list))))
     tag_list = deepcopy(raw_tag_list)
-    tag_list_dict = dict()
 
     # Extend tag_list with prefixes
     if eda_flag:
@@ -785,23 +1129,16 @@ def entity_recognition_from_ground_truth(building_list,
             prefixer = build_prefixer(building)
             building_tag_list = list(map(prefixer, raw_tag_list))
             tag_list = tag_list + building_tag_list
-            tag_list_dict[building] = building_tag_list
 
     vocab_dict = dict([(tag, i) for i, tag in enumerate(tag_list)])
 
     tokenizer = lambda x: x.split()
-    tagset_vectorizer = TfidfVectorizer(#ngram_range=(1, 2),\
-                                        tokenizer=tokenizer,\
+    tagset_vectorizer = TfidfVectorizer(tokenizer=tokenizer,\
                                         vocabulary=vocab_dict)
-#    tagset_vectorizer = CountVectorizer(tokenizer=tokenizer,\
-#                                        vocabulary=vocab_dict)
-
-#    tagset_vectorizer.fit([' '.join(tag_list)])
 
     ## Transform learning samples
     learning_doc = [' '.join(phrase_dict[srcid]) for srcid in learning_srcids]
     test_doc = [' '.join(test_phrase_dict[srcid]) for srcid in test_srcids]
-    #TODO: Test below and remove if not necessary
     tagset_vectorizer.fit(learning_doc + test_doc )
 
     if eda_flag:
@@ -837,6 +1174,7 @@ def entity_recognition_from_ground_truth(building_list,
 
     tagset_classifier.fit(learning_vect_doc, \
                           np.asarray(truth_mat))
+    """
 
     ### Validate with self prediction
     # TODO: Below needs to be updated not to use the library
@@ -860,6 +1198,7 @@ def entity_recognition_from_ground_truth(building_list,
     ####################      TEST      #################
     #TODO: Test below and remove if not necessary
 #    tagset_vectorizer.fit(test_doc)
+    test_doc = [' '.join(test_phrase_dict[srcid]) for srcid in test_srcids]
     test_vect_doc = tagset_vectorizer.transform(test_doc)
 
     pred_certainty_dict = dict()
@@ -1018,7 +1357,8 @@ def entity_recognition_from_ground_truth(building_list,
         'test_srcids': test_srcids,
         'pred_certainty_dict': pred_certainty_dict,
         'iter_cnt': iter_cnt,
-        'result_dict': result_dict
+        'result_dict': result_dict,
+        'pred_phrase_dict': test_phrase_dict
     }
 
     #pdb.set_trace()
