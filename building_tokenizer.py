@@ -9,13 +9,13 @@ import pdb
 with open('metadata/bacnet_devices.json', 'r') as fp:
     sensor_dict = json.load(fp)
         
-naeDict = dict()
-naeDict['bonner'] = ["607", "608", "609", "557", "610"]
-naeDict['ap_m'] = ['514', '513','604']
-naeDict['bsb'] = ['519', '568', '567', '566', '564', '565']
-naeDict['ebu3b'] = ["505", "506"]
-naeDict['music'] = ['523']
-naeDict['sme'] = ['572', '573', '574']
+nae_dict = dict()
+nae_dict['bonner'] = ["607", "608", "609", "557", "610"]
+nae_dict['ap_m'] = ['514', '513','604']
+nae_dict['bsb'] = ['519', '568', '567', '566', '564', '565']
+nae_dict['ebu3b'] = ["505", "506"]
+nae_dict['music'] = ['523']
+nae_dict['sme'] = ['572', '573', '574']
 
 # Vectorization
 
@@ -74,7 +74,7 @@ def parse_sentence(sentence):
 
 def get_bacnettype_dict(building_name):
     bacnettypeMap = pd.read_csv('metadata/bacnettype_mapping.csv').set_index('bacnet_type_str')
-    naeList = naeDict[building_name]
+    naeList = nae_dict[building_name]
 
     source_id_set = set([])
     bacnettype_dict = dict()
@@ -113,7 +113,7 @@ def get_bacnettype_dict(building_name):
 
 def get_unit_dict(building_name):
     unitMap = pd.read_csv('metadata/unit_mapping.csv').set_index('unit')
-    naeList = naeDict[building_name]
+    naeList = nae_dict[building_name]
 
     unit_code_dict = dict()
     unit_dict = dict()
@@ -160,7 +160,7 @@ def get_unit_dict(building_name):
 def parse_sentences(building_name):
     unitMap = pd.read_csv('metadata/unit_mapping.csv').set_index('unit')
     bacnettypeMap = pd.read_csv('metadata/bacnettype_mapping.csv').set_index('bacnet_type_str')
-    naeList = naeDict[building_name]
+    naeList = nae_dict[building_name]
 
     sensor_list = []
     name_list = []
@@ -243,7 +243,7 @@ def structure_metadata(buildingName=None, tokenType=None, bigramFlag=False, vali
         if bigramFlag:
                 with open('data/bigrammer_'+buildingName+'_'+tokenType+'.pkl', 'rb') as fp:
                         bigrammer = pickle.load(fp)
-        naeList = naeDict[buildingName]
+        naeList = nae_dict[buildingName]
 
         sensor_list = []
         nameList = list()

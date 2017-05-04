@@ -6,8 +6,7 @@ import pdb
 from pymongo import MongoClient
 import arrow
 
-from mongo_models import summary_query_template
-
+from mongo_models import summary_query_template 
 
 class Resulter():
     def __init__(self, token_type="BILOU", spec={}):
@@ -22,8 +21,8 @@ class Resulter():
     def add_one_result(self, srcid, sentence, \
                              pred_token_labels, orig_token_labels):
         # Check the size of data
-        assert(len(sentence)==len(pred_token_labels))
-        assert(len(orig_token_labels)==len(pred_token_labels))
+        assert len(sentence) == len(pred_token_labels)
+        assert len(orig_token_labels) == len(pred_token_labels)
 
         # Add raw results
         self.result_dict[srcid] = {
@@ -67,7 +66,7 @@ class Resulter():
         incorrect_label_num = total_label_num - correct_label_num
 
         return found_label_num, correct_label_num, incorrect_label_num
-    
+
     def measure_accuracy_by_token(self, pred_token_labels, orig_token_labels):
         assert(len(pred_token_labels)==len(orig_token_labels))
         correct_cnt = 0
@@ -158,13 +157,13 @@ class Resulter():
         phrase_labels = list()
         curr_phrase = ''
         for i, label in enumerate(token_labels):
-            tag = label[0] 
-            if tag=='B':
-                if curr_phrase: 
+            tag = label[0]
+            if tag == 'B':
+                if curr_phrase:
                 # Below is redundant if the other tags handles correctly.
                     phrase_labels.append(curr_phrase)
-                curr_phrase = label[2:] 
-            elif tag=='I':
+                curr_phrase = label[2:]
+            elif tag == 'I':
                 if curr_phrase != label[2:]:
                     phrase_labels.append(curr_phrase)
                     curr_phrase = label[2:]
@@ -177,11 +176,11 @@ class Resulter():
                 curr_phrase = ''
             elif tag=='O':
                 # Do nothing other than pushing the previous label
-                if curr_phrase: 
+                if curr_phrase:
                     phrase_labels.append(curr_phrase)
                 curr_phrase = ''
             elif tag=='U':
-                if curr_phrase: 
+                if curr_phrase:
                     phrase_labels.append(curr_phrase)
                 phrase_labels.append(label[2:])
             else:
@@ -191,4 +190,3 @@ class Resulter():
                 except:
                     pdb.set_trace()
         return phrase_labels
-
