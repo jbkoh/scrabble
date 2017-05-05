@@ -36,6 +36,7 @@ from sklearn.neural_network import MLPClassifier
 from scipy.cluster.hierarchy import linkage
 import scipy.cluster.hierarchy as hier
 
+from eszsl import Eszsl
 from resulter import Resulter
 from mongo_models import store_model, get_model, get_tags_mapping, \
                          get_crf_results
@@ -833,7 +834,6 @@ def tagsets_evaluation(truths_dict, pred_tagsets_dict, pred_certainty_dict,\
     return result_dict
 
 
-
 def build_tagset_classifier(building_list, target_building,\
                             test_sentence_dict, test_token_label_dict,\
                             learning_phrase_dict, test_phrase_dict,\
@@ -841,23 +841,25 @@ def build_tagset_classifier(building_list, target_building,\
                             learning_srcids, test_srcids,\
                             tagset_list, eda_flag
                            ):
+    ## Define Vectorizer
+    tag_list = list(set(reduce(adder, map(splitter, tagset_list))))
+    learning_tagsets = list(set(\
+                            reduce(adder, learning_truths_dict.values(), [])))
+    S = [[1 if tag in tagset else 0 for tag in tag_list] \
+         for tagset in learning_tagsets]
+    S = np.transpose(np.asmatrix(S))
+    tagset_classifier = Eszsl(S, 1, 1)
+    """
     tagset_classifier = RandomForestClassifier(n_estimators=40, \
                                                #this should be 100 at some point
                                                random_state=0,\
                                                n_jobs=-1)
-    tagset_binerizer = MultiLabelBinarizer()
-    tagset_binerizer.fit([tagset_list])
+    """
+    #tagset_binerizer = MultiLabelBinarizer()
+    #tagset_binerizer.fit([tagset_list])
+    tagset_binerizer = lambda y: [learning_tagsets[i] \
+                                  for i,v in enumerate(y) if v == 1]
 
-    ## Define Vectorizer
-    raw_tag_list = list(set(reduce(adder, map(splitter, tagset_list))))
-    tag_list = deepcopy(raw_tag_list)
-
-    # Extend tag_list with prefixes
-    if eda_flag:
-        for building in set(building_list + [target_building]):
-            prefixer = build_prefixer(building)
-            building_tag_list = list(map(prefixer, raw_tag_list))
-            tag_list = tag_list + building_tag_list
     vocab_dict = dict([(tag, i) for i, tag in enumerate(tag_list)])
     tokenizer = lambda x: x.split()
     tagset_vectorizer = TfidfVectorizer(tokenizer=tokenizer,\
@@ -871,43 +873,11 @@ def build_tagset_classifier(building_list, target_building,\
     test_doc = [' '.join(test_phrase_dict[srcid]) \
                 for srcid in test_srcids]
     tagset_vectorizer.fit(learning_doc + test_doc)
-    if eda_flag:
-        unlabeled_phrase_dict = make_phrase_dict(\
-                                    test_sentence_dict, \
-                                    test_token_label_dict, \
-                                    {target_building:test_srcids},\
-                                    False)
-        prefixer = build_prefixer(target_building)
-        unlabeled_target_doc = [' '.join(\
-                                map(prefixer, unlabeled_phrase_dict[srcid]))\
-                                for srcid in test_srcids]
-        unlabeled_vect_doc = - tagset_vectorizer\
-                               .transform(unlabeled_target_doc)
-        for building in building_list:
-            if building == target_building:
-                continue
-            prefixer = build_prefixer(building)
-            doc = [' '.join(map(prefixer, unlabeled_phrase_dict[srcid]))\
-                   for srcid in test_srcids]
-            unlabeled_vect_doc += tagset_vectorizer.transform(doc)
 
     learning_vect_doc = tagset_vectorizer.transform(learning_doc)
-    truth_mat = np.asarray([tagset_binerizer.transform(\
-                    [learning_truths_dict[srcid]])[0]\
-                        for srcid in learning_srcids])
-    if eda_flag:
-        zero_vectors = tagset_binerizer.transform(\
-                    [[] for i in range(0, unlabeled_vect_doc.shape[0])])
-        for zero_vector in zero_vectors:
-            truth_mat = vstack([truth_mat, zero_vector])
-        truth_mat = truth_mat.toarray()
-
-#        truth_mat = vstack([truth_mat, tagset_binerizer.transform(\
-#                    [[] for i in range(0, unlabeled_vect_doc.shape[0])])])\
-#                .toarray()
-        learning_vect_doc = vstack([learning_vect_doc, unlabeled_vect_doc])\
-                            .toarray()
-
+    truth_mat = np.asarray([[1 if tagset in learning_truths_dict[srcid] else 0\
+                             for tagset in learning_tagsets] \
+                            for srcid in learning_srcids])
     tagset_classifier.fit(learning_vect_doc, \
                           np.asarray(truth_mat))
 
@@ -1163,6 +1133,7 @@ def entity_recognition_from_ground_truth(building_list,
     ###########################  LEARNING  ################################
 
     ### Validate with self prediction
+    """
     # TODO: Below needs to be updated not to use the library
     pred_tagsets_dict, pred_certainty_dict = batch_test_brick_tagset(\
                                             learning_sentence_dict,\
@@ -1180,6 +1151,7 @@ def entity_recognition_from_ground_truth(building_list,
 #            pdb.set_trace()
             pass
     print(cnt/len(learning_sentence_dict))
+    """
 
     ####################      TEST      #################
     #TODO: Test below and remove if not necessary
@@ -1190,15 +1162,16 @@ def entity_recognition_from_ground_truth(building_list,
     pred_certainty_dict = dict()
     pred_tagsets_dict = dict()
     pred_mat = tagset_classifier.predict(test_vect_doc)
-    prob_mat = tagset_classifier.predict_proba(test_vect_doc)
+    #prob_mat = tagset_classifier.predict_proba(test_vect_doc)
     for i, (srcid, pred) in enumerate(zip(test_srcids, pred_mat)):
-        pred_tagsets_dict[srcid] = tagset_binerizer.inverse_transform(\
-                                        np.asarray([pred]))[0]
+        #pred_tagsets_dict[srcid] = tagset_binerizer.inverse_transform(\
+        pred_tagsets_dict[srcid] = tagset_binerizer(pred)
         #pred_tagsets_dict[srcid] = translate_tagset_vector(pred, tagset_list)
+        pdb.set_trace()
         # TODO: Don't remove below. Activate this when using RandomForest
-        pred_vec = [prob[i][0] for prob in prob_mat]
-        pred_certainty_dict[srcid] = sum(pred_vec) / float(len(pred)-sum(pred))
-        #pred_certainty_dict[srcid] = 0
+        #pred_vec = [prob[i][0] for prob in prob_mat]
+        #pred_certainty_dict[srcid] = sum(pred_vec) / float(len(pred)-sum(pred))
+        pred_certainty_dict[srcid] = 0
     pred_certainty_dict = OrderedDict(sorted(pred_certainty_dict.items(), \
                                              key=itemgetter(1), reverse=True))
 
