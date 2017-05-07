@@ -29,12 +29,16 @@ from sklearn.feature_extraction.text import TfidfVectorizer, CountVectorizer
 from sklearn.ensemble import RandomForestClassifier, AdaBoostClassifier
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.svm import LinearSVC, SVC
+from sklearn.naive_bayes import GaussianNB
 from sklearn.multiclass import OneVsRestClassifier
 from scipy.sparse import vstack, coo_matrix
 from sklearn.preprocessing import MultiLabelBinarizer
 from sklearn.neural_network import MLPClassifier
 from scipy.cluster.hierarchy import linkage
 import scipy.cluster.hierarchy as hier
+from skmultilearn.adapt import MLkNN
+from skmultilearn.problem_transform import ClassifierChain
+
 
 from resulter import Resulter
 from mongo_models import store_model, get_model, get_tags_mapping, \
@@ -601,9 +605,10 @@ def make_phrase_dict(sentence_dict, token_label_dict, srcid_dict, \
         remove_indices = list()
         for i, phrase in enumerate(phrases):
             #TODO: Below is heuristic. Is it allowable?
-            if phrase.split('-')[0] in ['building', 'networkadapter',\
-                                        'leftidentifier', 'rightidentifier']:
-                remove_indices.append(i)
+#            if phrase.split('-')[0] in ['building', 'networkadapter',\
+#                                        'leftidentifier', 'rightidentifier']:
+#                remove_indices.append(i)
+            pass
         phrases = [phrase for i, phrase in enumerate(phrases)\
                    if i not in remove_indices]
         if eda_flag:
@@ -700,15 +705,13 @@ def tagsets_prediction(classifier, vectorizer, binerizer, \
 
     certainty_dict = dict()
     tagsets_dict = dict()
-    pred_mat = classifier.predict(vect_doc)
-    prob_mat = classifier.predict_proba(vect_doc)
+    pred_mat = classifier.predict(vect_doc.toarray())
+    prob_mat = classifier.predict_proba(vect_doc.toarray()).toarray()
     pred_tagsets_dict = dict()
     pred_certainty_dict = dict()
-    for i, (srcid, pred) in enumerate(zip(srcids, pred_mat)):
-        pred_tagsets_dict[srcid] = binerizer.inverse_transform(\
-                                        np.asarray([pred]))[0]
-        pred_vec = [prob[i][0] for prob in prob_mat]
-        pred_certainty_dict[srcid] = pred_vec
+    for i, (srcid, pred_vec, prob_vec) in enumerate(zip(srcids, pred_mat, prob_mat)):
+        pred_tagsets_dict[srcid] = list(binerizer.inverse_transform(pred_vec)[0])
+        pred_certainty_dict[srcid] = sum(prob_vec) / np.sum(pred_vec)
         #pred_certainty_dict[srcid] = 0
     pred_certainty_dict = OrderedDict(sorted(pred_certainty_dict.items(), \
                                              key=itemgetter(1), reverse=True))
@@ -842,10 +845,14 @@ def build_tagset_classifier(building_list, target_building,\
                             learning_srcids, test_srcids,\
                             tagset_list, eda_flag
                            ):
-    tagset_classifier = RandomForestClassifier(n_estimators=40, \
-                                               #this should be 100 at some point
-                                               random_state=0,\
-                                               n_jobs=-1)
+    #tagset_classifier = RandomForestClassifier(n_estimators=40, \
+    #                                           #this should be 100 at some point
+    #                                           random_state=0,\
+    #                                           n_jobs=-1)
+#    base_classifier = SVC(kernel='rbf', gamma=0.7, C=1)
+    base_classifier = GaussianNB()
+    tagset_classifier = ClassifierChain(classifier=base_classifier)
+    #tagset_classifier = MLkNN(k=3)
     #tagset_classifier = OneVsRestClassifier(SVC(kernel='linear'))
     tagset_binerizer = MultiLabelBinarizer()
     tagset_binerizer.fit([tagset_list])
@@ -1164,6 +1171,7 @@ def entity_recognition_from_ground_truth(building_list,
 
     ###########################  LEARNING  ################################
 
+    """
     ### Validate with self prediction
     # TODO: Below needs to be updated not to use the library
     pred_tagsets_dict, pred_certainty_dict = batch_test_brick_tagset(\
@@ -1182,6 +1190,7 @@ def entity_recognition_from_ground_truth(building_list,
 #            pdb.set_trace()
             pass
     print(cnt/len(learning_sentence_dict))
+    """
 
     ####################      TEST      #################
     #TODO: Test below and remove if not necessary
@@ -1191,15 +1200,17 @@ def entity_recognition_from_ground_truth(building_list,
 
     pred_certainty_dict = dict()
     pred_tagsets_dict = dict()
-    pred_mat = tagset_classifier.predict(test_vect_doc)
-    prob_mat = tagset_classifier.predict_proba(test_vect_doc)
-    for i, (srcid, pred) in enumerate(zip(test_srcids, pred_mat)):
-        pred_tagsets_dict[srcid] = tagset_binerizer.inverse_transform(\
-                                        np.asarray([pred]))[0]
+    pred_mat = tagset_classifier.predict(test_vect_doc.toarray())
+    #prob_mat = tagset_classifier.predict_proba(test_vect_doc.toarray()).toarray()
+    #for i, (srcid, pred_vec, prob_vec) in enumerate(zip(\
+    #                                        test_srcids, pred_mat, prob_mat)):
+    for i, (srcid, pred_vec) in enumerate(zip(\
+                                            test_srcids, pred_mat)):
+        pred_tagsets_dict[srcid] = list(tagset_binerizer.inverse_transform(\
+                                        pred_vec)[0])
         # TODO: Don't remove below. Activate this when using RandomForest
-        pred_vec = [prob[i][0] for prob in prob_mat]
-        pred_certainty_dict[srcid] = sum(pred_vec) / float(len(pred)-sum(pred))
-#        pred_certainty_dict[srcid] = 0
+#        pred_certainty_dict[srcid] = sum(prob_vec) / np.sum(pred_vec)
+        pred_certainty_dict[srcid] = 0
     pred_certainty_dict = OrderedDict(sorted(pred_certainty_dict.items(), \
                                              key=itemgetter(1), reverse=True))
 
@@ -1380,7 +1391,7 @@ def entity_recognition_from_ground_truth(building_list,
                                             eda_flag, token_type)
     target_pred_tagsets_dict, target_pred_certainty_dict = \
                 tagsets_prediction(tagset_classifier, tagset_vectorizer, \
-                                   tagset_binerizer, 
+                                   tagset_binerizer, \
                                    target_phrase_dict, \
                                    target_srcids)
     target_result_dict = tagsets_evaluation(target_truths_dict, \
