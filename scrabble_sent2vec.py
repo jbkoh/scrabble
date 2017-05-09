@@ -626,7 +626,7 @@ def make_phrase_dict(sentence_dict, token_label_dict, srcid_dict, \
             #TODO: Below is heuristic. Is it allowable?
             if phrase.split('-')[0] in ['building', 'networkadapter',\
                                         'leftidentifier', 'rightidentifier']:
-                remove_indices.append(i)
+#                remove_indices.append(i)
                 pass
         phrases = [phrase for i, phrase in enumerate(phrases)\
                    if i not in remove_indices]
@@ -1210,6 +1210,13 @@ def build_tagset_classifier(building_list, target_building,\
     learning_doc += brick_doc
     learning_srcids += brick_srcids
     learning_truths_dict.update(brick_truths_dict)
+
+    with open('model/doc.txt', 'w') as fp:
+        fp.write('\n'.join(learning_doc))
+    with open('model/srcids.txt', 'w') as fp:
+        fp.write('\n'.join(learning_srcids))
+
+    pdb.set_trace()
 
     raw_learning_vect_doc = tagset_vectorizer.transform(learning_doc)
     learning_vect_doc = raw_learning_vect_doc.toarray()

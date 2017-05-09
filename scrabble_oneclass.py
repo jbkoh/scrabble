@@ -27,9 +27,10 @@ import arrow
 from pygame import mixer
 
 from sklearn.feature_extraction.text import TfidfVectorizer, CountVectorizer
-from sklearn.ensemble import RandomForestClassifier, AdaBoostClassifier
+from sklearn.ensemble import RandomForestClassifier, AdaBoostClassifier,\
+                             IsolationForest
 from sklearn.tree import DecisionTreeClassifier
-from sklearn.svm import LinearSVC, SVC
+from sklearn.svm import LinearSVC, SVC, OneClassSVM
 from sklearn.multiclass import OneVsRestClassifier
 from scipy.sparse import vstack, csr_matrix, hstack, issparse, coo_matrix
 from sklearn.preprocessing import MultiLabelBinarizer
@@ -1049,6 +1050,37 @@ class custom_project_multi_label():
             Ys.append(base_classifier.predict(proj_X))
         return np.asarray(Ys).T
 
+class oneclass_multilabel_learning():
+    def __init__(self, base_classifier=OneClassSVM(kernel='rbf')):
+    #def __init__(self, base_classifier=IsolationForest(contamination=0)):
+        self.base_classifier = base_classifier
+        self.base_classifiers = []
+
+    def _X_formatting(self, X):
+        if issparse(X):
+            return X.todense()
+        elif not isinstance(X, np.matrix):
+            return np.asmatrix(X)
+        else:
+            return X
+
+    def fit(self, X, Y):
+        X = self._X_formatting(X)
+        i =0
+        for y in Y.T:
+            sub_X = X[np.where(y==1)]
+            base_classifier = deepcopy(self.base_classifier)
+            base_classifier.fit(sub_X)
+            self.base_classifiers.append(base_classifier)
+            i += 1
+            if i%100 == 0:
+                print(i)
+        pass
+        pdb.set_trace() #test locally if a classifier works with the indices in the notepad.
+
+    def predict(self, X):
+        X = self._X_formatting(X)
+
 def eda_vectorizer(vectorizer, doc, source_target_buildings, srcids):
     global total_srcid_dict
     raw_vect_doc = vectorizer.transform(doc)
@@ -1100,7 +1132,6 @@ def build_tagset_classifier(building_list, target_building,\
     tagset_binerizer.fit([tagset_list])
 
     point_classifier = RandomForestClassifier(n_estimators=150, n_jobs=n_jobs)
-
     ## Init brick tag_list
     raw_tag_list = list(set(reduce(adder, map(splitter, tagset_list))))
     tag_list = deepcopy(raw_tag_list)
@@ -1125,10 +1156,11 @@ def build_tagset_classifier(building_list, target_building,\
     proj_vectors = np.asarray(proj_vectors)
 
     #tagset_classifier = custom_project_multi_label(base_classifier, proj_vectors)
-    tagset_classifier = RandomForestClassifier(n_estimators=10, \
-                                               #this should be 100 at some point
-                                               random_state=0,\
-                                               n_jobs=n_jobs)
+    tagset_classifier = oneclass_multilabel_learning()
+    #tagset_classifier = RandomForestClassifier(n_estimators=10, \
+    #                                           #this should be 100 at some point
+    #                                           random_state=0,\
+    #                                           n_jobs=n_jobs)
     #tagset_classifier = BinaryRelevance(base_classifier)
     #tagset_classifier = ClassifierChain(base_classifier)
     #tagset_classifier = custom_multi_label(base_classifier)
@@ -1260,6 +1292,9 @@ def build_tagset_classifier(building_list, target_building,\
 #                .toarray()
         learning_vect_doc = np.vstack([learning_vect_doc, unlabeled_vect_doc])
         #TODO: Check if learning_cet_Doct can be done without toarray()
+    for i, truth in enumerate(truth_mat.T):
+        if np.sum(truth) > 4:
+            print(i)
     tagset_classifier.fit(learning_vect_doc, truth_mat.toarray())
     #tagset_classifier.fit(coo_matrix(learning_vect_doc), truth_mat.toarray())
     point_classifier.fit(point_vect_doc, point_truth_mat)
