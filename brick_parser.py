@@ -3,6 +3,7 @@
 # In[45]:
 
 from functools import reduce
+import pdb
 
 import rdflib
 from rdflib.namespace import RDFS
@@ -20,7 +21,7 @@ from termcolor import colored
 from rdflib import Graph, Namespace, URIRef, Literal
 from rdflib.namespace import OWL, RDF, RDFS
 import rdflib
-import json
+import arrow
 
 from copy import deepcopy
 
@@ -31,7 +32,8 @@ parsed_files = ['brick/tags.json', \
                 'brick/equip_tagsets.json',\
                 'brick/location_tagsets.json',\
                 'brick/point_tagsets.json']
-if False not in [os.path.isfile(fn) for fn in parsed_files]:
+if False:
+#if False not in [os.path.isfile(fn) for fn in parsed_files]:
     with open('brick/tags.json', 'r') as fp:
         tagList = json.load(fp)
     with open('brick/tagsets.json', 'r') as fp:
@@ -60,6 +62,16 @@ else:
 
     #### Queries###
     ###############
+    strictSubclassesQuery = lambda subclassName: ("""
+            PREFIX rdf:<http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+            PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+            PREFIX brick: <https://brickschema.org/schema/1.0.1/Brick#>
+            SELECT ?anything
+            WHERE{
+                ?anything rdfs:subClassOf+ %s.
+            }
+            """ %(subclassName)
+                    )
     subclassesQuery = lambda subclassName: ("""
             PREFIX rdf:<http://www.w3.org/1999/02/22-rdf-syntax-ns#>
             PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
@@ -67,6 +79,16 @@ else:
             SELECT ?anything
             WHERE{
                 ?anything rdfs:subClassOf* %s.
+            }
+            """ %(subclassName)
+                    )
+    superclassesQuery = lambda subclassName: ("""
+            PREFIX rdf:<http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+            PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+            PREFIX brick: <https://brickschema.org/schema/1.0.1/Brick#>
+            SELECT ?anything
+            WHERE{
+                %s rdfs:subClassOf* ?anything.
             }
             """ %(subclassName)
                     )
@@ -111,9 +133,9 @@ else:
             
     from collections import Counter
             
-    def extract_all_subclasses(g, subclassName, rawFlag=False):
+    def extract_all_subclasses(g, subclassName, sparql_query=subclassesQuery, rawFlag=False):
             subclassList = list()
-            res = g.query(subclassesQuery(subclassName))
+            res = g.query(sparql_query(subclassName))
             for row in res:
                     thing = row[0]
                     if rawFlag:
@@ -135,7 +157,42 @@ else:
                     print('------------------------')
                     assert(False)
             return subclassList
+    
+    def extract_all_subclass_tree(g, subclassName, rawFlag=False):
+            subclassDict = dict()
+            res = g.query(strictSubclassesQuery(subclassName))
+            tagsetList = extract_all_subclasses(g, subclassName, \
+                                                sparql_query=strictSubclassesQuery,\
+                                                rawFlag=True)
+            subclassDict[subclassName.split(':')[1].lower()] = [tagset.lower() \
+                                                        for tagset in tagsetList]
+            for tagset in tagsetList:
+                subclassDict.update(extract_all_subclass_tree(g, 'brick:'+tagset))
+            return subclassDict
 
+    def extract_all_superclasses(g, subclassName, rawFlag=False):
+        superclassList = list()
+        res = g.query(superclassesQuery(subclassName))
+        for row in res:
+            thing = row[0]
+            if rawFlag:
+                subclass = thing.split('#')[-1]
+            else:
+                subclass = thing.split('#')[-1].lower()
+                superclassList.append(subclass)
+            try:
+                assert(len(superclassList)==len(set(superclassList)))
+            except:
+                print('------------------------')
+                print(len(superclassList))
+                print(len(set(superclassList)))
+                subclassCounter = Counter(superclassList)
+                for subclass,cnt in subclassCounter.items():
+                    if cnt>1:
+                        print(subclass)
+                    print('------------------------')
+                    assert(False)
+            return superclassList
 
     equalDict = dict()
     for s,p,o in g:
@@ -208,6 +265,27 @@ else:
     for i, pointTagset in enumerate(pointTagsetList):
             if 'glycool' in pointTagset:
                     del pointTagsetList[i]
+
+    #pointSuperclassDict = dict([(tagset, extract_all_superclasses(g, 'brick:'+tagset))
+    #                         for tagset in pointTagsetList])
+    beginTime = arrow.get()
+    pointSubclassDict = extract_all_subclass_tree(g, 'brick:Point')
+    endTime = arrow.get()
+    print('PointSubclassDict construction time: {0}'.format(endTime-beginTime))
+    beginTime = arrow.get()
+    equipSubclassDict = extract_all_subclass_tree(g, 'brick:Equipment')
+    endTime = arrow.get()
+    print('EquipmentSubclassDict construction time: {0}'.format(endTime-beginTime))
+    beginTime = arrow.get()
+    locationSubclassDict = extract_all_subclass_tree(g, 'brick:Location')
+    endTime = arrow.get()
+    print('LocationSubclassDict construction time: {0}'.format(endTime-beginTime))
+    with open('brick/point_subclass_dict.json', 'w') as fp:
+        json.dump(pointSubclassDict, fp)
+    with open('brick/equip_subclass_dict.json', 'w') as fp:
+        json.dump(equipSubclassDict, fp)
+    with open('brick/location_subclass_dict.json', 'w') as fp:
+        json.dump(locationSubclassDict, fp)
 
     tagsetList = pointTagsetList + equipTagsetList + locationTagsetList + measureTagsetList + resourceTagsetList
     separater = lambda s:s.split('_')

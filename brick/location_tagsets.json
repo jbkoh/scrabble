@@ -1,1 +1,1 @@
-["location", "space", "outside", "wing", "zone", "lighting_zone", "hvac_zone", "basement", "floor", "building", "room", "laboratory", "cold_box", "hot_box", "environment_box", "freezer", "server_room", "roof", "city"]
+["location", "wing", "outside", "roof", "space", "building", "floor", "basement", "room", "server_room", "laboratory", "freezer", "cold_box", "hot_box", "environment_box", "zone", "lighting_zone", "hvac_zone", "city"]

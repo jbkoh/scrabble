@@ -15,6 +15,7 @@ def gen_uuid():
     return str(uuid4())
 from multiprocessing import Pool, Manager, Process
 import code
+import sys
 
 import pycrfsuite
 import pandas as pd
@@ -25,13 +26,15 @@ from matplotlib.backends.backend_pdf import PdfPages
 from bson.binary import Binary as BsonBinary
 import arrow
 from pygame import mixer
+from word2vec import Word2Vec, Sent2Vec, LineSentence
 
 from sklearn.feature_extraction.text import TfidfVectorizer, CountVectorizer
 from sklearn.ensemble import RandomForestClassifier, AdaBoostClassifier
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.svm import LinearSVC, SVC
 from sklearn.multiclass import OneVsRestClassifier
-from scipy.sparse import vstack, csr_matrix, hstack, issparse, coo_matrix
+from scipy.sparse import vstack, csr_matrix, hstack, issparse, coo_matrix, \
+                         csc_matrix
 from sklearn.preprocessing import MultiLabelBinarizer
 from sklearn.neural_network import MLPClassifier
 from scipy.cluster.hierarchy import linkage
@@ -725,15 +728,18 @@ def tagsets_prediction(classifier, vectorizer, binerizer, \
     global point_tagsets
     doc = [' '.join(phrase_dict[srcid]) for srcid in srcids]
     if eda_flag:
-        vect_doc = eda_vectorizer(vectorizer, doc, \
+        point_vect_doc = eda_vectorizer(vectorizer, doc, \
                                        source_target_buildings, srcids)
     else:
-        vect_doc = vectorizer.transform(doc)
+        point_vect_doc = vectorizer.transform(doc)
+    embedding = EmbeddingWrapper()
+    vect_doc = embedding.transform(doc)
 
     certainty_dict = dict()
     tagsets_dict = dict()
+    ## TODO: Make this to receive sentence2vec vectors!
     pred_mat = classifier.predict(vect_doc)
-    point_mat = point_classifier.predict(vect_doc)
+    point_mat = point_classifier.predict(point_vect_doc)
     #prob_mat = classifier.predict_proba(vect_doc)
     pred_tagsets_dict = dict()
     pred_certainty_dict = dict()
@@ -788,27 +794,29 @@ def tagsets_evaluation(truths_dict, pred_tagsets_dict, pred_certainty_dict,\
                     break
             try:
                 assert true_point
-                #found_point = None
-                found_point = pred_point_dict[srcid]
-                #for tagset in pred_tagsets:
-                #    if tagset in point_tagsets:
-                #        found_point = tagset
-                #        break
-                if found_point == 'none':
+                found_point = None
+                #found_point = pred_point_dict[srcid]
+                for tagset in pred_tagsets:
+                    if tagset in point_tagsets:
+                        found_point = tagset
+                        break
+                #if found_point == 'none':
+                if found_point in [None, 'none']:
                     empty_point_cnt += 1
-                elif found_point != true_point:
                     if debug_flag:
-                        pdb.set_trace()
+                        assert False
+                elif found_point != true_point:
                     point_incorrect_cnt += 1
                     print("INCORRECT POINT FOUND: {0} -> {1}"\
                           .format(true_point, found_point))
+                    if debug_flag:
+                        assert False
                 else:
                     unknown_reason_cnt += 1
                     point_correct_cnt += 1
                 #    pdb.set_trace()
             except:
                 print('point not found')
-                pdb.set_trace()
                 unknown_reason_cnt += 1
                 if debug_flag:
                     print('####################################################')
@@ -828,15 +836,7 @@ def tagsets_evaluation(truths_dict, pred_tagsets_dict, pred_certainty_dict,\
                             source_idx = srcids.index(source_srcid)
                             break
                     print('####################################################')
-                    if not found_point and true_point in found_points\
-                       and true_point not in ['unknown',\
-                            'effective_heating_temperature_setpoint',\
-                            'effective_cooling_temperature_setpoint',\
-                            'supply_air_flow_setpoint',\
-                            'output_frequency_sensor']:
-
-                        pdb.set_trace()
-                        pass
+                    pdb.set_trace()
         sorted_result_dict[srcid] = one_result
 
     point_precision = float(point_correct_cnt) \
@@ -988,6 +988,55 @@ def tagsets_evaluation_deprecated(truths_dict, pred_tagsets_dict, pred_certainty
     result_dict['unfound_point_cnt'] = empty_point_cnt
     return result_dict
 
+
+
+class EmbeddingWrapper():
+
+    def __init__(self):
+        self.doc_file = 'model/doc.txt'
+        self.sent_file = 'model/sent.txt'
+        self.model_file = 'model/model.txt'
+        self.word2vec_file = 'model/word2vec.txt'
+        self.sent2vec_file = 'model/sent2vec.txt'
+
+
+    def fit(self, doc):
+        with open(self.doc_file, 'w') as fp:
+            fp.write('\n'.join(doc))
+
+        logging.basicConfig(format='%(asctime)s : %(threadName)s : %(levelname)s \
+                                    : %(message)s', level=logging.INFO)
+        logging.info("running %s" % " ".join(sys.argv))
+
+        model = Word2Vec(LineSentence(self.doc_file), size=20, window=3, sg=0, \
+                         min_count=4, workers=8)
+        model.save(self.model_file)
+        model.save_word2vec_format(self.word2vec_file)
+
+        program = os.path.basename(sys.argv[0])
+        logging.info("finished running %s" % program)
+
+        #model = Sent2Vec(LineSentence(self.), model_file=self.word2vec_file)
+        #model.save_sent2vec_format(self.sent2vec_file)
+
+
+    def transform(self, doc):
+        with open(self.sent_file, 'w') as fp:
+            fp.write('\n'.join(doc))
+        model = Sent2Vec(LineSentence(self.sent_file), \
+                         model_file=self.model_file)
+        model.save_sent2vec_format(self.sent2vec_file)
+        with open(self.sent2vec_file, 'r') as fp:
+            vect_strings = fp.readlines()
+        assert len(doc)+1 == len(vect_strings)
+        vect_doc = csc_matrix([[np.float32(ele) \
+                                for ele in vect_string.split()[1:]]\
+                               for vect_string in vect_strings[1:]])
+        return vect_doc
+
+
+    ### TODO: until this line.
+
 class custom_multi_label():
     def __init__(self, base_classifier):
         self.base_classifier = base_classifier
@@ -1077,7 +1126,7 @@ def build_tagset_classifier(building_list, target_building,\
     global total_srcid_dict
     global point_tagsets
 #    source_target_buildings = list(set(building_list + [target_building]))
-    n_jobs = -1
+    n_jobs = 4
     #base_classifier = DecisionTreeClassifier()
     #base_classifier = SGDClassifier()
     base_classifier = LinearSVC()
@@ -1125,7 +1174,7 @@ def build_tagset_classifier(building_list, target_building,\
     proj_vectors = np.asarray(proj_vectors)
 
     #tagset_classifier = custom_project_multi_label(base_classifier, proj_vectors)
-    tagset_classifier = RandomForestClassifier(n_estimators=10, \
+    tagset_classifier = RandomForestClassifier(n_estimators=100, \
                                                #this should be 100 at some point
                                                random_state=0,\
                                                n_jobs=n_jobs)
@@ -1210,13 +1259,32 @@ def build_tagset_classifier(building_list, target_building,\
     learning_doc += brick_doc
     learning_srcids += brick_srcids
     learning_truths_dict.update(brick_truths_dict)
-
+    """
+    ### TODO: Following should be modularized
     with open('model/doc.txt', 'w') as fp:
         fp.write('\n'.join(learning_doc))
-    with open('model/srcids.txt', 'w') as fp:
-        fp.write('\n'.join(learning_srcids))
+    logging.basicConfig(format='%(asctime)s : %(threadName)s : %(levelname)s \
+                                : %(message)s', level=logging.INFO)
+    logging.info("running %s" % " ".join(sys.argv))
 
-    pdb.set_trace()
+    input_file = 'model/doc.txt'
+    model = Word2Vec(LineSentence(input_file), size=20, window=3, sg=0, \
+                     min_count=4, workers=8)
+    model.save(input_file + '.model')
+    model.save_word2vec_format(input_file + '.wordvec')
+
+    sent_file = 'model/doc.txt'
+    model = Sent2Vec(LineSentence(sent_file), model_file=input_file + '.model')
+    model.save_sent2vec_format(sent_file + '.sentvec')
+
+    program = os.path.basename(sys.argv[0])
+    logging.info("finished running %s" % program)
+    """
+    embedding = EmbeddingWrapper()
+    embedding.fit(learning_doc + test_doc)
+
+
+    ### TODO: until this line.
 
     raw_learning_vect_doc = tagset_vectorizer.transform(learning_doc)
     learning_vect_doc = raw_learning_vect_doc.toarray()
@@ -1266,7 +1334,19 @@ def build_tagset_classifier(building_list, target_building,\
 #                    [[] for i in range(0, unlabeled_vect_doc.shape[0])])])\
 #                .toarray()
         learning_vect_doc = np.vstack([learning_vect_doc, unlabeled_vect_doc])
-        #TODO: Check if learning_cet_Doct can be done without toarray()
+
+    ### TODO: Check if sentence2vect vectors are working better.
+    """
+    with open('model/doc.txt.sentvec', 'r') as fp:
+        vect_strings = fp.readlines()
+    assert(len(learning_doc)+1==len(vect_strings))
+    learning_vect_doc = csc_matrix([[np.float32(ele) \
+                                      for ele in vect_string.split()[1:]]\
+                                     for vect_string in vect_strings[1:]])
+    """
+    learning_vect_doc = embedding.transform(learning_doc)
+    ### TODO: Remove if not works
+
     tagset_classifier.fit(learning_vect_doc, truth_mat.toarray())
     #tagset_classifier.fit(coo_matrix(learning_vect_doc), truth_mat.toarray())
     point_classifier.fit(point_vect_doc, point_truth_mat)
