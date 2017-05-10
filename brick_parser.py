@@ -31,9 +31,14 @@ parsed_files = ['brick/tags.json', \
                 'brick/tagsets.json', \
                 'brick/equip_tagsets.json',\
                 'brick/location_tagsets.json',\
-                'brick/point_tagsets.json']
-if False:
-#if False not in [os.path.isfile(fn) for fn in parsed_files]:
+                'brick/point_tagsets.json',\
+                'brick/location_subclass_dict.json',\
+                'brick/point_subclass_dict.json',\
+                'brick/equip_subclass_dict.json',\
+                'brick/tagset_tree.json',\
+               ]
+if False not in [os.path.isfile(fn) for fn in parsed_files]:
+#if False:
     with open('brick/tags.json', 'r') as fp:
         tagList = json.load(fp)
     with open('brick/tagsets.json', 'r') as fp:
@@ -44,6 +49,14 @@ if False:
         locationTagsetList = json.load(fp)
     with open('brick/point_tagsets.json', 'r') as fp:
         pointTagsetList = json.load(fp)
+    with open('brick/equip_subclass_dict.json', 'r') as fp:
+        equipSubclassDict = json.load(fp)
+    with open('brick/location_subclass_dict.json', 'r') as fp:
+        locationSubclassDict = json.load(fp)
+    with open('brick/point_subclass_dict.json', 'r') as fp:
+        pointSubclassDict = json.load(fp)
+    with open('brick/point_subclass_dict.json', 'r') as fp:
+        tagsetTree = json.load(fp)
 else:
     def lcs_len(X, Y):
             m = len(X)
@@ -82,6 +95,16 @@ else:
             }
             """ %(subclassName)
                     )
+    directSubclassesQuery = lambda subclassName: ("""
+            PREFIX rdf:<http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+            PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+            PREFIX brick: <https://brickschema.org/schema/1.0.1/Brick#>
+            SELECT ?anything
+            WHERE{
+                ?anything rdfs:subClassOf %s.
+            }
+            """ %(subclassName)
+                    )
     superclassesQuery = lambda subclassName: ("""
             PREFIX rdf:<http://www.w3.org/1999/02/22-rdf-syntax-ns#>
             PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
@@ -89,6 +112,16 @@ else:
             SELECT ?anything
             WHERE{
                 %s rdfs:subClassOf* ?anything.
+            }
+            """ %(subclassName)
+                    )
+    directSuperclassesQuery = lambda subclassName: ("""
+            PREFIX rdf:<http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+            PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+            PREFIX brick: <https://brickschema.org/schema/1.0.1/Brick#>
+            SELECT ?anything
+            WHERE{
+                %s rdfs:subClassOf ?anything .
             }
             """ %(subclassName)
                     )
@@ -125,14 +158,23 @@ else:
         else:
             color = 'red'
         print(colored("-> {0} results".format(len(res)), color, attrs=['bold']))
-        
+
     def printTuples(res):
         for row in res:
             #print map(lambda x: x.split('#')[-1], row)
             print(row[0])
-            
+
     from collections import Counter
-            
+
+    def get_direct_superclasses(g, entity_name):
+        res = g.query(directSuperclassesQuery(entity_name))
+        super_tagsets = list()
+        for row in res:
+            thing = row[0]
+            tagset = thing.split('#')[-1].lower()
+            super_tagsets.append(tagset)
+        return super_tagsets
+
     def extract_all_subclasses(g, subclassName, sparql_query=subclassesQuery, rawFlag=False):
             subclassList = list()
             res = g.query(sparql_query(subclassName))
@@ -143,7 +185,6 @@ else:
                     else:
                             subclass = thing.split('#')[-1].lower()
                     subclassList.append(subclass)
-        
             try:
                     assert(len(subclassList)==len(set(subclassList)))
             except:
@@ -157,7 +198,27 @@ else:
                     print('------------------------')
                     assert(False)
             return subclassList
-    
+
+    def construct_subclass_tree(g, head, tagset_type):
+        upper_tagset = head.split(':')[-1].lower()
+        res = g.query(directSubclassesQuery(head))
+        subclasses = list()
+        tagsets = list()
+        branches = list()
+        for row in res:
+            thing = row[0]
+            subclass = thing.split('#')[-1]
+            tagset = subclass.lower()
+            if tagset_type == 'point' and tagset.split('_')[-1] \
+               not in ['alarm', 'sensor', 'setpoint', 'command', 'status']:
+                continue
+            subclasses.append(subclass)
+            tagsets.append(tagset)
+            branches.append(construct_subclass_tree(g, 'brick:'+subclass, \
+                                                    tagset_type))
+        tree = {upper_tagset: branches}
+        return tree
+
     def extract_all_subclass_tree(g, subclassName, rawFlag=False):
             subclassDict = dict()
             res = g.query(strictSubclassesQuery(subclassName))
@@ -266,6 +327,30 @@ else:
             if 'glycool' in pointTagset:
                     del pointTagsetList[i]
 
+
+    # validation code to find incorrect subclass relationship
+    for tagset in pointTagsetList:
+        entity = '_'.join([tag[0].upper() + tag[1:] \
+                           for tag in tagset.split('_')])
+        super_tagsets = get_direct_superclasses(g, 'brick:' + entity)
+        if len(super_tagsets)>1:
+            """
+            print('\n')
+            print(tagset)
+            print(super_tagsets)
+            pdb.set_trace()
+            """
+
+
+    tagsetTree = dict()
+    for head in ['Sensor', 'Alarm', 'Status', 'Setpoint', 'Command']:
+        tagsetTree.update(construct_subclass_tree(g, 'brick:Sensor', 'point'))
+    for head in ['Location', 'Equipment']:
+        tagsetTree.update(construct_subclass_tree(g, 'brick:Sensor', 'other'))
+    with open('brick/tagset_tree.json', 'w') as fp:
+        json.dump(tagsetTree, fp, indent=2)
+    pdb.set_trace()
+
     #pointSuperclassDict = dict([(tagset, extract_all_superclasses(g, 'brick:'+tagset))
     #                         for tagset in pointTagsetList])
     beginTime = arrow.get()
@@ -295,7 +380,8 @@ else:
     locationTagList = list(set(reduce(lambda x,y: x+y, map(separater,locationTagsetList))))
     measureTagList = list(set(reduce(lambda x,y: x+y, map(separater,measureTagsetList))))
 
-    if '' in tagList: tagList.remove('')
+    if '' in tagList:
+       tagList.remove('')
 
 
     equipPointDict = dict()
@@ -390,6 +476,7 @@ else:
     locationRelationDict['building'] = ['basement','floor','room']
     locationRelationDict['room'] = ['basement', 'floor', 'building']
 
+print('Brick Loaded')
 
 if __name__=='__main__':
     with open('brick/tags.json', 'w') as fp:

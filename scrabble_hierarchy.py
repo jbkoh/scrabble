@@ -41,7 +41,8 @@ from sklearn.gaussian_process import GaussianProcessClassifier
 from sklearn.discriminant_analysis import QuadraticDiscriminantAnalysis
 from sklearn.linear_model import SGDClassifier
 #from skmultilearn.ensemble import RakelO, LabelSpacePartitioningClassifier
-from skmultilearn.problem_transform import LabelPowerset, ClassifierChain, BinaryRelevance
+from skmultilearn.problem_transform import LabelPowerset, ClassifierChain, \
+                                           BinaryRelevance
 #from skmultilearn.cluster import IGraphLabelCooccurenceClusterer
 #from skmultilearn.ensemble import LabelSpacePartitioningClassifier
 
@@ -51,10 +52,18 @@ from mongo_models import store_model, get_model, get_tags_mapping, \
 from entity_recognition import learn_brick_tagsets, \
                                test_brick_tagset, \
                                batch_test_brick_tagset
-from brick_parser import pointTagsetList as point_tagsets,\
-                         locationTagsetList as location_tagsets,\
-                         equipTagsetList as equip_tagsets\
+from brick_parser import pointTagsetList        as  point_tagsets,\
+                         locationTagsetList     as  location_tagsets,\
+                         equipTagsetList        as  equip_tagsets,\
+                         pointSubclassDict      as  point_subclass_dict,\
+                         equipSubclassDict      as  equip_subclass_dict,\
+                         locationSubclassDict   as  location_subclass_dict,\
+                         tagsetTree             as  tagset_tree
 #                         tagsetList as tagset_list
+subclass_dict = dict()
+subclass_dict.update(point_subclass_dict)
+subclass_dict.update(equip_subclass_dict)
+subclass_dict.update(location_subclass_dict)
 from building_tokenizer import nae_dict
 
 point_tagsets += ['unknown', 'run_command', \
@@ -608,6 +617,13 @@ def find_key(tv, d, crit):
             return k
     return None
 
+def find_keys(tv, d, crit):
+    keys = list()
+    for k, v in d.items():
+        if crit(tv, v):
+            keys.append(k)
+    return keys
+
 def check_in(x,y):
     return x in y
 
@@ -743,7 +759,6 @@ def tagsets_prediction(classifier, vectorizer, binerizer, \
     pred_tagsets_dict = dict()
     pred_certainty_dict = dict()
     pred_point_dict = dict()
-    pdb.set_trace()
     for i, (srcid, pred, point_pred) \
             in enumerate(zip(srcids, pred_mat, point_mat)):
         pred_tagsets_dict[srcid] = binerizer.inverse_transform(\
@@ -1061,6 +1076,43 @@ def eda_vectorizer(vectorizer, doc, source_target_buildings, srcids):
                             for vect in raw_vect_doc.T])
     return vect_doc
 
+def augment_true_mat_with_superclasses(binerizer, given_label_vect,\
+                                       subclass_dict=subclass_dict):
+    tagsets = binerizer.inverse_transform([given_label_vect])
+    updated_tagsets = [find_keys(tagset, subclass_dict, check_in)\
+                       for tagset in tagsets]
+    pdb.set_trace()
+    return binerizer.transform([list(set(tagsets + updated_tagsets))])
+
+class FuixedClassifierChain():
+
+    def _init_classifier_chain(self, tagset_tree):
+        chain_tree = dict()
+        for head, tagset_branches in tagset_tree.items():
+            chain_branches = list()
+            for tagset_branch in tagset_branches:
+                tagset = list(tagset_branch.keys())[0]
+                chain_branch = self._init_classifier_chain(tagset,
+                                                           tagset_branch)
+                chain_branches.append(chain_branch)
+            chain_tree[head] = (deepcopy(self.base_classifier), chain_branches)
+        return chain_tree
+
+    def __init__(self, base_classifier, binerizer, \
+                 subclass_dict=subclass_dict, tagset_tree=tagset_tree):
+        self.subclass_dict = subclass_dict
+        self.base_classifier = base_classifier
+        self.binerizer = binerizer
+        self.tagset_tree = tagset_tree
+        self.classifier_chain = _init_classifier_chain(self.tagset_tree)
+        self.index_tagset_dict = dict([(tagset, i) for i, tagset \
+                                       in enumerate(self.binerizer.classes_)])
+
+    def fit(self, X, Y):
+        
+
+    def predict(self, X):
+        pass
 
 
 def build_tagset_classifier(building_list, target_building,\
@@ -1122,12 +1174,12 @@ def build_tagset_classifier(building_list, target_building,\
     proj_vectors = np.asarray(proj_vectors)
 
     #tagset_classifier = custom_project_multi_label(base_classifier, proj_vectors)
-    #tagset_classifier = RandomForestClassifier(n_estimators=100, \
-    #                                           #this should be 100 at some point
-    #                                           random_state=0,\
-    #                                           n_jobs=n_jobs)
+    tagset_classifier = RandomForestClassifier(n_estimators=100, \
+                                               #this should be 100 at some point
+                                               random_state=0,\
+                                               n_jobs=n_jobs)
     #tagset_classifier = BinaryRelevance(base_classifier)
-    tagset_classifier = ClassifierChain(base_classifier)
+    #tagset_classifier = ClassifierChain(base_classifier)
     #tagset_classifier = custom_multi_label(base_classifier)
     #tagset_classifier = DecisionTreeClassifier()
 
@@ -1144,7 +1196,6 @@ def build_tagset_classifier(building_list, target_building,\
     test_doc = [' '.join(test_phrase_dict[srcid]) \
                 for srcid in test_srcids]
 
-    """
     ## Augment with negative examples.
     negative_doc = []
     negative_truths_dict = {}
@@ -1156,8 +1207,14 @@ def build_tagset_classifier(building_list, target_building,\
             negative_srcid = gen_uuid()
             negative_srcids.append(negative_srcid)
             negative_tagsets = list(filter(tagset.__ne__, true_tagsets))
-            negative_sentence = [word for word in sentence \
-                                 if word not in tagset.split('_')]
+            removing_tags = [word for word in sentence \
+                                 if word in tagset.split('_')]
+            negative_sentence = [ts for ts in true_tagsets\
+                                 if not sum([tag in ts \
+                                             for tag in removing_tags])]
+
+#            negative_sentence = [word for word in sentence \
+#                                 if word not in tagset.split('_')]
             negative_doc.append(' '.join(negative_sentence))
             negative_truths_dict[negative_srcid] = negative_tagsets
             #pdb.set_trace()
@@ -1171,7 +1228,6 @@ def build_tagset_classifier(building_list, target_building,\
     learning_doc += negative_doc
     learning_srcids += negative_srcids
     learning_truths_dict.update(negative_truths_dict)
-    """
 
 
     ## Init Brick document

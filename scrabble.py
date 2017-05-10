@@ -15,6 +15,7 @@ def gen_uuid():
     return str(uuid4())
 from multiprocessing import Pool, Manager, Process
 import code
+import sys
 
 import pycrfsuite
 import pandas as pd
@@ -31,7 +32,8 @@ from sklearn.ensemble import RandomForestClassifier, AdaBoostClassifier
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.svm import LinearSVC, SVC
 from sklearn.multiclass import OneVsRestClassifier
-from scipy.sparse import vstack, csr_matrix, hstack, issparse, coo_matrix
+from scipy.sparse import vstack, csr_matrix, hstack, issparse, coo_matrix, \
+                         lil_matrix
 from sklearn.preprocessing import MultiLabelBinarizer
 from sklearn.neural_network import MLPClassifier
 from scipy.cluster.hierarchy import linkage
@@ -53,8 +55,10 @@ from entity_recognition import learn_brick_tagsets, \
                                batch_test_brick_tagset
 from brick_parser import pointTagsetList as point_tagsets,\
                          locationTagsetList as location_tagsets,\
-                         equipTagsetList as equip_tagsets\
-#                         tagsetList as tagset_list
+                         equipTagsetList as equip_tagsets,\
+                         pointSubclassDict as point_subclass_dict,\
+                         equipSubclassDict as equip_subclass_dict,\
+                         locationSubclassDict as location_subclass_dict
 from building_tokenizer import nae_dict
 
 point_tagsets += ['unknown', 'run_command', \
@@ -83,9 +87,17 @@ point_tagsets += ['unknown', 'run_command', \
 
                  ]
 
-tagset_list = point_tagsets + location_tagsets + equip_tagsets
+tagset_list = point_tagsets + location_tagsets + equip_tagsets \
+                + ['equipment', 'point', 'location']
+subclass_dict = dict()
+subclass_dict.update(point_subclass_dict)
+subclass_dict.update(equip_subclass_dict)
+subclass_dict.update(location_subclass_dict)
 
 total_srcid_dict = dict()
+
+logging.basicConfig(level=logging.DEBUG,
+                    format='%(asctime)s %(message)s')
 
 def init_srcids_dict():
     building_list = ['ebu3b', 'ap_m']
@@ -608,6 +620,13 @@ def find_key(tv, d, crit):
             return k
     return None
 
+def find_keys(tv, d, crit):
+    keys = list()
+    for k, v in d.items():
+        if crit(tv, v):
+            keys.append(k)
+    return keys
+
 def check_in(x,y):
     return x in y
 
@@ -743,7 +762,6 @@ def tagsets_prediction(classifier, vectorizer, binerizer, \
     pred_tagsets_dict = dict()
     pred_certainty_dict = dict()
     pred_point_dict = dict()
-    pdb.set_trace()
     for i, (srcid, pred, point_pred) \
             in enumerate(zip(srcids, pred_mat, point_mat)):
         pred_tagsets_dict[srcid] = binerizer.inverse_transform(\
@@ -758,7 +776,8 @@ def tagsets_prediction(classifier, vectorizer, binerizer, \
     return pred_tagsets_dict, pred_certainty_dict, pred_point_dict
 
 def tagsets_evaluation(truths_dict, pred_tagsets_dict, pred_certainty_dict,\
-                       srcids, pred_point_dict, debug_flag=False):
+                       srcids, pred_point_dict, pred_phrase_dict=None, \
+                       debug_flag=False):
     result_dict = defaultdict(dict)
     sorted_result_dict = OrderedDict()
     incorrect_tagsets_dict = dict()
@@ -1062,6 +1081,30 @@ def eda_vectorizer(vectorizer, doc, source_target_buildings, srcids):
     return vect_doc
 
 
+def augment_true_mat_with_superclasses(binerizer, label_mat,\
+                                       subclass_dict=subclass_dict):
+    logging.info('Start augmenting label mat with superclasses')
+    label_mat = lil_matrix(label_mat)
+    for i, vect in enumerate(label_mat):
+        tagsets = binerizer.inverse_transform(vect)[0]
+        updated_tagsets = reduce(adder, [\
+                            find_keys(tagset, subclass_dict, check_in)\
+                            for tagset in tagsets], [])
+        #TODO: This is bad code. need to be fixed later.
+        finished = False
+        while not finished:
+            try:
+                new_row = binerizer.transform([list(set(list(tagsets) \
+                                                        + updated_tagsets))])
+                finished = True
+            except KeyError:
+                missing_tagset = sys.exc_info()[1].args[0]
+                updated_tagsets.remove(missing_tagset)
+
+        label_mat[i] = new_row
+    logging.info('Finished augmenting label mat with superclasses')
+    return label_mat
+
 
 def build_tagset_classifier(building_list, target_building,\
                             test_sentence_dict, test_token_label_dict,\
@@ -1074,7 +1117,7 @@ def build_tagset_classifier(building_list, target_building,\
     global total_srcid_dict
     global point_tagsets
 #    source_target_buildings = list(set(building_list + [target_building]))
-    n_jobs = 4
+    n_jobs = 3
     #base_classifier = DecisionTreeClassifier()
     #base_classifier = SGDClassifier()
     base_classifier = LinearSVC()
@@ -1122,12 +1165,12 @@ def build_tagset_classifier(building_list, target_building,\
     proj_vectors = np.asarray(proj_vectors)
 
     #tagset_classifier = custom_project_multi_label(base_classifier, proj_vectors)
-    #tagset_classifier = RandomForestClassifier(n_estimators=100, \
-    #                                           #this should be 100 at some point
-    #                                           random_state=0,\
-    #                                           n_jobs=n_jobs)
+    tagset_classifier = RandomForestClassifier(n_estimators=200, \
+                                               #this should be 100 at some point
+                                               random_state=0,\
+                                               n_jobs=n_jobs)
     #tagset_classifier = BinaryRelevance(base_classifier)
-    tagset_classifier = ClassifierChain(base_classifier)
+    #tagset_classifier = ClassifierChain(base_classifier)
     #tagset_classifier = custom_multi_label(base_classifier)
     #tagset_classifier = DecisionTreeClassifier()
 
@@ -1144,7 +1187,6 @@ def build_tagset_classifier(building_list, target_building,\
     test_doc = [' '.join(test_phrase_dict[srcid]) \
                 for srcid in test_srcids]
 
-    """
     ## Augment with negative examples.
     negative_doc = []
     negative_truths_dict = {}
@@ -1156,8 +1198,14 @@ def build_tagset_classifier(building_list, target_building,\
             negative_srcid = gen_uuid()
             negative_srcids.append(negative_srcid)
             negative_tagsets = list(filter(tagset.__ne__, true_tagsets))
-            negative_sentence = [word for word in sentence \
-                                 if word not in tagset.split('_')]
+            removing_tags = [word for word in sentence \
+                                 if word in tagset.split('_')]
+            negative_sentence = [ts for ts in true_tagsets\
+                                 if not sum([tag in ts \
+                                             for tag in removing_tags])]
+
+#            negative_sentence = [word for word in sentence \
+#                                 if word not in tagset.split('_')]
             negative_doc.append(' '.join(negative_sentence))
             negative_truths_dict[negative_srcid] = negative_tagsets
             #pdb.set_trace()
@@ -1171,7 +1219,6 @@ def build_tagset_classifier(building_list, target_building,\
     learning_doc += negative_doc
     learning_srcids += negative_srcids
     learning_truths_dict.update(negative_truths_dict)
-    """
 
 
     ## Init Brick document
@@ -1252,8 +1299,9 @@ def build_tagset_classifier(building_list, target_building,\
                                 for learning_vect in raw_learning_vect_doc.T])
 
     truth_mat = csr_matrix([tagset_binerizer.transform(\
-                    [learning_truths_dict[srcid]])[0]\
-                        for srcid in learning_srcids])
+                            [learning_truths_dict[srcid]])[0]\
+                            for srcid in learning_srcids])
+
     point_truths_dict = dict()
     point_srcids = list()
     for srcid, truths in learning_truths_dict.items():
@@ -1287,6 +1335,12 @@ def build_tagset_classifier(building_list, target_building,\
 #                .toarray()
         learning_vect_doc = np.vstack([learning_vect_doc, unlabeled_vect_doc])
         #TODO: Check if learning_cet_Doct can be done without toarray()
+
+    ## Add redundant labels from hiearachy
+    if True:
+    #if redundant_label_flag:
+        truth_mat = augment_true_mat_with_superclasses(tagset_binerizer, \
+                                                       truth_mat)
     tagset_classifier.fit(learning_vect_doc, truth_mat.toarray())
     #tagset_classifier.fit(coo_matrix(learning_vect_doc), truth_mat.toarray())
     point_classifier.fit(point_vect_doc, point_truth_mat)
@@ -1791,7 +1845,8 @@ def entity_recognition_from_ground_truth(building_list,
                                          target_pred_certainty_dict,\
                                          target_srcids,\
                                          target_pred_point_dict,\
-                                            debug_flag)
+                                         target_phrase_dict,\
+                                         debug_flag)
     next_step_data = {
         'pred_tagsets_dict': target_pred_tagsets_dict,
         'learning_srcids': learning_srcids,
