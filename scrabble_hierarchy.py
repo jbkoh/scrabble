@@ -15,6 +15,8 @@ def gen_uuid():
     return str(uuid4())
 from multiprocessing import Pool, Manager, Process
 import code
+import sys
+from math import ceil, floor
 
 import pycrfsuite
 import pandas as pd
@@ -31,7 +33,8 @@ from sklearn.ensemble import RandomForestClassifier, AdaBoostClassifier
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.svm import LinearSVC, SVC
 from sklearn.multiclass import OneVsRestClassifier
-from scipy.sparse import vstack, csr_matrix, hstack, issparse, coo_matrix
+from scipy.sparse import vstack, csr_matrix, hstack, issparse, coo_matrix,\
+                         lil_matrix
 from sklearn.preprocessing import MultiLabelBinarizer
 from sklearn.neural_network import MLPClassifier
 from scipy.cluster.hierarchy import linkage
@@ -60,41 +63,39 @@ from brick_parser import pointTagsetList        as  point_tagsets,\
                          locationSubclassDict   as  location_subclass_dict,\
                          tagsetTree             as  tagset_tree
 #                         tagsetList as tagset_list
+#tagset_tree['networkadapter'] = list()
 subclass_dict = dict()
 subclass_dict.update(point_subclass_dict)
 subclass_dict.update(equip_subclass_dict)
 subclass_dict.update(location_subclass_dict)
+#subclass_dict['networkadapter'] = list()
+
 from building_tokenizer import nae_dict
 
-point_tagsets += ['unknown', 'run_command', \
-                  'low_outside_air_temperature_enable_differential_setpoint', \
-                  'co2_differential_setpoint', 'pump_flow_status', \
-                  'supply_air_temperature_increase_decrease_step_setpoint',\
-                  'average exhaust air pressure setpoint',\
-                  'highest_floor_demand', \
-                  'average_exhaust_air_static_pressure_setpoint', \
-                  'chilled_water_differential_pressure_load_shed_command', \
-                  'average_exhaust_air_static_pressure',\
-                  'discharge_air_demand',\
-                  'average_exhaust_air_static_pressure_setpoint',\
+point_tagsets += ['unknown', \
+                  #'run_command', \
+                  #'low_outside_air_temperature_enable_differential_setpoint', \
+                  #'co2_differential_setpoint', 
+                  #'pump_flow_status', \
+                  #'supply_air_temperature_increase_decrease_step_setpoint',\
+                  #'average_exhaust_air_static_pressure_setpoint', \
+                  #'chilled_water_differential_pressure_load_shed_command', \
                   # AP_M
-                  'co2_differential_setpoint',\
-                  'average_exhaust_air_static_pressure_setpoint',\
-                  'discharge_air_demand_setpoint',\
-                  'average_exhaust_air_pressure_setpoint', 'pump_flow_status',\
-                  'chilled_water_differential_pressure_load_shed_command',\
-                  'low_outside_air_temperature_enable_differential_setpoint',\
-                  'supply_air_temperature_increase_decrease_step_setpoint',
+                  'average_exhaust_air_pressure_setpoint', 
                   'chilled_water_temperature_differential_setpoint',
                   'outside_air_lockout_temperature_differential_setpoint',
                   'vfd_command',
                   'medium_temperature_hot_water_discharge_temperature_load_shed',
+                 ] #TODO: How to add these into the tree structure?
 
-                 ]
+
 
 tagset_list = point_tagsets + location_tagsets + equip_tagsets
 
 total_srcid_dict = dict()
+
+logging.basicConfig(level=logging.INFO,
+                        format='%(asctime)s %(message)s')
 
 def init_srcids_dict():
     building_list = ['ebu3b', 'ap_m']
@@ -181,6 +182,13 @@ def calc_features(sentence, building=None):
             features['EOS'] = 1.0
         sentenceFeatures.append(features)
     return sentenceFeatures
+
+def augment_tagset_tree(tagsets):
+    global tagset_tree
+    for tagset in tagsets:
+        if '-' in tagset:
+            classname = tagset.split('-')[0]
+            
 
 
 def select_random_samples(building, \
@@ -642,6 +650,7 @@ def make_phrase_dict(sentence_dict, token_label_dict, srcid_dict, \
             #TODO: Below is heuristic. Is it allowable?
             if phrase.split('-')[0] in ['building', 'networkadapter',\
                                         'leftidentifier', 'rightidentifier']:
+            #if phrase.split('-')[0] in ['leftidentifier', 'rightidentifier']:
                 remove_indices.append(i)
                 pass
         phrases = [phrase for i, phrase in enumerate(phrases)\
@@ -654,7 +663,8 @@ def make_phrase_dict(sentence_dict, token_label_dict, srcid_dict, \
             prefixer = build_prefixer(building_name)
             phrases = phrases + list(map(prefixer, phrases))
         """
-        phrase_dict[srcid] = phrases + phrases
+        #phrase_dict[srcid] = phrases + phrases # TODO: Why did I put this before?
+        phrase_dict[srcid] = phrases
     return phrase_dict
 
 def get_multi_buildings_data(building_list, srcids=[], \
@@ -739,6 +749,7 @@ def tagsets_prediction(classifier, vectorizer, binerizer, \
                            phrase_dict, srcids, source_target_buildings, \
                        eda_flag, point_classifier):
     global point_tagsets
+    logging.info('Start prediction')
     doc = [' '.join(phrase_dict[srcid]) for srcid in srcids]
     if eda_flag:
         vect_doc = eda_vectorizer(vectorizer, doc, \
@@ -748,13 +759,17 @@ def tagsets_prediction(classifier, vectorizer, binerizer, \
 
     certainty_dict = dict()
     tagsets_dict = dict()
+    logging.info('Start Tagset prediction')
     pred_mat = classifier.predict(vect_doc)
+    logging.info('Finished Tagset prediction')
     if not isinstance(pred_mat, np.ndarray):
         try:
             pred_mat = pred_mat.toarray()
         except:
             pred_mat = np.asarray(pred_mat)
+    logging.info('Start point prediction')
     point_mat = point_classifier.predict(vect_doc)
+    logging.info('Finished point prediction')
     #prob_mat = classifier.predict_proba(vect_doc)
     pred_tagsets_dict = dict()
     pred_certainty_dict = dict()
@@ -770,10 +785,12 @@ def tagsets_prediction(classifier, vectorizer, binerizer, \
         pred_certainty_dict[srcid] = 0
     pred_certainty_dict = OrderedDict(sorted(pred_certainty_dict.items(), \
                                              key=itemgetter(1), reverse=True))
+    pdb.set_trace()
+    logging.info('Finished prediction')
     return pred_tagsets_dict, pred_certainty_dict, pred_point_dict
 
 def tagsets_evaluation(truths_dict, pred_tagsets_dict, pred_certainty_dict,\
-                       srcids, pred_point_dict, debug_flag=False):
+                       srcids, pred_point_dict, phrase_dict, debug_flag=False):
     result_dict = defaultdict(dict)
     sorted_result_dict = OrderedDict()
     incorrect_tagsets_dict = dict()
@@ -820,8 +837,8 @@ def tagsets_evaluation(truths_dict, pred_tagsets_dict, pred_certainty_dict,\
                     assert False
                 elif found_point != true_point:
                     point_incorrect_cnt += 1
-                    print("INCORRECT POINT FOUND: {0} -> {1}"\
-                          .format(true_point, found_point))
+                    print("INCORRECT POINT ({0}) FOUND: {1} -> {1}"\
+                          .format(srcid, true_point, found_point))
                     assert False
                 else:
                     unknown_reason_cnt += 1
@@ -932,7 +949,6 @@ def tagsets_evaluation_deprecated(truths_dict, pred_tagsets_dict, pred_certainty
                 else:
                     unknown_reason_cnt += 1
                     point_correct_cnt += 1
-                #    pdb.set_trace()
             except:
                 print('point not found')
                 pdb.set_trace()
@@ -1076,7 +1092,7 @@ def eda_vectorizer(vectorizer, doc, source_target_buildings, srcids):
                             for vect in raw_vect_doc.T])
     return vect_doc
 
-def augment_true_mat_with_superclasses(binerizer, given_label_vect,\
+def augment_true_mat_with_superclasses_deprecated_and_incorrect(binerizer, given_label_vect,\
                                        subclass_dict=subclass_dict):
     tagsets = binerizer.inverse_transform([given_label_vect])
     updated_tagsets = [find_keys(tagset, subclass_dict, check_in)\
@@ -1084,7 +1100,7 @@ def augment_true_mat_with_superclasses(binerizer, given_label_vect,\
     pdb.set_trace()
     return binerizer.transform([list(set(tagsets + updated_tagsets))])
 
-class FuixedClassifierChain():
+class FixedClassifierChain():
 
     def _init_classifier_chain(self, tagset_tree):
         chain_tree = dict()
@@ -1092,8 +1108,7 @@ class FuixedClassifierChain():
             chain_branches = list()
             for tagset_branch in tagset_branches:
                 tagset = list(tagset_branch.keys())[0]
-                chain_branch = self._init_classifier_chain(tagset,
-                                                           tagset_branch)
+                chain_branch = self._init_classifier_chain(tagset_branch)
                 chain_branches.append(chain_branch)
             chain_tree[head] = (deepcopy(self.base_classifier), chain_branches)
         return chain_tree
@@ -1104,16 +1119,108 @@ class FuixedClassifierChain():
         self.base_classifier = base_classifier
         self.binerizer = binerizer
         self.tagset_tree = tagset_tree
-        self.classifier_chain = _init_classifier_chain(self.tagset_tree)
+        self.classifier_chain = self._init_classifier_chain(self.tagset_tree)
         self.index_tagset_dict = dict([(tagset, i) for i, tagset \
                                        in enumerate(self.binerizer.classes_)])
 
-    def fit(self, X, Y):
-        
+    def _augment_labels_superclasses(self, Y):
+        logging.info('Start augmenting label mat with superclasses')
+        Y = lil_matrix(Y)
+        for i, vect in enumerate(Y):
+            tagsets = self.binerizer.inverse_transform(vect)[0]
+            updated_tagsets = reduce(adder, [
+                                find_keys(tagset, self.subclass_dict, check_in)
+                                for tagset in tagsets], [])
+            #TODO: This is bad code. need to be fixed later.
+            finished = False
+            while not finished:
+                try:
+                    new_row = self.binerizer.transform([list(set(list(tagsets)
+                                                        + updated_tagsets))])
+                    finished = True
+                except KeyError:
+                    missing_tagset = sys.exc_info()[1].args[0]
+                    updated_tagsets.remove(missing_tagset)
 
-    def predict(self, X):
-        pass
+            Y[i] = new_row
+        logging.info('Finished augmenting label mat with superclasses')
+        return Y
 
+    def conv_array(self, d):
+        if isinstance(d, np.ndarray):
+            return d
+        if isinstance(d, np.matrix):
+            return np.asarray(d)
+        else:
+            return d.toarray()
+
+    def conv_matrix(self, d):
+        if isinstance(d, np.matrix):
+            return d
+        elif isinstance(d, np.ndarray):
+            return np.matrix(d)
+        else:
+            return d.todense()
+
+    def fit(self, X, Y, init_flag=True, classifier_chain=None, cnt=0):
+        # Y and self.binerizer should be synchronized initially.
+        if cnt%100==0:
+            logging.info('{0}th step for prediction'.format(cnt))
+        if init_flag:
+            Y = self._augment_labels_superclasses(Y)
+        assert Y.shape[0] == X.shape[0]
+        cnt += 1
+        if not classifier_chain:
+            classifier_chain = self.classifier_chain
+        for curr_head, (curr_classifier, branches) in classifier_chain.items():
+            try:
+                curr_head_index = self.index_tagset_dict[curr_head]
+                y = self.conv_array(Y.T[curr_head_index])[0]
+                try:
+                    curr_classifier.fit(X, y) # TODO: Validate if this gets actually updated.
+                except:
+                    pdb.set_trace()
+                branch_mask = np.where(y==1)[0]
+                next_X = X[branch_mask]
+                next_Y = Y[branch_mask]
+                for branch in branches:
+                    cnt = self.fit(next_X, next_Y, False, branch, cnt)
+            except:
+                pdb.set_trace()
+        return cnt
+
+    def _update_Y(self, new_y, label_index, indices):
+        self.pred_Y[[indices],[label_index]] = new_y
+
+    def predict(self, X, classifier_chain=None, given_mask='init', cnt=0):
+        # Use branch_mask as a init flag too
+        if cnt%100==0:
+            logging.info('{0}th step for prediction'.format(cnt))
+        if cnt==0:
+            head_flag = True
+        else:
+            head_flag = False
+        cnt += 1
+        if given_mask == 'init':
+            given_mask = np.array(range(0,X.shape[0]))
+            # Init Y matrix
+            self.pred_Y = np.zeros((X.shape[0], len(self.binerizer.classes_)))
+        if not classifier_chain:
+            classifier_chain = self.classifier_chain
+        for curr_head, (curr_classifier, branches) in classifier_chain.items():
+            sub_X = X[given_mask]
+            if sub_X.shape[0]==0:
+                continue
+            pred_y = curr_classifier.predict(sub_X.todense())
+            label_index = self.index_tagset_dict[curr_head]
+            self._update_Y(pred_y, label_index, given_mask)
+            branch_mask = [given_mask[i] for i in np.where(pred_y==1)[0]]
+            for branch in branches:
+                cnt = self.predict(X, branch, branch_mask, cnt)
+        if head_flag:
+            return self.pred_Y
+        else:
+            return cnt
 
 def build_tagset_classifier(building_list, target_building,\
                             test_sentence_dict, test_token_label_dict,\
@@ -1129,7 +1236,9 @@ def build_tagset_classifier(building_list, target_building,\
     n_jobs = 4
     #base_classifier = DecisionTreeClassifier()
     #base_classifier = SGDClassifier()
-    base_classifier = LinearSVC()
+    base_classifier = LinearSVC(loss='hinge', tol=1e-5,\
+                                max_iter=2000, C=2)
+
     #base_classifier = GaussianProcessClassifier()
 #    base_classifier = QuadraticDiscriminantAnalysis()
     #base_classifier = GaussianNB()
@@ -1174,10 +1283,11 @@ def build_tagset_classifier(building_list, target_building,\
     proj_vectors = np.asarray(proj_vectors)
 
     #tagset_classifier = custom_project_multi_label(base_classifier, proj_vectors)
-    tagset_classifier = RandomForestClassifier(n_estimators=100, \
-                                               #this should be 100 at some point
-                                               random_state=0,\
-                                               n_jobs=n_jobs)
+    #tagset_classifier = RandomForestClassifier(n_estimators=100, \
+    #                                           #this should be 100 at some point
+    #                                           random_state=0,\
+    #                                           n_jobs=n_jobs)
+    tagset_classifier = FixedClassifierChain(base_classifier, tagset_binerizer)
     #tagset_classifier = BinaryRelevance(base_classifier)
     #tagset_classifier = ClassifierChain(base_classifier)
     #tagset_classifier = custom_multi_label(base_classifier)
@@ -1217,7 +1327,6 @@ def build_tagset_classifier(building_list, target_building,\
 #                                 if word not in tagset.split('_')]
             negative_doc.append(' '.join(negative_sentence))
             negative_truths_dict[negative_srcid] = negative_tagsets
-            #pdb.set_trace()
     for i in range(0,50):
         # Add empty examples
         negative_srcid = gen_uuid()
@@ -1231,20 +1340,31 @@ def build_tagset_classifier(building_list, target_building,\
 
 
     ## Init Brick document
+    logging.info('Start adding Brick samples')
     if use_brick_flag:
-        brick_copy_num = int(len(learning_doc) * 0.02)
+        brick_copy_num = int(len(learning_phrase_dict) * 0.04)
         if brick_copy_num < 4:
             brick_copy_num = 4
-        brick_truths_dict = dict((gen_uuid(), [tagset]) \
-                                  for tagset in tagset_list\
-                                  for j in range(0, brick_copy_num))
-        for learning_srcid, true_tagsets in learning_truths_dict.items():
-            for true_tagset in set(true_tagsets):
-                brick_truths_dict[gen_uuid()] = [true_tagset]
+        #brick_truths_dict = dict((gen_uuid(), [tagset]) \
+        #                          for tagset in tagset_list\
+        #                          for j in range(0, brick_copy_num))
+        #for learning_srcid, true_tagsets in learning_truths_dict.items():
+        #    for true_tagset in set(true_tagsets):
+        #        brick_truths_dict[gen_uuid()] = [true_tagset]
+#
+        #brick_srcids = list(brick_truths_dict.keys())
+        #brick_doc = [brick_truths_dict[tagset_id][0].replace('_', ' ')
+        #                 for tagset_id in brick_srcids]
+        brick_truths_dict = dict()
+        brick_doc = list()
+        brick_srcids = list()
+        for tagset in tagset_list:
+            for j in range(0, brick_copy_num):
+                srcid = gen_uuid()
+                brick_srcids.append(srcid)
+                brick_truths_dict[srcid] = [tagset]
+                brick_doc.append(' '.join(tagset.split('_') * ceil(j/2)))
 
-        brick_srcids = list(brick_truths_dict.keys())
-        brick_doc = [brick_truths_dict[tagset_id][0].replace('_', ' ')
-                         for tagset_id in brick_srcids]
         """
         if eda_flag:
             for building in set(building_list + [target_building]):
@@ -1264,8 +1384,11 @@ def build_tagset_classifier(building_list, target_building,\
     brick_truth_mat = csr_matrix([tagset_binerizer.transform(\
                                   [brick_truths_dict[srcid]])[0] \
                                   for srcid in brick_srcids])
+    logging.info('Finished adding Brick samples')
 
+    logging.info('start tagset vectorizing')
     tagset_vectorizer.fit(learning_doc + test_doc + brick_doc)
+    logging.info('finished tagset vectorizing')
     if eda_flag:
         unlabeled_phrase_dict = make_phrase_dict(\
                                     test_sentence_dict, \
@@ -1326,7 +1449,6 @@ def build_tagset_classifier(building_list, target_building,\
                        for srcid in point_srcids]
     point_vect_doc = np.vstack([learning_vect_doc[learning_srcids.index(srcid)]
                                 for srcid in point_srcids])
-
 #    if use_brick_flag:
 #        truth_mat = vstack([truth_mat, brick_truth_mat])
     if eda_flag:
@@ -1343,7 +1465,9 @@ def build_tagset_classifier(building_list, target_building,\
 #                .toarray()
         learning_vect_doc = np.vstack([learning_vect_doc, unlabeled_vect_doc])
         #TODO: Check if learning_cet_Doct can be done without toarray()
+    logging.info('Start learning multi-label classifier')
     tagset_classifier.fit(learning_vect_doc, truth_mat.toarray())
+    logging.info('Finished learning multi-label classifier')
     #tagset_classifier.fit(coo_matrix(learning_vect_doc), truth_mat.toarray())
     point_classifier.fit(point_vect_doc, point_truth_mat)
 
@@ -1507,6 +1631,7 @@ def entity_recognition_from_ground_truth(building_list,
                                          crf_phrase_dict=None,
                                          crf_srcids=None
                                         ):
+    logging.info('Entity Recognition Get Started.')
     global tagset_list
     global total_srcid_dict
     assert len(building_list) == len(source_sample_num_list)
@@ -1847,6 +1972,7 @@ def entity_recognition_from_ground_truth(building_list,
                                          target_pred_certainty_dict,\
                                          target_srcids,\
                                          target_pred_point_dict,\
+                                         target_phrase_dict,\
                                             debug_flag)
     next_step_data = {
         'pred_tagsets_dict': target_pred_tagsets_dict,

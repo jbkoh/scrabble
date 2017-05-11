@@ -1,26 +1,25 @@
 {
   "location": [
-    "roof",
-    "wing",
+    "space",
     "zone",
     "lighting_zone",
     "hvac_zone",
     "room",
+    "server_room",
     "laboratory",
     "environment_box",
-    "freezer",
     "cold_box",
+    "freezer",
     "hot_box",
-    "server_room",
     "building",
-    "basement",
-    "outside",
+    "wing",
+    "roof",
     "city",
-    "floor",
-    "space"
+    "outside",
+    "basement",
+    "floor"
   ],
-  "roof": [],
-  "wing": [],
+  "space": [],
   "zone": [
     "lighting_zone",
     "hvac_zone"
@@ -28,28 +27,29 @@
   "lighting_zone": [],
   "hvac_zone": [],
   "room": [
+    "server_room",
     "laboratory",
     "environment_box",
-    "freezer",
     "cold_box",
-    "hot_box",
-    "server_room"
+    "freezer",
+    "hot_box"
   ],
+  "server_room": [],
   "laboratory": [
     "environment_box",
-    "freezer",
     "cold_box",
+    "freezer",
     "hot_box"
   ],
   "environment_box": [],
-  "freezer": [],
   "cold_box": [],
+  "freezer": [],
   "hot_box": [],
-  "server_room": [],
   "building": [],
-  "basement": [],
-  "outside": [],
+  "wing": [],
+  "roof": [],
   "city": [],
-  "floor": [],
-  "space": []
+  "outside": [],
+  "basement": [],
+  "floor": []
 }
