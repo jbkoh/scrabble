@@ -63,12 +63,12 @@ from brick_parser import pointTagsetList        as  point_tagsets,\
                          locationSubclassDict   as  location_subclass_dict,\
                          tagsetTree             as  tagset_tree
 #                         tagsetList as tagset_list
-#tagset_tree['networkadapter'] = list()
+tagset_tree['networkadapter'] = list()
 subclass_dict = dict()
 subclass_dict.update(point_subclass_dict)
 subclass_dict.update(equip_subclass_dict)
 subclass_dict.update(location_subclass_dict)
-#subclass_dict['networkadapter'] = list()
+subclass_dict['networkadapter'] = list()
 
 from building_tokenizer import nae_dict
 
@@ -88,9 +88,8 @@ point_tagsets += ['unknown', \
                   'medium_temperature_hot_water_discharge_temperature_load_shed',
                  ] #TODO: How to add these into the tree structure?
 
-
-
 tagset_list = point_tagsets + location_tagsets + equip_tagsets
+tagset_list.append('networkadapter')
 
 total_srcid_dict = dict()
 
@@ -185,10 +184,12 @@ def calc_features(sentence, building=None):
 
 def augment_tagset_tree(tagsets):
     global tagset_tree
+    global subclass_dict
     for tagset in tagsets:
         if '-' in tagset:
             classname = tagset.split('-')[0]
-            
+            tagset_tree[classname].append({tagset:[]})
+            subclass_dict[classname].append(tagset)
 
 
 def select_random_samples(building, \
@@ -2136,6 +2137,8 @@ def entity_recognition_from_crf(building_list,\
                                     given_srcids, crf_srcids,\
                                     tagset_list, eda_flag, use_brick_flag
                                    )
+    #augment_tagset_tree(tagset_list)
+    #pdb.set_trace()
 
     crf_pred_tagsets_dict, crf_pred_certainty_dict = \
                 tagsets_prediction(classifier, vectorizer, \
