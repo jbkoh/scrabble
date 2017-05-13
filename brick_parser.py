@@ -4,6 +4,7 @@
 
 from functools import reduce
 import pdb
+import code
 
 import rdflib
 from rdflib.namespace import RDFS
@@ -24,6 +25,16 @@ import rdflib
 import arrow
 
 from copy import deepcopy
+
+pointPostfixes = ['alarm', 'sensor', 'setpoint', 'command', 'status', 'meter']
+equipPostfixes = ['system', 'dhws', 'tower', 'chiller', 'coil', 'fan',
+                       'hws', 'storage', 'battery', 'condenser', 'unit', 'fcu',
+                       'vav', 'volume', 'economizer', 'hood', 'filter', 'vfd',
+                       'valve', 'condensor', 'damper', 'hx', 'exchanger',
+                       'thermostat', 'ahu', 'drive', 'heater', 'pump',
+                       'conditioning', 'ws', 'dhws', 'elevator', 'fcp',
+                       'panel', 'weather', 'generator', 'inverter', 'response',
+                       'cws', 'crac', 'equipment']
 
 
 # TODO: Check if a file is parsed or not and then load it or execute below.
@@ -74,7 +85,21 @@ else:
 
 
     #### Queries###
-    ###############
+    ##############
+    updateQueryPrefix= """
+            PREFIX rdf:<http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+            PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+            PREFIX brick: <https://brickschema.org/schema/1.0.1/Brick#>
+            INSERT DATA {
+            """
+    oneContent = """owl:equivalentClass {0} ;
+    """
+    subclassContent = """rdfs:subClassOf {0} .
+    """
+
+    updateQueryPostfix = """
+    }"""
+
     base_query = lambda where_clause: """
             PREFIX rdf:<http://www.w3.org/1999/02/22-rdf-syntax-ns#>
             PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
@@ -245,8 +270,11 @@ else:
             thing = row[0]
             subclass = thing.split('#')[-1]
             tagset = subclass.lower()
-            if tagset_type == 'point' and tagset.split('_')[-1] \
-               not in ['alarm', 'sensor', 'setpoint', 'command', 'status', 'meter']:
+            if tagset_type == 'point' and tagset.split('_')[-1]\
+               not in pointPostfixes:
+                continue
+            if tagset_type == 'equip' and tagset.split('_')[-1] \
+               not in equipPostfixes:
                 continue
             subclasses.append(subclass)
             tagsets.append(tagset)
@@ -255,16 +283,22 @@ else:
         tree = {upper_tagset: branches}
         return tree
 
-    def extract_all_subclass_tree(g, subclassName, rawFlag=False):
+    def extract_all_subclass_tree(g, subclassName, tagsetType, rawFlag=False):
             subclassDict = dict()
 #            res = g.query(strictSubclassesQuery(subclassName))
+            subclassTagset = subclassName.split(':')[1].lower()
             tagsetList = extract_all_subclasses(g, subclassName, \
                                                 sparql_query=strictSubclassesQuery,\
                                                 rawFlag=True)
-            subclassDict[subclassName.split(':')[1].lower()] = [tagset.lower() \
-                                                        for tagset in tagsetList]
+            tagsetList = [tagset for tagset in tagsetList if\
+                          (tagsetType=='equip' and tagset.split('_')[-1].lower() in equipPostfixes) or
+                          (tagsetType=='point' and tagset.split('_')[-1].lower() in pointPostfixes) or
+                          (tagsetType=='location')]
+            subclassDict[subclassTagset] = [tagset.lower() \
+                                            for tagset in tagsetList]
             for tagset in tagsetList:
-                subclassDict.update(extract_all_subclass_tree(g, 'brick:'+tagset))
+                subclassDict.update(\
+                    extract_all_subclass_tree(g, 'brick:'+tagset, tagsetType))
             return subclassDict
 
     def extract_all_superclasses(g, subclassName, rawFlag=False):
@@ -308,17 +342,39 @@ else:
                                     extract_all_subclasses(g, "brick:Status")+\
                                     extract_all_subclasses(g, "brick:Timer")+\
                                     extract_all_subclasses(g, "brick:Setpoint")
+
+    content = """
+    """
+    cnt = 0
+    entity_maker = lambda tagset: '_'.join([tag[0].upper() + tag[1:] for tag in tagset.split('_')])
     for pointTagset in pointTagsetList:
+            origPointEntityName = 'brick:' + entity_maker(pointTagset)
+            newPointEntityName = 'brick:'
             if 'supply' in pointTagset:
                     newPointTagset = pointTagset.replace('supply', 'discharge')
                     if newPointTagset not in pointTagsetList:
                             pointTagsetList.append(newPointTagset)
+                            newPointEntityName += entity_maker(newPointTagset)
             if 'discharge' in pointTagset:
                     newPointTagset = pointTagset.replace('discharge', 'supply')
                     if newPointTagset not in pointTagsetList:
                             pointTagsetList.append(newPointTagset)
+                            newPointEntityName += entity_maker(newPointTagset)
+            if newPointEntityName != 'brick:':
+                cnt += 1
+                res = g.query(directSuperclassesQuery(origPointEntityName))
+                for row in res:
+                    superclass = 'brick:' + row[0].split('#')[-1].split(':')[-1]
+                    break
+                content += """{0} a owl:Class ;
+                """.format(newPointEntityName)
+                content += oneContent.format(origPointEntityName)
+                content += subclassContent.format(superclass)
+    print(cnt)
 
-
+    updateQuery = updateQueryPrefix + content + updateQueryPostfix
+    g.update(updateQuery)
+    
     equipTagsetList = extract_all_subclasses(g, "brick:Equipment")
     locationTagsetList = extract_all_subclasses(g, "brick:Location")
     measureTagsetList = extract_all_subclasses(g, "brick:MeasurementProperty")
@@ -362,10 +418,14 @@ else:
             except:
                     pass
 
-    for i, pointTagset in enumerate(pointTagsetList):
-            if 'glycool' in pointTagset:
-                    del pointTagsetList[i]
+    pointTagsetList = [tagset for tagset in pointTagsetList if 'glycool' not in tagset]
+    pointTagsetList = [tagset for tagset in pointTagsetList\
+                       if tagset.split('_')[-1] in pointPostfixes]
+    equipTagsetList = [tagset for tagset in equipTagsetList\
+                       if tagset.split('_')[-1] in equipPostfixes]
 
+    with open('brick/point_tagsets.json', 'w') as fp:
+        json.dump(pointTagsetList, fp, indent=2)
 
     # validation code to find incorrect subclass relationship
     for tagset in pointTagsetList:
@@ -379,16 +439,36 @@ else:
             print(super_tagsets)
             pdb.set_trace()
             """
+    adder = lambda x, y: x + y
+
+    pointSubclassDict = dict()
     beginTime = arrow.get()
-    equipSubclassDict = extract_all_subclass_tree(g, 'brick:Equipment')
+    for head in ['Sensor', 'Alarm', 'Status', 'Setpoint', 'Command', 'Meter']:
+        pointSubclassDict.update(extract_all_subclass_tree(g, 'brick:'+head, 'point'))
+    for tagset in set(reduce(adder, pointSubclassDict.values(), [])):
+        if not pointSubclassDict.get(tagset):
+            pointSubclassDict[tagset] = []
+    endTime = arrow.get()
+    with open('brick/point_subclass_dict.json', 'w') as fp:
+        json.dump(pointSubclassDict, fp, indent=2)
+    print('PointSubclassDict construction time: {0}'.format(endTime-beginTime))
+
+    beginTime = arrow.get()
+    equipSubclassDict = extract_all_subclass_tree(g, 'brick:Equipment', 'equip')
+    for tagset in set(reduce(adder, equipSubclassDict.values(), [])):
+        if not equipSubclassDict.get(tagset):
+            equipSubclassDict[tagset] = []
     with open('brick/equip_subclass_dict.json', 'w') as fp:
         json.dump(equipSubclassDict, fp, indent=2)
     endTime = arrow.get()
 
     print('EquipmentSubclassDict construction time: {0}'.format(endTime-beginTime))
     beginTime = arrow.get()
-    locationSubclassDict = extract_all_subclass_tree(g, 'brick:Location')
+    locationSubclassDict = extract_all_subclass_tree(g, 'brick:Location', 'location')
     endTime = arrow.get()
+    for tagset in set(reduce(adder, locationSubclassDict.values(), [])):
+        if not locationSubclassDict.get(tagset):
+            locationSubclassDict[tagset] = []
     print('LocationSubclassDict construction time: {0}'.format(endTime-beginTime))
     with open('brick/location_subclass_dict.json', 'w') as fp:
         json.dump(locationSubclassDict, fp, indent=2)
@@ -397,20 +477,15 @@ else:
     tagsetTree = dict()
     for head in ['Sensor', 'Alarm', 'Status', 'Setpoint', 'Command', 'Meter']:
         tagsetTree.update(construct_subclass_tree(g, 'brick:'+head, 'point'))
-    for head in ['Location', 'Equipment']:
-        tagsetTree.update(construct_subclass_tree(g, 'brick:'+head, 'other'))
+    for head in ['Equipment']:
+        tagsetTree.update(construct_subclass_tree(g, 'brick:'+head, 'equip'))
+    for head in ['Location']:
+        tagsetTree.update(construct_subclass_tree(g, 'brick:'+head, 'location'))
     with open('brick/tagset_tree.json', 'w') as fp:
         json.dump(tagsetTree, fp, indent=2)
 
     beginTime = arrow.get()
     #TODO: Validate if Sensor is detected by this.
-    pointSubclassDict = dict()
-    for head in ['Sensor', 'Alarm', 'Status', 'Setpoint', 'Command', 'Meter']:
-        pointSubclassDict.update(extract_all_subclass_tree(g, 'brick:'+head))
-    endTime = arrow.get()
-    with open('brick/point_subclass_dict.json', 'w') as fp:
-        json.dump(pointSubclassDict, fp, indent=2)
-    print('PointSubclassDict construction time: {0}'.format(endTime-beginTime))
 
     tagsetList = pointTagsetList + equipTagsetList + locationTagsetList + measureTagsetList + resourceTagsetList
     separater = lambda s:s.split('_')
@@ -527,5 +602,3 @@ if __name__=='__main__':
         json.dump(equipTagsetList, fp, indent=2)
     with open('brick/location_tagsets.json', 'w') as fp:
         json.dump(locationTagsetList, fp, indent=2)
-    with open('brick/point_tagsets.json', 'w') as fp:
-        json.dump(pointTagsetList, fp, indent=2)
