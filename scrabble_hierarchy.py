@@ -2411,11 +2411,12 @@ def entity_recognition_from_crf(building_list,\
     #augment_tagset_tree(tagset_list)
     #pdb.set_trace()
 
-    crf_pred_tagsets_dict, crf_pred_certainty_dict = \
+    crf_pred_tagsets_dict = \
                 tagsets_prediction(classifier, vectorizer, \
                                    binerizer, crf_phrase_dict, \
                                    crf_srcids, source_target_buildings,
                                    eda_flag, point_classifier)
+
     crf_token_usage_dict = determine_used_tokens_multiple(\
                                 crf_sentence_dict, crf_token_label_dict, \
                                 crf_pred_tagsets_dict, crf_srcids)
