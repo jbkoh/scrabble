@@ -2349,9 +2349,10 @@ def entity_recognition_from_crf(building_list,\
                                 token_type='justseparate',\
                                 label_type='label',\
                                 use_cluster_flag=False,\
-                                use_brick_flag=False,\
+                                use_brick_flag=True,\
                                 eda_flag=False,\
-                                debug_flag=False):
+                                debug_flag=False,
+                                n_jobs=4):
 
     global tagset_list
     global total_srcid_dict
@@ -2396,13 +2397,16 @@ def entity_recognition_from_crf(building_list,\
     extend_tagset_list(reduce(adder, \
                 [given_truths_dict[srcid] for srcid in given_srcids]\
                 + [crf_truths_dict[srcid] for srcid in crf_srcids], []))
+    source_target_buildings = list(set(building_list + [target_building]))
     classifier, vectorizer, binerizer, point_classifier = \
             build_tagset_classifier(building_list, target_building,\
                                     crf_sentence_dict, crf_token_label_dict,\
                                     given_phrase_dict, crf_phrase_dict,\
                                     given_truths_dict,\
                                     given_srcids, crf_srcids,\
-                                    tagset_list, eda_flag, use_brick_flag
+                                    tagset_list, eda_flag, use_brick_flag,
+                                    source_target_buildings,
+                                    n_jobs,
                                    )
     #augment_tagset_tree(tagset_list)
     #pdb.set_trace()
@@ -2571,7 +2575,8 @@ if __name__=='__main__':
                         type=str,
                         help='Tagset classifier type. one of RandomForest, \
                               StructuredCC.',
-                        dest='tagset_classifier_type')
+                        dest='tagset_classifier_type',
+                        default='StructuredCC')
 
     args = parser.parse_args()
 
@@ -2638,7 +2643,8 @@ if __name__=='__main__':
                 use_cluster_flag=args.use_cluster_flag,\
                 use_brick_flag=args.use_brick_flag,\
                 eda_flag=args.eda_flag,
-                debug_flag=args.debug_flag)
+                debug_flag=args.debug_flag,
+                n_jobs=args.n_jobs)
     elif args.prog == 'init':
         init()
     else:
