@@ -882,10 +882,16 @@ def tagsets_evaluation(truths_dict, pred_tagsets_dict, pred_certainty_dict,\
                     pdb.set_trace()
         sorted_result_dict[srcid] = one_result
 
-    point_precision = float(point_correct_cnt) \
-                        / (point_correct_cnt + point_incorrect_cnt)
-    point_recall = float(point_correct_cnt) \
-                        / (point_correct_cnt + empty_point_cnt)
+    precision_total = point_correct_cnt + point_incorrect_cnt
+    recall_total = point_correct_cnt + empty_point_cnt
+    if precision_total == 0:
+        point_precision = 0
+    else:
+        point_precision = float(point_correct_cnt) / precision_total
+    if recall_total == 0:
+        point_recall = 0
+    else:
+        point_recall = float(point_correct_cnt) / recall_total
     precision = float(correct_cnt) / len(srcids)
     print('------------------------------------result---------------')
     print('point precision: {0}'.format(point_precision))
@@ -894,14 +900,19 @@ def tagsets_evaluation(truths_dict, pred_tagsets_dict, pred_certainty_dict,\
         print('rate points not found in source \
               among sensors where point is not found: \n\t{0}'\
               .format(undiscovered_point_cnt / float(empty_point_cnt)))
-    print('sensors where a point is not found: ', empty_point_cnt\
-                                               /float(incorrect_cnt),\
+    if incorrect_cnt == 0:
+        notfoundratio = 0
+        incorrectratio = 0
+        unknownratio = 0
+    else:
+        notfoundratio = empty_point_cnt / float(incorrect_cnt)
+        incorrectratio = point_incorrect_cnt / float(incorrect_cnt)
+        unknownratio = unknown_reason_cnt / float(incorrect_cnt)
+    print('sensors where a point is not found: ', notfoundratio, 
                                 empty_point_cnt)
-    print('sensors where incorrect points are found: ', point_incorrect_cnt\
-                                                     /float(incorrect_cnt),\
+    print('sensors where incorrect points are found: ', incorrectratio,
                                       point_incorrect_cnt)
-    print('unknown reason: ', unknown_reason_cnt\
-                              /float(incorrect_cnt),\
+    print('unknown reason: ', unknownratio,
                               unknown_reason_cnt)
     print('-----------')
     result_dict['point_precision'] = point_precision
