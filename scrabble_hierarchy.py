@@ -33,6 +33,8 @@ from sklearn.ensemble import RandomForestClassifier, AdaBoostClassifier
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.svm import LinearSVC, SVC
 from sklearn.multiclass import OneVsRestClassifier
+from sklearn.feature_selection import SelectFromModel
+from sklearn.pipeline import Pipeline
 from scipy.sparse import vstack, csr_matrix, hstack, issparse, coo_matrix,\
                          lil_matrix
 from sklearn.preprocessing import MultiLabelBinarizer
@@ -823,12 +825,15 @@ def tagsets_evaluation(truths_dict, pred_tagsets_dict, pred_certainty_dict,\
             'tagsets': pred_tagsets,
             'certainty': pred_certainty_dict[srcid]
         }
+        need_review = False
         if set(true_tagsets) == set(pred_tagsets):
             correct_cnt += 1
             one_result['correct?'] = True
             result_dict['correct'][srcid] = one_result
             #result_dict['correct'][srcid] = pred_tagsets
             point_correct_cnt += 1
+            print('OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO')
+            need_review = True
         else:
             incorrect_cnt += 1
             one_result['correct?'] = False
@@ -838,7 +843,6 @@ def tagsets_evaluation(truths_dict, pred_tagsets_dict, pred_certainty_dict,\
                 if tagset in point_tagsets:
                     true_point = tagset
                     break
-            try:
                 assert true_point
                 found_point = None
                 #found_point = pred_point_dict[srcid]
@@ -848,38 +852,37 @@ def tagsets_evaluation(truths_dict, pred_tagsets_dict, pred_certainty_dict,\
                         break
                 if found_point in ['none', None]:
                     empty_point_cnt += 1
-                    assert False
+                    print('EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE')
+                    need_review = True
                 elif found_point != true_point:
                     point_incorrect_cnt += 1
+                    print('XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX')
                     print("INCORRECT POINT ({0}) FOUND: {1} -> {1}"\
                           .format(srcid, true_point, found_point))
-                    assert False
+                    need_review = True
                 else:
                     unknown_reason_cnt += 1
                     point_correct_cnt += 1
-                #    pdb.set_trace()
-            except:
-                print('point not found')
-                unknown_reason_cnt += 1
-                if debug_flag:
-                    print('####################################################')
-                    print('TRUE: {0}'.format(true_tagsets))
-                    print('PRED: {0}'.format(pred_tagsets))
-                    if true_point:
-                        #print('point num in source building: {0}'\
-                        #      .format(found_point_cnt_dict[true_point]))
-                        pass
-                    else:
-                        print('no point is included here')
-                    source_srcid = None
-                    source_idx = None
-                    for temp_srcid, tagsets in truths_dict.items():
-                        if true_point and true_point in tagsets:
-                            source_srcid = temp_srcid
-                            source_idx = srcids.index(source_srcid)
-                            break
-                    print('####################################################')
-                    pdb.set_trace()
+                    print('OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO')
+                    need_review = True
+        if need_review and debug_flag:
+            print('TRUE: {0}'.format(true_tagsets))
+            print('PRED: {0}'.format(pred_tagsets))
+            if true_point:
+                #print('point num in source building: {0}'\
+                #      .format(found_point_cnt_dict[true_point]))
+                pass
+            else:
+                print('no point is included here')
+            source_srcid = None
+            source_idx = None
+            for temp_srcid, tagsets in truths_dict.items():
+                if true_point and true_point in tagsets:
+                    source_srcid = temp_srcid
+                    source_idx = srcids.index(source_srcid)
+                    break
+            print('####################################################')
+            pdb.set_trace()
         sorted_result_dict[srcid] = one_result
 
     precision_total = point_correct_cnt + point_incorrect_cnt
@@ -1475,10 +1478,14 @@ def build_tagset_classifier(building_list, target_building,\
 #    source_target_buildings = list(set(building_list + [target_building]))
     #base_classifier = DecisionTreeClassifier()
     #base_classifier = SGDClassifier()
-    base_classifier = LinearSVC(loss='hinge', tol=1e-5,\
-                                max_iter=2000, C=2,
-                                fit_intercept=False,
-                                class_weight='balanced')
+
+    #base_classifier = LinearSVC(loss='hinge', tol=1e-5,\
+    #                            max_iter=2000, C=2,
+    #                            fit_intercept=False,
+    #                            class_weight='balanced')
+    base_classifier = Pipeline([('feature_selection', SelectFromModel(LinearSVC())),
+                                ('classification', RandomForestClassifier())
+                               ])
 
     #base_classifier = GaussianProcessClassifier()
 #    base_classifier = QuadraticDiscriminantAnalysis()
@@ -2031,10 +2038,12 @@ def entity_recognition_from_ground_truth(building_list,
                                 eda_flag,\
                                 point_classifier)
     pdb.set_trace()
-    learning_result_dict = tagsets_evaluation(learning_truths_dict, \
-                                         learning_pred_tagsets_dict, \
-                                         learning_pred_certainty_dict,\
-                                         sorted(learning_srcids),\
+    eval_learning_srcids = deepcopy(learning_srcids)
+    random.shuffle(eval_learning_srcids)
+    learning_result_dict = tagsets_evaluation(learning_truths_dict,
+                                         learning_pred_tagsets_dict,
+                                         learning_pred_certainty_dict,
+                                         eval_learning_srcids,
                                          learning_pred_point_dict,\
                                          phrase_dict,\
                                          debug_flag)
@@ -2231,10 +2240,12 @@ def entity_recognition_from_ground_truth(building_list,
                                 source_target_buildings,\
                                 eda_flag,\
                                 point_classifier)
+    eval_target_srcids = deepcopy(target_srcids)
+    random.shuffle(eval_target_srcids)
     target_result_dict = tagsets_evaluation(target_truths_dict, \
                                          target_pred_tagsets_dict, \
                                          target_pred_certainty_dict,\
-                                         target_srcids,\
+                                         eval_target_srcids,\
                                          target_pred_point_dict,\
                                          target_phrase_dict,\
                                             debug_flag)
@@ -2411,8 +2422,10 @@ def entity_recognition_from_crf(building_list,\
     #augment_tagset_tree(tagset_list)
     #pdb.set_trace()
 
-    crf_pred_tagsets_dict = \
-                tagsets_prediction(classifier, vectorizer, \
+    crf_pred_tagsets_dict, \
+    crf_pred_certainty_dict, \
+    crf_pred_point_dict = tagsets_prediction(\
+                                   classifier, vectorizer, \
                                    binerizer, crf_phrase_dict, \
                                    crf_srcids, source_target_buildings,
                                    eda_flag, point_classifier)
@@ -2425,9 +2438,11 @@ def entity_recognition_from_crf(building_list,\
                                      for srcid, usage \
                                      in crf_token_usage_dict.items())
 
+    tagsets_evaluation(crf_truths_dict, crf_pred_tagsets_dict,
+                       crf_pred_certainty_dict, crf_srcids,
+                       crf_pred_point_dict, crf_phrase_dict, debug_flag)
 
     pdb.set_trace()
-
 
 
 #TODO: Make this more generic to apply to other functions
