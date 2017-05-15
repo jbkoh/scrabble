@@ -22,8 +22,7 @@
     ],
     "s": [
       ["occ.s", "status"],
-      ["\\d+s", "leftidentifier"],
-      ["chws", "supply"]
+      ["\\d+s", "leftidentifier"]
     ],
     "main":[
       ["main.fan", "rightidentifier"]
@@ -52,14 +51,10 @@
     ],
     "h": [
       ["h2o", "none"],
-      ["rm.h", "humidity"],
-      ["ohm", "heating"]
+      ["rm.h", "humidity"]
     ],
     "o": [
-      ["h2o", "none"],
-      ["ocm", "occupied"],
-      ["ohm", "occupied"],
-      ["oclg", "occupied"]
+      ["h2o", "none"]
     ],
     "flt": [
       ["flt-rst", "fault"],
@@ -72,24 +67,14 @@
       ["fan.c", "command"],
       ["ef\\d.c", "command"],
       ["ef.c", "command"],
-      ["\\d+c", "leftidentifier"],
-      ["ocmin", "cooling"],
-      ["mnc", "cooling"],
-      ["cmax", "cooling"]
+      ["\\d+c", "leftidentifier"]
     ],
     "d": [
       ["\\d+d", "leftidentifier"]
     ],
-    "r": [
-      ["mtwr", "return"],
-      ["hthwr", "return"],
-      ["chwr", "return"]
-    ],
     "occ": [
       ["occ.cmd", "occupied"], 
-      ["occhtg", "occupied"], 
       ["occ.sen", "occupancy"], 
-      ["occsen", "occupancy"], 
       ["t.occ", "occupancy"],
       ["temp.occ", "occupancy"],
       ["occ.sts", "occupancy"],
@@ -110,10 +95,7 @@
       ["cwdp.sp", "setpoint"],
       ["dhw.sp", "setpoint"],
       ["hwdp.sp", "setpoint"],
-      ["sa.sp", "static_pressure"],
-      ["flosp", "setpoint"],
-      ["clgsp", "setpoint"],
-      ["htgsp", "setpoint"]
+      ["sa.sp", "static_pressure"]
     ],
     "temp": [
       [".temp\n", "temperature"],
@@ -123,7 +105,6 @@
       ["ret.temp", "temperature"],
       ["temp.occ", "temporary"],
       ["air.temp", "temperature"]
-      ["hitemp", "temperature"]
     ],
     "f": [
       ["\\d.f", "flow"], 
@@ -143,9 +124,6 @@
     ],
     "set":[
       ["humd.set", "setpoint"]
-    ],
-    "p": [
-      ["chwp", "pump"]
     ]
   },
   "ap_m": {
@@ -154,13 +132,10 @@
       ["\\d.a", "leftidentifier"]
     ],
     "c": [
-      ["ocm", "cooling"],
-      ["ocm", "cooling"],
       ["\\d+c", "leftidentifier"],
       ["dpr.c", "command"],
       ["w.c", "cool"],
-      ["chwp-c", "command"],
-      ["cmax", "cooling"]
+      ["chwp-c", "command"]
     ],
     "tmp": [
       ["drv.tmp", "temperature"]
@@ -175,18 +150,15 @@
       ["mtw.t", "temperature"],
       ["chw..t", "temperature"],
       ["sa.t", "temperature"],
-      ["sat", "temperature"],
       ["ra.t", "temperature"],
       ["ma.t", "temperature"],
       ["uflr.t", "temperature"],
       ["hthwr.t", "temperature"],
       ["oa.t", "temperature"]
-      ["oat", "temperature"]
     ],
     "e": [
       ["e\\d", "networkadapter-e"],
       ["e.sp", "exhaust_air"],
-      ["esp", "exhaust_air"],
       ["\\d+e", "leftidentifier"],
       ["evfd", "exhaust_fan"]
     ],
@@ -195,7 +167,6 @@
     ],
     "sp": [
       ["sa.sp", "setpoint"],
-      ["sasp", "static_pressure"],
       ["htg.sp", "setpoint"],
       ["flow.sp", "setpoint"],
       ["aclg.sp", "setpoint"],
@@ -204,15 +175,12 @@
       ["chwdp.sp", "setpoint"],
       ["ocmnc.sp", "setpoint"],
       ["e.sp", "static_pressure"],
-      ["esp", "static_pressure"],
       ["mtw.sp", "setpoint"]
     ],
     "s": [
       ["s\\d", "supply_fan"],
       ["s\\-\\d", "networkadapter-s"],
-      ["chwp.s\\n", "status"],
-      ["chws", "system"],
-      ["mtws": "supply"]
+      ["chwp.s\\n", "status"]
     ],
     "th": [
       ["\\dth", "rightidentifier"]
@@ -222,8 +190,7 @@
     ],
     "p": [
       ["( |\\.)p\\d", "pump"],
-      ["dpr.p", "position"],
-      ["chwp", "pump"]
+      ["dpr.p", "position"]
     ],
     "d": [
       ["\\d+d", "leftidentifier"]
@@ -239,9 +206,7 @@
       ["\\d+j", "leftidentifier"]
     ],
     "h": [
-      ["\\d+h", "leftidentifier"],
-      ["ohm", "heating"],
-      ["hmax", "heating"],
+      ["\\d+h", "leftidentifier"]
     ],
     "ex": [
       ["ex.fans", "exhaust"]
@@ -252,8 +217,7 @@
     ],
     "w": [
       ["\\d+w", "leftidentifier"],
-      ["w.c", "warm"],
-      ["hthwr", "water"]
+      ["w.c", "warm"]
     ],
     "temp": [
       ["temp.setpoint", "temperature"],
@@ -279,18 +243,6 @@
     ],
     "variable":[
       ["system variable", "none"]
-    ],
-    "o": [
-      ["ocm", "occupied"],
-      ["ohm", "occupied"],
-      ["oclg", "occupied"],
-      ["ohtg", "occupied"]
-    ],
-    "fl":[
-      ["htfl", "flow"]
-    ],
-    "r":[
-      ["chwr", "return"]
     ]
   },
   "music": {

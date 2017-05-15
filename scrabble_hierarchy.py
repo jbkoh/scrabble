@@ -817,6 +817,7 @@ def tagsets_evaluation(truths_dict, pred_tagsets_dict, pred_certainty_dict,\
     empty_point_cnt = 0
     unknown_reason_cnt = 0
     undiscovered_point_cnt = 0
+    invalid_point_cnt = 0
 #    for srcid, pred_tagsets in pred_tagsets_dict.items():
     for srcid in srcids:
         pred_tagsets = pred_tagsets_dict[srcid]
@@ -826,6 +827,11 @@ def tagsets_evaluation(truths_dict, pred_tagsets_dict, pred_certainty_dict,\
             'certainty': pred_certainty_dict[srcid]
         }
         need_review = False
+        true_point = None
+        for tagset in true_tagsets:
+            if tagset in point_tagsets:
+                true_point = tagset
+                break
         if set(true_tagsets) == set(pred_tagsets):
             correct_cnt += 1
             one_result['correct?'] = True
@@ -838,33 +844,30 @@ def tagsets_evaluation(truths_dict, pred_tagsets_dict, pred_certainty_dict,\
             incorrect_cnt += 1
             one_result['correct?'] = False
             result_dict['incorrect'][srcid] = one_result
-            true_point = None
-            for tagset in true_tagsets:
+            if not true_point:
+                invalid_point_cnt += 1
+                continue
+            found_point = None
+            #found_point = pred_point_dict[srcid]
+            for tagset in pred_tagsets:
                 if tagset in point_tagsets:
-                    true_point = tagset
+                    found_point = tagset
                     break
-                assert true_point
-                found_point = None
-                #found_point = pred_point_dict[srcid]
-                for tagset in pred_tagsets:
-                    if tagset in point_tagsets:
-                        found_point = tagset
-                        break
-                if found_point in ['none', None]:
-                    empty_point_cnt += 1
-                    print('EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE')
-                    need_review = True
-                elif found_point != true_point:
-                    point_incorrect_cnt += 1
-                    print('XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX')
-                    print("INCORRECT POINT ({0}) FOUND: {1} -> {1}"\
-                          .format(srcid, true_point, found_point))
-                    need_review = True
-                else:
-                    unknown_reason_cnt += 1
-                    point_correct_cnt += 1
-                    print('OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO')
-                    need_review = True
+            if found_point in ['none', None]:
+                empty_point_cnt += 1
+                print('EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE')
+                need_review = True
+            elif found_point != true_point:
+                point_incorrect_cnt += 1
+                print('XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX')
+                print("INCORRECT POINT ({0}) FOUND: {1} -> {1}"\
+                      .format(srcid, true_point, found_point))
+                need_review = True
+            else:
+                unknown_reason_cnt += 1
+                point_correct_cnt += 1
+                print('OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO')
+                need_review = True
         if need_review and debug_flag:
             print('TRUE: {0}'.format(true_tagsets))
             print('PRED: {0}'.format(pred_tagsets))
@@ -917,6 +920,7 @@ def tagsets_evaluation(truths_dict, pred_tagsets_dict, pred_certainty_dict,\
                                       point_incorrect_cnt)
     print('unknown reason: ', unknownratio,
                               unknown_reason_cnt)
+    print('invalid points: ', invalid_point_cnt)
     print('-----------')
     result_dict['point_precision'] = point_precision
     result_dict['precision'] = precision
@@ -2587,7 +2591,7 @@ if __name__=='__main__':
                         type=int,
                         help='Number of processes for multiprocessing',
                         dest='n_jobs',
-                        default=1)
+                        default=4)
     parser.add_argument('-ct',
                         type=str,
                         help='Tagset classifier type. one of RandomForest, \

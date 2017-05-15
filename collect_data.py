@@ -20,13 +20,13 @@ end_time_bd2_1 = arrow.get(datetime(2017,2,8), PST).datetime
 
 #begin_time_bd3 = arrow.get(datetime(2017,2,1), PST).datetime
 #end_time_bd3 = arrow.get(datetime(2017,2,20), PST).datetime
-begin_time_bd2_2 = arrow.get(datetime(2016,3,10), PST).datetime
-end_time_bd2_2 = arrow.get(datetime(2016,3,30), PST).datetime
+begin_time_bd2_2 = arrow.get(datetime(2015,1,10), PST).datetime
+end_time_bd2_2 = arrow.get(datetime(2017,5,10), PST).datetime
 
 #building_name_list = ['AP_M']
 #building_name_list = ['Music']
 #building_name_list = ['AP_M', 'EBU3B', 'SME', 'Music']
-building_name_list = ['EBU3B']
+building_name_list = ['AP_M']
 basedir = "data"
 header = ['value']
 index_label="time"
@@ -167,7 +167,7 @@ if __name__ == "__main__":
         if cnt%500==0:
             logger.info("Data download success ({0}, {1})"\
                     .format(building_name, cnt))
-        with open("metadata/%s_sentence_dict.json"%building_name.lower(), "r") \
+        with open("metadata/%s_sentence_dict_justseparate.json"%building_name.lower(), "r") \
                 as fp:
             sentence_dict = json.load(fp)
         srcid_list = sentence_dict.keys()
