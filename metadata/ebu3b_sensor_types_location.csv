@@ -385,9 +385,9 @@ Unique Identifier,BACnet Device ID,BACnet Object Type,BACnet Object ID,Johnson C
 506_2_3010318,506,2,3010318,bsbm_pv current,bsbm_pv current,pv system output,3.0,pv system output,pv current output sensor,,,unknown,0,,bsb,,analog value
 506_2_3009736,506,2,3009736,ebu2_pv current,ebu2_pv current,pv system output,3.0,pv system output,pv current output sensor,,,unknown,0,,ebu2,,analog value
 506_2_3009760,506,2,3009760,hubbs_pv current,nae 06 hubbs_pv current,pv system output,3.0,pv system output,pv current output sensor,,,unknown,0,,hubbs hall,,analog value
-506_2_3010315,506,2,3010315,bsbm_solar rad,bsbm_solar rad,sunbeams are good,35.0,sunbeams are good,solar radiance,,,unknown,0,,bsb,,analog value
-506_2_3009733,506,2,3009733,ebu2_solar rad,ebu2_solar rad,sunbeams are good,35.0,sunbeams are good,solar radiance,,,unknown,0,,ebu2,,analog value
-506_2_3009742,506,2,3009742,hubbs_solar rad,nae 06 hubbs_solar rad,sunbeams are good,35.0,sunbeams are good,solar radiance,,,unknown,0,,hubbs hall,,analog value
+506_2_3010315,506,2,3010315,bsbm_solar rad,bsbm_solar rad,sunbeams are good,35.0,sunbeams are good,solar radiance sensor,,,unknown,0,,bsb,,analog value
+506_2_3009733,506,2,3009733,ebu2_solar rad,ebu2_solar rad,sunbeams are good,35.0,sunbeams are good,solar radiance sensor,,,unknown,0,,ebu2,,analog value
+506_2_3009742,506,2,3009742,hubbs_solar rad,nae 06 hubbs_solar rad,sunbeams are good,35.0,sunbeams are good,solar radiance sensor,,,unknown,0,,hubbs hall,,analog value
 505_0_3000485,505,0,3000485,ebu3b sf1 ai1 actual,nae 05 n2 1 nae5 t1 vnd41 sf 1 vfd 41 ai1 actual,ai 1 actual,98.0,ai 1 actual,unknown,,rm b102c,supply fan,1,ahu supply fan,ebu3b,,analog input
 505_0_3000525,505,0,3000525,ebu3b sf2 ai1 actual,nae 05 n2 1 nae5 t1 vnd42 sf 2 vfd 42 ai1 actual,ai 1 actual,98.0,ai 1 actual,unknown,,rm b102c,supply fan,2,ahu supply fan,ebu3b,,analog input
 505_0_3000565,505,0,3000565,ebu3b sf3 ai1 actual,nae 05 n2 1 nae5 t1 vnd43 sf 3 vfd 43 ai1 actual,ai 1 actual,98.0,ai 1 actual,unknown,,rm b102c,supply fan,3,ahu supply fan,ebu3b,,analog input

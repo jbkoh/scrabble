@@ -45,10 +45,15 @@
       ["oa.t", "temperature"],
       ["osa.t", "temperature"],
       ["\\d.t\n", "temperature"],
+      ["\\dt\n", "temperature"],
       ["air.t\n", "temperature"],
       ["ma.t", "temperature"],
       ["sa.t", "temperature"],
-      ["chws.t", "temperature"]
+      ["r-t", "temperature"],
+      ["r t", "temperature"],
+      ["chws.t", "temperature"],
+      ["dhws.t", "temperature"],
+      ["\\d.t", "temperature"]
     ],
     "h": [
       ["h2o", "none"],
@@ -59,7 +64,8 @@
       ["h2o", "none"],
       ["ocm", "occupied"],
       ["ohm", "occupied"],
-      ["oclg", "occupied"]
+      ["oclg", "occupied"],
+      ["pid.o", "none"]
     ],
     "flt": [
       ["flt-rst", "fault"],
@@ -68,7 +74,7 @@
     "rd": [["3rd", "rightidentifier"]],
     "c": [
       ["dpr.c", "command"], 
-      ["w.c", "cool"], 
+      ["w.c.adj", "cool"], 
       ["fan.c", "command"],
       ["ef\\d.c", "command"],
       ["ef.c", "command"],
@@ -113,7 +119,9 @@
       ["sa.sp", "static_pressure"],
       ["flosp", "setpoint"],
       ["clgsp", "setpoint"],
-      ["htgsp", "setpoint"]
+      ["htgsp", "setpoint"],
+      ["monsp", "setpoint"],
+      ["diff.sp", "speed"]
     ],
     "temp": [
       [".temp\n", "temperature"],
@@ -122,7 +130,7 @@
       ["low.temp", "temperature"], 
       ["ret.temp", "temperature"],
       ["temp.occ", "temporary"],
-      ["air.temp", "temperature"]
+      ["air.temp", "temperature"],
       ["hitemp", "temperature"]
     ],
     "f": [
@@ -139,13 +147,18 @@
       ["humd.set", "humidity"],
       ["low.humd", "humidity"],
       ["lo.humd", "humidity"],
-      ["hi.humd", "humidity"]
+      ["hi.humd", "humidity"],
+      ["humd.pan", "humidifier"]
     ],
     "set":[
       ["humd.set", "setpoint"]
     ],
     "p": [
       ["chwp", "pump"]
+    ],
+    "a": [
+      ["\\d+a", "leftidentifier"],
+      ["\\d.a", "leftidentifier"]
     ]
   },
   "ap_m": {
@@ -160,14 +173,16 @@
       ["dpr.c", "command"],
       ["w.c", "cool"],
       ["chwp-c", "command"],
-      ["cmax", "cooling"]
+      ["cmax", "cooling"],
+      ["mnc", "cooling"]
     ],
     "tmp": [
       ["drv.tmp", "temperature"]
     ],
     "l": [
       ["lvfd", "rightidentifier"],
-      ["\\dl", "leftidentifier"]
+      ["\\dl", "leftidentifier"],
+      ["lfil", "rightidentifier"]
     ],
     "t": [
       ["zn.t", "temperature"],
@@ -180,7 +195,7 @@
       ["ma.t", "temperature"],
       ["uflr.t", "temperature"],
       ["hthwr.t", "temperature"],
-      ["oa.t", "temperature"]
+      ["oa.t", "temperature"],
       ["oat", "temperature"]
     ],
     "e": [
@@ -200,25 +215,26 @@
       ["flow.sp", "setpoint"],
       ["aclg.sp", "setpoint"],
       ["sp reset", "static_pressure"],
-      ["building.sp.ease", "unknown"],
+      ["building.sp.ease", "none"],
       ["chwdp.sp", "setpoint"],
       ["ocmnc.sp", "setpoint"],
       ["e.sp", "static_pressure"],
       ["esp", "static_pressure"],
-      ["mtw.sp", "setpoint"]
+      ["mtw.sp", "setpoint"],
+      ["c.sp", "setpoint"]
     ],
     "s": [
       ["s\\d", "supply_fan"],
       ["s\\-\\d", "networkadapter-s"],
       ["chwp.s\\n", "status"],
       ["chws", "system"],
-      ["mtws": "supply"]
+      ["mtws", "supply"]
     ],
     "th": [
       ["\\dth", "rightidentifier"]
     ],
     "com": [
-      ["com.stpt", "temperature"]
+      ["com.stpt", "none"]
     ],
     "p": [
       ["( |\\.)p\\d", "pump"],
@@ -241,7 +257,7 @@
     "h": [
       ["\\d+h", "leftidentifier"],
       ["ohm", "heating"],
-      ["hmax", "heating"],
+      ["hmax", "heating"]
     ],
     "ex": [
       ["ex.fans", "exhaust"]
@@ -287,7 +303,9 @@
       ["ohtg", "occupied"]
     ],
     "fl":[
-      ["htfl", "flow"]
+      ["htfl", "flow"],
+      ["htgfl", "flow"],
+      ["\\d+fl", "floor"]
     ],
     "r":[
       ["chwr", "return"]

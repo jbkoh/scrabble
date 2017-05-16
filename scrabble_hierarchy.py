@@ -1483,13 +1483,6 @@ def build_tagset_classifier(building_list, target_building,\
     #base_classifier = DecisionTreeClassifier()
     #base_classifier = SGDClassifier()
 
-    #base_classifier = LinearSVC(loss='hinge', tol=1e-5,\
-    #                            max_iter=2000, C=2,
-    #                            fit_intercept=False,
-    #                            class_weight='balanced')
-    base_classifier = Pipeline([('feature_selection', SelectFromModel(LinearSVC())),
-                                ('classification', RandomForestClassifier())
-                               ])
 
     #base_classifier = GaussianProcessClassifier()
 #    base_classifier = QuadraticDiscriminantAnalysis()
@@ -1654,6 +1647,19 @@ def build_tagset_classifier(building_list, target_building,\
                                                    random_state=0,\
                                                    n_jobs=n_jobs)
     elif tagset_classifier_type == 'StructuredCC':
+    base_classifier = Pipeline([('feature_selection', SelectFromModel(LinearSVC())),
+                                ('classification', RandomForestClassifier())
+                               ])
+        tagset_classifier = StructuredClassifierChain(base_classifier,
+                                                      tagset_binerizer,
+                                                      subclass_dict,
+                                                      tagset_vectorizer.vocabulary,
+                                                      n_jobs)
+    elif tagset_classifier_type == 'StructuredCC_LinearSVC':
+        base_classifier = LinearSVC(loss='hinge', tol=1e-5,\
+                                    max_iter=2000, C=2,
+                                    fit_intercept=False,
+                                    class_weight='balanced')
         tagset_classifier = StructuredClassifierChain(base_classifier,
                                                       tagset_binerizer,
                                                       subclass_dict,

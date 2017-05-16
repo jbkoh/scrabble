@@ -1,12 +1,16 @@
 import pdb
 import json
+import argparse
+parser = argparse.ArgumentParser()
+parser.add_argument(choices=['ap_m','ebu3b'], dest='building')
+args = parser.parse_args()
 
 import pandas as pd
 
 from brick_parser import equipTagsetList as equip_tagsets, \
                         locationTagsetList as location_tagsets
 
-building = 'ap_m'
+building = args.building
 
 sensor_df = pd.read_csv('metadata/{0}_sensor_types_location.csv'\
                         .format(building)).set_index('Unique Identifier')
@@ -51,7 +55,10 @@ for srcid, label_list in label_dict.items():
                   for phrase 
                   in phrase_list 
                   if find_nonpoint_tagsets(phrase)]
-    truth_list.append(sensor_df['Schema Label'][srcid].replace(' ', '_'))
+    try:
+        truth_list.append(sensor_df['Schema Label'][srcid].replace(' ', '_'))
+    except:
+        print(srcid, 'failed')
     truth_dict[srcid] = list(set(truth_list))
 
     # TODO: add all labels to a dict (except point type info)

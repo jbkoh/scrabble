@@ -81,7 +81,10 @@ def resample_data(raw_data, begin_time, end_time, sample_method):
     if not end_time in raw_data.index:
         raw_data[arrow.get(end_time).to('UTC').datetime] = raw_data.tail(1)[0]
     raw_data = raw_data.sort_index()
-    if sample_method== 'nextval':
+    if sample_method == 'raw':
+        proc_data = raw_data
+        pass
+    elif sample_method == 'nextval':
         proc_data = raw_data.resample('3Min', how='pad')
     else:
         logger.error("sample method not defined well: {0}".format(sample_method))
@@ -185,7 +188,7 @@ if __name__ == "__main__":
                     logger.error("Data is empty ({0})".format(srcid))
                     continue
                 ts_series = resample_data(ts_series, begin_time, end_time, \
-                        "nextval")
+                        "raw")
                 filename = basedir + '/' + srcid + '.csv'
                 ts_series.to_csv(filename, \
                         header=header, \
