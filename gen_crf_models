@@ -1,26 +1,7 @@
-#!/home/jbkoh/anaconda3/bin/python
+#!/bin/bash
 
-import os
-import time
-
-from scrabble import learn_crf_model
-
-
-n_list = [200]
-#n_list = [50, 100, 200]
-sub_n_list = [50]
-building_list = ['ebu3b', 'ap_m']
-cluster_flag_list = [True]
-
-for source_building in building_list:
-    for sub_building in building_list:
-        if source_building==sub_building:
-            continue
-        for cluster_flag in cluster_flag_list:
-            for n in n_list:
-                os.system('python scrabble.py learn -bl {0} -nl {1} -c {2} &'\
-                        .format(source_building, n, cluster_flag))
-                for sub_n in sub_n_list:
-                    os.system('python scrabble.py learn -bl {0},{1} -nl {2},{3} -c {4} &'\
-                            .format(source_building, sub_building, n, sub_n, cluster_flag))
-        #time.sleep(700)
+python scrabble_hierarchy.py learn -bl ebu3b,ap_m -nl 200,1 -c true &
+python scrabble_hierarchy.py learn -bl ebu3b,ap_m -nl 200,5 -c true &
+python scrabble_hierarchy.py learn -bl ebu3b,ap_m -nl 200,20 -c true &
+python scrabble_hierarchy.py learn -bl ebu3b,ap_m -nl 200,50 -c true &
+python scrabble_hierarchy.py learn -bl ebu3b,ap_m -nl 200,200 -c true &

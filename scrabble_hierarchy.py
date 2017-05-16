@@ -435,7 +435,7 @@ def crf_test(building_list,
         model_query['$and'].append(
             {'source_list.{0}'.format(building): {'$exists': True}})
         model_query['$and'].append({'$where': \
-                                    'this.source_list.{0}.length={1}'.\
+                                    'this.source_list.{0}.length=={1}'.\
                                     format(building, source_sample_num)})
         result_metadata['source_cnt_list'].append([building, source_sample_num])
     model_query['$and'].append(model_metadata)
@@ -1642,19 +1642,21 @@ def build_tagset_classifier(building_list, target_building,\
     logging.info('finished tagset vectorizing')
 
     if tagset_classifier_type == 'RandomForest':
-        tagset_classifier = RandomForestClassifier(n_estimators=200, \
-                                                   #this should be 100 at some point
+        tagset_classifier = RandomForestClassifier(n_estimators=150,
                                                    random_state=0,\
                                                    n_jobs=n_jobs)
     elif tagset_classifier_type == 'StructuredCC':
-    base_classifier = Pipeline([('feature_selection', SelectFromModel(LinearSVC())),
-                                ('classification', RandomForestClassifier())
-                               ])
-        tagset_classifier = StructuredClassifierChain(base_classifier,
-                                                      tagset_binerizer,
-                                                      subclass_dict,
-                                                      tagset_vectorizer.vocabulary,
-                                                      n_jobs)
+        base_classifier = Pipeline([('feature_selection',
+                                     SelectFromModel(LinearSVC())),
+                                    ('classification',
+                                     RandomForestClassifier())
+                                   ])
+        tagset_classifier = StructuredClassifierChain(
+                                base_classifier,
+                                tagset_binerizer,
+                                subclass_dict,
+                                tagset_vectorizer.vocabulary,
+                                n_jobs)
     elif tagset_classifier_type == 'StructuredCC_LinearSVC':
         base_classifier = LinearSVC(loss='hinge', tol=1e-5,\
                                     max_iter=2000, C=2,

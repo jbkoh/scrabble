@@ -1,8 +1,8 @@
 {
-  "char_precision": 0.7688812884453406,
-  "phrase_precision": 0.736094674556213,
-  "phrase_recall": 0.6661389457999628,
-  "pessimistic_phrase_precision": 0.7273799313893653,
-  "pessimistic_phrase_recall": 0.654291224686596,
-  "date": "2017-05-14 07:05:02.253559+00:00"
+  "char_precision": 0.9990972385392578,
+  "phrase_precision": 0.9990846461434697,
+  "phrase_recall": 0.9986035537150286,
+  "pessimistic_phrase_precision": 0.999047762241267,
+  "pessimistic_phrase_recall": 0.9985473125281771,
+  "date": "2017-05-16 07:51:05.096371+00:00"
 }
