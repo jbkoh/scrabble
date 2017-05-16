@@ -2467,7 +2467,7 @@ def entity_recognition_from_ground_truth_get_avg(N,
                                                  use_cluster_flag=False,
                                                  use_brick_flag=False,
                                                  eda_flag=True):
-    worker_num = 1
+    worker_num = 2
 
     manager = Manager()
     return_dict = manager.dict()
