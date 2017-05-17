@@ -34,12 +34,12 @@ equipPostfixes = ['system', 'dhws', 'tower', 'chiller', 'coil', 'fan',
                        'thermostat', 'ahu', 'drive', 'heater', 'pump',
                        'conditioning', 'ws', 'dhws', 'elevator', 'fcp',
                        'panel', 'weather', 'generator', 'inverter', 'response',
-                       'cws', 'crac', 'equipment']
+                       'cws', 'crac', 'equipment', 'hvac']
 
 
 # TODO: Check if a file is parsed or not and then load it or execute below.
 parsed_files = ['brick/tags.json', \
-                'brick/tagsets.json', \
+#                'brick/tagsets.json', \
                 'brick/equip_tagsets.json',\
                 'brick/location_tagsets.json',\
                 'brick/point_tagsets.json',\
@@ -52,8 +52,8 @@ if False not in [os.path.isfile(fn) for fn in parsed_files]:
 #if False:
     with open('brick/tags.json', 'r') as fp:
         tagList = json.load(fp)
-    with open('brick/tagsets.json', 'r') as fp:
-        tagsetList = json.load(fp)
+#    with open('brick/tagsets.json', 'r') as fp:
+#        tagsetList = json.load(fp)
     with open('brick/equip_tagsets.json', 'r') as fp:
         equipTagsetList = json.load(fp)
     with open('brick/location_tagsets.json', 'r') as fp:
@@ -213,6 +213,15 @@ else:
     g.bind('btag' , BRICKTAG)
 
 
+    def calc_leave_depth(tree, d=dict(), depth=0):
+        curr_depth = depth + 1
+        for tagset, branches in tree.items():
+            d[tagset] = curr_depth
+            for branch in branches:
+                d.update(calc_leave_depth(branch, d, curr_depth))
+        return d
+
+
     def printResults(res):
         if len(res) > 0:
             color = 'green'
@@ -276,6 +285,7 @@ else:
             if tagset_type == 'equip' and tagset.split('_')[-1] \
                not in equipPostfixes:
                 continue
+
             subclasses.append(subclass)
             tagsets.append(tagset)
             branches.append(construct_subclass_tree(g, 'brick:'+subclass, \
@@ -483,6 +493,10 @@ else:
         tagsetTree.update(construct_subclass_tree(g, 'brick:'+head, 'location'))
     with open('brick/tagset_tree.json', 'w') as fp:
         json.dump(tagsetTree, fp, indent=2)
+
+    depth_dict = calc_leave_depth(tagsetTree)
+    with open('brick/tree_depth_dict.json', 'w') as fp:
+        json.dump(depth_dict, fp, indent=2)
 
     beginTime = arrow.get()
     #TODO: Validate if Sensor is detected by this.

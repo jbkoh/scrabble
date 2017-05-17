@@ -17,6 +17,9 @@ from multiprocessing import Pool, Manager, Process
 import code
 import sys
 from math import ceil, floor
+from pprint import PrettyPrinter
+pp = PrettyPrinter()
+
 
 import pycrfsuite
 import pandas as pd
@@ -54,9 +57,6 @@ from skmultilearn.problem_transform import LabelPowerset, ClassifierChain, \
 from resulter import Resulter
 from mongo_models import store_model, get_model, get_tags_mapping, \
                          get_crf_results
-from entity_recognition import learn_brick_tagsets, \
-                               test_brick_tagset, \
-                               batch_test_brick_tagset
 from brick_parser import pointTagsetList        as  point_tagsets,\
                          locationTagsetList     as  location_tagsets,\
                          equipTagsetList        as  equip_tagsets,\
@@ -66,16 +66,20 @@ from brick_parser import pointTagsetList        as  point_tagsets,\
                          tagsetTree             as  tagset_tree
 #                         tagsetList as tagset_list
 tagset_tree['networkadapter'] = list()
+tagset_tree['unknown'] = list()
+tagset_tree['none'] = list()
 subclass_dict = dict()
 subclass_dict.update(point_subclass_dict)
 subclass_dict.update(equip_subclass_dict)
 subclass_dict.update(location_subclass_dict)
 subclass_dict['networkadapter'] = list()
+subclass_dict['unknown'] = list()
+subclass_dict['none'] = list()
 tagset_classifier_type = None
 
 from building_tokenizer import nae_dict
 
-point_tagsets += ['unknown', \
+point_tagsets += [#'unknown', \
                   #'run_command', \
                   #'low_outside_air_temperature_enable_differential_setpoint', \
                   #'co2_differential_setpoint', 
@@ -84,17 +88,21 @@ point_tagsets += ['unknown', \
                   #'average_exhaust_air_static_pressure_setpoint', \
                   #'chilled_water_differential_pressure_load_shed_command', \
                   # AP_M
-                  'average_exhaust_air_pressure_setpoint', 
-                  'chilled_water_temperature_differential_setpoint',
-                  'outside_air_lockout_temperature_differential_setpoint',
-                  'vfd_command',
-                  'medium_temperature_hot_water_discharge_temperature_load_shed',
+                 # 'average_exhaust_air_pressure_setpoint', 
+                 # 'chilled_water_temperature_differential_setpoint',
+                 # 'outside_air_lockout_temperature_differential_setpoint',
+                 # 'vfd_command',
                  ] #TODO: How to add these into the tree structure?
 
 tagset_list = point_tagsets + location_tagsets + equip_tagsets
 tagset_list.append('networkadapter')
 
+for tagset in tagset_list:
+    if tagset.split('_')[-1]=='shed':
+        pdb.set_trace()
+
 total_srcid_dict = dict()
+tree_depth_dict = dict()
 
 logging.basicConfig(level=logging.INFO,
                         format='%(asctime)s %(message)s')
@@ -114,6 +122,14 @@ raw_srcids_dict = init_srcids_dict()
 
 def init():
     init_srcids_dict()
+
+def calc_leave_depth(tree, d=dict(), depth=0):
+    curr_depth = depth + 1
+    for tagset, branches in tree.items():
+        d[tagset] = curr_depth
+        for branch in branches:
+            d.update(calc_leave_depth(branch, d, curr_depth))
+    return d
 
 
 def play_end_alarm():
@@ -162,6 +178,152 @@ def calc_base_features(sentence, features={}, building=None):
     return sentenceFeatures
 
 
+def subset_accuracy_func(pred_Y, true_Y, labels):
+    return 1 if set(pred_Y) == set(true_Y) else 0
+
+def get_score(pred_dict, true_dict, srcids, score_func, labels):
+    score = 0
+    for srcid in srcids:
+        pred_tagsets = pred_dict[srcid]
+        true_tagsets = true_dict[srcid]
+        if isinstance(pred_tagsets, list):
+            pred_tagsets = list(pred_tagsets)
+        if isinstance(true_tagsets, list):
+            true_tagsets = list(true_tagsets)
+            score += score_func(pred_tagsets, true_tagsets, labels)
+    return score / len(srcids)
+
+def hamming_loss_func(pred_tagsets, true_tagsets, labels):
+    incorrect_cnt = 0
+    for tagset in pred_tagsets:
+        if tagset not in true_tagsets:
+            incorrect_cnt += 1
+    for tagset in true_tagsets:
+        if tagset not in pred_tagsets:
+            incorrect_cnt += 1
+    return incorrect_cnt / len(labels)
+
+def accuracy_func(pred_tagsets, true_tagsets, labels):
+    pred_tagsets = set(pred_tagsets)
+    true_tagsets = set(true_tagsets)
+    return len(pred_tagsets.intersection(true_tagsets))\
+            / len(pred_tagsets.union(true_tagsets))
+
+def hierarchy_accuracy_func(pred_tagsets, true_tagsets, labels):
+    true_tagsets = deepcopy(true_tagsets)
+    pred_tagsets = deepcopy(pred_tagsets)
+    if not isinstance(pred_tagsets, list):
+        pred_tagsets = list(pred_tagsets)
+    union = 0
+    intersection = 0
+    for pred_tagset in deepcopy(pred_tagsets):
+        if pred_tagset in true_tagsets:
+            union += 1
+            intersection += 1
+            true_tagsets.remove(pred_tagset)
+            pred_tagsets.remove(pred_tagset)
+            continue
+    depth_measurer = lambda x: tree_depth_dict[x]
+    for pred_tagset in deepcopy(pred_tagsets):
+        subclasses = subclass_dict[pred_tagset]
+        upper_true_tagsets = [tagset for tagset in subclasses \
+                              if tagset in true_tagsets]
+        if len(upper_true_tagsets)>0:
+            lower_true_tagsets = sorted(upper_true_tagsets,
+                                        key=depth_measurer,
+                                        reverse=False)
+            lower_true_tagset = lower_true_tagsets[0]
+            union += 1
+            curr_score = tree_depth_dict[pred_tagset] /\
+                            tree_depth_dict[lower_true_tagset]
+            try:
+                assert curr_score < 1
+            except:
+                pdb.set_trace()
+            intersection += curr_score
+            pred_tagsets.remove(pred_tagset)
+            true_tagsets.remove(lower_true_tagset)
+    for pred_tagset in deepcopy(pred_tagsets):
+        for true_tagset in deepcopy(true_tagsets):
+            subclasses = subclass_dict[true_tagset]
+            if pred_tagset in subclasses:
+                union += 1
+                curr_score = tree_depth_dict[true_tagset] /\
+                                tree_depth_dict[pred_tagset]
+                try:
+                    assert curr_score < 1
+                except:
+                    pdb.set_trace()
+
+                intersection += curr_score
+                pred_tagsets.remove(pred_tagset)
+                true_tagsets.remove(true_tagset)
+                break
+    union += len(pred_tagsets) + len(true_tagsets)
+    return intersection / union
+
+
+def hierarchy_accuracy_func_deprecated(pred_tagsets, true_tagsets, labels):
+    true_tagsets = deepcopy(true_tagsets)
+    pred_tagsets = deepcopy(pred_tagsets)
+    if not isinstance(pred_tagsets, list):
+        pred_tagsets = list(pred_tagsets)
+    union = 0
+    intersection = 0
+    for pred_tagset in deepcopy(pred_tagsets):
+        if pred_tagset in true_tagsets:
+            union += 1
+            intersection += 1
+            true_tagsets.remove(pred_tagset)
+            pred_tagsets.remove(pred_tagset)
+            continue
+    for pred_tagset in deepcopy(pred_tagsets):
+        subclasses = subclass_dict[pred_tagset]
+        upper_true_tagsets = [tagset for tagset in subclasses \
+                              if tagset in true_tagsets]
+        if len(upper_true_tagsets)>0:
+            upper_true_tagsets = sorted(upper_true_tagsets,
+                                        key=tagset_lengther,
+                                        reverse=True)
+            upper_true_tagset = upper_true_tagsets[0]
+            union += 1
+            if upper_true_tagset=='hvac':
+                curr_score = 0.5 #TODO: Fix these metric to use tree.
+            else:
+                curr_score = tagset_lengther(pred_tagset) \
+                        / tagset_lengther(upper_true_tagset)
+            try:
+                assert curr_score < 1
+            except:
+                pdb.set_trace()
+            intersection += curr_score
+            pred_tagsets.remove(pred_tagset)
+            true_tagsets.remove(upper_true_tagset)
+    for pred_tagset in deepcopy(pred_tagsets):
+        for true_tagset in deepcopy(true_tagsets):
+            subclasses = subclass_dict[true_tagset]
+            if pred_tagset in subclasses:
+                union += 1
+                curr_score = tagset_lengther(true_tagset) \
+                        / tagset_lengther(pred_tagset)
+                try:
+                    assert curr_score < 1
+                except:
+                    pdb.set_trace()
+
+                intersection += curr_score
+                pred_tagsets.remove(pred_tagset)
+                true_tagsets.remove(true_tagset)
+                break
+    union += len(pred_tagsets) + len(true_tagsets)
+    return intersection / union
+
+
+
+def micro_averaging(pred_Y, true_Y, labels):
+    pass
+
+
 def calc_features(sentence, building=None):
     sentenceFeatures = list()
     sentence = ['$' if c.isdigit() else c for c in sentence]
@@ -202,7 +364,12 @@ def augment_tagset_tree(tagsets):
             extend_tree(tagset_tree, classname, {tagset:[]})
             subclass_dict[classname].append(tagset)
             subclass_dict[tagset] = []
-
+        else:
+            if tagset not in subclass_dict.keys():
+                classname = tagset.split('_')[-1]
+                subclass_dict[classname].append(tagset)
+                subclass_dict[tagset] = []
+                extend_tree(tagset_tree, classname, {tagset:[]})
 
 def select_random_samples(building, \
                           srcids, \
@@ -739,6 +906,9 @@ def lengther(x):
 
 def value_lengther(x): 
     return len(x[1])
+   
+def tagset_lengther(tagset):
+    return len(tagset.split('_'))
 
 def hier_clustering(d, threshold=3):
     srcids = d.keys()
@@ -801,7 +971,6 @@ def tagsets_prediction(classifier, vectorizer, binerizer, \
         pred_certainty_dict[srcid] = 0
     pred_certainty_dict = OrderedDict(sorted(pred_certainty_dict.items(), \
                                              key=itemgetter(1), reverse=True))
-    pdb.set_trace()
     logging.info('Finished prediction')
     return pred_tagsets_dict, pred_certainty_dict, pred_point_dict
 
@@ -819,6 +988,14 @@ def tagsets_evaluation(truths_dict, pred_tagsets_dict, pred_certainty_dict,\
     undiscovered_point_cnt = 0
     invalid_point_cnt = 0
 #    for srcid, pred_tagsets in pred_tagsets_dict.items():
+    accuracy = get_score(pred_tagsets_dict, truths_dict, srcids, accuracy_func,
+                         tagset_list)
+    hierarchy_accuracy = get_score(pred_tagsets_dict, truths_dict, srcids,
+                                   hierarchy_accuracy_func, tagset_list)
+    hamming_loss = get_score(pred_tagsets_dict, truths_dict, srcids,
+                             hamming_loss_func, tagset_list)
+    subset_accuracy = get_score(pred_tagsets_dict, truths_dict, srcids,
+                                subset_accuracy_func, tagset_list)
     for srcid in srcids:
         pred_tagsets = pred_tagsets_dict[srcid]
         true_tagsets = truths_dict[srcid]
@@ -928,10 +1105,16 @@ def tagsets_evaluation(truths_dict, pred_tagsets_dict, pred_certainty_dict,\
     result_dict['point_correct_cnt'] = point_correct_cnt
     result_dict['point_incorrect_cnt'] = point_incorrect_cnt
     result_dict['unfound_point_cnt'] = empty_point_cnt
+    result_dict['hamming_loss'] = hamming_loss
+    result_dict['accuracy'] = accuracy
+    result_dict['hierarchy_accuracy'] = hierarchy_accuracy
+    result_dict['subset_accuracy'] = subset_accuracy
+    pp.pprint(dict([(k,v) for k, v in result_dict.items() \
+                    if k not in ['correct', 'incorrect']]))
     return result_dict
 
-def tagsets_evaluation_deprecated(truths_dict, pred_tagsets_dict, pred_certainty_dict,\
-                       srcids, pred_point_dict):
+def tagsets_evaluation_deprecated(truths_dict, pred_tagsets_dict, \
+                                  pred_certainty_dict, srcids, pred_point_dict):
     result_dict = defaultdict(dict)
     sorted_result_dict = OrderedDict()
     incorrect_tagsets_dict = dict()
@@ -1478,7 +1661,8 @@ def build_tagset_classifier(building_list, target_building,\
     learning_srcids = deepcopy(learning_srcids)
     global total_srcid_dict
     global point_tagsets
-    global tagset_classifier_type 
+    global tagset_classifier_type
+    global tree_depth_dict
 #    source_target_buildings = list(set(building_list + [target_building]))
     #base_classifier = DecisionTreeClassifier()
     #base_classifier = SGDClassifier()
@@ -1499,7 +1683,6 @@ def build_tagset_classifier(building_list, target_building,\
     #tagset_classifier = RakelO()
 ####    tagset_classifier = OneVsRestClassifier(SVC(kernel='rbf'), n_jobs=n_jobs)
 
-   # tagset_lengther = lambda tagset: len(tagset.split('_'))
     #tagset_list = sorted(tagset_list, key=tagset_lengther)
     #TODO: Sort tagset_list based on the tree structure!
     new_tagset_list = tree_flatter(tagset_tree, [])
@@ -1899,7 +2082,7 @@ def entity_recognition_from_ground_truth(building_list,
                                          use_brick_flag=False,
                                          debug_flag=False,
                                          eda_flag=False,
-                                         n_jobs=1,
+                                         n_jobs=4,
                                          prev_step_data={
                                              'learning_srcids':[],
                                              'iter_cnt':0,
@@ -1915,6 +2098,7 @@ def entity_recognition_from_ground_truth(building_list,
     logging.info('Entity Recognition Get Started.')
     global tagset_list
     global total_srcid_dict
+    global tree_depth_dict
     assert len(building_list) == len(source_sample_num_list)
 
     ########################## DATA INITIATION ##########################
@@ -1991,11 +2175,11 @@ def entity_recognition_from_ground_truth(building_list,
     test_srcid_dict = get_building_data(target_building, test_srcids,\
                                                 eda_flag, token_type)
 
-
     extend_tagset_list(reduce(adder, \
                 [learning_truths_dict[srcid] for srcid in learning_srcids]\
                 + [test_truths_dict[srcid] for srcid in test_srcids], []))
     augment_tagset_tree(tagset_list)
+    tree_depth_dict = calc_leave_depth(tagset_tree)
 
     source_target_buildings = list(set(building_list + [target_building]))
     begin_time = arrow.get()
@@ -2049,7 +2233,6 @@ def entity_recognition_from_ground_truth(building_list,
                                 building_list,\
                                 eda_flag,\
                                 point_classifier)
-    pdb.set_trace()
     eval_learning_srcids = deepcopy(learning_srcids)
     random.shuffle(eval_learning_srcids)
     learning_result_dict = tagsets_evaluation(learning_truths_dict,
@@ -2286,7 +2469,6 @@ def entity_recognition_from_ground_truth(building_list,
             + [target_result_dict['unfound_point_cnt']]
     }
 
-    #pdb.set_trace()
     print('################################# Iter# {0}'.format(iter_cnt))
     print('history of point precision: {0}'\
           .format(next_step_data['point_precision_history']))
@@ -2454,7 +2636,6 @@ def entity_recognition_from_crf(building_list,\
                        crf_pred_certainty_dict, crf_srcids,
                        crf_pred_point_dict, crf_phrase_dict, debug_flag)
 
-    pdb.set_trace()
 
 
 #TODO: Make this more generic to apply to other functions
