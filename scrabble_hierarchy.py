@@ -20,6 +20,7 @@ from math import ceil, floor
 from pprint import PrettyPrinter
 pp = PrettyPrinter()
 import psutil
+import pickle
 
 import pycrfsuite
 import pandas as pd
@@ -56,6 +57,7 @@ from skmultilearn.problem_transform import LabelPowerset, ClassifierChain, \
 #from skmultilearn.ensemble import LabelSpacePartitioningClassifier
 
 from resulter import Resulter
+from time_series_to_ir import TimeSeriesToIR
 from mongo_models import store_model, get_model, get_tags_mapping, \
                          get_crf_results
 from brick_parser import pointTagsetList        as  point_tagsets,\
@@ -133,6 +135,36 @@ def calc_leave_depth(tree, d=dict(), depth=0):
     return d
 
 
+class TsTfidfVectorizer():
+    def __init__(self, vocabulary=None):
+        self.count_vectorizer = CountVectorizer(vocabulary=vocabulary)
+        self.ts2ir = None
+
+    def fit(self, X, srcids):
+        new_X = self.CountVectorizer.fit_transform(X)
+        with open("Binarizer/mlb.pkl", 'rb') as f:
+            mlb = pickle.load(f, encoding='bytes')
+        with open("TS_Features/ebu3b_features.pkl", 'rb') as f:
+            ts_features = pickle.load(f)
+        self.ts2ir.train_model(ts_features, srcids)
+        mlb_keys, Y_pred, Y_proba = self.ts2ir.predict(ts_features, srcids)
+        pdb.set_trace()
+
+
+    def transform(self, X):
+        pass
+
+    def add_words_from_ts(learning_srcids, target_srcids):
+        with open("Binarizer/mlb.pkl", 'rb') as f:
+            mlb = pickle.load(f, encoding='bytes')
+        with open("TS_Features/ebu3b_features.pkl", 'rb') as f:
+            ts_features = pickle.load(f)
+        ts2ir = TimeSeriesToIR(mlb=mlb)
+        mlb_keys, Y_pred, Y_proba =\
+                ts2ir.ts_to_ir(ts_features, learning_srcids, test_srcids)
+        pdb.set_trace()
+
+
 def play_end_alarm():
     mixer.init()
     mixer.music.load('etc/fins_success.wav')
@@ -193,6 +225,16 @@ def get_score(pred_dict, true_dict, srcids, score_func, labels):
             true_tagsets = list(true_tagsets)
             score += score_func(pred_tagsets, true_tagsets, labels)
     return score / len(srcids)
+
+def add_words_from_ts(learning_srcids, target_srcids):
+    with open("Binarizer/mlb.pkl", 'rb') as f:
+        mlb = pickle.load(f, encoding='bytes')
+    with open("TS_Features/ebu3b_features.pkl", 'rb') as f:
+        ts_features = pickle.load(f)
+    ts2ir = TimeSeriesToIR(mlb=mlb)
+    mlb_keys, Y_pred, Y_proba =\
+            ts2ir.ts_to_ir(ts_features, learning_srcids, test_srcids)
+    pdb.set_trace()
 
 def hamming_loss_func(pred_tagsets, true_tagsets, labels):
     incorrect_cnt = 0
@@ -1732,9 +1774,23 @@ def build_tagset_classifier(building_list, target_building,\
     #tagset_vectorizer = CountVectorizer(tokenizer=tokenizer,\
     #                                    vocabulary=vocab_dict)
 
+    ts_flag = False
+
+    if ts_flag:
+        with open("Binarizer/mlb.pkl", 'rb') as f:
+            mlb = pickle.load(f, encoding='bytes')
+        with open("TS_Features/ebu3b_features.pkl", 'rb') as f:
+            ts_features = pickle.load(f, encoding='bytes')
+        ts2ir = TimeSeriesToIR(mlb=mlb)
+        ts2ir.fit(ts_features, learning_srcids)
+        mlb_keys, Y_pred, Y_proba =\
+                ts2ir.predict(ts_features, learning_srcids)
+        pdb.set_trace()
+
     ## Transform learning samples
     learning_doc = [' '.join(learning_phrase_dict[srcid]) \
                     for srcid in learning_srcids]
+
     test_doc = [' '.join(test_phrase_dict[srcid]) \
                 for srcid in test_srcids]
 
