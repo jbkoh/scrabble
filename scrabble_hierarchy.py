@@ -20,7 +20,6 @@ from math import ceil, floor
 from pprint import PrettyPrinter
 pp = PrettyPrinter()
 
-
 import pycrfsuite
 import pandas as pd
 import numpy as np
@@ -237,7 +236,7 @@ def hierarchy_accuracy_func(pred_tagsets, true_tagsets, labels):
             curr_score = tree_depth_dict[pred_tagset] /\
                             tree_depth_dict[lower_true_tagset]
             try:
-                assert curr_score < 1
+                assert curr_score <= 1
             except:
                 pdb.set_trace()
             intersection += curr_score
@@ -251,7 +250,7 @@ def hierarchy_accuracy_func(pred_tagsets, true_tagsets, labels):
                 curr_score = tree_depth_dict[true_tagset] /\
                                 tree_depth_dict[pred_tagset]
                 try:
-                    assert curr_score < 1
+                    assert curr_score <= 1
                 except:
                     pdb.set_trace()
 
@@ -1037,7 +1036,7 @@ def tagsets_evaluation(truths_dict, pred_tagsets_dict, pred_certainty_dict,\
             elif found_point != true_point:
                 point_incorrect_cnt += 1
                 print('XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX')
-                print("INCORRECT POINT ({0}) FOUND: {1} -> {1}"\
+                print("INCORRECT POINT ({0}) FOUND: {0} -> {1}"\
                       .format(srcid, true_point, found_point))
                 need_review = True
             else:
@@ -1898,7 +1897,9 @@ def build_tagset_classifier(building_list, target_building,\
                         for srcid in learning_srcids])
     point_truths_dict = dict()
     point_srcids = list()
-    for srcid, truths in learning_truths_dict.items():
+    for srcid in learning_srcids:
+    #for srcid, truths in learning_truths_dict.items():
+        truths = learning_truths_dict[srcid]
         point_tagset = None
         for tagset in truths:
             if tagset in point_tagsets:
@@ -1908,10 +1909,13 @@ def build_tagset_classifier(building_list, target_building,\
             point_truths_dict[srcid] = point_tagset
             point_srcids.append(srcid)
 
-    point_truth_mat = [point_tagsets.index(point_truths_dict[srcid]) \
-                       for srcid in point_srcids]
-    point_vect_doc = np.vstack([learning_vect_doc[learning_srcids.index(srcid)]
-                                for srcid in point_srcids])
+    try:
+        point_truth_mat = [point_tagsets.index(point_truths_dict[srcid]) \
+                           for srcid in point_srcids]
+        point_vect_doc = np.vstack([learning_vect_doc[learning_srcids.index(srcid)]
+                                    for srcid in point_srcids])
+    except:
+        pdb.set_trace()
 #    if use_brick_flag:
 #        truth_mat = vstack([truth_mat, brick_truth_mat])
     if eda_flag:
@@ -1943,7 +1947,8 @@ def cross_validation(building_list, n_list,
                      learning_srcids, test_srcids, \
                      pred_phrase_dict, pred_tagsets_dict,
                      result_dict, k=2, \
-                     eda_flag=False, token_type='justseparate'):
+                     eda_flag=False, token_type='justseparate',
+                     use_brick_flag=True):
 
     learning_sentence_dict, \
     learning_token_label_dict, \
@@ -1985,6 +1990,8 @@ def cross_validation(building_list, n_list,
     recall_dict = dict()
     validation_result_dict = dict()
     for cid, cluster_srcids in sorted(cluster_dict.items(), key=itemgetter(1)):
+        logging.info('Validation iteration: {0} / {1}'\
+                     .format(cid, len(cluster_dict)))
         building_list_1 = deepcopy(building_list)
         if target_building not in building_list_1:
             buliding_list_1.append(target_building)
@@ -1999,29 +2006,36 @@ def cross_validation(building_list, n_list,
         validation_building = building_list[0]
 
 
-        try:
-            tagset_classifier, tagset_vectorizer, tagset_binerizer, \
-                    point_classifier = \
-                build_tagset_classifier(building_list_1, validation_building,\
-                                validation_sentence_dict, \
-                                validation_token_label_dict,\
-                                phrase_dict_1, phrase_dict_2,\
-                                truths_dict_1,\
-                                chosen_learning_srcids+cluster_srcids, \
-                                validation_srcids,\
-                                tagset_list, eda_flag
-                               )
-        except:
-            pdb.set_trace()
+        source_target_buildings = list(set(building_list + [target_building]))
+        tagset_classifier, tagset_vectorizer, tagset_binerizer, \
+                point_classifier = \
+            build_tagset_classifier(building_list_1, validation_building,\
+                            validation_sentence_dict, \
+                            validation_token_label_dict,\
+                            phrase_dict_1, phrase_dict_2,\
+                            truths_dict_1,\
+                            chosen_learning_srcids+cluster_srcids, \
+                            validation_srcids,\
+                            tagset_list, eda_flag, use_brick_flag,
+                            source_target_buildings,
+                            n_jobs=6
+                           )
 
-        validation_pred_tagsets_dict, validation_pred_certainty_dict = \
+        alidation_pred_tagsets_dict, \
+        validation_pred_certainty_dict, \
+        pred_point_dict = \
                 tagsets_prediction(tagset_classifier, tagset_vectorizer, \
                                    tagset_binerizer, validation_phrase_dict, \
-                                   validation_srcids)
+                                   validation_srcids, source_target_buildings,
+                                  eda_flag, point_classifier)
+
         curr_result_dict = tagsets_evaluation(validation_truths_dict, \
                                          validation_pred_tagsets_dict, \
                                          validation_pred_certainty_dict,\
-                                         validation_srcids)
+                                         validation_srcids,
+                                         pred_point_dict,
+                                         validation_phrase_dict,
+                                             )
 
         precision_dict[cid] = curr_result_dict['point_precision']
         recall_dict[cid] = curr_result_dict['point_recall']
@@ -2037,6 +2051,8 @@ def cross_validation(building_list, n_list,
             for tagset in pred_tagsets:
                 if tagset in point_tagsets:
                     pred_found_points.append(tagset)
+
+        pdb.set_trace()
 
         validation_result_dict[cid] = {
             'srcids': cluster_srcids,
@@ -2124,7 +2140,7 @@ def entity_recognition_from_ground_truth(building_list,
                          learning_srcids, prev_test_srcids, \
                          prev_pred_phrase_dict, prev_pred_tagsets_dict,
                          prev_result_dict, 4, \
-                         eda_flag, token_type)
+                         eda_flag, token_type, use_brick_flag)
     print('\n')
     print('################ Iteration {0} ################'.format(iter_cnt))
 
