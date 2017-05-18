@@ -2434,7 +2434,7 @@ def entity_recognition_iteration(iter_num, *args):
         'unfound_point_cnt_history': [],
     }
     for i in range(0, iter_num):
-        _, _, step_data = entity_recognition_from_ground_truth(\
+        _, step_data = entity_recognition_from_ground_truth(\
                               building_list = args[0],\
                               source_sample_num_list = args[1],\
                               target_building = args[2],\
