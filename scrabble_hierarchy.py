@@ -131,7 +131,12 @@ def calc_leave_depth(tree, d=dict(), depth=0):
     for tagset, branches in tree.items():
         d[tagset] = curr_depth
         for branch in branches:
-            d.update(calc_leave_depth(branch, d, curr_depth))
+            new_d = calc_leave_depth(branch, d, curr_depth)
+            for k, v in new_d.items():
+                if d.get(k):
+                    d[k] = max(d[k], v)
+                else:
+                    d[k] = v
     return d
 
 
@@ -1077,7 +1082,7 @@ def tagsets_evaluation(truths_dict, pred_tagsets_dict, pred_certainty_dict,\
                 need_review = True
             elif found_point != true_point:
                 point_incorrect_cnt += 1
-                print("INCORRECT POINT ({0}) FOUND: {0} -> {1}"\
+                print("INCORRECT POINT ({0}) FOUND: {1} -> {2}"\
                       .format(srcid, true_point, found_point))
                 need_review = True
             else:
@@ -1776,15 +1781,37 @@ def build_tagset_classifier(building_list, target_building,\
 
     ts_flag = False
 
+    learning_point_dict = dict()
+    for srcid, tagsets in learning_truths_dict.items():
+        point_tagset = 'none'
+        for tagset in tagsets:
+            if tagset in point_tagsets:
+                point_tagset = tagset
+                break
+        learning_point_dict[srcid] = point_tagset
+
     if ts_flag:
-        with open("Binarizer/mlb.pkl", 'rb') as f:
-            mlb = pickle.load(f, encoding='bytes')
+        learning_tags_dict = dict([(srcid, splitter(tagset)) for srcid, tagset
+                                   in learning_point_dict.items()])
+        tag_binerizer = MultiLabelBinarizer()
+        tag_binerizer.fit(map(splitter, learning_point_dict.values()))
         with open("TS_Features/ebu3b_features.pkl", 'rb') as f:
             ts_features = pickle.load(f, encoding='bytes')
-        ts2ir = TimeSeriesToIR(mlb=mlb)
-        ts2ir.fit(ts_features, learning_srcids)
-        mlb_keys, Y_pred, Y_proba =\
-                ts2ir.predict(ts_features, learning_srcids)
+        ts2ir = TimeSeriesToIR(mlb=tag_binerizer)
+        ts2ir.fit(ts_features, learning_srcids, learning_tags_dict)
+        learning_ts_tags_pred = ts2ir.predict(ts_features, learning_srcids)
+        for srcid, ts_tags in zip(learning_srcids, \
+                                  tag_binerizer.inverse_transform(
+                                      learning_ts_tags_pred)):
+            learning_phrase_dict[srcid] += list(ts_tags)
+
+        test_ts_tags_pred = ts2ir.predict(ts_features, test_srcids)
+        test_ts_word_dict = dict()
+        for srcid, ts_tags in zip(test_srcids, \
+                                  tag_binerizer.inverse_transform(
+                                      test_ts_tags_pred)):
+            test_ts_word_dict[srcid] = list(ts_tags)
+            test_phrase_dict[srcid] += list(ts_tags)
         pdb.set_trace()
 
     ## Transform learning samples
@@ -1796,8 +1823,8 @@ def build_tagset_classifier(building_list, target_building,\
 
     ## Augment with negative examples.
     negative_doc = []
-    negative_truths_dict = {}
     negative_srcids = []
+    negative_truths_dict = {}
     for srcid in learning_srcids:
         true_tagsets = learning_truths_dict[srcid]
         sentence = learning_phrase_dict[srcid]
@@ -2315,178 +2342,6 @@ def entity_recognition_from_ground_truth(building_list,
                                          learning_pred_point_dict,\
                                          phrase_dict,\
                                          debug_flag)
-    #TODO: Test below and remove if not necessary
-#    tagset_vectorizer.fit(test_doc)
-    """
-    test_doc = [' '.join(test_phrase_dict[srcid]) for srcid in test_srcids]
-    if eda_flag:
-        test_vect_doc = eda_vectorizer(tagset_vectorizer, test_doc, \
-                                       source_target_buildings, test_srcids)
-    else:
-        test_vect_doc = tagset_vectorizer.transform(test_doc)
-
-    pred_certainty_dict = dict()
-    pred_tagsets_dict = dict()
-    pred_mat = tagset_classifier.predict(test_vect_doc)
-    #prob_mat = tagset_classifier.predict_proba(test_vect_doc)
-    for i, (srcid, pred) in enumerate(zip(test_srcids, pred_mat)):
-        pred_tagsets_dict[srcid] = tagset_binerizer.inverse_transform(\
-                                        np.asarray([pred]))[0]
-        #pred_tagsets_dict[srcid] = list(tagset_binerizer\
-        #                                .inverse_transform(pred)[0])
-        # TODO: Don't remove below. Activate this when using RandomForest
-        #pred_vec = [prob[i][0] for prob in prob_mat]
-        #pred_certainty_dict[srcid] = sum(pred_vec) / float(len(pred)-sum(pred))
-        pred_certainty_dict[srcid] = 0
-    pred_certainty_dict = OrderedDict(sorted(pred_certainty_dict.items(), \
-                                             key=itemgetter(1), reverse=True))
-
-    ############## EVALUATE TESTS #############
-    # Evaluate result 
-    # TODO: Check if fault predictions are related to unincluded point tagsets
-    found_point_tagsets = set([tagset for tagset \
-                               in reduce(adder, \
-                                         learning_truths_dict.values(), \
-                                         [])])
-    # regenerate learning_doc and learning_vect_doc for debugging
-    result_dict = defaultdict(dict)
-
-    sorted_result_dict = OrderedDict()
-    incorrect_tagsets_dict = dict()
-    correct_cnt = 0
-    incorrect_cnt = 0
-    point_correct_cnt = 0
-    point_incorrect_cnt = 0
-    empty_point_cnt = 0
-    unknown_reason_cnt = 0
-    undiscovered_point_cnt = 0
-    unfound_points = set()
-    for srcid, pred_tagsets in pred_tagsets_dict.items():
-        true_tagsets = test_truths_dict[srcid]
-        one_result = {
-            'tagsets': pred_tagsets,
-            'certainty': pred_certainty_dict[srcid]
-        }
-        if set(true_tagsets) == set(pred_tagsets):
-            correct_cnt += 1
-            one_result['correct?'] = True
-            result_dict['correct'][srcid] = one_result
-            #result_dict['correct'][srcid] = pred_tagsets
-            point_correct_cnt += 1
-        else:
-            incorrect_cnt += 1
-            one_result['correct?'] = False
-            result_dict['incorrect'][srcid] = one_result
-            true_point = None
-            for tagset in true_tagsets:
-                if tagset in point_tagsets:
-                    true_point = tagset
-                    break
-            try:
-                assert true_point
-                if true_point not in found_points:
-                    unfound_points.add(true_point)
-                if true_point not in found_points or true_point=='unknown':
-                    undiscovered_point_cnt += 1
-                found_point = None
-                for tagset in pred_tagsets:
-                    if tagset in point_tagsets:
-                        found_point = tagset
-                        break
-                if not found_point:
-                    empty_point_cnt += 1
-                elif found_point != true_point:
-                    point_incorrect_cnt += 1
-                    print("INCORRECT POINT FOUND: {0} -> {1}"\
-                          .format(true_point, found_point))
-                else:
-                    unknown_reason_cnt += 1
-                    point_correct_cnt += 1
-                #    pdb.set_trace()
-            except:
-                print('point not found')
-                pdb.set_trace()
-                unknown_reason_cnt += 1
-            if debug_flag:
-                print('####################################################')
-                print('TRUE: {0}'.format(true_tagsets))
-                print('PRED: {0}'.format(pred_tagsets))
-                if true_point:
-                    print('point num in source building: {0}'\
-                          .format(found_point_cnt_dict[true_point]))
-                else:
-                    print('no point is included here')
-                source_srcid = None
-                source_idx = None
-                for temp_srcid, tagsets in learning_truths_dict.items():
-                    if true_point and true_point in tagsets:
-                        #source_srcid = temp_srcid
-                        #source_idx = learning_srcids.index(source_srcid)
-                        #source_doc = learning_doc[source_idx]
-                        #source_vect = learning_vect_doc[source_idx]
-                        break
-                test_idx = test_srcids.index(srcid)
-                target_doc = test_doc[test_idx]
-                target_vect = test_vect_doc[test_idx]
-                print('####################################################')
-                if not found_point and true_point in found_points\
-                   and true_point not in ['unknown',\
-                        'effective_heating_temperature_setpoint',\
-                        'effective_cooling_temperature_setpoint',\
-                        'supply_air_flow_setpoint',\
-                        'output_frequency_sensor']:
-                    source_point_srcid = None
-                    for temp_srcid, truths in learning_truths_dict.items():
-                        if true_point in truths:
-                            source_point_srcid = temp_srcid
-                            break
-                    print('--source phrase: {0}'.format(\
-                                Counter(phrase_dict[source_point_srcid])))
-                    print('--target phrase: {0}'.format(\
-                                Counter(test_phrase_dict[srcid])))
-
-                    pdb.set_trace()
-                    pass
-        sorted_result_dict[srcid] = one_result
-
-    point_precision = float(point_correct_cnt) \
-                        / (point_correct_cnt + point_incorrect_cnt)
-    point_recall = float(point_correct_cnt) \
-                        / (point_correct_cnt + empty_point_cnt)
-    print('------------------------------------result---------------')
-    print('point precision: {0}'.format(point_precision))
-    print('point recall: {0}'.format(point_recall))
-    print(len(unfound_points))
-    print(len(found_points))
-    if empty_point_cnt > 0:
-        print('rate points not found in source \
-              among sensors where point is not found: \n\t{0}'\
-              .format(undiscovered_point_cnt / float(empty_point_cnt)))
-    print('sensors where a point is not found: ', empty_point_cnt\
-                                               /float(incorrect_cnt),\
-                                empty_point_cnt)
-    print('sensors where incorrect points are found: ', point_incorrect_cnt\
-                                                     /float(incorrect_cnt),\
-                                      point_incorrect_cnt)
-    print('unknown reason: ', unknown_reason_cnt\
-                              /float(incorrect_cnt),\
-                              unknown_reason_cnt)
-    print('-----------')
-
-
-    sorted_result_dict = OrderedDict(\
-                            sorted(sorted_result_dict.items(), \
-                                   key=certainty_getter))
-    sorted_result_dict['samples'] = learning_srcids
-    result_dict['samples'] = learning_srcids
-
-    print('precision')
-    print(float(correct_cnt) / len(test_srcids))
-    with open('result/tagset_{0}.json'.format(building), 'w') as fp:
-        json.dump(result_dict, fp, indent=2)
-    with open('result/sorted_tagset_{0}.json'.format(building), 'w') as fp:
-        json.dump(sorted_result_dict, fp, indent=2)
-    """
 
     ### Test on the entire target building
     target_srcids = raw_srcids_dict[target_building]
@@ -2554,9 +2409,10 @@ def entity_recognition_from_ground_truth(building_list,
     print('history of unfound point cnt: {0}'\
           .format(next_step_data['unfound_point_cnt_history']))
 
-    return  target_result_dict['point_precision'], \
-            target_result_dict['point_recall'], \
-            next_step_data
+    #return  target_result_dict['point_precision'], \
+    #        target_result_dict['point_recall'], \
+    #        next_step_data
+    return target_result_dict, next_step_data
 
 
 def make_ontology():
@@ -2740,7 +2596,6 @@ def entity_recognition_from_ground_truth_get_avg(N,
     for i in range(0,N):
         p = Process(target=parallel_func, args=(\
                 entity_recognition_from_ground_truth, i, return_dict, *args))
-#                                               ))
         jobs.append(p)
         p.start()
         if i % worker_num == worker_num-1:
@@ -2751,11 +2606,30 @@ def entity_recognition_from_ground_truth_get_avg(N,
     for proc in jobs:
         proc.join()
 
-    avg_prec = np.mean(list(map(itemgetter(0), return_dict.values())))
-    avg_recall  = np.mean(list(map(itemgetter(1), return_dict.values())))
+    #avg_prec = np.mean(list(map(itemgetter(0), return_dict.values())))
+    #avg_recall  = np.mean(list(map(itemgetter(1), return_dict.values())))
+    avg_point_prec = 0
+    avg_point_recall = 0
+    avg_accuracy = 0
+    avg_subset_accuracy = 0
+    avg_hierarchy_accuracy = 0
+    for i, results in return_dict.items():
+        result = results[0]
+        avg_point_prec += result['point_precision']
+        avg_point_recall += result['point_recall']
+        avg_accuracy += result['accuracy']
+        avg_subset_accuracy += result['subset_accuracy']
+        avg_hierarchy_accuracy += result['hierarchy_accuracy']
+
     print('=======================================================')
-    print ('Averaged Point Precision: {0}'.format(avg_prec))
-    print ('Averaged Point Recall: {0}'.format(avg_recall))
+    print ('Averaged Point Precision: {0}'\
+           .format(avg_point_prec / len(result_dict)))
+    print ('Averaged Point Recall: {0}'\
+           .format(avg_point_recall / len(result_dict)))
+    print ('Averaged Accuracy: {0}'\
+           .format(avg_accuracy / len(result_dict)))
+    print ('Averaged Hierarchy Recall: {0}'\
+           .format(avg_hierarchy_accuracy / len(result_dict)))
 
     print("FIN")
 
