@@ -2623,13 +2623,13 @@ def entity_recognition_from_ground_truth_get_avg(N,
 
     print('=======================================================')
     print ('Averaged Point Precision: {0}'\
-           .format(avg_point_prec / len(result_dict)))
+           .format(avg_point_prec / len(return_dict)))
     print ('Averaged Point Recall: {0}'\
-           .format(avg_point_recall / len(result_dict)))
+           .format(avg_point_recall / len(return_dict)))
     print ('Averaged Accuracy: {0}'\
-           .format(avg_accuracy / len(result_dict)))
+           .format(avg_accuracy / len(return_dict)))
     print ('Averaged Hierarchy Recall: {0}'\
-           .format(avg_hierarchy_accuracy / len(result_dict)))
+           .format(avg_hierarchy_accuracy / len(return_dict)))
 
     print("FIN")
 
