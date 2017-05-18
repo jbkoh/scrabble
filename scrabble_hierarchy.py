@@ -19,16 +19,18 @@ import sys
 from math import ceil, floor
 from pprint import PrettyPrinter
 pp = PrettyPrinter()
+import psutil
 
 import pycrfsuite
 import pandas as pd
 import numpy as np
 from IPython.display import Audio
-import matplotlib.pyplot as plt
+#import matplotlib.pyplot as plt
 from matplotlib.backends.backend_pdf import PdfPages
 from bson.binary import Binary as BsonBinary
 import arrow
 from pygame import mixer
+import pympler
 
 from sklearn.feature_extraction.text import TfidfVectorizer, CountVectorizer
 from sklearn.ensemble import RandomForestClassifier, AdaBoostClassifier
@@ -738,9 +740,9 @@ def crf_test(building_list,
     error_rate_list = [error_rate_list[i] for i in i_list]
     trendline = np.polyfit(score_list, error_rate_list, 1)
     p = np.poly1d(trendline)
-    plt.scatter(score_list, error_rate_list, alpha=0.3)
-    plt.plot(score_list, p(score_list), "r--")
-    save_fig(plt.gcf(), error_plot_file)
+    #plt.scatter(score_list, error_rate_list, alpha=0.3)
+    #plt.plot(score_list, p(score_list), "r--")
+    #save_fig(plt.gcf(), error_plot_file)
 
 
 def sub_dict_by_key_set(d, ks):
@@ -1014,7 +1016,6 @@ def tagsets_evaluation(truths_dict, pred_tagsets_dict, pred_certainty_dict,\
             result_dict['correct'][srcid] = one_result
             #result_dict['correct'][srcid] = pred_tagsets
             point_correct_cnt += 1
-            print('OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO')
             need_review = True
         else:
             incorrect_cnt += 1
@@ -1031,18 +1032,15 @@ def tagsets_evaluation(truths_dict, pred_tagsets_dict, pred_certainty_dict,\
                     break
             if found_point in ['none', None]:
                 empty_point_cnt += 1
-                print('EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE')
                 need_review = True
             elif found_point != true_point:
                 point_incorrect_cnt += 1
-                print('XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX')
                 print("INCORRECT POINT ({0}) FOUND: {0} -> {1}"\
                       .format(srcid, true_point, found_point))
                 need_review = True
             else:
                 unknown_reason_cnt += 1
                 point_correct_cnt += 1
-                print('OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO')
                 need_review = True
         if need_review and debug_flag:
             print('TRUE: {0}'.format(true_tagsets))
@@ -1404,9 +1402,10 @@ class StructuredClassifierChain():
         Y = self._augment_labels_superclasses(Y)
         mapped_sub_fit = partial(self.sub_fit, X, Y)
         self.base_classifiers = p.map(mapped_sub_fit, range(0,Y.shape[1]))
+        p.close()
 
     def sub_fit(self, X, Y, i):
-        if i%10==0:
+        if i%500==0:
             logging.info('{0}th learning step'.format(i))
         base_classifier = deepcopy(self.base_classifier)
         y = Y.T[i]
@@ -1775,9 +1774,10 @@ def build_tagset_classifier(building_list, target_building,\
     ## Init Brick document
     logging.info('Start adding Brick samples')
     if use_brick_flag:
-        brick_copy_num = int(len(learning_phrase_dict) * 0.04)
-        if brick_copy_num < 4:
-            brick_copy_num = 4
+        #brick_copy_num = int(len(learning_phrase_dict) * 0.04)
+        #if brick_copy_num < 4:
+        #    brick_copy_num = 4
+        brick_copy_num = 4
         #brick_truths_dict = dict((gen_uuid(), [tagset]) \
         #                          for tagset in tagset_list\
         #                          for j in range(0, brick_copy_num))
@@ -2018,10 +2018,10 @@ def cross_validation(building_list, n_list,
                             validation_srcids,\
                             tagset_list, eda_flag, use_brick_flag,
                             source_target_buildings,
-                            n_jobs=6
+                            n_jobs=4
                            )
 
-        alidation_pred_tagsets_dict, \
+        validation_pred_tagsets_dict, \
         validation_pred_certainty_dict, \
         pred_point_dict = \
                 tagsets_prediction(tagset_classifier, tagset_vectorizer, \
@@ -2052,15 +2052,16 @@ def cross_validation(building_list, n_list,
                 if tagset in point_tagsets:
                     pred_found_points.append(tagset)
 
-        pdb.set_trace()
 
         validation_result_dict[cid] = {
             'srcids': cluster_srcids,
-            'common_pred_points': pred_found_points,
-            'common_true_points': true_found_points,
+            'common_pred_points_len': len(pred_found_points),
+            'common_true_points_len': len(true_found_points),
             'point_precision': precision_dict[cid],
             'point_recall': recall_dict[cid]
         }
+        mem_usage = psutil.virtual_memory().used/1000/1000/1000
+        logging.info('Current memory usage {0} GB'.format(mem_usage))
         if False: #success: #TODO: Implement this.
             evaluated_srcids += cluster_srcids
     with open('result/validation_result.json', 'w') as fp:
@@ -2073,7 +2074,7 @@ def cross_validation(building_list, n_list,
         try:
             if cluster_result['point_precision'] > \
                     np.mean(cluster_precision_list)\
-               and len(cluster_result['common_pred_points']) > 1:
+               and cluster_result['common_pred_points_len'] > 1:
                 learning_srcids += cluster_result['srcids']
         except:
             pdb.set_trace()
