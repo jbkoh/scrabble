@@ -2632,8 +2632,9 @@ def entity_recognition_from_ground_truth_get_avg(N,
                                                  use_cluster_flag=False,
                                                  use_brick_flag=False,
                                                  eda_flag=False,
-                                                 ts_flag=False):
-    worker_num = 2
+                                                 ts_flag=False,
+                                                 n_jobs=4):
+    worker_num = 8
 
     manager = Manager()
     return_dict = manager.dict()
@@ -2648,7 +2649,8 @@ def entity_recognition_from_ground_truth_get_avg(N,
             use_brick_flag,
             False,
             eda_flag,
-            ts_flag
+            ts_flag,
+            n_jobs
            )
 
     for i in range(0,N):
@@ -2834,7 +2836,8 @@ if __name__=='__main__':
                 use_cluster_flag=args.use_cluster_flag,
                 use_brick_flag=args.use_brick_flag,
                 eda_flag=args.eda_flag,
-                ts_flag=args.ts_flag)
+                ts_flag=args.ts_flag,
+                n_jobs=args.n_jobs)
     elif args.prog == 'crf_entity':
         entity_recognition_from_crf(\
                 building_list=args.source_building_list,\
