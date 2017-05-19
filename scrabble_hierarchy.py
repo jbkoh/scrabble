@@ -2593,33 +2593,39 @@ def entity_recognition_from_ground_truth_get_avg(N,
             False,
             eda_flag)
 
-    for i in range(0,N):
-        p = Process(target=parallel_func, args=(\
-                entity_recognition_from_ground_truth, i, return_dict, *args))
-        jobs.append(p)
-        p.start()
-        if i % worker_num == worker_num-1:
-            for proc in jobs:
-                proc.join()
-            jobs = []
 
-    for proc in jobs:
-        proc.join()
+#for i in range(0,N):
+#        p = Process(target=parallel_func, args=(\
+#                entity_recognition_from_ground_truth, i, return_dict, *args))
+#        jobs.append(p)
+#        p.start()
+#        if i % worker_num == worker_num-1:
+#            for proc in jobs:
+#                proc.join()
+#            jobs = []
+
+#    for proc in jobs:
+#        proc.join()
+    for i in range(0,N):
+        results, _ = entity_recognition_from_ground_truth(*args)
+        return_dict[i] = results
 
     #avg_prec = np.mean(list(map(itemgetter(0), return_dict.values())))
     #avg_recall  = np.mean(list(map(itemgetter(1), return_dict.values())))
-    avg_point_prec = 0
-    avg_point_recall = 0
-    avg_accuracy = 0
-    avg_subset_accuracy = 0
-    avg_hierarchy_accuracy = 0
-    for i, results in return_dict.items():
-        result = results[0]
-        avg_point_prec += result['point_precision']
-        avg_point_recall += result['point_recall']
-        avg_accuracy += result['accuracy']
-        avg_subset_accuracy += result['subset_accuracy']
-        avg_hierarchy_accuracy += result['hierarchy_accuracy']
+    try:
+        avg_point_prec = 0
+        avg_point_recall = 0
+        avg_accuracy = 0
+        avg_subset_accuracy = 0
+        avg_hierarchy_accuracy = 0
+        for i, results in return_dict.items():
+            avg_point_prec += results['point_precision']
+            avg_point_recall += results['point_recall']
+            avg_accuracy += results['accuracy']
+            avg_subset_accuracy += results['subset_accuracy']
+            avg_hierarchy_accuracy += results['hierarchy_accuracy']
+    except:
+        pdb.set_trace()
 
     print('=======================================================')
     print ('Averaged Point Precision: {0}'\
@@ -2628,7 +2634,7 @@ def entity_recognition_from_ground_truth_get_avg(N,
            .format(avg_point_recall / len(return_dict)))
     print ('Averaged Accuracy: {0}'\
            .format(avg_accuracy / len(return_dict)))
-    print ('Averaged Hierarchy Recall: {0}'\
+    print ('Averaged Hierarchy Accuracy: {0}'\
            .format(avg_hierarchy_accuracy / len(return_dict)))
 
     print("FIN")
