@@ -1687,6 +1687,46 @@ class FixedClassifierChain():
             return self.pred_Y
         else:
             return cnt
+/
+def augment_ts(srcids, ):
+    learning_point_dict = dict()
+    for srcid, tagsets in learning_truths_dict.items():
+        point_tagset = 'none'
+        for tagset in tagsets:
+            if tagset in point_tagsets:
+                point_tagset = tagset
+                break
+        learning_point_dict[srcid] = point_tagset
+
+    if ts_flag:
+        learning_tags_dict = dict([(srcid, splitter(tagset)) for srcid, tagset
+                                   in learning_point_dict.items()])
+        tag_binerizer = MultiLabelBinarizer()
+        tag_binerizer.fit(map(splitter, learning_point_dict.values()))
+        with open("TS_Features/ebu3b_features.pkl", 'rb') as f:
+            ts_features = pickle.load(f, encoding='bytes')
+        ts2ir = TimeSeriesToIR(mlb=tag_binerizer)
+        ts2ir.fit(ts_features, learning_srcids, learning_tags_dict)
+        learning_ts_tags_pred = ts2ir.predict(ts_features, learning_srcids)
+        for srcid, ts_tags in zip(learning_srcids, \
+                                  tag_binerizer.inverse_transform(
+                                      learning_ts_tags_pred)):
+            #learning_phrase_dict[srcid] += list(ts_tags)
+            ts_srcid = srcid + '_ts'
+            learning_phrase_dict[ts_srcid] = learning_phrase_dict[srcid]\
+                                                + list(ts_tags)
+            learning_srcids.append(ts_srcid)
+            learning_truths_dict[ts_srcid] = learning_truths_dict[srcid]
+
+        test_ts_tags_pred = ts2ir.predict(ts_features, test_srcids)
+        test_ts_word_dict = dict()
+        for srcid, ts_tags in zip(test_srcids, \
+                                  tag_binerizer.inverse_transform(
+                                      test_ts_tags_pred)):
+            test_ts_word_dict[srcid] = list(ts_tags)
+            test_phrase_dict[srcid] += list(ts_tags)
+
+
 
 def tree_flatter(tree, init_flag=True):
     branches_list = list(tree.values())
@@ -2593,11 +2633,11 @@ def entity_recognition_from_ground_truth_get_avg(N,
                                                  use_brick_flag=False,
                                                  eda_flag=False,
                                                  ts_flag=False):
-    #worker_num = 2
+    worker_num = 2
 
-    #manager = Manager()
-    #return_dict = manager.dict()
-    #jobs = []
+    manager = Manager()
+    return_dict = manager.dict()
+    jobs = []
 
     args = (building_list,\
             source_sample_num_list,\
@@ -2611,7 +2651,6 @@ def entity_recognition_from_ground_truth_get_avg(N,
             ts_flag
            )
 
-    """
     for i in range(0,N):
         p = Process(target=parallel_func, args=(\
                 entity_recognition_from_ground_truth, i, return_dict, *args))
@@ -2624,36 +2663,23 @@ def entity_recognition_from_ground_truth_get_avg(N,
 
     for proc in jobs:
         proc.join()
-    """
-    return_dict = dict()
-    for i in range(0, N):
-        results, _ = entity_recognition_from_ground_truth(*args)
-        return_dict[i] = results
 
-    avg_point_prec = 0
-    avg_point_recall = 0
-    avg_accuracy = 0
-    avg_subset_accuracy = 0
-    avg_hierarchy_accuracy = 0
-    for i, results in return_dict.items():
-        avg_point_prec += results['point_precision']
-        avg_point_recall += results['point_recall']
-        avg_accuracy += results['accuracy']
-        avg_subset_accuracy += results['subset_accuracy']
-        avg_hierarchy_accuracy += results['hierarchy_accuracy']
-
-    print('=======================================================')
-    print ('Averaged Point Precision: {0}'\
-           .format(avg_point_prec / len(return_dict)))
-    print ('Averaged Point Recall: {0}'\
-           .format(avg_point_recall / len(return_dict)))
-    print ('Averaged Subset Accuracy: {0}'\
-           .format(avg_subset_accuracy / len(return_dict)))
-    print ('Averaged Accuracy: {0}'\
-           .format(avg_accuracy / len(return_dict)))
-    print ('Averaged Hierarchy Recall: {0}'\
-           .format(avg_hierarchy_accuracy / len(return_dict)))
-
+    ig = lambda k, d: d[0][k]
+    point_precision = np.mean(list(map(partial(ig, 'point_precision'),
+                                  return_dict.values())))
+    point_recall = np.mean(list(map(partial(ig, 'point_recall'),
+                                  return_dict.values())))
+    accuracy = np.mean(list(map(partial(ig, 'accuracy'),
+                                  return_dict.values())))
+    subset_accuracy = np.mean(list(map(partial(ig, 'subset_accuracy'),
+                                  return_dict.values())))
+    hierarchy_accuracy = np.mean(list(map(partial(ig, 'hierarchy_accuracy'),
+                                  return_dict.values())))
+    print ('Averaged Point Precision: {0}'.format(point_precision))
+    print ('Averaged Point Recall: {0}'.format(point_recall))
+    print ('Averaged Subset Accuracy: {0}'.format(subset_accuracy))
+    print ('Averaged Accuracy: {0}'.format(accuracy))
+    print ('Averaged Hierarchy Accuracy: {0}'.format(hierarchy_accuracy))
     print("FIN")
 
 
