@@ -2651,22 +2651,18 @@ def entity_recognition_from_ground_truth_get_avg(N,
             ts_flag
            )
 
-
-#for i in range(0,N):
-#        p = Process(target=parallel_func, args=(\
-#                entity_recognition_from_ground_truth, i, return_dict, *args))
-#        jobs.append(p)
-#        p.start()
-#        if i % worker_num == worker_num-1:
-#            for proc in jobs:
-#                proc.join()
-#            jobs = []
-
-#    for proc in jobs:
-#        proc.join()
     for i in range(0,N):
-        results, _ = entity_recognition_from_ground_truth(*args)
-        return_dict[i] = results
+        p = Process(target=parallel_func, args=(\
+                entity_recognition_from_ground_truth, i, return_dict, *args))
+        jobs.append(p)
+        p.start()
+        if i % worker_num == worker_num-1:
+            for proc in jobs:
+                proc.join()
+            jobs = []
+
+    for proc in jobs:
+        proc.join()
 
     ig = lambda k, d: d[0][k]
     point_precision = np.mean(list(map(partial(ig, 'point_precision'),
@@ -2684,6 +2680,7 @@ def entity_recognition_from_ground_truth_get_avg(N,
     print ('Averaged Subset Accuracy: {0}'.format(subset_accuracy))
     print ('Averaged Accuracy: {0}'.format(accuracy))
     print ('Averaged Hierarchy Accuracy: {0}'.format(hierarchy_accuracy))
+    print("FIN")
 
 
 def str2bool(v):
