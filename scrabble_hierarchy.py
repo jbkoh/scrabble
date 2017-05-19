@@ -79,6 +79,7 @@ subclass_dict['networkadapter'] = list()
 subclass_dict['unknown'] = list()
 subclass_dict['none'] = list()
 tagset_classifier_type = None
+ts_feature_filename = 'TS_Features/ebu3b_features.pkl'
 
 from building_tokenizer import nae_dict
 
@@ -981,13 +982,13 @@ def hier_clustering(d, threshold=3):
 
 def tagsets_prediction(classifier, vectorizer, binerizer, \
                            phrase_dict, srcids, source_target_buildings, \
-                       eda_flag, point_classifier, ts_flag=False):
+                       eda_flag, point_classifier, ts2ir=None):
     global point_tagsets
     logging.info('Start prediction')
+    if ts2ir:
+        phrase_dict = augment_ts(phrase_dict, srcids, ts2ir)
     doc = [' '.join(phrase_dict[srcid]) for srcid in srcids]
 
-    if ts_flag:
-        pass
 
     if eda_flag:
         vect_doc = eda_vectorizer(vectorizer, doc, \
@@ -1433,10 +1434,10 @@ class StructuredClassifierChain():
         return np.hstack([X, Y*2])
 
     def fit(self, X,Y):
-        if self.n_jobs == 1:
-            return self.serial_fit(X, Y)
-        else:
-            return self.parallel_fit(X, Y)
+        #if self.n_jobs == 1:
+        #    return self.serial_fit(X, Y)
+        #else:
+        return self.parallel_fit(X, Y)
 
     def serial_fit(self, X, Y):
         logging.info('Start fitting')
@@ -1462,7 +1463,10 @@ class StructuredClassifierChain():
         y = Y.T[i]
         sub_Y = Y[:, self.upper_y_index_list[i]]
         augmented_X = self._augment_X(X, sub_Y)
-        base_classifier.fit(augmented_X, y)
+        try:
+            base_classifier.fit(augmented_X, y)
+        except:
+            pass
         return base_classifier
 
     def sub_fit_proj(self, X, Y, i):
@@ -1505,7 +1509,10 @@ class StructuredClassifierChain():
                 pdb.set_trace()
             sub_Y = Y[:, upper_y_indices]
             augmented_X = self._augment_X(X, sub_Y)
-            pred_y = base_classifier.predict(augmented_X)
+            try:
+                pred_y = base_classifier.predict(augmented_X)
+            except:
+                pred_y = np.zeros(augmented_X.shape[0])
             Y[:, i] = pred_y
         Y = self._distill_Y(Y)
         logging.info('Finished predicting')
@@ -1688,44 +1695,17 @@ class FixedClassifierChain():
         else:
             return cnt
 
-def augment_ts(srcids, ):
-    learning_point_dict = dict()
-    for srcid, tagsets in learning_truths_dict.items():
-        point_tagset = 'none'
-        for tagset in tagsets:
-            if tagset in point_tagsets:
-                point_tagset = tagset
-                break
-        learning_point_dict[srcid] = point_tagset
+def augment_ts(phrase_dict, srcids, ts2ir):
+    with open(ts_feature_filename, 'rb') as fp:
+        ts_features = pickle.load(fp, encoding='bytes')
+    ts_tags_pred = ts2ir.predict(ts_features, srcids)
 
-    if ts_flag:
-        learning_tags_dict = dict([(srcid, splitter(tagset)) for srcid, tagset
-                                   in learning_point_dict.items()])
-        tag_binerizer = MultiLabelBinarizer()
-        tag_binerizer.fit(map(splitter, learning_point_dict.values()))
-        with open("TS_Features/ebu3b_features.pkl", 'rb') as f:
-            ts_features = pickle.load(f, encoding='bytes')
-        ts2ir = TimeSeriesToIR(mlb=tag_binerizer)
-        ts2ir.fit(ts_features, learning_srcids, learning_tags_dict)
-        learning_ts_tags_pred = ts2ir.predict(ts_features, learning_srcids)
-        for srcid, ts_tags in zip(learning_srcids, \
-                                  tag_binerizer.inverse_transform(
-                                      learning_ts_tags_pred)):
-            #learning_phrase_dict[srcid] += list(ts_tags)
-            ts_srcid = srcid + '_ts'
-            learning_phrase_dict[ts_srcid] = learning_phrase_dict[srcid]\
-                                                + list(ts_tags)
-            learning_srcids.append(ts_srcid)
-            learning_truths_dict[ts_srcid] = learning_truths_dict[srcid]
+    tag_binarizer = ts2ir.get_binarizer()
+    pred_tags_list = tag_binarizer.inverse_transform(ts_tags_pred)
 
-        test_ts_tags_pred = ts2ir.predict(ts_features, test_srcids)
-        test_ts_word_dict = dict()
-        for srcid, ts_tags in zip(test_srcids, \
-                                  tag_binerizer.inverse_transform(
-                                      test_ts_tags_pred)):
-            test_ts_word_dict[srcid] = list(ts_tags)
-            test_phrase_dict[srcid] += list(ts_tags)
-
+    for srcid, pred_tags in zip(srcids, pred_tags_list):
+        phrase_dict[srcid] += list(pred_tags)
+    return phrase_dict
 
 
 def tree_flatter(tree, init_flag=True):
@@ -1774,7 +1754,6 @@ def build_tagset_classifier(building_list, target_building,\
 ####    tagset_classifier = OneVsRestClassifier(SVC(kernel='rbf'), n_jobs=n_jobs)
 
     #tagset_list = sorted(tagset_list, key=tagset_lengther)
-    #TODO: Sort tagset_list based on the tree structure!
     new_tagset_list = tree_flatter(tagset_tree, [])
     new_tagset_list = new_tagset_list + [ts for ts in tagset_list \
                                      if ts not in new_tagset_list]
@@ -1824,8 +1803,6 @@ def build_tagset_classifier(building_list, target_building,\
     #tagset_vectorizer = CountVectorizer(tokenizer=tokenizer,\
     #                                    vocabulary=vocab_dict)
 
-    ts_flag = False
-
     learning_point_dict = dict()
     for srcid, tagsets in learning_truths_dict.items():
         point_tagset = 'none'
@@ -1835,13 +1812,14 @@ def build_tagset_classifier(building_list, target_building,\
                 break
         learning_point_dict[srcid] = point_tagset
 
+    ts2ir = None
     if ts_flag:
         learning_tags_dict = dict([(srcid, splitter(tagset)) for srcid, tagset
                                    in learning_point_dict.items()])
         tag_binerizer = MultiLabelBinarizer()
         tag_binerizer.fit(map(splitter, learning_point_dict.values()))
-        with open("TS_Features/ebu3b_features.pkl", 'rb') as f:
-            ts_features = pickle.load(f, encoding='bytes')
+        with open(ts_feature_filename, 'rb') as fp:
+            ts_features = pickle.load(fp, encoding='bytes')
         ts2ir = TimeSeriesToIR(mlb=tag_binerizer)
         ts2ir.fit(ts_features, learning_srcids, learning_tags_dict)
         learning_ts_tags_pred = ts2ir.predict(ts_features, learning_srcids)
@@ -1856,11 +1834,12 @@ def build_tagset_classifier(building_list, target_building,\
             learning_truths_dict[ts_srcid] = learning_truths_dict[srcid]
 
         test_ts_tags_pred = ts2ir.predict(ts_features, test_srcids)
-        test_ts_word_dict = dict()
         for srcid, ts_tags in zip(test_srcids, \
                                   tag_binerizer.inverse_transform(
                                       test_ts_tags_pred)):
-            test_ts_word_dict[srcid] = list(ts_tags)
+            #ts_srcid = srcid + '_ts'
+            #test_phrase_dict[ts_srcid] = test_phrase_dict[srcid] + list(ts_tags)
+            #test_srcids .append(ts_srcid) # TODO: Validate if this works.
             test_phrase_dict[srcid] += list(ts_tags)
 
     ## Transform learning samples
@@ -1871,32 +1850,34 @@ def build_tagset_classifier(building_list, target_building,\
                 for srcid in test_srcids]
 
     ## Augment with negative examples.
+    negative_flag = True
     negative_doc = []
     negative_srcids = []
     negative_truths_dict = {}
-    for srcid in learning_srcids:
-        true_tagsets = learning_truths_dict[srcid]
-        sentence = learning_phrase_dict[srcid]
-        for tagset in set(true_tagsets):
+    if negative_flag:
+        for srcid in learning_srcids:
+            true_tagsets = learning_truths_dict[srcid]
+            sentence = learning_phrase_dict[srcid]
+            for tagset in set(true_tagsets):
+                negative_srcid = gen_uuid()
+                negative_srcids.append(negative_srcid)
+                negative_tagsets = list(filter(tagset.__ne__, true_tagsets))
+                removing_tags = [word for word in sentence \
+                                     if word in tagset.split('_')]
+                negative_sentence = [ts for ts in true_tagsets\
+                                     if not sum([tag in ts \
+                                                 for tag in removing_tags])]
+
+    #            negative_sentence = [word for word in sentence \
+    #                                 if word not in tagset.split('_')]
+                negative_doc.append(' '.join(negative_sentence))
+                negative_truths_dict[negative_srcid] = negative_tagsets
+        for i in range(0,50):
+            # Add empty examples
             negative_srcid = gen_uuid()
             negative_srcids.append(negative_srcid)
-            negative_tagsets = list(filter(tagset.__ne__, true_tagsets))
-            removing_tags = [word for word in sentence \
-                                 if word in tagset.split('_')]
-            negative_sentence = [ts for ts in true_tagsets\
-                                 if not sum([tag in ts \
-                                             for tag in removing_tags])]
-
-#            negative_sentence = [word for word in sentence \
-#                                 if word not in tagset.split('_')]
-            negative_doc.append(' '.join(negative_sentence))
-            negative_truths_dict[negative_srcid] = negative_tagsets
-    for i in range(0,50):
-        # Add empty examples
-        negative_srcid = gen_uuid()
-        negative_srcids.append(negative_srcid)
-        negative_doc.append('')
-        negative_truths_dict[negative_srcid] = []
+            negative_doc.append('')
+            negative_truths_dict[negative_srcid] = []
 
     learning_doc += negative_doc
     learning_srcids += negative_srcids
@@ -1904,8 +1885,8 @@ def build_tagset_classifier(building_list, target_building,\
 
 
     ## Init Brick document
-    logging.info('Start adding Brick samples')
     if use_brick_flag:
+        logging.info('Start adding Brick samples')
         #brick_copy_num = int(len(learning_phrase_dict) * 0.04)
         #if brick_copy_num < 4:
         #    brick_copy_num = 4
@@ -1942,6 +1923,7 @@ def build_tagset_classifier(building_list, target_building,\
                                 [building + '#' + tag for tag in tagset.split('_')]
                         brick_doc.append(' '.join(tags))
         """
+        logging.info('Finished adding Brick samples')
     else:
         brick_truths_dict = dict()
         brick_srcids = []
@@ -1949,7 +1931,6 @@ def build_tagset_classifier(building_list, target_building,\
     brick_truth_mat = csr_matrix([tagset_binerizer.transform(\
                                   [brick_truths_dict[srcid]])[0] \
                                   for srcid in brick_srcids])
-    logging.info('Finished adding Brick samples')
 
     logging.info('start tagset vectorizing')
     tagset_vectorizer.fit(learning_doc + test_doc + brick_doc)
@@ -2071,7 +2052,7 @@ def build_tagset_classifier(building_list, target_building,\
     point_classifier.fit(point_vect_doc, point_truth_mat)
 
     return tagset_classifier, tagset_vectorizer, tagset_binerizer, \
-            point_classifier
+            point_classifier, ts2ir
 
 
 def cross_validation(building_list, n_list,
@@ -2140,7 +2121,7 @@ def cross_validation(building_list, n_list,
 
         source_target_buildings = list(set(building_list + [target_building]))
         tagset_classifier, tagset_vectorizer, tagset_binerizer, \
-                point_classifier = \
+                point_classifier, ts2ir = \
             build_tagset_classifier(building_list_1, validation_building,\
                             validation_sentence_dict, \
                             validation_token_label_dict,\
@@ -2335,7 +2316,7 @@ def entity_recognition_from_ground_truth(building_list,
     source_target_buildings = list(set(building_list + [target_building]))
     begin_time = arrow.get()
     tagset_classifier, tagset_vectorizer, tagset_binerizer, \
-            point_classifier = \
+            point_classifier, ts2ir = \
             build_tagset_classifier(building_list, target_building,\
             #                learning_sentence_dict, ,\
                             test_sentence_dict,\
@@ -2384,7 +2365,8 @@ def entity_recognition_from_ground_truth(building_list,
                                 sorted(learning_srcids),\
                                 building_list,\
                                 eda_flag,\
-                                point_classifier)
+                                point_classifier,
+                                ts2ir)
     eval_learning_srcids = deepcopy(learning_srcids)
     random.shuffle(eval_learning_srcids)
     learning_result_dict = tagsets_evaluation(learning_truths_dict,
@@ -2414,7 +2396,8 @@ def entity_recognition_from_ground_truth(building_list,
                                 target_srcids,\
                                 source_target_buildings,\
                                 eda_flag,\
-                                point_classifier)
+                                point_classifier,
+                                ts2ir)
     eval_target_srcids = deepcopy(target_srcids)
     random.shuffle(eval_target_srcids)
     target_result_dict = tagsets_evaluation(target_truths_dict, \
@@ -2586,7 +2569,7 @@ def entity_recognition_from_crf(building_list,\
                 [given_truths_dict[srcid] for srcid in given_srcids]\
                 + [crf_truths_dict[srcid] for srcid in crf_srcids], []))
     source_target_buildings = list(set(building_list + [target_building]))
-    classifier, vectorizer, binerizer, point_classifier = \
+    classifier, vectorizer, binerizer, point_classifier, ts2ir = \
             build_tagset_classifier(building_list, target_building,\
                                     crf_sentence_dict, crf_token_label_dict,\
                                     given_phrase_dict, crf_phrase_dict,\
@@ -2606,7 +2589,7 @@ def entity_recognition_from_crf(building_list,\
                                    classifier, vectorizer, \
                                    binerizer, crf_phrase_dict, \
                                    crf_srcids, source_target_buildings,
-                                   eda_flag, point_classifier)
+                                   eda_flag, point_classifier, ts2ir)
 
     crf_token_usage_dict = determine_used_tokens_multiple(\
                                 crf_sentence_dict, crf_token_label_dict, \
@@ -2632,7 +2615,8 @@ def entity_recognition_from_ground_truth_get_avg(N,
                                                  use_cluster_flag=False,
                                                  use_brick_flag=False,
                                                  eda_flag=False,
-                                                 ts_flag=False):
+                                                 ts_flag=False,
+                                                 worker_num=2):
     worker_num = 2
 
     manager = Manager()
@@ -2772,6 +2756,11 @@ if __name__=='__main__':
                         help='Number of iteration for the given work',
                         dest='iter_num',
                         default=1)
+    parser.add_argument('-wk',
+                        type=int,
+                        help='Number of workers for high level MP',
+                        dest='worker_num',
+                        default=2)
     parser.add_argument('-nj',
                         type=int,
                         help='Number of processes for multiprocessing',
@@ -2834,7 +2823,8 @@ if __name__=='__main__':
                 use_cluster_flag=args.use_cluster_flag,
                 use_brick_flag=args.use_brick_flag,
                 eda_flag=args.eda_flag,
-                ts_flag=args.ts_flag)
+                ts_flag=args.ts_flag,
+                worker_num=args.worker_num)
     elif args.prog == 'crf_entity':
         entity_recognition_from_crf(\
                 building_list=args.source_building_list,\
