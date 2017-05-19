@@ -981,10 +981,14 @@ def hier_clustering(d, threshold=3):
 
 def tagsets_prediction(classifier, vectorizer, binerizer, \
                            phrase_dict, srcids, source_target_buildings, \
-                       eda_flag, point_classifier):
+                       eda_flag, point_classifier, ts_flag=False):
     global point_tagsets
     logging.info('Start prediction')
     doc = [' '.join(phrase_dict[srcid]) for srcid in srcids]
+
+    if ts_flag:
+        pass
+
     if eda_flag:
         vect_doc = eda_vectorizer(vectorizer, doc, \
                                        source_target_buildings, srcids)
@@ -1683,6 +1687,46 @@ class FixedClassifierChain():
             return self.pred_Y
         else:
             return cnt
+/
+def augment_ts(srcids, ):
+    learning_point_dict = dict()
+    for srcid, tagsets in learning_truths_dict.items():
+        point_tagset = 'none'
+        for tagset in tagsets:
+            if tagset in point_tagsets:
+                point_tagset = tagset
+                break
+        learning_point_dict[srcid] = point_tagset
+
+    if ts_flag:
+        learning_tags_dict = dict([(srcid, splitter(tagset)) for srcid, tagset
+                                   in learning_point_dict.items()])
+        tag_binerizer = MultiLabelBinarizer()
+        tag_binerizer.fit(map(splitter, learning_point_dict.values()))
+        with open("TS_Features/ebu3b_features.pkl", 'rb') as f:
+            ts_features = pickle.load(f, encoding='bytes')
+        ts2ir = TimeSeriesToIR(mlb=tag_binerizer)
+        ts2ir.fit(ts_features, learning_srcids, learning_tags_dict)
+        learning_ts_tags_pred = ts2ir.predict(ts_features, learning_srcids)
+        for srcid, ts_tags in zip(learning_srcids, \
+                                  tag_binerizer.inverse_transform(
+                                      learning_ts_tags_pred)):
+            #learning_phrase_dict[srcid] += list(ts_tags)
+            ts_srcid = srcid + '_ts'
+            learning_phrase_dict[ts_srcid] = learning_phrase_dict[srcid]\
+                                                + list(ts_tags)
+            learning_srcids.append(ts_srcid)
+            learning_truths_dict[ts_srcid] = learning_truths_dict[srcid]
+
+        test_ts_tags_pred = ts2ir.predict(ts_features, test_srcids)
+        test_ts_word_dict = dict()
+        for srcid, ts_tags in zip(test_srcids, \
+                                  tag_binerizer.inverse_transform(
+                                      test_ts_tags_pred)):
+            test_ts_word_dict[srcid] = list(ts_tags)
+            test_phrase_dict[srcid] += list(ts_tags)
+
+
 
 def tree_flatter(tree, init_flag=True):
     branches_list = list(tree.values())
@@ -1701,7 +1745,8 @@ def build_tagset_classifier(building_list, target_building,\
                             learning_srcids, test_srcids,\
                             tagset_list, eda_flag, use_brick_flag,
                             source_target_buildings,
-                            n_jobs
+                            n_jobs,
+                            ts_flag
                            ):
     learning_srcids = deepcopy(learning_srcids)
     global total_srcid_dict
@@ -1803,7 +1848,12 @@ def build_tagset_classifier(building_list, target_building,\
         for srcid, ts_tags in zip(learning_srcids, \
                                   tag_binerizer.inverse_transform(
                                       learning_ts_tags_pred)):
-            learning_phrase_dict[srcid] += list(ts_tags)
+            #learning_phrase_dict[srcid] += list(ts_tags)
+            ts_srcid = srcid + '_ts'
+            learning_phrase_dict[ts_srcid] = learning_phrase_dict[srcid]\
+                                                + list(ts_tags)
+            learning_srcids.append(ts_srcid)
+            learning_truths_dict[ts_srcid] = learning_truths_dict[srcid]
 
         test_ts_tags_pred = ts2ir.predict(ts_features, test_srcids)
         test_ts_word_dict = dict()
@@ -1812,7 +1862,6 @@ def build_tagset_classifier(building_list, target_building,\
                                       test_ts_tags_pred)):
             test_ts_word_dict[srcid] = list(ts_tags)
             test_phrase_dict[srcid] += list(ts_tags)
-        pdb.set_trace()
 
     ## Transform learning samples
     learning_doc = [' '.join(learning_phrase_dict[srcid]) \
@@ -2101,7 +2150,8 @@ def cross_validation(building_list, n_list,
                             validation_srcids,\
                             tagset_list, eda_flag, use_brick_flag,
                             source_target_buildings,
-                            n_jobs=4
+                            4,
+                            ts_flag
                            )
 
         validation_pred_tagsets_dict, \
@@ -2182,6 +2232,7 @@ def entity_recognition_from_ground_truth(building_list,
                                          use_brick_flag=False,
                                          debug_flag=False,
                                          eda_flag=False,
+                                         ts_flag=False,
                                          n_jobs=4,
                                          prev_step_data={
                                              'learning_srcids':[],
@@ -2295,7 +2346,8 @@ def entity_recognition_from_ground_truth(building_list,
                             learning_srcids, test_srcids,\
                             tagset_list, eda_flag, use_brick_flag,\
                             source_target_buildings,
-                            n_jobs
+                            n_jobs,
+                            ts_flag
                            )
     end_time = arrow.get()
     print('Training Time: {0}'.format(end_time-begin_time))
@@ -2444,7 +2496,8 @@ def entity_recognition_iteration(iter_num, *args):
                               use_brick_flag = args[6],\
                               debug_flag = args[7],\
                               eda_flag = args[8],\
-                              n_jobs = args[9],\
+                              ts_flag = args[9], \
+                              n_jobs = args[10],\
                               prev_step_data = step_data
                             )
 
@@ -2486,7 +2539,8 @@ def entity_recognition_from_crf(building_list,\
                                 use_brick_flag=True,\
                                 eda_flag=False,\
                                 debug_flag=False,
-                                n_jobs=4):
+                                n_jobs=4,
+                                ts_flag=False):
 
     global tagset_list
     global total_srcid_dict
@@ -2541,6 +2595,7 @@ def entity_recognition_from_crf(building_list,\
                                     tagset_list, eda_flag, use_brick_flag,
                                     source_target_buildings,
                                     n_jobs,
+                                    ts_flag
                                    )
     #augment_tagset_tree(tagset_list)
     #pdb.set_trace()
@@ -2576,7 +2631,8 @@ def entity_recognition_from_ground_truth_get_avg(N,
                                                  label_type='label',
                                                  use_cluster_flag=False,
                                                  use_brick_flag=False,
-                                                 eda_flag=True):
+                                                 eda_flag=False,
+                                                 ts_flag=False):
     worker_num = 2
 
     manager = Manager()
@@ -2591,7 +2647,9 @@ def entity_recognition_from_ground_truth_get_avg(N,
             use_cluster_flag,
             use_brick_flag,
             False,
-            eda_flag)
+            eda_flag,
+            ts_flag
+           )
 
 
 #for i in range(0,N):
@@ -2610,34 +2668,22 @@ def entity_recognition_from_ground_truth_get_avg(N,
         results, _ = entity_recognition_from_ground_truth(*args)
         return_dict[i] = results
 
-    #avg_prec = np.mean(list(map(itemgetter(0), return_dict.values())))
-    #avg_recall  = np.mean(list(map(itemgetter(1), return_dict.values())))
-    try:
-        avg_point_prec = 0
-        avg_point_recall = 0
-        avg_accuracy = 0
-        avg_subset_accuracy = 0
-        avg_hierarchy_accuracy = 0
-        for i, results in return_dict.items():
-            avg_point_prec += results['point_precision']
-            avg_point_recall += results['point_recall']
-            avg_accuracy += results['accuracy']
-            avg_subset_accuracy += results['subset_accuracy']
-            avg_hierarchy_accuracy += results['hierarchy_accuracy']
-    except:
-        pdb.set_trace()
-
-    print('=======================================================')
-    print ('Averaged Point Precision: {0}'\
-           .format(avg_point_prec / len(return_dict)))
-    print ('Averaged Point Recall: {0}'\
-           .format(avg_point_recall / len(return_dict)))
-    print ('Averaged Accuracy: {0}'\
-           .format(avg_accuracy / len(return_dict)))
-    print ('Averaged Hierarchy Accuracy: {0}'\
-           .format(avg_hierarchy_accuracy / len(return_dict)))
-
-    print("FIN")
+    ig = lambda k, d: d[0][k]
+    point_precision = np.mean(list(map(partial(ig, 'point_precision'),
+                                  return_dict.values())))
+    point_recall = np.mean(list(map(partial(ig, 'point_recall'),
+                                  return_dict.values())))
+    accuracy = np.mean(list(map(partial(ig, 'accuracy'),
+                                  return_dict.values())))
+    subset_accuracy = np.mean(list(map(partial(ig, 'subset_accuracy'),
+                                  return_dict.values())))
+    hierarchy_accuracy = np.mean(list(map(partial(ig, 'hierarchy_accuracy'),
+                                  return_dict.values())))
+    print ('Averaged Point Precision: {0}'.format(point_precision))
+    print ('Averaged Point Recall: {0}'.format(point_recall))
+    print ('Averaged Subset Accuracy: {0}'.format(subset_accuracy))
+    print ('Averaged Accuracy: {0}'.format(accuracy))
+    print ('Averaged Hierarchy Accuracy: {0}'.format(hierarchy_accuracy))
 
 
 def str2bool(v):
@@ -2740,6 +2786,11 @@ if __name__=='__main__':
                               StructuredCC.',
                         dest='tagset_classifier_type',
                         default='StructuredCC')
+    parser.add_argument('-ts',
+                        type=str,
+                        help='Flag to use time series features too',
+                        dest='ts_flag',
+                        default=False)
 
     args = parser.parse_args()
 
@@ -2773,20 +2824,9 @@ if __name__=='__main__':
                                          args.use_brick_flag,
                                          args.debug_flag,
                                          args.eda_flag,
+                                         args.ts_flag,
                                          args.n_jobs
                                         )
-            """
-            entity_recognition_from_ground_truth(\
-                building_list=args.source_building_list,
-                source_sample_num_list=args.sample_num_list,
-                target_building=args.target_building,
-                token_type='justseparate',
-                label_type=args.label_type,
-                use_cluster_flag=args.use_cluster_flag,
-                use_brick_flag=args.use_brick_flag,
-                debug_flag=args.debug_flag,
-                eda_flag=args.eda_flag)
-            """
         elif args.avgnum>1:
             entity_recognition_from_ground_truth_get_avg(args.avgnum,
                 building_list=args.source_building_list,
@@ -2795,7 +2835,9 @@ if __name__=='__main__':
                 token_type='justseparate',
                 label_type=args.label_type,
                 use_cluster_flag=args.use_cluster_flag,
-                use_brick_flag=args.use_brick_flag)
+                use_brick_flag=args.use_brick_flag,
+                eda_flag=args.eda_flag,
+                ts_flag=args.ts_flag)
     elif args.prog == 'crf_entity':
         entity_recognition_from_crf(\
                 building_list=args.source_building_list,\
