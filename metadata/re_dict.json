@@ -35,7 +35,7 @@
       ["m.energy", "none"]
     ],
     "t": [
-      ["zn.t", "temperature"], 
+      ["zn.t", ".temperature"], 
       ["t\\d", "networkadapter-t"], 
       ["t.occ", "temporary"],
       ["chwr\\d t", "temperature"],
@@ -101,7 +101,11 @@
       ["occ.sts", "occupancy"],
       ["occ.s ", "occupancy"]
     ],
-    "actual": [["actual heating", "effective"], ["actual cooling", "effective"], ["actual sup", "none"], ["actual\n", "none"]],
+    "actual": [
+      ["actual heating", "effective"], 
+      ["actual cooling", "effective"], 
+      ["actual sup", "none"], 
+      ["actual\n", "none"]],
     "sp": [
       ["flow sp", "setpoint"], 
       ["econ.sp", "setpoint"], 
@@ -175,6 +179,12 @@
       ["chwp-c", "command"],
       ["cmax", "cooling"],
       ["mnc", "cooling"]
+    ],
+    "actual": [
+      ["actual heating", "effective"], 
+      ["actual cooling", "effective"], 
+      ["actual sup", "none"], 
+      ["actual\n", "none"]
     ],
     "tmp": [
       ["drv.tmp", "temperature"]
@@ -314,6 +324,154 @@
   "music": {
   },
   "sme": {
+  },
+  "bml":{
+    "occ": [
+      ["cc.c", "occupied"],
+      ["mp.oc", "occupancy"],
+      ["toc", "occupancy"]
+    ],
+    "c": [
+      ["cc.c", "command"],
+      ["\\d+c", "leftidentifier"],
+      ["dpr.c", "command"],
+      ["sdwn.c", "command"],
+      ["mnc", "cooling"]
+    ],
+    "nd": [
+      ["ndfl", "rightidentifier"],
+      ["\\d+nd", "rightidentifier"]
+    ],
+    "fl": [
+      ["ndfl", "floor"],
+      ["stfl", "floor"]
+    ],
+    "d": [
+      ["\\d+d", "leftidentifier"],
+      ["dban", "dead"]
+    ],
+    "t": [
+      ["zn.t", "temperature"],
+      ["s.t", "temperature"],
+      ["ra.t", "temperature"],
+      ["toc", "temporary"],
+      ["dat", "temperature"],
+      ["da.t", "temperature"],
+      ["oa.t", "temperature"],
+      ["rm.t", "temperature"],
+      ["r-t", "temperature"],
+      ["r t", "temperature"],
+      ["ma.t", "temperature"]
+    ],
+    "st": [
+      ["1st", "rightidentifier"],
+      ["bst", "static"]
+    ],
+    "h": [
+      ["\\d+h", "leftidentifier"],
+      ["ra.h", "humidity"]
+    ],
+    "f": [
+      ["fsd", "none"],
+      ["\\d+f", "leftidentifier"]
+    ],
+    "to": [
+      ["to rm", "none"]
+    ],
+    "b": [
+      ["\\d+b", "leftidentifier"],
+      ["bst", "building"]
+    ],
+    "sp": [
+      ["onsp", "setpoint"],
+      ["sasp", "static_pressure"],
+      ["sa.sp", "static_pressure"],
+      ["bld.sp", "static_pressure"],
+      ["dp.sp", "setpoint"],
+      ["flosp", "setpoint"],
+      ["clg.sp", "setpoint"],
+      ["htg.sp", "setpoint"],
+      ["c.sp", "setpoint"],
+      ["possp", "setpoint"],
+      ["dbst.sp", "none"],
+      ["rf.sp", "setpoint"]
+    ],
+    "o": [
+      ["pid.o", "none"],
+      ["htg.o", "command"]
+    ],
+    "actual": [
+      ["actual heating", "effective"], 
+      ["actual cooling", "effective"], 
+      ["actual sup", "none"], 
+      ["actual\n", "none"],
+      ["actual dam", "none"],
+      ["actual freq", "none"]
+    ],
+    "s": [
+      ["occ.s", "status"],
+      ["mtws", "supply"],
+      ["\\d+s", "leftidentifier"],
+      ["sf.s", "status"],
+      ["rf.s", "status"],
+      ["econ.s", "status"],
+      ["rf-s", "status"],
+      ["sdwn.s", "status"]
+    ],
+    "e": [
+      ["\\d+e", "leftidentifier"]
+    ],
+    "temp": [
+      ["temp.occ", "temporary"],
+      ["mtr.temp", "temperature"],
+      ["motor.temp", "temperature"],
+      ["mtw temp", "temperature"],
+      ["air.temp", "temperature"],
+      ["zone.temp", "temperature"]
+    ],
+    "tmp":[
+      ["r-tmp", "tempearture"],
+      ["mtr.tmp", "tempearture"]
+    ],
+    "a": [
+      ["\\d+a", "leftidentifier"]
+    ],
+    "j": [
+      ["\\d+j", "leftidentifier"]
+    ],
+    "g": [
+      ["\\d+g", "leftidentifier"]
+    ],
+    "r": [
+      ["chwr", "return"]
+    ],
+    "p": [
+      ["p\\d", "pump"],
+      ["pband", "proportional"],
+      ["sa.p", "pressure"]
+    ],
+    "m": [
+      ["m\\d+", "none"]
+    ],
+    "dp":[
+      ["mtw.dp", "differential_pressure"],
+      ["mtwdp", "differential_pressure"],
+      ["pumps.dp", "differential_pressure"],
+      ["chw.dp", "differential_pressure"],
+      ["dp.it", "differential_pressure"],
+      ["dp.pb", "differential_pressure"],
+      ["hw.pb", "differential_pressure"]
+    ],
+    "rd":[
+      ["\\.rd", "relief_damper"],
+      ["rd\\d+", "relief_damper"]
+    ],
+    "m": [
+      ["m\\d+", "none"]
+    ],
+    "tm":[
+      ["int tm", "time"]
+    ]
   }
 }
 
