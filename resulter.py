@@ -134,6 +134,9 @@ class Resulter():
         with open(filename, 'w') as fp:
             json.dump(self.summary, fp, indent=2)
 
+    def get_summary(self):
+        return self.summary
+
 
     def serialize_result(self, filename):
         with open(filename, 'w') as fp:
