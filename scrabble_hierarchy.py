@@ -2728,7 +2728,7 @@ def crf_result():
         phrase_f1s = list()
         char_f1s = list()
         for ((n_s, n_t), (source, target)) \
-                in zip(n_list, siource_target_building_list):
+                in zip(n_list, source_target_building_list):
             result_query = {
                 'label_type': 'label',
                 'token_type': 'justseparaet',
