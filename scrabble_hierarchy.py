@@ -2737,7 +2737,7 @@ def crf_result():
                 'source_sample_num_list': [n_s, n_t] if n_t else [n_s],
                 'target_building': target
             }
-            result = get_crf_results(query)
+            result = get_crf_results(result_query)
             assert result
             char_prec = result['char_precision']
             char_recall = result['char_recall']
