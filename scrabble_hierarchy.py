@@ -2733,9 +2733,9 @@ def crf_result():
                 'label_type': 'label',
                 'token_type': 'justseparaet',
                 'use_cluster_flag': 'true',
-                'building_list': [source, target] if n_t else [source]
-                'source_sample_num_list': [n_s, n_t] if n_t else [n_s]
-                'target_building': target,
+                'building_list': [source, target] if n_t else [source],
+                'source_sample_num_list': [n_s, n_t] if n_t else [n_s],
+                'target_building': target
             }
             result = get_crf_results(query)
             assert result
