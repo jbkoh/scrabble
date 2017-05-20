@@ -15,6 +15,7 @@ def gen_uuid():
     return str(uuid4())
 from multiprocessing import Pool, Manager, Process
 import code
+import re
 import sys
 from math import ceil, floor
 from pprint import PrettyPrinter
@@ -79,7 +80,7 @@ subclass_dict['networkadapter'] = list()
 subclass_dict['unknown'] = list()
 subclass_dict['none'] = list()
 tagset_classifier_type = None
-ts_feature_filename = 'TS_Features/ebu3b_features.pkl'
+ts_feature_filename = 'TS_Features/features.pkl'
 
 from building_tokenizer import nae_dict
 
@@ -112,7 +113,7 @@ logging.basicConfig(level=logging.INFO,
                         format='%(asctime)s %(message)s')
 
 def init_srcids_dict():
-    building_list = ['ebu3b', 'ap_m']
+    building_list = ['ebu3b', 'ap_m', 'bml']
     srcids_dict = dict()
     for building in building_list:
         with open('metadata/{0}_char_label_dict.json'\
@@ -464,18 +465,12 @@ def learn_crf_model(building_list,
                     label_type='label',
                     use_cluster_flag=False,
                     debug_flag=False,
-                    use_brick_flag=False):
-    """spec = {
-            'source_building': building_list[0],
-            'target_building': building_list[1] \
-                                if len(building_list)>1 \
-                                else building_list[0],
-            'source_sample_num': source_sample_num_list[0],
-            'label_type': label_type,
-            'token_type': token_type,
-            'use_cluster_flag': use_cluster_flag
-            }
-            """
+                    use_brick_flag=False,
+                    prev_step_data={
+                        'learning_srcids':[],
+                        'iter_cnt':0
+                    }
+                   ):
     sample_dict = dict()
     assert(isinstance(building_list, list))
     assert(isinstance(source_sample_num_list, list))
@@ -499,7 +494,8 @@ def learn_crf_model(building_list,
     logging.basicConfig(filename=log_filename, 
                         level=logging.DEBUG,
                         format='%(asctime)s %(message)s')
-    logging.info("Started!!!")
+    logging.info('{0}th Start learning CRF model'.format(\
+                                                prev_step_data['iter_cnt']))
 
 
     ### TRAINING ###
@@ -509,6 +505,7 @@ def learn_crf_model(building_list,
                         'feature.possible_transitions': True})
 
     data_available_buildings = []
+    learning_srcids = list()
     for building, source_sample_num in zip(building_list, source_sample_num_list):
         with open("metadata/%s_char_sentence_dict_%s.json" % (building, token_type), "r") as fp:
             sentence_dict = json.load(fp)
@@ -532,54 +529,15 @@ def learn_crf_model(building_list,
             for srcid in sentence_dict.keys():
                 if not normalized_data_feature_dict.get(srcid):
                     normalized_data_feature_dict[srcid] = None
-
-        """
-        cluster_filename = 'model/%s_word_clustering_%s.json' % (building, token_type)
-        if os.path.isfile(cluster_filename):
-            with open(cluster_filename, 'r') as fp:
-                cluster_dict = json.load(fp)
-
-        # Learning Sample Selection
-        sample_srcid_list = set()
-        length_counter = lambda x:len(x[1])
-        ander = lambda x,y:x and y
-        labeled_srcid_list = list(label_dict.keys())
-        if use_cluster_flag:
-            sample_cnt = 0
-            sorted_cluster_dict = OrderedDict(
-                    sorted(cluster_dict.items(), key=length_counter, reverse=True))
-            while len(sample_srcid_list) < source_sample_num:
-                for cluster_num, srcid_list in sorted_cluster_dict.items():
-                    valid_srcid_list = set(srcid_list)\
-                            .intersection(set(labeled_srcid_list))\
-                            .difference(set(sample_srcid_list))
-                    if len(valid_srcid_list) > 0:
-                        sample_srcid_list.add(\
-                                random.choice(list(valid_srcid_list)))
-                    if len(sample_srcid_list) >= source_sample_num:
-                        break
+        if prev_step_data.get('learning_srcids'):
+            sample_srcid_list = [srcid for srcid in sentence_dict.keys() \
+                                 if srcid in prev_step_data['learning_srcids']]
         else:
-            random_idx_list = random.sample(\
-                                range(0,len(labeled_srcid_list)),source_sample_num)
-            sample_srcid_list = [labeled_srcid_list[i] for i in random_idx_list]
-        """
-        sample_srcid_list = select_random_samples(building, \
-                                                  label_dict.keys(), \
-                                                  source_sample_num, \
-                                                  use_cluster_flag)
-
-        """
-        # Cluster counting (remove later)
-        cluster_counter_dict = dict((cluster_id,0)
-                                      for cluster_id 
-                                      in cluster_dict.keys())
-
-        for srcid in sample_srcid_list:
-            for cluster_id, srcid_list in cluster_dict.items():
-                if srcid in srcid_list:
-                    cluster_counter_dict[cluster_id] += 1
-        """
-
+            sample_srcid_list = select_random_samples(building, \
+                                                      label_dict.keys(), \
+                                                      source_sample_num, \
+                                                      use_cluster_flag)
+        learning_srcids += sample_srcid_list
 
         for srcid in sample_srcid_list:
             sentence = list(map(itemgetter(0), label_dict[srcid]))
@@ -592,6 +550,9 @@ def learn_crf_model(building_list,
                 calc_features(sentence, data_features)), labels)
 
         sample_dict[building] = list(sample_srcid_list)
+    if prev_step_data.get('learning_srcids'):
+        assert set(prev_step_data['learning_srcids']) == set(learning_srcids)
+
 
     # Learn Brick tags
 
@@ -616,7 +577,8 @@ def learn_crf_model(building_list,
         'token_type': 'justseparate',
         'label_type': 'label',
         'model_binary': BsonBinary(model_bin),
-        'source_building_count': len(building_list)
+        'source_building_count': len(building_list),
+        'learning_srcids': sorted(reduce(adder, sample_dict.values()))
     }
     store_model(model)
     os.remove(crf_model_file)
@@ -625,12 +587,14 @@ def learn_crf_model(building_list,
     play_end_alarm()
 
 def crf_test(building_list,
-        source_sample_num_list,
-        target_building,
-        token_type='justseparate',
-        label_type='label',
-        use_cluster_flag=False,
-        use_brick_flag=False):
+             source_sample_num_list,
+             target_building,
+             token_type='justseparate',
+             label_type='label',
+             use_cluster_flag=False,
+             use_brick_flag=False,
+             learning_srcids=[]
+            ):
     assert len(building_list) == len(source_sample_num_list)
 
 
@@ -656,8 +620,12 @@ def crf_test(building_list,
         result_metadata['source_cnt_list'].append([building, source_sample_num])
     model_query['$and'].append(model_metadata)
     model_query['$and'].append({'source_building_count':len(building_list)})
+    if learning_srcids:
+        model_query = {'learning_srcids': sorted(learning_srcids)}
     model = get_model(model_query)
     result_metadata['source_list'] = model['source_list']
+    if learning_srcids:
+        result_metadata['learning_srcids'] = learning_srcids
 
     crf_model_file = 'temp/{0}.crfsuite'.format(gen_uuid())
     with open(crf_model_file, 'wb') as fp:
@@ -953,9 +921,9 @@ def get_building_data(building, srcids, eda_flag=False, \
 def lengther(x):
     return len(x)
 
-def value_lengther(x): 
+def value_lengther(x):
     return len(x[1])
-   
+
 def tagset_lengther(tagset):
     return len(tagset.split('_'))
 
@@ -2484,6 +2452,23 @@ def entity_recognition_iteration(iter_num, *args):
                               prev_step_data = step_data
                             )
 
+def iteration_wrapper(iter_num, func, *args):
+    step_data = {
+        'learning_srcids': [],
+        'iter_cnt': 0,
+    }
+    step_datas = list()
+    prev_data = {'iter_num':0}
+    for i in range(0, iter_num):
+        step_data = func(prev_data, *args)
+        step_datas.append(step_data)
+        prev_data = step_data
+    with open('result/crf_entity_iter.json', 'w') as fp:
+        json.dump(step_datas, fp, indent=2)
+
+def crf_entity_recognition_iteration(iter_num, *args):
+    iteration_wrapper(iter_num, entity_recognition_from_crf, *args)
+
 
 def determine_used_tokens(sentence, token_labels, tagsets):
     token_usages = list()
@@ -2513,7 +2498,8 @@ def determine_used_tokens_multiple(sentence_dict, token_label_dict, \
 
 
 
-def entity_recognition_from_crf(building_list,\
+def entity_recognition_from_crf(prev_step_data,\
+                                building_list,\
                                 source_sample_num_list,\
                                 target_building,\
                                 token_type='justseparate',\
@@ -2527,6 +2513,8 @@ def entity_recognition_from_crf(building_list,\
 
     global tagset_list
     global total_srcid_dict
+    global tagset_tree
+    global tree_depth_dict
 
     ### Initialize CRF Data
     crf_result_query = {
@@ -2535,9 +2523,39 @@ def entity_recognition_from_crf(building_list,\
         'use_cluster_flag': use_cluster_flag,
         'building_list': building_list,
         'source_sample_num_list': source_sample_num_list,
-        'target_building': target_building
+        'target_building': target_building,
     }
+    if prev_step_data.get('learning_srcids'):
+        crf_result_query['learning_srcids'] = prev_step_data['learning_srcids']
+
+
+    # TODO: Make below to learn if not exists
     crf_result = get_crf_results(crf_result_query)
+    if not crf_result:
+        #pdb.set_trace()
+        learning_srcids = sorted(crf_result_query['learning_srcids'])
+        learn_crf_model(building_list,
+                    source_sample_num_list,
+                    token_type,
+                    label_type,
+                    use_cluster_flag,
+                    debug_flag,
+                    use_brick_flag,
+                    {
+                        'learning_srcids': learning_srcids,
+                        'iter_cnt':0
+                    })
+        crf_test(building_list,
+                 source_sample_num_list,
+                 target_building,
+                 token_type,
+                 label_type,
+                 use_cluster_flag,
+                 use_brick_flag,
+                 learning_srcids)
+        crf_result = get_crf_results(crf_result_query)
+        assert crf_result
+        pdb.set_trace()
     given_srcids = list(reduce(adder,\
                             list(crf_result['source_list'].values()), []))
     crf_sentence_dict = dict()
@@ -2580,8 +2598,8 @@ def entity_recognition_from_crf(building_list,\
                                     n_jobs,
                                     ts_flag
                                    )
-    #augment_tagset_tree(tagset_list)
-    #pdb.set_trace()
+    augment_tagset_tree(tagset_list)
+    tree_depth_dict = calc_leave_depth(tagset_tree)
 
     crf_pred_tagsets_dict, \
     crf_pred_certainty_dict, \
@@ -2599,10 +2617,30 @@ def entity_recognition_from_crf(building_list,\
                                      for srcid, usage \
                                      in crf_token_usage_dict.items())
 
-    tagsets_evaluation(crf_truths_dict, crf_pred_tagsets_dict,
+    crf_result_dict = tagsets_evaluation(crf_truths_dict, crf_pred_tagsets_dict,
                        crf_pred_certainty_dict, crf_srcids,
                        crf_pred_point_dict, crf_phrase_dict, debug_flag)
 
+    alpha_tokenizer = lambda s: re.findall('[a-zA-Z]+', s)
+    todo_sentence_dict = dict((srcid, alpha_tokenizer(''.join(\
+                                                crf_sentence_dict[srcid]))) \
+                              for srcid, usage_rate \
+                              in crf_token_usage_rate_dict.items() \
+                              if usage_rate<0.3)
+    """
+    cluster_srcid_dict = hier_clustering(todo_sentence_dict, threshold=2)
+    """
+    unknown_srcids = todo_sentence_dict.keys()
+    todo_srcids = select_random_samples(target_building, unknown_srcids, \
+                                        len(unknown_srcids)*0.1, True)
+    updated_learning_srcids = todo_srcids \
+                            + reduce(adder, crf_result['source_list'].values())
+    next_step_data = {
+        'learning_srcids': sorted(updated_learning_srcids),
+        'iter_num': prev_step_data['iter_num'] + 1,
+        'result': crf_result_dict
+    }
+    return next_step_data
 
 
 #TODO: Make this more generic to apply to other functions
@@ -2828,6 +2866,19 @@ if __name__=='__main__':
                 n_jobs=args.n_jobs,
                 worker_num=args.worker_num)
     elif args.prog == 'crf_entity':
+        params = (args.source_building_list,
+                  args.sample_num_list,
+                  args.target_building,
+                  'justseparate',
+                  args.label_type,
+                  args.use_cluster_flag,
+                  args.use_brick_flag,
+                  args.eda_flag,
+                  args.debug_flag,
+                  args.n_jobs)
+        crf_entity_recognition_iteration(args.iter_num, *params)
+
+        """
         entity_recognition_from_crf(\
                 building_list=args.source_building_list,\
                 source_sample_num_list=args.sample_num_list,\
@@ -2839,6 +2890,7 @@ if __name__=='__main__':
                 eda_flag=args.eda_flag,
                 debug_flag=args.debug_flag,
                 n_jobs=args.n_jobs)
+        """
     elif args.prog == 'init':
         init()
     else:

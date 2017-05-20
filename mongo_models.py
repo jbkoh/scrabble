@@ -68,6 +68,8 @@ def build_query(q):
                                     format(building, source_sample_num)})
         query['source_cnt_list'].append([building, source_sample_num])
     query['$and'].append({'source_building_count':len(building_list)})
+    if q.get('learning_srcids'):
+        query['$and'].append({'learning_srcids': q['learning_srcids']})
     return query
 
 def get_model(query):
@@ -93,6 +95,9 @@ def get_crf_results(query, n=1):
     docs = DB.get_collection('results').find(normalized_query)
     if not query.get('gen_time'):
         docs = docs.sort('gen_time', -1)
-    docs = docs.limit(n)
-    print('Using the model generated at {0}'.format(docs[0]['date']))
-    return docs[0]
+    if docs.count()>0:
+        docs = docs.limit(n)
+        print('Using the model generated at {0}'.format(docs[0]['date']))
+        return docs[0]
+    else:
+        return None
