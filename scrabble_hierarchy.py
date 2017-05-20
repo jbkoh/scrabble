@@ -1004,7 +1004,7 @@ def tagsets_prediction(classifier, vectorizer, binerizer, \
 
 def tagsets_evaluation(truths_dict, pred_tagsets_dict, pred_certainty_dict,\
                        srcids, pred_point_dict, phrase_dict, debug_flag=False):
-    result_dict = defaultdict(dict)
+    result_dict = defaultdict(dict) # TODO: In case of a bug, it was defaultdict
     sorted_result_dict = OrderedDict()
     incorrect_tagsets_dict = dict()
     correct_cnt = 0
@@ -1135,7 +1135,7 @@ def tagsets_evaluation(truths_dict, pred_tagsets_dict, pred_certainty_dict,\
     result_dict['subset_accuracy'] = subset_accuracy
     pp.pprint(dict([(k,v) for k, v in result_dict.items() \
                     if k not in ['correct', 'incorrect']]))
-    return result_dict
+    return dict(result_dict)
 
 def tagsets_evaluation_deprecated(truths_dict, pred_tagsets_dict, \
                                   pred_certainty_dict, srcids, pred_point_dict):
@@ -2470,12 +2470,13 @@ def iteration_wrapper(iter_num, func, *args):
         step_data = func(prev_data, *args)
         step_datas.append(step_data)
         prev_data = step_data
-    pdb.set_trace()
+    return step_datas
+
+def crf_entity_recognition_iteration(iter_num, *args):
+    step_datas = iteration_wrapper(iter_num, entity_recognition_from_crf, *args)
     with open('result/crf_entity_iter.json', 'w') as fp:
         json.dump(step_datas, fp, indent=2)
 
-def crf_entity_recognition_iteration(iter_num, *args):
-    iteration_wrapper(iter_num, entity_recognition_from_crf, *args)
 
 
 def determine_used_tokens(sentence, token_labels, tagsets):
@@ -2642,6 +2643,7 @@ def entity_recognition_from_crf(prev_step_data,\
     updated_learning_srcids = todo_srcids \
                             + reduce(adder, crf_result['source_list'].values())
     del crf_result['result']
+    del crf_result['_id']
     next_step_data = {
         'learning_srcids': sorted(updated_learning_srcids),
         'iter_num': prev_step_data['iter_num'] + 1,
