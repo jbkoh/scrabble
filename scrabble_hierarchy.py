@@ -2793,7 +2793,7 @@ if __name__=='__main__':
     parser.register('type','ilist', str2ilist)
 
     parser.add_argument(choices=['learn', 'predict', 'entity', 'crf_entity', \
-                                 'init'],
+                                 'init', 'result'],
                         dest = 'prog')
 
     parser.add_argument('predict',
