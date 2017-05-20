@@ -241,7 +241,6 @@ def add_words_from_ts(learning_srcids, target_srcids):
     ts2ir = TimeSeriesToIR(mlb=mlb)
     mlb_keys, Y_pred, Y_proba =\
             ts2ir.ts_to_ir(ts_features, learning_srcids, test_srcids)
-    pdb.set_trace()
 
 def hamming_loss_func(pred_tagsets, true_tagsets, labels):
     incorrect_cnt = 0
@@ -627,6 +626,9 @@ def crf_test(building_list,
     if learning_srcids:
         result_metadata['learning_srcids'] = learning_srcids
 
+    if not learning_srcids:
+        learning_srcids = list(reduce(adder, model['source_list'].values()))
+
     crf_model_file = 'temp/{0}.crfsuite'.format(gen_uuid())
     with open(crf_model_file, 'wb') as fp:
         fp.write(model['model_binary'])
@@ -759,6 +761,11 @@ def crf_test(building_list,
     #plt.scatter(score_list, error_rate_list, alpha=0.3)
     #plt.plot(score_list, p(score_list), "r--")
     #save_fig(plt.gcf(), error_plot_file)
+    step_data = {
+        'learning_srcids': learning_srcids,
+        'result': resulter.get_summary()
+    }
+    return step_data
 
 
 def sub_dict_by_key_set(d, ks):
@@ -2463,6 +2470,7 @@ def iteration_wrapper(iter_num, func, *args):
         step_data = func(prev_data, *args)
         step_datas.append(step_data)
         prev_data = step_data
+    pdb.set_trace()
     with open('result/crf_entity_iter.json', 'w') as fp:
         json.dump(step_datas, fp, indent=2)
 
@@ -2532,7 +2540,6 @@ def entity_recognition_from_crf(prev_step_data,\
     # TODO: Make below to learn if not exists
     crf_result = get_crf_results(crf_result_query)
     if not crf_result:
-        #pdb.set_trace()
         learning_srcids = sorted(crf_result_query['learning_srcids'])
         learn_crf_model(building_list,
                     source_sample_num_list,
@@ -2555,7 +2562,6 @@ def entity_recognition_from_crf(prev_step_data,\
                  learning_srcids)
         crf_result = get_crf_results(crf_result_query)
         assert crf_result
-        pdb.set_trace()
     given_srcids = list(reduce(adder,\
                             list(crf_result['source_list'].values()), []))
     crf_sentence_dict = dict()
@@ -2617,7 +2623,7 @@ def entity_recognition_from_crf(prev_step_data,\
                                      for srcid, usage \
                                      in crf_token_usage_dict.items())
 
-    crf_result_dict = tagsets_evaluation(crf_truths_dict, crf_pred_tagsets_dict,
+    crf_entity_result_dict = tagsets_evaluation(crf_truths_dict, crf_pred_tagsets_dict,
                        crf_pred_certainty_dict, crf_srcids,
                        crf_pred_point_dict, crf_phrase_dict, debug_flag)
 
@@ -2635,10 +2641,14 @@ def entity_recognition_from_crf(prev_step_data,\
                                         len(unknown_srcids)*0.1, True)
     updated_learning_srcids = todo_srcids \
                             + reduce(adder, crf_result['source_list'].values())
+    del crf_result['result']
     next_step_data = {
         'learning_srcids': sorted(updated_learning_srcids),
         'iter_num': prev_step_data['iter_num'] + 1,
-        'result': crf_result_dict
+        'result': {
+            'entity': crf_entity_result_dict,
+            'crf': crf_result
+        }
     }
     return next_step_data
 
