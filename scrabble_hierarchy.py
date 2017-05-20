@@ -2717,6 +2717,58 @@ def entity_recognition_from_ground_truth_get_avg(N,
     print ('Averaged Hierarchy Accuracy: {0}'.format(hierarchy_accuracy))
     print("FIN")
 
+def crf_result():
+    import plotter
+    source_target_building_list = [('ebu3b', 'ap_m')]
+    n_list_list = [[(200,0), (200,5), (200,50), (200,200)]]
+    target_n_list = [ns[1] for ns in n_list_list]
+    char_f1s_list = list()
+    phrase_f1s_list = list()
+    for n_list in n_list_list:
+        phrase_f1s = list()
+        char_f1s = list()
+        for ((n_s, n_t), (source, target)) \
+                in zip(n_list, siource_target_building_list):
+            result_query = {
+                'label_type': 'label',
+                'token_type': 'justseparaet',
+                'use_cluster_flag': 'true',
+                'building_list': [source, target] if n_t else [source]
+                'source_sample_num_list': [n_s, n_t] if n_t else [n_s]
+                'target_building': target,
+            }
+            result = get_crf_results(query)
+            assert result
+            char_prec = result['char_precision']
+            char_recall = result['char_recall']
+            char_f1 = 2 * char_prec * char_recall \
+                            / (char_prec + char_recall)
+            char_f1s.append(char_f1)
+            phrase_recall = result['phrase_recall']
+            phrase_prec = result['phrase_precision']
+            phrase_f1 = 2* phrase_prec  * phrase_recall \
+                            / (phrase_prec + phrase_recall)
+            phrase_f1s.append(phrase_f1)
+        phrase_f1s_list.append(phrase_f1s)
+        char_f1s_list.append(char_f1s)
+    xs = target_n_list
+    ys = [char_f1s_list, phrase_f1s_list]
+    xlabel = '# of Target Building Samples'
+    ylabel = 'F1 score (%)'
+    xtick = target_n_list
+    xtick_labels = [str(n) for n in target_n_list]
+    ytick = [50,70,80,90,100]
+    ytick_labels = [str(n) for n in ytick]
+    fig, ax = plt.subplots(1,1)
+    ylim = 102
+    legends = ['char F1', 'phrase F1']
+
+    fig = plot_multiple_2dline(target_n_list, ys, xlabel, ylabel, xtick, \
+                         xtick_labels, ytick, ytick_label, ax, fig, ylim, \
+                         legends)
+    save_fig(fig, 'test.pdf')
+
+
 
 def str2bool(v):
     if v in ['true', 'True']:
@@ -2828,6 +2880,10 @@ if __name__=='__main__':
                         help='Flag to use time series features too',
                         dest='ts_flag',
                         default=False)
+    parser.add_argument('-exp', 
+                        type=str,
+                        help='type of experiments for result output',
+                        dest = 'exp_type')
 
     args = parser.parse_args()
 
@@ -2903,6 +2959,11 @@ if __name__=='__main__':
                 debug_flag=args.debug_flag,
                 n_jobs=args.n_jobs)
         """
+    elif args.prog == 'result':
+        assert args.exp_type in ['crf', 'entity', 'crf_entity']
+        if args.exp_type == 'crf':
+            crf_result()
+
     elif args.prog == 'init':
         init()
     else:
