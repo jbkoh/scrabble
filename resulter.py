@@ -8,7 +8,7 @@ import arrow
 from sklearn.metrics import precision_recall_fscore_support
 from sklearn.preprocessing import MultiLabelBinarizer
 
-from mongo_models import summary_query_template 
+from mongo_models import summary_query_template
 
 class Resulter():
     def __init__(self, token_type="BILOU", spec={}):

@@ -60,13 +60,14 @@ from sklearn.linear_model import SGDClassifier
 #from skmultilearn.ensemble import RakelO, LabelSpacePartitioningClassifier
 from skmultilearn.problem_transform import LabelPowerset, ClassifierChain, \
                                            BinaryRelevance
+from sklearn.metrics import precision_recall_fscore_support
 #from skmultilearn.cluster import IGraphLabelCooccurenceClusterer
 #from skmultilearn.ensemble import LabelSpacePartitioningClassifier
 
 from resulter import Resulter
 from time_series_to_ir import TimeSeriesToIR
 from mongo_models import store_model, get_model, get_tags_mapping, \
-                         get_crf_results, store_result
+                         get_crf_results, store_result, get_entity_results
 from brick_parser import pointTagsetList        as  point_tagsets,\
                          locationTagsetList     as  location_tagsets,\
                          equipTagsetList        as  equip_tagsets,\
@@ -960,7 +961,7 @@ def hier_clustering(d, threshold=3):
     return OrderedDict(\
                sorted(cluster_dict.items(), key=value_lengther, reverse=True))
 
-def tagsets_prediction(classifier, vectorizer, binerizer, \
+def tagsets_prediction(classifier, vectorizer, binarizer, \
                            phrase_dict, srcids, source_target_buildings, \
                        eda_flag, point_classifier, ts2ir=None):
     global point_tagsets
@@ -995,9 +996,9 @@ def tagsets_prediction(classifier, vectorizer, binerizer, \
     pred_point_dict = dict()
     for i, (srcid, pred, point_pred) \
             in enumerate(zip(srcids, pred_mat, point_mat)):
-        pred_tagsets_dict[srcid] = binerizer.inverse_transform(\
+        pred_tagsets_dict[srcid] = binarizer.inverse_transform(\
                                         np.asarray([pred]))[0]
-        #pred_tagsets_dict[srcid] = list(binerizer.inverse_transform(pred)[0])
+        #pred_tagsets_dict[srcid] = list(binarizer.inverse_transform(pred)[0])
         pred_point_dict[srcid] = point_tagsets[point_pred]
         #pred_vec = [prob[i][0] for prob in prob_mat]
         #pred_certainty_dict[srcid] = pred_vec
@@ -1029,6 +1030,20 @@ def tagsets_evaluation(truths_dict, pred_tagsets_dict, pred_certainty_dict,\
                              hamming_loss_func, tagset_list)
     subset_accuracy = get_score(pred_tagsets_dict, truths_dict, srcids,
                                 subset_accuracy_func, tagset_list)
+
+    pred_tagsets_list = [pred_tagsets_dict[srcid] for srcid in srcids]
+    true_tagsets_list = [truths_dict[srcid] for srcid in srcids]
+    eval_binarizer = MultiLabelBinarizer().fit(pred_tagsets_list +
+                                               true_tagsets_list)
+    _, _, macro_f1, _ = precision_recall_fscore_support(\
+                            eval_binarizer.transform(true_tagsets_list),\
+                            eval_binarizer.transform(pred_tagsets_list),\
+                            average='macro')
+    _, _, weighted_f1, _ = precision_recall_fscore_support(\
+                            eval_binarizer.transform(true_tagsets_list),\
+                            eval_binarizer.transform(pred_tagsets_list),\
+                            average='weighted')
+
     for srcid in srcids:
         pred_tagsets = pred_tagsets_dict[srcid]
         true_tagsets = truths_dict[srcid]
@@ -1138,6 +1153,8 @@ def tagsets_evaluation(truths_dict, pred_tagsets_dict, pred_certainty_dict,\
     result_dict['accuracy'] = accuracy
     result_dict['hierarchy_accuracy'] = hierarchy_accuracy
     result_dict['subset_accuracy'] = subset_accuracy
+    result_dict['macro_f1'] = macro_f1
+    result_dict['weighted_f1'] = weighted_f1
     pp.pprint(dict([(k,v) for k, v in result_dict.items() \
                     if k not in ['correct', 'incorrect']]))
     return dict(result_dict)
@@ -1336,13 +1353,13 @@ def eda_vectorizer(vectorizer, doc, source_target_buildings, srcids):
                             for vect in raw_vect_doc.T])
     return vect_doc
 
-def augment_true_mat_with_superclasses_deprecated_and_incorrect(binerizer, given_label_vect,\
+def augment_true_mat_with_superclasses_deprecated_and_incorrect(binarizer, given_label_vect,\
                                        subclass_dict=subclass_dict):
-    tagsets = binerizer.inverse_transform([given_label_vect])
+    tagsets = binarizer.inverse_transform([given_label_vect])
     updated_tagsets = [find_keys(tagset, subclass_dict, check_in)\
                        for tagset in tagsets]
     pdb.set_trace()
-    return binerizer.transform([list(set(tagsets + updated_tagsets))])
+    return binarizer.transform([list(set(tagsets + updated_tagsets))])
 
 class ProjectClassifier():
 
@@ -1350,7 +1367,7 @@ class ProjectClassifier():
         self.base_classifier = base_classifier
         self.base_mask = mask
         """
-        for i, tagset in enumerate(self.binerizer.classes_):
+        for i, tagset in enumerate(self.binarizer.classes_):
             tags = tagset.split('_')
             mask = np.zeros(len(vectorizer.vocabulary))
 #            mask = [tag for tag in vectorizer.vocabulary.values()
@@ -1377,32 +1394,32 @@ class ProjectClassifier():
 
 class StructuredClassifierChain():
 
-    def __init__(self, base_classifier, binerizer, subclass_dict,
+    def __init__(self, base_classifier, binarizer, subclass_dict,
                  vocabulary_dict, n_jobs=1):
         self.n_jobs = n_jobs
         self.vocabulary_dict = vocabulary_dict
         self.subclass_dict = subclass_dict
         self.base_classifier = base_classifier
-        self.binerizer = binerizer
+        self.binarizer = binarizer
         self.upper_y_index_list = list()
         self.lower_y_index_list = list()
         self.base_classifiers = list()
-        for i, tagset in enumerate(self.binerizer.classes_):
+        for i, tagset in enumerate(self.binarizer.classes_):
             found_upper_tagsets = find_keys(tagset, self.subclass_dict, check_in)
-            upper_tagsets = [ts for ts in self.binerizer.classes_ \
+            upper_tagsets = [ts for ts in self.binarizer.classes_ \
                              if ts in found_upper_tagsets]
             try:
                 assert len(found_upper_tagsets) == len(upper_tagsets)
             except:
                 pdb.set_trace()
-            self.upper_y_index_list.append([np.where(self.binerizer.classes_ == ts)[0][0]\
+            self.upper_y_index_list.append([np.where(self.binarizer.classes_ == ts)[0][0]\
                                             for ts in upper_tagsets])
             lower_y_indices = list()
             subclasses = self.subclass_dict.get(tagset)
             if not subclasses:
                 subclasses = []
             for ts in subclasses:
-                indices = np.where(self.binerizer.classes_ == ts)[0]
+                indices = np.where(self.binarizer.classes_ == ts)[0]
                 if len(indices)>1:
                     assert False
                 elif len(indices==1):
@@ -1452,7 +1469,7 @@ class StructuredClassifierChain():
     def sub_fit_proj(self, X, Y, i):
         base_base_classifier = deepcopy(self.base_classifier)
         y = Y.T[i]
-        tags = self.binerizer.classes_[i].split('_')
+        tags = self.binarizer.classes_[i].split('_')
         mask = np.zeros(len(self.vocabulary_dict))
         for vocab, j in self.vocabulary_dict.items():
             mask[j] = 1 if vocab in tags else 0
@@ -1479,7 +1496,7 @@ class StructuredClassifierChain():
     def predict(self, X):
         logging.info('Start predicting')
         X = self.conv_array(X)
-        Y = np.zeros((X.shape[0], len(self.binerizer.classes_)))
+        Y = np.zeros((X.shape[0], len(self.binarizer.classes_)))
         for i, (upper_y_indices, base_classifier) \
                 in enumerate(zip(self.upper_y_index_list,
                                  self.base_classifiers)):
@@ -1533,7 +1550,7 @@ class StructuredClassifierChain():
         logging.info('Start augmenting label mat with superclasses')
         Y = lil_matrix(Y)
         for i, vect in enumerate(Y):
-            tagsets = self.binerizer.inverse_transform(vect)[0]
+            tagsets = self.binarizer.inverse_transform(vect)[0]
             updated_tagsets = reduce(adder, [
                                 find_keys(tagset, self.subclass_dict, check_in)
                                 for tagset in tagsets], [])
@@ -1541,7 +1558,7 @@ class StructuredClassifierChain():
             finished = False
             while not finished:
                 try:
-                    new_row = self.binerizer.transform([list(set(list(tagsets)
+                    new_row = self.binarizer.transform([list(set(list(tagsets)
                                                         + updated_tagsets))])
                     finished = True
                 except KeyError:
@@ -1565,21 +1582,21 @@ class FixedClassifierChain():
             chain_tree[head] = (deepcopy(self.base_classifier), chain_branches)
         return chain_tree
 
-    def __init__(self, base_classifier, binerizer, \
+    def __init__(self, base_classifier, binarizer, \
                  subclass_dict=subclass_dict, tagset_tree=tagset_tree):
         self.subclass_dict = subclass_dict
         self.base_classifier = base_classifier
-        self.binerizer = binerizer
+        self.binarizer = binarizer
         self.tagset_tree = tagset_tree
         self.classifier_chain = self._init_classifier_chain(self.tagset_tree)
         self.index_tagset_dict = dict([(tagset, i) for i, tagset \
-                                       in enumerate(self.binerizer.classes_)])
+                                       in enumerate(self.binarizer.classes_)])
 
     def _augment_labels_superclasses(self, Y):
         logging.info('Start augmenting label mat with superclasses')
         Y = lil_matrix(Y)
         for i, vect in enumerate(Y):
-            tagsets = self.binerizer.inverse_transform(vect)[0]
+            tagsets = self.binarizer.inverse_transform(vect)[0]
             updated_tagsets = reduce(adder, [
                                 find_keys(tagset, self.subclass_dict, check_in)
                                 for tagset in tagsets], [])
@@ -1587,7 +1604,7 @@ class FixedClassifierChain():
             finished = False
             while not finished:
                 try:
-                    new_row = self.binerizer.transform([list(set(list(tagsets)
+                    new_row = self.binarizer.transform([list(set(list(tagsets)
                                                         + updated_tagsets))])
                     finished = True
                 except KeyError:
@@ -1615,7 +1632,7 @@ class FixedClassifierChain():
             return d.todense()
 
     def fit(self, X, Y, init_flag=True, classifier_chain=None, cnt=0):
-        # Y and self.binerizer should be synchronized initially.
+        # Y and self.binarizer should be synchronized initially.
         if cnt%100==0:
             logging.info('{0}th step for prediction'.format(cnt))
         if init_flag:
@@ -1656,7 +1673,7 @@ class FixedClassifierChain():
         if given_mask == 'init':
             given_mask = np.array(range(0,X.shape[0]))
             # Init Y matrix
-            self.pred_Y = np.zeros((X.shape[0], len(self.binerizer.classes_)))
+            self.pred_Y = np.zeros((X.shape[0], len(self.binarizer.classes_)))
         if not classifier_chain:
             classifier_chain = self.classifier_chain
         for curr_head, (curr_classifier, branches) in classifier_chain.items():
@@ -1739,9 +1756,9 @@ def build_tagset_classifier(building_list, target_building,\
                                      if ts not in new_tagset_list]
     tagset_list = new_tagset_list
 
-    tagset_binerizer = MultiLabelBinarizer(tagset_list)
-    tagset_binerizer.fit([tagset_list])
-    assert tagset_list == tagset_binerizer.classes_.tolist()
+    tagset_binarizer = MultiLabelBinarizer(tagset_list)
+    tagset_binarizer.fit([tagset_list])
+    assert tagset_list == tagset_binarizer.classes_.tolist()
 
     point_classifier = RandomForestClassifier(n_estimators=10, n_jobs=n_jobs)
 
@@ -1769,7 +1786,7 @@ def build_tagset_classifier(building_list, target_building,\
     proj_vectors = np.asarray(proj_vectors)
 
     #tagset_classifier = custom_project_multi_label(base_classifier, proj_vectors)
-    #tagset_classifier = FixedClassifierChain(base_classifier, tagset_binerizer)
+    #tagset_classifier = FixedClassifierChain(base_classifier, tagset_binarizer)
     #tagset_classifier = BinaryRelevance(base_classifier)
     #tagset_classifier = ClassifierChain(base_classifier)
     #tagset_classifier = custom_multi_label(base_classifier)
@@ -1796,15 +1813,15 @@ def build_tagset_classifier(building_list, target_building,\
     if ts_flag:
         learning_tags_dict = dict([(srcid, splitter(tagset)) for srcid, tagset
                                    in learning_point_dict.items()])
-        tag_binerizer = MultiLabelBinarizer()
-        tag_binerizer.fit(map(splitter, learning_point_dict.values()))
+        tag_binarizer = MultiLabelBinarizer()
+        tag_binarizer.fit(map(splitter, learning_point_dict.values()))
         with open(ts_feature_filename, 'rb') as fp:
             ts_features = pickle.load(fp, encoding='bytes')
-        ts2ir = TimeSeriesToIR(mlb=tag_binerizer)
+        ts2ir = TimeSeriesToIR(mlb=tag_binarizer)
         ts2ir.fit(ts_features, learning_srcids, learning_tags_dict)
         learning_ts_tags_pred = ts2ir.predict(ts_features, learning_srcids)
         for srcid, ts_tags in zip(learning_srcids, \
-                                  tag_binerizer.inverse_transform(
+                                  tag_binarizer.inverse_transform(
                                       learning_ts_tags_pred)):
             #learning_phrase_dict[srcid] += list(ts_tags)
             ts_srcid = srcid + '_ts'
@@ -1815,7 +1832,7 @@ def build_tagset_classifier(building_list, target_building,\
 
         test_ts_tags_pred = ts2ir.predict(ts_features, test_srcids)
         for srcid, ts_tags in zip(test_srcids, \
-                                  tag_binerizer.inverse_transform(
+                                  tag_binarizer.inverse_transform(
                                       test_ts_tags_pred)):
             #ts_srcid = srcid + '_ts'
             #test_phrase_dict[ts_srcid] = test_phrase_dict[srcid] + list(ts_tags)
@@ -1908,7 +1925,7 @@ def build_tagset_classifier(building_list, target_building,\
         brick_truths_dict = dict()
         brick_srcids = []
         brick_doc = []
-    brick_truth_mat = csr_matrix([tagset_binerizer.transform(\
+    brick_truth_mat = csr_matrix([tagset_binarizer.transform(\
                                   [brick_truths_dict[srcid]])[0] \
                                   for srcid in brick_srcids])
 
@@ -1928,7 +1945,7 @@ def build_tagset_classifier(building_list, target_building,\
                                    ])
         tagset_classifier = StructuredClassifierChain(
                                 base_classifier,
-                                tagset_binerizer,
+                                tagset_binarizer,
                                 subclass_dict,
                                 tagset_vectorizer.vocabulary,
                                 n_jobs)
@@ -1938,7 +1955,7 @@ def build_tagset_classifier(building_list, target_building,\
                                     fit_intercept=False,
                                     class_weight='balanced')
         tagset_classifier = StructuredClassifierChain(base_classifier,
-                                                      tagset_binerizer,
+                                                      tagset_binarizer,
                                                       subclass_dict,
                                                       tagset_vectorizer.vocabulary,
                                                       n_jobs)
@@ -1985,7 +2002,7 @@ def build_tagset_classifier(building_list, target_building,\
                                     * learning_vect.toarray()[0]).T \
                                 for learning_vect in raw_learning_vect_doc.T])
 
-    truth_mat = csr_matrix([tagset_binerizer.transform(\
+    truth_mat = csr_matrix([tagset_binarizer.transform(\
                     [learning_truths_dict[srcid]])[0]\
                         for srcid in learning_srcids])
     point_truths_dict = dict()
@@ -2012,7 +2029,7 @@ def build_tagset_classifier(building_list, target_building,\
 #    if use_brick_flag:
 #        truth_mat = vstack([truth_mat, brick_truth_mat])
     if eda_flag:
-        zero_vectors = tagset_binerizer.transform(\
+        zero_vectors = tagset_binarizer.transform(\
                     [[] for i in range(0, unlabeled_vect_doc.shape[0])])
         for zero_vector in zero_vectors:
             truth_mat = vstack([truth_mat, zero_vector])
@@ -2020,7 +2037,7 @@ def build_tagset_classifier(building_list, target_building,\
 
 #        truth_mat = truth_mat.toarray()
 
-#        truth_mat = vstack([truth_mat, tagset_binerizer.transform(\
+#        truth_mat = vstack([truth_mat, tagset_binarizer.transform(\
 #                    [[] for i in range(0, unlabeled_vect_doc.shape[0])])])\
 #                .toarray()
         learning_vect_doc = np.vstack([learning_vect_doc, unlabeled_vect_doc])
@@ -2031,7 +2048,7 @@ def build_tagset_classifier(building_list, target_building,\
     #tagset_classifier.fit(coo_matrix(learning_vect_doc), truth_mat.toarray())
     point_classifier.fit(point_vect_doc, point_truth_mat)
 
-    return tagset_classifier, tagset_vectorizer, tagset_binerizer, \
+    return tagset_classifier, tagset_vectorizer, tagset_binarizer, \
             point_classifier, ts2ir
 
 
@@ -2100,7 +2117,7 @@ def cross_validation(building_list, n_list,
 
 
         source_target_buildings = list(set(building_list + [target_building]))
-        tagset_classifier, tagset_vectorizer, tagset_binerizer, \
+        tagset_classifier, tagset_vectorizer, tagset_binarizer, \
                 point_classifier, ts2ir = \
             build_tagset_classifier(building_list_1, validation_building,\
                             validation_sentence_dict, \
@@ -2119,7 +2136,7 @@ def cross_validation(building_list, n_list,
         validation_pred_certainty_dict, \
         pred_point_dict = \
                 tagsets_prediction(tagset_classifier, tagset_vectorizer, \
-                                   tagset_binerizer, validation_phrase_dict, \
+                                   tagset_binarizer, validation_phrase_dict, \
                                    validation_srcids, source_target_buildings,
                                   eda_flag, point_classifier)
 
@@ -2207,6 +2224,8 @@ def entity_recognition_from_ground_truth(building_list,
                                              'accuracy_history': [],
                                              'hamming_loss_history': [],
                                              'hierarchy_accuracy_history': [],
+                                             'weighted_f1_history': [],
+                                             'macro_f1_history': [],
                                              'metadata': {}
                                          },
                                          crf_phrase_dict=None,
@@ -2223,7 +2242,7 @@ def entity_recognition_from_ground_truth(building_list,
     source_cnt_list = [[building, cnt]\
                        for building, cnt\
                        in zip(building_list, source_sample_num_list)]
-    if not prev_step_data.get('metadata'):
+    if not prev_step_data['metadata']:
         metadata = {
             'token_type': token_type,
             'label_type': label_type,
@@ -2235,7 +2254,7 @@ def entity_recognition_from_ground_truth(building_list,
             'target_building': target_building,
             'source_sample_num_list': source_sample_num_list
         }
-        prev_step_data['meatdata'] = metadata
+        prev_step_data['metadata'] = metadata
 
     # Read previous step's data
     learning_srcids = prev_step_data.get('learning_srcids')
@@ -2314,7 +2333,7 @@ def entity_recognition_from_ground_truth(building_list,
 
     source_target_buildings = list(set(building_list + [target_building]))
     begin_time = arrow.get()
-    tagset_classifier, tagset_vectorizer, tagset_binerizer, \
+    tagset_classifier, tagset_vectorizer, tagset_binarizer, \
             point_classifier, ts2ir = \
             build_tagset_classifier(building_list, target_building,\
             #                learning_sentence_dict, ,\
@@ -2343,7 +2362,7 @@ def entity_recognition_from_ground_truth(building_list,
         brick_pred_tagsets_dict, brick_pred_certainty_dict, \
                 brick_pred_point_dict = \
                 tagsets_prediction(tagset_classifier, tagset_vectorizer, \
-                                   tagset_binerizer, \
+                                   tagset_binarizer, \
                                    brick_phrase_dict, \
                                    list(brick_phrase_dict.keys()),
                                    source_target_buildings,
@@ -2359,7 +2378,7 @@ def entity_recognition_from_ground_truth(building_list,
     learning_pred_point_dict = tagsets_prediction(\
                                 tagset_classifier, \
                                 tagset_vectorizer, \
-                                tagset_binerizer, \
+                                tagset_binarizer, \
                                 phrase_dict, \
                                 sorted(learning_srcids),\
                                 building_list,\
@@ -2390,7 +2409,7 @@ def entity_recognition_from_ground_truth(building_list,
     target_pred_point_dict = tagsets_prediction(\
                                 tagset_classifier, \
                                 tagset_vectorizer, \
-                                tagset_binerizer, \
+                                tagset_binarizer, \
                                 target_phrase_dict, \
                                 target_srcids,\
                                 source_target_buildings,\
@@ -2442,6 +2461,12 @@ def entity_recognition_from_ground_truth(building_list,
         'hamming_loss_history': \
             prev_step_data['hamming_loss_history'] \
             + [target_result_dict['hamming_loss']],
+        'weighted_f1_history': \
+            prev_step_data['weighted_f1_history'] \
+            + [target_result_dict['weighted_f1']],
+        'macro_f1_history': \
+            prev_step_data['macro_f1_history'] \
+            + [target_result_dict['macro_f1']],
         'metadata': prev_step_data['metadata']
     }
 
@@ -2486,6 +2511,8 @@ def entity_recognition_iteration(iter_num, *args):
         'accuracy_history': [],
         'hamming_loss_history': [],
         'hierarchy_accuracy_history': [],
+        'weighted_f1_history': [],
+        'macro_f1_history': [],
         'metadata': {}
     }
     for i in range(0, iter_num):
@@ -2639,7 +2666,7 @@ def entity_recognition_from_crf(prev_step_data,\
                 [given_truths_dict[srcid] for srcid in given_srcids]\
                 + [crf_truths_dict[srcid] for srcid in crf_srcids], []))
     source_target_buildings = list(set(building_list + [target_building]))
-    classifier, vectorizer, binerizer, point_classifier, ts2ir = \
+    classifier, vectorizer, binarizer, point_classifier, ts2ir = \
             build_tagset_classifier(building_list, target_building,\
                                     crf_sentence_dict, crf_token_label_dict,\
                                     given_phrase_dict, crf_phrase_dict,\
@@ -2657,7 +2684,7 @@ def entity_recognition_from_crf(prev_step_data,\
     crf_pred_certainty_dict, \
     crf_pred_point_dict = tagsets_prediction(\
                                    classifier, vectorizer, \
-                                   binerizer, crf_phrase_dict, \
+                                   binarizer, crf_phrase_dict, \
                                    crf_srcids, source_target_buildings,
                                    eda_flag, point_classifier, ts2ir)
 
@@ -2764,20 +2791,27 @@ def entity_recognition_from_ground_truth_get_avg(N,
 
 def entity_result():
     import plotter
-    source_target_list = [('ebu3b', 'ap_m'), ('ap_m', 'ebu3b')]
-    n_list_list = [[(200,0), (200,5), (200,50), (200,200)],
-                   [(0,5), (0,50), (0,200)]]
+    source_target_list = [('ebu3b', 'ap_m')]#, ('ap_m', 'ebu3b')]
+    n_list_list = [[(200,5), (200,50), (200,100), (200,200)],
+                   [(0,5), (0,50), (0,100), (0,200)]]
     char_precs_list = list()
     phrase_f1s_list = list()
-#fig, ax = plt.subplots(1, 1)
-    fig, axes = plt.subplots(1,len(n_list_list))
+    fig, ax = plt.subplots(1, 1)
+    axes = [ax]
+    fig.set_size_inches(6,4)
+    #fig, axes = plt.subplots(1,len(n_list_list))
+    ts_flag = False
+    eda_flag = False
 
     for ax, (source, target) in zip(axes, source_target_list):
         for n_list in n_list_list:
             target_n_list = [ns[1] for ns in n_list]
-            phrase_f1s = list()
-            pess_phrase_f1s = list()
-            char_precs = list()
+            subset_accuracy_list = list()
+            accuracy_list = list()
+            hierarchy_accuracy_list = list()
+            weighted_f1_list = list()
+            macro_f1_list = list()
+
             for (n_s, n_t) in n_list:
                 if n_s == 0:
                     building_list = [target]
@@ -2789,53 +2823,51 @@ def entity_result():
                     building_list = [source, target]
                     source_sample_num_list = [n_s, n_t]
                 result_query = {
-                    'label_type': 'label',
-                    'token_type': 'justseparate',
-                    'use_cluster_flag': True,
-                    'building_list': building_list,
-                    'source_sample_num_list': source_sample_num_list,
-                    'target_building': target
+                        'metadata.label_type': 'label',
+                        'metadata.token_type': 'justseparate',
+                        'metadata.use_cluster_flag': True,
+                        'metadata.building_list': building_list,
+                        'metadata.source_sample_num_list': source_sample_num_list,
+                        'metadata.target_building': target,
+                        'metadata.ts_flag': ts_flag,
+                        'metadata.eda_flag': eda_flag
                 }
-                result = get_crf_results(result_query)
+                result = get_entity_results(result_query)
                 try:
                     assert result
                 except:
                     print(n_t)
                     pdb.set_trace()
                     result = get_crf_results(result_query)
-                char_prec = result['char_precision'] * 100
-                char_precs.append(char_prec)
-                phrase_recall = result['phrase_recall'] * 100
-                phrase_prec = result['phrase_precision'] * 100
-                phrase_f1 = 2* phrase_prec  * phrase_recall \
-                                / (phrase_prec + phrase_recall)
-                phrase_f1s.append(phrase_f1)
-                pess_phrase_recall = result['pessimistic_phrase_recall'] * 100
-                pess_phrase_prec = result['pessimistic_phrase_precision'] * 100
-                pess_phrase_f1 = 2* pess_phrase_prec  * pess_phrase_recall \
-                                / (pess_phrase_prec + pess_phrase_recall)
-                pess_phrase_f1s.append(pess_phrase_f1)
-            #phrase_f1s_list.append(phrase_f1s)
-            #char_precs_list.append(char_precs)
+                #point_precs = result['point_precision_history'][-1]
+                #point_recall = result['point_recall'][-1]
+                subset_accuracy_list.append(result['subset_accuracy_history'][-1] * 100)
+                accuracy_list.append(result['accuracy_history'][-1] * 100)
+                hierarchy_accuracy_list.append(result['hierarchy_accuracy_history'][-1] * 100)
+                weighted_f1_list.append(result['weighted_f1_history'][-1] * 100)
+                macro_f1_list.append(result['macro_f1_history'][-1] * 100)
+
             xs = target_n_list
-            ys = [char_precs, phrase_f1s, pess_phrase_f1s]
-            pdb.set_trace()
+            ys = [accuracy_list, macro_f1_list]
+            #ys = [subset_accuracy_list, accuracy_list, hierarchy_accuracy_list, weighted_f1_list, macro_f1_list]
             xlabel = '# of Target Building Samples'
             ylabel = 'F1 score (%)'
             xtick = target_n_list
             xtick_labels = [str(n) for n in target_n_list]
-            ytick = [70,80,90,100]
+            ytick = range(0,102,10)
             ytick_labels = [str(n) for n in ytick]
-            ylim = (68, 102)
-            legends = ['# Source: {0} Character Precision'.format(n_s), \
-                      '# Source: {0} Phrase F1'.format(n_s),
-                      '# Source: {0} Pessimistic Phrase F1'.format(n_s),
+            ylim = (ytick[0]-1, ytick[-1]+2)
+            legends = [
+                      '# Source: {0} Macro F1'.format(n_s),
+                      '# Source: {0} Accuracy'.format(n_s)
                       ]
             title = None
             plotter.plot_multiple_2dline(xs, ys, xlabel, ylabel, xtick,\
                              xtick_labels, ytick, ytick_labels, title, ax, fig, \
                              ylim, legends)
-    save_fig(fig, 'figs/crf.pdf')
+    suptitle = 'Multi Label (TagSets) Classification with a Source building.'
+    fig.suptitle(suptitle)
+    save_fig(fig, 'figs/entity.pdf')
 
 
 def crf_result():
@@ -2873,6 +2905,7 @@ def crf_result():
                     'use_cluster_flag': True,
                     'building_list': building_list,
                     'source_sample_num_list': source_sample_num_list,
+
                     'target_building': target
                 }
                 result = get_crf_results(result_query)
@@ -3108,6 +3141,8 @@ if __name__=='__main__':
         assert args.exp_type in ['crf', 'entity', 'crf_entity']
         if args.exp_type == 'crf':
             crf_result()
+        elif args.exp_type == 'entity':
+            entity_result()
 
     elif args.prog == 'init':
         init()
