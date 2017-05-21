@@ -61,7 +61,7 @@ from skmultilearn.problem_transform import LabelPowerset, ClassifierChain, \
 from resulter import Resulter
 from time_series_to_ir import TimeSeriesToIR
 from mongo_models import store_model, get_model, get_tags_mapping, \
-                         get_crf_results
+                         get_crf_results, store_result
 from brick_parser import pointTagsetList        as  point_tagsets,\
                          locationTagsetList     as  location_tagsets,\
                          equipTagsetList        as  equip_tagsets,\
@@ -2452,7 +2452,7 @@ def entity_recognition_from_ground_truth(building_list,
     print('history of unfound point cnt: {0}'\
           .format(next_step_data['unfound_point_cnt_history']))
 
-    store_results(next_step_data)
+    store_result(next_step_data)
 
     #return  target_result_dict['point_precision'], \
     #        target_result_dict['point_recall'], \
@@ -2759,12 +2759,81 @@ def entity_recognition_from_ground_truth_get_avg(N,
 
 def entity_result():
     import plotter
+    source_target_list = [('ebu3b', 'ap_m'), ('ap_m', 'ebu3b')]
+    n_list_list = [[(200,0), (200,5), (200,50), (200,200)],
+                   [(0,5), (0,50), (0,200)]]
+    char_precs_list = list()
+    phrase_f1s_list = list()
+#fig, ax = plt.subplots(1, 1)
+    fig, axes = plt.subplots(1,len(n_list_list))
+
+    for ax, (source, target) in zip(axes, source_target_list):
+        for n_list in n_list_list:
+            target_n_list = [ns[1] for ns in n_list]
+            phrase_f1s = list()
+            pess_phrase_f1s = list()
+            char_precs = list()
+            for (n_s, n_t) in n_list:
+                if n_s == 0:
+                    building_list = [target]
+                    source_sample_num_list = [n_t]
+                elif n_t == 0:
+                    building_list = [source]
+                    source_sample_num_list = [n_s]
+                else:
+                    building_list = [source, target]
+                    source_sample_num_list = [n_s, n_t]
+                result_query = {
+                    'label_type': 'label',
+                    'token_type': 'justseparate',
+                    'use_cluster_flag': True,
+                    'building_list': building_list,
+                    'source_sample_num_list': source_sample_num_list,
+                    'target_building': target
+                }
+                result = get_crf_results(result_query)
+                try:
+                    assert result
+                except:
+                    print(n_t)
+                    pdb.set_trace()
+                    result = get_crf_results(result_query)
+                char_prec = result['char_precision'] * 100
+                char_precs.append(char_prec)
+                phrase_recall = result['phrase_recall'] * 100
+                phrase_prec = result['phrase_precision'] * 100
+                phrase_f1 = 2* phrase_prec  * phrase_recall \
+                                / (phrase_prec + phrase_recall)
+                phrase_f1s.append(phrase_f1)
+                pess_phrase_recall = result['phrase_recall'] * 100
+                pess_phrase_prec = result['phrase_precision'] * 100
+                pess_phrase_f1 = 2* pess_phrase_prec  * pess_phrase_recall \
+                                / (pess_phrase_prec + pess_phrase_recall)
+                pess_phrase_f1s.append(pess_phrase_f1)
+            #phrase_f1s_list.append(phrase_f1s)
+            #char_precs_list.append(char_precs)
+            xs = target_n_list
+            ys = [char_precs, phrase_f1s, pess_phrase_f1s]
+            xlabel = '# of Target Building Samples'
+            ylabel = 'F1 score (%)'
+            xtick = target_n_list
+            xtick_labels = [str(n) for n in target_n_list]
+            ytick = [70,80,90,100]
+            ytick_labels = [str(n) for n in ytick]
+            ylim = (68, 102)
+            legends = ['# Source: {0} Character Precision'.format(n_s), \
+                      '# Source: {0} Phrase F1'.format(n_s),
+                      '# Source: {0} Pessimistic Phrase F1'.format(n_s),
+                      ]
+            title = None
+            plotter.plot_multiple_2dline(xs, ys, xlabel, ylabel, xtick,\
+                             xtick_labels, ytick, ytick_labels, title, ax, fig, \
+                             ylim, legends)
+    save_fig(fig, 'figs/crf.pdf')
 
 
 def crf_result():
     import plotter
-    source = 'ebu3b'
-    target = 'ap_m'
     source_target_list = [('ebu3b', 'ap_m'), ('ap_m', 'ebu3b')]
     n_list_list = [[(200,0), (200,5), (200,50), (200,200)],
                    [(0,5), (0,50), (0,200)]]
