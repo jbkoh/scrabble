@@ -2900,9 +2900,9 @@ def crf_result():
             ylabel = 'F1 score (%)'
             xtick = target_n_list
             xtick_labels = [str(n) for n in target_n_list]
-            ytick = [50,60,70,80,90,100]
+            ytick = range(0,101,10)
             ytick_labels = [str(n) for n in ytick]
-            ylim = (10, 102)
+            ylim = (ytick[0]-2, ytick[-1]+2)
             legends = ['# Source:{0}, Phrase F1'.format(n_s),
                       '# Source:{0}, Phrase Macro F1'.format(n_s),
                       ]
