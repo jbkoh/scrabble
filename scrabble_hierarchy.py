@@ -2717,6 +2717,10 @@ def entity_recognition_from_ground_truth_get_avg(N,
     print ('Averaged Hierarchy Accuracy: {0}'.format(hierarchy_accuracy))
     print("FIN")
 
+def entity_result():
+    import plotter
+    
+
 def crf_result():
     import plotter
     source_target_building_list = [('ebu3b', 'ap_m')]
@@ -2731,7 +2735,7 @@ def crf_result():
                 in zip(n_list, source_target_building_list):
             result_query = {
                 'label_type': 'label',
-                'token_type': 'justseparaet',
+                'token_type': 'justseparate',
                 'use_cluster_flag': 'true',
                 'building_list': [source, target] if n_t else [source],
                 'source_sample_num_list': [n_s, n_t] if n_t else [n_s],
