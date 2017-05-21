@@ -26,8 +26,9 @@ import pickle
 import pycrfsuite
 import pandas as pd
 import numpy as np
-from IPython.display import Audio
-#import matplotlib.pyplot as plt
+import matplotlib
+matplotlib.use('Agg')
+import matplotlib.pyplot as plt
 from matplotlib.backends.backend_pdf import PdfPages
 from bson.binary import Binary as BsonBinary
 import arrow
@@ -583,7 +584,6 @@ def learn_crf_model(building_list,
     os.remove(crf_model_file)
 
     logging.info("Finished!!!")
-    play_end_alarm()
 
 def crf_test(building_list,
              source_sample_num_list,
@@ -2719,58 +2719,81 @@ def entity_recognition_from_ground_truth_get_avg(N,
 
 def entity_result():
     import plotter
-    
+
 
 def crf_result():
     import plotter
-    source_target_building_list = [('ebu3b', 'ap_m')]
-    n_list_list = [[(200,0), (200,5), (200,50), (200,200)]]
-    target_n_list = [ns[1] for ns in n_list_list]
-    char_f1s_list = list()
+    source = 'ebu3b'
+    target = 'ap_m'
+    source_target_list = [('ebu3b', 'ap_m'), ('ap_m', 'ebu3b')]
+    n_list_list = [[(200,0), (200,5), (200,50), (200,200)],
+                   [(0,5), (0,50), (0,200)]]
+    char_precs_list = list()
     phrase_f1s_list = list()
-    for n_list in n_list_list:
-        phrase_f1s = list()
-        char_f1s = list()
-        for ((n_s, n_t), (source, target)) \
-                in zip(n_list, source_target_building_list):
-            result_query = {
-                'label_type': 'label',
-                'token_type': 'justseparate',
-                'use_cluster_flag': 'true',
-                'building_list': [source, target] if n_t else [source],
-                'source_sample_num_list': [n_s, n_t] if n_t else [n_s],
-                'target_building': target
-            }
-            result = get_crf_results(result_query)
-            assert result
-            char_prec = result['char_precision']
-            char_recall = result['char_recall']
-            char_f1 = 2 * char_prec * char_recall \
-                            / (char_prec + char_recall)
-            char_f1s.append(char_f1)
-            phrase_recall = result['phrase_recall']
-            phrase_prec = result['phrase_precision']
-            phrase_f1 = 2* phrase_prec  * phrase_recall \
-                            / (phrase_prec + phrase_recall)
-            phrase_f1s.append(phrase_f1)
-        phrase_f1s_list.append(phrase_f1s)
-        char_f1s_list.append(char_f1s)
-    xs = target_n_list
-    ys = [char_f1s_list, phrase_f1s_list]
-    xlabel = '# of Target Building Samples'
-    ylabel = 'F1 score (%)'
-    xtick = target_n_list
-    xtick_labels = [str(n) for n in target_n_list]
-    ytick = [50,70,80,90,100]
-    ytick_labels = [str(n) for n in ytick]
-    fig, ax = plt.subplots(1,1)
-    ylim = 102
-    legends = ['char F1', 'phrase F1']
+#fig, ax = plt.subplots(1, 1)
+    fig, axes = plt.subplots(1,len(n_list_list))
 
-    fig = plot_multiple_2dline(target_n_list, ys, xlabel, ylabel, xtick, \
-                         xtick_labels, ytick, ytick_label, ax, fig, ylim, \
-                         legends)
-    save_fig(fig, 'test.pdf')
+    for ax, (source, target) in zip(axes, source_target_list):
+        for n_list in n_list_list:
+            target_n_list = [ns[1] for ns in n_list]
+            phrase_f1s = list()
+            pess_phrase_f1s = list()
+            char_precs = list()
+            for (n_s, n_t) in n_list:
+                if n_s == 0:
+                    building_list = [target]
+                    source_sample_num_list = [n_t]
+                elif n_t == 0:
+                    building_list = [source]
+                    source_sample_num_list = [n_s]
+                else:
+                    building_list = [source, target]
+                    source_sample_num_list = [n_s, n_t]
+                result_query = {
+                    'label_type': 'label',
+                    'token_type': 'justseparate',
+                    'use_cluster_flag': True,
+                    'building_list': building_list,
+                    'source_sample_num_list': source_sample_num_list,
+                    'target_building': target
+                }
+                result = get_crf_results(result_query)
+                try:
+                    assert result
+                except:
+                    print(n_t)
+                    pdb.set_trace()
+                    result = get_crf_results(result_query)
+                char_prec = result['char_precision'] * 100
+                char_precs.append(char_prec)
+                phrase_recall = result['phrase_recall'] * 100
+                phrase_prec = result['phrase_precision'] * 100
+                phrase_f1 = 2* phrase_prec  * phrase_recall \
+                                / (phrase_prec + phrase_recall)
+                phrase_f1s.append(phrase_f1)
+                pess_phrase_recall = result['phrase_recall'] * 100
+                pess_phrase_prec = result['phrase_precision'] * 100
+                pess_phrase_f1 = 2* pess_phrase_prec  * pess_phrase_recall \
+                                / (pess_phrase_prec + pess_phrase_recall)
+                pess_phrase_f1s.append(pess_phrase_f1)
+            #phrase_f1s_list.append(phrase_f1s)
+            #char_precs_list.append(char_precs)
+            xs = target_n_list
+            ys = [char_precs, phrase_f1s, pess_phrase_f1s]
+            xlabel = '# of Target Building Samples'
+            ylabel = 'F1 score (%)'
+            xtick = target_n_list
+            xtick_labels = [str(n) for n in target_n_list]
+            ytick = [70,80,90,100]
+            ytick_labels = [str(n) for n in ytick]
+            ylim = (68, 102)
+            legends = ['# Source: {0} Character Precision'.format(n_s), \
+                      '# Source: {0} Phrase F1'.format(n_s)]
+            title = None
+            plotter.plot_multiple_2dline(xs, ys, xlabel, ylabel, xtick,\
+                             xtick_labels, ytick, ytick_labels, title, ax, fig, \
+                             ylim, legends)
+    save_fig(fig, 'figs/crf.pdf')
 
 
 
