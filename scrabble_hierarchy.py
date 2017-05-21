@@ -22,6 +22,7 @@ from pprint import PrettyPrinter
 pp = PrettyPrinter()
 import psutil
 import pickle
+import subprocess
 
 import pycrfsuite
 import pandas as pd
@@ -29,6 +30,10 @@ import numpy as np
 import matplotlib
 matplotlib.use('Agg')
 import matplotlib.pyplot as plt
+#plt.rcParams['font.family'] = 'sans-serif'
+#plt.rcParams['font.sans-serif'] = 'Helvetica'
+plt.rcParams['axes.labelpad'] = 0
+plt.rcParams['font.size'] = 8
 from matplotlib.backends.backend_pdf import PdfPages
 from bson.binary import Binary as BsonBinary
 import arrow
@@ -2805,8 +2810,8 @@ def entity_result():
                 phrase_f1 = 2* phrase_prec  * phrase_recall \
                                 / (phrase_prec + phrase_recall)
                 phrase_f1s.append(phrase_f1)
-                pess_phrase_recall = result['phrase_recall'] * 100
-                pess_phrase_prec = result['phrase_precision'] * 100
+                pess_phrase_recall = result['pessimistic_phrase_recall'] * 100
+                pess_phrase_prec = result['pessimistic_phrase_precision'] * 100
                 pess_phrase_f1 = 2* pess_phrase_prec  * pess_phrase_recall \
                                 / (pess_phrase_prec + pess_phrase_recall)
                 pess_phrase_f1s.append(pess_phrase_f1)
@@ -2814,6 +2819,7 @@ def entity_result():
             #char_precs_list.append(char_precs)
             xs = target_n_list
             ys = [char_precs, phrase_f1s, pess_phrase_f1s]
+            pdb.set_trace()
             xlabel = '# of Target Building Samples'
             ylabel = 'F1 score (%)'
             xtick = target_n_list
@@ -2835,18 +2841,21 @@ def entity_result():
 def crf_result():
     import plotter
     source_target_list = [('ebu3b', 'ap_m'), ('ap_m', 'ebu3b')]
-    n_list_list = [[(200,0), (200,5), (200,50), (200,200)],
-                   [(0,5), (0,50), (0,200)]]
+    n_list_list = [[(200,5), (200,50), (200,100), (200,200)],
+                   [(0,5), (0,50), (0,100), (0,200)]]
     char_precs_list = list()
     phrase_f1s_list = list()
 #fig, ax = plt.subplots(1, 1)
     fig, axes = plt.subplots(1,len(n_list_list))
+    fig.set_size_inches(8, 2)
 
     for ax, (source, target) in zip(axes, source_target_list):
         for n_list in n_list_list:
             target_n_list = [ns[1] for ns in n_list]
             phrase_f1s = list()
-            pess_phrase_f1s = list()
+            char_macro_f1s = list()
+            phrase_macro_f1s = list()
+#pess_phrase_f1s = list()
             char_precs = list()
             for (n_s, n_t) in n_list:
                 if n_s == 0:
@@ -2880,31 +2889,29 @@ def crf_result():
                 phrase_f1 = 2* phrase_prec  * phrase_recall \
                                 / (phrase_prec + phrase_recall)
                 phrase_f1s.append(phrase_f1)
-                pess_phrase_recall = result['phrase_recall'] * 100
-                pess_phrase_prec = result['phrase_precision'] * 100
-                pess_phrase_f1 = 2* pess_phrase_prec  * pess_phrase_recall \
-                                / (pess_phrase_prec + pess_phrase_recall)
-                pess_phrase_f1s.append(pess_phrase_f1)
+                char_macro_f1s.append(result['char_macro_f1'] * 100)
+                phrase_macro_f1s.append(result['phrase_macro_f1'] * 100)
             #phrase_f1s_list.append(phrase_f1s)
             #char_precs_list.append(char_precs)
             xs = target_n_list
-            ys = [char_precs, phrase_f1s, pess_phrase_f1s]
+            ys = [phrase_f1s, phrase_macro_f1s]
+            #ys = [char_precs, phrase_f1s, char_macro_f1s, phrase_macro_f1s]
             xlabel = '# of Target Building Samples'
             ylabel = 'F1 score (%)'
             xtick = target_n_list
             xtick_labels = [str(n) for n in target_n_list]
-            ytick = [70,80,90,100]
+            ytick = [50,60,70,80,90,100]
             ytick_labels = [str(n) for n in ytick]
-            ylim = (68, 102)
-            legends = ['# Source: {0} Character Precision'.format(n_s), \
-                      '# Source: {0} Phrase F1'.format(n_s),
-                      '# Source: {0} Pessimistic Phrase F1'.format(n_s),
+            ylim = (10, 102)
+            legends = ['# Source:{0}, Phrase F1'.format(n_s),
+                      '# Source:{0}, Phrase Macro F1'.format(n_s),
                       ]
             title = None
             plotter.plot_multiple_2dline(xs, ys, xlabel, ylabel, xtick,\
                              xtick_labels, ytick, ytick_labels, title, ax, fig, \
                              ylim, legends)
     save_fig(fig, 'figs/crf.pdf')
+    subprocess.call('./send_figures')
 
 
 

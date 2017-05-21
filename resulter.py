@@ -5,6 +5,8 @@ import pdb
 
 from pymongo import MongoClient
 import arrow
+from sklearn.metrics import precision_recall_fscore_support
+from sklearn.preprocessing import MultiLabelBinarizer
 
 from mongo_models import summary_query_template 
 
@@ -49,8 +51,8 @@ class Resulter():
         correct_label_num = 0
         total_label_num = 0
         for label in orig_phrase_labels:
-            if pessimistic_flag and label in ['left_identifier', 
-                                             'right_identifier', 
+            if pessimistic_flag and label.split('-')[0] in ['leftidentifier', 
+                                             'rightidentifier', 
                                              'room',
                                              'building',
                                              'network_adapter']:
@@ -93,7 +95,16 @@ class Resulter():
         pess_incorrect_phrase_cnt = 0
         pess_predicted_phrase_cnt = 0
 
+        pred_tag = list()
+        true_tag = list()
+        pred_phrases = list()
+        true_phrases = list()
+
         for srcid, result in self.result_dict.items():
+            pred_tag += result['pred_token_labels']
+            true_tag += result['orig_token_labels']
+            pred_phrases.append(result['pred_phrase_labels'])
+            true_phrases.append(result['orig_phrase_labels'])
             correct_cnt, incorrect_cnt = self.measure_accuracy_by_token(\
                                             result['pred_token_labels'],\
                                             result['orig_token_labels'])
@@ -115,6 +126,11 @@ class Resulter():
             pess_incorrect_phrase_cnt += pess_incorrect
             pess_predicted_phrase_cnt += pess_found
 
+        phrase_binarizer = MultiLabelBinarizer()
+        phrase_binarizer.fit(pred_phrases + true_phrases)
+
+        assert len(pred_tag) == len(true_tag)
+
         self.summary['char_precision'] = \
                 float(char_correct_cnt)/char_total_cnt
         self.summary['phrase_precision'] = \
@@ -127,6 +143,23 @@ class Resulter():
                 / (pess_correct_phrase_cnt + pess_incorrect_phrase_cnt)
         self.summary['pessimistic_phrase_recall'] = \
                 float(pess_correct_phrase_cnt) / (pess_predicted_phrase_cnt)
+        _, _, char_macro_f1, _ = precision_recall_fscore_support(\
+                                        true_tag, pred_tag, average='macro')
+        self.summary['char_macro_f1'] = char_macro_f1
+        _, _, char_weighted_f1, _ = precision_recall_fscore_support(\
+                                        true_tag, pred_tag, average='weighted')
+        self.summary['char_weighted_f1'] = char_weighted_f1
+        
+        _, _, phrase_macro_f1, _ = precision_recall_fscore_support(\
+                                    phrase_binarizer.transform(true_phrases),
+                                    phrase_binarizer.transform(pred_phrases),
+                                    average='macro')
+        self.summary['phrase_macro_f1'] = phrase_macro_f1
+        _, _, phrase_weighted_f1, _ = precision_recall_fscore_support(\
+                                    phrase_binarizer.transform(true_phrases),
+                                    phrase_binarizer.transform(pred_phrases),
+                                    average='weighted')
+        self.summary['phrase_weighted_f1'] = phrase_weighted_f1
         self.summary['date'] = str(arrow.get().datetime)
 
 
