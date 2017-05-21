@@ -2198,6 +2198,11 @@ def entity_recognition_from_ground_truth(building_list,
                                              'correct_point_cnt_history': [],
                                              'incorrect_point_cnt_history': [],
                                              'unfound_point_cnt_history': [],
+                                             'subset_accuracy_history':  [],
+                                             'accuracy_history': [],
+                                             'hamming_loss_history': [],
+                                             'hierarchy_accuracy_history': [],
+                                             'metadata': {}
                                          },
                                          crf_phrase_dict=None,
                                          crf_srcids=None
@@ -2213,6 +2218,19 @@ def entity_recognition_from_ground_truth(building_list,
     source_cnt_list = [[building, cnt]\
                        for building, cnt\
                        in zip(building_list, source_sample_num_list)]
+    if not prev_step_data.get('metadata'):
+        metadata = {
+            'token_type': token_type,
+            'label_type': label_type,
+            'use_cluster_flag': use_cluster_flag,
+            'use_brick_flag': use_brick_flag,
+            'eda_flag': eda_flag,
+            'ts_flag': ts_flag,
+            'building_list': building_list,
+            'target_building': target_building,
+            'source_sample_num_list': source_sample_num_list
+        }
+        prev_step_data['meatdata'] = metadata
 
     # Read previous step's data
     learning_srcids = prev_step_data.get('learning_srcids')
@@ -2223,6 +2241,7 @@ def entity_recognition_from_ground_truth(building_list,
     prev_result_dict = prev_step_data.get('result_dict')
     prev_iter_cnt = prev_step_data.get('iter_cnt')
     iter_cnt = prev_step_data['iter_cnt'] + 1
+
 
 
     if iter_cnt>1:
@@ -2383,6 +2402,7 @@ def entity_recognition_from_ground_truth(building_list,
                                          target_phrase_dict,\
                                             debug_flag)
     next_step_data = {
+        'exp_type': 'entity_from_ground_truth',
         'pred_tagsets_dict': target_pred_tagsets_dict,
         'learning_srcids': learning_srcids,
         'test_srcids': test_srcids,
@@ -2404,7 +2424,20 @@ def entity_recognition_from_ground_truth(building_list,
             + [target_result_dict['point_incorrect_cnt']],
         'unfound_point_cnt_history': \
             prev_step_data['unfound_point_cnt_history'] \
-            + [target_result_dict['unfound_point_cnt']]
+            + [target_result_dict['unfound_point_cnt']],
+        'subset_accuracy_history': \
+            prev_step_data['subset_accuracy_history'] \
+            + [target_result_dict['subset_accuracy']],
+        'accuracy_history': \
+            prev_step_data['accuracy_history'] \
+            + [target_result_dict['accuracy']],
+        'hierarchy_accuracy_history': \
+            prev_step_data['hierarchy_accuracy_history'] \
+            + [target_result_dict['hierarchy_accuracy']],
+        'hamming_loss_history': \
+            prev_step_data['hamming_loss_history'] \
+            + [target_result_dict['hamming_loss']],
+        'metadata': prev_step_data['metadata']
     }
 
     print('################################# Iter# {0}'.format(iter_cnt))
@@ -2418,6 +2451,8 @@ def entity_recognition_from_ground_truth(building_list,
           .format(next_step_data['incorrect_point_cnt_history']))
     print('history of unfound point cnt: {0}'\
           .format(next_step_data['unfound_point_cnt_history']))
+
+    store_results(next_step_data)
 
     #return  target_result_dict['point_precision'], \
     #        target_result_dict['point_recall'], \
@@ -2442,6 +2477,11 @@ def entity_recognition_iteration(iter_num, *args):
         'correct_point_cnt_history': [],
         'incorrect_point_cnt_history': [],
         'unfound_point_cnt_history': [],
+        'subset_accuracy_history':  [],
+        'accuracy_history': [],
+        'hamming_loss_history': [],
+        'hierarchy_accuracy_history': [],
+        'metadata': {}
     }
     for i in range(0, iter_num):
         _, step_data = entity_recognition_from_ground_truth(\
@@ -2788,7 +2828,9 @@ def crf_result():
             ytick_labels = [str(n) for n in ytick]
             ylim = (68, 102)
             legends = ['# Source: {0} Character Precision'.format(n_s), \
-                      '# Source: {0} Phrase F1'.format(n_s)]
+                      '# Source: {0} Phrase F1'.format(n_s),
+                      '# Source: {0} Pessimistic Phrase F1'.format(n_s),
+                      ]
             title = None
             plotter.plot_multiple_2dline(xs, ys, xlabel, ylabel, xtick,\
                              xtick_labels, ytick, ytick_labels, title, ax, fig, \

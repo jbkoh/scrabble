@@ -83,6 +83,9 @@ def get_model(query):
 def store_model(model):
     DB.get_collection('model').insert_one(model)
 
+def store_result(results):
+    DB.get_collection('results').insert_one(results)
+
 def get_tags_mapping(query):
     docs = DB.get_collection('results').find(query)
     if not query.get('gen_time'):
@@ -93,8 +96,8 @@ def get_tags_mapping(query):
 def get_crf_results(query, n=1):
     normalized_query = build_query(query)
     docs = DB.get_collection('results').find(normalized_query)
-    if not query.get('gen_time'):
-        docs = docs.sort('gen_time', -1)
+    if not query.get('date'):
+        docs = docs.sort('date', -1)
     if docs.count()>0:
         docs = docs.limit(n)
         print('Using the model generated at {0}'.format(docs[0]['date']))
