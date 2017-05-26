@@ -3171,7 +3171,7 @@ def entity_result():
     phrase_f1s_list = list()
     fig, ax = plt.subplots(1, 1)
     axes = [ax]
-    fig.set_size_inches(6,4)
+    fig.set_size_inches(6,8)
     #fig, axes = plt.subplots(1,len(n_list_list))
 
     for ax, (source, target) in zip(axes, source_target_list):
