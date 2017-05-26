@@ -2587,6 +2587,7 @@ def entity_recognition_from_ground_truth(building_list,
             'use_brick_flag': use_brick_flag,
             'eda_flag': eda_flag,
             'ts_flag': ts_flag,
+            'negative_flag': negative_flag,
             'building_list': building_list,
             'target_building': target_building,
             'source_sample_num_list': source_sample_num_list
@@ -3159,6 +3160,10 @@ def entity_result():
         'metadata.eda_flag': eda_flag,
         'metadata.use_brick_flag': True
     }
+    query_list = [deepcopy(default_query),\
+                 deepcopy(default_query),\
+                 deepcopy(default_query),\
+                 deepcopy(default_query)]
     query_list[0]['metadata.use_brick_flag'] = False
     query_list[0]['metadata.negative_flag'] = False
     query_list[1]['metadata.use_brick_flag'] = False
