@@ -142,18 +142,13 @@ def init():
 def calc_leaves_depth(tree, d=dict(), depth=0):
     curr_depth = depth + 1
     for tagset, branches in tree.items():
-        d[tagset] = curr_depth
+        if d.get(tagset):
+            d[tagset] = max(d[tagset], curr_depth)
+        else:
+            d[tagset] = curr_depth
         for branch in branches:
-            d = calc_leaves_depth(branch, d, curr_depth)
-            for k, v in d.items():
-                #if tagset == 'supply_air_static_pressure_setpoint' and\
-                #   list(branch.keys())[0] == 'supply_air_static_pressure_integral_time_setpoint'\
-                #   and k == 'supply_air_static_pressure_integral_time_setpoint':
-                #    pdb.set_trace()
-                #if k == 'supply_air_static_pressure_integral_time_setpoint':
-                #if k == 'supply_air_static_pressure_integral_time_setpoint' and v ==5:
-                #    pdb.set_trace() #TODO: Why this can't be 5?????
-
+            new_d = calc_leaves_depth(branch, d, curr_depth)
+            for k, v in new_d.items():
                 if d.get(k):
                     d[k] = max(d[k], v)
                 else:
@@ -2673,6 +2668,8 @@ def entity_recognition_from_ground_truth(building_list,
                 + [test_truths_dict[srcid] for srcid in test_srcids], []))
     augment_tagset_tree(tagset_list)
     tree_depth_dict = calc_leaves_depth(tagset_tree)
+    assert tree_depth_dict['supply_air_static_pressure_integral_time_setpoint']\
+            > 3
 
     source_target_buildings = list(set(building_list + [target_building]))
     begin_time = arrow.get()
@@ -3147,8 +3144,8 @@ def entity_recognition_from_ground_truth_get_avg(N,
 def entity_result():
     import plotter
     source_target_list = [('ebu3b', 'ap_m')]#, ('ap_m', 'ebu3b')]
-    n_list_list = [[(200,5), (200,50), (200,100), (200,200)],
-                   [(0,5), (0,50), (0,100), (0,200)]]
+    n_list_list = [[(0,5), (0,50), (0,100), (0,200)],
+                   [(200,5), (200,50), (200,100), (200,200)]]
     ts_flag = False
     eda_flag = False
     default_query = {
@@ -3162,12 +3159,14 @@ def entity_result():
         'metadata.eda_flag': eda_flag,
         'metadata.use_brick_flag': True
     }
-
-    query_list = [deepcopy(default_query),
-                   deepcopy(default_query),
-                  ]
-    query_list[0]['metadata.use_brick_flag'] = True
+    query_list[0]['metadata.use_brick_flag'] = False
+    query_list[0]['metadata.negative_flag'] = False
     query_list[1]['metadata.use_brick_flag'] = False
+    query_list[1]['metadata.negative_flag'] = True
+    query_list[2]['metadata.use_brick_flag'] = True 
+    query_list[2]['metadata.negative_flag'] = True
+    query_list[3]['metadata.use_brick_flag'] = True
+    query_list[3]['metadata.negative_flag'] = True
     char_precs_list = list()
     phrase_f1s_list = list()
     fig, ax = plt.subplots(1, 1)
@@ -3195,18 +3194,6 @@ def entity_result():
                     else:
                         building_list = [source, target]
                         source_sample_num_list = [n_s, n_t]
-                    """
-                    result_query = {
-                            'metadata.label_type': 'label',
-                            'metadata.token_type': 'justseparate',
-                            'metadata.use_cluster_flag': True,
-                            'metadata.building_list': building_list,
-                            'metadata.source_sample_num_list': source_sample_num_list,
-                            'metadata.target_building': target,
-                            'metadata.ts_flag': ts_flag,
-                            'metadata.eda_flag': eda_flag
-                    }
-                    """
                     query['metadata.building_list'] = building_list
                     query['metadata.source_sample_num_list'] = \
                             source_sample_num_list
@@ -3226,6 +3213,9 @@ def entity_result():
                     hierarchy_accuracy_list.append(result['hierarchy_accuracy_history'][-1] * 100)
                     weighted_f1_list.append(result['weighted_f1_history'][-1] * 100)
                     macro_f1_list.append(result['macro_f1_history'][-1] * 100)
+                    if not (query['metadata.negative_flag'] and
+                            query['metadata.use_brick_flag']):
+                        break
 
                 xs = target_n_list
                 ys = [accuracy_list, macro_f1_list]
