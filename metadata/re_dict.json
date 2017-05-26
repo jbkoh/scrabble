@@ -168,7 +168,9 @@
   "ap_m": {
     "a": [
       ["\\d+a", "leftidentifier"],
-      ["\\d.a", "leftidentifier"]
+      ["\\d.a", "leftidentifier"],
+      ["aclg", "effective"],
+      ["ahtg", "effective"]
     ],
     "c": [
       ["ocm", "cooling"],
@@ -224,6 +226,8 @@
       ["htg.sp", "setpoint"],
       ["flow.sp", "setpoint"],
       ["aclg.sp", "setpoint"],
+      ["clg.sp", "setpoint"],
+      ["htg.sp", "setpoint"],
       ["sp reset", "static_pressure"],
       ["building.sp.ease", "none"],
       ["chwdp.sp", "setpoint"],
@@ -310,7 +314,8 @@
       ["ocm", "occupied"],
       ["ohm", "occupied"],
       ["oclg", "occupied"],
-      ["ohtg", "occupied"]
+      ["ohtg", "occupied"],
+      ["omin", "occupied"]
     ],
     "fl":[
       ["htfl", "flow"],

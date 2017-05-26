@@ -5,10 +5,10 @@ import pandas as pd
 import json
 import pickle
 import pdb
-    
+
 with open('metadata/bacnet_devices.json', 'r') as fp:
     sensor_dict = json.load(fp)
-        
+
 nae_dict = dict()
 nae_dict['bonner'] = ["607", "608", "609", "557", "610"]
 nae_dict['ap_m'] = ['514', '513','604']
@@ -16,6 +16,7 @@ nae_dict['bsb'] = ['519', '568', '567', '566', '564', '565']
 nae_dict['ebu3b'] = ["505", "506"]
 nae_dict['music'] = ['523']
 nae_dict['sme'] = ['572', '573', '574']
+nae_dict['bml'] = ['510']
 
 # Vectorization
 

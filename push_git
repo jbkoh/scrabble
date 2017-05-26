@@ -1,0 +1,5 @@
+#!/bin/bash
+
+git add scrabble_hierarchy.py
+git commit -m 'update'
+git push origin master

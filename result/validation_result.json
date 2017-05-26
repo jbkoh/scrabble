@@ -1,1766 +1,1401 @@
 {
   "34": {
     "srcids": [
-      "513_0_3004835",
-      "513_1_3004839"
-    ],
-    "common_pred_points": [],
-    "common_true_points": [
-      "effective_cooling_temperature_setpoint",
-      "occupied_cooling_max_supply_air_flow_setpoint"
-    ],
-    "point_precision": 0.9655172413793104,
-    "point_recall": 0.5384615384615384
-  },
-  "33": {
-    "srcids": [
-      "513_0_3004973",
-      "513_1_3006232"
-    ],
-    "common_pred_points": [],
-    "common_true_points": [
-      "effective_cooling_temperature_setpoint",
-      "occupied_cooling_temperature_setpoint"
-    ],
-    "point_precision": 0.9655172413793104,
-    "point_recall": 0.5384615384615384
-  },
-  "52": {
-    "srcids": [
-      "513_0_3005365",
-      "513_1_3005430",
-      "513_1_3005474",
-      "604_0_3013324",
-      "604_0_3013343",
-      "604_0_3013361",
-      "604_0_3013416",
-      "604_1_3013310",
-      "604_1_3013377",
-      "604_1_3013396"
-    ],
-    "common_pred_points": [],
-    "common_true_points": [
-      "current_sensor",
-      "current_limit_setpoint",
-      "current_limit_setpoint",
-      "current_sensor",
-      "current_sensor",
-      "current_sensor",
-      "current_sensor",
-      "current_limit_setpoint",
-      "current_limit_setpoint",
-      "current_limit_setpoint"
-    ],
-    "point_precision": 0.9655172413793104,
-    "point_recall": 0.5384615384615384
-  },
-  "47": {
-    "srcids": [
-      "513_0_3005376",
-      "513_0_3005398",
-      "513_0_3005442",
-      "513_0_3012741",
-      "604_0_3013315",
-      "604_0_3013405"
-    ],
-    "common_pred_points": [],
-    "common_true_points": [
-      "last_fault_code_status",
-      "last_fault_code_status",
-      "last_fault_code_status",
-      "last_fault_code_status",
-      "last_fault_code_status",
-      "last_fault_code_status"
-    ],
-    "point_precision": 0.9655172413793104,
-    "point_recall": 0.5384615384615384
-  },
-  "57": {
-    "srcids": [
-      "513_0_3005448",
-      "604_0_3013306",
-      "604_0_3013441"
-    ],
-    "common_pred_points": [],
-    "common_true_points": [
-      "motor_torque_sensor",
-      "motor_torque_sensor",
-      "motor_torque_sensor"
-    ],
-    "point_precision": 0.9655172413793104,
-    "point_recall": 0.5384615384615384
-  },
-  "74": {
-    "srcids": [
-      "513_0_3007719",
-      "513_0_3007732",
-      "513_0_3007740",
-      "513_0_3008149",
-      "604_0_3012847",
-      "604_0_3013173"
-    ],
-    "common_pred_points": [],
-    "common_true_points": [
-      "co2_sensor",
-      "co2_sensor",
-      "co2_sensor",
-      "outside_air_co2_sensor",
-      "co2_sensor",
-      "co2_sensor"
-    ],
-    "point_precision": 0.9655172413793104,
-    "point_recall": 0.5384615384615384
-  },
-  "22": {
-    "srcids": [
-      "513_0_3011341",
-      "513_1_3011345",
-      "513_4_3011358"
-    ],
-    "common_pred_points": [],
-    "common_true_points": [
-      "chilled_water_differential_pressure_sensor",
-      "chilled_water_differential_pressure_setpoint",
-      "chilled_water_bypass_valve_command"
-    ],
-    "point_precision": 1.0,
-    "point_recall": 0.5283018867924528
-  },
-  "19": {
-    "srcids": [
-      "513_1_3004515",
-      "513_1_3004570",
-      "513_1_3004653"
-    ],
-    "common_pred_points": [],
-    "common_true_points": [
-      "outside_air_damper_min_position_setpoint",
-      "outside_air_damper_min_position_setpoint",
-      "outside_air_damper_min_position_setpoint"
-    ],
-    "point_precision": 0.9655172413793104,
-    "point_recall": 0.5384615384615384
-  },
-  "70": {
-    "srcids": [
-      "513_1_3004554"
-    ],
-    "common_pred_points": [],
-    "common_true_points": [
-      "economizer_discharge_air_temperature_proportional_band_setpoint"
-    ],
-    "point_precision": 1.0,
-    "point_recall": 0.5283018867924528
-  },
-  "43": {
-    "srcids": [
-      "513_1_3004625"
-    ],
-    "common_pred_points": [],
-    "common_true_points": [
-      "vfd_command"
-    ],
-    "point_precision": 0.9655172413793104,
-    "point_recall": 0.5384615384615384
-  },
-  "6": {
-    "srcids": [
-      "513_1_3004643",
-      "604_1_3013260",
-      "604_1_3013261",
-      "604_1_3013271",
-      "604_1_3014148"
-    ],
-    "common_pred_points": [],
-    "common_true_points": [
-      "exhaust_air_static_pressure_proportional_band_setpoint",
-      "exhaust_air_static_pressure_proportional_band_setpoint",
-      "exhaust_air_static_pressure_proportional_band_setpoint",
-      "exhaust_air_static_pressure_proportional_band_setpoint",
-      "exhaust_air_static_pressure_proportional_band_setpoint"
-    ],
-    "point_precision": 1.0,
-    "point_recall": 0.5283018867924528
-  },
-  "44": {
-    "srcids": [
-      "513_1_3004669"
-    ],
-    "common_pred_points": [],
-    "common_true_points": [
-      "vfd_command"
-    ],
-    "point_precision": 1.0,
-    "point_recall": 0.5283018867924528
-  },
-  "32": {
-    "srcids": [
-      "513_1_3004847",
-      "604_1_3012454"
-    ],
-    "common_pred_points": [],
-    "common_true_points": [
-      "occupied_cooling_min_discharge_air_flow_setpoint",
-      "occupied_cooling_min_discharge_air_flow_setpoint"
-    ],
-    "point_precision": 0.9655172413793104,
-    "point_recall": 0.5384615384615384
-  },
-  "62": {
-    "srcids": [
-      "513_1_3011819",
-      "513_1_3011820",
-      "513_1_3011830"
-    ],
-    "common_pred_points": [],
-    "common_true_points": [
-      "vfd_command",
-      "vfd_command",
-      "differential_pressure_integral_time_setpoint"
-    ],
-    "point_precision": 0.9655172413793104,
-    "point_recall": 0.5384615384615384
-  },
-  "63": {
-    "srcids": [
-      "513_1_3011828"
-    ],
-    "common_pred_points": [],
-    "common_true_points": [
-      "differential_pressure_setpoint"
-    ],
-    "point_precision": 0.9333333333333333,
-    "point_recall": 0.5490196078431373
-  },
-  "76": {
-    "srcids": [
-      "513_2_3007954",
+      "513_0_3007722",
+      "513_0_3007734",
+      "513_2_3007947",
+      "513_2_3007956",
+      "513_2_3007958",
       "513_2_3007960",
-      "513_2_3007966",
-      "513_2_3007968",
-      "513_2_3007970"
+      "604_0_3012598"
     ],
-    "common_pred_points": [],
-    "common_true_points": [
-      "unknown",
-      "unknown",
-      "unknown",
-      "unknown",
-      "unknown"
-    ],
-    "point_precision": 1.0,
-    "point_recall": 0.5283018867924528
-  },
-  "23": {
-    "srcids": [
-      "513_2_3011632",
-      "513_2_3011639",
-      "513_2_3011664"
-    ],
-    "common_pred_points": [],
-    "common_true_points": [
-      "chilled_water_temperature_differential_setpoint",
-      "chilled_water_temperature_differential_setpoint",
-      "chilled_water_temperature_differential_setpoint"
-    ],
-    "point_precision": 1.0,
-    "point_recall": 0.5283018867924528
-  },
-  "21": {
-    "srcids": [
-      "513_2_3012972"
-    ],
-    "common_pred_points": [],
-    "common_true_points": [
-      "unknown"
-    ],
-    "point_precision": 1.0,
-    "point_recall": 0.5283018867924528
-  },
-  "2": {
-    "srcids": [
-      "513_2_3015249",
-      "513_2_3015530",
-      "513_2_3015663"
-    ],
-    "common_pred_points": [],
-    "common_true_points": [
-      "min_supply_air_temperature_setpoint",
-      "max_supply_air_temperature_setpoint",
-      "supply_air_temperature_increase_decrease_step_setpoint"
-    ],
-    "point_precision": 1.0,
-    "point_recall": 0.5283018867924528
-  },
-  "1": {
-    "srcids": [
-      "513_2_3015661",
-      "513_2_3015662"
-    ],
-    "common_pred_points": [],
-    "common_true_points": [
-      "min_vfd_speed_setpoint",
-      "max_vfd_speed_setpoint"
-    ],
-    "point_precision": 0.9642857142857143,
-    "point_recall": 0.5192307692307693
+    "common_pred_points_len": 11,
+    "common_true_points_len": 3,
+    "point_precision": 0.6774193548387096,
+    "point_recall": 0.6
   },
   "3": {
     "srcids": [
-      "513_2_3017170",
-      "604_2_3015000",
-      "604_2_3015004"
+      "513_1_3004551",
+      "513_1_3004553",
+      "513_1_3004612",
+      "513_1_3004617"
     ],
-    "common_pred_points": [],
-    "common_true_points": [
-      "supply_air_static_pressure_setpoint",
-      "min_supply_air_static_pressure_setpoint",
-      "supply_air_static_pressure_setpoint"
-    ],
-    "point_precision": 1.0,
-    "point_recall": 0.5283018867924528
+    "common_pred_points_len": 1,
+    "common_true_points_len": 4,
+    "point_precision": 0.6470588235294118,
+    "point_recall": 0.6666666666666666
   },
-  "73": {
+  "32": {
     "srcids": [
-      "513_3_3004562"
+      "513_1_3004564",
+      "513_1_3004619",
+      "513_1_3015241"
     ],
-    "common_pred_points": [],
-    "common_true_points": [
-      "economizer_mode_status"
-    ],
-    "point_precision": 1.0,
-    "point_recall": 0.5283018867924528
-  },
-  "28": {
-    "srcids": [
-      "514_0_3006340",
-      "513_0_3004582",
-      "513_1_3015234"
-    ],
-    "common_pred_points": [],
-    "common_true_points": [
-      "outside_air_temperature_sensor",
-      "supply_air_temperature_sensor",
-      "outside_air_temperature_sensor"
-    ],
-    "point_precision": 0.9655172413793104,
-    "point_recall": 0.5384615384615384
-  },
-  "11": {
-    "srcids": [
-      "514_0_3006354",
-      "514_1_3006360",
-      "513_0_3004588",
-      "513_1_3004536",
-      "513_1_3004591"
-    ],
-    "common_pred_points": [],
-    "common_true_points": [
-      "supply_air_static_pressure_sensor",
-      "supply_air_static_pressure_setpoint",
-      "supply_air_static_pressure_sensor",
-      "supply_air_static_pressure_setpoint",
-      "supply_air_static_pressure_setpoint"
-    ],
-    "point_precision": 1.0,
-    "point_recall": 0.5283018867924528
-  },
-  "7": {
-    "srcids": [
-      "514_0_3006387",
-      "514_1_3006408",
-      "514_1_3007513",
-      "604_0_3013265",
-      "604_0_3013267",
-      "604_1_3013264"
-    ],
-    "common_pred_points": [],
-    "common_true_points": [
-      "exhaust_air_static_pressure_sensor",
-      "exhaust_air_static_pressure_setpoint",
-      "exhaust_air_static_pressure_setpoint",
-      "exhaust_air_static_pressure_sensor",
-      "exhaust_air_static_pressure_sensor",
-      "average_exhaust_air_pressure_setpoint"
-    ],
-    "point_precision": 0.9655172413793104,
-    "point_recall": 0.5384615384615384
-  },
-  "24": {
-    "srcids": [
-      "514_0_3006430",
-      "513_0_3011325"
-    ],
-    "common_pred_points": [],
-    "common_true_points": [
-      "chilled_water_return_temperature_sensor",
-      "chilled_water_return_temperature_sensor"
-    ],
-    "point_precision": 0.9655172413793104,
-    "point_recall": 0.5384615384615384
-  },
-  "25": {
-    "srcids": [
-      "514_0_3006433"
-    ],
-    "common_pred_points": [],
-    "common_true_points": [
-      "chilled_water_supply_temperature_sensor"
-    ],
-    "point_precision": 0.9333333333333333,
-    "point_recall": 0.5490196078431373
-  },
-  "29": {
-    "srcids": [
-      "514_0_3006437"
-    ],
-    "common_pred_points": [],
-    "common_true_points": [
-      "high_temperature_hot_water_return_temperature_sensor"
-    ],
-    "point_precision": 0.9655172413793104,
-    "point_recall": 0.5384615384615384
-  },
-  "36": {
-    "srcids": [
-      "514_0_3006445",
-      "514_0_3006642",
-      "514_0_3006665",
-      "514_0_3006803",
-      "514_0_3006826",
-      "514_0_3006903",
-      "514_0_3006926",
-      "514_0_3007020",
-      "514_0_3007181",
-      "514_0_3007379",
-      "514_0_3007406",
-      "514_0_3007433",
-      "514_0_3009024",
-      "513_0_3004699",
-      "513_0_3004722",
-      "513_0_3004768",
-      "513_0_3004837",
-      "513_0_3004860",
-      "513_0_3004906",
-      "513_0_3004952",
-      "513_0_3004998",
-      "513_0_3005044",
-      "513_0_3005067",
-      "513_0_3005205",
-      "513_0_3005297",
-      "513_0_3005320",
-      "513_0_3005343",
-      "513_0_3005541",
-      "513_0_3005671",
-      "513_0_3005786",
-      "513_0_3005970",
-      "513_0_3005993",
-      "513_0_3006039",
-      "513_0_3006131",
-      "513_0_3006154",
-      "513_0_3006246",
-      "513_0_3006384",
-      "513_0_3006619",
-      "513_0_3006640",
-      "513_0_3006745",
-      "513_0_3006766",
-      "513_0_3006850",
-      "513_0_3006913",
-      "513_0_3006997",
-      "513_0_3007102",
-      "513_0_3007144",
-      "513_0_3007207",
-      "513_0_3007333",
-      "513_0_3007608",
-      "604_0_3012602",
-      "604_0_3012883",
-      "604_0_3012958",
-      "604_0_3013050",
-      "604_0_3013065",
-      "604_0_3013097",
-      "604_0_3013509",
-      "604_0_3013539",
-      "604_0_3013569",
-      "604_0_3013599",
-      "604_0_3013629",
-      "604_0_3013659",
-      "604_0_3013674"
-    ],
-    "common_pred_points": [
-      "effective_heating_temperature_setpoint",
-      "effective_heating_temperature_setpoint",
-      "effective_heating_temperature_setpoint",
-      "effective_heating_temperature_setpoint",
-      "effective_heating_temperature_setpoint",
-      "effective_heating_temperature_setpoint",
-      "effective_heating_temperature_setpoint",
-      "effective_heating_temperature_setpoint",
-      "effective_heating_temperature_setpoint",
-      "effective_heating_temperature_setpoint",
-      "effective_heating_temperature_setpoint",
-      "effective_heating_temperature_setpoint",
-      "effective_heating_temperature_setpoint",
-      "effective_heating_temperature_setpoint",
-      "effective_heating_temperature_setpoint",
-      "effective_heating_temperature_setpoint",
-      "effective_heating_temperature_setpoint",
-      "effective_heating_temperature_setpoint",
-      "effective_heating_temperature_setpoint",
-      "effective_heating_temperature_setpoint",
-      "effective_heating_temperature_setpoint",
-      "effective_heating_temperature_setpoint",
-      "effective_heating_temperature_setpoint",
-      "effective_heating_temperature_setpoint",
-      "effective_heating_temperature_setpoint",
-      "effective_heating_temperature_setpoint",
-      "effective_heating_temperature_setpoint",
-      "effective_heating_temperature_setpoint",
-      "effective_heating_temperature_setpoint",
-      "effective_heating_temperature_setpoint",
-      "effective_heating_temperature_setpoint",
-      "effective_heating_temperature_setpoint",
-      "effective_heating_temperature_setpoint",
-      "effective_heating_temperature_setpoint",
-      "effective_heating_temperature_setpoint",
-      "effective_heating_temperature_setpoint",
-      "effective_heating_temperature_setpoint",
-      "effective_heating_temperature_setpoint",
-      "effective_heating_temperature_setpoint",
-      "effective_heating_temperature_setpoint",
-      "effective_heating_temperature_setpoint",
-      "effective_heating_temperature_setpoint",
-      "effective_heating_temperature_setpoint",
-      "effective_heating_temperature_setpoint",
-      "effective_heating_temperature_setpoint",
-      "effective_heating_temperature_setpoint",
-      "effective_heating_temperature_setpoint",
-      "effective_heating_temperature_setpoint",
-      "effective_heating_temperature_setpoint"
-    ],
-    "common_true_points": [
-      "effective_heating_temperature_setpoint",
-      "effective_heating_temperature_setpoint",
-      "effective_heating_temperature_setpoint",
-      "effective_heating_temperature_setpoint",
-      "effective_heating_temperature_setpoint",
-      "effective_heating_temperature_setpoint",
-      "effective_heating_temperature_setpoint",
-      "effective_heating_temperature_setpoint",
-      "effective_heating_temperature_setpoint",
-      "effective_heating_temperature_setpoint",
-      "effective_heating_temperature_setpoint",
-      "effective_heating_temperature_setpoint",
-      "effective_heating_temperature_setpoint",
-      "effective_heating_temperature_setpoint",
-      "effective_heating_temperature_setpoint",
-      "effective_heating_temperature_setpoint",
-      "effective_heating_temperature_setpoint",
-      "effective_heating_temperature_setpoint",
-      "effective_heating_temperature_setpoint",
-      "effective_heating_temperature_setpoint",
-      "effective_heating_temperature_setpoint",
-      "effective_heating_temperature_setpoint",
-      "effective_heating_temperature_setpoint",
-      "effective_heating_temperature_setpoint",
-      "effective_heating_temperature_setpoint",
-      "effective_heating_temperature_setpoint",
-      "effective_heating_temperature_setpoint",
-      "effective_heating_temperature_setpoint",
-      "effective_heating_temperature_setpoint",
-      "effective_heating_temperature_setpoint",
-      "effective_heating_temperature_setpoint",
-      "effective_heating_temperature_setpoint",
-      "effective_heating_temperature_setpoint",
-      "effective_heating_temperature_setpoint",
-      "effective_heating_temperature_setpoint",
-      "effective_heating_temperature_setpoint",
-      "effective_heating_temperature_setpoint",
-      "effective_heating_temperature_setpoint",
-      "effective_heating_temperature_setpoint",
-      "effective_heating_temperature_setpoint",
-      "effective_heating_temperature_setpoint",
-      "effective_heating_temperature_setpoint",
-      "effective_heating_temperature_setpoint",
-      "effective_heating_temperature_setpoint",
-      "effective_heating_temperature_setpoint",
-      "effective_heating_temperature_setpoint",
-      "effective_heating_temperature_setpoint",
-      "effective_heating_temperature_setpoint",
-      "effective_heating_temperature_setpoint",
-      "effective_heating_temperature_setpoint",
-      "effective_heating_temperature_setpoint",
-      "effective_heating_temperature_setpoint",
-      "effective_heating_temperature_setpoint",
-      "effective_heating_temperature_setpoint",
-      "effective_heating_temperature_setpoint",
-      "effective_heating_temperature_setpoint",
-      "effective_heating_temperature_setpoint",
-      "effective_heating_temperature_setpoint",
-      "effective_heating_temperature_setpoint",
-      "effective_heating_temperature_setpoint",
-      "effective_heating_temperature_setpoint",
-      "effective_heating_temperature_setpoint"
-    ],
-    "point_precision": 0.9032258064516129,
-    "point_recall": 0.56
-  },
-  "31": {
-    "srcids": [
-      "514_0_3006637",
-      "514_0_3007187",
-      "514_0_3007259",
-      "514_0_3007349",
-      "514_0_3007358",
-      "514_0_3007448",
-      "514_1_3007160",
-      "513_0_3005062",
-      "513_0_3005177",
-      "513_0_3005200",
-      "513_0_3005223",
-      "513_0_3005689",
-      "513_0_3005758",
-      "513_0_3005781",
-      "513_0_3005827",
-      "513_0_3005850",
-      "513_0_3005919",
-      "513_0_3006103",
-      "513_0_3006195",
-      "513_0_3006488",
-      "513_0_3006614",
-      "513_0_3006740",
-      "513_0_3006761",
-      "513_0_3006782",
-      "513_0_3006824",
-      "513_0_3006845",
-      "513_0_3006929",
-      "513_0_3006971",
-      "513_0_3006992",
-      "513_0_3007055",
-      "513_0_3007139",
-      "513_0_3007412",
-      "513_0_3007475",
-      "513_1_3007223",
-      "513_1_3007454",
-      "604_0_3012489",
-      "604_0_3012504",
-      "604_0_3012534",
-      "604_0_3012656",
-      "604_0_3012728",
-      "604_0_3012954",
-      "604_0_3013108",
-      "604_0_3013123",
-      "604_0_3013171",
-      "604_0_3013203",
-      "604_0_3013519",
-      "604_0_3013609",
-      "604_0_3013639"
-    ],
-    "common_pred_points": [],
-    "common_true_points": [
-      "warm_cool_adjust_sensor",
-      "warm_cool_adjust_sensor",
-      "warm_cool_adjust_sensor",
-      "warm_cool_adjust_sensor",
-      "warm_cool_adjust_sensor",
-      "warm_cool_adjust_sensor",
-      "warm_cool_adjust_sensor",
-      "warm_cool_adjust_sensor",
-      "warm_cool_adjust_sensor",
-      "warm_cool_adjust_sensor",
-      "warm_cool_adjust_sensor",
-      "warm_cool_adjust_sensor",
-      "warm_cool_adjust_sensor",
-      "warm_cool_adjust_sensor",
-      "warm_cool_adjust_sensor",
-      "warm_cool_adjust_sensor",
-      "warm_cool_adjust_sensor",
-      "warm_cool_adjust_sensor",
-      "warm_cool_adjust_sensor",
-      "warm_cool_adjust_sensor",
-      "warm_cool_adjust_sensor",
-      "warm_cool_adjust_sensor",
-      "warm_cool_adjust_sensor",
-      "warm_cool_adjust_sensor",
-      "warm_cool_adjust_sensor",
-      "warm_cool_adjust_sensor",
-      "warm_cool_adjust_sensor",
-      "warm_cool_adjust_sensor",
-      "warm_cool_adjust_sensor",
-      "warm_cool_adjust_sensor",
-      "warm_cool_adjust_sensor",
-      "warm_cool_adjust_sensor",
-      "warm_cool_adjust_sensor",
-      "warm_cool_adjust_sensor",
-      "warm_cool_adjust_sensor",
-      "warm_cool_adjust_sensor",
-      "warm_cool_adjust_sensor",
-      "warm_cool_adjust_sensor",
-      "warm_cool_adjust_sensor",
-      "warm_cool_adjust_sensor",
-      "warm_cool_adjust_sensor",
-      "warm_cool_adjust_sensor",
-      "warm_cool_adjust_sensor",
-      "warm_cool_adjust_sensor",
-      "warm_cool_adjust_sensor",
-      "warm_cool_adjust_sensor",
-      "warm_cool_adjust_sensor",
-      "warm_cool_adjust_sensor"
-    ],
-    "point_precision": 0.9333333333333333,
-    "point_recall": 0.5490196078431373
-  },
-  "27": {
-    "srcids": [
-      "514_0_3006843",
-      "514_1_3007275",
-      "514_1_3007290",
-      "514_1_3007320",
-      "513_1_3005566",
-      "513_1_3005587",
-      "513_1_3006539",
-      "513_1_3006602",
-      "513_1_3006707",
-      "513_1_3006833",
-      "513_1_3006917",
-      "513_1_3007148",
-      "513_1_3007169",
-      "513_1_3007190",
-      "513_1_3007295",
-      "513_1_3007421",
-      "513_1_3007505",
-      "604_1_3012561",
-      "604_1_3012677",
-      "604_1_3012693",
-      "604_1_3012707",
-      "604_1_3012793",
-      "604_1_3012807",
-      "604_1_3012823",
-      "604_1_3013540",
-      "604_1_3013615",
-      "604_1_3013660"
-    ],
-    "common_pred_points": [],
-    "common_true_points": [
-      "zone_temperature_sensor",
-      "zone_temperature_setpoint",
-      "zone_temperature_setpoint",
-      "zone_temperature_setpoint",
-      "zone_temperature_setpoint",
-      "zone_temperature_setpoint",
-      "zone_temperature_setpoint",
-      "zone_temperature_setpoint",
-      "zone_temperature_setpoint",
-      "zone_temperature_setpoint",
-      "zone_temperature_setpoint",
-      "zone_temperature_setpoint",
-      "zone_temperature_setpoint",
-      "zone_temperature_setpoint",
-      "zone_temperature_setpoint",
-      "zone_temperature_setpoint",
-      "zone_temperature_setpoint",
-      "zone_temperature_setpoint",
-      "zone_temperature_setpoint",
-      "zone_temperature_setpoint",
-      "zone_temperature_setpoint",
-      "zone_temperature_setpoint",
-      "zone_temperature_setpoint",
-      "zone_temperature_setpoint",
-      "zone_temperature_setpoint",
-      "zone_temperature_setpoint",
-      "zone_temperature_setpoint"
-    ],
-    "point_precision": 1.0,
-    "point_recall": 0.5283018867924528
-  },
-  "20": {
-    "srcids": [
-      "514_0_3007099",
-      "514_0_3007306",
-      "514_0_3007321",
-      "514_0_3007338",
-      "513_0_3005525",
-      "513_0_3006477",
-      "513_0_3006498",
-      "513_0_3006582",
-      "513_0_3006666",
-      "513_0_3006729",
-      "513_0_3006834",
-      "513_0_3007506",
-      "513_0_3007527",
-      "604_0_3012606",
-      "604_0_3012634",
-      "604_0_3012650",
-      "604_0_3012738",
-      "604_0_3012752",
-      "604_0_3012808",
-      "604_0_3013492",
-      "604_0_3013507",
-      "604_0_3013597",
-      "604_0_3013627"
-    ],
-    "common_pred_points": [],
-    "common_true_points": [
-      "damper_position_sensor",
-      "damper_position_sensor",
-      "damper_position_sensor",
-      "damper_position_sensor",
-      "damper_position_sensor",
-      "damper_position_sensor",
-      "damper_position_sensor",
-      "damper_position_sensor",
-      "damper_position_sensor",
-      "damper_position_sensor",
-      "damper_position_sensor",
-      "damper_position_sensor",
-      "damper_position_sensor",
-      "damper_position_sensor",
-      "damper_position_sensor",
-      "damper_position_sensor",
-      "damper_position_sensor",
-      "damper_position_sensor",
-      "damper_position_sensor",
-      "damper_position_sensor",
-      "damper_position_sensor",
-      "damper_position_sensor",
-      "damper_position_sensor"
-    ],
-    "point_precision": 1.0,
-    "point_recall": 0.5283018867924528
-  },
-  "41": {
-    "srcids": [
-      "514_0_3007469"
-    ],
-    "common_pred_points": [],
-    "common_true_points": [
-      "current_sensor"
-    ],
-    "point_precision": 0.9655172413793104,
-    "point_recall": 0.5384615384615384
-  },
-  "51": {
-    "srcids": [
-      "514_0_3007476",
-      "514_1_3007477",
-      "513_1_3005487",
-      "604_0_3012537",
-      "604_0_3013348",
-      "604_0_3013365",
-      "604_0_3013438",
-      "604_1_3013333"
-    ],
-    "common_pred_points": [],
-    "common_true_points": [
-      "output_frequency_sensor",
-      "frequency_command",
-      "max_frequency_command",
-      "output_frequency_sensor",
-      "output_frequency_sensor",
-      "output_frequency_sensor",
-      "output_frequency_sensor",
-      "max_frequency_command"
-    ],
-    "point_precision": 1.0,
-    "point_recall": 0.5283018867924528
-  },
-  "53": {
-    "srcids": [
-      "514_0_3007487",
-      "513_0_3005367",
-      "513_0_3005433",
-      "513_0_3005477",
-      "513_0_3005479",
-      "513_0_3012738",
-      "604_0_3013364",
-      "604_0_3013380",
-      "604_0_3013436"
-    ],
-    "common_pred_points": [],
-    "common_true_points": [
-      "energy_sensor",
-      "energy_sensor",
-      "energy_sensor",
-      "energy_sensor",
-      "energy_sensor",
-      "energy_sensor",
-      "energy_sensor",
-      "energy_sensor",
-      "energy_sensor"
-    ],
-    "point_precision": 0.9655172413793104,
-    "point_recall": 0.5384615384615384
-  },
-  "40": {
-    "srcids": [
-      "514_0_3007534",
-      "514_4_3007519"
-    ],
-    "common_pred_points": [],
-    "common_true_points": [
-      "exhaust_air_velocity_pressure_sensor",
-      "exhaust_fan_enable_command"
-    ],
-    "point_precision": 0.9655172413793104,
-    "point_recall": 0.5384615384615384
-  },
-  "49": {
-    "srcids": [
-      "514_0_3007546",
-      "514_3_3007548",
-      "604_0_3013460"
-    ],
-    "common_pred_points": [],
-    "common_true_points": [
-      "last_fault_code_status",
-      "fault_status",
-      "last_fault_code_status"
-    ],
-    "point_precision": 0.9655172413793104,
-    "point_recall": 0.5384615384615384
-  },
-  "42": {
-    "srcids": [
-      "514_0_3009026",
-      "514_1_3006783",
-      "514_1_3007023",
-      "514_1_3009043",
-      "514_1_3009061",
-      "514_1_3011267",
-      "514_1_3011269",
-      "513_1_3004702",
-      "513_1_3004840",
-      "513_1_3004863",
-      "513_1_3004955",
-      "513_1_3005024",
-      "513_1_3005162",
-      "513_1_3005208",
-      "513_1_3005231",
-      "513_1_3005254",
-      "513_1_3005277",
-      "513_1_3005697",
-      "513_1_3006042",
-      "513_1_3006065",
-      "513_1_3019443",
-      "604_1_3012853",
-      "604_1_3012975",
-      "604_1_3013007",
-      "604_1_3013084",
-      "604_1_3013099",
-      "604_1_3013147",
-      "604_1_3013162",
-      "604_1_3013179"
-    ],
-    "common_pred_points": [
-      "heating_valve_command",
-      "occupied_command"
-    ],
-    "common_true_points": [
-      "damper_command",
-      "damper_command",
-      "damper_command",
-      "damper_command",
-      "damper_command",
-      "damper_command",
-      "damper_command",
-      "damper_command",
-      "damper_command",
-      "damper_command",
-      "damper_command",
-      "damper_command",
-      "damper_command",
-      "damper_command",
-      "damper_command",
-      "damper_command",
-      "damper_command",
-      "damper_command",
-      "damper_command",
-      "damper_command",
-      "damper_command",
-      "damper_command",
-      "damper_command",
-      "damper_command",
-      "damper_command",
-      "damper_command",
-      "damper_command",
-      "damper_command",
-      "damper_command"
-    ],
-    "point_precision": 0.9655172413793104,
-    "point_recall": 0.5384615384615384
-  },
-  "10": {
-    "srcids": [
-      "514_0_3011245",
-      "514_0_3011246",
-      "514_0_3011250",
-      "514_0_3011251",
-      "604_0_3013475",
-      "604_0_3013595",
-      "604_0_3013610",
-      "604_0_3013625"
-    ],
-    "common_pred_points": [],
-    "common_true_points": [
-      "supply_air_velocity_pressure_sensor",
-      "supply_air_velocity_pressure_sensor",
-      "supply_air_velocity_pressure_sensor",
-      "supply_air_velocity_pressure_sensor",
-      "supply_air_velocity_pressure_sensor",
-      "supply_air_velocity_pressure_sensor",
-      "supply_air_velocity_pressure_sensor",
-      "supply_air_velocity_pressure_sensor"
-    ],
-    "point_precision": 1.0,
-    "point_recall": 0.5283018867924528
-  },
-  "75": {
-    "srcids": [
-      "514_14_3007273",
-      "514_14_3007318",
-      "513_14_3005522",
-      "513_14_3005564",
-      "513_14_3005585",
-      "513_14_3006432",
-      "513_14_3006621",
-      "513_14_3006663",
-      "513_14_3006873",
-      "513_14_3007020",
-      "513_14_3007041",
-      "513_14_3007062",
-      "513_14_3007083",
-      "513_14_3007104",
-      "513_14_3007335",
-      "513_14_3007377",
-      "513_14_3007482",
-      "513_14_3011788",
-      "604_14_3012675",
-      "604_14_3012735",
-      "604_14_3012777",
-      "604_14_3012805",
-      "604_14_3013532",
-      "604_14_3013562",
-      "604_14_3013637"
-    ],
-    "common_pred_points": [],
-    "common_true_points": [
-      "vav_box_mode_command",
-      "vav_box_mode_command",
-      "vav_box_mode_command",
-      "vav_box_mode_command",
-      "vav_box_mode_command",
-      "vav_box_mode_command",
-      "vav_box_mode_command",
-      "vav_box_mode_command",
-      "vav_box_mode_command",
-      "vav_box_mode_command",
-      "vav_box_mode_command",
-      "vav_box_mode_command",
-      "vav_box_mode_command",
-      "vav_box_mode_command",
-      "vav_box_mode_command",
-      "vav_box_mode_command",
-      "vav_box_mode_command",
-      "vav_box_mode_command",
-      "vav_box_mode_command",
-      "vav_box_mode_command",
-      "vav_box_mode_command",
-      "vav_box_mode_command",
-      "vav_box_mode_command",
-      "vav_box_mode_command",
-      "vav_box_mode_command"
-    ],
-    "point_precision": 1.0,
-    "point_recall": 0.5283018867924528
-  },
-  "5": {
-    "srcids": [
-      "514_1_3006376",
-      "513_1_3004642",
-      "604_1_3013226",
-      "604_1_3013259"
-    ],
-    "common_pred_points": [],
-    "common_true_points": [
-      "supply_air_static_pressure_integral_time_setpoint",
-      "exhaust_air_static_pressure_integral_time_setpoint",
-      "exhaust_air_static_pressure_integral_time_setpoint",
-      "exhaust_air_static_pressure_integral_time_setpoint"
-    ],
-    "point_precision": 1.0,
-    "point_recall": 0.5283018867924528
-  },
-  "14": {
-    "srcids": [
-      "514_1_3006380"
-    ],
-    "common_pred_points": [],
-    "common_true_points": [
-      "heating_discharge_air_temperature_dead_band_setpoint"
-    ],
-    "point_precision": 0.9655172413793104,
-    "point_recall": 0.5384615384615384
-  },
-  "12": {
-    "srcids": [
-      "514_1_3006381",
-      "513_1_3004616"
-    ],
-    "common_pred_points": [],
-    "common_true_points": [
-      "heating_discharge_air_temperature_proportional_band_setpoint",
-      "heating_discharge_air_temperature_proportional_band_setpoint"
-    ],
-    "point_precision": 0.9655172413793104,
-    "point_recall": 0.5384615384615384
-  },
-  "35": {
-    "srcids": [
-      "514_1_3006450",
-      "514_1_3006670",
-      "514_1_3006858",
-      "514_1_3006956",
-      "513_1_3004842",
-      "513_1_3004888",
-      "513_1_3005003",
-      "513_1_3005026",
-      "513_1_3005072",
-      "513_1_3005095",
-      "513_1_3005141",
-      "513_1_3005164",
-      "513_1_3005233",
-      "513_1_3005630",
-      "513_1_3005653",
-      "513_1_3005676",
-      "513_1_3005883",
-      "513_1_3006067",
-      "513_1_3006251",
-      "513_1_3006274",
-      "513_1_3006366",
-      "604_1_3012422",
-      "604_1_3012496",
-      "604_1_3012886",
-      "604_1_3012976",
-      "604_1_3013180",
-      "604_1_3013195"
-    ],
-    "common_pred_points": [],
-    "common_true_points": [
-      "occupied_heating_max_supply_air_flow_setpoint",
-      "occupied_heating_max_supply_air_flow_setpoint",
-      "occupied_heating_max_supply_air_flow_setpoint",
-      "occupied_heating_max_supply_air_flow_setpoint",
-      "occupied_heating_max_supply_air_flow_setpoint",
-      "occupied_heating_max_supply_air_flow_setpoint",
-      "occupied_heating_max_supply_air_flow_setpoint",
-      "occupied_heating_max_supply_air_flow_setpoint",
-      "occupied_heating_max_supply_air_flow_setpoint",
-      "occupied_heating_max_supply_air_flow_setpoint",
-      "occupied_heating_max_supply_air_flow_setpoint",
-      "occupied_heating_max_supply_air_flow_setpoint",
-      "occupied_heating_max_supply_air_flow_setpoint",
-      "occupied_heating_max_supply_air_flow_setpoint",
-      "occupied_heating_max_supply_air_flow_setpoint",
-      "occupied_heating_max_supply_air_flow_setpoint",
-      "occupied_heating_max_supply_air_flow_setpoint",
-      "occupied_heating_max_supply_air_flow_setpoint",
-      "occupied_heating_max_supply_air_flow_setpoint",
-      "occupied_heating_max_supply_air_flow_setpoint",
-      "occupied_heating_max_supply_air_flow_setpoint",
-      "occupied_heating_max_supply_air_flow_setpoint",
-      "occupied_heating_max_supply_air_flow_setpoint",
-      "occupied_heating_max_supply_air_flow_setpoint",
-      "occupied_heating_max_supply_air_flow_setpoint",
-      "occupied_heating_max_supply_air_flow_setpoint",
-      "occupied_heating_max_supply_air_flow_setpoint"
-    ],
-    "point_precision": 0.9655172413793104,
-    "point_recall": 0.5384615384615384
-  },
-  "37": {
-    "srcids": [
-      "514_1_3006471",
-      "514_1_3006700",
-      "514_1_3006840",
-      "514_1_3006890",
-      "514_1_3007186",
-      "514_1_3007267",
-      "514_1_3007357",
-      "514_1_3007366",
-      "514_1_3007393",
-      "514_1_3007411",
-      "514_1_3009029",
-      "514_1_3009067",
-      "513_0_3004975",
-      "513_1_3004803",
-      "513_1_3004872",
-      "513_1_3004895",
-      "513_1_3005194",
-      "513_1_3005240",
-      "513_1_3005286",
-      "513_1_3005660",
-      "513_1_3005798",
-      "513_1_3005867",
-      "513_1_3005913",
-      "513_1_3005959",
-      "513_1_3005982",
-      "513_1_3006281",
-      "513_1_3006304",
-      "513_1_3006327",
-      "513_1_3006350",
-      "604_0_3012448",
-      "604_0_3012523",
-      "604_1_3012397",
-      "604_1_3012531",
-      "604_1_3012936",
-      "604_1_3012951",
-      "604_1_3012981",
-      "604_1_3012996",
-      "604_1_3013043"
-    ],
-    "common_pred_points": [
-      "occupied_heating_discharge_air_flow_setpoint"
-    ],
-    "common_true_points": [
-      "occupied_heating_temperature_setpoint",
-      "occupied_heating_temperature_setpoint",
-      "occupied_heating_temperature_setpoint",
-      "occupied_heating_temperature_setpoint",
-      "occupied_heating_temperature_setpoint",
-      "occupied_heating_temperature_setpoint",
-      "occupied_heating_temperature_setpoint",
-      "occupied_heating_temperature_setpoint",
-      "occupied_heating_temperature_setpoint",
-      "occupied_heating_temperature_setpoint",
-      "occupied_heating_temperature_setpoint",
-      "occupied_heating_min_discharge_air_flow_setpoint",
-      "effective_heating_temperature_setpoint",
-      "occupied_heating_temperature_setpoint",
-      "occupied_heating_temperature_setpoint",
-      "occupied_heating_temperature_setpoint",
-      "occupied_heating_temperature_setpoint",
-      "occupied_heating_temperature_setpoint",
-      "occupied_heating_temperature_setpoint",
-      "occupied_heating_temperature_setpoint",
-      "occupied_heating_temperature_setpoint",
-      "occupied_heating_temperature_setpoint",
-      "occupied_heating_temperature_setpoint",
-      "occupied_heating_temperature_setpoint",
-      "occupied_heating_temperature_setpoint",
-      "occupied_heating_temperature_setpoint",
-      "occupied_heating_temperature_setpoint",
-      "occupied_heating_temperature_setpoint",
-      "occupied_heating_temperature_setpoint",
-      "effective_heating_temperature_setpoint",
-      "effective_heating_temperature_setpoint",
-      "occupied_heating_temperature_setpoint",
-      "occupied_heating_temperature_setpoint",
-      "occupied_heating_temperature_setpoint",
-      "occupied_heating_temperature_setpoint",
-      "occupied_heating_temperature_setpoint",
-      "occupied_heating_temperature_setpoint",
-      "occupied_heating_temperature_setpoint"
-    ],
-    "point_precision": 0.9032258064516129,
-    "point_recall": 0.56
-  },
-  "18": {
-    "srcids": [
-      "514_1_3007009"
-    ],
-    "common_pred_points": [],
-    "common_true_points": [
-      "max_frequency_command"
-    ],
-    "point_precision": 0.9655172413793104,
-    "point_recall": 0.5384615384615384
-  },
-  "15": {
-    "srcids": [
-      "514_1_3007308",
-      "513_1_3005101",
-      "513_1_3005958"
-    ],
-    "common_pred_points": [],
-    "common_true_points": [
-      "occupied_cooling_min_discharge_air_flow_setpoint",
-      "occupied_heating_min_discharge_air_flow_setpoint",
-      "occupied_heating_min_discharge_air_flow_setpoint"
-    ],
-    "point_precision": 1.0,
-    "point_recall": 0.5283018867924528
-  },
-  "69": {
-    "srcids": [
-      "514_1_3008175",
-      "514_1_3008178",
-      "513_1_3015240",
-      "513_1_3015243",
-      "513_2_3018696"
-    ],
-    "common_pred_points": [],
-    "common_true_points": [
-      "unknown",
-      "unknown",
-      "unknown",
-      "unknown",
-      "unknown"
-    ],
-    "point_precision": 1.0,
-    "point_recall": 0.5283018867924528
-  },
-  "77": {
-    "srcids": [
-      "514_1_3011254",
-      "514_1_3011262"
-    ],
-    "common_pred_points": [],
-    "common_true_points": [
-      "unoccupied_cooling_discharge_air_flow_setpoint",
-      "unoccupied_cooling_discharge_air_flow_setpoint"
-    ],
-    "point_precision": 1.0,
-    "point_recall": 0.5283018867924528
-  },
-  "9": {
-    "srcids": [
-      "514_2_3003526",
-      "514_2_3003573",
-      "513_2_3003257"
-    ],
-    "common_pred_points": [],
-    "common_true_points": [
-      "discharge_air_demand_setpoint",
-      "discharge_air_demand_setpoint",
-      "discharge_air_flow_demand_setpoint"
-    ],
-    "point_precision": 1.0,
-    "point_recall": 0.5283018867924528
+    "common_pred_points_len": 2,
+    "common_true_points_len": 2,
+    "point_precision": 0.6857142857142857,
+    "point_recall": 0.75
   },
   "8": {
     "srcids": [
-      "514_2_3003973",
-      "514_2_3003975"
+      "513_1_3004607",
+      "604_1_3014146"
     ],
-    "common_pred_points": [],
-    "common_true_points": [
-      "outside_air_lockout_temperature_differential_setpoint",
-      "low_outside_air_temperature_enable_differential_setpoint"
-    ],
-    "point_precision": 0.9655172413793104,
-    "point_recall": 0.5384615384615384
-  },
-  "4": {
-    "srcids": [
-      "514_2_3010475",
-      "513_2_3012932",
-      "604_2_3014445"
-    ],
-    "common_pred_points": [],
-    "common_true_points": [
-      "static_pressure_max_setpoint",
-      "average_exhaust_air_static_pressure_setpoint",
-      "average_exhaust_air_static_pressure_setpoint"
-    ],
-    "point_precision": 1.0,
-    "point_recall": 0.5283018867924528
-  },
-  "71": {
-    "srcids": [
-      "514_3_3006349",
-      "513_3_3004575"
-    ],
-    "common_pred_points": [],
-    "common_true_points": [
-      "pre_filter_status",
-      "filter_status"
-    ],
-    "point_precision": 0.9655172413793104,
-    "point_recall": 0.5384615384615384
-  },
-  "13": {
-    "srcids": [
-      "514_3_3006352",
-      "513_3_3004528"
-    ],
-    "common_pred_points": [],
-    "common_true_points": [
-      "discharge_air_smoke_detected_alarm",
-      "discharge_air_smoke_detected_alarm"
-    ],
-    "point_precision": 0.9655172413793104,
-    "point_recall": 0.5384615384615384
-  },
-  "39": {
-    "srcids": [
-      "514_3_3006395",
-      "514_3_3006399",
-      "514_3_3006415",
-      "514_3_3006423",
-      "514_3_3006427",
-      "604_1_3013251",
-      "604_1_3013273",
-      "604_1_3013274"
-    ],
-    "common_pred_points": [],
-    "common_true_points": [
-      "exhaust_fan_status",
-      "exhaust_fan_status",
-      "exhaust_fan_status",
-      "exhaust_fan_status",
-      "exhaust_fan_status",
-      "vfd_command",
-      "vfd_command",
-      "vfd_command"
-    ],
-    "point_precision": 1.0,
-    "point_recall": 0.5283018867924528
-  },
-  "66": {
-    "srcids": [
-      "514_3_3007015",
-      "513_3_3004502",
-      "513_3_3005405",
-      "604_3_3013284",
-      "604_3_3013307",
-      "604_3_3013358",
-      "604_3_3013370",
-      "604_3_3013393"
-    ],
-    "common_pred_points": [],
-    "common_true_points": [
-      "vfd_alarm",
-      "condensate_leak_alarm",
-      "vfd_alarm",
-      "vfd_alarm",
-      "vfd_alarm",
-      "vfd_alarm",
-      "vfd_alarm",
-      "vfd_alarm"
-    ],
-    "point_precision": 0.9655172413793104,
-    "point_recall": 0.5384615384615384
-  },
-  "58": {
-    "srcids": [
-      "514_3_3007017",
-      "514_4_3007016",
-      "513_3_3005407",
-      "513_4_3005384",
-      "604_3_3013414",
-      "604_3_3013433",
-      "604_4_3013289",
-      "604_4_3013308",
-      "604_4_3013340",
-      "604_4_3013394",
-      "604_4_3013413"
-    ],
-    "common_pred_points": [],
-    "common_true_points": [
-      "vfd_start_stop_status",
-      "run_enable_command",
-      "vfd_start_stop_status",
-      "run_enable_command",
-      "vfd_start_stop_status",
-      "vfd_start_stop_status",
-      "run_enable_command",
-      "run_enable_command",
-      "run_enable_command",
-      "run_enable_command",
-      "run_enable_command"
-    ],
-    "point_precision": 1.0,
-    "point_recall": 0.5283018867924528
-  },
-  "50": {
-    "srcids": [
-      "514_3_3007479",
-      "514_3_3007495",
-      "513_3_3005375",
-      "513_4_3005418",
-      "604_3_3013283",
-      "604_4_3013298",
-      "604_4_3013422"
-    ],
-    "common_pred_points": [],
-    "common_true_points": [
-      "run_direction_status",
-      "run_direction_status",
-      "run_direction_status",
-      "run_direction_command",
-      "run_direction_status",
-      "run_direction_command",
-      "run_direction_command"
-    ],
-    "point_precision": 1.0,
-    "point_recall": 0.5283018867924528
-  },
-  "72": {
-    "srcids": [
-      "514_3_3008512"
-    ],
-    "common_pred_points": [],
-    "common_true_points": [
-      "pump_flow_status"
-    ],
-    "point_precision": 1.0,
-    "point_recall": 0.5283018867924528
-  },
-  "61": {
-    "srcids": [
-      "514_4_3006345",
-      "514_4_3006414",
-      "514_4_3006418",
-      "514_4_3006426",
-      "514_4_3007522",
-      "514_4_3007530",
-      "514_4_3007555",
-      "513_4_3004516",
-      "513_4_3004630",
-      "513_4_3011821"
-    ],
-    "common_pred_points": [],
-    "common_true_points": [
-      "pump_start_stop_command",
-      "exhaust_fan_start_stop_command",
-      "exhaust_fan_start_stop_command",
-      "exhaust_fan_start_stop_command",
-      "exhaust_fan_start_stop_command",
-      "exhaust_fan_start_stop_command",
-      "vfd_start_stop_command",
-      "pump_start_stop_command",
-      "exhaust_fan_start_stop_command",
-      "pump_start_stop_command"
-    ],
-    "point_precision": 1.0,
-    "point_recall": 0.5283018867924528
-  },
-  "45": {
-    "srcids": [
-      "514_4_3006364"
-    ],
-    "common_pred_points": [],
-    "common_true_points": [
-      "ahu_system_enable_command"
-    ],
-    "point_precision": 1.0,
-    "point_recall": 0.5283018867924528
-  },
-  "46": {
-    "srcids": [
-      "514_4_3007010",
-      "513_4_3005378",
-      "604_4_3013288",
-      "604_4_3013302",
-      "604_4_3013317",
-      "604_4_3013353",
-      "604_4_3013407",
-      "604_4_3013447"
-    ],
-    "common_pred_points": [],
-    "common_true_points": [
-      "panel_lockout_command",
-      "panel_lockout_command",
-      "panel_lockout_command",
-      "panel_lockout_command",
-      "panel_lockout_command",
-      "panel_lockout_command",
-      "panel_lockout_command",
-      "panel_lockout_command"
-    ],
-    "point_precision": 1.0,
-    "point_recall": 0.5283018867924528
-  },
-  "60": {
-    "srcids": [
-      "514_4_3007543"
-    ],
-    "common_pred_points": [],
-    "common_true_points": [
-      "emergency_power_off_switch_command"
-    ],
-    "point_precision": 0.9655172413793104,
-    "point_recall": 0.5384615384615384
-  },
-  "48": {
-    "srcids": [
-      "514_4_3007547",
-      "513_4_3005415",
-      "513_4_3005437",
-      "604_4_3012536",
-      "604_4_3013445"
-    ],
-    "common_pred_points": [],
-    "common_true_points": [
-      "fault_reset_command",
-      "fault_reset_command",
-      "fault_reset_command",
-      "fault_reset_command",
-      "fault_reset_command"
-    ],
-    "point_precision": 0.9655172413793104,
-    "point_recall": 0.5384615384615384
-  },
-  "38": {
-    "srcids": [
-      "514_5_3004141",
-      "514_5_3004145"
-    ],
-    "common_pred_points": [],
-    "common_true_points": [
-      "exhaust_fan_disable_command",
-      "exhaust_fan_disable_command"
-    ],
-    "point_precision": 0.9655172413793104,
-    "point_recall": 0.5384615384615384
-  },
-  "26": {
-    "srcids": [
-      "514_5_3011211",
-      "513_19_3019207"
-    ],
-    "common_pred_points": [],
-    "common_true_points": [
-      "medium_temperature_hot_water_supply_temperature_load_shed_status",
-      "load_shed_command"
-    ],
-    "point_precision": 0.9655172413793104,
-    "point_recall": 0.5384615384615384
-  },
-  "54": {
-    "srcids": [
-      "604_0_3012540",
-      "604_0_3013427"
-    ],
-    "common_pred_points": [],
-    "common_true_points": [
-      "vfd_power_meter",
-      "vfd_power_meter"
-    ],
-    "point_precision": 0.9333333333333333,
-    "point_recall": 0.5490196078431373
-  },
-  "16": {
-    "srcids": [
-      "604_0_3012860"
-    ],
-    "common_pred_points": [],
-    "common_true_points": [
-      "supply_air_flow_sensor"
-    ],
-    "point_precision": 0.9333333333333333,
-    "point_recall": 0.5490196078431373
+    "common_pred_points_len": 0,
+    "common_true_points_len": 2,
+    "point_precision": 0.6666666666666666,
+    "point_recall": 0.7272727272727273
   },
   "30": {
     "srcids": [
-      "604_0_3013076",
-      "604_0_3013624"
+      "513_1_3004620",
+      "513_1_3011831",
+      "513_1_3011833"
     ],
-    "common_pred_points": [],
-    "common_true_points": [
-      "warm_cool_adjust_sensor",
-      "warm_cool_adjust_sensor"
+    "common_pred_points_len": 0,
+    "common_true_points_len": 3,
+    "point_precision": 0.6756756756756757,
+    "point_recall": 0.7575757575757576
+  },
+  "13": {
+    "srcids": [
+      "513_1_3004839",
+      "513_1_3004847"
     ],
-    "point_precision": 1.0,
-    "point_recall": 0.5283018867924528
+    "common_pred_points_len": 3,
+    "common_true_points_len": 2,
+    "point_precision": 0.6111111111111112,
+    "point_recall": 0.7586206896551724
+  },
+  "31": {
+    "srcids": [
+      "513_1_3011819",
+      "513_1_3011830"
+    ],
+    "common_pred_points_len": 1,
+    "common_true_points_len": 2,
+    "point_precision": 0.5833333333333334,
+    "point_recall": 0.7
+  },
+  "2": {
+    "srcids": [
+      "513_2_3015530",
+      "513_2_3015533"
+    ],
+    "common_pred_points_len": 2,
+    "common_true_points_len": 2,
+    "point_precision": 0.7352941176470589,
+    "point_recall": 0.6578947368421053
+  },
+  "29": {
+    "srcids": [
+      "513_3_3004502"
+    ],
+    "common_pred_points_len": 1,
+    "common_true_points_len": 1,
+    "point_precision": 0.5833333333333334,
+    "point_recall": 0.65625
+  },
+  "23": {
+    "srcids": [
+      "514_0_3006433",
+      "513_0_3011321",
+      "513_0_3011327",
+      "513_2_3011641",
+      "513_3_3011347",
+      "513_4_3011346"
+    ],
+    "common_pred_points_len": 5,
+    "common_true_points_len": 5,
+    "point_precision": 0.6451612903225806,
+    "point_recall": 0.625
   },
   "17": {
     "srcids": [
-      "604_0_3013078"
+      "514_0_3006443",
+      "514_0_3006521",
+      "514_0_3006617",
+      "514_0_3006663",
+      "514_0_3006851",
+      "514_0_3006901",
+      "514_0_3007041",
+      "514_0_3007079",
+      "514_0_3007124",
+      "514_1_3006454",
+      "514_1_3006509",
+      "514_1_3006743",
+      "514_1_3006766",
+      "514_1_3006837",
+      "514_1_3006912",
+      "514_1_3006960",
+      "513_0_3004743",
+      "513_0_3004766",
+      "513_0_3004789",
+      "513_0_3004950",
+      "513_0_3004973",
+      "513_0_3005019",
+      "513_0_3005065",
+      "513_0_3005111",
+      "513_0_3005180",
+      "513_0_3005295",
+      "513_0_3005581",
+      "513_0_3005761",
+      "513_0_3005784",
+      "513_0_3005853",
+      "513_0_3005876",
+      "513_0_3005945",
+      "513_0_3006037",
+      "513_0_3006083",
+      "513_0_3006152",
+      "513_0_3006221",
+      "513_0_3006382",
+      "513_0_3006428",
+      "513_0_3006554",
+      "513_0_3006575",
+      "513_0_3006596",
+      "513_0_3006617",
+      "513_0_3006932",
+      "513_0_3007016",
+      "513_0_3007058",
+      "513_0_3007247",
+      "513_0_3007268",
+      "513_0_3007310",
+      "513_0_3007593",
+      "513_1_3004708",
+      "513_1_3004777",
+      "513_1_3004984",
+      "513_1_3005191",
+      "513_1_3005283",
+      "513_1_3005306",
+      "513_1_3005352",
+      "513_1_3006002",
+      "513_1_3006025",
+      "513_1_3006117",
+      "513_1_3006255",
+      "513_1_3006347",
+      "513_1_3006416",
+      "604_0_3012462",
+      "604_0_3012492",
+      "604_0_3012557",
+      "604_0_3012659",
+      "604_0_3012733",
+      "604_0_3012747",
+      "604_0_3012897",
+      "604_0_3012927",
+      "604_0_3012987",
+      "604_0_3013096",
+      "604_0_3013111",
+      "604_0_3013159",
+      "604_0_3013523",
+      "604_0_3013553",
+      "604_0_3013568",
+      "604_0_3013628",
+      "604_0_3013673",
+      "604_1_3012513",
+      "604_1_3012528",
+      "604_1_3012871",
+      "604_1_3012888",
+      "604_1_3012993",
+      "604_1_3013010",
+      "604_1_3013134"
     ],
-    "common_pred_points": [],
-    "common_true_points": [
-      "co2_sensor"
-    ],
-    "point_precision": 1.0,
-    "point_recall": 0.5283018867924528
+    "common_pred_points_len": 86,
+    "common_true_points_len": 86,
+    "point_precision": 0.7222222222222222,
+    "point_recall": 0.7428571428571429
   },
-  "56": {
+  "19": {
     "srcids": [
-      "604_0_3013293"
+      "514_0_3006466",
+      "514_0_3006734",
+      "514_0_3006803",
+      "514_0_3006903",
+      "514_0_3006926",
+      "514_0_3007126",
+      "514_0_3007145",
+      "514_0_3007217",
+      "514_0_3007352",
+      "514_0_3007442",
+      "514_0_3007460",
+      "514_1_3006535",
+      "514_1_3006558",
+      "514_1_3006792",
+      "514_1_3006915",
+      "514_1_3006938",
+      "514_1_3007186",
+      "514_1_3007249",
+      "514_1_3007366",
+      "514_1_3007393",
+      "514_1_3007411",
+      "514_1_3009049",
+      "514_1_3009067",
+      "513_0_3004791",
+      "513_0_3004906",
+      "513_0_3004929",
+      "513_0_3004998",
+      "513_0_3005090",
+      "513_0_3005228",
+      "513_0_3005274",
+      "513_0_3005625",
+      "513_0_3005648",
+      "513_0_3005717",
+      "513_0_3005740",
+      "513_0_3005809",
+      "513_0_3005878",
+      "513_0_3005901",
+      "513_0_3005970",
+      "513_0_3006661",
+      "513_0_3006766",
+      "513_0_3006787",
+      "513_0_3006829",
+      "513_0_3006934",
+      "513_0_3007039",
+      "513_0_3007102",
+      "513_0_3007165",
+      "513_0_3007186",
+      "513_0_3007291",
+      "513_0_3007438",
+      "513_0_3007459",
+      "513_0_3007480",
+      "513_0_3007522",
+      "513_1_3004711",
+      "513_1_3004987",
+      "513_1_3005010",
+      "513_1_3005033",
+      "513_1_3005102",
+      "513_1_3005148",
+      "513_1_3005637",
+      "513_1_3005798",
+      "513_1_3005821",
+      "513_1_3005844",
+      "513_1_3005890",
+      "513_1_3005936",
+      "513_1_3005959",
+      "513_1_3006166",
+      "513_1_3006189",
+      "513_1_3006281",
+      "604_0_3012404",
+      "604_0_3012419",
+      "604_0_3012433",
+      "604_0_3012602",
+      "604_0_3012630",
+      "604_0_3012690",
+      "604_0_3012718",
+      "604_0_3012790",
+      "604_0_3012835",
+      "604_0_3013005",
+      "604_0_3013097",
+      "604_0_3013112",
+      "604_0_3013614",
+      "604_0_3013674",
+      "604_1_3012427",
+      "604_1_3012516",
+      "604_1_3012531",
+      "604_1_3012906",
+      "604_1_3012951",
+      "604_1_3012966",
+      "604_1_3013028",
+      "604_1_3013200"
     ],
-    "common_pred_points": [],
-    "common_true_points": [
-      "drive_temperature_sensor"
-    ],
-    "point_precision": 0.9655172413793104,
-    "point_recall": 0.5384615384615384
+    "common_pred_points_len": 90,
+    "common_true_points_len": 90,
+    "point_precision": 0.6060606060606061,
+    "point_recall": 0.6666666666666666
   },
-  "55": {
+  "44": {
     "srcids": [
-      "604_0_3013305",
-      "604_0_3013337",
-      "604_0_3013391",
-      "604_1_3013318",
-      "604_1_3013336"
+      "514_0_3006473",
+      "514_0_3006519",
+      "514_0_3006753",
+      "514_0_3006841",
+      "514_0_3007152",
+      "514_0_3007179",
+      "514_0_3007260",
+      "514_0_3007386",
+      "514_0_3007395",
+      "514_0_3007422",
+      "514_0_3009072",
+      "514_1_3007092",
+      "514_1_3007215",
+      "514_1_3007269",
+      "514_1_3007329",
+      "514_1_3007404",
+      "513_0_3004879",
+      "513_0_3005224",
+      "513_0_3005316",
+      "513_0_3005667",
+      "513_0_3005713",
+      "513_0_3005828",
+      "513_0_3005989",
+      "513_0_3006127",
+      "513_0_3006196",
+      "513_0_3006288",
+      "513_0_3006334",
+      "513_0_3006357",
+      "513_0_3006426",
+      "513_0_3006552",
+      "513_0_3006615",
+      "513_0_3006804",
+      "513_0_3006867",
+      "513_0_3006930",
+      "513_0_3006993",
+      "513_0_3007014",
+      "513_0_3007035",
+      "513_0_3007098",
+      "513_0_3007308",
+      "513_0_3007371",
+      "513_0_3007392",
+      "513_1_3005558",
+      "513_1_3007455",
+      "604_0_3012445",
+      "604_0_3012460",
+      "604_0_3012475",
+      "604_0_3012535",
+      "604_0_3012569",
+      "604_0_3012627",
+      "604_0_3012657",
+      "604_0_3012685",
+      "604_0_3012715",
+      "604_0_3012846",
+      "604_0_3012863",
+      "604_0_3012895",
+      "604_0_3013000",
+      "604_0_3013109",
+      "604_0_3013189",
+      "604_0_3013204",
+      "604_0_3013488",
+      "604_0_3013503",
+      "604_0_3013638",
+      "604_0_3013701"
     ],
-    "common_pred_points": [],
-    "common_true_points": [
-      "motor_speed_sensor",
-      "motor_speed_sensor",
-      "motor_speed_sensor",
-      "vfd_speed_command",
-      "vfd_speed_command"
-    ],
-    "point_precision": 1.0,
-    "point_recall": 0.5283018867924528
+    "common_pred_points_len": 61,
+    "common_true_points_len": 63,
+    "point_precision": 0.6756756756756757,
+    "point_recall": 0.7575757575757576
   },
-  "64": {
+  "10": {
     "srcids": [
-      "604_0_3013703",
-      "604_1_3013691"
+      "514_0_3006491",
+      "514_0_3006633",
+      "514_0_3006656",
+      "514_0_3007103",
+      "514_0_3007325",
+      "514_1_3006461",
+      "514_1_3006493",
+      "514_1_3006635",
+      "514_1_3006681",
+      "514_1_3006727",
+      "514_1_3006773",
+      "514_1_3006942",
+      "514_1_3006971",
+      "514_1_3007036",
+      "514_1_3007075",
+      "514_1_3007140",
+      "514_1_3007297",
+      "514_1_3007327",
+      "513_0_3004851",
+      "513_0_3004897",
+      "513_0_3004989",
+      "513_0_3005012",
+      "513_0_3005035",
+      "513_0_3005081",
+      "513_0_3005104",
+      "513_0_3005219",
+      "513_0_3005595",
+      "513_0_3005639",
+      "513_0_3005823",
+      "513_0_3006030",
+      "513_0_3006214",
+      "513_0_3006283",
+      "513_0_3006306",
+      "513_0_3006329",
+      "513_0_3006352",
+      "513_0_3006673",
+      "513_0_3006694",
+      "513_0_3006757",
+      "513_0_3006778",
+      "513_0_3006799",
+      "513_0_3006841",
+      "513_0_3006946",
+      "513_0_3007135",
+      "513_0_3007240",
+      "513_0_3007261",
+      "513_0_3007408",
+      "513_1_3004715",
+      "513_1_3004991",
+      "513_1_3005221",
+      "513_1_3005244",
+      "513_1_3005597",
+      "513_1_3005664",
+      "513_1_3005779",
+      "513_1_3005825",
+      "513_1_3005963",
+      "513_1_3005986",
+      "513_1_3006170",
+      "513_1_3006285",
+      "513_1_3006354",
+      "513_1_3006400",
+      "513_1_3006465",
+      "513_1_3006486",
+      "513_1_3006528",
+      "513_1_3006654",
+      "513_1_3006843",
+      "513_1_3006885",
+      "513_1_3006906",
+      "513_1_3007011",
+      "513_1_3007032",
+      "513_1_3007158",
+      "513_1_3007515",
+      "513_1_3019442",
+      "604_0_3012398",
+      "604_0_3012413",
+      "604_0_3012487",
+      "604_0_3012532",
+      "604_0_3012552",
+      "604_0_3012594",
+      "604_0_3012610",
+      "604_0_3012668",
+      "604_0_3012742",
+      "604_0_3012812",
+      "604_0_3012828",
+      "604_0_3012892",
+      "604_0_3013029",
+      "604_0_3013059",
+      "604_0_3013526",
+      "604_0_3013556",
+      "604_0_3013586",
+      "604_0_3013661",
+      "604_0_3013676",
+      "604_1_3012443",
+      "604_1_3012458",
+      "604_1_3012473",
+      "604_1_3012503",
+      "604_1_3012553",
+      "604_1_3012595",
+      "604_1_3012876",
+      "604_1_3012893",
+      "604_1_3012923",
+      "604_1_3012998",
+      "604_1_3013030",
+      "604_1_3013155",
+      "604_1_3013170",
+      "604_1_3013202",
+      "604_1_3013217",
+      "604_1_3013542",
+      "604_1_3013587",
+      "604_1_3013617",
+      "604_1_3013677"
     ],
-    "common_pred_points": [],
-    "common_true_points": [
-      "capacity_sensor",
-      "zone_temperature_setpoint"
-    ],
-    "point_precision": 0.9655172413793104,
-    "point_recall": 0.5384615384615384
+    "common_pred_points_len": 110,
+    "common_true_points_len": 110,
+    "point_precision": 0.6842105263157895,
+    "point_recall": 0.7428571428571429
   },
-  "65": {
+  "43": {
     "srcids": [
-      "604_3_3013697"
+      "514_0_3006541",
+      "514_0_3006637",
+      "514_0_3006660",
+      "514_0_3006706",
+      "514_0_3006798",
+      "514_0_3007169",
+      "514_0_3007250",
+      "514_0_3007349",
+      "514_0_3007367",
+      "514_0_3007394",
+      "514_0_3007421",
+      "514_0_3007448",
+      "514_0_3007457",
+      "514_0_3009071",
+      "514_1_3007268",
+      "514_1_3007439",
+      "513_0_3004717",
+      "513_0_3004878",
+      "513_0_3005039",
+      "513_0_3005131",
+      "513_0_3005177",
+      "513_0_3005735",
+      "513_0_3005781",
+      "513_0_3005827",
+      "513_0_3005850",
+      "513_0_3006011",
+      "513_0_3006103",
+      "513_0_3006126",
+      "513_0_3006287",
+      "513_0_3006379",
+      "513_0_3006656",
+      "513_0_3006803",
+      "513_0_3006824",
+      "513_0_3006866",
+      "513_0_3006929",
+      "513_0_3006971",
+      "513_0_3006992",
+      "513_0_3007118",
+      "513_0_3007202",
+      "513_0_3007517",
+      "513_1_3006698",
+      "513_1_3007223",
+      "604_0_3012415",
+      "604_0_3012430",
+      "604_0_3012684",
+      "604_0_3012772",
+      "604_0_3012786",
+      "604_0_3012862",
+      "604_0_3012877",
+      "604_0_3012894",
+      "604_0_3012909",
+      "604_0_3012954",
+      "604_0_3013031",
+      "604_0_3013046",
+      "604_0_3013203",
+      "604_0_3013218",
+      "604_0_3013579",
+      "604_0_3013609",
+      "604_1_3012830"
     ],
-    "common_pred_points": [],
-    "common_true_points": [
-      "fan_overload_alarm"
-    ],
-    "point_precision": 1.0,
-    "point_recall": 0.5283018867924528
+    "common_pred_points_len": 59,
+    "common_true_points_len": 59,
+    "point_precision": 0.6363636363636364,
+    "point_recall": 0.6363636363636364
   },
-  "59": {
+  "40": {
     "srcids": [
-      "604_4_3013376"
+      "514_0_3006975",
+      "514_0_3006997",
+      "513_0_3005431",
+      "513_0_3005475",
+      "513_1_3005430",
+      "604_0_3013275",
+      "604_0_3013343",
+      "604_0_3013361",
+      "604_0_3013397",
+      "604_0_3013434",
+      "604_1_3013323",
+      "604_1_3013342"
     ],
-    "common_pred_points": [],
-    "common_true_points": [
-      "vfd_start_stop_command"
-    ],
-    "point_precision": 0.9655172413793104,
-    "point_recall": 0.5384615384615384
+    "common_pred_points_len": 9,
+    "common_true_points_len": 12,
+    "point_precision": 0.5405405405405406,
+    "point_recall": 0.7142857142857143
   },
-  "67": {
+  "42": {
     "srcids": [
-      "604_5_3016756",
+      "514_0_3006977",
+      "514_4_3007543",
+      "513_0_3005381",
+      "513_0_3005389",
+      "513_0_3005404",
+      "513_0_3005425",
+      "513_0_3005433",
+      "513_0_3005477",
+      "513_0_3005492",
+      "513_0_3012743",
+      "513_1_3005424",
+      "604_0_3013295",
+      "604_0_3013363",
+      "604_0_3013380",
+      "604_0_3013418",
+      "604_0_3013430",
+      "604_1_3013355"
+    ],
+    "common_pred_points_len": 11,
+    "common_true_points_len": 17,
+    "point_precision": 0.6285714285714286,
+    "point_recall": 0.6875
+  },
+  "39": {
+    "srcids": [
+      "514_0_3006998",
+      "514_3_3006993",
+      "514_3_3007017",
+      "514_3_3007556",
+      "513_3_3005383",
+      "513_3_3005407",
+      "513_3_3005449",
+      "513_3_3005451",
+      "513_4_3012750",
+      "604_0_3013312",
+      "604_0_3013325",
+      "604_0_3013379",
+      "604_3_3013358",
+      "604_3_3013412",
+      "604_3_3013414",
+      "604_3_3013443",
+      "604_4_3013359",
+      "604_4_3013376",
+      "604_4_3013394"
+    ],
+    "common_pred_points_len": 14,
+    "common_true_points_len": 19,
+    "point_precision": 0.6153846153846154,
+    "point_recall": 0.7058823529411765
+  },
+  "27": {
+    "srcids": [
+      "514_0_3007084",
+      "514_0_3007114",
+      "513_0_3006477",
+      "513_0_3006561",
+      "513_0_3006582",
+      "513_0_3006603",
+      "513_0_3006645",
+      "513_0_3006960",
+      "513_0_3007107",
+      "513_0_3007149",
+      "513_0_3007212",
+      "513_0_3007275",
+      "513_0_3007380",
+      "513_0_3007485",
+      "513_1_3004570",
+      "513_2_3012972",
+      "513_2_3012973",
+      "604_0_3012650",
+      "604_0_3012738",
+      "604_0_3012780",
+      "604_0_3012839",
+      "604_0_3013522",
+      "604_0_3013657"
+    ],
+    "common_pred_points_len": 23,
+    "common_true_points_len": 21,
+    "point_precision": 0.65625,
+    "point_recall": 0.6176470588235294
+  },
+  "9": {
+    "srcids": [
+      "514_0_3007510",
+      "514_1_3006404",
+      "514_1_3006405",
+      "514_1_3006408",
+      "604_0_3013234",
+      "604_0_3013243",
+      "604_1_3013233",
+      "604_1_3013238",
+      "604_1_3013239",
+      "604_1_3013250",
+      "604_1_3013268",
+      "604_1_3013272"
+    ],
+    "common_pred_points_len": 3,
+    "common_true_points_len": 12,
+    "point_precision": 0.631578947368421,
+    "point_recall": 0.7741935483870968
+  },
+  "28": {
+    "srcids": [
+      "514_0_3007553",
+      "514_3_3006436",
+      "604_3_3013685"
+    ],
+    "common_pred_points_len": 2,
+    "common_true_points_len": 3,
+    "point_precision": 0.6341463414634146,
+    "point_recall": 0.8125
+  },
+  "11": {
+    "srcids": [
+      "514_0_3011246",
+      "514_0_3011253",
+      "604_0_3013535",
+      "604_0_3013565",
+      "604_0_3013580",
+      "604_0_3013610",
+      "604_0_3013640",
+      "604_0_3013655"
+    ],
+    "common_pred_points_len": 0,
+    "common_true_points_len": 8,
+    "point_precision": 0.6,
+    "point_recall": 0.6774193548387096
+  },
+  "33": {
+    "srcids": [
+      "514_14_3007096",
+      "514_14_3007111",
+      "514_14_3007288",
+      "514_14_3007303",
+      "513_14_3005522",
+      "513_14_3005543",
+      "513_14_3005585",
+      "513_14_3006579",
+      "513_14_3006747",
+      "513_14_3006768",
+      "513_14_3006831",
+      "513_14_3006852",
+      "513_14_3006894",
+      "513_14_3006915",
+      "513_14_3006978",
+      "513_14_3006999",
+      "513_14_3007041",
+      "513_14_3007125",
+      "513_14_3007167",
+      "513_14_3007230",
+      "513_14_3007272",
+      "513_14_3007314",
+      "513_14_3007335",
+      "513_14_3007356",
+      "513_14_3007377",
+      "513_14_3007440",
+      "513_14_3007461",
+      "604_14_3012647",
+      "604_14_3012691",
+      "604_14_3012749",
+      "604_14_3012763",
+      "604_14_3013592",
+      "604_14_3013607"
+    ],
+    "common_pred_points_len": 0,
+    "common_true_points_len": 33,
+    "point_precision": 0.6666666666666666,
+    "point_recall": 0.7428571428571429
+  },
+  "21": {
+    "srcids": [
+      "514_1_3006338",
+      "514_5_3003980",
+      "513_0_3004504",
+      "513_1_3004509",
+      "513_1_3004546",
+      "513_1_3004547"
+    ],
+    "common_pred_points_len": 2,
+    "common_true_points_len": 5,
+    "point_precision": 0.5588235294117647,
+    "point_recall": 0.6785714285714286
+  },
+  "12": {
+    "srcids": [
+      "514_1_3006362",
+      "513_0_3004530",
+      "513_0_3004582",
+      "513_0_3004663",
+      "513_1_3004593",
+      "513_3_3004528"
+    ],
+    "common_pred_points_len": 6,
+    "common_true_points_len": 6,
+    "point_precision": 0.7222222222222222,
+    "point_recall": 0.7428571428571429
+  },
+  "7": {
+    "srcids": [
+      "514_1_3006376",
+      "514_1_3006403",
+      "513_1_3004549",
+      "513_1_3004642",
+      "604_1_3013226",
+      "604_1_3013237",
+      "604_1_3013270"
+    ],
+    "common_pred_points_len": 0,
+    "common_true_points_len": 7,
+    "point_precision": 0.6904761904761905,
+    "point_recall": 0.7837837837837838
+  },
+  "35": {
+    "srcids": [
+      "514_1_3006410",
+      "514_3_3006415",
+      "513_1_3004541",
+      "513_1_3004596",
+      "604_1_3013252",
+      "604_1_3013273"
+    ],
+    "common_pred_points_len": 9,
+    "common_true_points_len": 6,
+    "point_precision": 0.7027027027027027,
+    "point_recall": 0.7428571428571429
+  },
+  "46": {
+    "srcids": [
+      "514_1_3006448",
+      "514_1_3006549",
+      "514_1_3006645",
+      "514_1_3006668",
+      "514_1_3006691",
+      "514_1_3006760",
+      "514_1_3011267",
+      "514_1_3011268",
+      "514_1_3011274",
+      "514_4_3006485",
+      "514_4_3006696",
+      "514_4_3006765",
+      "514_4_3006836",
+      "514_4_3006934",
+      "514_4_3007167",
+      "514_4_3007212",
+      "514_4_3007239",
+      "514_4_3007248",
+      "514_4_3007266",
+      "514_4_3007401",
+      "514_4_3007446",
+      "513_1_3004702",
+      "513_1_3004748",
+      "513_1_3004886",
+      "513_1_3005001",
+      "513_1_3005116",
+      "513_1_3005139",
+      "513_1_3005162",
+      "513_1_3005208",
+      "513_1_3005300",
+      "513_1_3005697",
+      "513_1_3005950",
+      "513_1_3005973",
+      "513_1_3006019",
+      "513_1_3006111",
+      "513_1_3006226",
+      "513_1_3006249",
+      "513_1_3006272",
+      "513_1_3019443",
+      "513_4_3005052",
+      "513_4_3005328",
+      "513_4_3005656",
+      "513_4_3005702",
+      "513_4_3005840",
+      "513_4_3005863",
+      "513_4_3005886",
+      "513_4_3005932",
+      "513_4_3006093",
+      "513_4_3006208",
+      "513_4_3006231",
+      "513_4_3006300",
+      "513_4_3006323",
+      "513_4_3006392",
+      "513_4_3006415",
+      "513_14_3005528",
+      "513_14_3005570",
+      "513_14_3006438",
+      "513_14_3006543",
+      "513_14_3006627",
+      "513_14_3006795",
+      "513_14_3006921",
+      "513_14_3007047",
+      "513_14_3007194",
+      "513_14_3007257",
+      "513_14_3007425",
+      "604_1_3012406",
+      "604_1_3012435",
+      "604_1_3012465",
+      "604_1_3012495",
+      "604_1_3012525",
+      "604_1_3013007",
+      "604_1_3013052",
+      "604_1_3013147",
+      "604_1_3013179",
+      "604_1_3013194",
+      "604_4_3012387",
+      "604_4_3012461",
+      "604_4_3012971",
+      "604_4_3013063",
+      "604_4_3013127",
+      "604_4_3013143",
+      "604_14_3012644",
+      "604_14_3012716",
+      "604_14_3012802",
+      "604_14_3012818",
+      "604_14_3013471",
+      "604_14_3013531",
+      "604_14_3013576",
+      "604_14_3013621",
+      "604_14_3013636"
+    ],
+    "common_pred_points_len": 90,
+    "common_true_points_len": 90,
+    "point_precision": 0.5641025641025641,
+    "point_recall": 0.7857142857142857
+  },
+  "16": {
+    "srcids": [
+      "514_1_3006450",
+      "514_1_3006548",
+      "514_1_3006551",
+      "514_1_3006621",
+      "514_1_3006644",
+      "514_1_3006716",
+      "514_1_3006736",
+      "514_1_3006739",
+      "514_1_3006830",
+      "514_1_3006858",
+      "514_1_3006908",
+      "514_1_3006931",
+      "514_1_3007022",
+      "514_1_3007289",
+      "514_1_3007319",
+      "514_1_3009044",
+      "513_1_3004816",
+      "513_1_3004865",
+      "513_1_3004885",
+      "513_1_3004908",
+      "513_1_3004954",
+      "513_1_3004957",
+      "513_1_3005023",
+      "513_1_3005026",
+      "513_1_3005049",
+      "513_1_3005069",
+      "513_1_3005072",
+      "513_1_3005092",
+      "513_1_3005141",
+      "513_1_3005164",
+      "513_1_3005210",
+      "513_1_3005233",
+      "513_1_3005302",
+      "513_1_3005565",
+      "513_1_3005627",
+      "513_1_3005650",
+      "513_1_3005673",
+      "513_1_3005788",
+      "513_1_3005834",
+      "513_1_3005949",
+      "513_1_3005972",
+      "513_1_3006090",
+      "513_1_3006156",
+      "513_1_3006297",
+      "513_1_3006412",
+      "513_1_3006517",
+      "513_1_3006601",
+      "513_1_3006622",
+      "513_1_3006685",
+      "513_1_3006706",
+      "513_1_3006874",
+      "513_1_3006937",
+      "513_1_3006979",
+      "513_1_3007000",
+      "513_1_3007042",
+      "513_1_3007105",
+      "513_1_3007294",
+      "513_1_3007315",
+      "513_1_3007399",
+      "513_1_3007462",
+      "513_1_3007483",
+      "513_1_3007525",
+      "604_1_3012390",
+      "604_1_3012407",
+      "604_1_3012449",
+      "604_1_3012451",
+      "604_1_3012546",
+      "604_1_3012588",
+      "604_1_3012692",
+      "604_1_3012706",
+      "604_1_3012750",
+      "604_1_3012792",
+      "604_1_3012806",
+      "604_1_3012837",
+      "604_1_3012899",
+      "604_1_3012931",
+      "604_1_3012974",
+      "604_1_3013006",
+      "604_1_3013008",
+      "604_1_3013023",
+      "604_1_3013146",
+      "604_1_3013498",
+      "604_1_3013663"
+    ],
+    "common_pred_points_len": 86,
+    "common_true_points_len": 83,
+    "point_precision": 0.6944444444444444,
+    "point_recall": 0.7142857142857143
+  },
+  "15": {
+    "srcids": [
+      "514_1_3006456",
+      "514_1_3006511",
+      "514_1_3006533",
+      "514_1_3006557",
+      "514_1_3006630",
+      "514_1_3006721",
+      "514_1_3006767",
+      "514_1_3006791",
+      "514_1_3006863",
+      "514_1_3006937",
+      "514_1_3007086",
+      "514_1_3007116",
+      "514_1_3007308",
+      "514_1_3007342",
+      "513_1_3004710",
+      "513_1_3004732",
+      "513_1_3004801",
+      "513_1_3004802",
+      "513_1_3004894",
+      "513_1_3005008",
+      "513_1_3005009",
+      "513_1_3005032",
+      "513_1_3005100",
+      "513_1_3005169",
+      "513_1_3005170",
+      "513_1_3005216",
+      "513_1_3005262",
+      "513_1_3005308",
+      "513_1_3005353",
+      "513_1_3005572",
+      "513_1_3005613",
+      "513_1_3005682",
+      "513_1_3005728",
+      "513_1_3005819",
+      "513_1_3005843",
+      "513_1_3005912",
+      "513_1_3005981",
+      "513_1_3006026",
+      "513_1_3006027",
+      "513_1_3006050",
+      "513_1_3006142",
+      "513_1_3006187",
+      "513_1_3006210",
+      "513_1_3006349",
+      "513_1_3006418",
+      "513_1_3006524",
+      "513_1_3006586",
+      "513_1_3006587",
+      "513_1_3006607",
+      "513_1_3006649",
+      "513_1_3006670",
+      "513_1_3006671",
+      "513_1_3006692",
+      "513_1_3006755",
+      "513_1_3006797",
+      "513_1_3006817",
+      "513_1_3006880",
+      "513_1_3007028",
+      "513_1_3007048",
+      "513_1_3007069",
+      "513_1_3007091",
+      "513_1_3007133",
+      "513_1_3007174",
+      "513_1_3007363",
+      "513_1_3007364",
+      "513_1_3007384",
+      "513_1_3007468",
+      "513_1_3007489",
+      "513_1_3007510",
+      "513_1_3007611",
+      "604_1_3012425",
+      "604_1_3012426",
+      "604_1_3012440",
+      "604_1_3012454",
+      "604_1_3012469",
+      "604_1_3012484",
+      "604_1_3012485",
+      "604_1_3012499",
+      "604_1_3012515",
+      "604_1_3012530",
+      "604_1_3012550",
+      "604_1_3012593",
+      "604_1_3012622",
+      "604_1_3012636",
+      "604_1_3012666",
+      "604_1_3012711",
+      "604_1_3012797",
+      "604_1_3012857",
+      "604_1_3012858",
+      "604_1_3012905",
+      "604_1_3012919",
+      "604_1_3012949",
+      "604_1_3012964",
+      "604_1_3012965",
+      "604_1_3012995",
+      "604_1_3013056",
+      "604_1_3013057",
+      "604_1_3013072",
+      "604_1_3013119",
+      "604_1_3013135",
+      "604_1_3013184",
+      "604_1_3013199",
+      "604_1_3013214",
+      "604_1_3013484",
+      "604_1_3013485",
+      "604_1_3013530",
+      "604_1_3013545",
+      "604_1_3013605",
+      "604_1_3013649",
+      "604_1_3013650",
+      "604_1_3013665"
+    ],
+    "common_pred_points_len": 111,
+    "common_true_points_len": 111,
+    "point_precision": 0.6206896551724138,
+    "point_recall": 0.5294117647058824
+  },
+  "45": {
+    "srcids": [
+      "514_1_3006483",
+      "514_1_3006694",
+      "514_1_3006786",
+      "514_1_3006834",
+      "514_1_3006859",
+      "514_1_3006909",
+      "514_1_3007156",
+      "514_1_3007237",
+      "514_1_3007354",
+      "514_1_3007444",
+      "514_1_3009045",
+      "513_1_3004644",
+      "513_1_3004705",
+      "513_1_3004820",
+      "513_1_3004866",
+      "513_1_3004958",
+      "513_1_3005096",
+      "513_1_3005142",
+      "513_1_3005211",
+      "513_1_3005257",
+      "513_1_3005280",
+      "513_1_3005568",
+      "513_1_3005792",
+      "513_1_3005815",
+      "513_1_3005861",
+      "513_1_3006275",
+      "513_1_3006298",
+      "513_1_3006321",
+      "513_1_3006499",
+      "513_1_3006562",
+      "513_1_3006583",
+      "513_1_3006940",
+      "513_1_3006961",
+      "513_1_3007024",
+      "513_1_3007171",
+      "513_1_3007276",
+      "513_1_3007318",
+      "513_1_3007339",
+      "513_1_3007381",
+      "513_1_3007592",
+      "604_1_3012423",
+      "604_1_3012452",
+      "604_1_3012512",
+      "604_1_3012577",
+      "604_1_3012651",
+      "604_1_3012723",
+      "604_1_3012739",
+      "604_1_3012840",
+      "604_1_3012887",
+      "604_1_3012932",
+      "604_1_3012962",
+      "604_1_3013009",
+      "604_1_3013196",
+      "604_1_3013566",
+      "604_1_3013596",
+      "604_1_3013641"
+    ],
+    "common_pred_points_len": 54,
+    "common_true_points_len": 56,
+    "point_precision": 0.7586206896551724,
+    "point_recall": 0.5789473684210527
+  },
+  "41": {
+    "srcids": [
+      "514_1_3007009",
+      "513_0_3005416",
+      "513_0_3005438",
+      "513_1_3005377",
+      "604_0_3012537",
+      "604_0_3013279",
+      "604_0_3013348",
+      "604_0_3013383",
+      "604_1_3013316",
+      "604_1_3013387"
+    ],
+    "common_pred_points_len": 10,
+    "common_true_points_len": 10,
+    "point_precision": 0.6341463414634146,
+    "point_recall": 0.7878787878787878
+  },
+  "18": {
+    "srcids": [
+      "514_1_3007290",
+      "514_1_3007305",
+      "513_1_3005524",
+      "513_1_3006434",
+      "513_1_3006455",
+      "513_1_3006518",
+      "513_1_3006686",
+      "513_1_3006707",
+      "513_1_3006749",
+      "513_1_3006833",
+      "513_1_3006854",
+      "513_1_3007022",
+      "513_1_3007064",
+      "513_1_3007085",
+      "513_1_3007127",
+      "604_1_3012575",
+      "604_1_3012605",
+      "604_1_3012677",
+      "604_1_3012765",
+      "604_1_3013510",
+      "604_1_3013645",
+      "604_1_3014920"
+    ],
+    "common_pred_points_len": 40,
+    "common_true_points_len": 22,
+    "point_precision": 0.5405405405405406,
+    "point_recall": 0.6666666666666666
+  },
+  "14": {
+    "srcids": [
+      "514_1_3008177",
+      "514_1_3011240",
+      "514_1_3011256",
+      "514_1_3011257",
+      "514_1_3011260"
+    ],
+    "common_pred_points_len": 5,
+    "common_true_points_len": 4,
+    "point_precision": 0.6486486486486487,
+    "point_recall": 0.7058823529411765
+  },
+  "1": {
+    "srcids": [
+      "514_2_3003543",
+      "514_2_3003558",
+      "513_2_3003375",
+      "513_2_3003476"
+    ],
+    "common_pred_points_len": 4,
+    "common_true_points_len": 4,
+    "point_precision": 0.6857142857142857,
+    "point_recall": 0.75
+  },
+  "4": {
+    "srcids": [
+      "514_2_3003952",
+      "604_2_3014958",
+      "604_5_3016023"
+    ],
+    "common_pred_points_len": 4,
+    "common_true_points_len": 3,
+    "point_precision": 0.5789473684210527,
+    "point_recall": 0.7586206896551724
+  },
+  "20": {
+    "srcids": [
+      "514_2_3003974",
+      "514_2_3003976",
+      "513_2_3003746"
+    ],
+    "common_pred_points_len": 2,
+    "common_true_points_len": 1,
+    "point_precision": 0.6341463414634146,
+    "point_recall": 0.7878787878787878
+  },
+  "5": {
+    "srcids": [
+      "514_2_3010331",
+      "514_2_3010332"
+    ],
+    "common_pred_points_len": 1,
+    "common_true_points_len": 2,
+    "point_precision": 0.6052631578947368,
+    "point_recall": 0.7666666666666667
+  },
+  "6": {
+    "srcids": [
+      "514_2_3010685",
+      "513_1_3004591",
+      "513_2_3017170",
+      "604_2_3015001",
+      "604_2_3015002",
+      "604_2_3015004"
+    ],
+    "common_pred_points_len": 6,
+    "common_true_points_len": 6,
+    "point_precision": 0.6666666666666666,
+    "point_recall": 0.6875
+  },
+  "38": {
+    "srcids": [
+      "514_3_3007479",
+      "514_3_3007552",
+      "513_3_3005485",
+      "604_3_3012539",
+      "604_3_3013369",
+      "604_3_3013385",
+      "604_3_3013442",
+      "604_4_3012538",
+      "604_4_3013298",
+      "604_4_3013349",
+      "604_4_3013384",
+      "604_4_3013446",
+      "604_4_3013465"
+    ],
+    "common_pred_points_len": 13,
+    "common_true_points_len": 13,
+    "point_precision": 0.6857142857142857,
+    "point_recall": 0.7058823529411765
+  },
+  "24": {
+    "srcids": [
+      "514_4_3006367",
+      "514_4_3006414",
+      "514_4_3006426",
+      "514_4_3007482",
+      "513_4_3004516",
+      "513_4_3004598",
+      "513_4_3011821",
+      "604_4_3013454",
+      "604_4_3013468"
+    ],
+    "common_pred_points_len": 10,
+    "common_true_points_len": 9,
+    "point_precision": 0.6060606060606061,
+    "point_recall": 0.6666666666666666
+  },
+  "36": {
+    "srcids": [
+      "514_4_3006988",
+      "513_4_3005444",
+      "604_4_3013302",
+      "604_4_3013317",
+      "604_4_3013388",
+      "604_4_3013426"
+    ],
+    "common_pred_points_len": 6,
+    "common_true_points_len": 6,
+    "point_precision": 0.71875,
+    "point_recall": 0.6388888888888888
+  },
+  "37": {
+    "srcids": [
+      "514_4_3007003",
+      "513_0_3005376",
+      "513_4_3005415",
+      "513_4_3012747",
+      "604_0_3013366",
+      "604_0_3013439",
+      "604_0_3013460",
+      "604_4_3013296",
+      "604_4_3013347",
+      "604_4_3013401",
+      "604_4_3013445"
+    ],
+    "common_pred_points_len": 8,
+    "common_true_points_len": 11,
+    "point_precision": 0.6842105263157895,
+    "point_recall": 0.7222222222222222
+  },
+  "22": {
+    "srcids": [
+      "514_5_3011211",
+      "513_5_3007629",
+      "513_5_3019206"
+    ],
+    "common_pred_points_len": 2,
+    "common_true_points_len": 3,
+    "point_precision": 0.6285714285714286,
+    "point_recall": 0.6875
+  },
+  "25": {
+    "srcids": [
+      "604_4_3013705"
+    ],
+    "common_pred_points_len": 1,
+    "common_true_points_len": 1,
+    "point_precision": 0.6857142857142857,
+    "point_recall": 0.631578947368421
+  },
+  "26": {
+    "srcids": [
       "604_5_3016757"
     ],
-    "common_pred_points": [],
-    "common_true_points": [
-      "unit_failed_alarm",
-      "unit_failed_alarm"
-    ],
-    "point_precision": 0.9655172413793104,
-    "point_recall": 0.5384615384615384
-  },
-  "68": {
-    "srcids": [
-      "604_5_3016967"
-    ],
-    "common_pred_points": [],
-    "common_true_points": [
-      "hold_status"
-    ],
-    "point_precision": 1.0,
-    "point_recall": 0.5283018867924528
+    "common_pred_points_len": 1,
+    "common_true_points_len": 1,
+    "point_precision": 0.6923076923076923,
+    "point_recall": 0.7714285714285715
   }
 }

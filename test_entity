@@ -1,0 +1,9 @@
+#!/bin/bash
+python scrabble_hierarchy.py entity -bl ebu3b,ap_m -nl 200,5 -c true -ub false -nj 1 -t ap_m &
+python scrabble_hierarchy.py entity -bl ebu3b,ap_m -nl 200,50 -c true -ub false -nj 1 -t ap_m &
+python scrabble_hierarchy.py entity -bl ebu3b,ap_m -nl 200,100 -c true -ub false -nj 1 -t ap_m &
+python scrabble_hierarchy.py entity -bl ebu3b,ap_m -nl 200,200 -c true -ub false -nj 1 -t ap_m &
+python scrabble_hierarchy.py entity -bl ap_m -nl 5 -c true -ub false -nj 1 -t ap_m &
+python scrabble_hierarchy.py entity -bl ap_m -nl 50 -c true -ub false -nj 1 -t ap_m &
+python scrabble_hierarchy.py entity -bl ap_m -nl 100 -c true -ub false -nj 1 -t ap_m &
+python scrabble_hierarchy.py entity -bl ap_m -nl 200 -c true -ub false -nj 1 -t ap_m &

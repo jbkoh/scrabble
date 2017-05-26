@@ -224,6 +224,10 @@
     "time": "none"
   },
   "ap_m": {
+    "occcupied": "occupied",
+    "cooler": "cool",
+    "outdoor": "outside",
+    "actual": "effective",
     "ef": "exhaust_fan",
     "stg": "stage",
     "nae":"networkadapter-nae",
@@ -239,7 +243,6 @@
     "aclg": "cooling",
     "stpt": "setpoint",
     "programming": "none",
-    "actual": "none",
     "wc": "warm_cool",
     "adj": "adjust",
     "min": "min",
@@ -494,8 +497,6 @@
     "unt": "networkadapter-unt",
     "deh": "dehumidification",
     "flo": "flow",
-    "aclg": "cooling",
-    "ahtg":"heating",
     "setpt": "setpoint",
     "ss": "start_stop",
     "hw": "hot_water",

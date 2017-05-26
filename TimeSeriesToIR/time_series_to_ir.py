@@ -16,12 +16,13 @@ from random import shuffle
 from sklearn.multiclass import *
 from sklearn.externals import joblib
 from sklearn.svm import *
-from randomizer import select_random_samples
 from sklearn import tree
 from sklearn.preprocessing import normalize
 from ploting_classification_report import plot_classification_report
 import pickle
 import pdb
+
+from randomizer import select_random_samples
 
 class TimeSeriesToIR:
 

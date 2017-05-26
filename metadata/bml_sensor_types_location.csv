@@ -789,7 +789,7 @@ Unique Identifier,Johnson Controls Name,BACnet Name,BACnet Description,BACnet Un
 510_3_3005181,biolib hw pumps hwp1 sts,nae 10 n2 1 unt003 hwp1 sts,hwp1 sts,,binary input,hot water pump status,hot water pump status,,hw sys,p1,hw sys pump
 510_3_3005184,biolib hw pumps hwp2 sts,nae 10 n2 1 unt003 hwp2 sts,hwp2 sts,,binary input,hot water pump status,hot water pump status,,hw sys,p2,hw sys pump
 510_1_3008062,biolib hw pumps hwp spd,nae 10 n2 1 unt003 hwp spd,hwp spd,302.0,analog output,hot water pump vfd command,vfd command,,hw sys,,hw sys pump vfd
-510_1_3005261,biolib ac 12 id3 cmd,nae 10 n2 1 ahu001 id3 cmd,id3 cmd,98.0,analog output,id4 command,unknwon,,ahu,ac 12,
+510_1_3005261,biolib ac 12 id3 cmd,nae 10 n2 1 ahu001 id3 cmd,id3 cmd,98.0,analog output,id4 command,unknown,,ahu,ac 12,
 510_1_3005259,biolib ac 12 id4 cmd,nae 10 n2 1 ahu001 id4 cmd,id4 cmd,98.0,analog output,id4 command,unknown,,ahu,ac 12,
 510_1_3005312,biolib ac 13 id5 cmd,nae 10 n2 1 ahu002 id5 cmd,id5 cmd,95.0,analog output,id4 command,unknown,,ahu,ac 13,
 510_5_3014714,ucsd lab load shed command,nae 10 programming ucsd load shed mater program ucsd lab load shed command,,,binary value,lab load shed command,load shed command,,hvac,,
@@ -928,8 +928,8 @@ Unique Identifier,Johnson Controls Name,BACnet Name,BACnet Description,BACnet Un
 510_1_3006181,biolib ac 15 rd2 4cmd,nae 10 n2 2 dx001 rd2 4cmd,relief dampers 2 4,98.0,analog output,relief damper command,damper command,,ahu,ac 15,
 510_4_3006259,biolib ac 15 rf vfd rest kwh,nae 10 n2 2 vnd003 rest kwh,reset kwh,,binary output,reset energy kwh,reset command,,ahu,ac 15,
 510_4_3006236,biolib ac 15 sf vfd rest kwh,nae 10 n2 2 vnd002 rest kwh,reset kwh,,binary output,reset energy kwh,reset command,,ahu,ac 15,
-510_3_3005249,biolib ac 12 rf s,nae 10 n2 1 ahu001 rf s,return airflow,,binary input,return air flow,return air flow sensor,,ahu,ac 12,
-510_3_3005301,biolib ac 13 rf s,nae 10 n2 1 ahu002 rf s,return airflow,,binary input,return air flow,return air flow sensor,,ahu,ac 13,
+510_3_3005249,biolib ac 12 rf s,nae 10 n2 1 ahu001 rf s,return airflow,,binary input,return air flow,return air flow status,,ahu,ac 12,
+510_3_3005301,biolib ac 13 rf s,nae 10 n2 1 ahu002 rf s,return airflow,,binary input,return air flow,return air flow status,,ahu,ac 13,
 510_0_3005247,biolib ac 12 ra h,nae 10 n2 1 ahu001 ra h,ra h,95.0,analog input,return air humidity,return air humidity sensor,,ahu,ac 12,
 510_0_3005299,biolib ac 13 ra h,nae 10 n2 1 ahu002 ra h,ra h,95.0,analog input,return air humidity,return air humidity sensor,,ahu,ac 13,
 510_0_3005244,biolib ac 12 ra t,nae 10 n2 1 ahu001 ra t,return air temp,64.0,analog input,return air temperature,return air temperature sensor,,ahu,ac 12,
@@ -1062,9 +1062,9 @@ Unique Identifier,Johnson Controls Name,BACnet Name,BACnet Description,BACnet Un
 510_0_3006217,biolib ac 15 sf vfd spd cmd,nae 10 n2 2 vnd002 spd cmd,speed command,98.0,analog input,speed command,speed command,,vfd,ac 15,ahu supply fan vfd
 510_0_3006241,biolib ac 15 rf vfd rpm,nae 10 n2 2 vnd003 rpm,rpm,104.0,analog input,speed in rpm,speed sensor,,vfd,ac 15,ahu return fan vfd
 510_0_3006218,biolib ac 15 sf vfd rpm,nae 10 n2 2 vnd002 rpm,rpm,104.0,analog input,speed in rpm,speed sensor,,vfd,ac 15,ahu supply fan vfd
-510_4_3005238,biolib ac 13 rf vfd strt drv,nae 10 n2 1 vnd005 strt drv,start drive,,binary output,start drive,start drive,,vfd,ac 13,ahu return fan vfd
-510_4_3005212,biolib hw pumps p1 vfd strt drv,nae 10 n2 1 vnd004 strt drv,start drive,,binary output,start drive,start drive,,vfd,p1,hw sys pump vfd
-510_4_3005225,biolib hw pumps p2 vfd strt drv,nae 10 n2 1 vnd006 strt drv,start drive,,binary output,start drive,start drive,,vfd,p2,hw sys pump vfd
+510_4_3005238,biolib ac 13 rf vfd strt drv,nae 10 n2 1 vnd005 strt drv,start drive,,binary output,start drive,vfd command,,vfd,ac 13,ahu return fan vfd
+510_4_3005212,biolib hw pumps p1 vfd strt drv,nae 10 n2 1 vnd004 strt drv,start drive,,binary output,start drive,vfd command,,vfd,p1,hw sys pump vfd
+510_4_3005225,biolib hw pumps p2 vfd strt drv,nae 10 n2 1 vnd006 strt drv,start drive,,binary output,start drive,vfd command,,vfd,p2,hw sys pump vfd
 510_4_3005237,biolib ac 13 rf vfd stopdriv,nae 10 n2 1 vnd005 stopdriv,stop drive,,binary output,stop drive,unknown,,vfd,ac 13,ahu return fan vfd
 510_4_3005211,biolib hw pumps p1 vfd stopdriv,nae 10 n2 1 vnd004 stopdriv,stop drive,,binary output,stop drive,unknown,,vfd,p1,hw sys pump vfd
 510_4_3005224,biolib hw pumps p2 vfd stopdriv,nae 10 n2 1 vnd006 stopdriv,stop drive,,binary output,stop drive,unknown,,vfd,p2,hw sys pump vfd
@@ -1163,8 +1163,8 @@ Unique Identifier,Johnson Controls Name,BACnet Name,BACnet Description,BACnet Un
 510_0_3013975,biolib 2ndfl rm 232d supflow,nae 10 n2 2 vma121 supflow,process variable,84.0,analog input,supply air flow,supply air flow sensor,,vav,rm 232d,
 510_0_3014047,biolib 2ndfl rm 233a supflow,nae 10 n2 2 vma125 supflow,process variable,84.0,analog input,supply air flow,supply air flow sensor,,vav,rm 233a,
 510_0_3014031,biolib 2ndfl rm 233b supflow,nae 10 n2 2 vma124124 supflow,process variable,84.0,analog input,supply air flow,supply air flow sensor,,vav,rm 233b,
-510_3_3005248,biolib ac 12 sf s,nae 10 n2 1 ahu001 sf s,supply airflow,,binary input,supply air flow,supply air flow sensor,,ahu,ac 12,
-510_3_3005300,biolib ac 13 sf s,nae 10 n2 1 ahu002 sf s,supply airflow,,binary input,supply air flow,supply air flow sensor,,ahu,ac 13,
+510_3_3005248,biolib ac 12 sf s,nae 10 n2 1 ahu001 sf s,supply airflow,,binary input,supply air flow,supply fan status,,ahu,ac 12,
+510_3_3005300,biolib ac 13 sf s,nae 10 n2 1 ahu002 sf s,supply airflow,,binary input,supply air flow,supply fan status,,ahu,ac 13,
 510_1_3014246,1biolib 1stfl rm 38h supflosp,nae 10 n2 2 vma135 supflosp,supply flow setpoint,84.0,analog output,supply air flow setpoint,supply air flow setpoint,,vav,rm 38h,
 510_1_3013309,biolib 1stfl rm 100 supflosp,nae 10 n2 1 vma127 supflosp,supply flow setpoint,84.0,analog output,supply air flow setpoint,supply air flow setpoint,,vav,rm 100,
 510_1_3013161,biolib 1stfl rm 100n supflosp,nae 10 n2 1 vma119 supflosp,supply flow setpoint,84.0,analog output,supply air flow setpoint,supply air flow setpoint,,vav,rm 100n,

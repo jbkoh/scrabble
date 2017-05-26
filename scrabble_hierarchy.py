@@ -41,11 +41,13 @@ from pygame import mixer
 import pympler
 
 from sklearn.feature_extraction.text import TfidfVectorizer, CountVectorizer
-from sklearn.ensemble import RandomForestClassifier, AdaBoostClassifier
+from sklearn.ensemble import RandomForestClassifier, AdaBoostClassifier,\
+                             GradientBoostingClassifier
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.svm import LinearSVC, SVC
-from sklearn.multiclass import OneVsRestClassifier
-from sklearn.feature_selection import SelectFromModel
+from sklearn.linear_model import LogisticRegression
+from sklearn.multiclass import OneVsRestClassifier, OneVsOneClassifier
+from sklearn.feature_selection import SelectFromModel, VarianceThreshold, chi2, SelectPercentile, SelectKBest
 from sklearn.pipeline import Pipeline
 from scipy.sparse import vstack, csr_matrix, hstack, issparse, coo_matrix,\
                          lil_matrix
@@ -61,6 +63,8 @@ from sklearn.linear_model import SGDClassifier
 from skmultilearn.problem_transform import LabelPowerset, ClassifierChain, \
                                            BinaryRelevance
 from sklearn.metrics import precision_recall_fscore_support
+from sklearn.linear_model import LassoCV
+from sklearn.decomposition import PCA
 #from skmultilearn.cluster import IGraphLabelCooccurenceClusterer
 #from skmultilearn.ensemble import LabelSpacePartitioningClassifier
 
@@ -135,13 +139,21 @@ raw_srcids_dict = init_srcids_dict()
 def init():
     init_srcids_dict()
 
-def calc_leave_depth(tree, d=dict(), depth=0):
+def calc_leaves_depth(tree, d=dict(), depth=0):
     curr_depth = depth + 1
     for tagset, branches in tree.items():
         d[tagset] = curr_depth
         for branch in branches:
-            new_d = calc_leave_depth(branch, d, curr_depth)
-            for k, v in new_d.items():
+            d = calc_leaves_depth(branch, d, curr_depth)
+            for k, v in d.items():
+                #if tagset == 'supply_air_static_pressure_setpoint' and\
+                #   list(branch.keys())[0] == 'supply_air_static_pressure_integral_time_setpoint'\
+                #   and k == 'supply_air_static_pressure_integral_time_setpoint':
+                #    pdb.set_trace()
+                #if k == 'supply_air_static_pressure_integral_time_setpoint':
+                #if k == 'supply_air_static_pressure_integral_time_setpoint' and v ==5:
+                #    pdb.set_trace() #TODO: Why this can't be 5?????
+
                 if d.get(k):
                     d[k] = max(d[k], v)
                 else:
@@ -161,7 +173,7 @@ class TsTfidfVectorizer():
         with open("TS_Features/ebu3b_features.pkl", 'rb') as f:
             ts_features = pickle.load(f)
         self.ts2ir.train_model(ts_features, srcids)
-        mlb_keys, Y_pred, Y_proba = self.ts2ir.predict(ts_features, srcids)
+        mlb_keys, Y_pred, Y_proba = self.ts2ir.kpredict(ts_features, srcids)
         pdb.set_trace()
 
 
@@ -240,6 +252,19 @@ def get_score(pred_dict, true_dict, srcids, score_func, labels):
             score += score_func(pred_tagsets, true_tagsets, labels)
     return score / len(srcids)
 
+def get_macro_f1(pred_dict, true_dict, srcids):
+    tn_dict = defaultdict(float)
+    fn_dict = defaultdict(float)
+    tp_dict = defaultdict(float)
+    fp_dict = defaultdict(float)
+    for srcid in srcids:
+        true_tagsets = true_dict[srcid]
+        pred_tagsets = pred_dict[srcid]
+        for pred_tagset in true_tagsets:
+            if pred_tagset in true_tagsets:
+                pass
+
+
 def add_words_from_ts(learning_srcids, target_srcids):
     with open("Binarizer/mlb.pkl", 'rb') as f:
         mlb = pickle.load(f, encoding='bytes')
@@ -282,10 +307,10 @@ def hierarchy_accuracy_func(pred_tagsets, true_tagsets, labels):
     depth_measurer = lambda x: tree_depth_dict[x]
     for pred_tagset in deepcopy(pred_tagsets):
         subclasses = subclass_dict[pred_tagset]
-        upper_true_tagsets = [tagset for tagset in subclasses \
+        lower_true_tagsets = [tagset for tagset in subclasses \
                               if tagset in true_tagsets]
-        if len(upper_true_tagsets)>0:
-            lower_true_tagsets = sorted(upper_true_tagsets,
+        if len(lower_true_tagsets)>0:
+            lower_true_tagsets = sorted(lower_true_tagsets,
                                         key=depth_measurer,
                                         reverse=False)
             lower_true_tagset = lower_true_tagsets[0]
@@ -970,16 +995,22 @@ def tagsets_prediction(classifier, vectorizer, binarizer, \
         phrase_dict = augment_ts(phrase_dict, srcids, ts2ir)
     doc = [' '.join(phrase_dict[srcid]) for srcid in srcids]
 
+    manual_filter_flag = False
+    if manual_filter_flag:
+        for srcid in srcids:
+            phrase_dict[srcid] = filt(phrase_dict[srcid])
+
 
     if eda_flag:
         vect_doc = eda_vectorizer(vectorizer, doc, \
                                        source_target_buildings, srcids)
     else:
-        vect_doc = vectorizer.transform(doc)
+        vect_doc = vectorizer.transform(doc) # should this be fit_transform?
 
     certainty_dict = dict()
     tagsets_dict = dict()
     logging.info('Start Tagset prediction')
+    #pdb.set_trace()
     pred_mat = classifier.predict(vect_doc)
     logging.info('Finished Tagset prediction')
     if not isinstance(pred_mat, np.ndarray):
@@ -988,18 +1019,19 @@ def tagsets_prediction(classifier, vectorizer, binarizer, \
         except:
             pred_mat = np.asarray(pred_mat)
     logging.info('Start point prediction')
-    point_mat = point_classifier.predict(vect_doc)
+    #point_mat = point_classifier.predict(vect_doc)
     logging.info('Finished point prediction')
     #prob_mat = classifier.predict_proba(vect_doc)
     pred_tagsets_dict = dict()
     pred_certainty_dict = dict()
     pred_point_dict = dict()
-    for i, (srcid, pred, point_pred) \
-            in enumerate(zip(srcids, pred_mat, point_mat)):
+    for i, (srcid, pred) in enumerate(zip(srcids, pred_mat)):
+    #for i, (srcid, pred, point_pred) \
+            #in enumerate(zip(srcids, pred_mat, point_mat)):
         pred_tagsets_dict[srcid] = binarizer.inverse_transform(\
                                         np.asarray([pred]))[0]
         #pred_tagsets_dict[srcid] = list(binarizer.inverse_transform(pred)[0])
-        pred_point_dict[srcid] = point_tagsets[point_pred]
+        #pred_point_dict[srcid] = point_tagsets[point_pred]
         #pred_vec = [prob[i][0] for prob in prob_mat]
         #pred_certainty_dict[srcid] = pred_vec
         pred_certainty_dict[srcid] = 0
@@ -1009,7 +1041,7 @@ def tagsets_prediction(classifier, vectorizer, binarizer, \
     return pred_tagsets_dict, pred_certainty_dict, pred_point_dict
 
 def tagsets_evaluation(truths_dict, pred_tagsets_dict, pred_certainty_dict,\
-                       srcids, pred_point_dict, phrase_dict, debug_flag=False):
+                       srcids, pred_point_dict, phrase_dict, debug_flag=False, classifier=None, vectorizer=None):
     result_dict = defaultdict(dict) # TODO: In case of a bug, it was defaultdict
     sorted_result_dict = OrderedDict()
     incorrect_tagsets_dict = dict()
@@ -1021,6 +1053,10 @@ def tagsets_evaluation(truths_dict, pred_tagsets_dict, pred_certainty_dict,\
     unknown_reason_cnt = 0
     undiscovered_point_cnt = 0
     invalid_point_cnt = 0
+    manual_filter_flag = False
+    if manual_filter_flag:
+        for srcid in srcids:
+            truths_dict[srcid] = filt(truths_dict[srcid])
 #    for srcid, pred_tagsets in pred_tagsets_dict.items():
     accuracy = get_score(pred_tagsets_dict, truths_dict, srcids, accuracy_func,
                          tagset_list)
@@ -1080,7 +1116,10 @@ def tagsets_evaluation(truths_dict, pred_tagsets_dict, pred_certainty_dict,\
             if found_point in ['none', None]:
                 empty_point_cnt += 1
                 need_review = True
-            elif found_point != true_point:
+            elif found_point != true_point and \
+                 found_point.replace('supply', 'discharge') != true_point and\
+                 found_point.replace('discharge', 'supply') != true_point:
+            #elif found_point != true_point:
                 point_incorrect_cnt += 1
                 print("INCORRECT POINT ({0}) FOUND: {1} -> {2}"\
                       .format(srcid, true_point, found_point))
@@ -1089,6 +1128,9 @@ def tagsets_evaluation(truths_dict, pred_tagsets_dict, pred_certainty_dict,\
                 unknown_reason_cnt += 1
                 point_correct_cnt += 1
                 need_review = True
+
+#True        if srcid == '513_0_3006645':
+
         if need_review and debug_flag:
             print('TRUE: {0}'.format(true_tagsets))
             print('PRED: {0}'.format(pred_tagsets))
@@ -1395,7 +1437,9 @@ class ProjectClassifier():
 class StructuredClassifierChain():
 
     def __init__(self, base_classifier, binarizer, subclass_dict,
-                 vocabulary_dict, n_jobs=1):
+                 vocabulary_dict, n_jobs=1, use_brick_flag=False):
+        self.prob_flag = False
+        self.use_brick_flag = use_brick_flag
         self.n_jobs = n_jobs
         self.vocabulary_dict = vocabulary_dict
         self.subclass_dict = subclass_dict
@@ -1412,7 +1456,8 @@ class StructuredClassifierChain():
                 assert len(found_upper_tagsets) == len(upper_tagsets)
             except:
                 pdb.set_trace()
-            self.upper_y_index_list.append([np.where(self.binarizer.classes_ == ts)[0][0]\
+            self.upper_y_index_list.append([
+                np.where(self.binarizer.classes_ == ts)[0][0]
                                             for ts in upper_tagsets])
             lower_y_indices = list()
             subclasses = self.subclass_dict.get(tagset)
@@ -1430,20 +1475,45 @@ class StructuredClassifierChain():
     def _augment_X(self, X, Y):
         return np.hstack([X, Y*2])
 
-    def fit(self, X,Y):
-        #if self.n_jobs == 1:
-        #    return self.serial_fit(X, Y)
-        #else:
-        return self.parallel_fit(X, Y)
+    def _find_brick_indices(self, X, Y, orig_sample_num):
+        brick_indices = list()
+        for i, y in enumerate(Y):
+            if i >= orig_sample_num and np.sum(y) == 1: #TODO: Need to fix orig_sample_num to consider negative samples
+                brick_indices.append(i)
+        return np.array(brick_indices)
+        #return np.where(np.array(list(map(np.sum, Y))) == 1 )[0]
+
+
+    def fit(self, X, Y, orig_sample_num = 0):
+        if self.use_brick_flag:
+            self.brick_indices = self._find_brick_indices(X, Y, \
+                                                          orig_sample_num)
+        if self.n_jobs == 1:
+            return self.serial_fit(X, Y)
+        else:
+            return self.parallel_fit(X, Y)
 
     def serial_fit(self, X, Y):
         logging.info('Start fitting')
         X = self.conv_array(X)
         Y = self._augment_labels_superclasses(Y)
         for i, y in enumerate(Y.T):
+            """
             sub_Y = Y[:, self.upper_y_index_list[i]]
             augmented_X = self._augment_X(X, sub_Y)
-            self.base_classifiers[i].fit(augmented_X, y)
+            unbiased_X, unbiased_y = self.augment_biased_sample(augmented_X, y)
+            base_classifier = deepcopy(base_classifier)
+            tagset = self.binarizer.classes_[i]
+            tags = tagset.split('_')
+            base_classifier.steps[0] = ('feature_selection', SelectKBest(chi2, k=len(tags)+3))
+            try:
+                self.base_classifiers[i].fit(unbiased_X, unbiased_y)
+            #self.base_classifiers[i].fit(augmented_X, y)
+            except:
+                pass
+            """
+            self.base_classifiers[i] = self.sub_fit(X, Y, i)
+
         logging.info('Finished fitting')
 
     def parallel_fit(self, X,Y):
@@ -1453,15 +1523,56 @@ class StructuredClassifierChain():
         self.base_classifiers = p.map(mapped_sub_fit, range(0,Y.shape[1]))
         p.close()
 
+    def augment_biased_sample(self, X, y):
+        rnd_sample_num = int(X.shape[0] * 0.05)
+        sub_X = X[np.where(y==1)]
+        added_X_list = list()
+        if sub_X.shape[0] == 0:
+            return X, y
+#        added_X = list()
+        for i in range(0, rnd_sample_num):
+            if self.use_brick_flag:
+                sub_brick_indices = np.intersect1d(np.where(y==1)[0],
+                                               self.brick_indices)
+                if len(sub_brick_indices)==0:
+                    x_1 = sub_X[random.randint(0, sub_X.shape[0] - 1)]
+                else:
+                    sub_brick_X = X[sub_brick_indices]
+                    x_1 = sub_brick_X[random.randint(0, sub_brick_X.shape[0]-1)]
+            else:
+                x_1 = sub_X[random.randint(0, sub_X.shape[0] - 1)]
+            x_2 = sub_X[random.randint(0, sub_X.shape[0] - 1)]
+            avg_factor = random.random()
+            #new_x = x_1 + (x_2 - x_1) * avg_factor
+            if i % 2 == 0:
+                new_x = x_1
+            else:
+                new_x = x_2
+            y = np.append(y, 1)
+            added_X_list.append(new_x)
+        X = np.vstack([X] + added_X_list)
+        assert X.shape[0] == y.shape[0]
+        return X, y
+
     def sub_fit(self, X, Y, i):
-        if i%500==0:
+        if i%200==0:
             logging.info('{0}th learning step'.format(i))
-        base_classifier = deepcopy(self.base_classifier)
+        if i==857:
+            transformer = lambda x: [vocab for vocab, v \
+                in self.vocabulary_dict.items() if x[0,v]>0]
+            #pdb.set_trace()
+
         y = Y.T[i]
         sub_Y = Y[:, self.upper_y_index_list[i]]
         augmented_X = self._augment_X(X, sub_Y)
+        unbiased_X, unbiased_y = self.augment_biased_sample(augmented_X, y)
+        base_classifier = deepcopy(self.base_classifier)
+        #tagset = self.binarizer.classes_[i]
+        #tags = tagset.split('_')
+        #base_classifier.steps[0] = ('feature_selection', SelectKBest(chi2, k=len(tags) + 3))
         try:
-            base_classifier.fit(augmented_X, y)
+            base_classifier.fit(unbiased_X, unbiased_y)
+            #base_classifier.fit(augmented_X, y)
         except:
             pass
         return base_classifier
@@ -1506,8 +1617,20 @@ class StructuredClassifierChain():
                 pdb.set_trace()
             sub_Y = Y[:, upper_y_indices]
             augmented_X = self._augment_X(X, sub_Y)
+            if i==414 and X.shape[0]>800 and False:
+                filt = base_classifier.steps[0][1]
+                filtered = filt.inverse_transform(filt.transform([augmented_X[i]]))
+                #print('FILTERED: ', [vocab for vocab, j in self.vocabulary_dict.items() if filtered[0][j]>0])
+                #print('FROM:', [vocab for vocab, j in self.vocabulary_dict.items() if augmented_X[i][j] > 0 ])
+                transformer = lambda x: [vocab for vocab, v \
+                                         in self.vocabulary_dict.items() if x[v]>0]
+                #pdb.set_trace() # Check why supply fan is not deteced
             try:
-                pred_y = base_classifier.predict(augmented_X)
+                if self.prob_flag:
+                    prob_y = base_classifier.predict_proba(augmented_X)
+                    pred_y = np.array([prob[1] for prob in prob_y])
+                else:
+                    pred_y = base_classifier.predict(augmented_X)
             except:
                 pred_y = np.zeros(augmented_X.shape[0])
             Y[:, i] = pred_y
@@ -1517,6 +1640,12 @@ class StructuredClassifierChain():
 
     def _distill_Y(self, Y):
         logging.info('Start distilling')
+        if self.prob_flag:
+            new_Y = np.zeros(Y.shape)
+            for i, y in enumerate(Y):
+                new_Y[i] = np.array([1 if prob>0.5 else 0 for prob in y])
+            Y = new_Y
+
         new_Y = deepcopy(Y)
         for i, y in enumerate(Y):
             new_y = np.zeros(len(y))
@@ -1715,6 +1844,109 @@ def tree_flatter(tree, init_flag=True):
                     + added_d_list
     return d_list
 
+def filt(tagsets):
+    return [tagset for tagset in tagsets if tagset.split('-')[0] not in \
+            ['building', 'networkadapter', \
+             'rightidentifier', 'leftidentifier']]
+
+
+def parameter_validation(vect_doc, truth_mat, srcids, params_list_dict,\
+                         meta_classifier, vectorizer, binarizer, \
+                         source_target_buildings, eda_flag):
+    #best_params = {'n_estimators': 50, 'criterion': 'entropy', 'max_features': 'auto', 'max_depth': 5, 'min_samples_leaf': 2, 'min_samples_split': 2}
+    #best_params = {'criterion': 'entropy'}
+    best_params = {}
+    #best_params = {'loss': 'exponential', 'learning_rate': 0.01, 'criterion': 'friedman_mse', 'max_features': None, 'max_depth': 10, 'min_samples_leaf': 4, 'min_samples_split': 2}
+
+    return meta_classifier(**best_params) # Pre defined setup.
+
+    token_type = 'justseparate'
+    results_dict = dict()
+    for key, values in params_list_dict.items():
+        results_dict[key] = {'ha': [0]*len(values),
+                             'a': [0]*len(values),
+                             'mf1': [0]*len(values)}
+    avg_num = 3
+    for i in range(0,avg_num):
+        learning_indices = random.sample(range(0, len(srcids)),
+                                         int(len(srcids)/2))
+        validation_indices = [i for i in range(0, len(srcids))
+                              if i not in learning_indices]
+        learning_srcids = [srcids[i] for i
+                                    in learning_indices]
+        validation_srcids = [srcids[i] for i
+                             in validation_indices]
+        for key, values in params_list_dict.items():
+            for j, value in enumerate(values):
+                params = {key: value}
+                classifier = meta_classifier(**params)
+                classifier.fit(vect_doc[learning_indices], \
+                               truth_mat[learning_indices].toarray())
+
+                validation_sentence_dict, \
+                validation_token_label_dict, \
+                validation_truths_dict, \
+                validation_phrase_dict = get_multi_buildings_data(\
+                                            source_target_buildings, validation_srcids, \
+                                            eda_flag, token_type)
+
+                validation_pred_tagsets_dict, \
+                validation_pred_certainty_dict, \
+                _ = tagsets_prediction(classifier, vectorizer, binarizer, \
+                                   validation_phrase_dict, validation_srcids, \
+                                   source_target_buildings, eda_flag, None,
+                                       ts2ir=None)
+                validation_result = tagsets_evaluation(validation_truths_dict, \
+                                                       validation_pred_tagsets_dict, \
+                                                       validation_pred_certainty_dict,\
+                                                       validation_srcids, \
+                                                       None, \
+                                                       validation_phrase_dict, \
+                                                       debug_flag=False,
+                                                       classifier=classifier, \
+                                                       vectorizer=vectorizer)
+                results_dict[key]['ha'][j] += validation_result['hierarchy_accuracy']
+                results_dict[key]['a'][j] += validation_result['accuracy']
+                results_dict[key]['mf1'][j] += validation_result['macro_f1']
+    best_params = dict()
+    for key, results in results_dict.items():
+        metrics = results_dict[key]['mf1']
+        best_params[key] = params_list_dict[key][metrics.index(max(metrics))]
+    classifier = meta_classifier(**best_params)
+    classifier.fit(vect_doc[learning_indices], \
+                   truth_mat[learning_indices].toarray())
+
+    validation_sentence_dict, \
+    validation_token_label_dict, \
+    validation_truths_dict, \
+    validation_phrase_dict = get_multi_buildings_data(\
+                                source_target_buildings, validation_srcids, \
+                                eda_flag, token_type)
+
+    validation_pred_tagsets_dict, \
+    validation_pred_certainty_dict, \
+    _ = tagsets_prediction(classifier, vectorizer, binarizer, \
+                       validation_phrase_dict, validation_srcids, \
+                       source_target_buildings, eda_flag, None,
+                           ts2ir=None)
+    validation_result = tagsets_evaluation(validation_truths_dict, \
+                                           validation_pred_tagsets_dict, \
+                                           validation_pred_certainty_dict,\
+                                           validation_srcids, \
+                                           None, \
+                                           validation_phrase_dict, \
+                                           debug_flag=False,
+                                           classifier=classifier, \
+                                           vectorizer=vectorizer)
+    best_ha = validation_result['hierarchy_accuracy']
+    best_a = validation_result['accuracy']
+    best_mf1 = validation_result['macro_f1']
+    pdb.set_trace()
+
+    return meta_classifier(**best_params)
+
+
+
 def build_tagset_classifier(building_list, target_building,\
                             test_sentence_dict, test_token_label_dict,\
                             learning_phrase_dict, test_phrase_dict,\
@@ -1723,34 +1955,18 @@ def build_tagset_classifier(building_list, target_building,\
                             tagset_list, eda_flag, use_brick_flag,
                             source_target_buildings,
                             n_jobs,
-                            ts_flag
+                            ts_flag,
+                            negative_flag
                            ):
     learning_srcids = deepcopy(learning_srcids)
+    orig_learning_srcids = deepcopy(learning_srcids)
     global total_srcid_dict
     global point_tagsets
     global tagset_classifier_type
     global tree_depth_dict
 #    source_target_buildings = list(set(building_list + [target_building]))
-    #base_classifier = DecisionTreeClassifier()
-    #base_classifier = SGDClassifier()
 
-
-    #base_classifier = GaussianProcessClassifier()
-#    base_classifier = QuadraticDiscriminantAnalysis()
-    #base_classifier = GaussianNB()
-    #base_classifier = SVC(kernel='rbf')
-    #base_classifier = SVC(kernel='linear')
-    #base_classifier = RandomForestClassifier(n_estimators=20)
-    #base_classifier = AdaBoostClassifier()
-#    clusterer = IGraphLabelCooccurenceClusterer('fastgreedy', weighted=True,
- #                                                   include_self_edges=True)
-    #problem_transform_classifier = LabelPowerset(classifier=base_classifier)
-    #tagset_classifier = LabelSpacePartitioningClassifier(problem_transform_classifier, clusterer)
-    #tagset_classifier = LabelSpacePartitioningClassifier()
-    #tagset_classifier = RakelO()
-####    tagset_classifier = OneVsRestClassifier(SVC(kernel='rbf'), n_jobs=n_jobs)
-
-    #tagset_list = sorted(tagset_list, key=tagset_lengther)
+    orig_sample_num = len(learning_srcids)
     new_tagset_list = tree_flatter(tagset_tree, [])
     new_tagset_list = new_tagset_list + [ts for ts in tagset_list \
                                      if ts not in new_tagset_list]
@@ -1785,14 +2001,6 @@ def build_tagset_classifier(building_list, target_building,\
         proj_vectors.append([1 if tag in tags else 0 for tag in tag_list])
     proj_vectors = np.asarray(proj_vectors)
 
-    #tagset_classifier = custom_project_multi_label(base_classifier, proj_vectors)
-    #tagset_classifier = FixedClassifierChain(base_classifier, tagset_binarizer)
-    #tagset_classifier = BinaryRelevance(base_classifier)
-    #tagset_classifier = ClassifierChain(base_classifier)
-    #tagset_classifier = custom_multi_label(base_classifier)
-    #tagset_classifier = DecisionTreeClassifier()
-    #tagset_classifier = LabelPowerset(base_classifier)
-
     # Define Vectorizer
     tokenizer = lambda x: x.split()
     tagset_vectorizer = TfidfVectorizer(tokenizer=tokenizer,\
@@ -1810,6 +2018,7 @@ def build_tagset_classifier(building_list, target_building,\
         learning_point_dict[srcid] = point_tagset
 
     ts2ir = None
+    ts_learning_srcids = list()
     if ts_flag:
         learning_tags_dict = dict([(srcid, splitter(tagset)) for srcid, tagset
                                    in learning_point_dict.items()])
@@ -1827,7 +2036,7 @@ def build_tagset_classifier(building_list, target_building,\
             ts_srcid = srcid + '_ts'
             learning_phrase_dict[ts_srcid] = learning_phrase_dict[srcid]\
                                                 + list(ts_tags)
-            learning_srcids.append(ts_srcid)
+            ts_learning_srcids.append(ts_srcid)
             learning_truths_dict[ts_srcid] = learning_truths_dict[srcid]
 
         test_ts_tags_pred = ts2ir.predict(ts_features, test_srcids)
@@ -1838,6 +2047,13 @@ def build_tagset_classifier(building_list, target_building,\
             #test_phrase_dict[ts_srcid] = test_phrase_dict[srcid] + list(ts_tags)
             #test_srcids .append(ts_srcid) # TODO: Validate if this works.
             test_phrase_dict[srcid] += list(ts_tags)
+    learning_srcids += ts_learning_srcids
+    manual_filter_flag = False
+    if manual_filter_flag:
+        for srcid in learning_srcids:
+            learning_phrase_dict[srcid] = filt(learning_phrase_dict[srcid])
+            learning_truths_dict[srcid] = filt(learning_truths_dict[srcid])
+
 
     ## Transform learning samples
     learning_doc = [' '.join(learning_phrase_dict[srcid]) \
@@ -1847,28 +2063,42 @@ def build_tagset_classifier(building_list, target_building,\
                 for srcid in test_srcids]
 
     ## Augment with negative examples.
-    negative_flag = True
     negative_doc = []
     negative_srcids = []
     negative_truths_dict = {}
     if negative_flag:
         for srcid in learning_srcids:
-            true_tagsets = learning_truths_dict[srcid]
+            true_tagsets = list(set(learning_truths_dict[srcid]))
             sentence = learning_phrase_dict[srcid]
-            for tagset in set(true_tagsets):
-                negative_srcid = gen_uuid()
-                negative_srcids.append(negative_srcid)
+            for tagset in true_tagsets:
+                negative_srcid = srcid + ';' + gen_uuid()
+                removing_tagsets = set()
+                new_removing_tagsets = set([tagset])
+                removing_tags = []
                 negative_tagsets = list(filter(tagset.__ne__, true_tagsets))
-                removing_tags = [word for word in sentence \
-                                     if word in tagset.split('_')]
-                negative_sentence = [ts for ts in true_tagsets\
-                                     if not sum([tag in ts \
-                                                 for tag in removing_tags])]
+                i = 0
+                while len(new_removing_tagsets) != len(removing_tagsets):
+                    i += 1
+                    if i>5:
+                        pdb.set_trace()
+                    removing_tagsets = deepcopy(new_removing_tagsets)
+                    for removing_tagset in removing_tagsets:
+                        removing_tags += removing_tagset.split('_')
+                    for negative_tagset in negative_tagsets:
+                        for tag in removing_tags:
+                            if tag in negative_tagset.split('_'):
+                                new_removing_tagsets.add(negative_tagset)
+                negative_sentence = [tag for tag in sentence if\
+                                     tag not in removing_tags]
+                for tagset in removing_tagsets:
+                    negative_tagsets = list(filter(tagset.__ne__,
+                                                   negative_tagsets))
 
     #            negative_sentence = [word for word in sentence \
     #                                 if word not in tagset.split('_')]
                 negative_doc.append(' '.join(negative_sentence))
                 negative_truths_dict[negative_srcid] = negative_tagsets
+                negative_srcids.append(negative_srcid)
         for i in range(0,50):
             # Add empty examples
             negative_srcid = gen_uuid()
@@ -1876,18 +2106,22 @@ def build_tagset_classifier(building_list, target_building,\
             negative_doc.append('')
             negative_truths_dict[negative_srcid] = []
 
-    learning_doc += negative_doc
-    learning_srcids += negative_srcids
-    learning_truths_dict.update(negative_truths_dict)
+    #learning_doc += negative_doc
+    #learning_srcids += negative_srcids
+    #learning_truths_dict.update(negative_truths_dict)
 
 
     ## Init Brick document
+    brick_truths_dict = dict()
+    brick_srcids = []
+    brick_doc = []
     if use_brick_flag:
         logging.info('Start adding Brick samples')
         #brick_copy_num = int(len(learning_phrase_dict) * 0.04)
         #if brick_copy_num < 4:
-        #    brick_copy_num = 4
-        brick_copy_num = 4
+        #brick_copy_num = 4
+        #brick_copy_num = 2
+        brick_copy_num = 6
         #brick_truths_dict = dict((gen_uuid(), [tagset]) \
         #                          for tagset in tagset_list\
         #                          for j in range(0, brick_copy_num))
@@ -1903,10 +2137,14 @@ def build_tagset_classifier(building_list, target_building,\
         brick_srcids = list()
         for tagset in tagset_list:
             for j in range(0, brick_copy_num):
-                srcid = gen_uuid()
+                #multiplier = random.randint(2, 6)
+                srcid = 'brick;' + gen_uuid()
                 brick_srcids.append(srcid)
                 brick_truths_dict[srcid] = [tagset]
-                brick_doc.append(' '.join(tagset.split('_') * ceil(j/2)))
+                tagset_doc = list()
+                for tag in tagset.split('_'):
+                    tagset_doc += [tag] * random.randint(1,2)
+                brick_doc.append(' '.join(tagset_doc))
 
         """
         if eda_flag:
@@ -1921,46 +2159,14 @@ def build_tagset_classifier(building_list, target_building,\
                         brick_doc.append(' '.join(tags))
         """
         logging.info('Finished adding Brick samples')
-    else:
-        brick_truths_dict = dict()
-        brick_srcids = []
-        brick_doc = []
-    brick_truth_mat = csr_matrix([tagset_binarizer.transform(\
-                                  [brick_truths_dict[srcid]])[0] \
-                                  for srcid in brick_srcids])
+    #brick_truth_mat = csr_matrix([tagset_binarizer.transform(\
+    #                              [brick_truths_dict[srcid]])[0] \
+    #                              for srcid in brick_srcids])
 
     logging.info('start tagset vectorizing')
-    tagset_vectorizer.fit(learning_doc + test_doc + brick_doc)
+    tagset_vectorizer.fit(learning_doc + test_doc)# + brick_doc)
     logging.info('finished tagset vectorizing')
 
-    if tagset_classifier_type == 'RandomForest':
-        tagset_classifier = RandomForestClassifier(n_estimators=150,
-                                                   random_state=0,\
-                                                   n_jobs=n_jobs)
-    elif tagset_classifier_type == 'StructuredCC':
-        base_classifier = Pipeline([('feature_selection',
-                                     SelectFromModel(LinearSVC())),
-                                    ('classification',
-                                     RandomForestClassifier())
-                                   ])
-        tagset_classifier = StructuredClassifierChain(
-                                base_classifier,
-                                tagset_binarizer,
-                                subclass_dict,
-                                tagset_vectorizer.vocabulary,
-                                n_jobs)
-    elif tagset_classifier_type == 'StructuredCC_LinearSVC':
-        base_classifier = LinearSVC(loss='hinge', tol=1e-5,\
-                                    max_iter=2000, C=2,
-                                    fit_intercept=False,
-                                    class_weight='balanced')
-        tagset_classifier = StructuredClassifierChain(base_classifier,
-                                                      tagset_binarizer,
-                                                      subclass_dict,
-                                                      tagset_vectorizer.vocabulary,
-                                                      n_jobs)
-    else:
-        assert False
     if eda_flag:
         unlabeled_phrase_dict = make_phrase_dict(\
                                     test_sentence_dict, \
@@ -1985,10 +2191,11 @@ def build_tagset_classifier(building_list, target_building,\
                 added_test_vect_doc = test_vect_doc
             unlabeled_vect_doc = np.hstack([unlabeled_vect_doc,\
                                             added_test_vect_doc])
-    learning_doc += brick_doc
-    learning_srcids += brick_srcids
-    learning_truths_dict.update(brick_truths_dict)
+    #learning_doc += brick_doc
+    #learning_srcids += brick_srcids
+    #learning_truths_dict.update(brick_truths_dict)
 
+    """
     raw_learning_vect_doc = tagset_vectorizer.transform(learning_doc)
     learning_vect_doc = raw_learning_vect_doc.toarray()
     if eda_flag:
@@ -1997,10 +2204,66 @@ def build_tagset_classifier(building_list, target_building,\
                                 or find_key(srcid, total_srcid_dict, check_in)\
                                     == building\
                                         else 0 for srcid in learning_srcids])
+            pdb.set_trace()
             learning_vect_doc = np.hstack([learning_vect_doc] \
                                  + [np.asmatrix(building_mask \
                                     * learning_vect.toarray()[0]).T \
                                 for learning_vect in raw_learning_vect_doc.T])
+    """
+    if eda_flag:
+        learning_vect_doc = tagset_vectorizer.transform(learning_doc +
+                                                        negative_doc).todense()
+        learning_srcids += negative_srcids
+        new_learning_vect_doc = deepcopy(learning_vect_doc)
+        for building in source_target_buildings:
+            building_mask = np.array([1 if find_key(srcid.split(';')[0],\
+                                                   total_srcid_dict,\
+                                                   check_in) == building
+                                      else 0 for srcid in learning_srcids])
+            new_learning_vect_doc = np.hstack([new_learning_vect_doc] \
+                                 + [np.asmatrix(building_mask \
+                                    * np.asarray(learning_vect)[0]).T \
+                                for learning_vect \
+                                    in learning_vect_doc.T])
+        learning_vect_doc = new_learning_vect_doc
+        if use_brick_flag:
+            new_brick_srcids = list()
+            new_brick_vect_doc = np.array([])\
+                    .reshape((0, len(tagset_vectorizer.vocabulary) \
+                              * (len(source_target_buildings)+1)))
+            brick_vect_doc = tagset_vectorizer.transform(brick_doc).todense()
+            for building in source_target_buildings:
+                prefixer = lambda srcid: building + '-' + srcid
+                one_brick_srcids = list(map(prefixer, brick_srcids))
+                for new_brick_srcid, brick_srcid\
+                        in zip(one_brick_srcids, brick_srcids):
+                    brick_truths_dict[new_brick_srcid] = \
+                            brick_truths_dict[brick_srcid]
+                one_brick_vect_doc = deepcopy(brick_vect_doc)
+                for b in source_target_buildings:
+                    if b != building:
+                        one_brick_vect_doc = np.hstack([
+                            one_brick_vect_doc,
+                            np.zeros((len(brick_srcids),
+                                      len(tagset_vectorizer.vocabulary)))])
+                    else:
+                        one_brick_vect_doc = np.hstack([
+                            one_brick_vect_doc, brick_vect_doc])
+                new_brick_vect_doc = np.vstack([new_brick_vect_doc,
+                                            one_brick_vect_doc])
+                new_brick_srcids += one_brick_srcids
+            learning_vect_doc = np.vstack([learning_vect_doc,
+                                           new_brick_vect_doc])
+            brick_srcids = new_brick_srcids
+            learning_srcids += brick_srcids
+
+    else:
+        learning_vect_doc = tagset_vectorizer.transform(learning_doc +
+                                                        negative_doc +
+                                                        brick_doc).todense()
+        learning_srcids += negative_srcids + brick_srcids
+    learning_truths_dict.update(negative_truths_dict)
+    learning_truths_dict.update(brick_truths_dict)
 
     truth_mat = csr_matrix([tagset_binarizer.transform(\
                     [learning_truths_dict[srcid]])[0]\
@@ -2026,27 +2289,105 @@ def build_tagset_classifier(building_list, target_building,\
                                     for srcid in point_srcids])
     except:
         pdb.set_trace()
-#    if use_brick_flag:
-#        truth_mat = vstack([truth_mat, brick_truth_mat])
     if eda_flag:
         zero_vectors = tagset_binarizer.transform(\
                     [[] for i in range(0, unlabeled_vect_doc.shape[0])])
-        for zero_vector in zero_vectors:
-            truth_mat = vstack([truth_mat, zero_vector])
-        #truth_mat = vstack([truth_mat] + zero_vectors)
-
-#        truth_mat = truth_mat.toarray()
-
-#        truth_mat = vstack([truth_mat, tagset_binarizer.transform(\
-#                    [[] for i in range(0, unlabeled_vect_doc.shape[0])])])\
-#                .toarray()
+        truth_mat = vstack([truth_mat, zero_vectors])
         learning_vect_doc = np.vstack([learning_vect_doc, unlabeled_vect_doc])
-        #TODO: Check if learning_cet_Doct can be done without toarray()
     logging.info('Start learning multi-label classifier')
-    tagset_classifier.fit(learning_vect_doc, truth_mat.toarray())
-    logging.info('Finished learning multi-label classifier')
-    #tagset_classifier.fit(coo_matrix(learning_vect_doc), truth_mat.toarray())
+    ## FITTING A CLASSIFIER
+    if tagset_classifier_type == 'RandomForest':
+        tagset_classifier = RandomForestClassifier(n_estimators=100,
+                                                   random_state=0,\
+                                                   n_jobs=n_jobs)
+    elif tagset_classifier_type == 'StructuredCC_BACKUP':
+        feature_selector = SelectFromModel(LinearSVC(C=0.01))
+        #feature_selector = SelectFromModel(LinearSVC(C=0.01, penalty='l1', dual=False))
+        base_base_classifier = GradientBoostingClassifier()
+        #base_base_classifier = RandomForestClassifier()
+        base_classifier = Pipeline([('feature_selection',
+                                     feature_selector),
+                                    ('classification',
+                                     base_base_classifier)
+                                   ])
+        tagset_classifier = StructuredClassifierChain(
+                                base_classifier,
+                                tagset_binarizer,
+                                subclass_dict,
+                                tagset_vectorizer.vocabulary,
+                                n_jobs,
+                                use_brick_flag)
+    elif tagset_classifier_type == 'StructuredCC':
+        def meta_scc(**kwargs):
+            feature_selector = SelectFromModel(LinearSVC(C=1))
+            #feature_selector = SelectFromModel(LinearSVC(C=0.01, penalty='l1', dual=False))
+            #base_base_classifier = GradientBoostingClassifier(**kwargs)
+            base_base_classifier = RandomForestClassifier(**kwargs)
+            base_classifier = Pipeline([('feature_selection',
+                                         feature_selector),
+                                        ('classification',
+                                         base_base_classifier)
+                                       ])
+            tagset_classifier = StructuredClassifierChain(
+                                base_classifier,
+                                tagset_binarizer,
+                                subclass_dict,
+                                tagset_vectorizer.vocabulary,
+                                n_jobs,
+                                use_brick_flag)
+            return tagset_classifier
+        meta_classifier = meta_scc
+        rf_params_list_dict = {
+            'n_estimators': [10, 50, 100],
+            'criterion': ['gini', 'entropy'],
+            'max_features': [None, 'auto'],
+            'max_depth': [1, 5, 10, 50],
+            'min_samples_leaf': [2,4,8],
+            'min_samples_split': [2,4,8]
+        }
+        gb_params_list_dict = {
+            'loss': ['deviance', 'exponential'],
+            'learning_rate': [0.1, 0.01, 1, 2],
+            'criterion': ['friedman_mse', 'mse'],
+            'max_features': [None, 'sqrt'],
+            'max_depth': [1, 3, 5, 10],
+            'min_samples_leaf': [1,2,4,8],
+            'min_samples_split': [2,4,8]
+        }
+        params_list_dict = gb_params_list_dict
+    elif tagset_classifier_type == 'StructuredCC_LinearSVC':
+        base_classifier = LinearSVC(loss='hinge', tol=1e-5,\
+                                    max_iter=2000, C=2,
+                                    fit_intercept=False,
+                                    class_weight='balanced')
+        tagset_classifier = StructuredClassifierChain(base_classifier,
+                                                      tagset_binarizer,
+                                                      subclass_dict,
+                                                      tagset_vectorizer.vocabulary,
+                                                      n_jobs)
+    elif tagset_classifier_type == 'OneVsRest':
+        base_classifier = LinearSVC(loss='hinge', tol=1e-5,\
+                                    max_iter=2000, C=2,
+                                    fit_intercept=False,
+                                    class_weight='balanced')
+        tagset_classifier = OneVsRestClassifier(base_classifier)
+    else:
+        assert False
+
+    tagset_classifier = parameter_validation(learning_vect_doc[:orig_sample_num],
+                         truth_mat[:orig_sample_num],
+                         orig_learning_srcids,
+                         params_list_dict, meta_classifier, tagset_vectorizer,
+                         tagset_binarizer, source_target_buildings, eda_flag)
+
+    if isinstance(tagset_classifier, StructuredClassifierChain):
+        tagset_classifier.fit(learning_vect_doc, truth_mat.toarray(), \
+                              orig_sample_num=len(learning_vect_doc)
+                              - len(brick_srcids))
+    else:
+        tagset_classifier.fit(learning_vect_doc, truth_mat.toarray())
     point_classifier.fit(point_vect_doc, point_truth_mat)
+    logging.info('Finished learning multi-label classifier')
 
     return tagset_classifier, tagset_vectorizer, tagset_binarizer, \
             point_classifier, ts2ir
@@ -2211,6 +2552,7 @@ def entity_recognition_from_ground_truth(building_list,
                                          debug_flag=False,
                                          eda_flag=False,
                                          ts_flag=False,
+                                         negative_flag=True,
                                          n_jobs=4,
                                          prev_step_data={
                                              'learning_srcids':[],
@@ -2278,7 +2620,7 @@ def entity_recognition_from_ground_truth(building_list,
     print('\n')
     print('################ Iteration {0} ################'.format(iter_cnt))
 
-    ### Learning Data
+    ### Get Learning Data
     sample_srcid_list_dict = dict()
     for building, sample_num in zip(building_list, source_sample_num_list):
         with open('metadata/{0}_char_label_dict.json'\
@@ -2298,6 +2640,7 @@ def entity_recognition_from_ground_truth(building_list,
             sample_srcid_list_dict[building] = [srcid for srcid\
                                                 in sentence_label_dict.keys()\
                                                 if srcid in learning_srcids]
+
     learning_sentence_dict, \
     learning_token_label_dict, \
     learning_truths_dict, \
@@ -2329,7 +2672,7 @@ def entity_recognition_from_ground_truth(building_list,
                 [learning_truths_dict[srcid] for srcid in learning_srcids]\
                 + [test_truths_dict[srcid] for srcid in test_srcids], []))
     augment_tagset_tree(tagset_list)
-    tree_depth_dict = calc_leave_depth(tagset_tree)
+    tree_depth_dict = calc_leaves_depth(tagset_tree)
 
     source_target_buildings = list(set(building_list + [target_building]))
     begin_time = arrow.get()
@@ -2346,7 +2689,8 @@ def entity_recognition_from_ground_truth(building_list,
                             tagset_list, eda_flag, use_brick_flag,\
                             source_target_buildings,
                             n_jobs,
-                            ts_flag
+                            ts_flag,
+                            negative_flag
                            )
     end_time = arrow.get()
     print('Training Time: {0}'.format(end_time-begin_time))
@@ -2393,7 +2737,9 @@ def entity_recognition_from_ground_truth(building_list,
                                          eval_learning_srcids,
                                          learning_pred_point_dict,\
                                          phrase_dict,\
-                                         debug_flag)
+                                         debug_flag,
+                                         tagset_classifier,
+                                         tagset_vectorizer)
 
     ### Test on the entire target building
     target_srcids = raw_srcids_dict[target_building]
@@ -2424,7 +2770,9 @@ def entity_recognition_from_ground_truth(building_list,
                                          eval_target_srcids,\
                                          target_pred_point_dict,\
                                          target_phrase_dict,\
-                                            debug_flag)
+                                            debug_flag,
+                                           tagset_classifier,
+                                           tagset_vectorizer)
     next_step_data = {
         'exp_type': 'entity_from_ground_truth',
         'pred_tagsets_dict': target_pred_tagsets_dict,
@@ -2527,7 +2875,8 @@ def entity_recognition_iteration(iter_num, *args):
                               debug_flag = args[7],\
                               eda_flag = args[8],\
                               ts_flag = args[9], \
-                              n_jobs = args[10],\
+                              negative_flag = args[10],
+                              n_jobs = args[11],\
                               prev_step_data = step_data
                             )
 
@@ -2678,7 +3027,7 @@ def entity_recognition_from_crf(prev_step_data,\
                                     ts_flag
                                    )
     augment_tagset_tree(tagset_list)
-    tree_depth_dict = calc_leave_depth(tagset_tree)
+    tree_depth_dict = calc_leaves_depth(tagset_tree)
 
     crf_pred_tagsets_dict, \
     crf_pred_certainty_dict, \
@@ -2738,6 +3087,7 @@ def entity_recognition_from_ground_truth_get_avg(N,
                                                  use_brick_flag=False,
                                                  eda_flag=False,
                                                  ts_flag=False,
+                                                 negative_flag=True,
                                                  n_jobs=4,
                                                  worker_num=2):
 
@@ -2755,6 +3105,7 @@ def entity_recognition_from_ground_truth_get_avg(N,
             False,
             eda_flag,
             ts_flag,
+            negative_flag,
             n_jobs
            )
 
@@ -2782,11 +3133,15 @@ def entity_recognition_from_ground_truth_get_avg(N,
                                   return_dict.values())))
     hierarchy_accuracy = np.mean(list(map(partial(ig, 'hierarchy_accuracy'),
                                   return_dict.values())))
+    macro_f1 = np.mean(list(map(partial(ig, 'macro_f1'),
+                                  return_dict.values())))
+    print(args)
     print ('Averaged Point Precision: {0}'.format(point_precision))
     print ('Averaged Point Recall: {0}'.format(point_recall))
     print ('Averaged Subset Accuracy: {0}'.format(subset_accuracy))
     print ('Averaged Accuracy: {0}'.format(accuracy))
     print ('Averaged Hierarchy Accuracy: {0}'.format(hierarchy_accuracy))
+    print ('Averaged Macro F1: {0}'.format(macro_f1))
     print("FIN")
 
 def entity_result():
@@ -2794,77 +3149,104 @@ def entity_result():
     source_target_list = [('ebu3b', 'ap_m')]#, ('ap_m', 'ebu3b')]
     n_list_list = [[(200,5), (200,50), (200,100), (200,200)],
                    [(0,5), (0,50), (0,100), (0,200)]]
+    ts_flag = False
+    eda_flag = False
+    default_query = {
+        'metadata.label_type': 'label',
+        'metadata.token_type': 'justseparate',
+        'metadata.use_cluster_flag': True,
+        'metadata.building_list' : [],
+        'metadata.source_sample_num_list': [],
+        'metadata.target_building': '',
+        'metadata.ts_flag': ts_flag,
+        'metadata.eda_flag': eda_flag,
+        'metadata.use_brick_flag': True
+    }
+
+    query_list = [deepcopy(default_query),
+                   deepcopy(default_query),
+                  ]
+    query_list[0]['metadata.use_brick_flag'] = True
+    query_list[1]['metadata.use_brick_flag'] = False
     char_precs_list = list()
     phrase_f1s_list = list()
     fig, ax = plt.subplots(1, 1)
     axes = [ax]
     fig.set_size_inches(6,4)
     #fig, axes = plt.subplots(1,len(n_list_list))
-    ts_flag = False
-    eda_flag = False
 
     for ax, (source, target) in zip(axes, source_target_list):
-        for n_list in n_list_list:
-            target_n_list = [ns[1] for ns in n_list]
-            subset_accuracy_list = list()
-            accuracy_list = list()
-            hierarchy_accuracy_list = list()
-            weighted_f1_list = list()
-            macro_f1_list = list()
+        for query in query_list:
+            for n_list in n_list_list:
+                target_n_list = [ns[1] for ns in n_list]
+                subset_accuracy_list = list()
+                accuracy_list = list()
+                hierarchy_accuracy_list = list()
+                weighted_f1_list = list()
+                macro_f1_list = list()
 
-            for (n_s, n_t) in n_list:
-                if n_s == 0:
-                    building_list = [target]
-                    source_sample_num_list = [n_t]
-                elif n_t == 0:
-                    building_list = [source]
-                    source_sample_num_list = [n_s]
-                else:
-                    building_list = [source, target]
-                    source_sample_num_list = [n_s, n_t]
-                result_query = {
-                        'metadata.label_type': 'label',
-                        'metadata.token_type': 'justseparate',
-                        'metadata.use_cluster_flag': True,
-                        'metadata.building_list': building_list,
-                        'metadata.source_sample_num_list': source_sample_num_list,
-                        'metadata.target_building': target,
-                        'metadata.ts_flag': ts_flag,
-                        'metadata.eda_flag': eda_flag
-                }
-                result = get_entity_results(result_query)
-                try:
-                    assert result
-                except:
-                    print(n_t)
-                    pdb.set_trace()
-                    result = get_crf_results(result_query)
-                #point_precs = result['point_precision_history'][-1]
-                #point_recall = result['point_recall'][-1]
-                subset_accuracy_list.append(result['subset_accuracy_history'][-1] * 100)
-                accuracy_list.append(result['accuracy_history'][-1] * 100)
-                hierarchy_accuracy_list.append(result['hierarchy_accuracy_history'][-1] * 100)
-                weighted_f1_list.append(result['weighted_f1_history'][-1] * 100)
-                macro_f1_list.append(result['macro_f1_history'][-1] * 100)
+                for (n_s, n_t) in n_list:
+                    if n_s == 0:
+                        building_list = [target]
+                        source_sample_num_list = [n_t]
+                    elif n_t == 0:
+                        building_list = [source]
+                        source_sample_num_list = [n_s]
+                    else:
+                        building_list = [source, target]
+                        source_sample_num_list = [n_s, n_t]
+                    """
+                    result_query = {
+                            'metadata.label_type': 'label',
+                            'metadata.token_type': 'justseparate',
+                            'metadata.use_cluster_flag': True,
+                            'metadata.building_list': building_list,
+                            'metadata.source_sample_num_list': source_sample_num_list,
+                            'metadata.target_building': target,
+                            'metadata.ts_flag': ts_flag,
+                            'metadata.eda_flag': eda_flag
+                    }
+                    """
+                    query['metadata.building_list'] = building_list
+                    query['metadata.source_sample_num_list'] = \
+                            source_sample_num_list
+                    query['metadata.target_building'] = target
 
-            xs = target_n_list
-            ys = [accuracy_list, macro_f1_list]
-            #ys = [subset_accuracy_list, accuracy_list, hierarchy_accuracy_list, weighted_f1_list, macro_f1_list]
-            xlabel = '# of Target Building Samples'
-            ylabel = 'F1 score (%)'
-            xtick = target_n_list
-            xtick_labels = [str(n) for n in target_n_list]
-            ytick = range(0,102,10)
-            ytick_labels = [str(n) for n in ytick]
-            ylim = (ytick[0]-1, ytick[-1]+2)
-            legends = [
-                      '# Source: {0} Macro F1'.format(n_s),
-                      '# Source: {0} Accuracy'.format(n_s)
-                      ]
-            title = None
-            plotter.plot_multiple_2dline(xs, ys, xlabel, ylabel, xtick,\
-                             xtick_labels, ytick, ytick_labels, title, ax, fig, \
-                             ylim, legends)
+                    result = get_entity_results(query)
+                    try:
+                        assert result
+                    except:
+                        print(n_t)
+                        pdb.set_trace()
+                        result = get_crf_results(query)
+                    #point_precs = result['point_precision_history'][-1]
+                    #point_recall = result['point_recall'][-1]
+                    subset_accuracy_list.append(result['subset_accuracy_history'][-1] * 100)
+                    accuracy_list.append(result['accuracy_history'][-1] * 100)
+                    hierarchy_accuracy_list.append(result['hierarchy_accuracy_history'][-1] * 100)
+                    weighted_f1_list.append(result['weighted_f1_history'][-1] * 100)
+                    macro_f1_list.append(result['macro_f1_history'][-1] * 100)
+
+                xs = target_n_list
+                ys = [accuracy_list, macro_f1_list]
+                #ys = [subset_accuracy_list, accuracy_list, hierarchy_accuracy_list, weighted_f1_list, macro_f1_list]
+                xlabel = '# of Target Building Samples'
+                ylabel = 'F1 score (%)'
+                xtick = target_n_list
+                xtick_labels = [str(n) for n in target_n_list]
+                ytick = range(0,102,10)
+                ytick_labels = [str(n) for n in ytick]
+                ylim = (ytick[0]-1, ytick[-1]+2)
+                legends = [
+                    '#S:{0}, UB:{1}, Accuracy'\
+                    .format(n_s, query['metadata.use_brick_flag']),
+                    '#S:{0}, UB:{1}, Macro F1'\
+                    .format(n_s, query['metadata.use_brick_flag'])
+                          ]
+                title = None
+                plotter.plot_multiple_2dline(xs, ys, xlabel, ylabel, xtick,\
+                                 xtick_labels, ytick, ytick_labels, title, ax, fig, \
+                                 ylim, legends)
     suptitle = 'Multi Label (TagSets) Classification with a Source building.'
     fig.suptitle(suptitle)
     save_fig(fig, 'figs/entity.pdf')
@@ -3054,9 +3436,14 @@ if __name__=='__main__':
                         dest='tagset_classifier_type',
                         default='StructuredCC')
     parser.add_argument('-ts',
-                        type=str,
+                        type='bool',
                         help='Flag to use time series features too',
                         dest='ts_flag',
+                        default=False)
+    parser.add_argument('-neg',
+                        type='bool',
+                        help='Negative Samples augmentation',
+                        dest='negative_flag',
                         default=False)
     parser.add_argument('-exp', 
                         type=str,
@@ -3096,6 +3483,7 @@ if __name__=='__main__':
                                          args.debug_flag,
                                          args.eda_flag,
                                          args.ts_flag,
+                                         args.negative_flag,
                                          args.n_jobs
                                         )
         elif args.avgnum>1:
@@ -3109,6 +3497,7 @@ if __name__=='__main__':
                 use_brick_flag=args.use_brick_flag,
                 eda_flag=args.eda_flag,
                 ts_flag=args.ts_flag,
+                negative_flag=args.negative_flag,
                 n_jobs=args.n_jobs,
                 worker_num=args.worker_num)
     elif args.prog == 'crf_entity':

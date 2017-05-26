@@ -1,0 +1,8 @@
+python scrabble_hierarchy.py entity -bl ebu3b,ap_m -nl 200,5 -t ap_m -c true -nj 1 -avg 8 -wk 4 -ub true -ts true
+python scrabble_hierarchy.py entity -bl ebu3b,ap_m -nl 200,5 -t ap_m -c true -nj 1 -avg 8 -wk 4 -ub true -ts false
+python scrabble_hierarchy.py entity -bl ebu3b,ap_m -nl 200,5 -t ap_m -c true -nj 1 -avg 8 -wk 4 -ub false -ts true
+python scrabble_hierarchy.py entity -bl ebu3b,ap_m -nl 200,5 -t ap_m -c true -nj 1 -avg 8 -wk 4 -ub false -ts false
+python scrabble_hierarchy.py entity -bl ap_m -nl 5 -t ap_m -c true -nj 1 -avg 8 -wk 4 -ub false -ts false
+python scrabble_hierarchy.py entity -bl ap_m -nl 5 -t ap_m -c true -nj 1 -avg 8 -wk 4 -ub false -ts true
+python scrabble_hierarchy.py entity -bl ap_m -nl 5 -t ap_m -c true -nj 1 -avg 8 -wk 4 -ub true -ts false
+python scrabble_hierarchy.py entity -bl ap_m -nl 5 -t ap_m -c true -nj 1 -avg 8 -wk 4 -ub true -ts true

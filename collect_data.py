@@ -26,7 +26,7 @@ end_time_bd2_2 = arrow.get(datetime(2017,5,10), PST).datetime
 #building_name_list = ['AP_M']
 #building_name_list = ['Music']
 #building_name_list = ['AP_M', 'EBU3B', 'SME', 'Music']
-building_name_list = ['AP_M']
+building_name_list = ['BML']
 basedir = "data"
 header = ['value']
 index_label="time"
@@ -187,8 +187,8 @@ if __name__ == "__main__":
                 if len(ts_series)==0:
                     logger.error("Data is empty ({0})".format(srcid))
                     continue
-                ts_series = resample_data(ts_series, begin_time, end_time, \
-                        "raw")
+                #ts_series = resample_data(ts_series, begin_time, end_time, \
+                #        "raw")
                 filename = basedir + '/' + srcid + '.csv'
                 ts_series.to_csv(filename, \
                         header=header, \

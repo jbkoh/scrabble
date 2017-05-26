@@ -93,3 +93,7 @@ data/
 *secret*
 
 logs/
+temp/
+TimeSeriesToIR/
+Model/
+model/

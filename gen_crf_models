@@ -1,8 +1,8 @@
 #!/bin/bash
 
 
-python scrabble_hierarchy.py learn -bl ap_m,ebu3b -nl 200,1 -c true &
-python scrabble_hierarchy.py learn -bl ap_m,ebu3b  -nl 200,5 -c true &
-python scrabble_hierarchy.py learn -bl ap_m,ebu3b  -nl 200,20 -c true &
-python scrabble_hierarchy.py learn -bl ap_m,ebu3b  -nl 200,50 -c true &
-python scrabble_hierarchy.py learn -bl ap_m,ebu3b  -nl 200,200 -c true &
+python scrabble_hierarchy.py learn -bl ap_m -nl 1 -c true &
+python scrabble_hierarchy.py learn -bl ap_m -nl 5 -c true &
+python scrabble_hierarchy.py learn -bl ap_m -nl 20 -c true &
+python scrabble_hierarchy.py learn -bl ap_m -nl 50 -c true &
+python scrabble_hierarchy.py learn -bl ap_m -nl 200 -c true &

@@ -19,7 +19,7 @@ import matplotlib.pyplot as plt
 from math import sqrt
 from copy import deepcopy
 from numpy.matlib import repmat
-import FATS
+#import FATS
 from scipy.signal import savgol_filter 
 #import pywt
 import pdb
@@ -295,18 +295,18 @@ def get_features(ts):
     feats = list()
     normalizedValues = normalize(ts)
     #normalizedValues = ts
-    normalizedNpts = np.asarray([normalizedValues, ts.index.values])
+    # normalizedNpts = np.asarray([normalizedValues, ts.tolist().index.values])
     feats = add_feature(feats, get_max, ts)
     feats = add_feature(feats, get_min, ts)
     feats = add_feature(feats, get_mean, ts)
     feats = add_feature(feats, get_amplitude, ts)
     feats = add_feature(feats, get_std, ts)
     feats = add_feature(feats, get_error_rate, ts)
-    #feats = add_feature(feats, get_fft, normalizedValues)
-    #feats = add_feature(feats, get_dominating_freq_range, normalizedValues)
+    feats = add_feature(feats, get_fft, normalizedValues)
+    feats = add_feature(feats, get_dominating_freq_range, normalizedValues)
     
-    #feats = add_feature(feats, paa, normalizedValues)
-    #feats = add_feature(feats, pla, normalizedValues)
+    feats = add_feature(feats, paa, normalizedValues)
+    feats = add_feature(feats, pla, normalizedValues)
 
     #       feats = add_feature(feats, get_smallkurtosis, normalizedNpts)
 #       feats = add_feature(feats, get_maxslope, normalizedNpts)
@@ -332,4 +332,3 @@ def get_features(ts):
     
     #       feats = feats + get_fats_features(ts)
     return feats
-
