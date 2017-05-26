@@ -3145,8 +3145,8 @@ def entity_recognition_from_ground_truth_get_avg(N,
 def entity_result():
     import plotter
     source_target_list = [('ebu3b', 'ap_m')]#, ('ap_m', 'ebu3b')]
-    n_list_list = [[(0,5), (0,50), (0,100), (0,200)],
-                   [(200,5), (200,50), (200,100), (200,200)]]
+    n_list_list = [[(0,5), (0,50), (0,100), (0,150), (0,200)],
+                   [(200,5), (200,50), (200,100), (0,150), (200,200)]]
     ts_flag = False
     eda_flag = False
     default_query = {
@@ -3162,7 +3162,6 @@ def entity_result():
     }
     query_list = [deepcopy(default_query),\
                  deepcopy(default_query),\
-                 deepcopy(default_query),\
                  deepcopy(default_query)]
     query_list[0]['metadata.use_brick_flag'] = False
     query_list[0]['metadata.negative_flag'] = False
@@ -3170,13 +3169,11 @@ def entity_result():
     query_list[1]['metadata.negative_flag'] = True
     query_list[2]['metadata.use_brick_flag'] = True 
     query_list[2]['metadata.negative_flag'] = True
-    query_list[3]['metadata.use_brick_flag'] = True
-    query_list[3]['metadata.negative_flag'] = True
     char_precs_list = list()
     phrase_f1s_list = list()
-    fig, ax = plt.subplots(1, 1)
-    axes = [ax]
-    fig.set_size_inches(6,4)
+    fig, axes = plt.subplots(1, 3)
+#axes = [ax]
+    fig.set_size_inches(8,5)
     #fig, axes = plt.subplots(1,len(n_list_list))
 
     for ax, (source, target) in zip(axes, source_target_list):
@@ -3210,7 +3207,7 @@ def entity_result():
                     except:
                         print(n_t)
                         pdb.set_trace()
-                        result = get_crf_results(query)
+                        result = get_entity_results(query)
                     #point_precs = result['point_precision_history'][-1]
                     #point_recall = result['point_recall'][-1]
                     subset_accuracy_list.append(result['subset_accuracy_history'][-1] * 100)
@@ -3218,30 +3215,47 @@ def entity_result():
                     hierarchy_accuracy_list.append(result['hierarchy_accuracy_history'][-1] * 100)
                     weighted_f1_list.append(result['weighted_f1_history'][-1] * 100)
                     macro_f1_list.append(result['macro_f1_history'][-1] * 100)
-                    if not (query['metadata.negative_flag'] and
-                            query['metadata.use_brick_flag']):
-                        break
 
                 xs = target_n_list
-                ys = [accuracy_list, macro_f1_list]
+                ys = [hierarchy_accuracy_list, accuracy_list, macro_f1_list]
                 #ys = [subset_accuracy_list, accuracy_list, hierarchy_accuracy_list, weighted_f1_list, macro_f1_list]
                 xlabel = '# of Target Building Samples'
-                ylabel = 'F1 score (%)'
+                ylabel = 'Score (%)'
                 xtick = target_n_list
                 xtick_labels = [str(n) for n in target_n_list]
                 ytick = range(0,102,10)
                 ytick_labels = [str(n) for n in ytick]
                 ylim = (ytick[0]-1, ytick[-1]+2)
                 legends = [
-                    '#S:{0}, UB:{1}, Accuracy'\
-                    .format(n_s, query['metadata.use_brick_flag']),
-                    '#S:{0}, UB:{1}, Macro F1'\
-                    .format(n_s, query['metadata.use_brick_flag'])
+                    '{0}, NS:{1}, UB:{2}'\
+                    .format(n_s, 
+                            query['metadata.negative_flag'], 
+                            query['metadata.use_brick_flag']),
+                    '{0}, NS:{1}, UB:{2}'\
+                    .format(n_s, 
+                            query['metadata.negative_flag'], 
+                            query['metadata.use_brick_flag']),
+                    '{0}, NS:{1}, UB:{2}'\
+                    .format(n_s, 
+                            query['metadata.negative_flag'], 
+                            query['metadata.use_brick_flag'])
                           ]
                 title = None
-                plotter.plot_multiple_2dline(xs, ys, xlabel, ylabel, xtick,\
-                                 xtick_labels, ytick, ytick_labels, title, ax, fig, \
-                                 ylim, legends)
+                plotter.plot_multiple_2dline(xs, [ys[0]], xlabel, ylabel, xtick,\
+                                 xtick_labels, ytick, ytick_labels, title, axes[0], fig, \
+                                 ylim, [legends[0]])
+                plotter.plot_multiple_2dline(xs, [ys[1]], xlabel, ylabel, xtick,\
+                                 xtick_labels, ytick, ytick_labels, title, axes[1], fig, \
+                                 ylim, [legends[1]])
+                plotter.plot_multiple_2dline(xs, [ys[2]], xlabel, ylabel, xtick,\
+                                 xtick_labels, ytick, ytick_labels, title, axes[2], fig, \
+                                 ylim, [legends[2]])
+                if not (query['metadata.negative_flag'] and
+                        query['metadata.use_brick_flag']):
+                    break
+    axes[0].set_title('Hierarchical Accuracy')
+    axes[1].set_title('Accuracy')
+    axes[2].set_title('Macro F1')
     suptitle = 'Multi Label (TagSets) Classification with a Source building.'
     fig.suptitle(suptitle)
     save_fig(fig, 'figs/entity.pdf')
