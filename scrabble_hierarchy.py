@@ -1,4 +1,3 @@
-import os
 from functools import reduce, partial
 import json
 import random
@@ -279,13 +278,13 @@ def hamming_loss_func(pred_tagsets, true_tagsets, labels):
             incorrect_cnt += 1
     return incorrect_cnt / len(labels)
 
-def accuracy_func(pred_tagsets, true_tagsets, labels):
+def accuracy_func(pred_tagsets, true_tagsets, labels=None):
     pred_tagsets = set(pred_tagsets)
     true_tagsets = set(true_tagsets)
     return len(pred_tagsets.intersection(true_tagsets))\
             / len(pred_tagsets.union(true_tagsets))
 
-def hierarchy_accuracy_func(pred_tagsets, true_tagsets, labels):
+def hierarchy_accuracy_func(pred_tagsets, true_tagsets, labels=None):
     true_tagsets = deepcopy(true_tagsets)
     pred_tagsets = deepcopy(pred_tagsets)
     if not isinstance(pred_tagsets, list):
@@ -451,7 +450,8 @@ def select_random_samples(building, \
                           srcids, \
                           n, \
                           use_cluster_flag,\
-                          token_type='justseparate'):
+                          token_type='justseparate',
+                          reverse=True):
     cluster_filename = 'model/%s_word_clustering_%s.json' % (building, token_type)
     with open(cluster_filename, 'r') as fp:
         cluster_dict = json.load(fp)
@@ -463,9 +463,11 @@ def select_random_samples(building, \
     if use_cluster_flag:
         sample_cnt = 0
         sorted_cluster_dict = OrderedDict(
-            sorted(cluster_dict.items(), key=length_counter, reverse=True))
+            sorted(cluster_dict.items(), key=length_counter, reverse=reverse))
         while len(sample_srcids) < n:
-            for cluster_num, srcid_list in sorted_cluster_dict.items():
+            cluster_dict_items = list(sorted_cluster_dict.items())
+            random.shuffle(cluster_dict_items)
+            for cluster_num, srcid_list in cluster_dict_items:
                 valid_srcid_list = set(srcid_list)\
                         .intersection(set(srcids))\
                         .difference(set(sample_srcids))
@@ -1005,7 +1007,6 @@ def tagsets_prediction(classifier, vectorizer, binarizer, \
     certainty_dict = dict()
     tagsets_dict = dict()
     logging.info('Start Tagset prediction')
-    #pdb.set_trace()
     pred_mat = classifier.predict(vect_doc)
     logging.info('Finished Tagset prediction')
     if not isinstance(pred_mat, np.ndarray):
@@ -1088,6 +1089,12 @@ def tagsets_evaluation(truths_dict, pred_tagsets_dict, pred_certainty_dict,\
             if tagset in point_tagsets:
                 true_point = tagset
                 break
+        result_dict['A'][srcid] = accuracy_func(pred_tagsets, true_tagsets)
+        result_dict['HA'][srcid] = hierarchy_accuracy_func(pred_tagsets,
+                                                           true_tagsets)
+        result_dict['phrase_usage'][srcid] = determine_used_phrases(
+                                                phrase_dict[srcid],
+                                                pred_tagsets)
         if set(true_tagsets) == set(pred_tagsets):
             correct_cnt += 1
             one_result['correct?'] = True
@@ -1193,7 +1200,7 @@ def tagsets_evaluation(truths_dict, pred_tagsets_dict, pred_certainty_dict,\
     result_dict['macro_f1'] = macro_f1
     result_dict['weighted_f1'] = weighted_f1
     pp.pprint(dict([(k,v) for k, v in result_dict.items() \
-                    if k not in ['correct', 'incorrect']]))
+                    if k not in ['correct', 'incorrect', 'phrase_usage', 'HA', 'A']]))
     return dict(result_dict)
 
 def tagsets_evaluation_deprecated(truths_dict, pred_tagsets_dict, \
@@ -1427,6 +1434,48 @@ class ProjectClassifier():
         return self.base_classifier.predict(X)
 
 
+class VotingClassifier():
+    def __init__(self, binarizer, vectorizer, tagset_tree, tagset_list):
+        self.binarizer = binarizer
+        self.tagset_tree = tagset_tree
+        self.vectorizer = vectorizer
+        self.tagset_list = tagset_list
+
+    def fit(self, X, Y):
+        pass
+
+    def tagset_score(self, tags, tagset):
+        if set(tags.tolist()) == set(['max', 'supply', 'air', 'static',
+                                   'pressure', 'setpoint'])\
+           and tagset == 'max_load_setpoint':
+            #pdb.set_trace()
+            pass
+        tagset_tags = tagset.split('_')
+        tagset_slots = dict([(tag, 0) for tag in tagset_tags])
+        for tag in tags:
+            if tag in tagset_tags:
+                tagset_slots[tag] += 1
+        used_tags = sum(tagset_slots.values())
+        even_dist_num = used_tags / len(tagset_tags)
+        max_score = len(tagset_tags) * np.log(even_dist_num+1)
+        log_scorer = lambda x: np.log(x+1)
+        curr_score = sum(map(log_scorer, tagset_slots.values()))
+        return curr_score / max_score
+
+    def predict_tagset(self, tags):
+        pred_tagsets = list()
+        for tagset in self.tagset_list:
+            if self.tagset_score(tags, tagset) >= 0.92:
+                pred_tagsets.append(tagset)
+        return pred_tagsets
+
+    def predict(self, X):
+        phrases_mat = self.vectorizer.inverse_transform(X)
+        pred_tagsets = list()
+        for phrases in phrases_mat:
+            pred_tagsets.append(self.predict_tagset(phrases))
+
+        return pred_tagsets
 
 
 class StructuredClassifierChain():
@@ -1850,10 +1899,15 @@ def parameter_validation(vect_doc, truth_mat, srcids, params_list_dict,\
                          source_target_buildings, eda_flag):
     #best_params = {'n_estimators': 50, 'criterion': 'entropy', 'max_features': 'auto', 'max_depth': 5, 'min_samples_leaf': 2, 'min_samples_split': 2}
     #best_params = {'criterion': 'entropy'}
-    best_params = {}
     #best_params = {'loss': 'exponential', 'learning_rate': 0.01, 'criterion': 'friedman_mse', 'max_features': None, 'max_depth': 10, 'min_samples_leaf': 4, 'min_samples_split': 2}
 
+        #tagset_classifier = RandomForestClassifier(n_estimators=100,
+        #                                           random_state=0,\
+        #                                           n_jobs=n_jobs)
+    best_params = {'learning_rate':0.1, 'subsample':0.5}
     return meta_classifier(**best_params) # Pre defined setup.
+    #best_params = {'n_estimators': 120, 'n_jobs':7}
+    #return meta_classifier(**best_params)
 
     token_type = 'justseparate'
     results_dict = dict()
@@ -2290,14 +2344,19 @@ def build_tagset_classifier(building_list, target_building,\
         truth_mat = vstack([truth_mat, zero_vectors])
         learning_vect_doc = np.vstack([learning_vect_doc, unlabeled_vect_doc])
     logging.info('Start learning multi-label classifier')
+
     ## FITTING A CLASSIFIER
     if tagset_classifier_type == 'RandomForest':
-        tagset_classifier = RandomForestClassifier(n_estimators=100,
-                                                   random_state=0,\
-                                                   n_jobs=n_jobs)
+        def meta_rf(**kwargs):
+            return RandomForestClassifier(**kwargs)
+        #tagset_classifier = RandomForestClassifier(n_estimators=100,
+        #                                           random_state=0,\
+        #                                           n_jobs=n_jobs)
+        meta_classifier = meta_rf
+        params_list_dict = {}
     elif tagset_classifier_type == 'StructuredCC_BACKUP':
-        feature_selector = SelectFromModel(LinearSVC(C=0.01))
-        #feature_selector = SelectFromModel(LinearSVC(C=0.01, penalty='l1', dual=False))
+        #feature_selector = SelectFromModel(LinearSVC(C=0.001))
+        feature_selector = SelectFromModel(LinearSVC(C=0.01, penalty='l1', dual=False))
         base_base_classifier = GradientBoostingClassifier()
         #base_base_classifier = RandomForestClassifier()
         base_classifier = Pipeline([('feature_selection',
@@ -2316,8 +2375,8 @@ def build_tagset_classifier(building_list, target_building,\
         def meta_scc(**kwargs):
             feature_selector = SelectFromModel(LinearSVC(C=1))
             #feature_selector = SelectFromModel(LinearSVC(C=0.01, penalty='l1', dual=False))
-            #base_base_classifier = GradientBoostingClassifier(**kwargs)
-            base_base_classifier = RandomForestClassifier(**kwargs)
+            base_base_classifier = GradientBoostingClassifier(**kwargs)
+            #base_base_classifier = RandomForestClassifier(**kwargs)
             base_classifier = Pipeline([('feature_selection',
                                          feature_selector),
                                         ('classification',
@@ -2366,6 +2425,12 @@ def build_tagset_classifier(building_list, target_building,\
                                     fit_intercept=False,
                                     class_weight='balanced')
         tagset_classifier = OneVsRestClassifier(base_classifier)
+    elif tagset_classifier_type == 'Voting':
+        def meta_voting(**kwargs):
+            return VotingClassifier(tagset_binarizer, tagset_vectorizer,
+                                    tagset_tree, tagset_list)
+        meta_classifier = meta_voting
+        params_list_dict = {}
     else:
         assert False
 
@@ -2394,7 +2459,8 @@ def cross_validation(building_list, n_list,
                      pred_phrase_dict, pred_tagsets_dict,
                      result_dict, k=2, \
                      eda_flag=False, token_type='justseparate',
-                     use_brick_flag=True):
+                     use_brick_flag=True,
+                     ts_flag=False):
 
     learning_sentence_dict, \
     learning_token_label_dict, \
@@ -2563,7 +2629,8 @@ def entity_recognition_from_ground_truth(building_list,
                                              'hierarchy_accuracy_history': [],
                                              'weighted_f1_history': [],
                                              'macro_f1_history': [],
-                                             'metadata': {}
+                                             'metadata': {},
+                                             'phrase_usage_history': []
                                          },
                                          crf_phrase_dict=None,
                                          crf_srcids=None
@@ -2587,11 +2654,16 @@ def entity_recognition_from_ground_truth(building_list,
             'use_brick_flag': use_brick_flag,
             'eda_flag': eda_flag,
             'ts_flag': ts_flag,
+            'negative_flag': negative_flag,
             'building_list': building_list,
             'target_building': target_building,
             'source_sample_num_list': source_sample_num_list
         }
         prev_step_data['metadata'] = metadata
+    if not prev_step_data.get('learnt_but_unfound_tagsets_history'):
+        prev_step_data['learnt_but_unfound_tagsets_history'] = list()
+    if not prev_step_data.get('unfound_tagsets_history'):
+        prev_step_data['unfound_tagsets_history'] = []
 
     # Read previous step's data
     learning_srcids = prev_step_data.get('learning_srcids')
@@ -2606,12 +2678,31 @@ def entity_recognition_from_ground_truth(building_list,
 
 
     if iter_cnt>1:
-        learning_srcids = cross_validation(building_list, source_sample_num_list, \
-                         target_building, \
-                         learning_srcids, prev_test_srcids, \
-                         prev_pred_phrase_dict, prev_pred_tagsets_dict,
-                         prev_result_dict, 4, \
-                         eda_flag, token_type, use_brick_flag)
+        with open('metadata/{0}_char_label_dict.json'\
+                  .format(target_building), 'r') as fp:
+            sentence_label_dict = json.load(fp)
+        test_srcids = [srcid for srcid in sentence_label_dict.keys() \
+                       if srcid not in learning_srcids]
+        inc_num = 20
+        todo_srcids = select_random_samples(target_building,
+                                            test_srcids,
+                                            int(inc_num/2),
+                                            use_cluster_flag,
+                                            token_type='justseparate',
+                                            reverse=True)
+        todo_srcids += select_random_samples(target_building,
+                                            test_srcids,
+                                            int(inc_num/2),
+                                            use_cluster_flag,
+                                            token_type='justseparate',
+                                            reverse=False)
+        #learning_srcids = cross_validation(building_list, source_sample_num_list, \
+        #                 target_building, \
+        #                 learning_srcids, prev_test_srcids, \
+        #                 prev_pred_phrase_dict, prev_pred_tagsets_dict,
+        #                 prev_result_dict, 4, \
+        #                 eda_flag, token_type, use_brick_flag, ts_flag)
+        learning_srcids += todo_srcids * 5
     print('\n')
     print('################ Iteration {0} ################'.format(iter_cnt))
 
@@ -2770,6 +2861,21 @@ def entity_recognition_from_ground_truth(building_list,
                                             debug_flag,
                                            tagset_classifier,
                                            tagset_vectorizer)
+
+    learnt_tagsets = Counter(reduce(adder, [learning_truths_dict[srcid]
+                                    for srcid in learning_srcids]))
+    unfound_tagsets = list()
+    for srcid in target_srcids:
+        pred_tagsets = target_pred_tagsets_dict[srcid]
+        true_tagsets = target_truths_dict[srcid]
+        for tagset in true_tagsets:
+            if tagset not in pred_tagsets:
+                unfound_tagsets.append(tagset)
+    unfound_tagsets = Counter(unfound_tagsets)
+    learnt_unfound_tagsets = dict([(tagset, learnt_tagsets[tagset])
+                 for tagset in unfound_tagsets.keys()
+                 if tagset in learnt_tagsets.keys()])
+
     next_step_data = {
         'exp_type': 'entity_from_ground_truth',
         'pred_tagsets_dict': target_pred_tagsets_dict,
@@ -2812,10 +2918,25 @@ def entity_recognition_from_ground_truth(building_list,
         'macro_f1_history': \
             prev_step_data['macro_f1_history'] \
             + [target_result_dict['macro_f1']],
-        'metadata': prev_step_data['metadata']
+        'metadata': prev_step_data['metadata'],
+        'phrase_usage_history': prev_step_data['phrase_usage_history']
+                                 + [target_result_dict['phrase_usage']],
+        'learnt_but_unfound_tagsets_history':
+            prev_step_data['learnt_but_unfound_tagsets_history'] +
+            [list(learnt_unfound_tagsets.keys())],
+        'unfound_tagsets_history':
+            prev_step_data['unfound_tagsets_history'] +
+            [list(unfound_tagsets.keys())]
     }
-
     print('################################# Iter# {0}'.format(iter_cnt))
+    #logging.info('Learnt but not detected tagsets: {0}'.format(
+    #    learnt_unfound_tagsets))
+    lengther = lambda x: len(x)
+    logging.info('# of not detected tagsets: {0}'.format(list(map(lengther,
+                    next_step_data['unfound_tagsets_history']))))
+    logging.info('# of learnt but not detected tagsets: {0}'.format(list(map(lengther,
+                    next_step_data['learnt_but_unfound_tagsets_history']))))
+
     print('history of point precision: {0}'\
           .format(next_step_data['point_precision_history']))
     print('history of point recall: {0}'\
@@ -2828,10 +2949,16 @@ def entity_recognition_from_ground_truth(building_list,
           .format(next_step_data['unfound_point_cnt_history']))
 
     store_result(next_step_data)
+    if iter_cnt == 4:
+        pdb.set_trace()
 
-    #return  target_result_dict['point_precision'], \
-    #        target_result_dict['point_recall'], \
-    #        next_step_data
+    try:
+        del next_step_data['_id']
+    except:
+        pass
+    with open('result/entity_iteration.json', 'w') as fp:
+        json.dump(next_step_data, fp)
+    #pdb.set_trace()
     return target_result_dict, next_step_data
 
 
@@ -2858,7 +2985,8 @@ def entity_recognition_iteration(iter_num, *args):
         'hierarchy_accuracy_history': [],
         'weighted_f1_history': [],
         'macro_f1_history': [],
-        'metadata': {}
+        'metadata': {},
+        'phrase_usage_history': []
     }
     for i in range(0, iter_num):
         _, step_data = entity_recognition_from_ground_truth(\
@@ -2896,6 +3024,22 @@ def crf_entity_recognition_iteration(iter_num, *args):
         json.dump(step_datas, fp, indent=2)
 
 
+def determine_used_phrases(phrases, tagsets):
+    phrases_usages = list()
+    pred_tags = reduce(adder, [tagset.split('_') for tagset in tagsets], [])
+    used_cnt = 0.0
+    unused_cnt = 0.0
+    for phrase in phrases:
+        phrase_tags = phrase.split('_')
+        for tag in phrase_tags:
+            if tag in ['leftidentifier', 'rightidentifier']:
+                continue
+            if tag in pred_tags:
+                used_cnt += 1 / len(phrase_tags)
+            else:
+                unused_cnt += 1 / len(phrase_tags)
+    return used_cnt / (used_cnt + unused_cnt)
+
 
 def determine_used_tokens(sentence, token_labels, tagsets):
     token_usages = list()
@@ -2905,6 +3049,9 @@ def determine_used_tokens(sentence, token_labels, tagsets):
             token_usages.append(0)
         else:
             tags_in_label = label[2:].split('_')
+            if tags_in_label[0] in ['leftidentifier',
+                                    'rightidentifier']:
+                continue
             included_cnt = 0
             for tag in tags_in_label:
                 if tag in tags:
@@ -2934,6 +3081,7 @@ def entity_recognition_from_crf(prev_step_data,\
                                 use_cluster_flag=False,\
                                 use_brick_flag=True,\
                                 eda_flag=False,\
+                                negative_flag = True,\
                                 debug_flag=False,
                                 n_jobs=4,
                                 ts_flag=False):
@@ -2981,6 +3129,7 @@ def entity_recognition_from_crf(prev_step_data,\
                  learning_srcids)
         crf_result = get_crf_results(crf_result_query)
         assert crf_result
+    pdb.set_trace()
     given_srcids = list(reduce(adder,\
                             list(crf_result['source_list'].values()), []))
     crf_sentence_dict = dict()
@@ -3021,7 +3170,8 @@ def entity_recognition_from_crf(prev_step_data,\
                                     tagset_list, eda_flag, use_brick_flag,
                                     source_target_buildings,
                                     n_jobs,
-                                    ts_flag
+                                    ts_flag,
+                                    negative_flag
                                    )
     augment_tagset_tree(tagset_list)
     tree_depth_dict = calc_leaves_depth(tagset_tree)
@@ -3071,6 +3221,41 @@ def entity_recognition_from_crf(prev_step_data,\
         }
     }
     return next_step_data
+
+def calc_char_utilization(sentence, char_labels, tagsets):
+    assert len(sentence) == len(char_labels)
+    tags = reduce(adder, map(splitter, tagsets))
+    char_label_splitter = lambda s: splitter(s[2:])
+    char_tags = reduce(adder, map(char_label_splitter, char_labels))
+    used_cnt = 0
+    unused_cnt = 0
+    dummy_cnt = 0
+    done_cnt = 0
+    undone_cnt = 0
+    for char_label in char_labels:
+        char_tags = char_label[2:].split('_')
+        for char_tag in char_tags:
+            if char_tag in ['leftidentifier', 'rightidentifier', \
+                            'none', 'unknown']:
+                dummy_cnt += 1 / len(char_tags)
+                continue
+            if char_tag in tags:
+                used_cnt += 1/len(char_tags)
+            else:
+                unused_cnt += 1/len(char_tags)
+    for tagset in tagsets:
+        tags = tagset.split('_')
+        for tag in tags:
+            if tag in char_tags:
+                done_cnt += 1 / len(tags)
+            else:
+                undone_cnt += 1 / len(tags)
+    assert done_cnt + undone_cnt == len(tagsets)
+    assert used_cnt + unused_cnt + dummy_cnt == len(sentence)
+    utilization = used_cnt / (used_cnt + unused_cnt)
+    completeness = done_cnt / (done_cnt + undone_cnt)
+    return utilization, completeness
+
 
 
 #TODO: Make this more generic to apply to other functions
@@ -3144,8 +3329,8 @@ def entity_recognition_from_ground_truth_get_avg(N,
 def entity_result():
     import plotter
     source_target_list = [('ebu3b', 'ap_m')]#, ('ap_m', 'ebu3b')]
-    n_list_list = [[(0,5), (0,50), (0,100), (0,200)],
-                   [(200,5), (200,50), (200,100), (200,200)]]
+    n_list_list = [[(0,5), (0,50), (0,100), (0,150), (0,200)],
+                   [(200,5), (200,50), (200,100), (0,150), (200,200)]]
     ts_flag = False
     eda_flag = False
     default_query = {
@@ -3159,19 +3344,20 @@ def entity_result():
         'metadata.eda_flag': eda_flag,
         'metadata.use_brick_flag': True
     }
+    query_list = [deepcopy(default_query),\
+                 deepcopy(default_query),\
+                 deepcopy(default_query)]
     query_list[0]['metadata.use_brick_flag'] = False
     query_list[0]['metadata.negative_flag'] = False
     query_list[1]['metadata.use_brick_flag'] = False
     query_list[1]['metadata.negative_flag'] = True
     query_list[2]['metadata.use_brick_flag'] = True 
     query_list[2]['metadata.negative_flag'] = True
-    query_list[3]['metadata.use_brick_flag'] = True
-    query_list[3]['metadata.negative_flag'] = True
     char_precs_list = list()
     phrase_f1s_list = list()
-    fig, ax = plt.subplots(1, 1)
-    axes = [ax]
-    fig.set_size_inches(6,8)
+    fig, axes = plt.subplots(1, 3)
+#axes = [ax]
+    fig.set_size_inches(8,5)
     #fig, axes = plt.subplots(1,len(n_list_list))
 
     for ax, (source, target) in zip(axes, source_target_list):
@@ -3205,7 +3391,7 @@ def entity_result():
                     except:
                         print(n_t)
                         pdb.set_trace()
-                        result = get_crf_results(query)
+                        result = get_entity_results(query)
                     #point_precs = result['point_precision_history'][-1]
                     #point_recall = result['point_recall'][-1]
                     subset_accuracy_list.append(result['subset_accuracy_history'][-1] * 100)
@@ -3213,30 +3399,47 @@ def entity_result():
                     hierarchy_accuracy_list.append(result['hierarchy_accuracy_history'][-1] * 100)
                     weighted_f1_list.append(result['weighted_f1_history'][-1] * 100)
                     macro_f1_list.append(result['macro_f1_history'][-1] * 100)
-                    if not (query['metadata.negative_flag'] and
-                            query['metadata.use_brick_flag']):
-                        break
 
                 xs = target_n_list
-                ys = [accuracy_list, macro_f1_list]
+                ys = [hierarchy_accuracy_list, accuracy_list, macro_f1_list]
                 #ys = [subset_accuracy_list, accuracy_list, hierarchy_accuracy_list, weighted_f1_list, macro_f1_list]
                 xlabel = '# of Target Building Samples'
-                ylabel = 'F1 score (%)'
+                ylabel = 'Score (%)'
                 xtick = target_n_list
                 xtick_labels = [str(n) for n in target_n_list]
                 ytick = range(0,102,10)
                 ytick_labels = [str(n) for n in ytick]
                 ylim = (ytick[0]-1, ytick[-1]+2)
                 legends = [
-                    '#S:{0}, UB:{1}, Accuracy'\
-                    .format(n_s, query['metadata.use_brick_flag']),
-                    '#S:{0}, UB:{1}, Macro F1'\
-                    .format(n_s, query['metadata.use_brick_flag'])
+                    '{0}, NS:{1}, UB:{2}'\
+                    .format(n_s, 
+                            query['metadata.negative_flag'], 
+                            query['metadata.use_brick_flag']),
+                    '{0}, NS:{1}, UB:{2}'\
+                    .format(n_s, 
+                            query['metadata.negative_flag'], 
+                            query['metadata.use_brick_flag']),
+                    '{0}, NS:{1}, UB:{2}'\
+                    .format(n_s, 
+                            query['metadata.negative_flag'], 
+                            query['metadata.use_brick_flag'])
                           ]
                 title = None
-                plotter.plot_multiple_2dline(xs, ys, xlabel, ylabel, xtick,\
-                                 xtick_labels, ytick, ytick_labels, title, ax, fig, \
-                                 ylim, legends)
+                plotter.plot_multiple_2dline(xs, [ys[0]], xlabel, ylabel, xtick,\
+                                 xtick_labels, ytick, ytick_labels, title, axes[0], fig, \
+                                 ylim, [legends[0]])
+                plotter.plot_multiple_2dline(xs, [ys[1]], xlabel, ylabel, xtick,\
+                                 xtick_labels, ytick, ytick_labels, title, axes[1], fig, \
+                                 ylim, [legends[1]])
+                plotter.plot_multiple_2dline(xs, [ys[2]], xlabel, ylabel, xtick,\
+                                 xtick_labels, ytick, ytick_labels, title, axes[2], fig, \
+                                 ylim, [legends[2]])
+                if not (query['metadata.negative_flag'] and
+                        query['metadata.use_brick_flag']):
+                    break
+    axes[0].set_title('Hierarchical Accuracy')
+    axes[1].set_title('Accuracy')
+    axes[2].set_title('Macro F1')
     suptitle = 'Multi Label (TagSets) Classification with a Source building.'
     fig.suptitle(suptitle)
     save_fig(fig, 'figs/entity.pdf')
@@ -3499,6 +3702,7 @@ if __name__=='__main__':
                   args.use_cluster_flag,
                   args.use_brick_flag,
                   args.eda_flag,
+                  args.negative_flag,
                   args.debug_flag,
                   args.n_jobs)
         crf_entity_recognition_iteration(args.iter_num, *params)
