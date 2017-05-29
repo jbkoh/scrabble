@@ -1918,6 +1918,7 @@ def parameter_validation(vect_doc, truth_mat, srcids, params_list_dict,\
         #                                           random_state=0,\
         #                                           n_jobs=n_jobs)
     best_params = {'learning_rate':0.1, 'subsample':0.5}
+    #best_params = {'C':0.4, 'solver': 'liblinear'}
     return meta_classifier(**best_params) # Pre defined setup.
     #best_params = {'n_estimators': 120, 'n_jobs':7}
     #return meta_classifier(**best_params)
@@ -2370,7 +2371,8 @@ def build_tagset_classifier(building_list, target_building,\
     elif tagset_classifier_type == 'StructuredCC_BACKUP':
         #feature_selector = SelectFromModel(LinearSVC(C=0.001))
         feature_selector = SelectFromModel(LinearSVC(C=0.01, penalty='l1', dual=False))
-        base_base_classifier = GradientBoostingClassifier()
+        base_base_classifier = LogisticRegression()
+        #base_base_classifier = GradientBoostingClassifier()
         #base_base_classifier = RandomForestClassifier()
         base_classifier = Pipeline([('feature_selection',
                                      feature_selector),
@@ -2391,6 +2393,7 @@ def build_tagset_classifier(building_list, target_building,\
             feature_selector = SelectFromModel(LinearSVC(C=1))
             #feature_selector = SelectFromModel(LinearSVC(C=0.01, penalty='l1', dual=False))
             base_base_classifier = GradientBoostingClassifier(**kwargs)
+            #base_base_classifier = LogisticRegression()
             #base_base_classifier = RandomForestClassifier(**kwargs)
             base_classifier = Pipeline([('feature_selection',
                                          feature_selector),
@@ -3458,10 +3461,16 @@ def entity_recognition_from_ground_truth_get_avg(N,
     print ('Averaged Macro F1: {0}'.format(macro_f1))
     print("FIN")
 
+def oxer(b):
+    if b:
+        return 'O'
+    else:
+        return 'X'
+
 def entity_iter_result():
     source_target_list = [('ebu3b', 'ap_m')]
-    n_list_list = [(0,5),
-                   (200,5)]
+    n_list_list = [(200,5),
+                   (0,5),]
 #                   (1000,1)]
     ts_flag = False
     eda_flag = False
@@ -3486,6 +3495,8 @@ def entity_iter_result():
     query_list[1]['metadata.use_brick_flag'] = False
     fig, ax = plt.subplots(1, 1)
     axes = [ax]
+    linestyles = [':', '-.', '--', '-']
+    cs = ['firebrick', 'deepskyblue']
     for ax, (source, target) in zip(axes, source_target_list):
         for query in query_list:
             for ns in n_list_list:
@@ -3535,25 +3546,30 @@ def entity_iter_result():
                 ys = [accuracy_list, macro_f1_list]
                 xlabel = '# of Target Building Samples'
                 ylabel = 'Score (%)'
-                xtick = target_n_list
-                xtick_labels = [str(n) for n in target_n_list]
+                xtick = range(0,205, 20)
+                xtick_labels = [str(n) for n in xtick]
                 ytick = range(0,102,10)
                 ytick_labels = [str(n) for n in ytick]
                 ylim = (ytick[0]-1, ytick[-1]+2)
                 legends = [
-                    'A, {0}, NS:{1}, UB:{2}'\
-                    .format(n_s, 
-                            query['metadata.negative_flag'], 
-                            query['metadata.use_brick_flag']),
-                    'MF, {0}, NS:{1}, UB:{2}'\
-                    .format(n_s, 
-                            query['metadata.negative_flag'], 
-                            query['metadata.use_brick_flag']),
+                    '{0:<4}, {1:<4}, NS:{2:<2}, UB:{3:<2}'\
+                    .format('A',
+                            n_s,
+                            oxer(query['metadata.negative_flag']),
+                            oxer(query['metadata.use_brick_flag'])),
+                    '{0:<4}, {1:<4}, NS:{2:<2}, UB:{3:<2}'\
+                    .format('MF1',
+                            n_s,
+                            oxer(query['metadata.negative_flag']),
+                            oxer(query['metadata.use_brick_flag'])),
                           ]
                 title = None
                 plotter.plot_multiple_2dline(xs, ys, xlabel, ylabel, xtick,\
                                  xtick_labels, ytick, ytick_labels, title, ax,\
-                                 fig, ylim, legends)
+                                 fig, ylim, legends, xtickRotate=0, \
+                                 linestyles=[linestyles.pop()]*len(ys), cs=cs)
+    axes[0].grid(True)
+    fig.set_size_inches(4,2.5)
     save_fig(fig, 'figs/entity_iter.pdf')
 
 def entity_result():
@@ -3682,7 +3698,9 @@ def crf_result():
     phrase_f1s_list = list()
 #fig, ax = plt.subplots(1, 1)
     fig, axes = plt.subplots(1,len(n_list_list))
-    fig.set_size_inches(8, 2)
+    fig.set_size_inches(4, 2)
+    cs = ['firebrick', 'deepskyblue']
+    linestyles = ['-.', '--', '-']
 
     for ax, (source, target) in zip(axes, source_target_list):
         for n_list in n_list_list:
@@ -3739,13 +3757,14 @@ def crf_result():
             ytick = range(0,101,10)
             ytick_labels = [str(n) for n in ytick]
             ylim = (ytick[0]-2, ytick[-1]+2)
-            legends = ['# Source:{0}, Phrase F1'.format(n_s),
-                      '# Source:{0}, Phrase Macro F1'.format(n_s),
+            legends = ['#S:{0}, Phrase F1'.format(n_s),
+                      '#S:{0}, Phrase Macro F1'.format(n_s),
                       ]
             title = None
             plotter.plot_multiple_2dline(xs, ys, xlabel, ylabel, xtick,\
                              xtick_labels, ytick, ytick_labels, title, ax, fig, \
-                             ylim, legends)
+                             ylim, legends, xtickRotate=0, \
+                             linestyles=linestyles, cs=cs)
     save_fig(fig, 'figs/crf.pdf')
     subprocess.call('./send_figures')
 
