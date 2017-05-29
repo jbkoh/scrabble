@@ -1,4 +1,5 @@
 from functools import reduce, partial
+import os
 import json
 import random
 from collections import OrderedDict, defaultdict, Counter
@@ -67,6 +68,7 @@ from sklearn.decomposition import PCA
 #from skmultilearn.cluster import IGraphLabelCooccurenceClusterer
 #from skmultilearn.ensemble import LabelSpacePartitioningClassifier
 
+import plotter
 from resulter import Resulter
 from time_series_to_ir import TimeSeriesToIR
 from mongo_models import store_model, get_model, get_tags_mapping, \
@@ -195,6 +197,9 @@ def adder(x, y):
 
 def splitter(s):
     return s.split('_')
+
+def alpha_tokenizer(s): 
+    return re.findall('[a-zA-Z]+', s)
 
 def save_fig(fig, name, dpi=400):
     pp = PdfPages(name)
@@ -451,10 +456,13 @@ def select_random_samples(building, \
                           n, \
                           use_cluster_flag,\
                           token_type='justseparate',
-                          reverse=True):
-    cluster_filename = 'model/%s_word_clustering_%s.json' % (building, token_type)
-    with open(cluster_filename, 'r') as fp:
-        cluster_dict = json.load(fp)
+                          reverse=True,
+                          cluster_dict=None
+                         ):
+    if not cluster_dict:
+        cluster_filename = 'model/%s_word_clustering_%s.json' % (building, token_type)
+        with open(cluster_filename, 'r') as fp:
+            cluster_dict = json.load(fp)
 
     # Learning Sample Selection
     sample_srcids = set()
@@ -464,6 +472,7 @@ def select_random_samples(building, \
         sample_cnt = 0
         sorted_cluster_dict = OrderedDict(
             sorted(cluster_dict.items(), key=length_counter, reverse=reverse))
+        #n = len(sorted_cluster_dict) #TODO: Remove if not working well
         while len(sample_srcids) < n:
             cluster_dict_items = list(sorted_cluster_dict.items())
             random.shuffle(cluster_dict_items)
@@ -557,9 +566,9 @@ def learn_crf_model(building_list,
             for srcid in sentence_dict.keys():
                 if not normalized_data_feature_dict.get(srcid):
                     normalized_data_feature_dict[srcid] = None
-        if prev_step_data.get('learning_srcids'):
+        if prev_step_data['learning_srcids']:
             sample_srcid_list = [srcid for srcid in sentence_dict.keys() \
-                                 if srcid in prev_step_data['learning_srcids']]
+                                 if srcid in prev_step_data['learning_srcids'][-1]]
         else:
             sample_srcid_list = select_random_samples(building, \
                                                       label_dict.keys(), \
@@ -579,7 +588,7 @@ def learn_crf_model(building_list,
 
         sample_dict[building] = list(sample_srcid_list)
     if prev_step_data.get('learning_srcids'):
-        assert set(prev_step_data['learning_srcids']) == set(learning_srcids)
+        assert set(prev_step_data['learning_srcids'][-1]) == set(learning_srcids)
 
 
     # Learn Brick tags
@@ -1904,7 +1913,7 @@ def parameter_validation(vect_doc, truth_mat, srcids, params_list_dict,\
         #tagset_classifier = RandomForestClassifier(n_estimators=100,
         #                                           random_state=0,\
         #                                           n_jobs=n_jobs)
-    best_params = {'learning_rate':0.1, 'subsample':0.5}
+    best_params = {'learning_rate':0.05, 'subsample':0.5, 'max_depth': 1}
     return meta_classifier(**best_params) # Pre defined setup.
     #best_params = {'n_estimators': 120, 'n_jobs':7}
     #return meta_classifier(**best_params)
@@ -2639,6 +2648,7 @@ def entity_recognition_from_ground_truth(building_list,
     global tagset_list
     global total_srcid_dict
     global tree_depth_dict
+    inc_num = 20
     assert len(building_list) == len(source_sample_num_list)
 
     ########################## DATA INITIATION ##########################
@@ -2657,13 +2667,17 @@ def entity_recognition_from_ground_truth(building_list,
             'negative_flag': negative_flag,
             'building_list': building_list,
             'target_building': target_building,
-            'source_sample_num_list': source_sample_num_list
+            'source_sample_num_list': source_sample_num_list,
         }
         prev_step_data['metadata'] = metadata
     if not prev_step_data.get('learnt_but_unfound_tagsets_history'):
         prev_step_data['learnt_but_unfound_tagsets_history'] = list()
     if not prev_step_data.get('unfound_tagsets_history'):
         prev_step_data['unfound_tagsets_history'] = []
+
+    prev_step_data['metadata']['inc_num'] =  inc_num
+    if not prev_step_data.get('debug'):
+        prev_step_data['debug'] = defaultdict(list)
 
     # Read previous step's data
     learning_srcids = prev_step_data.get('learning_srcids')
@@ -2678,12 +2692,12 @@ def entity_recognition_from_ground_truth(building_list,
 
 
     if iter_cnt>1:
+        """
         with open('metadata/{0}_char_label_dict.json'\
                   .format(target_building), 'r') as fp:
             sentence_label_dict = json.load(fp)
         test_srcids = [srcid for srcid in sentence_label_dict.keys() \
                        if srcid not in learning_srcids]
-        inc_num = 20
         todo_srcids = select_random_samples(target_building,
                                             test_srcids,
                                             int(inc_num/2),
@@ -2703,6 +2717,7 @@ def entity_recognition_from_ground_truth(building_list,
         #                 prev_result_dict, 4, \
         #                 eda_flag, token_type, use_brick_flag, ts_flag)
         learning_srcids += todo_srcids * 5
+        """
     print('\n')
     print('################ Iteration {0} ################'.format(iter_cnt))
 
@@ -2877,6 +2892,7 @@ def entity_recognition_from_ground_truth(building_list,
                  if tagset in learnt_tagsets.keys()])
 
     next_step_data = {
+        'debug': prev_step_data['debug'],
         'exp_type': 'entity_from_ground_truth',
         'pred_tagsets_dict': target_pred_tagsets_dict,
         'learning_srcids': learning_srcids,
@@ -2947,19 +2963,112 @@ def entity_recognition_from_ground_truth(building_list,
           .format(next_step_data['incorrect_point_cnt_history']))
     print('history of unfound point cnt: {0}'\
           .format(next_step_data['unfound_point_cnt_history']))
+    print('history of accuracy: {0}'\
+          .format(next_step_data['accuracy_history']))
+    print('history of macro f1: {0}'\
+          .format(next_step_data['macro_f1_history']))
 
-    store_result(next_step_data)
+    # Post processing to select next step learning srcids
+    phrase_usages = list(target_result_dict['phrase_usage'].values())
+    mean_usage_rate = np.mean(phrase_usages)
+    std_usage_rate = np.std(phrase_usages)
+    threshold = mean_usage_rate - std_usage_rate
+    todo_sentence_dict = dict((srcid, alpha_tokenizer(''.join(\
+                                                test_sentence_dict[srcid]))) \
+                              for srcid, usage_rate \
+                              in target_result_dict['phrase_usage'].items() \
+                              if usage_rate<threshold and srcid in test_srcids)
+    try:
+        cluster_srcid_dict = hier_clustering(todo_sentence_dict, threshold=2)
+    except:
+        cluster_srcid_dict = hier_clustering(test_sentence_dict, threshold=2)
+    todo_srcids = select_random_samples(target_building, \
+                          list(todo_sentence_dict.keys()),
+                          min(inc_num, len(todo_sentence_dict)), \
+                          use_cluster_flag,\
+                          token_type=token_type,
+                          reverse=True,
+                          cluster_dict=cluster_srcid_dict
+                         )
+    tot_todo_tagsets =  Counter(reduce(adder, [test_truths_dict[srcid] for srcid in todo_srcids], []))
+    correct_todo_srcids = list()
+    for srcid in todo_srcids:
+        todo_tagsets = test_truths_dict[srcid]
+        for tagset in todo_tagsets:
+            if tagset in unfound_tagsets.keys():
+                correct_todo_srcids.append(srcid)
+                break
+    unfound_todo_tagsets = [tagset for tagset in unfound_tagsets.keys()\
+                            if tagset not in tot_todo_tagsets.keys()]
+    found_todo_tagsets = [tagset for tagset in tot_todo_tagsets.keys()\
+                          if tagset in unfound_tagsets]
+
+    logging.info('# total found tagsets in todo: {0}'.format(len(tot_todo_tagsets)))
+    logging.info('# unfound tagsets: {0}'.format(len(unfound_tagsets)))
+    logging.info('# todo tagsets accounting unfound tagsets: {0}'.format(len(found_todo_tagsets)))
+    try:
+        if len(todo_srcids) > 0:
+            todo_srcid_rate = len(correct_todo_srcids) / len(todo_srcids)
+        else:
+            todo_srcid_rate = 0
+    except:
+        pdb.set_trace()
+    try:
+        if len(tot_todo_tagsets) > 0:
+            todo_tagset_rate = len(found_todo_tagsets) / len(tot_todo_tagsets)
+        else:
+            todo_tagset_rate = 0
+    except:
+        pdb.set_trace()
+    logging.info('Ratio of correctly found todo srcids: {0}'.format(todo_srcid_rate))
+    next_step_data['debug']['#tagsets_in_todo'].append(len(tot_todo_tagsets))
+    next_step_data['debug']['#unfound_tagsets'].append(len(unfound_tagsets))
+    next_step_data['debug']['#correct_tagsts_in_todo'].append(len(found_todo_tagsets))
+    next_step_data['debug']['rate_correct_todo_srcids'].append(todo_srcid_rate)
+    next_step_data['debug']['rate_correct_todo_tagsets'].append(todo_tagset_rate)
+    next_step_data['debug']['rate_correct_todo_tagsets'].append(todo_tagset_rate)
+
+    next_step_data['learning_srcids'] = learning_srcids + todo_srcids * 3
+
     if iter_cnt == 4:
         pdb.set_trace()
+        pass
 
     try:
         del next_step_data['_id']
     except:
         pass
     with open('result/entity_iteration.json', 'w') as fp:
-        json.dump(next_step_data, fp)
+        json.dump(next_step_data, fp, indent=2)
     #pdb.set_trace()
     return target_result_dict, next_step_data
+
+
+def find_todo_srcids(usage_rate_dict, srcids, inc_num, sentence_dict,
+                     target_building):
+    # Post processing to select next step learning srcids
+    usages = list(usage_rate_dict.values())
+    mean_usage_rate = np.mean(usages)
+    std_usage_rate = np.std(usages)
+    threshold = mean_usage_rate - std_usage_rate
+    todo_sentence_dict = dict((srcid, alpha_tokenizer(''.join(\
+                                                sentence_dict[srcid]))) \
+                              for srcid, usage_rate \
+                              in usage_rate_dict.items()
+                              if usage_rate<threshold and srcid in srcids)
+    try:
+        cluster_srcid_dict = hier_clustering(todo_sentence_dict, threshold=2)
+    except:
+        cluster_srcid_dict = hier_clustering(test_sentence_dict, threshold=2)
+    todo_srcids = select_random_samples(target_building, \
+                          list(todo_sentence_dict.keys()),
+                          min(inc_num, len(todo_sentence_dict)), \
+                          True,\
+                          token_type='justseparate',
+                          reverse=True,
+                          cluster_dict=cluster_srcid_dict
+                         )
+    return todo_srcids
 
 
 def make_ontology():
@@ -3004,6 +3113,7 @@ def entity_recognition_iteration(iter_num, *args):
                               n_jobs = args[11],\
                               prev_step_data = step_data
                             )
+    store_result(step_data)
 
 def iteration_wrapper(iter_num, func, *args):
     step_data = {
@@ -3090,6 +3200,7 @@ def entity_recognition_from_crf(prev_step_data,\
     global total_srcid_dict
     global tagset_tree
     global tree_depth_dict
+    inc_num = 20
 
     ### Initialize CRF Data
     crf_result_query = {
@@ -3107,7 +3218,11 @@ def entity_recognition_from_crf(prev_step_data,\
     # TODO: Make below to learn if not exists
     crf_result = get_crf_results(crf_result_query)
     if not crf_result:
-        learning_srcids = sorted(crf_result_query['learning_srcids'])
+        if crf_result_query.get('learning_srcids'):
+            learning_srcids = sorted(crf_result_query['learning_srcids'])
+        else:
+            learning_srcids = []
+
         learn_crf_model(building_list,
                     source_sample_num_list,
                     token_type,
@@ -3196,30 +3311,42 @@ def entity_recognition_from_crf(prev_step_data,\
                        crf_pred_certainty_dict, crf_srcids,
                        crf_pred_point_dict, crf_phrase_dict, debug_flag)
 
-    alpha_tokenizer = lambda s: re.findall('[a-zA-Z]+', s)
-    todo_sentence_dict = dict((srcid, alpha_tokenizer(''.join(\
-                                                crf_sentence_dict[srcid]))) \
-                              for srcid, usage_rate \
-                              in crf_token_usage_rate_dict.items() \
-                              if usage_rate<0.3)
+    usage_rates = list(crf_token_usage_rate_dict.values())
+    usage_rate_mean = np.mean(usage_rates)
+    usage_rate_mean = np.std(usage_rates)
+
+    #todo_sentence_dict = dict((srcid, alpha_tokenizer(''.join(\
+    #                                            crf_sentence_dict[srcid]))) \
+    #                          for srcid, usage_rate \
+    #                          in crf_token_usage_rate_dict.items() \
+    #                          if usage_rate<0.3)
     """
     cluster_srcid_dict = hier_clustering(todo_sentence_dict, threshold=2)
     """
-    unknown_srcids = todo_sentence_dict.keys()
-    todo_srcids = select_random_samples(target_building, unknown_srcids, \
-                                        len(unknown_srcids)*0.1, True)
+    #TODO: Implement this!!!!!!!!
+    todo_srcids = find_todo_srcids(crf_token_usage_rate_dict, crf_srcids, inc_num, crf_sentence_dict,
+                     target_building)
+    #unknown_srcids = todo_sentence_dict.keys()
+    #todo_srcids = select_random_samples(target_building, unknown_srcids, \
+    #                                    len(unknown_srcids)*0.1, True)
     updated_learning_srcids = todo_srcids \
                             + reduce(adder, crf_result['source_list'].values())
     del crf_result['result']
     del crf_result['_id']
-    next_step_data = {
-        'learning_srcids': sorted(updated_learning_srcids),
-        'iter_num': prev_step_data['iter_num'] + 1,
-        'result': {
-            'entity': crf_entity_result_dict,
-            'crf': crf_result
-        }
-    }
+    next_step_data = prev_step_data
+    if not next_step_data.get('result'):
+        next_step_data['result'] = dict()
+    if not next_step_data['result'].get('crf'):
+        next_step_data['result']['crf'] = []
+    if not next_step_data['result'].get('entity'):
+        next_step_data['result']['entity'] = []
+    if not next_step_data.get('learning_srcids'):
+        next_step_data['learning_srcids'] = []
+
+    next_step_data['iter_num'] += 1
+    next_step_data['learning_srcids'].append(updated_learning_srcids)
+    next_step_data['result']['entity'].append(crf_entity_result_dict)
+    next_step_data['result']['crf'].append(crf_result)
     return next_step_data
 
 def calc_char_utilization(sentence, char_labels, tagsets):
@@ -3326,8 +3453,105 @@ def entity_recognition_from_ground_truth_get_avg(N,
     print ('Averaged Macro F1: {0}'.format(macro_f1))
     print("FIN")
 
+def entity_iter_result():
+    source_target_list = [('ebu3b', 'ap_m')]
+    n_list_list = [(0,5),
+                   (200,5)]
+#                   (1000,1)]
+    ts_flag = False
+    eda_flag = False
+    inc_num = 20
+    iter_num = 10
+    default_query = {
+        'metadata.label_type': 'label',
+        'metadata.token_type': 'justseparate',
+        'metadata.use_cluster_flag': True,
+        'metadata.building_list' : [],
+        'metadata.source_sample_num_list': [],
+        'metadata.target_building': '',
+        'metadata.ts_flag': ts_flag,
+        'metadata.eda_flag': eda_flag,
+        'metadata.use_brick_flag': True,
+        'metadata.negative_flag': True,
+        'metadata.inc_num': inc_num,
+    }
+    query_list = [deepcopy(default_query),
+                  deepcopy(default_query)]
+    query_list[1]['metadata.negative_flag'] = False
+    query_list[1]['metadata.use_brick_flag'] = False
+    fig, ax = plt.subplots(1, 1)
+    axes = [ax]
+    for ax, (source, target) in zip(axes, source_target_list):
+        for query in query_list:
+            for ns in n_list_list:
+                #subset_accuracy_list = list()
+                #accuracy_list = list()
+                #hierarchy_accuracy_list = list()
+                #weighted_f1_list = list()
+                #macro_f1_list = list()
+                n_s = ns[0]
+                n_t = ns[1]
+
+                if n_s == 0:
+                    building_list = [target]
+                    source_sample_num_list = [n_t]
+                elif n_t == 0:
+                    building_list = [source]
+                    source_sample_num_list = [n_s]
+                else:
+                    building_list = [source, target]
+                    source_sample_num_list = [n_s, n_t]
+                query['metadata.building_list'] = building_list
+                query['metadata.source_sample_num_list'] = \
+                        source_sample_num_list
+                query['metadata.target_building'] = target
+                q = {'$and': [query, {'$where': \
+                                      'this.accuracy_history.length=={0}'\
+                                      .format(iter_num)}]}
+
+                result = get_entity_results(q)
+                try:
+                    assert result
+                except:
+                    print(n_t)
+                    pdb.set_trace()
+                    result = get_entity_results(query)
+                #point_precs = result['point_precision_history'][-1]
+                #point_recall = result['point_recall'][-1]
+                subset_accuracy_list = [val * 100 for val in result['subset_accuracy_history']]
+                accuracy_list = [val * 100 for val in result['accuracy_history']]
+                hierarchy_accuracy_list = [val * 100 for val in result['hierarchy_accuracy_history']]
+                weighted_f1_list = [val * 100 for val in result['weighted_f1_history']]
+                macro_f1_list = [val * 100 for val in result['macro_f1_history']]
+                exp_num = len(macro_f1_list)
+                target_n_list = list(range(n_t, inc_num*exp_num+1, inc_num))
+
+                xs = target_n_list
+                ys = [accuracy_list, macro_f1_list]
+                xlabel = '# of Target Building Samples'
+                ylabel = 'Score (%)'
+                xtick = target_n_list
+                xtick_labels = [str(n) for n in target_n_list]
+                ytick = range(0,102,10)
+                ytick_labels = [str(n) for n in ytick]
+                ylim = (ytick[0]-1, ytick[-1]+2)
+                legends = [
+                    'A, {0}, NS:{1}, UB:{2}'\
+                    .format(n_s, 
+                            query['metadata.negative_flag'], 
+                            query['metadata.use_brick_flag']),
+                    'MF, {0}, NS:{1}, UB:{2}'\
+                    .format(n_s, 
+                            query['metadata.negative_flag'], 
+                            query['metadata.use_brick_flag']),
+                          ]
+                title = None
+                plotter.plot_multiple_2dline(xs, ys, xlabel, ylabel, xtick,\
+                                 xtick_labels, ytick, ytick_labels, title, ax,\
+                                 fig, ylim, legends)
+    save_fig(fig, 'figs/entity_iter.pdf')
+
 def entity_result():
-    import plotter
     source_target_list = [('ebu3b', 'ap_m')]#, ('ap_m', 'ebu3b')]
     n_list_list = [[(0,5), (0,50), (0,100), (0,150), (0,200)],
                    [(200,5), (200,50), (200,100), (0,150), (200,200)]]
@@ -3446,7 +3670,6 @@ def entity_result():
 
 
 def crf_result():
-    import plotter
     source_target_list = [('ebu3b', 'ap_m'), ('ap_m', 'ebu3b')]
     n_list_list = [[(200,5), (200,50), (200,100), (200,200)],
                    [(0,5), (0,50), (0,100), (0,200)]]
@@ -3637,7 +3860,7 @@ if __name__=='__main__':
                         type='bool',
                         help='Negative Samples augmentation',
                         dest='negative_flag',
-                        default=False)
+                        default=True)
     parser.add_argument('-exp', 
                         type=str,
                         help='type of experiments for result output',
@@ -3721,11 +3944,15 @@ if __name__=='__main__':
                 n_jobs=args.n_jobs)
         """
     elif args.prog == 'result':
-        assert args.exp_type in ['crf', 'entity', 'crf_entity']
+        assert args.exp_type in ['crf', 'entity', 'crf_entity', 'entity_iter']
         if args.exp_type == 'crf':
             crf_result()
         elif args.exp_type == 'entity':
             entity_result()
+        elif args.exp_type == 'crf_entity':
+            pass
+        elif args.exp_type == 'entity_iter':
+            entity_iter_result()
 
     elif args.prog == 'init':
         init()
