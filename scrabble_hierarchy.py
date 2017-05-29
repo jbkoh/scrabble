@@ -568,7 +568,7 @@ def learn_crf_model(building_list,
                     normalized_data_feature_dict[srcid] = None
         if prev_step_data['learning_srcids']:
             sample_srcid_list = [srcid for srcid in sentence_dict.keys() \
-                                 if srcid in prev_step_data['learning_srcids'][-1]]
+                                 if srcid in prev_step_data['learning_srcids']]
         else:
             sample_srcid_list = select_random_samples(building, \
                                                       label_dict.keys(), \
@@ -587,8 +587,8 @@ def learn_crf_model(building_list,
                 calc_features(sentence, data_features)), labels)
 
         sample_dict[building] = list(sample_srcid_list)
-    if prev_step_data.get('learning_srcids'):
-        assert set(prev_step_data['learning_srcids'][-1]) == set(learning_srcids)
+    if prev_step_data.get('learning_srcids_history'):
+        assert set(prev_step_data['learning_srcids_history'][-1]) == set(learning_srcids)
 
 
     # Learn Brick tags
@@ -607,6 +607,7 @@ def learn_crf_model(building_list,
     trainer.train(crf_model_file)
     with open(crf_model_file, 'rb') as fp:
         model_bin = fp.read()
+    pdb.set_trace()
     model = {
         'source_list': sample_dict,
         'gen_time': arrow.get().datetime, #TODO: change this to 'date'
@@ -615,7 +616,7 @@ def learn_crf_model(building_list,
         'label_type': 'label',
         'model_binary': BsonBinary(model_bin),
         'source_building_count': len(building_list),
-        'learning_srcids': sorted(reduce(adder, sample_dict.values()))
+        'learning_srcids': sorted(learning_srcids)
     }
     store_model(model)
     os.remove(crf_model_file)
@@ -658,7 +659,10 @@ def crf_test(building_list,
     model_query['$and'].append({'source_building_count':len(building_list)})
     if learning_srcids:
         model_query = {'learning_srcids': sorted(learning_srcids)}
-    model = get_model(model_query)
+    try:
+        model = get_model(model_query)
+    except:
+        pdb.set_trace()
     result_metadata['source_list'] = model['source_list']
     if learning_srcids:
         result_metadata['learning_srcids'] = learning_srcids
@@ -2380,6 +2384,8 @@ def build_tagset_classifier(building_list, target_building,\
                                 tagset_vectorizer.vocabulary,
                                 n_jobs,
                                 use_brick_flag)
+    elif tagset_classifier_type == 'Project':
+        pass
     elif tagset_classifier_type == 'StructuredCC':
         def meta_scc(**kwargs):
             feature_selector = SelectFromModel(LinearSVC(C=1))
@@ -3122,6 +3128,7 @@ def iteration_wrapper(iter_num, func, *args):
         step_data = func(prev_data, *args)
         step_datas.append(step_data)
         prev_data = step_data
+        prev_data['iter_num'] += 1
     return step_datas
 
 def crf_entity_recognition_iteration(iter_num, *args):
@@ -3196,7 +3203,7 @@ def entity_recognition_from_crf(prev_step_data,\
     global total_srcid_dict
     global tagset_tree
     global tree_depth_dict
-    inc_num = 20
+    inc_num = 10
 
     ### Initialize CRF Data
     crf_result_query = {
@@ -3207,8 +3214,8 @@ def entity_recognition_from_crf(prev_step_data,\
         'source_sample_num_list': source_sample_num_list,
         'target_building': target_building,
     }
-    if prev_step_data.get('learning_srcids'):
-        crf_result_query['learning_srcids'] = prev_step_data['learning_srcids']
+    if prev_step_data.get('learning_srcids_history'):
+        crf_result_query['learning_srcids'] = prev_step_data['learning_srcids_history'][-1]
 
 
     # TODO: Make below to learn if not exists
@@ -3227,9 +3234,10 @@ def entity_recognition_from_crf(prev_step_data,\
                     debug_flag,
                     use_brick_flag,
                     {
-                        'learning_srcids': learning_srcids,
+                        'learning_srcids': deepcopy(learning_srcids),
                         'iter_cnt':0
                     })
+        pdb.set_trace()
         crf_test(building_list,
                  source_sample_num_list,
                  target_building,
@@ -3240,7 +3248,6 @@ def entity_recognition_from_crf(prev_step_data,\
                  learning_srcids)
         crf_result = get_crf_results(crf_result_query)
         assert crf_result
-    pdb.set_trace()
     given_srcids = list(reduce(adder,\
                             list(crf_result['source_list'].values()), []))
     crf_sentence_dict = dict()
@@ -3325,8 +3332,10 @@ def entity_recognition_from_crf(prev_step_data,\
     #unknown_srcids = todo_sentence_dict.keys()
     #todo_srcids = select_random_samples(target_building, unknown_srcids, \
     #                                    len(unknown_srcids)*0.1, True)
+    curr_learning_srcids = sorted(reduce(adder, crf_result['source_list']\
+                             .values()))
     updated_learning_srcids = todo_srcids \
-                            + reduce(adder, crf_result['source_list'].values())
+                            + curr_learning_srcids
     del crf_result['result']
     del crf_result['_id']
     next_step_data = prev_step_data
@@ -3336,11 +3345,11 @@ def entity_recognition_from_crf(prev_step_data,\
         next_step_data['result']['crf'] = []
     if not next_step_data['result'].get('entity'):
         next_step_data['result']['entity'] = []
-    if not next_step_data.get('learning_srcids'):
-        next_step_data['learning_srcids'] = []
+    if not next_step_data.get('learning_srcids_history'):
+        next_step_data['learning_srcids_history'] = [curr_learning_srcids]
 
     next_step_data['iter_num'] += 1
-    next_step_data['learning_srcids'].append(updated_learning_srcids)
+    next_step_data['learning_srcids_history'].append(updated_learning_srcids)
     next_step_data['result']['entity'].append(crf_entity_result_dict)
     next_step_data['result']['crf'].append(crf_result)
     return next_step_data
