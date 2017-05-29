@@ -1913,7 +1913,7 @@ def parameter_validation(vect_doc, truth_mat, srcids, params_list_dict,\
         #tagset_classifier = RandomForestClassifier(n_estimators=100,
         #                                           random_state=0,\
         #                                           n_jobs=n_jobs)
-    best_params = {'learning_rate':0.05, 'subsample':0.5, 'max_depth': 1}
+    best_params = {'learning_rate':0.1, 'subsample':0.5}
     return meta_classifier(**best_params) # Pre defined setup.
     #best_params = {'n_estimators': 120, 'n_jobs':7}
     #return meta_classifier(**best_params)
@@ -3029,10 +3029,6 @@ def entity_recognition_from_ground_truth(building_list,
     next_step_data['debug']['rate_correct_todo_tagsets'].append(todo_tagset_rate)
 
     next_step_data['learning_srcids'] = learning_srcids + todo_srcids * 3
-
-    if iter_cnt == 4:
-        pdb.set_trace()
-        pass
 
     try:
         del next_step_data['_id']
