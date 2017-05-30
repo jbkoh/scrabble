@@ -23,7 +23,8 @@
     "s": [
       ["occ.s", "status"],
       ["\\d+s", "leftidentifier"],
-      ["chws", "supply"]
+      ["chws", "supply"],
+      ["mtws", "supply"]
     ],
     "main":[
       ["main.fan", "rightidentifier"]
@@ -108,6 +109,7 @@
       ["actual\n", "none"]],
     "sp": [
       ["flow sp", "setpoint"], 
+      ["dp.sp", "setpoint"], 
       ["econ.sp", "setpoint"], 
       ["supflo.sp", "setpoint"], 
       ["hx\\d.sp", "setpoint"],
@@ -166,11 +168,18 @@
     ]
   },
   "ap_m": {
+    "sf": [
+        ["easf", "stack_flow"],
+        ["sf.cmd", "supply_fan"],
+        ["sf.ss", "supply_fan"],
+        ["sf.cmd", "supply_fan"],
+        ["sf.\\d", "supply_fan"]
+    ],
     "a": [
-      ["\\d+a", "leftidentifier"],
-      ["\\d.a", "leftidentifier"],
       ["aclg", "effective"],
-      ["ahtg", "effective"]
+      ["ahtg", "effective"],
+      ["\\d+a", "leftidentifier"],
+      ["\\d.a", "leftidentifier"]
     ],
     "c": [
       ["ocm", "cooling"],
@@ -194,7 +203,8 @@
     "l": [
       ["lvfd", "rightidentifier"],
       ["\\dl", "leftidentifier"],
-      ["lfil", "rightidentifier"]
+      ["lfil", "rightidentifier"],
+      ["lftr", "rightidentifier"]
     ],
     "t": [
       ["zn.t", "temperature"],
@@ -222,6 +232,7 @@
     ],
     "sp": [
       ["sa.sp", "setpoint"],
+      ["dp.sp", "setpoint"],
       ["sasp", "static_pressure"],
       ["htg.sp", "setpoint"],
       ["flow.sp", "setpoint"],
@@ -242,7 +253,8 @@
       ["s\\-\\d", "networkadapter-s"],
       ["chwp.s\\n", "status"],
       ["chws", "system"],
-      ["mtws", "supply"]
+      ["mtws", "supply"],
+      ["econ.s", "stats"]
     ],
     "th": [
       ["\\dth", "rightidentifier"]
@@ -324,6 +336,9 @@
     ],
     "r":[
       ["chwr", "return"]
+    ],
+    "f": [
+      ["eaf", "flow"]
     ]
   },
   "music": {
@@ -378,7 +393,8 @@
     ],
     "f": [
       ["fsd", "none"],
-      ["\\d+f", "leftidentifier"]
+      ["\\d+f", "leftidentifier"],
+      ["eaf", "flow"]
     ],
     "to": [
       ["to rm", "none"]
