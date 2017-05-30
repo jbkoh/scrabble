@@ -35,6 +35,7 @@ import matplotlib.pyplot as plt
 plt.rcParams['axes.labelpad'] = 0
 plt.rcParams['font.size'] = 8
 from matplotlib.backends.backend_pdf import PdfPages
+from matplotlib.axes import Axes
 from bson.binary import Binary as BsonBinary
 import arrow
 from pygame import mixer
@@ -45,7 +46,7 @@ from sklearn.ensemble import RandomForestClassifier, AdaBoostClassifier,\
                              GradientBoostingClassifier
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.svm import LinearSVC, SVC
-from sklearn.linear_model import LogisticRegression
+from sklearn.linear_model import LogisticRegression, SGDClassifier, PassiveAggressiveClassifier
 from sklearn.multiclass import OneVsRestClassifier, OneVsOneClassifier
 from sklearn.feature_selection import SelectFromModel, VarianceThreshold, chi2, SelectPercentile, SelectKBest
 from sklearn.pipeline import Pipeline
@@ -58,7 +59,6 @@ import scipy.cluster.hierarchy as hier
 from sklearn.naive_bayes import GaussianNB
 from sklearn.gaussian_process import GaussianProcessClassifier
 from sklearn.discriminant_analysis import QuadraticDiscriminantAnalysis
-from sklearn.linear_model import SGDClassifier
 #from skmultilearn.ensemble import RakelO, LabelSpacePartitioningClassifier
 from skmultilearn.problem_transform import LabelPowerset, ClassifierChain, \
                                            BinaryRelevance
@@ -607,7 +607,6 @@ def learn_crf_model(building_list,
     trainer.train(crf_model_file)
     with open(crf_model_file, 'rb') as fp:
         model_bin = fp.read()
-    pdb.set_trace()
     model = {
         'source_list': sample_dict,
         'gen_time': arrow.get().datetime, #TODO: change this to 'date'
@@ -1066,7 +1065,10 @@ def tagsets_evaluation(truths_dict, pred_tagsets_dict, pred_certainty_dict,\
     if manual_filter_flag:
         for srcid in srcids:
             truths_dict[srcid] = filt(truths_dict[srcid])
+    disch2sup = lambda s: s.replace('discharge', 'supply')
 #    for srcid, pred_tagsets in pred_tagsets_dict.items():
+    truths_dict = dict([(srcid, list(map(disch2sup, tagsets))) \
+                         for srcid, tagsets in truths_dict.items()])
     accuracy = get_score(pred_tagsets_dict, truths_dict, srcids, accuracy_func,
                          tagset_list)
     hierarchy_accuracy = get_score(pred_tagsets_dict, truths_dict, srcids,
@@ -1077,7 +1079,7 @@ def tagsets_evaluation(truths_dict, pred_tagsets_dict, pred_certainty_dict,\
                                 subset_accuracy_func, tagset_list)
 
     pred_tagsets_list = [pred_tagsets_dict[srcid] for srcid in srcids]
-    true_tagsets_list = [truths_dict[srcid] for srcid in srcids]
+    true_tagsets_list = [list(map(disch2sup, truths_dict[srcid])) for srcid in srcids]
     eval_binarizer = MultiLabelBinarizer().fit(pred_tagsets_list +
                                                true_tagsets_list)
     _, _, macro_f1, _ = precision_recall_fscore_support(\
@@ -1360,14 +1362,55 @@ class custom_multi_label():
         return np.asarray([classifier.predict(X.toarray()) \
                            for classifier in self.base_classifiers]).T
 
-class custom_project_multi_label():
-    def __init__(self, base_classifier, proj_vectors):
+class ProjectClassifier():
+    def __init__(self, base_classifier, binarizer, vectorizer, subclass_dict,
+                n_jobs=1):
+        self.binarizer = binarizer
+        self.vectorizer = vectorizer
         self.base_classifier = base_classifier
-        self.proj_vectors = proj_vectors
+        self.make_proj_vec()
+        self.subclass_dict = subclass_dict
+        self.n_jobs = n_jobs
+
+        self.lower_y_index_list = list()
+        self.upper_y_index_list = list()
+        for i, tagset in enumerate(self.binarizer.classes_):
+            found_upper_tagsets = find_keys(tagset, self.subclass_dict, check_in)
+            upper_tagsets = [ts for ts in self.binarizer.classes_ \
+                             if ts in found_upper_tagsets]
+            try:
+                assert len(found_upper_tagsets) == len(upper_tagsets)
+            except:
+                pdb.set_trace()
+            self.upper_y_index_list.append([
+                np.where(self.binarizer.classes_ == ts)[0][0]
+                                            for ts in upper_tagsets])
+            lower_y_indices = list()
+            subclasses = self.subclass_dict.get(tagset)
+            if not subclasses:
+                subclasses = []
+            for ts in subclasses:
+                indices = np.where(self.binarizer.classes_ == ts)[0]
+                if len(indices)>1:
+                    assert False
+                elif len(indices==1):
+                    lower_y_indices.append(indices[0])
+            self.lower_y_index_list.append(lower_y_indices)
+
+    def make_proj_vec(self):
+        #vec = np.zeros((len(self.vectorizer.vocabulary), self.binarizer.classes_))
+        vec_list = list()
+        for tagset in self.binarizer.classes_:
+            tags = tagset.replace('_', ' ')
+            vectorized_tags = np.array([1 if v > 0 else 0 for v in
+                               self.vectorizer.transform([tags]).toarray()[0]])
+            vec_list.append(vectorized_tags)
+        self.proj_vectors = np.vstack(vec_list)
 
     def _proj_x(self, X, proj_vector):
-        return np.hstack([X[:, j] for j, v in enumerate(proj_vector) \
-                          if v == 1])
+        #return np.hstack([X[:, j] for j, v in enumerate(proj_vector) \
+        #                  if v == 1])
+        return X[:, [i for i, v in enumerate(proj_vector) if v == 1]]
 
     def _X_formatting(self, X):
         if issparse(X):
@@ -1377,14 +1420,34 @@ class custom_project_multi_label():
         else:
             return X
 
-    def fit(self, X, Y):
+    def serial_fit(self, X, Y):
         X = self._X_formatting(X)
         self.base_classifiers = list()
-        for y, proj_vector in zip(Y.T, self.proj_vectors):
+        for i, (y, proj_vector) in enumerate(zip(Y.T, self.proj_vectors)):
             #proj_X = np.hstack([X[:,i] for i, v in enumerate(proj_vector) if v==1])
             proj_X = self._proj_x(X, proj_vector)
             self.base_classifiers.append(deepcopy(self.base_classifier)\
                                         .fit(proj_X, y))
+    def fit(self, X, Y):
+        if self.n_jobs == 1:
+            return self.serial_fit(X, Y)
+        else:
+            return self.parallel_fit(X, Y)
+
+    def sub_fit(self, X, Y, i):
+        if i%200==0:
+            logging.info('{0}th learning step'.format(i))
+        proj_X = self._proj_x(X, proj_vector)
+        #self.base_classifiers.append(deepcopy(self.base_classifier)\
+        #                            .fit(proj_X, y))
+        return deepcopy(self.base_classifier).fit(proj_X, y)
+
+    def parallel_fit(self, X, Y):
+        p = Pool(self.n_jobs)
+        mapped_sub_fit = partial(self.sub_fit, X, Y)
+        self.base_classifiers = p.map(mapped_sub_fit, range(0,Y.shape[1]))
+        p.close()
+
     def predict(self, X):
         Ys = list()
         X = self._X_formatting(X)
@@ -1393,7 +1456,66 @@ class custom_project_multi_label():
 #            proj_X = np.hstack([X[:, i] for i, v in enumerate(proj_vector) if v==1])
             proj_X = self._proj_x(X, proj_vector)
             Ys.append(base_classifier.predict(proj_X))
-        return np.asarray(Ys).T
+        Y = np.vstack(Ys).T
+        return self._distill_Y(Y)
+
+    def _distill_Y(self, Y):
+        logging.info('Start distilling')
+        """
+        discharge_supply_map = dict()
+        for i, tagset in enumerate(self.binarizer.classes_):
+            if 'discharge' in tagset:
+                discharge_supply_map[i] = np.where(binarizer.classes_ == \
+                    tagset.replace('discharge', 'supply'))[0]
+        for i_discharge, i_supply in discharge_supply_map.items():
+            pdb.set_trace()
+            discharge_indices = np.where(Y[:, i_discharge] == 1)
+            Y[discharge_indices, i_discharge] = 0
+            Y[discharge_indices, i_supply] = 1
+        """
+        new_Y = deepcopy(Y)
+        for i, y in enumerate(Y):
+            new_y = np.zeros(len(y))
+            for j, one_y in enumerate(y):
+                subclass_y_indices = self.lower_y_index_list[j]
+                if 1 in y[subclass_y_indices]:
+                    new_y[j] = 0
+                else:
+                    new_y[j] = one_y
+            new_Y[i,:] = new_y
+        logging.info('Finished distilling')
+        return new_Y
+
+    def augment_biased_sample(self, X, y):
+        rnd_sample_num = int(X.shape[0] * 0.05)
+        sub_X = X[np.where(y==1)]
+        added_X_list = list()
+        if sub_X.shape[0] == 0:
+            return X, y
+#        added_X = list()
+        for i in range(0, rnd_sample_num):
+            if self.use_brick_flag:
+                sub_brick_indices = np.intersect1d(np.where(y==1)[0],
+                                               self.brick_indices)
+                if len(sub_brick_indices)==0:
+                    x_1 = sub_X[random.randint(0, sub_X.shape[0] - 1)]
+                else:
+                    sub_brick_X = X[sub_brick_indices]
+                    x_1 = sub_brick_X[random.randint(0, sub_brick_X.shape[0]-1)]
+            else:
+                x_1 = sub_X[random.randint(0, sub_X.shape[0] - 1)]
+            x_2 = sub_X[random.randint(0, sub_X.shape[0] - 1)]
+            avg_factor = random.random()
+            #new_x = x_1 + (x_2 - x_1) * avg_factor
+            if i % 2 == 0:
+                new_x = x_1
+            else:
+                new_x = x_2
+            y = np.append(y, 1)
+            added_X_list.append(new_x)
+        X = np.vstack([X] + added_X_list)
+        assert X.shape[0] == y.shape[0]
+        return X, y
 
 def eda_vectorizer(vectorizer, doc, source_target_buildings, srcids):
     global total_srcid_dict
@@ -1418,7 +1540,7 @@ def augment_true_mat_with_superclasses_deprecated_and_incorrect(binarizer, given
     pdb.set_trace()
     return binarizer.transform([list(set(tagsets + updated_tagsets))])
 
-class ProjectClassifier():
+class SingleProjectClassifier():
 
     def __init__(self, base_classifier, mask):
         self.base_classifier = base_classifier
@@ -1437,8 +1559,11 @@ class ProjectClassifier():
     def fit(self, X, y):
         extended_feature_dims = [i for i in range(0,X.shape[1]) \
                                  if i >= len(self.base_mask)]
-        self.mask = np.concatenate([self.base_mask, extended_feature_dims])
-        X = X[:, np.where(self.mask==1)[0]]
+        #self.mask = np.concatenate([self.base_mask, extended_feature_dims])
+        mask = [i for i, v in enumerate(self.base_mask) if v == 1] +\
+                range(self.base_mask, X.shape[1])
+        X = X[:, mask]
+        #X = X[:, np.where(self.mask==1)[0]]
         self.base_classifier.fit(X, y)
 
     def predict(self, X):
@@ -1494,7 +1619,8 @@ class VotingClassifier():
 class StructuredClassifierChain():
 
     def __init__(self, base_classifier, binarizer, subclass_dict,
-                 vocabulary_dict, n_jobs=1, use_brick_flag=False):
+                 vocabulary_dict, n_jobs=1, use_brick_flag=False, vectorizer=None):
+        self.vectorizer = vectorizer
         self.prob_flag = False
         self.use_brick_flag = use_brick_flag
         self.n_jobs = n_jobs
@@ -1528,6 +1654,17 @@ class StructuredClassifierChain():
                     lower_y_indices.append(indices[0])
             self.lower_y_index_list.append(lower_y_indices)
             self.base_classifiers.append(deepcopy(self.base_classifier))
+        #self.make_proj_vec()
+        self.vectorizer = None
+
+    def make_proj_vec(self):
+        vec_list = list()
+        for tagset in self.binarizer.classes_:
+            tags = tagset.replace('_', ' ')
+            vectorized_tags = np.array([1 if v > 0 else 0 for v in
+                               self.vectorizer.transform([tags]).toarray()[0]])
+            vec_list.append(vectorized_tags)
+        self.proj_vectors = np.vstack(vec_list)
 
     def _augment_X(self, X, Y):
         return np.hstack([X, Y*2])
@@ -1638,10 +1775,8 @@ class StructuredClassifierChain():
         base_base_classifier = deepcopy(self.base_classifier)
         y = Y.T[i]
         tags = self.binarizer.classes_[i].split('_')
-        mask = np.zeros(len(self.vocabulary_dict))
-        for vocab, j in self.vocabulary_dict.items():
-            mask[j] = 1 if vocab in tags else 0
-        base_classifier = ProjectClassifier(base_base_classifier, mask)
+        mask = self.proj_vectors
+        base_classifier = SinglProjectClassifier(base_base_classifier, mask)
         sub_Y = Y[:, self.upper_y_index_list[i]]
         augmented_X = self._augment_X(X, sub_Y)
         base_classifier.fit(augmented_X, y)
@@ -1697,6 +1832,18 @@ class StructuredClassifierChain():
 
     def _distill_Y(self, Y):
         logging.info('Start distilling')
+        # change discharge to supply at the labels 
+        # (not in the prediction but in the results)
+        discharge_supply_map = dict()
+        for i, tagset in enumerate(self.binarizer.classes_):
+            if 'discharge' in tagset:
+                discharge_supply_map[i] = np.where(self.binarizer.classes_ == \
+                    tagset.replace('discharge', 'supply'))[0]
+        for i_discharge, i_supply in discharge_supply_map.items():
+            discharge_indices = np.where(Y[:, i_discharge] == 1)
+            Y[discharge_indices, i_discharge] = 0
+            Y[discharge_indices, i_supply] = 1
+
         if self.prob_flag:
             new_Y = np.zeros(Y.shape)
             for i, y in enumerate(Y):
@@ -1917,7 +2064,7 @@ def parameter_validation(vect_doc, truth_mat, srcids, params_list_dict,\
         #tagset_classifier = RandomForestClassifier(n_estimators=100,
         #                                           random_state=0,\
         #                                           n_jobs=n_jobs)
-    best_params = {'learning_rate':0.1, 'subsample':0.5}
+    best_params = {'learning_rate':0.1, 'subsample':0.25}
     #best_params = {'C':0.4, 'solver': 'liblinear'}
     return meta_classifier(**best_params) # Pre defined setup.
     #best_params = {'n_estimators': 120, 'n_jobs':7}
@@ -2371,7 +2518,7 @@ def build_tagset_classifier(building_list, target_building,\
     elif tagset_classifier_type == 'StructuredCC_BACKUP':
         #feature_selector = SelectFromModel(LinearSVC(C=0.001))
         feature_selector = SelectFromModel(LinearSVC(C=0.01, penalty='l1', dual=False))
-        base_base_classifier = LogisticRegression()
+        base_base_classifier = PassiveAggressiveClassifier(loss='squared_hinge', C=0.1)
         #base_base_classifier = GradientBoostingClassifier()
         #base_base_classifier = RandomForestClassifier()
         base_classifier = Pipeline([('feature_selection',
@@ -2387,12 +2534,27 @@ def build_tagset_classifier(building_list, target_building,\
                                 n_jobs,
                                 use_brick_flag)
     elif tagset_classifier_type == 'Project':
-        pass
+        def meta_proj(**kwargs):
+            #base_classifier = LinearSVC(C=20, penalty='l1', dual=False)
+            base_classifier = SVC(kernel='rbf', C=10, class_weight='balanced')
+            #base_classifier = GaussianProcessClassifier()
+            tagset_classifier = ProjectClassifier(base_classifier,
+                                                           tagset_binarizer,
+                                                           tagset_vectorizer,
+                                                           subclass_dict,
+                                                           n_jobs)
+            return tagset_classifier
+        meta_classifier = meta_proj
+        params_list_dict = {}
+
+
     elif tagset_classifier_type == 'StructuredCC':
         def meta_scc(**kwargs):
             feature_selector = SelectFromModel(LinearSVC(C=1))
             #feature_selector = SelectFromModel(LinearSVC(C=0.01, penalty='l1', dual=False))
             base_base_classifier = GradientBoostingClassifier(**kwargs)
+            #base_base_classifier = SGDClassifier(loss='modified_huber', penalty='elasticnet')
+            #base_base_classifier = PassiveAggressiveClassifier(loss='squared_hinge', C=0.1)
             #base_base_classifier = LogisticRegression()
             #base_base_classifier = RandomForestClassifier(**kwargs)
             base_classifier = Pipeline([('feature_selection',
@@ -2406,7 +2568,8 @@ def build_tagset_classifier(building_list, target_building,\
                                 subclass_dict,
                                 tagset_vectorizer.vocabulary,
                                 n_jobs,
-                                use_brick_flag)
+                                use_brick_flag,
+                                tagset_vectorizer)
             return tagset_classifier
         meta_classifier = meta_scc
         rf_params_list_dict = {
@@ -2657,7 +2820,7 @@ def entity_recognition_from_ground_truth(building_list,
     global tagset_list
     global total_srcid_dict
     global tree_depth_dict
-    inc_num = 20
+    inc_num = 10
     assert len(building_list) == len(source_sample_num_list)
 
     ########################## DATA INITIATION ##########################
@@ -3240,7 +3403,6 @@ def entity_recognition_from_crf(prev_step_data,\
                         'learning_srcids': deepcopy(learning_srcids),
                         'iter_cnt':0
                     })
-        pdb.set_trace()
         crf_test(building_list,
                  source_sample_num_list,
                  target_building,
@@ -3692,15 +3854,18 @@ def entity_result():
 
 def crf_result():
     source_target_list = [('ebu3b', 'ap_m'), ('ap_m', 'ebu3b')]
-    n_list_list = [[(200,5), (200,50), (200,100), (200,200)],
+    n_list_list = [[(1000,5), (1000,50), (1000,100), (1000,200)],
+                   [(200,5), (200,50), (200,100), (200,200)],
                    [(0,5), (0,50), (0,100), (0,200)]]
     char_precs_list = list()
     phrase_f1s_list = list()
 #fig, ax = plt.subplots(1, 1)
-    fig, axes = plt.subplots(1,len(n_list_list))
+    fig, axes = plt.subplots(1,len(source_target_list))
+    if isinstace(axes, Axes):
+        axes = [axes]
     fig.set_size_inches(4, 2)
     cs = ['firebrick', 'deepskyblue']
-    linestyles = ['-.', '--', '-']
+    linestyles = ['--', '-']
 
     for ax, (source, target) in zip(axes, source_target_list):
         for n_list in n_list_list:
@@ -3745,20 +3910,18 @@ def crf_result():
                 phrase_f1s.append(phrase_f1)
                 char_macro_f1s.append(result['char_macro_f1'] * 100)
                 phrase_macro_f1s.append(result['phrase_macro_f1'] * 100)
-            #phrase_f1s_list.append(phrase_f1s)
-            #char_precs_list.append(char_precs)
             xs = target_n_list
             ys = [phrase_f1s, phrase_macro_f1s]
             #ys = [char_precs, phrase_f1s, char_macro_f1s, phrase_macro_f1s]
             xlabel = '# of Target Building Samples'
-            ylabel = 'F1 score (%)'
+            ylabel = 'Score (%)'
             xtick = target_n_list
             xtick_labels = [str(n) for n in target_n_list]
             ytick = range(0,101,10)
             ytick_labels = [str(n) for n in ytick]
             ylim = (ytick[0]-2, ytick[-1]+2)
-            legends = ['#S:{0}, Phrase F1'.format(n_s),
-                      '#S:{0}, Phrase Macro F1'.format(n_s),
+            legends = ['#S:{0}, F1'.format(n_s),
+                      '#S:{0}, Macro F1'.format(n_s),
                       ]
             title = None
             plotter.plot_multiple_2dline(xs, ys, xlabel, ylabel, xtick,\

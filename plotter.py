@@ -10,6 +10,7 @@ import matplotlib.pyplot as plt
 from datetime import datetime, timedelta
 import math
 from pytz import timezone
+from matplotlib import colors as mcolors
 
 #class plotter:
 # dataSeries (2-dimensional np.ndarray), figSize (tuple, length=2) -> fig
@@ -295,12 +296,14 @@ def plot_multiple_timeseries(xs, ys, xlabel, ylabel, xticks=None, xtickTags=None
     return fig, axes
 
 
-def plot_multiple_2dline(x, ys, xlabel=None, ylabel=None, xtick=None, xtickLabel = None, ytick=None, ytickLabel=None, title=None, axis=None, fig=None, ylim=None, dataLabels=None, xtickRotate=0, linestyles=[]):
+def plot_multiple_2dline(x, ys, xlabel=None, ylabel=None, xtick=None, xtickLabel = None, ytick=None, ytickLabel=None, title=None, axis=None, fig=None, ylim=None, dataLabels=None, xtickRotate=0, linestyles=[], cs=[]):
     dataNum = len(ys)
     if axis==None and fig==None:
         fig, axis = plt.subplots(1,1)
     if not linestyles:
         linestyles = ['-'] * dataNum
+    if not cs:
+        cs = [None] * dataNum
     dataLabelIdx = 0
     plotList = list()
     for i in range(0,dataNum):
@@ -309,7 +312,7 @@ def plot_multiple_2dline(x, ys, xlabel=None, ylabel=None, xtick=None, xtickLabel
             dataLabelIdx += 1
         else:
             dataLabel = None
-        axis.plot(x,ys[i], label=dataLabel, linestyle=linestyles[i])
+        axis.plot(x,ys[i], label=dataLabel, color=cs[i], linestyle=linestyles[i])
     if dataLabels:
         axis.legend(fontsize=7, loc='best')
     if ylim:
