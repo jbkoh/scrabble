@@ -1,5 +1,10 @@
 {
   "ebu3b": {
+    "for": "none",
+    "test": "none",
+    "clgpid":"cooling_command",
+    "telecom": "rightidentifier",
+    "cw": "chilled_water",
     "nae":"networkadapter-nae",
     "n": "networkadapter-n",
     "ebu": "building-ebu3b",
@@ -10,7 +15,6 @@
     "vnd":"networkadapter-vnd",
     "cmd":"command",
     "zn":"zone",
-    "clgpid":"cooling_command",
     "htgpid":"heating_command",
     "rh":"reheat",
     "vlv":"valve",
@@ -224,6 +228,7 @@
     "time": "none"
   },
   "ap_m": {
+    "cw": "chilled_water",
     "occcupied": "occupied",
     "cooler": "cool",
     "outdoor": "outside",
@@ -302,7 +307,6 @@
     "forward": "direction",
     "backward": "direction",
     "lvl": "level",
-    "sf": "supply_fan",
     "int": "integral",
     "omin": "occupied_min",
     "bsmt": "basement",
@@ -360,15 +364,10 @@
     "bsmtw": "rightidentifier",
     "sdwn": "shutdown",
     "main": "rightidentifier",
-    "buildingstatic": "none",
-    "bldgstatic": "none",
-    "weststatic": "none",
     "input": "none",
     "units": "none",
     "satecon": "none",
     "north": "rightidentifier",
-    "easf": "exhaust_air_stack_flow",
-    "econdif": "economizer_differential",
     "osalock": "outside_air_lockout",
     "standby": "standby",
     "computer": "none",
@@ -417,7 +416,12 @@
     "wtr": "water",
     "ai":"none",
     "ao":"none",
-    "do":"none"
+    "do":"none",
+    "calc": "none",
+    "calculated": "none",
+    "left": "rightidentifier",
+    "west": "rightidentifier",
+    "var": "none"
   },
   "bml":{
     "nae":"networkadapter-nae",
