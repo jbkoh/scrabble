@@ -607,7 +607,6 @@ def learn_crf_model(building_list,
     trainer.train(crf_model_file)
     with open(crf_model_file, 'rb') as fp:
         model_bin = fp.read()
-    pdb.set_trace()
     model = {
         'source_list': sample_dict,
         'gen_time': arrow.get().datetime, #TODO: change this to 'date'
@@ -664,11 +663,11 @@ def crf_test(building_list,
     except:
         pdb.set_trace()
     result_metadata['source_list'] = model['source_list']
-    if learning_srcids:
-        result_metadata['learning_srcids'] = learning_srcids
 
     if not learning_srcids:
-        learning_srcids = list(reduce(adder, model['source_list'].values()))
+        learning_srcids = sorted(list(reduce(adder, model['source_list'].values())))
+    
+    result_metadata['learning_srcids'] = learning_srcids
 
     crf_model_file = 'temp/{0}.crfsuite'.format(gen_uuid())
     with open(crf_model_file, 'wb') as fp:
@@ -3240,7 +3239,6 @@ def entity_recognition_from_crf(prev_step_data,\
                         'learning_srcids': deepcopy(learning_srcids),
                         'iter_cnt':0
                     })
-        pdb.set_trace()
         crf_test(building_list,
                  source_sample_num_list,
                  target_building,
