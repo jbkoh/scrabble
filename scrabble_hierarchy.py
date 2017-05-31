@@ -3853,21 +3853,23 @@ def entity_result():
 
 
 def crf_result():
-    source_target_list = [('ebu3b', 'ap_m'), ('ap_m', 'ebu3b')]
-    n_list_list = [[(1000,5), (1000,50), (1000,100), (1000,200)],
-                   [(200,5), (200,50), (200,100), (200,200)],
-                   [(0,5), (0,50), (0,100), (0,200)]]
+    source_target_list = [('ebu3b', 'ap_m')]#, ('ap_m', 'ebu3b')]
+    n_list_list = [#[(1000,5), (1000,50), (1000,100), (1000,200)],
+                   [(200,5), (200,20), (200,50), (200,100), (200, 150), (200,200)],
+                   [(0,5), (0,20), (0,50), (0,100), (0,150), (0,200)]]
     char_precs_list = list()
     phrase_f1s_list = list()
 #fig, ax = plt.subplots(1, 1)
     fig, axes = plt.subplots(1,len(source_target_list))
-    if isinstace(axes, Axes):
+    if isinstance(axes, Axes):
         axes = [axes]
-    fig.set_size_inches(4, 2)
-    cs = ['firebrick', 'deepskyblue']
+    fig.set_size_inches(4, 2.25)
+    cs = ['firebrick', 'deepskyblue', 'olive', 'goldenrod']
     linestyles = ['--', '-']
 
     for ax, (source, target) in zip(axes, source_target_list):
+        plot_list = list()
+        legends_list = list()
         for n_list in n_list_list:
             target_n_list = [ns[1] for ns in n_list]
             phrase_f1s = list()
@@ -3915,19 +3917,27 @@ def crf_result():
             #ys = [char_precs, phrase_f1s, char_macro_f1s, phrase_macro_f1s]
             xlabel = '# of Target Building Samples'
             ylabel = 'Score (%)'
-            xtick = target_n_list
-            xtick_labels = [str(n) for n in target_n_list]
-            ytick = range(0,101,10)
+            xtick = list(range(0, 205, 20))
+            xtick_labels = [str(n) for n in xtick]
+            ytick = range(0,101,20)
             ytick_labels = [str(n) for n in ytick]
-            ylim = (ytick[0]-2, ytick[-1]+2)
-            legends = ['#S:{0}, F1'.format(n_s),
-                      '#S:{0}, Macro F1'.format(n_s),
+            ylim = (ytick[0]-2, ytick[-1]+10)
+            legends = [#'#S:{0}, Char Prec'.format(n_s),
+                       '#S:{0}, F1'.format(n_s),
+                    #'#S:{0}, Char MF1'.format(n_s),
+                       '#S:{0}, MF1'.format(n_s),
                       ]
+            legends_list += legends
             title = None
-            plotter.plot_multiple_2dline(xs, ys, xlabel, ylabel, xtick,\
+            _, plots = plotter.plot_multiple_2dline(xs, ys, xlabel, ylabel, xtick,\
                              xtick_labels, ytick, ytick_labels, title, ax, fig, \
-                             ylim, legends, xtickRotate=0, \
-                             linestyles=linestyles, cs=cs)
+                             ylim, None, xtickRotate=0, \
+                             linestyles=[linestyles.pop()]*len(ys), cs=cs)
+            plot_list += plots
+    fig.legend(plot_list, legends_list, 'upper center', ncol=2
+            , bbox_to_anchor=(0, 1.02, 0.9, 0.102 ), mode='expand')
+    for ax in axes:
+        ax.grid(True)
     save_fig(fig, 'figs/crf.pdf')
     subprocess.call('./send_figures')
 
