@@ -1,6 +1,8 @@
 {
   "ebu3b": {
+    "bldg": "building",
     "for": "none",
+    "oc": "occupied",
     "test": "none",
     "clgpid":"cooling_command",
     "telecom": "rightidentifier",
@@ -162,7 +164,6 @@
     "fltr": "filter",
     "shutdn": "shutdown",
     "inunocc": "none",
-    "aclg": "cooling",
     "feedback": "sensor",
     "elec": "rightidentifier",
     "occsens": "occupancy_sensor",
@@ -245,7 +246,6 @@
     "zn": "zone",
     "trunk": "networkadapter-trunk",
     "dx": "networkadapter-dx",
-    "aclg": "cooling",
     "stpt": "setpoint",
     "programming": "none",
     "wc": "warm_cool",
@@ -395,7 +395,6 @@
     "rcit": "none",
     "warmer": "warm",
     "coller": "cool",
-    "rat": "return_air_temperature",
     "to": "none",
     "ma": "mixed_air",
     "econ": "economizer",
@@ -606,6 +605,19 @@
     "rooms": "room",
     "smk": "smoke",
     "flr": "floor",
-    "edmpovd": "none"
+    "edmpovd": "none",
+    "ovd": "override",
+    "rst": "reset",
+    "dif": "differential",
+    "diff": "differential",
+    "less": "none",
+    "than": "none",
+    "bldg": "building",
+    "prob": "proportional",
+    "hour": "none",
+    "dhu": "dehumidification",
+    "hl": "high_limit",
+    "hours": "none",
+    "switchovr": "none"
   }
 }

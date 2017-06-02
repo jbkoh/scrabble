@@ -1309,7 +1309,7 @@
     "networkadapter-nae",
     "networkadapter-dx",
     "building-bml",
-    "discharge_air_tempearture_setpoint"
+    "discharge_air_temperature_setpoint"
   ],
   "510_0_3013998": [
     "networkadapter-n",
@@ -4877,7 +4877,7 @@
   ],
   "510_1_3005319": [
     "networkadapter-n",
-    "discharge_air_heating_temperature_integral_time_setpoint",
+    "discharge_air_heating_integral_time_setpoint",
     "networkadapter-ac",
     "networkadapter-nae",
     "building-bml",
@@ -7352,7 +7352,7 @@
     "networkadapter-ac",
     "networkadapter-nae",
     "building-bml",
-    "discharge_air_cooling_temperature_integral_time_setpoint",
+    "discharge_air_cooling_integral_time_setpoint",
     "ahu"
   ],
   "510_14_3013808": [

@@ -1,0 +1,8525 @@
+{
+  "604_1_3013042": [
+    "building",
+    "room",
+    "networkadapter",
+    "occupied_heating_min_discharge_air_flow_setpoint",
+    "vav"
+  ],
+  "604_1_3012856": [
+    "occupied_cooling_temperature_setpoint",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "604_1_3012739": [
+    "valve",
+    "heating_valve_command",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "604_0_3013657": [
+    "damper_position_sensor",
+    "room",
+    "networkadapter",
+    "damper",
+    "vav"
+  ],
+  "514_0_3006707": [
+    "zone",
+    "building",
+    "room",
+    "networkadapter",
+    "zone_temperature_sensor",
+    "vav"
+  ],
+  "513_0_3004998": [
+    "building",
+    "room",
+    "vav",
+    "networkadapter",
+    "effective_heating_temperature_setpoint"
+  ],
+  "513_1_3005673": [
+    "occupied_cooling_max_supply_air_flow_setpoint",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "514_1_3006693": [
+    "building",
+    "room",
+    "networkadapter",
+    "occupied_heating_max_supply_air_flow_setpoint",
+    "vav"
+  ],
+  "514_4_3006934": [
+    "building",
+    "occupied_command",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "604_1_3013066": [
+    "occupied_cooling_max_supply_air_flow_setpoint",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "604_14_3013562": [
+    "networkadapter",
+    "vav_box_mode_command",
+    "room",
+    "vav"
+  ],
+  "513_1_3005261": [
+    "building",
+    "room",
+    "networkadapter",
+    "occupied_cooling_min_discharge_air_flow_setpoint",
+    "vav"
+  ],
+  "604_0_3012602": [
+    "building",
+    "room",
+    "vav",
+    "networkadapter",
+    "effective_heating_temperature_setpoint"
+  ],
+  "604_1_3013650": [
+    "networkadapter",
+    "occupied_heating_min_discharge_air_flow_setpoint",
+    "room",
+    "vav"
+  ],
+  "513_1_3005147": [
+    "building",
+    "room",
+    "networkadapter",
+    "occupied_heating_min_discharge_air_flow_setpoint",
+    "vav"
+  ],
+  "604_0_3013601": [
+    "networkadapter",
+    "supply_air_flow_sensor",
+    "room",
+    "vav"
+  ],
+  "604_0_3013078": [
+    "co2_level_sensor",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "514_1_3006557": [
+    "building",
+    "room",
+    "networkadapter",
+    "occupied_heating_min_discharge_air_flow_setpoint",
+    "vav"
+  ],
+  "604_1_3012707": [
+    "building",
+    "room",
+    "vav",
+    "networkadapter",
+    "setpoint"
+  ],
+  "513_0_3007408": [
+    "supply_air_flow_sensor",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "513_0_3006510": [
+    "zone",
+    "building",
+    "room",
+    "networkadapter",
+    "zone_temperature_sensor",
+    "vav"
+  ],
+  "513_4_3006024": [
+    "building",
+    "occupied_command",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "513_0_3005595": [
+    "supply_air_flow_sensor",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "513_0_3006871": [
+    "building",
+    "room",
+    "vav",
+    "networkadapter",
+    "effective_heating_temperature_setpoint"
+  ],
+  "513_1_3004940": [
+    "building",
+    "room",
+    "networkadapter",
+    "occupied_heating_min_discharge_air_flow_setpoint",
+    "vav"
+  ],
+  "514_0_3006801": [
+    "building",
+    "room",
+    "networkadapter",
+    "effective_cooling_temperature_setpoint",
+    "vav"
+  ],
+  "513_0_3005736": [
+    "zone",
+    "building",
+    "room",
+    "networkadapter",
+    "zone_temperature_sensor",
+    "vav"
+  ],
+  "514_0_3007124": [
+    "building",
+    "room",
+    "networkadapter",
+    "effective_cooling_temperature_setpoint",
+    "vav"
+  ],
+  "514_0_3007084": [
+    "damper_position_sensor",
+    "building",
+    "room",
+    "networkadapter",
+    "damper",
+    "vav"
+  ],
+  "604_0_3013097": [
+    "building",
+    "room",
+    "vav",
+    "networkadapter",
+    "effective_heating_temperature_setpoint"
+  ],
+  "513_1_3006212": [
+    "occupied_heating_temperature_setpoint",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "513_0_3005379": [
+    "building",
+    "ahu",
+    "networkadapter",
+    "vfd",
+    "vfd_power_meter"
+  ],
+  "514_0_3007395": [
+    "zone",
+    "building",
+    "room",
+    "networkadapter",
+    "zone_temperature_sensor"
+  ],
+  "514_0_3007489": [
+    "exhaust_fan",
+    "last_fault_code_status",
+    "building",
+    "networkadapter",
+    "vfd"
+  ],
+  "604_0_3012474": [
+    "warm_cool_adjust_sensor",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "604_1_3012649": [
+    "building",
+    "room",
+    "vav",
+    "networkadapter",
+    "setpoint"
+  ],
+  "604_4_3013420": [
+    "exhaust_fan",
+    "building",
+    "networkadapter",
+    "vfd",
+    "fault_reset_command"
+  ],
+  "513_0_3006787": [
+    "building",
+    "room",
+    "vav",
+    "networkadapter",
+    "effective_heating_temperature_setpoint"
+  ],
+  "513_4_3005259": [
+    "building",
+    "occupied_command",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "604_1_3012662": [
+    "cooling_max_discharge_air_flow_setpoint",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "513_1_3004964": [
+    "occupied_heating_temperature_setpoint",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "513_0_3005136": [
+    "building",
+    "room",
+    "vav",
+    "networkadapter",
+    "effective_heating_temperature_setpoint"
+  ],
+  "513_4_3005213": [
+    "building",
+    "occupied_command",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "513_0_3007128": [
+    "damper_position_sensor",
+    "building",
+    "room",
+    "networkadapter",
+    "damper",
+    "vav"
+  ],
+  "513_1_3007525": [
+    "cooling_max_discharge_air_flow_setpoint",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "514_0_3006903": [
+    "building",
+    "room",
+    "vav",
+    "networkadapter",
+    "effective_heating_temperature_setpoint"
+  ],
+  "604_0_3012892": [
+    "supply_air_flow_sensor",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "513_0_3005391": [
+    "building",
+    "ahu",
+    "networkadapter",
+    "vfd",
+    "energy_sensor"
+  ],
+  "513_0_3006425": [
+    "warm_cool_adjust_sensor",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "514_3_3007007": [
+    "exhaust_fan",
+    "run_direction_status",
+    "building",
+    "networkadapter",
+    "vfd"
+  ],
+  "513_1_3005766": [
+    "building",
+    "room",
+    "networkadapter",
+    "damper",
+    "damper_command",
+    "vav"
+  ],
+  "513_0_3005246": [
+    "warm_cool_adjust_sensor",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "513_0_3007538": [
+    "warm_cool_adjust_sensor",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "513_3_3005375": [
+    "run_direction_status",
+    "building",
+    "ahu",
+    "networkadapter",
+    "vfd"
+  ],
+  "514_0_3007421": [
+    "networkadapter",
+    "warm_cool_adjust_sensor",
+    "building",
+    "room"
+  ],
+  "513_2_3003746": [
+    "networkadapter",
+    "heat_exchanger",
+    "low_outside_air_temperature_enable_differential_setpoint",
+    "building"
+  ],
+  "513_5_3019235": [
+    "networkadapter",
+    "building",
+    "chilled_water_differential_pressure_load_shed_command"
+  ],
+  "513_3_3015236": [
+    "networkadapter",
+    "economizer_mode_status",
+    "ahu",
+    "economizer"
+  ],
+  "513_1_3007000": [
+    "cooling_max_discharge_air_flow_setpoint",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "514_4_3007167": [
+    "networkadapter",
+    "building",
+    "occupied_command",
+    "room"
+  ],
+  "604_1_3012409": [
+    "occupied_cooling_temperature_setpoint",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "604_1_3012551": [
+    "building",
+    "room",
+    "networkadapter",
+    "occupied_heating_min_discharge_air_flow_setpoint",
+    "vav"
+  ],
+  "513_1_3004756": [
+    "building",
+    "room",
+    "networkadapter",
+    "occupied_heating_min_discharge_air_flow_setpoint",
+    "vav"
+  ],
+  "604_1_3013053": [
+    "building",
+    "room",
+    "networkadapter",
+    "occupied_heating_max_supply_air_flow_setpoint",
+    "vav"
+  ],
+  "514_0_3007233": [
+    "zone",
+    "building",
+    "room",
+    "networkadapter",
+    "zone_temperature_sensor"
+  ],
+  "604_1_3013499": [
+    "networkadapter",
+    "occupied_cooling_min_discharge_air_flow_setpoint",
+    "room",
+    "vav"
+  ],
+  "604_1_3012923": [
+    "building",
+    "room",
+    "supply_air_flow_setpoint",
+    "networkadapter",
+    "vav"
+  ],
+  "604_0_3012659": [
+    "building",
+    "room",
+    "networkadapter",
+    "effective_cooling_temperature_setpoint",
+    "vav"
+  ],
+  "514_0_3006709": [
+    "building",
+    "room",
+    "networkadapter",
+    "effective_cooling_temperature_setpoint",
+    "vav"
+  ],
+  "513_4_3005351": [
+    "building",
+    "occupied_command",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "513_0_3007177": [
+    "supply_air_flow_sensor",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "513_1_3007255": [
+    "valve",
+    "heating_valve_command",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "513_0_3006375": [
+    "supply_air_flow_sensor",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "604_0_3012646": [
+    "building",
+    "room",
+    "vav",
+    "networkadapter",
+    "effective_heating_temperature_setpoint"
+  ],
+  "604_0_3013338": [
+    "exhaust_fan",
+    "building",
+    "networkadapter",
+    "vfd",
+    "motor_torque_sensor"
+  ],
+  "513_0_3006594": [
+    "zone",
+    "building",
+    "room",
+    "networkadapter",
+    "zone_temperature_sensor",
+    "vav"
+  ],
+  "514_1_3006625": [
+    "valve",
+    "heating_valve_command",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "513_0_3004582": [
+    "networkadapter",
+    "building",
+    "ahu",
+    "supply_air_temperature_sensor"
+  ],
+  "513_1_3006980": [
+    "building",
+    "room",
+    "vav",
+    "networkadapter",
+    "setpoint"
+  ],
+  "514_0_3006443": [
+    "building",
+    "room",
+    "networkadapter",
+    "effective_cooling_temperature_setpoint",
+    "vav"
+  ],
+  "513_1_3005802": [
+    "building",
+    "room",
+    "supply_air_flow_setpoint",
+    "networkadapter",
+    "vav"
+  ],
+  "604_1_3013185": [
+    "occupied_heating_temperature_setpoint",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "604_1_3012618": [
+    "cooling_max_discharge_air_flow_setpoint",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "513_1_3004620": [
+    "networkadapter",
+    "building",
+    "ahu",
+    "proportional_band_setpoint"
+  ],
+  "604_1_3012960": [
+    "building",
+    "room",
+    "networkadapter",
+    "damper",
+    "damper_command",
+    "vav"
+  ],
+  "513_0_3006131": [
+    "building",
+    "room",
+    "vav",
+    "networkadapter",
+    "effective_heating_temperature_setpoint"
+  ],
+  "513_1_3006165": [
+    "building",
+    "room",
+    "networkadapter",
+    "occupied_heating_min_discharge_air_flow_setpoint",
+    "vav"
+  ],
+  "604_1_3013237": [
+    "networkadapter",
+    "exhaust_fan",
+    "building",
+    "exhaust_air_static_pressure_integral_time_setpoint"
+  ],
+  "513_1_3006780": [
+    "building",
+    "room",
+    "supply_air_flow_setpoint",
+    "networkadapter",
+    "vav"
+  ],
+  "604_0_3012684": [
+    "warm_cool_adjust_sensor",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "514_14_3007085": [
+    "building",
+    "occupied_command",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "514_0_3007549": [
+    "supply_fan",
+    "output_frequency_sensor",
+    "building",
+    "networkadapter",
+    "vfd"
+  ],
+  "604_0_3013032": [
+    "zone",
+    "building",
+    "room",
+    "networkadapter",
+    "zone_temperature_sensor",
+    "vav"
+  ],
+  "604_1_3012858": [
+    "building",
+    "room",
+    "networkadapter",
+    "occupied_heating_min_discharge_air_flow_setpoint",
+    "vav"
+  ],
+  "604_1_3012831": [
+    "zone",
+    "building",
+    "room",
+    "networkadapter",
+    "zone_temperature_sensor",
+    "vav"
+  ],
+  "513_14_3006795": [
+    "building",
+    "occupied_command",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "514_3_3007552": [
+    "supply_fan",
+    "run_direction_status",
+    "building",
+    "networkadapter",
+    "vfd"
+  ],
+  "513_4_3006415": [
+    "building",
+    "occupied_command",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "604_0_3013160": [
+    "building",
+    "room",
+    "vav",
+    "networkadapter",
+    "effective_heating_temperature_setpoint"
+  ],
+  "513_1_3006583": [
+    "valve",
+    "heating_valve_command",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "604_1_3013241": [
+    "exhaust_fan",
+    "vfd_command",
+    "building",
+    "networkadapter",
+    "vfd"
+  ],
+  "514_0_3011252": [
+    "supply_air_velocity_pressure_sensor",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "514_1_3007269": [
+    "zone",
+    "building",
+    "room",
+    "networkadapter",
+    "zone_temperature_sensor"
+  ],
+  "513_3_3004695": [
+    "building",
+    "filter_status",
+    "ahu",
+    "networkadapter",
+    "filter"
+  ],
+  "514_0_3007014": [
+    "exhaust_fan",
+    "building",
+    "networkadapter",
+    "vfd",
+    "motor_torque_sensor"
+  ],
+  "513_1_3004817": [
+    "building",
+    "room",
+    "networkadapter",
+    "damper",
+    "damper_command",
+    "vav"
+  ],
+  "513_14_3006537": [
+    "vav_box_mode_command",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "513_1_3011819": [
+    "pump",
+    "vfd_command",
+    "crac",
+    "building",
+    "networkadapter",
+    "vfd"
+  ],
+  "604_0_3013044": [
+    "supply_air_flow_sensor",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "604_0_3012548": [
+    "damper_position_sensor",
+    "building",
+    "room",
+    "networkadapter",
+    "damper",
+    "vav"
+  ],
+  "604_1_3012750": [
+    "cooling_max_discharge_air_flow_setpoint",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "513_1_3007321": [
+    "building",
+    "room",
+    "networkadapter",
+    "occupied_cooling_min_discharge_air_flow_setpoint",
+    "vav"
+  ],
+  "604_0_3013524": [
+    "networkadapter",
+    "effective_heating_temperature_setpoint",
+    "room",
+    "vav"
+  ],
+  "513_1_3005194": [
+    "occupied_heating_temperature_setpoint",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "513_3_3005427": [
+    "building",
+    "vfd_alarm",
+    "ahu",
+    "networkadapter",
+    "vfd"
+  ],
+  "513_1_3005161": [
+    "occupied_cooling_max_supply_air_flow_setpoint",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "604_1_3013166": [
+    "building",
+    "room",
+    "networkadapter",
+    "occupied_cooling_min_discharge_air_flow_setpoint",
+    "vav"
+  ],
+  "514_1_3006486": [
+    "occupied_cooling_temperature_setpoint",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "514_4_3006453": [
+    "building",
+    "occupied_command",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "513_0_3006030": [
+    "supply_air_flow_sensor",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "513_1_3007154": [
+    "building",
+    "room",
+    "networkadapter",
+    "occupied_heating_min_discharge_air_flow_setpoint",
+    "vav"
+  ],
+  "514_1_3009027": [
+    "building",
+    "room",
+    "vav",
+    "networkadapter",
+    "setpoint"
+  ],
+  "513_0_3004920": [
+    "supply_air_flow_sensor",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "513_0_3005784": [
+    "building",
+    "room",
+    "networkadapter",
+    "effective_cooling_temperature_setpoint",
+    "vav"
+  ],
+  "513_1_3007127": [
+    "building",
+    "room",
+    "vav",
+    "networkadapter",
+    "setpoint"
+  ],
+  "513_1_3005906": [
+    "building",
+    "room",
+    "networkadapter",
+    "occupied_heating_max_supply_air_flow_setpoint",
+    "vav"
+  ],
+  "604_0_3013297": [
+    "exhaust_fan",
+    "output_frequency_sensor",
+    "building",
+    "networkadapter",
+    "vfd"
+  ],
+  "604_0_3012428": [
+    "supply_air_flow_sensor",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "513_1_3006541": [
+    "valve",
+    "heating_valve_command",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "604_0_3013646": [
+    "networkadapter",
+    "supply_air_flow_sensor",
+    "room",
+    "vav"
+  ],
+  "513_0_3006582": [
+    "damper_position_sensor",
+    "building",
+    "room",
+    "networkadapter",
+    "damper",
+    "vav"
+  ],
+  "604_1_3012809": [
+    "valve",
+    "heating_valve_command",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "513_1_3006027": [
+    "building",
+    "room",
+    "networkadapter",
+    "occupied_heating_min_discharge_air_flow_setpoint",
+    "vav"
+  ],
+  "513_1_3005336": [
+    "building",
+    "room",
+    "supply_air_flow_setpoint",
+    "networkadapter",
+    "vav"
+  ],
+  "604_1_3013261": [
+    "networkadapter",
+    "exhaust_fan",
+    "exhaust_air_static_pressure_proportional_band_setpoint",
+    "building"
+  ],
+  "514_14_3007100": [
+    "building",
+    "occupied_command",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "513_4_3005167": [
+    "building",
+    "occupied_command",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "513_1_3004557": [
+    "networkadapter",
+    "heating_discharge_air_temperature_proportional_band_setpoint",
+    "building",
+    "ahu"
+  ],
+  "513_1_3006228": [
+    "building",
+    "room",
+    "networkadapter",
+    "occupied_heating_max_supply_air_flow_setpoint",
+    "vav"
+  ],
+  "513_0_3007156": [
+    "supply_air_flow_sensor",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "513_1_3006348": [
+    "building",
+    "room",
+    "networkadapter",
+    "occupied_cooling_min_discharge_air_flow_setpoint",
+    "vav"
+  ],
+  "604_0_3013276": [
+    "networkadapter",
+    "vfd",
+    "drive_temperature_sensor"
+  ],
+  "514_0_3006757": [
+    "building",
+    "room",
+    "vav",
+    "networkadapter",
+    "effective_heating_temperature_setpoint"
+  ],
+  "513_1_3007402": [
+    "valve",
+    "heating_valve_command",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "513_14_3007299": [
+    "building",
+    "occupied_command",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "604_1_3012420": [
+    "occupied_cooling_max_supply_air_flow_setpoint",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "513_1_3007273": [
+    "cooling_max_discharge_air_flow_setpoint",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "514_0_3007325": [
+    "supply_air_flow_sensor",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "513_3_3005495": [
+    "building",
+    "ahu",
+    "networkadapter",
+    "vfd",
+    "vfd_start_stop_status"
+  ],
+  "513_1_3004747": [
+    "occupied_cooling_max_supply_air_flow_setpoint",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "604_0_3012851": [
+    "building",
+    "room",
+    "vav",
+    "networkadapter",
+    "effective_heating_temperature_setpoint"
+  ],
+  "514_1_3007098": [
+    "building",
+    "room",
+    "vav",
+    "networkadapter",
+    "setpoint"
+  ],
+  "514_0_3006684": [
+    "zone",
+    "building",
+    "room",
+    "networkadapter",
+    "zone_temperature_sensor",
+    "vav"
+  ],
+  "513_0_3006267": [
+    "building",
+    "room",
+    "networkadapter",
+    "effective_cooling_temperature_setpoint",
+    "vav"
+  ],
+  "513_2_3003412": [
+    "discharge_air_flow_demand_setpoint",
+    "building",
+    "floor",
+    "ahu",
+    "networkadapter"
+  ],
+  "513_0_3006484": [
+    "supply_air_flow_sensor",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "604_1_3012411": [
+    "building",
+    "room",
+    "networkadapter",
+    "occupied_heating_min_discharge_air_flow_setpoint",
+    "vav"
+  ],
+  "513_14_3005564": [
+    "vav_box_mode_command",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "513_0_3007198": [
+    "supply_air_flow_sensor",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "514_5_3004144": [
+    "networkadapter",
+    "exhaust_fan_disable_command",
+    "exhaust_fan",
+    "building"
+  ],
+  "513_14_3007236": [
+    "building",
+    "occupied_command",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "604_0_3013357": [
+    "exhaust_fan",
+    "building",
+    "networkadapter",
+    "vfd",
+    "motor_torque_sensor"
+  ],
+  "513_0_3006678": [
+    "zone",
+    "building",
+    "room",
+    "networkadapter",
+    "zone_temperature_sensor",
+    "vav"
+  ],
+  "513_1_3006225": [
+    "occupied_cooling_max_supply_air_flow_setpoint",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "514_1_3007156": [
+    "valve",
+    "heating_valve_command",
+    "building",
+    "room",
+    "networkadapter"
+  ],
+  "513_0_3004786": [
+    "warm_cool_adjust_sensor",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "513_1_3006643": [
+    "cooling_max_discharge_air_flow_setpoint",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "513_0_3006173": [
+    "zone",
+    "building",
+    "room",
+    "networkadapter",
+    "zone_temperature_sensor",
+    "vav"
+  ],
+  "513_1_3005586": [
+    "cooling_max_discharge_air_flow_setpoint",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "604_0_3013005": [
+    "building",
+    "room",
+    "vav",
+    "networkadapter",
+    "effective_heating_temperature_setpoint"
+  ],
+  "513_0_3004948": [
+    "zone",
+    "building",
+    "room",
+    "networkadapter",
+    "zone_temperature_sensor",
+    "vav"
+  ],
+  "604_1_3013618": [
+    "networkadapter",
+    "cooling_max_discharge_air_flow_setpoint",
+    "room",
+    "vav"
+  ],
+  "604_1_3013115": [
+    "building",
+    "room",
+    "networkadapter",
+    "occupied_heating_max_supply_air_flow_setpoint",
+    "vav"
+  ],
+  "513_3_3004650": [
+    "vfd_run_status",
+    "building",
+    "ahu",
+    "networkadapter",
+    "vfd"
+  ],
+  "604_1_3013588": [
+    "networkadapter",
+    "cooling_max_discharge_air_flow_setpoint",
+    "room",
+    "vav"
+  ],
+  "513_4_3011822": [
+    "pump",
+    "crac",
+    "building",
+    "networkadapter",
+    "pump_start_stop_command"
+  ],
+  "513_0_3006505": [
+    "supply_air_flow_sensor",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "513_1_3005864": [
+    "occupied_cooling_temperature_setpoint",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "513_0_3005423": [
+    "building",
+    "ahu",
+    "networkadapter",
+    "vfd",
+    "vfd_power_meter"
+  ],
+  "514_1_3006555": [
+    "occupied_cooling_temperature_setpoint",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "514_0_3007588": [
+    "zone",
+    "building",
+    "room",
+    "networkadapter",
+    "zone_temperature_sensor",
+    "vav"
+  ],
+  "604_1_3013212": [
+    "occupied_cooling_temperature_setpoint",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "513_1_3005399": [
+    "building",
+    "ahu",
+    "networkadapter",
+    "vfd",
+    "max_frequency_command"
+  ],
+  "513_1_3005979": [
+    "occupied_cooling_temperature_setpoint",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "513_1_3004608": [
+    "networkadapter",
+    "supply_air_static_pressure_integral_time_setpoint",
+    "building",
+    "ahu"
+  ],
+  "513_0_3006463": [
+    "supply_air_flow_sensor",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "513_5_3007629": [
+    "networkadapter",
+    "building",
+    "zone",
+    "zone_standby_load_shed_command"
+  ],
+  "513_1_3007169": [
+    "building",
+    "room",
+    "vav",
+    "networkadapter",
+    "setpoint"
+  ],
+  "513_14_3006816": [
+    "building",
+    "occupied_command",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "513_0_3005988": [
+    "warm_cool_adjust_sensor",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "513_4_3005098": [
+    "building",
+    "occupied_command",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "513_1_3005926": [
+    "occupied_cooling_max_supply_air_flow_setpoint",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "513_0_3007265": [
+    "warm_cool_adjust_sensor",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "514_1_3006675": [
+    "building",
+    "room",
+    "networkadapter",
+    "occupied_cooling_min_discharge_air_flow_setpoint",
+    "vav"
+  ],
+  "513_0_3012743": [
+    "networkadapter",
+    "vfd",
+    "motor_torque_sensor"
+  ],
+  "604_4_3013432": [
+    "exhaust_fan",
+    "vfd_enable_command",
+    "building",
+    "networkadapter",
+    "vfd"
+  ],
+  "514_1_3007429": [
+    "networkadapter",
+    "occupied_heating_temperature_setpoint",
+    "building",
+    "room"
+  ],
+  "513_1_3007462": [
+    "cooling_max_discharge_air_flow_setpoint",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "513_2_3015660": [
+    "networkadapter",
+    "max_supply_air_temperature_setpoint",
+    "ahu"
+  ],
+  "604_1_3012992": [
+    "valve",
+    "heating_valve_command",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "604_0_3013628": [
+    "effective_cooling_temperature_setpoint",
+    "networkadapter",
+    "room",
+    "vav"
+  ],
+  "513_1_3006297": [
+    "building",
+    "room",
+    "networkadapter",
+    "occupied_heating_max_supply_air_flow_setpoint",
+    "vav"
+  ],
+  "604_14_3012584": [
+    "building",
+    "occupied_command",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "513_0_3005410": [
+    "building",
+    "ahu",
+    "drive_temperature_sensor",
+    "networkadapter",
+    "vfd"
+  ],
+  "513_1_3004987": [
+    "occupied_heating_temperature_setpoint",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "514_1_3006468": [
+    "valve",
+    "heating_valve_command",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "514_1_3007160": [
+    "networkadapter",
+    "warm_cool_adjust_sensor",
+    "building",
+    "room"
+  ],
+  "513_1_3007468": [
+    "building",
+    "room",
+    "networkadapter",
+    "occupied_cooling_min_discharge_air_flow_setpoint",
+    "vav"
+  ],
+  "513_14_3011788": [
+    "networkadapter",
+    "vav_box_mode_command",
+    "vav"
+  ],
+  "514_0_3007224": [
+    "zone",
+    "building",
+    "room",
+    "networkadapter",
+    "zone_temperature_sensor"
+  ],
+  "513_0_3006310": [
+    "warm_cool_adjust_sensor",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "514_3_3007531": [
+    "networkadapter",
+    "exhaust_fan",
+    "exhaust_fan_status",
+    "building"
+  ],
+  "513_14_3007194": [
+    "building",
+    "occupied_command",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "513_1_3005208": [
+    "building",
+    "room",
+    "networkadapter",
+    "damper",
+    "damper_command",
+    "vav"
+  ],
+  "513_14_3006684": [
+    "vav_box_mode_command",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "604_0_3012708": [
+    "damper_position_sensor",
+    "building",
+    "room",
+    "networkadapter",
+    "damper",
+    "vav"
+  ],
+  "604_0_3013245": [
+    "networkadapter",
+    "exhaust_fan",
+    "building",
+    "exhaust_air_static_pressure_sensor"
+  ],
+  "604_1_3013045": [
+    "building",
+    "room",
+    "supply_air_flow_setpoint",
+    "networkadapter",
+    "vav"
+  ],
+  "514_1_3007101": [
+    "building",
+    "room",
+    "networkadapter",
+    "occupied_cooling_min_discharge_air_flow_setpoint",
+    "vav"
+  ],
+  "514_1_3007231": [
+    "networkadapter",
+    "occupied_heating_temperature_setpoint",
+    "building",
+    "room"
+  ],
+  "604_14_3013636": [
+    "networkadapter",
+    "occupied_command",
+    "room",
+    "vav"
+  ],
+  "604_4_3013446": [
+    "networkadapter",
+    "vfd",
+    "run_direction_command"
+  ],
+  "604_1_3013099": [
+    "building",
+    "room",
+    "networkadapter",
+    "damper",
+    "damper_command",
+    "vav"
+  ],
+  "514_0_3006333": [
+    "building",
+    "ahu",
+    "networkadapter",
+    "heat_exchanger",
+    "medium_temperature_hot_water_supply_temperature_sensor"
+  ],
+  "513_14_3007209": [
+    "vav_box_mode_command",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "513_0_3004530": [
+    "networkadapter",
+    "supply_air_static_pressure_sensor",
+    "building",
+    "ahu"
+  ],
+  "513_0_3004837": [
+    "building",
+    "room",
+    "vav",
+    "networkadapter",
+    "basement",
+    "effective_heating_temperature_setpoint"
+  ],
+  "513_0_3004654": [
+    "building",
+    "ahu",
+    "room",
+    "networkadapter",
+    "return_air_temperature_sensor"
+  ],
+  "513_1_3004820": [
+    "valve",
+    "heating_valve_command",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "513_1_3005774": [
+    "building",
+    "room",
+    "networkadapter",
+    "occupied_heating_min_discharge_air_flow_setpoint",
+    "vav"
+  ],
+  "513_0_3006778": [
+    "supply_air_flow_sensor",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "513_0_3007009": [
+    "supply_air_flow_sensor",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "604_1_3013251": [
+    "exhaust_fan",
+    "vfd_command",
+    "building",
+    "networkadapter",
+    "vfd"
+  ],
+  "604_1_3012961": [
+    "building",
+    "room",
+    "networkadapter",
+    "occupied_heating_max_supply_air_flow_setpoint",
+    "vav"
+  ],
+  "513_0_3006489": [
+    "zone",
+    "building",
+    "room",
+    "networkadapter",
+    "zone_temperature_sensor",
+    "vav"
+  ],
+  "604_1_3013630": [
+    "networkadapter",
+    "setpoint",
+    "room",
+    "vav"
+  ],
+  "513_1_3005976": [
+    "valve",
+    "heating_valve_command",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "514_4_3007455": [
+    "networkadapter",
+    "building",
+    "occupied_command",
+    "room"
+  ],
+  "513_0_3007614": [
+    "networkadapter",
+    "supply_air_flow_sensor",
+    "vav"
+  ],
+  "513_1_3011826": [
+    "pump",
+    "differential_pressure_setpoint",
+    "crac",
+    "building",
+    "networkadapter"
+  ],
+  "514_1_3006327": [
+    "valve",
+    "building",
+    "ahu",
+    "networkadapter",
+    "cooling_valve_command"
+  ],
+  "513_0_3004924": [
+    "warm_cool_adjust_sensor",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "514_0_3006843": [
+    "building",
+    "room",
+    "networkadapter",
+    "zone_temperature_sensor",
+    "vav"
+  ],
+  "513_0_3011998": [
+    "networkadapter",
+    "building",
+    "chilled_water_return_temperature_sensor"
+  ],
+  "604_1_3013581": [
+    "valve",
+    "heating_valve_command",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "513_1_3006538": [
+    "cooling_max_discharge_air_flow_setpoint",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "513_1_3004591": [
+    "supply_air_static_pressure_setpoint",
+    "building",
+    "networkadapter",
+    "ahu"
+  ],
+  "513_0_3005970": [
+    "building",
+    "room",
+    "vav",
+    "networkadapter",
+    "effective_heating_temperature_setpoint"
+  ],
+  "604_0_3012940": [
+    "zone",
+    "building",
+    "room",
+    "networkadapter",
+    "zone_temperature_sensor",
+    "vav"
+  ],
+  "514_0_3007451": [
+    "networkadapter",
+    "building",
+    "room",
+    "effective_heating_temperature_setpoint"
+  ],
+  "514_1_3007339": [
+    "valve",
+    "heating_valve_command",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "514_0_3006732": [
+    "building",
+    "room",
+    "networkadapter",
+    "effective_cooling_temperature_setpoint",
+    "vav"
+  ],
+  "513_4_3004707": [
+    "building",
+    "occupied_command",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "513_1_3005331": [
+    "building",
+    "room",
+    "networkadapter",
+    "occupied_heating_min_discharge_air_flow_setpoint",
+    "vav"
+  ],
+  "513_1_3005723": [
+    "valve",
+    "heating_valve_command",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "513_1_3007066": [
+    "valve",
+    "heating_valve_command",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "514_1_3009049": [
+    "occupied_heating_temperature_setpoint",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "513_1_3005982": [
+    "occupied_heating_temperature_setpoint",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "604_0_3013343": [
+    "exhaust_fan",
+    "current_sensor",
+    "building",
+    "networkadapter",
+    "vfd"
+  ],
+  "514_1_3006691": [
+    "building",
+    "room",
+    "networkadapter",
+    "damper",
+    "damper_command",
+    "vav"
+  ],
+  "604_0_3012620": [
+    "damper_position_sensor",
+    "building",
+    "room",
+    "networkadapter",
+    "damper",
+    "vav"
+  ],
+  "604_0_3012860": [
+    "supply_air_flow_sensor",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "513_4_3006070": [
+    "building",
+    "occupied_command",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "514_0_3007152": [
+    "zone",
+    "building",
+    "room",
+    "networkadapter",
+    "zone_temperature_sensor"
+  ],
+  "513_0_3006640": [
+    "building",
+    "room",
+    "vav",
+    "networkadapter",
+    "effective_heating_temperature_setpoint"
+  ],
+  "513_4_3005190": [
+    "building",
+    "occupied_command",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "604_0_3012943": [
+    "building",
+    "room",
+    "vav",
+    "networkadapter",
+    "effective_heating_temperature_setpoint"
+  ],
+  "514_3_3008512": [
+    "pump",
+    "building",
+    "ahu",
+    "networkadapter",
+    "heat_exchanger",
+    "pump_flow_status"
+  ],
+  "513_0_3005108": [
+    "warm_cool_adjust_sensor",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "604_1_3012918": [
+    "occupied_cooling_temperature_setpoint",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "514_2_3003975": [
+    "networkadapter",
+    "heat_exchanger",
+    "low_outside_air_temperature_enable_differential_setpoint",
+    "building"
+  ],
+  "513_1_3006520": [
+    "valve",
+    "heating_valve_command",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "513_0_3004789": [
+    "building",
+    "room",
+    "networkadapter",
+    "effective_cooling_temperature_setpoint",
+    "vav"
+  ],
+  "604_0_3013277": [
+    "networkadapter",
+    "vfd",
+    "energy_sensor"
+  ],
+  "513_1_3004825": [
+    "building",
+    "room",
+    "networkadapter",
+    "occupied_heating_min_discharge_air_flow_setpoint",
+    "vav"
+  ],
+  "514_0_3007379": [
+    "networkadapter",
+    "building",
+    "room",
+    "effective_heating_temperature_setpoint"
+  ],
+  "604_1_3012811": [
+    "building",
+    "room",
+    "networkadapter",
+    "occupied_heating_min_discharge_air_flow_setpoint",
+    "vav"
+  ],
+  "513_1_3005894": [
+    "building",
+    "room",
+    "supply_air_flow_setpoint",
+    "networkadapter",
+    "vav"
+  ],
+  "604_0_3013364": [
+    "networkadapter",
+    "vfd",
+    "building",
+    "energy_sensor"
+  ],
+  "604_3_3013371": [
+    "networkadapter",
+    "vfd_run_status",
+    "vfd"
+  ],
+  "604_14_3012749": [
+    "vav_box_mode_command",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "514_2_3003558": [
+    "discharge_air_flow_demand_setpoint",
+    "supply_fan",
+    "building",
+    "floor",
+    "networkadapter"
+  ],
+  "513_1_3005329": [
+    "occupied_cooling_temperature_setpoint",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "604_1_3012885": [
+    "building",
+    "room",
+    "networkadapter",
+    "damper",
+    "damper_command",
+    "vav"
+  ],
+  "604_4_3013376": [
+    "networkadapter",
+    "vfd",
+    "vfd_start_stop_command"
+  ],
+  "513_4_3004524": [
+    "pump",
+    "building",
+    "ahu",
+    "networkadapter",
+    "heat_exchanger",
+    "pump_status"
+  ],
+  "514_0_3007262": [
+    "networkadapter",
+    "building",
+    "room",
+    "effective_heating_temperature_setpoint"
+  ],
+  "604_14_3012719": [
+    "vav_box_mode_command",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "513_0_3004745": [
+    "building",
+    "room",
+    "vav",
+    "networkadapter",
+    "effective_heating_temperature_setpoint"
+  ],
+  "513_1_3004725": [
+    "building",
+    "room",
+    "networkadapter",
+    "damper",
+    "damper_command",
+    "vav"
+  ],
+  "604_1_3012578": [
+    "building",
+    "room",
+    "networkadapter",
+    "occupied_cooling_min_discharge_air_flow_setpoint",
+    "vav"
+  ],
+  "604_1_3012553": [
+    "building",
+    "room",
+    "supply_air_flow_setpoint",
+    "networkadapter",
+    "vav"
+  ],
+  "513_1_3004917": [
+    "building",
+    "room",
+    "networkadapter",
+    "occupied_heating_min_discharge_air_flow_setpoint",
+    "vav"
+  ],
+  "604_0_3012444": [
+    "warm_cool_adjust_sensor",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "604_1_3013269": [
+    "networkadapter",
+    "exhaust_fan",
+    "building",
+    "exhaust_air_static_pressure_integral_time_setpoint"
+  ],
+  "604_1_3013040": [
+    "occupied_cooling_temperature_setpoint",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "604_1_3013482": [
+    "networkadapter",
+    "supply_air_flow_setpoint",
+    "room",
+    "vav"
+  ],
+  "514_2_3003978": [
+    "networkadapter",
+    "medium_temperature_hot_water_discharge_temperature_high_reset_setpoint",
+    "heat_exchanger",
+    "building"
+  ],
+  "513_1_3007231": [
+    "cooling_max_discharge_air_flow_setpoint",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "513_0_3006177": [
+    "building",
+    "room",
+    "vav",
+    "networkadapter",
+    "effective_heating_temperature_setpoint"
+  ],
+  "513_1_3007147": [
+    "cooling_max_discharge_air_flow_setpoint",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "514_0_3006824": [
+    "building",
+    "room",
+    "networkadapter",
+    "effective_cooling_temperature_setpoint",
+    "vav"
+  ],
+  "514_0_3007473": [
+    "exhaust_fan",
+    "last_fault_code_status",
+    "building",
+    "networkadapter",
+    "vfd"
+  ],
+  "513_1_3005566": [
+    "building",
+    "room",
+    "vav",
+    "networkadapter",
+    "setpoint"
+  ],
+  "514_1_3006471": [
+    "occupied_heating_temperature_setpoint",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "513_1_3004840": [
+    "building",
+    "room",
+    "networkadapter",
+    "damper",
+    "damper_command",
+    "basement",
+    "vav"
+  ],
+  "604_0_3012558": [
+    "building",
+    "room",
+    "vav",
+    "networkadapter",
+    "effective_heating_temperature_setpoint"
+  ],
+  "513_0_3005088": [
+    "building",
+    "room",
+    "networkadapter",
+    "effective_cooling_temperature_setpoint",
+    "vav"
+  ],
+  "513_1_3004784": [
+    "building",
+    "room",
+    "supply_air_flow_setpoint",
+    "networkadapter",
+    "vav"
+  ],
+  "604_3_3013307": [
+    "exhaust_fan",
+    "building",
+    "vfd_alarm",
+    "networkadapter",
+    "vfd"
+  ],
+  "513_1_3004547": [
+    "building",
+    "ahu",
+    "networkadapter",
+    "heat_exchanger",
+    "supply_water_temperature_proportional_band_setpoint"
+  ],
+  "514_1_3007246": [
+    "valve",
+    "heating_valve_command",
+    "building",
+    "room",
+    "networkadapter"
+  ],
+  "513_1_3007006": [
+    "building",
+    "room",
+    "networkadapter",
+    "occupied_cooling_min_discharge_air_flow_setpoint",
+    "vav"
+  ],
+  "604_3_3013358": [
+    "exhaust_fan",
+    "building",
+    "vfd_alarm",
+    "networkadapter",
+    "vfd"
+  ],
+  "604_0_3013436": [
+    "networkadapter",
+    "vfd",
+    "energy_sensor"
+  ],
+  "514_1_3006915": [
+    "occupied_heating_temperature_setpoint",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "604_1_3013213": [
+    "building",
+    "room",
+    "networkadapter",
+    "occupied_cooling_min_discharge_air_flow_setpoint",
+    "vav"
+  ],
+  "604_0_3012790": [
+    "building",
+    "room",
+    "vav",
+    "networkadapter",
+    "effective_heating_temperature_setpoint"
+  ],
+  "513_0_3006264": [
+    "warm_cool_adjust_sensor",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "604_1_3012611": [
+    "building",
+    "room",
+    "supply_air_flow_setpoint",
+    "networkadapter",
+    "vav"
+  ],
+  "513_0_3006552": [
+    "zone",
+    "building",
+    "room",
+    "networkadapter",
+    "zone_temperature_sensor",
+    "vav"
+  ],
+  "513_1_3005888": [
+    "building",
+    "room",
+    "networkadapter",
+    "occupied_cooling_min_discharge_air_flow_setpoint",
+    "vav"
+  ],
+  "604_0_3012970": [
+    "zone",
+    "building",
+    "room",
+    "networkadapter",
+    "zone_temperature_sensor",
+    "vav"
+  ],
+  "514_1_3007130": [
+    "building",
+    "room",
+    "vav",
+    "networkadapter",
+    "setpoint"
+  ],
+  "513_0_3006806": [
+    "building",
+    "room",
+    "networkadapter",
+    "effective_cooling_temperature_setpoint",
+    "vav"
+  ],
+  "513_4_3004598": [
+    "supply_fan",
+    "building",
+    "ahu",
+    "networkadapter",
+    "supply_fan_start_stop_command"
+  ],
+  "513_1_3004918": [
+    "occupied_heating_temperature_setpoint",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "604_2_3014958": [
+    "networkadapter",
+    "average_exhaust_air_static_pressure_setpoint",
+    "building"
+  ],
+  "513_1_3005408": [
+    "building",
+    "ahu",
+    "networkadapter",
+    "vfd",
+    "current_limit_setpoint"
+  ],
+  "513_1_3006134": [
+    "building",
+    "room",
+    "networkadapter",
+    "damper",
+    "damper_command",
+    "vav"
+  ],
+  "513_1_3005096": [
+    "valve",
+    "heating_valve_command",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "513_1_3004912": [
+    "valve",
+    "heating_valve_command",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "604_14_3013576": [
+    "networkadapter",
+    "occupied_command",
+    "room",
+    "vav"
+  ],
+  "513_1_3006601": [
+    "cooling_max_discharge_air_flow_setpoint",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "514_0_3006876": [
+    "building",
+    "room",
+    "vav",
+    "networkadapter",
+    "effective_heating_temperature_setpoint"
+  ],
+  "513_1_3005884": [
+    "valve",
+    "heating_valve_command",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "514_0_3006464": [
+    "zone",
+    "building",
+    "room",
+    "networkadapter",
+    "zone_temperature_sensor",
+    "vav"
+  ],
+  "604_0_3013522": [
+    "damper_position_sensor",
+    "room",
+    "networkadapter",
+    "damper",
+    "vav"
+  ],
+  "604_0_3013319": [
+    "exhaust_fan",
+    "building",
+    "networkadapter",
+    "vfd",
+    "motor_speed_sensor"
+  ],
+  "514_4_3006981": [
+    "exhaust_fan",
+    "building",
+    "networkadapter",
+    "vfd",
+    "fault_reset_command"
+  ],
+  "513_1_3005587": [
+    "building",
+    "room",
+    "vav",
+    "networkadapter",
+    "setpoint"
+  ],
+  "513_0_3005200": [
+    "warm_cool_adjust_sensor",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "514_0_3007196": [
+    "networkadapter",
+    "warm_cool_adjust_sensor",
+    "building",
+    "room"
+  ],
+  "604_1_3013316": [
+    "exhaust_fan",
+    "building",
+    "networkadapter",
+    "vfd",
+    "max_frequency_command"
+  ],
+  "513_1_3005664": [
+    "building",
+    "room",
+    "supply_air_flow_setpoint",
+    "networkadapter",
+    "vav"
+  ],
+  "513_1_3006071": [
+    "occupied_cooling_temperature_setpoint",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "513_0_3006799": [
+    "supply_air_flow_sensor",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "514_0_3009058": [
+    "building",
+    "room",
+    "networkadapter",
+    "effective_cooling_temperature_setpoint",
+    "vav"
+  ],
+  "513_0_3006535": [
+    "building",
+    "room",
+    "vav",
+    "networkadapter",
+    "effective_heating_temperature_setpoint"
+  ],
+  "513_1_3006853": [
+    "cooling_max_discharge_air_flow_setpoint",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "514_1_3007327": [
+    "building",
+    "room",
+    "supply_air_flow_setpoint",
+    "networkadapter",
+    "vav"
+  ],
+  "513_1_3007515": [
+    "building",
+    "room",
+    "supply_air_flow_setpoint",
+    "networkadapter",
+    "vav"
+  ],
+  "513_2_3015529": [
+    "networkadapter",
+    "min_supply_air_temperature_setpoint",
+    "ahu"
+  ],
+  "513_1_3006901": [
+    "building",
+    "room",
+    "networkadapter",
+    "occupied_cooling_min_discharge_air_flow_setpoint",
+    "vav"
+  ],
+  "513_0_3007370": [
+    "warm_cool_adjust_sensor",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "513_0_3006666": [
+    "damper_position_sensor",
+    "building",
+    "room",
+    "networkadapter",
+    "damper",
+    "vav"
+  ],
+  "514_0_3007496": [
+    "exhaust_fan",
+    "building",
+    "networkadapter",
+    "vfd",
+    "vfd_power_meter"
+  ],
+  "513_0_3004722": [
+    "building",
+    "room",
+    "vav",
+    "networkadapter",
+    "effective_heating_temperature_setpoint"
+  ],
+  "513_0_3006468": [
+    "zone",
+    "building",
+    "room",
+    "networkadapter",
+    "zone_temperature_sensor",
+    "vav"
+  ],
+  "513_0_3006103": [
+    "warm_cool_adjust_sensor",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "604_14_3012836": [
+    "vav_box_mode_command",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "513_1_3007378": [
+    "cooling_max_discharge_air_flow_setpoint",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "604_1_3013415": [
+    "exhaust_fan",
+    "building",
+    "networkadapter",
+    "vfd",
+    "current_limit_setpoint"
+  ],
+  "604_1_3013222": [
+    "networkadapter",
+    "exhaust_air_static_pressure_setpoint",
+    "exhaust_fan",
+    "building"
+  ],
+  "513_19_3019207": [
+    "networkadapter",
+    "building",
+    "load_shed_command"
+  ],
+  "513_14_3007341": [
+    "building",
+    "occupied_command",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "604_1_3013054": [
+    "valve",
+    "heating_valve_command",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "513_1_3006045": [
+    "valve",
+    "heating_valve_command",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "513_0_3007422": [
+    "damper_position_sensor",
+    "building",
+    "room",
+    "networkadapter",
+    "damper",
+    "vav"
+  ],
+  "604_0_3012780": [
+    "damper_position_sensor",
+    "building",
+    "room",
+    "networkadapter",
+    "damper",
+    "vav"
+  ],
+  "604_1_3012390": [
+    "occupied_cooling_max_supply_air_flow_setpoint",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "604_3_3013339": [
+    "exhaust_fan",
+    "building",
+    "vfd_alarm",
+    "networkadapter",
+    "vfd"
+  ],
+  "513_0_3005491": [
+    "building",
+    "ahu",
+    "networkadapter",
+    "vfd",
+    "motor_speed_sensor"
+  ],
+  "604_1_3013058": [
+    "occupied_heating_temperature_setpoint",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "513_0_3005012": [
+    "supply_air_flow_sensor",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "513_2_3007970": [
+    "networkadapter",
+    "unknown"
+  ],
+  "513_0_3007044": [
+    "damper_position_sensor",
+    "building",
+    "room",
+    "networkadapter",
+    "damper",
+    "vav"
+  ],
+  "513_0_3007203": [
+    "zone",
+    "building",
+    "room",
+    "networkadapter",
+    "zone_temperature_sensor",
+    "vav"
+  ],
+  "513_0_3005623": [
+    "building",
+    "room",
+    "networkadapter",
+    "effective_cooling_temperature_setpoint",
+    "vav"
+  ],
+  "514_1_3006338": [
+    "valve",
+    "building",
+    "ahu",
+    "heat_exchanger_valve_command",
+    "heat_exchanger",
+    "networkadapter"
+  ],
+  "514_3_3006427": [
+    "networkadapter",
+    "exhaust_fan",
+    "exhaust_fan_status",
+    "building"
+  ],
+  "604_1_3013181": [
+    "valve",
+    "heating_valve_command",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "513_1_3005188": [
+    "valve",
+    "heating_valve_command",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "604_0_3012582": [
+    "warm_cool_adjust_sensor",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "513_0_3006955": [
+    "building",
+    "room",
+    "vav",
+    "networkadapter",
+    "effective_heating_temperature_setpoint"
+  ],
+  "514_0_3006850": [
+    "warm_cool_adjust_sensor",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "513_1_3007074": [
+    "building",
+    "room",
+    "supply_air_flow_setpoint",
+    "networkadapter",
+    "vav"
+  ],
+  "604_1_3013585": [
+    "networkadapter",
+    "setpoint",
+    "room",
+    "vav"
+  ],
+  "604_1_3013152": [
+    "building",
+    "room",
+    "networkadapter",
+    "occupied_heating_min_discharge_air_flow_setpoint",
+    "vav"
+  ],
+  "604_14_3012805": [
+    "vav_box_mode_command",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "513_1_3006280": [
+    "building",
+    "room",
+    "networkadapter",
+    "occupied_heating_min_discharge_air_flow_setpoint",
+    "vav"
+  ],
+  "604_3_3013687": [
+    "networkadapter",
+    "crac",
+    "building",
+    "run_status"
+  ],
+  "513_1_3006252": [
+    "valve",
+    "heating_valve_command",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "513_1_3006793": [
+    "valve",
+    "heating_valve_command",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "604_1_3013649": [
+    "networkadapter",
+    "occupied_cooling_min_discharge_air_flow_setpoint",
+    "room",
+    "vav"
+  ],
+  "513_0_3006890": [
+    "building",
+    "room",
+    "networkadapter",
+    "effective_cooling_temperature_setpoint",
+    "vav"
+  ],
+  "513_1_3005699": [
+    "building",
+    "room",
+    "networkadapter",
+    "occupied_heating_max_supply_air_flow_setpoint",
+    "vav"
+  ],
+  "604_1_3012527": [
+    "valve",
+    "heating_valve_command",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "513_1_3005973": [
+    "building",
+    "room",
+    "networkadapter",
+    "damper",
+    "damper_command",
+    "vav"
+  ],
+  "604_0_3012804": [
+    "building",
+    "room",
+    "vav",
+    "networkadapter",
+    "effective_heating_temperature_setpoint"
+  ],
+  "514_0_3007424": [
+    "networkadapter",
+    "building",
+    "room",
+    "effective_heating_temperature_setpoint"
+  ],
+  "513_0_3005781": [
+    "warm_cool_adjust_sensor",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "514_4_3007551": [
+    "supply_fan",
+    "building",
+    "networkadapter",
+    "vfd",
+    "run_direction_command"
+  ],
+  "513_1_3006377": [
+    "building",
+    "room",
+    "supply_air_flow_setpoint",
+    "networkadapter",
+    "vav"
+  ],
+  "513_2_3017146": [
+    "networkadapter",
+    "max_supply_air_static_pressure_setpoint",
+    "ahu"
+  ],
+  "604_0_3012882": [
+    "building",
+    "room",
+    "networkadapter",
+    "effective_cooling_temperature_setpoint",
+    "vav"
+  ],
+  "604_1_3013515": [
+    "networkadapter",
+    "occupied_heating_min_discharge_air_flow_setpoint",
+    "room",
+    "vav"
+  ],
+  "513_1_3005572": [
+    "building",
+    "room",
+    "networkadapter",
+    "occupied_heating_min_discharge_air_flow_setpoint",
+    "vav"
+  ],
+  "513_1_3007003": [
+    "valve",
+    "heating_valve_command",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "604_0_3013320": [
+    "exhaust_fan",
+    "building",
+    "networkadapter",
+    "vfd",
+    "motor_torque_sensor"
+  ],
+  "514_4_3007158": [
+    "networkadapter",
+    "building",
+    "occupied_command",
+    "room"
+  ],
+  "604_0_3013567": [
+    "damper_position_sensor",
+    "room",
+    "networkadapter",
+    "damper",
+    "vav"
+  ],
+  "604_2_3014696": [
+    "networkadapter",
+    "supply_air_temperature_reset_differential_setpoint"
+  ],
+  "513_0_3007123": [
+    "building",
+    "room",
+    "vav",
+    "networkadapter",
+    "effective_heating_temperature_setpoint"
+  ],
+  "513_2_3015533": [
+    "networkadapter",
+    "supply_air_temperature_increase_decrease_step_setpoint",
+    "ahu"
+  ],
+  "604_5_3016967": [
+    "networkadapter",
+    "crac",
+    "hold_status"
+  ],
+  "604_0_3012794": [
+    "damper_position_sensor",
+    "building",
+    "room",
+    "networkadapter",
+    "damper",
+    "vav"
+  ],
+  "513_1_3004732": [
+    "building",
+    "room",
+    "networkadapter",
+    "occupied_cooling_min_discharge_air_flow_setpoint",
+    "vav"
+  ],
+  "604_0_3012726": [
+    "supply_air_flow_sensor",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "513_1_3005544": [
+    "cooling_max_discharge_air_flow_setpoint",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "513_0_3006306": [
+    "supply_air_flow_sensor",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "513_1_3005257": [
+    "valve",
+    "heating_valve_command",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "514_3_3007017": [
+    "exhaust_fan",
+    "building",
+    "networkadapter",
+    "vfd",
+    "vfd_start_stop_status"
+  ],
+  "513_1_3005789": [
+    "building",
+    "room",
+    "networkadapter",
+    "damper",
+    "damper_command",
+    "vav"
+  ],
+  "604_14_3012614": [
+    "building",
+    "occupied_command",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "513_0_3006883": [
+    "supply_air_flow_sensor",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "604_1_3013513": [
+    "networkadapter",
+    "cooling_max_discharge_air_flow_setpoint",
+    "room",
+    "vav"
+  ],
+  "604_1_3012665": [
+    "valve",
+    "heating_valve_command",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "604_1_3012443": [
+    "building",
+    "room",
+    "supply_air_flow_setpoint",
+    "networkadapter",
+    "vav"
+  ],
+  "513_0_3004925": [
+    "zone",
+    "building",
+    "room",
+    "networkadapter",
+    "zone_temperature_sensor",
+    "vav"
+  ],
+  "513_3_3004577": [
+    "building",
+    "ahu",
+    "networkadapter",
+    "vfd",
+    "vfd_status"
+  ],
+  "514_1_3006888": [
+    "building",
+    "room",
+    "networkadapter",
+    "occupied_cooling_min_discharge_air_flow_setpoint",
+    "vav"
+  ],
+  "604_1_3012577": [
+    "valve",
+    "heating_valve_command",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "604_0_3012487": [
+    "supply_air_flow_sensor",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "514_1_3006789": [
+    "occupied_cooling_temperature_setpoint",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "604_4_3012417": [
+    "building",
+    "occupied_command",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "604_1_3012947": [
+    "valve",
+    "heating_valve_command",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "514_1_3007282": [
+    "building",
+    "room",
+    "supply_air_flow_setpoint",
+    "networkadapter",
+    "vav"
+  ],
+  "513_0_3007589": [
+    "networkadapter",
+    "zone_temperature_sensor",
+    "zone",
+    "vav"
+  ],
+  "513_1_3006923": [
+    "building",
+    "room",
+    "networkadapter",
+    "occupied_heating_min_discharge_air_flow_setpoint",
+    "vav"
+  ],
+  "604_1_3012485": [
+    "building",
+    "room",
+    "networkadapter",
+    "occupied_heating_min_discharge_air_flow_setpoint",
+    "vav"
+  ],
+  "513_1_3005773": [
+    "building",
+    "room",
+    "networkadapter",
+    "occupied_cooling_min_discharge_air_flow_setpoint",
+    "vav"
+  ],
+  "604_0_3013312": [
+    "exhaust_fan",
+    "building",
+    "drive_temperature_sensor",
+    "networkadapter",
+    "vfd"
+  ],
+  "513_1_3006608": [
+    "building",
+    "room",
+    "networkadapter",
+    "occupied_heating_min_discharge_air_flow_setpoint",
+    "vav"
+  ],
+  "514_1_3007517": [
+    "networkadapter",
+    "exhaust_fan",
+    "vfd_command",
+    "building"
+  ],
+  "604_1_3013259": [
+    "networkadapter",
+    "exhaust_fan",
+    "building",
+    "exhaust_air_static_pressure_integral_time_setpoint"
+  ],
+  "513_2_3015250": [
+    "networkadapter",
+    "max_supply_air_temperature_setpoint",
+    "ahu"
+  ],
+  "604_0_3013191": [
+    "building",
+    "room",
+    "networkadapter",
+    "effective_cooling_temperature_setpoint",
+    "vav"
+  ],
+  "604_14_3013666": [
+    "networkadapter",
+    "occupied_command",
+    "room",
+    "vav"
+  ],
+  "513_1_3006518": [
+    "building",
+    "room",
+    "vav",
+    "networkadapter",
+    "setpoint"
+  ],
+  "604_0_3013659": [
+    "networkadapter",
+    "effective_heating_temperature_setpoint",
+    "room",
+    "vav"
+  ],
+  "513_0_3005616": [
+    "supply_air_flow_sensor",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "604_1_3012410": [
+    "building",
+    "room",
+    "networkadapter",
+    "occupied_cooling_min_discharge_air_flow_setpoint",
+    "vav"
+  ],
+  "513_1_3005705": [
+    "building",
+    "room",
+    "networkadapter",
+    "occupied_heating_min_discharge_air_flow_setpoint",
+    "vav"
+  ],
+  "604_0_3013344": [
+    "exhaust_fan",
+    "building",
+    "drive_temperature_sensor",
+    "networkadapter",
+    "vfd"
+  ],
+  "513_0_3007394": [
+    "building",
+    "room",
+    "networkadapter",
+    "effective_cooling_temperature_setpoint",
+    "vav"
+  ],
+  "604_14_3012774": [
+    "building",
+    "occupied_command",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "604_0_3012846": [
+    "zone",
+    "building",
+    "room",
+    "networkadapter",
+    "zone_temperature_sensor",
+    "vav"
+  ],
+  "514_1_3007417": [
+    "valve",
+    "heating_valve_command",
+    "building",
+    "room",
+    "networkadapter"
+  ],
+  "604_1_3012439": [
+    "building",
+    "room",
+    "networkadapter",
+    "occupied_cooling_min_discharge_air_flow_setpoint",
+    "vav"
+  ],
+  "513_1_3007484": [
+    "building",
+    "room",
+    "vav",
+    "networkadapter",
+    "setpoint"
+  ],
+  "513_1_3007448": [
+    "building",
+    "room",
+    "networkadapter",
+    "occupied_heating_min_discharge_air_flow_setpoint",
+    "vav"
+  ],
+  "514_0_3006546": [
+    "building",
+    "room",
+    "vav",
+    "networkadapter",
+    "effective_heating_temperature_setpoint"
+  ],
+  "513_0_3004740": [
+    "warm_cool_adjust_sensor",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "513_0_3005058": [
+    "supply_air_flow_sensor",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "604_0_3013094": [
+    "zone",
+    "building",
+    "room",
+    "networkadapter",
+    "zone_temperature_sensor",
+    "vav"
+  ],
+  "513_1_3011345": [
+    "networkadapter",
+    "pump",
+    "building",
+    "chilled_water_differential_pressure_setpoint"
+  ],
+  "513_0_3004906": [
+    "building",
+    "room",
+    "vav",
+    "networkadapter",
+    "effective_heating_temperature_setpoint"
+  ],
+  "514_0_3007505": [
+    "networkadapter",
+    "exhaust_fan",
+    "exhaust_air_stack_flow_sensor",
+    "building"
+  ],
+  "604_0_3013616": [
+    "networkadapter",
+    "supply_air_flow_sensor",
+    "room",
+    "vav"
+  ],
+  "513_14_3005543": [
+    "vav_box_mode_command",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "604_0_3012803": [
+    "building",
+    "room",
+    "networkadapter",
+    "effective_cooling_temperature_setpoint",
+    "vav"
+  ],
+  "514_4_3006531": [
+    "building",
+    "occupied_command",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "604_1_3013390": [
+    "vfd_speed_command",
+    "exhaust_fan",
+    "building",
+    "networkadapter",
+    "vfd"
+  ],
+  "604_1_3013116": [
+    "valve",
+    "heating_valve_command",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "513_1_3005949": [
+    "occupied_cooling_max_supply_air_flow_setpoint",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "513_1_3005752": [
+    "occupied_heating_temperature_setpoint",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "604_0_3012596": [
+    "warm_cool_adjust_sensor",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "513_3_3011818": [
+    "pump",
+    "crac",
+    "building",
+    "networkadapter",
+    "pump_status"
+  ],
+  "604_1_3013113": [
+    "occupied_cooling_max_supply_air_flow_setpoint",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "513_0_3004970": [
+    "warm_cool_adjust_sensor",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "513_0_3005085": [
+    "warm_cool_adjust_sensor",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "513_1_3005138": [
+    "occupied_cooling_max_supply_air_flow_setpoint",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "513_1_3006544": [
+    "building",
+    "room",
+    "networkadapter",
+    "occupied_cooling_min_discharge_air_flow_setpoint",
+    "vav"
+  ],
+  "604_0_3012812": [
+    "supply_air_flow_sensor",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "604_0_3012641": [
+    "zone",
+    "building",
+    "room",
+    "networkadapter",
+    "zone_temperature_sensor",
+    "vav"
+  ],
+  "514_1_3006865": [
+    "occupied_heating_temperature_setpoint",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "604_1_3012425": [
+    "building",
+    "room",
+    "networkadapter",
+    "occupied_cooling_min_discharge_air_flow_setpoint",
+    "vav"
+  ],
+  "514_0_3007397": [
+    "networkadapter",
+    "building",
+    "room",
+    "effective_heating_temperature_setpoint"
+  ],
+  "604_0_3012843": [
+    "supply_air_flow_sensor",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "604_4_3013426": [
+    "exhaust_fan",
+    "building",
+    "panel_lockout_command",
+    "networkadapter",
+    "vfd"
+  ],
+  "513_1_3004556": [
+    "networkadapter",
+    "heating_discharge_air_temperature_proportional_band_setpoint",
+    "building",
+    "ahu"
+  ],
+  "513_1_3006524": [
+    "building",
+    "room",
+    "networkadapter",
+    "occupied_heating_min_discharge_air_flow_setpoint",
+    "vav"
+  ],
+  "604_1_3013242": [
+    "networkadapter",
+    "average_exhaust_air_pressure_setpoint",
+    "exhaust_fan",
+    "building"
+  ],
+  "513_1_3006278": [
+    "occupied_cooling_temperature_setpoint",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "514_1_3006512": [
+    "occupied_heating_temperature_setpoint",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "513_1_3007150": [
+    "valve",
+    "heating_valve_command",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "514_1_3011276": [
+    "building",
+    "room",
+    "networkadapter",
+    "damper",
+    "damper_command",
+    "vav"
+  ],
+  "513_0_3005804": [
+    "warm_cool_adjust_sensor",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "604_1_3012757": [
+    "building",
+    "room",
+    "supply_air_flow_setpoint",
+    "networkadapter",
+    "vav"
+  ],
+  "514_1_3007210": [
+    "valve",
+    "heating_valve_command",
+    "building",
+    "room",
+    "networkadapter"
+  ],
+  "604_1_3013530": [
+    "networkadapter",
+    "occupied_heating_min_discharge_air_flow_setpoint",
+    "room",
+    "vav"
+  ],
+  "514_0_3006780": [
+    "building",
+    "room",
+    "vav",
+    "networkadapter",
+    "effective_heating_temperature_setpoint"
+  ],
+  "513_1_3006320": [
+    "building",
+    "room",
+    "networkadapter",
+    "occupied_heating_max_supply_air_flow_setpoint",
+    "vav"
+  ],
+  "514_1_3006864": [
+    "building",
+    "room",
+    "networkadapter",
+    "occupied_heating_min_discharge_air_flow_setpoint",
+    "vav"
+  ],
+  "604_1_3013540": [
+    "networkadapter",
+    "setpoint",
+    "room",
+    "vav"
+  ],
+  "604_0_3013417": [
+    "exhaust_fan",
+    "building",
+    "drive_temperature_sensor",
+    "networkadapter",
+    "vfd"
+  ],
+  "513_0_3007412": [
+    "warm_cool_adjust_sensor",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "513_1_3006759": [
+    "building",
+    "room",
+    "supply_air_flow_setpoint",
+    "networkadapter",
+    "vav"
+  ],
+  "513_1_3005285": [
+    "building",
+    "room",
+    "networkadapter",
+    "occupied_heating_min_discharge_air_flow_setpoint",
+    "vav"
+  ],
+  "513_1_3006097": [
+    "occupied_heating_temperature_setpoint",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "604_1_3014146": [
+    "networkadapter",
+    "exhaust_fan",
+    "building",
+    "exhaust_air_static_pressure_dead_band_setpoint"
+  ],
+  "604_0_3013535": [
+    "networkadapter",
+    "supply_air_velocity_pressure_sensor",
+    "room",
+    "vav"
+  ],
+  "514_0_3007034": [
+    "supply_air_flow_sensor",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "514_0_3006822": [
+    "zone",
+    "building",
+    "room",
+    "networkadapter",
+    "zone_temperature_sensor",
+    "vav"
+  ],
+  "513_0_3007002": [
+    "damper_position_sensor",
+    "building",
+    "room",
+    "networkadapter",
+    "damper",
+    "vav"
+  ],
+  "604_4_3013328": [
+    "exhaust_fan",
+    "building",
+    "networkadapter",
+    "vfd",
+    "fault_reset_command"
+  ],
+  "513_1_3005032": [
+    "building",
+    "room",
+    "networkadapter",
+    "occupied_heating_min_discharge_air_flow_setpoint",
+    "vav"
+  ],
+  "513_0_3005532": [
+    "supply_air_flow_sensor",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "513_1_3007084": [
+    "cooling_max_discharge_air_flow_setpoint",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "604_1_3012946": [
+    "building",
+    "room",
+    "networkadapter",
+    "occupied_heating_max_supply_air_flow_setpoint",
+    "vav"
+  ],
+  "513_0_3004768": [
+    "building",
+    "room",
+    "vav",
+    "networkadapter",
+    "effective_heating_temperature_setpoint"
+  ],
+  "514_0_3006459": [
+    "supply_air_flow_sensor",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "513_0_3006750": [
+    "damper_position_sensor",
+    "building",
+    "room",
+    "networkadapter",
+    "damper",
+    "vav"
+  ],
+  "513_0_3007506": [
+    "damper_position_sensor",
+    "building",
+    "room",
+    "networkadapter",
+    "damper",
+    "vav"
+  ],
+  "513_0_3006932": [
+    "building",
+    "room",
+    "networkadapter",
+    "effective_cooling_temperature_setpoint",
+    "vav"
+  ],
+  "604_1_3012996": [
+    "occupied_heating_temperature_setpoint",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "604_1_3013483": [
+    "networkadapter",
+    "cooling_max_discharge_air_flow_setpoint",
+    "room",
+    "vav"
+  ],
+  "604_1_3012886": [
+    "building",
+    "room",
+    "networkadapter",
+    "occupied_heating_max_supply_air_flow_setpoint",
+    "vav"
+  ],
+  "604_0_3012664": [
+    "damper_position_sensor",
+    "building",
+    "room",
+    "networkadapter",
+    "damper",
+    "vav"
+  ],
+  "513_0_3005938": [
+    "supply_air_flow_sensor",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "604_0_3013539": [
+    "networkadapter",
+    "effective_heating_temperature_setpoint",
+    "room",
+    "vav"
+  ],
+  "513_1_3006434": [
+    "building",
+    "room",
+    "vav",
+    "networkadapter",
+    "setpoint"
+  ],
+  "604_0_3013172": [
+    "zone",
+    "building",
+    "room",
+    "networkadapter",
+    "zone_temperature_sensor",
+    "vav"
+  ],
+  "604_0_3012748": [
+    "building",
+    "room",
+    "vav",
+    "networkadapter",
+    "effective_heating_temperature_setpoint"
+  ],
+  "513_0_3007712": [
+    "co2_level_sensor",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "513_1_3005551": [
+    "building",
+    "room",
+    "networkadapter",
+    "occupied_heating_min_discharge_air_flow_setpoint",
+    "vav"
+  ],
+  "514_0_3007333": [
+    "building",
+    "room",
+    "vav",
+    "networkadapter",
+    "effective_heating_temperature_setpoint"
+  ],
+  "513_0_3006589": [
+    "supply_air_flow_sensor",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "514_1_3007029": [
+    "occupied_cooling_temperature_setpoint",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "513_1_3006170": [
+    "building",
+    "room",
+    "supply_air_flow_setpoint",
+    "networkadapter",
+    "vav"
+  ],
+  "514_3_3007495": [
+    "exhaust_fan",
+    "run_direction_status",
+    "building",
+    "networkadapter",
+    "vfd"
+  ],
+  "513_0_3007613": [
+    "networkadapter",
+    "damper_position_sensor",
+    "damper",
+    "vav"
+  ],
+  "604_1_3012736": [
+    "cooling_max_discharge_air_flow_setpoint",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "513_1_3004734": [
+    "occupied_heating_temperature_setpoint",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "604_1_3012903": [
+    "occupied_cooling_temperature_setpoint",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "514_1_3006937": [
+    "building",
+    "room",
+    "networkadapter",
+    "occupied_heating_min_discharge_air_flow_setpoint",
+    "vav"
+  ],
+  "514_1_3006676": [
+    "building",
+    "room",
+    "networkadapter",
+    "occupied_heating_min_discharge_air_flow_setpoint",
+    "vav"
+  ],
+  "514_0_3007430": [
+    "networkadapter",
+    "warm_cool_adjust_sensor",
+    "building",
+    "room"
+  ],
+  "604_1_3012933": [
+    "occupied_cooling_temperature_setpoint",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "604_4_3012536": [
+    "exhaust_fan",
+    "building",
+    "networkadapter",
+    "vfd",
+    "fault_reset_command"
+  ],
+  "604_4_3013349": [
+    "exhaust_fan",
+    "building",
+    "networkadapter",
+    "vfd",
+    "run_direction_command"
+  ],
+  "513_0_3006398": [
+    "supply_air_flow_sensor",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "513_0_3007212": [
+    "damper_position_sensor",
+    "building",
+    "room",
+    "networkadapter",
+    "damper",
+    "vav"
+  ],
+  "513_1_3005589": [
+    "valve",
+    "heating_valve_command",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "513_0_3005274": [
+    "building",
+    "room",
+    "vav",
+    "networkadapter",
+    "effective_heating_temperature_setpoint"
+  ],
+  "513_3_3004631": [
+    "exhaust_fan",
+    "exhaust_fan_status",
+    "building",
+    "ahu",
+    "networkadapter"
+  ],
+  "604_0_3013475": [
+    "networkadapter",
+    "supply_air_velocity_pressure_sensor",
+    "room",
+    "vav"
+  ],
+  "513_1_3006874": [
+    "cooling_max_discharge_air_flow_setpoint",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "604_14_3012705": [
+    "vav_box_mode_command",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "513_0_3012741": [
+    "networkadapter",
+    "vfd",
+    "last_fault_code_status"
+  ],
+  "604_1_3013514": [
+    "networkadapter",
+    "occupied_cooling_min_discharge_air_flow_setpoint",
+    "room",
+    "vav"
+  ],
+  "513_0_3005382": [
+    "building",
+    "ahu",
+    "networkadapter",
+    "vfd",
+    "motor_torque_sensor"
+  ],
+  "513_1_3007158": [
+    "building",
+    "room",
+    "supply_air_flow_setpoint",
+    "networkadapter",
+    "vav"
+  ],
+  "513_0_3007240": [
+    "supply_air_flow_sensor",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "514_1_3008177": [
+    "networkadapter",
+    "unknown",
+    "vav"
+  ],
+  "514_14_3007096": [
+    "vav_box_mode_command",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "513_1_3005940": [
+    "building",
+    "room",
+    "supply_air_flow_setpoint",
+    "networkadapter",
+    "vav"
+  ],
+  "513_1_3006460": [
+    "building",
+    "room",
+    "networkadapter",
+    "occupied_cooling_min_discharge_air_flow_setpoint",
+    "vav"
+  ],
+  "514_0_3007526": [
+    "networkadapter",
+    "exhaust_air_velocity_pressure_sensor",
+    "exhaust_fan",
+    "building"
+  ],
+  "513_1_3004498": [
+    "valve",
+    "building",
+    "ahu",
+    "networkadapter",
+    "cooling_valve_command"
+  ],
+  "604_0_3013313": [
+    "exhaust_fan",
+    "building",
+    "networkadapter",
+    "vfd",
+    "energy_sensor"
+  ],
+  "513_1_3005307": [
+    "building",
+    "room",
+    "networkadapter",
+    "occupied_cooling_min_discharge_air_flow_setpoint",
+    "vav"
+  ],
+  "604_0_3013292": [
+    "exhaust_fan",
+    "current_sensor",
+    "building",
+    "networkadapter",
+    "vfd"
+  ],
+  "604_0_3013523": [
+    "effective_cooling_temperature_setpoint",
+    "networkadapter",
+    "room",
+    "vav"
+  ],
+  "513_1_3006854": [
+    "building",
+    "room",
+    "vav",
+    "networkadapter",
+    "setpoint"
+  ],
+  "513_1_3007905": [
+    "networkadapter",
+    "cooling_max_discharge_air_flow_setpoint",
+    "vav"
+  ],
+  "604_1_3013118": [
+    "building",
+    "room",
+    "networkadapter",
+    "occupied_cooling_min_discharge_air_flow_setpoint",
+    "vav"
+  ],
+  "513_1_3006187": [
+    "building",
+    "room",
+    "networkadapter",
+    "occupied_cooling_min_discharge_air_flow_setpoint",
+    "vav"
+  ],
+  "513_1_3004596": [
+    "supply_fan",
+    "vfd_command",
+    "building",
+    "ahu",
+    "networkadapter"
+  ],
+  "514_1_3007219": [
+    "valve",
+    "heating_valve_command",
+    "building",
+    "room",
+    "networkadapter"
+  ],
+  "513_1_3006958": [
+    "cooling_max_discharge_air_flow_setpoint",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "514_0_3006491": [
+    "supply_air_flow_sensor",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "513_1_3006119": [
+    "building",
+    "room",
+    "networkadapter",
+    "occupied_heating_min_discharge_air_flow_setpoint",
+    "vav"
+  ],
+  "604_0_3013550": [
+    "networkadapter",
+    "supply_air_velocity_pressure_sensor",
+    "room",
+    "vav"
+  ],
+  "514_1_3007186": [
+    "networkadapter",
+    "occupied_heating_temperature_setpoint",
+    "building",
+    "room"
+  ],
+  "604_0_3012569": [
+    "zone",
+    "building",
+    "room",
+    "networkadapter",
+    "zone_temperature_sensor",
+    "vav"
+  ],
+  "604_3_3013360": [
+    "exhaust_fan",
+    "building",
+    "networkadapter",
+    "vfd",
+    "vfd_start_stop_status"
+  ],
+  "513_0_3007100": [
+    "building",
+    "room",
+    "networkadapter",
+    "effective_cooling_temperature_setpoint",
+    "vav"
+  ],
+  "514_1_3006487": [
+    "building",
+    "room",
+    "networkadapter",
+    "occupied_cooling_min_discharge_air_flow_setpoint",
+    "vav"
+  ],
+  "604_0_3012597": [
+    "zone",
+    "building",
+    "room",
+    "networkadapter",
+    "zone_temperature_sensor",
+    "vav"
+  ],
+  "514_1_3006828": [
+    "zone",
+    "average_zone_temperature_sensor",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "604_1_3012593": [
+    "building",
+    "room",
+    "networkadapter",
+    "occupied_heating_min_discharge_air_flow_setpoint",
+    "vav"
+  ],
+  "513_0_3007732": [
+    "co2_level_sensor",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "604_1_3013165": [
+    "occupied_cooling_temperature_setpoint",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "604_0_3012775": [
+    "building",
+    "room",
+    "networkadapter",
+    "effective_cooling_temperature_setpoint",
+    "vav"
+  ],
+  "513_0_3007312": [
+    "building",
+    "room",
+    "vav",
+    "networkadapter",
+    "effective_heating_temperature_setpoint"
+  ],
+  "514_1_3006951": [
+    "zone",
+    "average_zone_temperature_sensor",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "513_0_3005320": [
+    "building",
+    "room",
+    "vav",
+    "networkadapter",
+    "effective_heating_temperature_setpoint"
+  ],
+  "604_14_3012788": [
+    "building",
+    "occupied_command",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "513_1_3006074": [
+    "occupied_heating_temperature_setpoint",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "513_1_3006390": [
+    "valve",
+    "heating_valve_command",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "513_0_3004533": [
+    "networkadapter",
+    "building",
+    "ahu",
+    "supply_air_temperature_sensor"
+  ],
+  "513_0_3005065": [
+    "building",
+    "room",
+    "networkadapter",
+    "effective_cooling_temperature_setpoint",
+    "vav"
+  ],
+  "513_0_3005425": [
+    "building",
+    "ahu",
+    "networkadapter",
+    "vfd",
+    "motor_speed_sensor"
+  ],
+  "513_0_3005404": [
+    "building",
+    "ahu",
+    "networkadapter",
+    "vfd",
+    "motor_torque_sensor"
+  ],
+  "513_3_3004661": [
+    "networkadapter",
+    "building",
+    "discharge_air_smoke_detected_alarm",
+    "ahu"
+  ],
+  "514_2_3010332": [
+    "networkadapter",
+    "average_exhaust_air_static_pressure_setpoint"
+  ],
+  "513_0_3006196": [
+    "zone",
+    "building",
+    "room",
+    "networkadapter",
+    "zone_temperature_sensor",
+    "vav"
+  ],
+  "513_0_3007434": [
+    "zone",
+    "building",
+    "room",
+    "networkadapter",
+    "zone_temperature_sensor",
+    "vav"
+  ],
+  "514_1_3007112": [
+    "cooling_max_discharge_air_flow_setpoint",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "513_0_3005042": [
+    "building",
+    "room",
+    "networkadapter",
+    "effective_cooling_temperature_setpoint",
+    "vav"
+  ],
+  "604_3_3013331": [
+    "exhaust_fan",
+    "run_direction_status",
+    "building",
+    "networkadapter",
+    "vfd"
+  ],
+  "513_0_3004680": [
+    "networkadapter",
+    "building",
+    "underfloor_temperature_sensor",
+    "ahu"
+  ],
+  "604_1_3014148": [
+    "exhaust_air_static_pressure_proportional_band_setpoint",
+    "exhaust_fan",
+    "networkadapter",
+    "building"
+  ],
+  "604_1_3013117": [
+    "occupied_cooling_temperature_setpoint",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "513_4_3006323": [
+    "building",
+    "occupied_command",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "513_14_3007320": [
+    "building",
+    "occupied_command",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "604_0_3012784": [
+    "supply_air_flow_sensor",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "513_0_3005878": [
+    "building",
+    "room",
+    "vav",
+    "networkadapter",
+    "effective_heating_temperature_setpoint"
+  ],
+  "513_1_3006860": [
+    "building",
+    "room",
+    "networkadapter",
+    "occupied_heating_min_discharge_air_flow_setpoint",
+    "vav"
+  ],
+  "513_1_3007182": [
+    "zone",
+    "building",
+    "room",
+    "networkadapter",
+    "zone_temperature_sensor",
+    "vav"
+  ],
+  "513_1_3005100": [
+    "building",
+    "room",
+    "networkadapter",
+    "occupied_cooling_min_discharge_air_flow_setpoint",
+    "vav"
+  ],
+  "514_1_3006403": [
+    "networkadapter",
+    "exhaust_fan",
+    "building",
+    "exhaust_air_static_pressure_integral_time_setpoint"
+  ],
+  "513_1_3007179": [
+    "building",
+    "room",
+    "supply_air_flow_setpoint",
+    "networkadapter",
+    "vav"
+  ],
+  "514_0_3006969": [
+    "supply_air_flow_sensor",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "514_1_3006700": [
+    "occupied_heating_temperature_setpoint",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "513_1_3006347": [
+    "occupied_cooling_temperature_setpoint",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "513_0_3006221": [
+    "building",
+    "room",
+    "networkadapter",
+    "effective_cooling_temperature_setpoint",
+    "vav"
+  ],
+  "514_1_3006912": [
+    "occupied_cooling_temperature_setpoint",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "513_4_3005679": [
+    "building",
+    "occupied_command",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "513_1_3005745": [
+    "building",
+    "room",
+    "networkadapter",
+    "occupied_heating_max_supply_air_flow_setpoint",
+    "vav"
+  ],
+  "604_1_3012639": [
+    "building",
+    "room",
+    "supply_air_flow_setpoint",
+    "networkadapter",
+    "vav"
+  ],
+  "604_0_3012865": [
+    "building",
+    "room",
+    "networkadapter",
+    "effective_cooling_temperature_setpoint",
+    "vav"
+  ],
+  "513_1_3005446": [
+    "vfd_speed_command",
+    "building",
+    "ahu",
+    "networkadapter",
+    "vfd"
+  ],
+  "513_0_3006456": [
+    "damper_position_sensor",
+    "building",
+    "room",
+    "networkadapter",
+    "damper",
+    "vav"
+  ],
+  "604_1_3012795": [
+    "valve",
+    "heating_valve_command",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "513_14_3007503": [
+    "vav_box_mode_command",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "513_0_3005763": [
+    "building",
+    "room",
+    "vav",
+    "networkadapter",
+    "effective_heating_temperature_setpoint"
+  ],
+  "514_4_3006394": [
+    "networkadapter",
+    "exhaust_fan",
+    "exhaust_fan_start_stop_command",
+    "building"
+  ],
+  "513_1_3006294": [
+    "occupied_cooling_max_supply_air_flow_setpoint",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "604_1_3012482": [
+    "valve",
+    "heating_valve_command",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "513_14_3007461": [
+    "vav_box_mode_command",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "604_1_3013178": [
+    "occupied_cooling_max_supply_air_flow_setpoint",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "513_1_3006095": [
+    "building",
+    "room",
+    "networkadapter",
+    "occupied_cooling_min_discharge_air_flow_setpoint",
+    "vav"
+  ],
+  "514_0_3006633": [
+    "supply_air_flow_sensor",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "513_1_3006395": [
+    "building",
+    "room",
+    "networkadapter",
+    "occupied_heating_min_discharge_air_flow_setpoint",
+    "vav"
+  ],
+  "513_14_3007272": [
+    "vav_box_mode_command",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "604_1_3012842": [
+    "building",
+    "room",
+    "networkadapter",
+    "occupied_heating_min_discharge_air_flow_setpoint",
+    "vav"
+  ],
+  "513_1_3007238": [
+    "building",
+    "room",
+    "networkadapter",
+    "occupied_heating_min_discharge_air_flow_setpoint",
+    "vav"
+  ],
+  "513_0_3007287": [
+    "zone",
+    "building",
+    "room",
+    "networkadapter",
+    "zone_temperature_sensor",
+    "vav"
+  ],
+  "604_1_3014917": [
+    "networkadapter",
+    "vfd",
+    "building",
+    "vfd_command"
+  ],
+  "513_1_3005253": [
+    "occupied_cooling_max_supply_air_flow_setpoint",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "513_0_3006467": [
+    "warm_cool_adjust_sensor",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "514_1_3006786": [
+    "valve",
+    "heating_valve_command",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "513_1_3005883": [
+    "building",
+    "room",
+    "networkadapter",
+    "occupied_heating_max_supply_air_flow_setpoint",
+    "vav"
+  ],
+  "513_0_3011321": [
+    "networkadapter",
+    "building",
+    "ahu",
+    "chilled_water_return_temperature_sensor"
+  ],
+  "514_0_3006846": [
+    "supply_air_flow_sensor",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "513_0_3005896": [
+    "warm_cool_adjust_sensor",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "604_0_3012985": [
+    "zone",
+    "building",
+    "room",
+    "networkadapter",
+    "zone_temperature_sensor",
+    "vav"
+  ],
+  "604_14_3012688": [
+    "building",
+    "occupied_command",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "604_0_3012586": [
+    "building",
+    "room",
+    "vav",
+    "networkadapter",
+    "effective_heating_temperature_setpoint"
+  ],
+  "513_4_3005794": [
+    "building",
+    "occupied_command",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "513_1_3005234": [
+    "valve",
+    "heating_valve_command",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "513_0_3006997": [
+    "building",
+    "room",
+    "vav",
+    "networkadapter",
+    "effective_heating_temperature_setpoint"
+  ],
+  "513_1_3005687": [
+    "building",
+    "room",
+    "supply_air_flow_setpoint",
+    "networkadapter",
+    "vav"
+  ],
+  "604_14_3012559": [
+    "vav_box_mode_command",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "513_0_3006283": [
+    "supply_air_flow_sensor",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "514_4_3006836": [
+    "building",
+    "occupied_command",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "513_1_3004704": [
+    "building",
+    "room",
+    "networkadapter",
+    "occupied_heating_max_supply_air_flow_setpoint",
+    "vav"
+  ],
+  "513_1_3006140": [
+    "occupied_cooling_temperature_setpoint",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "514_0_3007291": [
+    "damper_position_sensor",
+    "building",
+    "room",
+    "networkadapter",
+    "damper",
+    "vav"
+  ],
+  "604_0_3012759": [
+    "zone",
+    "building",
+    "room",
+    "networkadapter",
+    "zone_temperature_sensor",
+    "vav"
+  ],
+  "604_0_3013582": [
+    "damper_position_sensor",
+    "room",
+    "networkadapter",
+    "damper",
+    "vav"
+  ],
+  "513_0_3007077": [
+    "zone",
+    "building",
+    "room",
+    "networkadapter",
+    "zone_temperature_sensor",
+    "vav"
+  ],
+  "514_1_3007165": [
+    "valve",
+    "heating_valve_command",
+    "building",
+    "room",
+    "networkadapter"
+  ],
+  "513_1_3004830": [
+    "building",
+    "room",
+    "supply_air_flow_setpoint",
+    "networkadapter",
+    "vav"
+  ],
+  "604_1_3012608": [
+    "building",
+    "room",
+    "networkadapter",
+    "occupied_cooling_min_discharge_air_flow_setpoint",
+    "vav"
+  ],
+  "513_3_3005383": [
+    "building",
+    "vfd_alarm",
+    "ahu",
+    "networkadapter",
+    "vfd"
+  ],
+  "514_0_3006565": [
+    "zone",
+    "building",
+    "room",
+    "networkadapter",
+    "zone_temperature_sensor",
+    "vav"
+  ],
+  "513_1_3005600": [
+    "zone",
+    "building",
+    "room",
+    "networkadapter",
+    "zone_temperature_sensor",
+    "vav"
+  ],
+  "513_4_3006346": [
+    "building",
+    "occupied_command",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "514_1_3006539": [
+    "building",
+    "room",
+    "supply_air_flow_setpoint",
+    "networkadapter",
+    "vav"
+  ],
+  "604_4_3013289": [
+    "networkadapter",
+    "vfd",
+    "vfd_enable_command"
+  ],
+  "513_1_3007597": [
+    "networkadapter",
+    "occupied_cooling_min_discharge_air_flow_setpoint",
+    "vav"
+  ],
+  "513_1_3005865": [
+    "building",
+    "room",
+    "networkadapter",
+    "occupied_cooling_min_discharge_air_flow_setpoint",
+    "vav"
+  ],
+  "604_0_3012462": [
+    "building",
+    "room",
+    "networkadapter",
+    "effective_cooling_temperature_setpoint",
+    "vav"
+  ],
+  "604_0_3012674": [
+    "building",
+    "room",
+    "vav",
+    "networkadapter",
+    "effective_heating_temperature_setpoint"
+  ],
+  "604_0_3013564": [
+    "networkadapter",
+    "warm_cool_adjust_sensor",
+    "room",
+    "vav"
+  ],
+  "604_0_3013138": [
+    "supply_air_flow_sensor",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "513_0_3006011": [
+    "warm_cool_adjust_sensor",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "604_0_3013169": [
+    "supply_air_flow_sensor",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "604_1_3012408": [
+    "valve",
+    "heating_valve_command",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "513_1_3005999": [
+    "valve",
+    "heating_valve_command",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "513_0_3007450": [
+    "supply_air_flow_sensor",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "513_14_3007215": [
+    "building",
+    "occupied_command",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "514_0_3006891": [
+    "building",
+    "room",
+    "networkadapter",
+    "zone_temperature_sensor",
+    "vav"
+  ],
+  "604_1_3012434": [
+    "occupied_cooling_max_supply_air_flow_setpoint",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "513_14_3006627": [
+    "building",
+    "occupied_command",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "513_2_3004144": [
+    "networkadapter",
+    "medium_temperature_hot_water_discharge_temperature_high_reset_setpoint",
+    "heat_exchanger",
+    "building"
+  ],
+  "513_0_3005369": [
+    "building",
+    "ahu",
+    "networkadapter",
+    "vfd",
+    "energy_sensor"
+  ],
+  "604_0_3012554": [
+    "warm_cool_adjust_sensor",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "604_1_3012465": [
+    "building",
+    "room",
+    "networkadapter",
+    "damper",
+    "damper_command",
+    "vav"
+  ],
+  "604_1_3012500": [
+    "building",
+    "room",
+    "networkadapter",
+    "occupied_heating_min_discharge_air_flow_setpoint",
+    "vav"
+  ],
+  "513_1_3007200": [
+    "building",
+    "room",
+    "supply_air_flow_setpoint",
+    "networkadapter",
+    "vav"
+  ],
+  "604_1_3012723": [
+    "valve",
+    "heating_valve_command",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "604_1_3013263": [
+    "exhaust_fan",
+    "vfd_command",
+    "building",
+    "networkadapter",
+    "vfd"
+  ],
+  "604_1_3012436": [
+    "building",
+    "room",
+    "networkadapter",
+    "occupied_heating_max_supply_air_flow_setpoint",
+    "vav"
+  ],
+  "514_0_3007442": [
+    "networkadapter",
+    "building",
+    "room",
+    "effective_heating_temperature_setpoint"
+  ],
+  "513_1_3006118": [
+    "building",
+    "room",
+    "networkadapter",
+    "occupied_cooling_min_discharge_air_flow_setpoint",
+    "vav"
+  ],
+  "604_0_3013552": [
+    "damper_position_sensor",
+    "room",
+    "networkadapter",
+    "damper",
+    "vav"
+  ],
+  "513_14_3006480": [
+    "building",
+    "occupied_command",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "513_0_3005993": [
+    "building",
+    "room",
+    "vav",
+    "networkadapter",
+    "effective_heating_temperature_setpoint"
+  ],
+  "514_0_3007413": [
+    "zone",
+    "building",
+    "room",
+    "networkadapter",
+    "zone_temperature_sensor"
+  ],
+  "513_0_3004571": [
+    "outside_air_temperature_sensor",
+    "outside",
+    "building",
+    "ahu",
+    "networkadapter"
+  ],
+  "604_1_3012529": [
+    "building",
+    "room",
+    "networkadapter",
+    "occupied_cooling_min_discharge_air_flow_setpoint",
+    "vav"
+  ],
+  "514_0_3007169": [
+    "networkadapter",
+    "warm_cool_adjust_sensor",
+    "building",
+    "room"
+  ],
+  "513_1_3006304": [
+    "occupied_heating_temperature_setpoint",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "513_0_3004683": [
+    "networkadapter",
+    "building",
+    "ahu",
+    "chilled_water_return_temperature_sensor"
+  ],
+  "513_1_3006064": [
+    "occupied_cooling_max_supply_air_flow_setpoint",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "514_1_3007195": [
+    "networkadapter",
+    "occupied_heating_temperature_setpoint",
+    "building",
+    "room"
+  ],
+  "604_1_3012840": [
+    "valve",
+    "heating_valve_command",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "513_1_3006216": [
+    "building",
+    "room",
+    "supply_air_flow_setpoint",
+    "networkadapter",
+    "vav"
+  ],
+  "514_1_3011263": [
+    "building",
+    "room",
+    "networkadapter",
+    "unoccupied_cooling_discharge_air_flow_setpoint",
+    "vav"
+  ],
+  "604_4_3013449": [
+    "networkadapter",
+    "vfd",
+    "vfd_start_stop_command"
+  ],
+  "604_1_3012720": [
+    "cooling_max_discharge_air_flow_setpoint",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "514_1_3006759": [
+    "occupied_cooling_max_supply_air_flow_setpoint",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "514_1_3011260": [
+    "building",
+    "room",
+    "networkadapter",
+    "unoccupied_cooling_discharge_air_flow_setpoint",
+    "vav"
+  ],
+  "513_0_3006841": [
+    "supply_air_flow_sensor",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "513_0_3006764": [
+    "building",
+    "room",
+    "networkadapter",
+    "effective_cooling_temperature_setpoint",
+    "vav"
+  ],
+  "514_0_3007286": [
+    "building",
+    "room",
+    "networkadapter",
+    "effective_cooling_temperature_setpoint",
+    "vav"
+  ],
+  "513_0_3007738": [
+    "co2_level_sensor",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "514_0_3007253": [
+    "networkadapter",
+    "building",
+    "room",
+    "effective_heating_temperature_setpoint"
+  ],
+  "604_1_3012990": [
+    "building",
+    "room",
+    "networkadapter",
+    "damper",
+    "damper_command",
+    "vav"
+  ],
+  "513_1_3005009": [
+    "building",
+    "room",
+    "networkadapter",
+    "occupied_heating_min_discharge_air_flow_setpoint",
+    "vav"
+  ],
+  "513_0_3006491": [
+    "building",
+    "room",
+    "networkadapter",
+    "effective_cooling_temperature_setpoint",
+    "vav"
+  ],
+  "513_0_3006934": [
+    "building",
+    "room",
+    "vav",
+    "networkadapter",
+    "effective_heating_temperature_setpoint"
+  ],
+  "513_0_3005438": [
+    "output_frequency_sensor",
+    "building",
+    "ahu",
+    "networkadapter",
+    "vfd"
+  ],
+  "513_1_3004888": [
+    "building",
+    "room",
+    "networkadapter",
+    "occupied_heating_max_supply_air_flow_setpoint",
+    "vav"
+  ],
+  "604_1_3012683": [
+    "building",
+    "room",
+    "supply_air_flow_setpoint",
+    "networkadapter",
+    "vav"
+  ],
+  "604_4_3013359": [
+    "exhaust_fan",
+    "vfd_enable_command",
+    "building",
+    "networkadapter",
+    "vfd"
+  ],
+  "513_0_3007352": [
+    "building",
+    "room",
+    "networkadapter",
+    "effective_cooling_temperature_setpoint",
+    "vav"
+  ],
+  "514_1_3007107": [
+    "zone",
+    "building",
+    "room",
+    "networkadapter",
+    "zone_temperature_sensor",
+    "vav"
+  ],
+  "604_1_3013572": [
+    "networkadapter",
+    "supply_air_flow_setpoint",
+    "room",
+    "vav"
+  ],
+  "513_1_3004548": [
+    "networkadapter",
+    "building",
+    "supply_air_static_pressure_dead_band_setpoint",
+    "ahu"
+  ],
+  "604_0_3013096": [
+    "building",
+    "room",
+    "networkadapter",
+    "effective_cooling_temperature_setpoint",
+    "vav"
+  ],
+  "514_1_3006532": [
+    "occupied_cooling_temperature_setpoint",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "514_4_3006345": [
+    "pump",
+    "building",
+    "ahu",
+    "networkadapter",
+    "heat_exchanger",
+    "pump_start_stop_command"
+  ],
+  "514_1_3007404": [
+    "zone",
+    "building",
+    "room",
+    "networkadapter",
+    "zone_temperature_sensor"
+  ],
+  "514_1_3007426": [
+    "valve",
+    "heating_valve_command",
+    "building",
+    "room",
+    "networkadapter"
+  ],
+  "514_1_3006856": [
+    "building",
+    "room",
+    "networkadapter",
+    "damper",
+    "damper_command",
+    "vav"
+  ],
+  "514_1_3006667": [
+    "occupied_cooling_max_supply_air_flow_setpoint",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "513_1_3005280": [
+    "valve",
+    "heating_valve_command",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "514_1_3008176": [
+    "networkadapter",
+    "cooling_max_discharge_air_flow_setpoint",
+    "vav"
+  ],
+  "513_0_3005901": [
+    "building",
+    "room",
+    "vav",
+    "networkadapter",
+    "effective_heating_temperature_setpoint"
+  ],
+  "513_1_3006412": [
+    "building",
+    "room",
+    "networkadapter",
+    "occupied_heating_max_supply_air_flow_setpoint",
+    "vav"
+  ],
+  "513_1_3005953": [
+    "valve",
+    "heating_valve_command",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "513_0_3004851": [
+    "supply_air_flow_sensor",
+    "building",
+    "room",
+    "networkadapter",
+    "basement",
+    "vav"
+  ],
+  "604_14_3013621": [
+    "networkadapter",
+    "occupied_command",
+    "room",
+    "vav"
+  ],
+  "514_0_3007510": [
+    "lowest_exhaust_air_static_pressure_sensor",
+    "exhaust_fan",
+    "networkadapter",
+    "building"
+  ],
+  "513_4_3004753": [
+    "building",
+    "occupied_command",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "513_1_3005046": [
+    "occupied_cooling_max_supply_air_flow_setpoint",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "513_14_3007530": [
+    "building",
+    "occupied_command",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "604_4_3013407": [
+    "exhaust_fan",
+    "building",
+    "panel_lockout_command",
+    "networkadapter",
+    "vfd"
+  ],
+  "604_0_3012689": [
+    "building",
+    "room",
+    "networkadapter",
+    "effective_cooling_temperature_setpoint",
+    "vav"
+  ],
+  "513_1_3005578": [
+    "warm_cool_adjust_sensor",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "604_0_3013389": [
+    "exhaust_fan",
+    "building",
+    "networkadapter",
+    "vfd",
+    "vfd_power_meter"
+  ],
+  "604_0_3013064": [
+    "building",
+    "room",
+    "networkadapter",
+    "effective_cooling_temperature_setpoint",
+    "vav"
+  ],
+  "513_0_3004881": [
+    "building",
+    "room",
+    "networkadapter",
+    "effective_cooling_temperature_setpoint",
+    "vav"
+  ],
+  "513_1_3006454": [
+    "cooling_max_discharge_air_flow_setpoint",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "514_1_3006509": [
+    "occupied_cooling_temperature_setpoint",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "514_0_3006445": [
+    "building",
+    "room",
+    "vav",
+    "networkadapter",
+    "effective_heating_temperature_setpoint"
+  ],
+  "514_0_3007557": [
+    "output_voltage_sensor",
+    "supply_fan",
+    "building",
+    "networkadapter",
+    "vfd"
+  ],
+  "514_4_3007490": [
+    "exhaust_fan",
+    "building",
+    "networkadapter",
+    "vfd",
+    "fault_reset_command"
+  ],
+  "604_1_3013615": [
+    "networkadapter",
+    "setpoint",
+    "room",
+    "vav"
+  ],
+  "514_2_3003573": [
+    "discharge_air_flow_demand_setpoint",
+    "supply_fan",
+    "building",
+    "floor",
+    "networkadapter"
+  ],
+  "513_1_3004710": [
+    "building",
+    "room",
+    "networkadapter",
+    "occupied_heating_min_discharge_air_flow_setpoint",
+    "vav"
+  ],
+  "513_0_3007714": [
+    "co2_level_sensor",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "514_5_3011211": [
+    "networkadapter",
+    "building",
+    "medium_temperature_hot_water_supply_temperature_load_shed_status"
+  ],
+  "513_1_3004551": [
+    "networkadapter",
+    "building",
+    "cooling_discharge_air_temperature_dead_band_setpoint",
+    "ahu"
+  ],
+  "604_0_3013383": [
+    "exhaust_fan",
+    "output_frequency_sensor",
+    "building",
+    "networkadapter",
+    "vfd"
+  ],
+  "514_14_3007273": [
+    "vav_box_mode_command",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "604_4_3013422": [
+    "exhaust_fan",
+    "building",
+    "networkadapter",
+    "vfd",
+    "run_direction_command"
+  ],
+  "604_1_3013342": [
+    "exhaust_fan",
+    "building",
+    "networkadapter",
+    "vfd",
+    "current_limit_setpoint"
+  ],
+  "604_1_3012917": [
+    "valve",
+    "heating_valve_command",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "604_0_3013159": [
+    "building",
+    "room",
+    "networkadapter",
+    "effective_cooling_temperature_setpoint",
+    "vav"
+  ],
+  "513_1_3007337": [
+    "building",
+    "room",
+    "vav",
+    "networkadapter",
+    "setpoint"
+  ],
+  "514_0_3007094": [
+    "building",
+    "room",
+    "networkadapter",
+    "effective_cooling_temperature_setpoint",
+    "vav"
+  ],
+  "513_1_3006497": [
+    "building",
+    "room",
+    "vav",
+    "networkadapter",
+    "setpoint"
+  ],
+  "513_1_3006206": [
+    "valve",
+    "heating_valve_command",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "604_0_3013020": [
+    "building",
+    "room",
+    "vav",
+    "networkadapter",
+    "effective_heating_temperature_setpoint"
+  ],
+  "513_14_3007356": [
+    "vav_box_mode_command",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "514_1_3007354": [
+    "valve",
+    "heating_valve_command",
+    "building",
+    "room",
+    "networkadapter"
+  ],
+  "604_0_3012685": [
+    "zone",
+    "building",
+    "room",
+    "networkadapter",
+    "zone_temperature_sensor",
+    "vav"
+  ],
+  "513_0_3006736": [
+    "supply_air_flow_sensor",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "604_0_3013014": [
+    "supply_air_flow_sensor",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "513_0_3007107": [
+    "damper_position_sensor",
+    "building",
+    "room",
+    "networkadapter",
+    "damper",
+    "vav"
+  ],
+  "514_0_3006472": [
+    "warm_cool_adjust_sensor",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "513_1_3006665": [
+    "building",
+    "room",
+    "vav",
+    "networkadapter",
+    "setpoint"
+  ],
+  "513_1_3007279": [
+    "building",
+    "room",
+    "networkadapter",
+    "occupied_cooling_min_discharge_air_flow_setpoint",
+    "vav"
+  ],
+  "513_1_3006180": [
+    "building",
+    "room",
+    "networkadapter",
+    "damper",
+    "damper_command",
+    "vav"
+  ],
+  "604_0_3012761": [
+    "building",
+    "room",
+    "networkadapter",
+    "effective_cooling_temperature_setpoint",
+    "vav"
+  ],
+  "604_1_3013238": [
+    "networkadapter",
+    "exhaust_fan",
+    "exhaust_air_static_pressure_proportional_band_setpoint",
+    "building"
+  ],
+  "513_4_3006047": [
+    "building",
+    "occupied_command",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "514_1_3006750": [
+    "building",
+    "room",
+    "supply_air_flow_setpoint",
+    "networkadapter",
+    "vav"
+  ],
+  "513_1_3005207": [
+    "occupied_cooling_max_supply_air_flow_setpoint",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "513_0_3007142": [
+    "building",
+    "room",
+    "networkadapter",
+    "effective_cooling_temperature_setpoint",
+    "vav"
+  ],
+  "604_1_3012693": [
+    "building",
+    "room",
+    "vav",
+    "networkadapter",
+    "setpoint"
+  ],
+  "513_0_3006573": [
+    "zone",
+    "building",
+    "room",
+    "networkadapter",
+    "zone_temperature_sensor",
+    "vav"
+  ],
+  "604_0_3012704": [
+    "building",
+    "room",
+    "vav",
+    "networkadapter",
+    "effective_heating_temperature_setpoint"
+  ],
+  "514_4_3007016": [
+    "exhaust_fan",
+    "vfd_enable_command",
+    "building",
+    "networkadapter",
+    "vfd"
+  ],
+  "604_0_3012615": [
+    "building",
+    "room",
+    "networkadapter",
+    "effective_cooling_temperature_setpoint",
+    "vav"
+  ],
+  "604_1_3013196": [
+    "valve",
+    "heating_valve_command",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "513_0_3005362": [
+    "zone",
+    "building",
+    "room",
+    "networkadapter",
+    "zone_temperature_sensor",
+    "vav"
+  ],
+  "513_1_3006969": [
+    "building",
+    "room",
+    "supply_air_flow_setpoint",
+    "networkadapter",
+    "vav"
+  ],
+  "513_1_3006067": [
+    "building",
+    "room",
+    "networkadapter",
+    "occupied_heating_max_supply_air_flow_setpoint",
+    "vav"
+  ],
+  "514_1_3006928": [
+    "occupied_cooling_max_supply_air_flow_setpoint",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "604_1_3012725": [
+    "building",
+    "room",
+    "networkadapter",
+    "occupied_heating_min_discharge_air_flow_setpoint",
+    "vav"
+  ],
+  "513_1_3005550": [
+    "building",
+    "room",
+    "networkadapter",
+    "occupied_cooling_min_discharge_air_flow_setpoint",
+    "vav"
+  ],
+  "514_1_3007357": [
+    "networkadapter",
+    "occupied_heating_temperature_setpoint",
+    "building",
+    "room"
+  ],
+  "514_1_3007183": [
+    "valve",
+    "heating_valve_command",
+    "building",
+    "room",
+    "networkadapter"
+  ],
+  "513_1_3007049": [
+    "building",
+    "room",
+    "networkadapter",
+    "occupied_heating_min_discharge_air_flow_setpoint",
+    "vav"
+  ],
+  "604_0_3013690": [
+    "networkadapter",
+    "crac",
+    "building",
+    "capacity_sensor"
+  ],
+  "604_4_3013458": [
+    "exhaust_fan",
+    "building",
+    "networkadapter",
+    "vfd",
+    "emergency_power_off_switch_command"
+  ],
+  "514_1_3006505": [
+    "building",
+    "room",
+    "networkadapter",
+    "occupied_heating_max_supply_air_flow_setpoint",
+    "vav"
+  ],
+  "604_14_3013606": [
+    "networkadapter",
+    "occupied_command",
+    "room",
+    "vav"
+  ],
+  "604_4_3013334": [
+    "exhaust_fan",
+    "building",
+    "panel_lockout_command",
+    "networkadapter",
+    "vfd"
+  ],
+  "513_1_3005050": [
+    "valve",
+    "heating_valve_command",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "604_0_3013639": [
+    "networkadapter",
+    "warm_cool_adjust_sensor",
+    "room",
+    "vav"
+  ],
+  "514_0_3007244": [
+    "networkadapter",
+    "building",
+    "room",
+    "effective_heating_temperature_setpoint"
+  ],
+  "604_0_3013106": [
+    "supply_air_flow_sensor",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "513_14_3007110": [
+    "building",
+    "occupied_command",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "514_4_3007392": [
+    "networkadapter",
+    "building",
+    "occupied_command",
+    "room"
+  ],
+  "514_0_3009034": [
+    "zone",
+    "building",
+    "room",
+    "networkadapter",
+    "zone_temperature_sensor",
+    "vav"
+  ],
+  "604_0_3012447": [
+    "building",
+    "room",
+    "networkadapter",
+    "effective_cooling_temperature_setpoint",
+    "vav"
+  ],
+  "604_1_3012453": [
+    "occupied_cooling_temperature_setpoint",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "604_1_3012810": [
+    "building",
+    "room",
+    "networkadapter",
+    "occupied_cooling_min_discharge_air_flow_setpoint",
+    "vav"
+  ],
+  "514_0_3006679": [
+    "supply_air_flow_sensor",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "513_1_3005795": [
+    "occupied_cooling_temperature_setpoint",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "513_0_3006334": [
+    "zone",
+    "building",
+    "room",
+    "networkadapter",
+    "zone_temperature_sensor",
+    "vav"
+  ],
+  "513_1_3004819": [
+    "building",
+    "room",
+    "networkadapter",
+    "occupied_heating_max_supply_air_flow_setpoint",
+    "vav"
+  ],
+  "604_1_3013498": [
+    "networkadapter",
+    "cooling_max_discharge_air_flow_setpoint",
+    "room",
+    "vav"
+  ],
+  "513_1_3005555": [
+    "building",
+    "room",
+    "supply_air_flow_setpoint",
+    "networkadapter",
+    "vav"
+  ],
+  "513_1_3004932": [
+    "building",
+    "room",
+    "networkadapter",
+    "damper",
+    "damper_command",
+    "vav"
+  ],
+  "604_3_3013443": [
+    "networkadapter",
+    "vfd",
+    "vfd_alarm"
+  ],
+  "513_0_3007328": [
+    "warm_cool_adjust_sensor",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "604_0_3012557": [
+    "building",
+    "room",
+    "networkadapter",
+    "effective_cooling_temperature_setpoint",
+    "vav"
+  ],
+  "604_14_3012600": [
+    "building",
+    "occupied_command",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "514_1_3007278": [
+    "building",
+    "room",
+    "networkadapter",
+    "occupied_cooling_min_discharge_air_flow_setpoint",
+    "vav"
+  ],
+  "513_14_3007362": [
+    "building",
+    "occupied_command",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "604_0_3013477": [
+    "damper_position_sensor",
+    "room",
+    "networkadapter",
+    "damper",
+    "vav"
+  ],
+  "513_1_3004779": [
+    "building",
+    "room",
+    "networkadapter",
+    "occupied_heating_min_discharge_air_flow_setpoint",
+    "vav"
+  ],
+  "514_3_3006415": [
+    "networkadapter",
+    "exhaust_fan",
+    "exhaust_fan_status",
+    "building"
+  ],
+  "513_1_3005765": [
+    "occupied_cooling_max_supply_air_flow_setpoint",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "514_1_3006404": [
+    "networkadapter",
+    "exhaust_fan",
+    "exhaust_air_static_pressure_proportional_band_setpoint",
+    "building"
+  ],
+  "513_4_3005440": [
+    "building",
+    "ahu",
+    "networkadapter",
+    "vfd",
+    "run_direction_command"
+  ],
+  "514_1_3006558": [
+    "occupied_heating_temperature_setpoint",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "604_0_3012958": [
+    "building",
+    "room",
+    "vav",
+    "networkadapter",
+    "effective_heating_temperature_setpoint"
+  ],
+  "514_0_3007412": [
+    "networkadapter",
+    "warm_cool_adjust_sensor",
+    "building",
+    "room"
+  ],
+  "514_4_3007176": [
+    "networkadapter",
+    "building",
+    "occupied_command",
+    "room"
+  ],
+  "513_0_3005131": [
+    "warm_cool_adjust_sensor",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "514_4_3007555": [
+    "supply_fan",
+    "building",
+    "networkadapter",
+    "vfd",
+    "vfd_start_stop_command"
+  ],
+  "514_1_3007067": [
+    "cooling_max_discharge_air_flow_setpoint",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "513_0_3006035": [
+    "zone",
+    "building",
+    "room",
+    "networkadapter",
+    "zone_temperature_sensor",
+    "vav"
+  ],
+  "513_0_3006129": [
+    "building",
+    "room",
+    "networkadapter",
+    "effective_cooling_temperature_setpoint",
+    "vav"
+  ],
+  "604_1_3012696": [
+    "building",
+    "room",
+    "networkadapter",
+    "occupied_cooling_min_discharge_air_flow_setpoint",
+    "vav"
+  ],
+  "514_1_3006525": [
+    "occupied_cooling_max_supply_air_flow_setpoint",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "513_1_3004980": [
+    "building",
+    "room",
+    "networkadapter",
+    "occupied_heating_max_supply_air_flow_setpoint",
+    "vav"
+  ],
+  "513_1_3004644": [
+    "valve",
+    "building",
+    "ahu",
+    "networkadapter",
+    "cooling_valve_command"
+  ],
+  "514_0_3006917": [
+    "supply_air_flow_sensor",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "604_1_3013200": [
+    "occupied_heating_temperature_setpoint",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "513_0_3006514": [
+    "building",
+    "room",
+    "vav",
+    "networkadapter",
+    "effective_heating_temperature_setpoint"
+  ],
+  "513_1_3007027": [
+    "building",
+    "room",
+    "networkadapter",
+    "occupied_cooling_min_discharge_air_flow_setpoint",
+    "vav"
+  ],
+  "513_1_3005903": [
+    "occupied_cooling_max_supply_air_flow_setpoint",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "513_0_3006352": [
+    "supply_air_flow_sensor",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "604_1_3012884": [
+    "occupied_cooling_max_supply_air_flow_setpoint",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "513_1_3005309": [
+    "occupied_heating_temperature_setpoint",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "514_0_3007306": [
+    "damper_position_sensor",
+    "building",
+    "room",
+    "networkadapter",
+    "damper",
+    "vav"
+  ],
+  "604_1_3013228": [
+    "networkadapter",
+    "exhaust_fan",
+    "exhaust_air_static_pressure_proportional_band_setpoint",
+    "building"
+  ],
+  "604_1_3013318": [
+    "vfd_speed_command",
+    "exhaust_fan",
+    "building",
+    "networkadapter",
+    "vfd"
+  ],
+  "513_1_3006009": [
+    "building",
+    "room",
+    "supply_air_flow_setpoint",
+    "networkadapter",
+    "vav"
+  ],
+  "513_0_3006062": [
+    "building",
+    "room",
+    "vav",
+    "networkadapter",
+    "effective_heating_temperature_setpoint"
+  ],
+  "513_0_3011327": [
+    "networkadapter",
+    "building",
+    "ahu",
+    "chilled_water_return_temperature_sensor"
+  ],
+  "513_2_3003745": [
+    "networkadapter",
+    "heat_exchanger",
+    "building",
+    "low_outside_air_temperature_enable_setpoint"
+  ],
+  "513_0_3005398": [
+    "last_fault_code_status",
+    "building",
+    "ahu",
+    "networkadapter",
+    "vfd"
+  ],
+  "604_0_3012448": [
+    "building",
+    "room",
+    "vav",
+    "networkadapter",
+    "effective_heating_temperature_setpoint"
+  ],
+  "604_4_3013413": [
+    "exhaust_fan",
+    "vfd_enable_command",
+    "building",
+    "networkadapter",
+    "vfd"
+  ],
+  "513_0_3006384": [
+    "building",
+    "room",
+    "vav",
+    "networkadapter",
+    "effective_heating_temperature_setpoint"
+  ],
+  "604_1_3013220": [
+    "networkadapter",
+    "average_exhaust_air_pressure_setpoint",
+    "exhaust_fan",
+    "building"
+  ],
+  "513_0_3006430": [
+    "building",
+    "room",
+    "vav",
+    "networkadapter",
+    "effective_heating_temperature_setpoint"
+  ],
+  "513_0_3005731": [
+    "supply_air_flow_sensor",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "514_1_3006529": [
+    "valve",
+    "heating_valve_command",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "604_14_3012672": [
+    "building",
+    "occupied_command",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "514_1_3006931": [
+    "building",
+    "room",
+    "networkadapter",
+    "occupied_heating_max_supply_air_flow_setpoint",
+    "vav"
+  ],
+  "604_1_3012755": [
+    "building",
+    "room",
+    "networkadapter",
+    "occupied_heating_min_discharge_air_flow_setpoint",
+    "vav"
+  ],
+  "604_1_3012904": [
+    "building",
+    "room",
+    "networkadapter",
+    "occupied_cooling_min_discharge_air_flow_setpoint",
+    "vav"
+  ],
+  "604_1_3013641": [
+    "valve",
+    "heating_valve_command",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "513_0_3004883": [
+    "building",
+    "room",
+    "vav",
+    "networkadapter",
+    "effective_heating_temperature_setpoint"
+  ],
+  "514_0_3007242": [
+    "zone",
+    "building",
+    "room",
+    "networkadapter",
+    "zone_temperature_sensor"
+  ],
+  "513_1_3006896": [
+    "building",
+    "room",
+    "vav",
+    "networkadapter",
+    "setpoint"
+  ],
+  "514_0_3007142": [
+    "warm_cool_adjust_sensor",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "513_0_3006338": [
+    "building",
+    "room",
+    "vav",
+    "networkadapter",
+    "effective_heating_temperature_setpoint"
+  ],
+  "604_0_3013348": [
+    "exhaust_fan",
+    "output_frequency_sensor",
+    "building",
+    "networkadapter",
+    "vfd"
+  ],
+  "514_1_3007275": [
+    "building",
+    "room",
+    "vav",
+    "networkadapter",
+    "setpoint"
+  ],
+  "513_1_3004653": [
+    "outside_air_damper_min_position_setpoint",
+    "building",
+    "ahu",
+    "networkadapter",
+    "damper"
+  ],
+  "513_14_3006474": [
+    "vav_box_mode_command",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "513_1_3005772": [
+    "occupied_cooling_temperature_setpoint",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "514_1_3006548": [
+    "occupied_cooling_max_supply_air_flow_setpoint",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "604_1_3013182": [
+    "occupied_cooling_temperature_setpoint",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "604_4_3012461": [
+    "building",
+    "occupied_command",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "513_1_3006706": [
+    "cooling_max_discharge_air_flow_setpoint",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "513_0_3006106": [
+    "building",
+    "room",
+    "networkadapter",
+    "effective_cooling_temperature_setpoint",
+    "vav"
+  ],
+  "604_1_3013100": [
+    "building",
+    "room",
+    "networkadapter",
+    "occupied_heating_max_supply_air_flow_setpoint",
+    "vav"
+  ],
+  "513_0_3004736": [
+    "supply_air_flow_sensor",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "513_1_3005524": [
+    "building",
+    "room",
+    "vav",
+    "networkadapter",
+    "setpoint"
+  ],
+  "514_0_3007109": [
+    "building",
+    "room",
+    "networkadapter",
+    "effective_cooling_temperature_setpoint",
+    "vav"
+  ],
+  "513_3_3004648": [
+    "building",
+    "filter_status",
+    "ahu",
+    "networkadapter",
+    "filter"
+  ],
+  "513_1_3006730": [
+    "valve",
+    "heating_valve_command",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "513_4_3006185": [
+    "building",
+    "occupied_command",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "513_1_3005424": [
+    "vfd_speed_command",
+    "building",
+    "ahu",
+    "networkadapter",
+    "vfd"
+  ],
+  "513_1_3004941": [
+    "occupied_heating_temperature_setpoint",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "513_1_3006486": [
+    "building",
+    "room",
+    "supply_air_flow_setpoint",
+    "networkadapter",
+    "vav"
+  ],
+  "513_1_3006021": [
+    "building",
+    "room",
+    "networkadapter",
+    "occupied_heating_max_supply_air_flow_setpoint",
+    "vav"
+  ],
+  "513_1_3005162": [
+    "building",
+    "room",
+    "networkadapter",
+    "damper",
+    "damper_command",
+    "vav"
+  ],
+  "513_3_3005397": [
+    "run_direction_status",
+    "building",
+    "ahu",
+    "networkadapter",
+    "vfd"
+  ],
+  "604_0_3012897": [
+    "building",
+    "room",
+    "networkadapter",
+    "effective_cooling_temperature_setpoint",
+    "vav"
+  ],
+  "513_0_3007593": [
+    "effective_cooling_temperature_setpoint",
+    "networkadapter",
+    "vav"
+  ],
+  "513_14_3006999": [
+    "vav_box_mode_command",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "604_1_3013258": [
+    "networkadapter",
+    "exhaust_fan",
+    "building",
+    "exhaust_air_static_pressure_integral_time_setpoint"
+  ],
+  "604_14_3013547": [
+    "networkadapter",
+    "vav_box_mode_command",
+    "room",
+    "vav"
+  ],
+  "513_0_3004691": [
+    "high_temperature_hot_water_return_temperature_sensor",
+    "building",
+    "ahu",
+    "networkadapter",
+    "heat_exchanger"
+  ],
+  "513_1_3005722": [
+    "building",
+    "room",
+    "networkadapter",
+    "occupied_heating_max_supply_air_flow_setpoint",
+    "vav"
+  ],
+  "513_2_3015249": [
+    "networkadapter",
+    "min_supply_air_temperature_setpoint",
+    "ahu"
+  ],
+  "513_0_3004950": [
+    "building",
+    "room",
+    "networkadapter",
+    "effective_cooling_temperature_setpoint",
+    "vav"
+  ],
+  "604_1_3013544": [
+    "networkadapter",
+    "occupied_cooling_min_discharge_air_flow_setpoint",
+    "room",
+    "vav"
+  ],
+  "513_2_3012932": [
+    "networkadapter",
+    "average_exhaust_air_static_pressure_setpoint"
+  ],
+  "604_0_3012670": [
+    "warm_cool_adjust_sensor",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "513_4_3005415": [
+    "building",
+    "ahu",
+    "networkadapter",
+    "vfd",
+    "fault_reset_command"
+  ],
+  "514_4_3009057": [
+    "building",
+    "room",
+    "networkadapter",
+    "occupancy_command",
+    "vav"
+  ],
+  "514_1_3006651": [
+    "occupied_cooling_temperature_setpoint",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "514_0_3011250": [
+    "supply_air_velocity_pressure_sensor",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "513_0_3005689": [
+    "warm_cool_adjust_sensor",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "604_1_3013249": [
+    "networkadapter",
+    "exhaust_fan",
+    "exhaust_air_static_pressure_proportional_band_setpoint",
+    "building"
+  ],
+  "604_1_3013179": [
+    "building",
+    "room",
+    "networkadapter",
+    "damper",
+    "damper_command",
+    "vav"
+  ],
+  "513_1_3007224": [
+    "zone",
+    "building",
+    "room",
+    "networkadapter",
+    "zone_temperature_sensor",
+    "vav"
+  ],
+  "513_14_3006453": [
+    "vav_box_mode_command",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "604_0_3012801": [
+    "zone",
+    "building",
+    "room",
+    "networkadapter",
+    "zone_temperature_sensor",
+    "vav"
+  ],
+  "513_0_3006925": [
+    "supply_air_flow_sensor",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "604_1_3013038": [
+    "building",
+    "room",
+    "networkadapter",
+    "occupied_heating_max_supply_air_flow_setpoint",
+    "vav"
+  ],
+  "513_1_3015240": [
+    "networkadapter",
+    "unknown",
+    "ahu"
+  ],
+  "604_3_3013283": [
+    "networkadapter",
+    "vfd",
+    "run_direction_status"
+  ],
+  "604_0_3012656": [
+    "warm_cool_adjust_sensor",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "513_1_3005430": [
+    "building",
+    "ahu",
+    "networkadapter",
+    "vfd",
+    "current_limit_setpoint"
+  ],
+  "514_1_3011272": [
+    "building",
+    "room",
+    "networkadapter",
+    "damper",
+    "damper_command",
+    "vav"
+  ],
+  "513_1_3006055": [
+    "building",
+    "room",
+    "supply_air_flow_setpoint",
+    "networkadapter",
+    "vav"
+  ],
+  "514_1_3009042": [
+    "cooling_max_discharge_air_flow_setpoint",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "604_0_3012957": [
+    "building",
+    "room",
+    "networkadapter",
+    "effective_cooling_temperature_setpoint",
+    "vav"
+  ],
+  "513_1_3004545": [
+    "supply_water_temperature_dead_band_setpoint",
+    "building",
+    "ahu",
+    "networkadapter",
+    "heat_exchanger"
+  ],
+  "514_1_3007435": [
+    "valve",
+    "heating_valve_command",
+    "building",
+    "room",
+    "networkadapter"
+  ],
+  "513_1_3004824": [
+    "building",
+    "room",
+    "networkadapter",
+    "occupied_cooling_min_discharge_air_flow_setpoint",
+    "vav"
+  ],
+  "513_0_3005435": [
+    "building",
+    "ahu",
+    "networkadapter",
+    "vfd",
+    "energy_sensor"
+  ],
+  "514_1_3011265": [
+    "building",
+    "room",
+    "networkadapter",
+    "unoccupied_cooling_discharge_air_flow_setpoint",
+    "vav"
+  ],
+  "513_1_3005881": [
+    "building",
+    "room",
+    "networkadapter",
+    "damper",
+    "damper_command",
+    "vav"
+  ],
+  "604_0_3013029": [
+    "supply_air_flow_sensor",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "514_0_3009053": [
+    "supply_air_flow_sensor",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "513_1_3005746": [
+    "valve",
+    "heating_valve_command",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "513_1_3006255": [
+    "occupied_cooling_temperature_setpoint",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "604_0_3012786": [
+    "warm_cool_adjust_sensor",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "513_1_3006566": [
+    "building",
+    "room",
+    "networkadapter",
+    "occupied_heating_min_discharge_air_flow_setpoint",
+    "vav"
+  ],
+  "513_1_3019443": [
+    "building",
+    "room",
+    "networkadapter",
+    "damper",
+    "damper_command",
+    "vav"
+  ],
+  "604_1_3013102": [
+    "occupied_cooling_temperature_setpoint",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "604_0_3013203": [
+    "warm_cool_adjust_sensor",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "604_1_3013255": [
+    "networkadapter",
+    "exhaust_air_static_pressure_setpoint",
+    "exhaust_fan",
+    "building"
+  ],
+  "604_0_3013427": [
+    "exhaust_fan",
+    "building",
+    "networkadapter",
+    "vfd",
+    "vfd_power_meter"
+  ],
+  "604_1_3012778": [
+    "cooling_max_discharge_air_flow_setpoint",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "513_1_3004500": [
+    "building",
+    "ahu",
+    "networkadapter",
+    "damper",
+    "damper_command"
+  ],
+  "513_1_3004609": [
+    "networkadapter",
+    "supply_air_static_pressure_proportional_band_setpoint",
+    "building",
+    "ahu"
+  ],
+  "514_1_3007336": [
+    "cooling_max_discharge_air_flow_setpoint",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "514_5_3003980": [
+    "networkadapter",
+    "heat_exchanger",
+    "building",
+    "heat_exchanger_system_enable_command"
+  ],
+  "604_0_3013278": [
+    "networkadapter",
+    "vfd",
+    "building",
+    "energy_sensor"
+  ],
+  "514_2_3010687": [
+    "networkadapter",
+    "supply_air_static_pressure_setpoint",
+    "ahu"
+  ],
+  "604_1_3012564": [
+    "building",
+    "room",
+    "networkadapter",
+    "occupied_cooling_min_discharge_air_flow_setpoint",
+    "vav"
+  ],
+  "513_1_3005346": [
+    "building",
+    "room",
+    "networkadapter",
+    "damper",
+    "damper_command",
+    "vav"
+  ],
+  "514_0_3007250": [
+    "networkadapter",
+    "warm_cool_adjust_sensor",
+    "building",
+    "room"
+  ],
+  "513_1_3006475": [
+    "cooling_max_discharge_air_flow_setpoint",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "604_1_3012889": [
+    "building",
+    "room",
+    "networkadapter",
+    "occupied_cooling_min_discharge_air_flow_setpoint",
+    "vav"
+  ],
+  "604_0_3013584": [
+    "networkadapter",
+    "effective_heating_temperature_setpoint",
+    "room",
+    "vav"
+  ],
+  "513_2_3007943": [
+    "networkadapter",
+    "unknown"
+  ],
+  "513_1_3007368": [
+    "building",
+    "room",
+    "supply_air_flow_setpoint",
+    "networkadapter",
+    "vav"
+  ],
+  "513_1_3006838": [
+    "building",
+    "room",
+    "networkadapter",
+    "occupied_cooling_min_discharge_air_flow_setpoint",
+    "vav"
+  ],
+  "604_0_3012879": [
+    "co2_level_sensor",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "514_1_3006766": [
+    "occupied_cooling_temperature_setpoint",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "604_1_3012677": [
+    "building",
+    "room",
+    "vav",
+    "networkadapter",
+    "setpoint"
+  ],
+  "604_1_3013075": [
+    "building",
+    "room",
+    "supply_air_flow_setpoint",
+    "networkadapter",
+    "vav"
+  ],
+  "604_0_3013418": [
+    "exhaust_fan",
+    "building",
+    "networkadapter",
+    "vfd",
+    "energy_sensor"
+  ],
+  "604_4_3013018": [
+    "building",
+    "occupied_command",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "514_4_3007419": [
+    "networkadapter",
+    "building",
+    "occupied_command",
+    "room"
+  ],
+  "513_0_3004994": [
+    "zone",
+    "building",
+    "room",
+    "networkadapter",
+    "zone_temperature_sensor",
+    "vav"
+  ],
+  "513_0_3006219": [
+    "zone",
+    "building",
+    "room",
+    "networkadapter",
+    "zone_temperature_sensor",
+    "vav"
+  ],
+  "513_1_3004560": [
+    "building",
+    "ahu",
+    "networkadapter",
+    "damper",
+    "damper_command"
+  ],
+  "513_1_3006051": [
+    "occupied_heating_temperature_setpoint",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "513_1_3006591": [
+    "building",
+    "room",
+    "supply_air_flow_setpoint",
+    "networkadapter",
+    "vav"
+  ],
+  "513_0_3005063": [
+    "zone",
+    "building",
+    "room",
+    "networkadapter",
+    "zone_temperature_sensor",
+    "vav"
+  ],
+  "604_4_3013382": [
+    "exhaust_fan",
+    "building",
+    "networkadapter",
+    "vfd",
+    "fault_reset_command"
+  ],
+  "513_1_3005139": [
+    "building",
+    "room",
+    "networkadapter",
+    "damper",
+    "damper_command",
+    "vav"
+  ],
+  "604_1_3012455": [
+    "building",
+    "room",
+    "networkadapter",
+    "occupied_heating_min_discharge_air_flow_setpoint",
+    "vav"
+  ],
+  "513_1_3004617": [
+    "networkadapter",
+    "heating_discharge_air_temperature_proportional_band_setpoint",
+    "building",
+    "ahu"
+  ],
+  "514_1_3006628": [
+    "occupied_cooling_temperature_setpoint",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "514_1_3006862": [
+    "occupied_cooling_temperature_setpoint",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "514_1_3008175": [
+    "networkadapter",
+    "unknown",
+    "vav"
+  ],
+  "604_2_3014859": [
+    "networkadapter",
+    "unknown"
+  ],
+  "604_0_3013081": [
+    "building",
+    "room",
+    "networkadapter",
+    "effective_cooling_temperature_setpoint",
+    "vav"
+  ],
+  "604_0_3013644": [
+    "networkadapter",
+    "effective_heating_temperature_setpoint",
+    "room",
+    "vav"
+  ],
+  "513_4_3006162": [
+    "building",
+    "occupied_command",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "604_14_3012691": [
+    "vav_box_mode_command",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "514_0_3007415": [
+    "networkadapter",
+    "building",
+    "room",
+    "effective_heating_temperature_setpoint"
+  ],
+  "513_1_3005230": [
+    "occupied_cooling_max_supply_air_flow_setpoint",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "514_1_3007293": [
+    "building",
+    "room",
+    "networkadapter",
+    "occupied_cooling_min_discharge_air_flow_setpoint",
+    "vav"
+  ],
+  "513_1_3007442": [
+    "building",
+    "room",
+    "vav",
+    "networkadapter",
+    "setpoint"
+  ],
+  "513_0_3007254": [
+    "damper_position_sensor",
+    "building",
+    "room",
+    "networkadapter",
+    "damper",
+    "vav"
+  ],
+  "513_1_3006775": [
+    "building",
+    "room",
+    "networkadapter",
+    "occupied_cooling_min_discharge_air_flow_setpoint",
+    "vav"
+  ],
+  "514_1_3008174": [
+    "networkadapter",
+    "unknown",
+    "vav"
+  ],
+  "513_4_3005029": [
+    "building",
+    "occupied_command",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "513_4_3004799": [
+    "building",
+    "occupied_command",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "513_0_3005372": [
+    "output_frequency_sensor",
+    "building",
+    "ahu",
+    "networkadapter",
+    "vfd"
+  ],
+  "604_1_3012890": [
+    "building",
+    "room",
+    "networkadapter",
+    "occupied_heating_min_discharge_air_flow_setpoint",
+    "vav"
+  ],
+  "513_1_3004728": [
+    "valve",
+    "heating_valve_command",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "604_0_3012895": [
+    "zone",
+    "building",
+    "room",
+    "networkadapter",
+    "zone_temperature_sensor",
+    "vav"
+  ],
+  "513_1_3006528": [
+    "building",
+    "room",
+    "supply_air_flow_setpoint",
+    "networkadapter",
+    "vav"
+  ],
+  "514_1_3007249": [
+    "networkadapter",
+    "occupied_heating_temperature_setpoint",
+    "building",
+    "room"
+  ],
+  "514_1_3006483": [
+    "valve",
+    "heating_valve_command",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "513_0_3005343": [
+    "building",
+    "room",
+    "vav",
+    "networkadapter",
+    "effective_heating_temperature_setpoint"
+  ],
+  "513_0_3006379": [
+    "warm_cool_adjust_sensor",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "513_0_3006953": [
+    "building",
+    "room",
+    "networkadapter",
+    "effective_cooling_temperature_setpoint",
+    "vav"
+  ],
+  "513_1_3004646": [
+    "building",
+    "ahu",
+    "networkadapter",
+    "damper",
+    "damper_command"
+  ],
+  "514_5_3004139": [
+    "networkadapter",
+    "exhaust_fan_system_enable_command",
+    "exhaust_fan",
+    "building"
+  ],
+  "604_0_3013234": [
+    "networkadapter",
+    "exhaust_fan",
+    "building",
+    "exhaust_air_static_pressure_sensor"
+  ],
+  "513_1_3004848": [
+    "building",
+    "room",
+    "networkadapter",
+    "occupied_heating_min_discharge_air_flow_setpoint",
+    "basement",
+    "vav"
+  ],
+  "604_1_3013132": [
+    "building",
+    "room",
+    "networkadapter",
+    "occupied_heating_max_supply_air_flow_setpoint",
+    "vav"
+  ],
+  "513_1_3005175": [
+    "building",
+    "room",
+    "supply_air_flow_setpoint",
+    "networkadapter",
+    "vav"
+  ],
+  "514_0_3006473": [
+    "zone",
+    "building",
+    "room",
+    "networkadapter",
+    "zone_temperature_sensor",
+    "vav"
+  ],
+  "513_0_3006405": [
+    "building",
+    "room",
+    "networkadapter",
+    "effective_cooling_temperature_setpoint",
+    "vav"
+  ],
+  "513_1_3004793": [
+    "occupied_cooling_max_supply_air_flow_setpoint",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "514_1_3007539": [
+    "networkadapter",
+    "exhaust_fan",
+    "building",
+    "exhaust_air_static_pressure_dead_band_setpoint"
+  ],
+  "514_1_3007550": [
+    "supply_fan",
+    "building",
+    "networkadapter",
+    "vfd",
+    "frequency_command"
+  ],
+  "513_2_3003476": [
+    "discharge_air_flow_demand_setpoint",
+    "building",
+    "floor",
+    "ahu",
+    "networkadapter"
+  ],
+  "513_4_3004543": [
+    "supply_fan",
+    "building",
+    "ahu",
+    "networkadapter",
+    "supply_fan_start_stop_command"
+  ],
+  "513_1_3006649": [
+    "building",
+    "room",
+    "networkadapter",
+    "occupied_cooling_min_discharge_air_flow_setpoint",
+    "vav"
+  ],
+  "604_1_3013028": [
+    "occupied_heating_temperature_setpoint",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "604_3_3013462": [
+    "exhaust_fan",
+    "fault_status",
+    "building",
+    "networkadapter",
+    "vfd"
+  ],
+  "513_0_3007478": [
+    "building",
+    "room",
+    "networkadapter",
+    "effective_cooling_temperature_setpoint",
+    "vav"
+  ],
+  "514_0_3011247": [
+    "supply_air_velocity_pressure_sensor",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "514_1_3006887": [
+    "occupied_cooling_temperature_setpoint",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "513_1_3005487": [
+    "building",
+    "ahu",
+    "networkadapter",
+    "vfd",
+    "max_frequency_command"
+  ],
+  "514_0_3007062": [
+    "zone",
+    "building",
+    "room",
+    "networkadapter",
+    "zone_temperature_sensor",
+    "vav"
+  ],
+  "604_0_3012828": [
+    "supply_air_flow_sensor",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "514_5_3004143": [
+    "networkadapter",
+    "exhaust_fan_disable_command",
+    "exhaust_fan",
+    "building"
+  ],
+  "513_1_3006417": [
+    "building",
+    "room",
+    "networkadapter",
+    "occupied_cooling_min_discharge_air_flow_setpoint",
+    "vav"
+  ],
+  "514_1_3006533": [
+    "building",
+    "room",
+    "networkadapter",
+    "occupied_cooling_min_discharge_air_flow_setpoint",
+    "vav"
+  ],
+  "514_0_3011246": [
+    "supply_air_velocity_pressure_sensor",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "514_4_3007474": [
+    "exhaust_fan",
+    "building",
+    "networkadapter",
+    "vfd",
+    "fault_reset_command"
+  ],
+  "514_1_3006630": [
+    "building",
+    "room",
+    "networkadapter",
+    "occupied_heating_min_discharge_air_flow_setpoint",
+    "vav"
+  ],
+  "604_0_3013123": [
+    "warm_cool_adjust_sensor",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "604_1_3013525": [
+    "networkadapter",
+    "setpoint",
+    "room",
+    "vav"
+  ],
+  "513_1_3006545": [
+    "building",
+    "room",
+    "networkadapter",
+    "occupied_heating_min_discharge_air_flow_setpoint",
+    "vav"
+  ],
+  "514_1_3006746": [
+    "occupied_heating_temperature_setpoint",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "514_0_3007178": [
+    "networkadapter",
+    "warm_cool_adjust_sensor",
+    "building",
+    "room"
+  ],
+  "513_0_3006198": [
+    "building",
+    "room",
+    "networkadapter",
+    "effective_cooling_temperature_setpoint",
+    "vav"
+  ],
+  "514_2_3010684": [
+    "networkadapter",
+    "max_supply_air_static_pressure_setpoint",
+    "ahu"
+  ],
+  "513_1_3007454": [
+    "warm_cool_adjust_sensor",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "514_1_3006833": [
+    "building",
+    "room",
+    "networkadapter",
+    "occupied_heating_max_supply_air_flow_setpoint",
+    "vav"
+  ],
+  "514_1_3007240": [
+    "networkadapter",
+    "occupied_heating_temperature_setpoint",
+    "building",
+    "room"
+  ],
+  "513_0_3007035": [
+    "zone",
+    "building",
+    "room",
+    "networkadapter",
+    "zone_temperature_sensor",
+    "vav"
+  ],
+  "513_1_3005123": [
+    "building",
+    "room",
+    "networkadapter",
+    "occupied_cooling_min_discharge_air_flow_setpoint",
+    "vav"
+  ],
+  "513_0_3006260": [
+    "supply_air_flow_sensor",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "514_0_3006433": [
+    "networkadapter",
+    "building",
+    "chilled_water_supply_temperature_sensor"
+  ],
+  "514_2_3003976": [
+    "networkadapter",
+    "heat_exchanger",
+    "building",
+    "outside_air_temperature_high_reset_setpoint"
+  ],
+  "513_1_3007211": [
+    "building",
+    "room",
+    "vav",
+    "networkadapter",
+    "setpoint"
+  ],
+  "513_1_3005636": [
+    "building",
+    "room",
+    "networkadapter",
+    "occupied_heating_min_discharge_air_flow_setpoint",
+    "vav"
+  ],
+  "513_0_3005039": [
+    "warm_cool_adjust_sensor",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "513_1_3005332": [
+    "occupied_heating_temperature_setpoint",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "513_0_3006149": [
+    "warm_cool_adjust_sensor",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "604_1_3014919": [
+    "networkadapter",
+    "building",
+    "building_static_pressure_setpoint"
+  ],
+  "514_3_3006419": [
+    "networkadapter",
+    "exhaust_fan",
+    "exhaust_fan_status",
+    "building"
+  ],
+  "513_1_3006909": [
+    "zone",
+    "building",
+    "room",
+    "networkadapter",
+    "zone_temperature_sensor",
+    "vav"
+  ],
+  "514_4_3006861": [
+    "building",
+    "occupied_command",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "513_14_3007488": [
+    "building",
+    "occupied_command",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "514_1_3007150": [
+    "networkadapter",
+    "occupied_heating_temperature_setpoint",
+    "building",
+    "room"
+  ],
+  "604_1_3012959": [
+    "occupied_cooling_max_supply_air_flow_setpoint",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "604_0_3012733": [
+    "building",
+    "room",
+    "networkadapter",
+    "effective_cooling_temperature_setpoint",
+    "vav"
+  ],
+  "513_1_3006101": [
+    "building",
+    "room",
+    "supply_air_flow_setpoint",
+    "networkadapter",
+    "vav"
+  ],
+  "604_0_3013367": [
+    "networkadapter",
+    "vfd",
+    "motor_speed_sensor"
+  ],
+  "514_0_3007280": [
+    "supply_air_flow_sensor",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "513_1_3007001": [
+    "building",
+    "room",
+    "vav",
+    "networkadapter",
+    "setpoint"
+  ],
+  "514_1_3006644": [
+    "occupied_cooling_max_supply_air_flow_setpoint",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "513_1_3006179": [
+    "occupied_cooling_max_supply_air_flow_setpoint",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "513_1_3004826": [
+    "occupied_heating_temperature_setpoint",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "514_4_3007498": [
+    "exhaust_fan",
+    "building",
+    "networkadapter",
+    "vfd",
+    "vfd_start_stop_command"
+  ],
+  "514_0_3006991": [
+    "exhaust_fan",
+    "building",
+    "networkadapter",
+    "vfd",
+    "motor_speed_sensor"
+  ],
+  "513_1_3007132": [
+    "building",
+    "room",
+    "networkadapter",
+    "occupied_cooling_min_discharge_air_flow_setpoint",
+    "vav"
+  ],
+  "513_0_3006477": [
+    "damper_position_sensor",
+    "building",
+    "room",
+    "networkadapter",
+    "damper",
+    "vav"
+  ],
+  "604_1_3012783": [
+    "building",
+    "room",
+    "networkadapter",
+    "occupied_heating_min_discharge_air_flow_setpoint",
+    "vav"
+  ],
+  "513_0_3004855": [
+    "warm_cool_adjust_sensor",
+    "building",
+    "room",
+    "networkadapter",
+    "basement",
+    "vav"
+  ],
+  "513_1_3007175": [
+    "building",
+    "room",
+    "networkadapter",
+    "occupied_heating_min_discharge_air_flow_setpoint",
+    "vav"
+  ],
+  "604_1_3013087": [
+    "occupied_cooling_temperature_setpoint",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "513_0_3005318": [
+    "building",
+    "room",
+    "networkadapter",
+    "effective_cooling_temperature_setpoint",
+    "vav"
+  ],
+  "513_0_3005157": [
+    "building",
+    "room",
+    "networkadapter",
+    "effective_cooling_temperature_setpoint",
+    "vav"
+  ],
+  "514_1_3006629": [
+    "building",
+    "room",
+    "networkadapter",
+    "occupied_cooling_min_discharge_air_flow_setpoint",
+    "vav"
+  ],
+  "514_1_3007255": [
+    "valve",
+    "heating_valve_command",
+    "building",
+    "room",
+    "networkadapter"
+  ],
+  "604_0_3012598": [
+    "co2_level_sensor",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "513_1_3005033": [
+    "occupied_heating_temperature_setpoint",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "513_14_3007146": [
+    "vav_box_mode_command",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "604_0_3013459": [
+    "exhaust_fan",
+    "building",
+    "networkadapter",
+    "vfd",
+    "energy_sensor"
+  ],
+  "514_0_3007594": [
+    "zone",
+    "building",
+    "room",
+    "networkadapter",
+    "zone_temperature_sensor",
+    "vav"
+  ],
+  "604_1_3012501": [
+    "occupied_heating_temperature_setpoint",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "514_0_3006638": [
+    "zone",
+    "building",
+    "room",
+    "networkadapter",
+    "zone_temperature_sensor",
+    "vav"
+  ],
+  "513_1_3006343": [
+    "building",
+    "room",
+    "networkadapter",
+    "occupied_heating_max_supply_air_flow_setpoint",
+    "vav"
+  ],
+  "514_0_3006542": [
+    "zone",
+    "building",
+    "room",
+    "networkadapter",
+    "zone_temperature_sensor",
+    "vav"
+  ],
+  "513_0_3004975": [
+    "building",
+    "room",
+    "vav",
+    "networkadapter",
+    "effective_heating_temperature_setpoint"
+  ],
+  "604_1_3013150": [
+    "occupied_cooling_temperature_setpoint",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "513_1_3007504": [
+    "cooling_max_discharge_air_flow_setpoint",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "513_1_3005267": [
+    "building",
+    "room",
+    "supply_air_flow_setpoint",
+    "networkadapter",
+    "vav"
+  ],
+  "513_1_3005704": [
+    "building",
+    "room",
+    "networkadapter",
+    "occupied_cooling_min_discharge_air_flow_setpoint",
+    "vav"
+  ],
+  "604_0_3013381": [
+    "exhaust_fan",
+    "building",
+    "networkadapter",
+    "vfd",
+    "energy_sensor"
+  ],
+  "513_1_3004955": [
+    "building",
+    "room",
+    "networkadapter",
+    "damper",
+    "damper_command",
+    "vav"
+  ],
+  "513_1_3005980": [
+    "building",
+    "room",
+    "networkadapter",
+    "occupied_cooling_min_discharge_air_flow_setpoint",
+    "vav"
+  ],
+  "514_1_3006654": [
+    "occupied_heating_temperature_setpoint",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "604_0_3013579": [
+    "networkadapter",
+    "warm_cool_adjust_sensor",
+    "room",
+    "vav"
+  ],
+  "513_1_3004507": [
+    "hot_water_supply_temperature_setpoint",
+    "building",
+    "ahu",
+    "networkadapter",
+    "heat_exchanger"
+  ],
+  "604_0_3013612": [
+    "damper_position_sensor",
+    "room",
+    "networkadapter",
+    "damper",
+    "vav"
+  ],
+  "513_0_3004973": [
+    "building",
+    "room",
+    "networkadapter",
+    "effective_cooling_temperature_setpoint",
+    "vav"
+  ],
+  "514_4_3007470": [
+    "exhaust_fan",
+    "building",
+    "networkadapter",
+    "vfd",
+    "emergency_power_off_switch_command"
+  ],
+  "604_0_3013489": [
+    "networkadapter",
+    "warm_cool_adjust_sensor",
+    "room",
+    "vav"
+  ],
+  "514_1_3006374": [
+    "building",
+    "ahu",
+    "heat_exchanger_supply_water_temperature_proportional_band_setpoint",
+    "heat_exchanger",
+    "networkadapter"
+  ],
+  "513_0_3005685": [
+    "supply_air_flow_sensor",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "604_0_3012756": [
+    "supply_air_flow_sensor",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "604_1_3012871": [
+    "occupied_cooling_temperature_setpoint",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "513_0_3007161": [
+    "zone",
+    "building",
+    "room",
+    "networkadapter",
+    "zone_temperature_sensor",
+    "vav"
+  ],
+  "513_1_3005239": [
+    "building",
+    "room",
+    "networkadapter",
+    "occupied_heating_min_discharge_air_flow_setpoint",
+    "vav"
+  ],
+  "514_1_3006674": [
+    "occupied_cooling_temperature_setpoint",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "514_1_3007403": [
+    "networkadapter",
+    "warm_cool_adjust_sensor",
+    "building",
+    "room"
+  ],
+  "604_0_3013327": [
+    "exhaust_fan",
+    "building",
+    "networkadapter",
+    "vfd",
+    "energy_sensor"
+  ],
+  "604_1_3013262": [
+    "exhaust_fan",
+    "vfd_command",
+    "building",
+    "networkadapter",
+    "vfd"
+  ],
+  "604_1_3013409": [
+    "vfd_speed_command",
+    "exhaust_fan",
+    "building",
+    "networkadapter",
+    "vfd"
+  ],
+  "513_1_3006088": [
+    "building",
+    "room",
+    "networkadapter",
+    "damper",
+    "damper_command",
+    "vav"
+  ],
+  "514_0_3007226": [
+    "networkadapter",
+    "building",
+    "room",
+    "effective_heating_temperature_setpoint"
+  ],
+  "513_1_3011368": [
+    "networkadapter",
+    "pump",
+    "differential_pressure_integral_time_setpoint",
+    "building"
+  ],
+  "604_1_3012440": [
+    "building",
+    "room",
+    "networkadapter",
+    "occupied_heating_min_discharge_air_flow_setpoint",
+    "vav"
+  ],
+  "514_1_3009065": [
+    "occupied_cooling_temperature_setpoint",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "604_1_3013041": [
+    "building",
+    "room",
+    "networkadapter",
+    "occupied_cooling_min_discharge_air_flow_setpoint",
+    "vav"
+  ],
+  "513_1_3005742": [
+    "occupied_cooling_max_supply_air_flow_setpoint",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "604_0_3012490": [
+    "zone",
+    "building",
+    "room",
+    "networkadapter",
+    "zone_temperature_sensor",
+    "vav"
+  ],
+  "513_1_3005386": [
+    "building",
+    "ahu",
+    "networkadapter",
+    "vfd",
+    "current_limit_setpoint"
+  ],
+  "604_4_3012941": [
+    "building",
+    "occupied_command",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "513_0_3006645": [
+    "damper_position_sensor",
+    "building",
+    "room",
+    "networkadapter",
+    "damper",
+    "vav"
+  ],
+  "604_3_3013698": [
+    "networkadapter",
+    "power_loss_alarm",
+    "crac",
+    "building"
+  ],
+  "604_0_3012432": [
+    "building",
+    "room",
+    "networkadapter",
+    "effective_cooling_temperature_setpoint",
+    "vav"
+  ],
+  "604_3_3013469": [
+    "exhaust_fan",
+    "building",
+    "networkadapter",
+    "vfd",
+    "vfd_start_stop_status"
+  ],
+  "514_1_3006380": [
+    "networkadapter",
+    "building",
+    "heating_discharge_air_temperature_dead_band_setpoint",
+    "ahu"
+  ],
+  "513_0_3005919": [
+    "warm_cool_adjust_sensor",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "513_1_3006137": [
+    "valve",
+    "heating_valve_command",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "604_0_3013254": [
+    "networkadapter",
+    "exhaust_fan",
+    "building",
+    "exhaust_air_static_pressure_sensor"
+  ],
+  "513_0_3006866": [
+    "warm_cool_adjust_sensor",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "513_1_3006371": [
+    "building",
+    "room",
+    "networkadapter",
+    "occupied_cooling_min_discharge_air_flow_setpoint",
+    "vav"
+  ],
+  "513_0_3007417": [
+    "building",
+    "room",
+    "vav",
+    "networkadapter",
+    "effective_heating_temperature_setpoint"
+  ],
+  "604_3_3013697": [
+    "crac",
+    "building",
+    "fan",
+    "networkadapter",
+    "fan_overload_alarm"
+  ],
+  "513_0_3005708": [
+    "supply_air_flow_sensor",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "604_1_3013464": [
+    "exhaust_fan",
+    "building",
+    "networkadapter",
+    "vfd",
+    "frequency_command"
+  ],
+  "604_1_3012437": [
+    "valve",
+    "heating_valve_command",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "513_1_3005681": [
+    "building",
+    "room",
+    "networkadapter",
+    "occupied_cooling_min_discharge_air_flow_setpoint",
+    "vav"
+  ],
+  "513_1_3005697": [
+    "building",
+    "room",
+    "networkadapter",
+    "damper",
+    "damper_command",
+    "vav"
+  ],
+  "604_0_3013154": [
+    "supply_air_flow_sensor",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "514_1_3009073": [
+    "building",
+    "room",
+    "occupied_cooling_discharge_air_flow_setpoint",
+    "networkadapter",
+    "vav"
+  ],
+  "604_1_3012458": [
+    "building",
+    "room",
+    "supply_air_flow_setpoint",
+    "networkadapter",
+    "vav"
+  ],
+  "604_2_3015002": [
+    "networkadapter",
+    "supply_air_static_pressure_increase_decrease_step_setpoint",
+    "ahu"
+  ],
+  "604_1_3012405": [
+    "occupied_cooling_max_supply_air_flow_setpoint",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "514_1_3007456": [
+    "networkadapter",
+    "occupied_heating_temperature_setpoint",
+    "building",
+    "room"
+  ],
+  "513_0_3006533": [
+    "building",
+    "room",
+    "networkadapter",
+    "effective_cooling_temperature_setpoint",
+    "vav"
+  ],
+  "514_0_3006702": [
+    "supply_air_flow_sensor",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "513_0_3005915": [
+    "supply_air_flow_sensor",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "514_0_3006660": [
+    "warm_cool_adjust_sensor",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "513_1_3007295": [
+    "building",
+    "room",
+    "vav",
+    "networkadapter",
+    "setpoint"
+  ],
+  "514_0_3007197": [
+    "zone",
+    "building",
+    "room",
+    "networkadapter",
+    "zone_temperature_sensor"
+  ],
+  "604_4_3013143": [
+    "building",
+    "occupied_command",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "514_4_3007356": [
+    "networkadapter",
+    "building",
+    "occupied_command",
+    "room"
+  ],
+  "513_1_3006423": [
+    "building",
+    "room",
+    "supply_air_flow_setpoint",
+    "networkadapter",
+    "vav"
+  ],
+  "604_0_3013643": [
+    "effective_cooling_temperature_setpoint",
+    "networkadapter",
+    "room",
+    "vav"
+  ],
+  "514_1_3011269": [
+    "building",
+    "room",
+    "networkadapter",
+    "damper",
+    "damper_command",
+    "vav"
+  ],
+  "513_1_3005927": [
+    "building",
+    "room",
+    "networkadapter",
+    "damper",
+    "damper_command",
+    "vav"
+  ],
+  "604_0_3013124": [
+    "zone",
+    "building",
+    "room",
+    "networkadapter",
+    "zone_temperature_sensor",
+    "vav"
+  ],
+  "514_0_3006926": [
+    "building",
+    "room",
+    "vav",
+    "networkadapter",
+    "effective_heating_temperature_setpoint"
+  ],
+  "514_4_3007194": [
+    "networkadapter",
+    "building",
+    "occupied_command",
+    "room"
+  ],
+  "604_0_3012583": [
+    "zone",
+    "building",
+    "room",
+    "networkadapter",
+    "zone_temperature_sensor",
+    "vav"
+  ],
+  "604_0_3012718": [
+    "building",
+    "room",
+    "vav",
+    "networkadapter",
+    "effective_heating_temperature_setpoint"
+  ],
+  "604_0_3013408": [
+    "exhaust_fan",
+    "building",
+    "networkadapter",
+    "vfd",
+    "vfd_power_meter"
+  ],
+  "604_1_3012441": [
+    "occupied_heating_temperature_setpoint",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "513_4_3005121": [
+    "building",
+    "occupied_command",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "604_0_3012507": [
+    "building",
+    "room",
+    "networkadapter",
+    "effective_cooling_temperature_setpoint",
+    "vav"
+  ],
+  "513_0_3004504": [
+    "building",
+    "ahu",
+    "networkadapter",
+    "heat_exchanger",
+    "medium_temperature_hot_water_supply_temperature_sensor"
+  ],
+  "513_0_3007191": [
+    "damper_position_sensor",
+    "building",
+    "room",
+    "networkadapter",
+    "damper",
+    "vav"
+  ],
+  "514_4_3006341": [
+    "pump",
+    "building",
+    "ahu",
+    "networkadapter",
+    "heat_exchanger",
+    "pump_start_stop_command"
+  ],
+  "514_0_3006867": [
+    "supply_air_flow_sensor",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "604_1_3013274": [
+    "exhaust_fan",
+    "vfd_command",
+    "building",
+    "networkadapter",
+    "vfd"
+  ],
+  "604_0_3012700": [
+    "warm_cool_adjust_sensor",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "513_0_3004766": [
+    "building",
+    "room",
+    "networkadapter",
+    "effective_cooling_temperature_setpoint",
+    "vav"
+  ],
+  "513_1_3006685": [
+    "cooling_max_discharge_air_flow_setpoint",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "513_3_3004502": [
+    "networkadapter",
+    "condensate_leak_alarm",
+    "building",
+    "ahu"
+  ],
+  "513_0_3006246": [
+    "building",
+    "room",
+    "vav",
+    "networkadapter",
+    "effective_heating_temperature_setpoint"
+  ],
+  "513_1_3007357": [
+    "cooling_max_discharge_air_flow_setpoint",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "604_0_3012418": [
+    "building",
+    "room",
+    "networkadapter",
+    "effective_cooling_temperature_setpoint",
+    "vav"
+  ],
+  "513_14_3006726": [
+    "vav_box_mode_command",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "604_14_3012763": [
+    "vav_box_mode_command",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "513_0_3006636": [
+    "zone",
+    "building",
+    "room",
+    "networkadapter",
+    "zone_temperature_sensor",
+    "vav"
+  ],
+  "513_1_3004954": [
+    "occupied_cooling_max_supply_air_flow_setpoint",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "513_0_3006512": [
+    "building",
+    "room",
+    "networkadapter",
+    "effective_cooling_temperature_setpoint",
+    "vav"
+  ],
+  "604_1_3013270": [
+    "networkadapter",
+    "exhaust_fan",
+    "building",
+    "exhaust_air_static_pressure_integral_time_setpoint"
+  ],
+  "604_1_3012806": [
+    "cooling_max_discharge_air_flow_setpoint",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "604_1_3013037": [
+    "building",
+    "room",
+    "networkadapter",
+    "damper",
+    "damper_command",
+    "vav"
+  ],
+  "514_1_3006805": [
+    "occupied_cooling_max_supply_air_flow_setpoint",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "514_0_3006989": [
+    "exhaust_fan",
+    "building",
+    "networkadapter",
+    "vfd",
+    "vfd_power_meter"
+  ],
+  "513_0_3004902": [
+    "zone",
+    "building",
+    "room",
+    "networkadapter",
+    "zone_temperature_sensor",
+    "vav"
+  ],
+  "513_3_3005485": [
+    "run_direction_status",
+    "building",
+    "ahu",
+    "networkadapter",
+    "vfd"
+  ],
+  "514_4_3007519": [
+    "networkadapter",
+    "exhaust_fan",
+    "exhaust_fan_enable_command",
+    "building"
+  ],
+  "513_1_3004849": [
+    "occupied_heating_temperature_setpoint",
+    "building",
+    "room",
+    "networkadapter",
+    "basement",
+    "vav"
+  ],
+  "604_1_3013451": [
+    "networkadapter",
+    "exhaust_air_static_pressure_setpoint",
+    "exhaust_fan",
+    "building"
+  ],
+  "513_0_3007429": [
+    "supply_air_flow_sensor",
+    "building",
+    "room",
+    "networkadapter",
+    "vav"
+  ],
+  "513_1_3005635": [
+    "building",
+    "room",
+    "networkadapter",
+    "occupied_cooling_min_discharge_air_flow_setpoint",
+    "vav"
+  ]
+}

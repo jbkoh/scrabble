@@ -1193,7 +1193,7 @@ Unique Identifier,BACnet Device ID,BACnet Object Type,BACnet Object ID,Johnson C
 506_1_3001485,506,1,3001485,ebu3b rm 2236 clgpid o,nae 06 n2 1 vma116 clgpid o,cooling command,98.0,cooling command,cooling command,,rm 2236,vav,2236,,ebu3b,,analog output
 506_1_3003170,506,1,3003170,ebu3b rm 3106 clgpid o,nae 06 n2 2 vma116 clgpid o,cooling command,98.0,cooling command,cooling command,,rm 3106,vav,3106,,ebu3b,,analog output
 505_1_3000157,505,1,3000157,ebu3b rm b210 clgpid o,nae 05 n2 1 vma 116 clgpid o,cooling command,98.0,cooling command,cooling command,,rm b210,vav,b210,,ebu3b,,analog output
-505_0_3014466,505,0,3014466,ebu3b rmb210 co2 level,nae 05 n2 1 vma 116 co2 lvl,co2 level,96.0,co2 level,co2 sensor,,rm b210,vav,b210,,ebu3b,,analog input
+505_0_3014466,505,0,3014466,ebu3b rmb210 co2 level,nae 05 n2 1 vma 116 co2 lvl,co2 level,96.0,co2 level,co2 level sensor,,rm b210,vav,b210,,ebu3b,,analog input
 505_3_3014467,505,3,3014467,ebu3b rm 210 co2 hi alarm,nae 05 n2 1 vma 116 co2 hia,co2 hi alarm,,co2 hi alarm,co2 high alarm,,rm b210,vav,b210,,ebu3b,,binary input
 505_0_3001890,505,0,3001890,ebu3b rm 1224 zn t,nae 05 n2 2 vma 117 zn t,zone temperature,64.0,zone temperature,zone temperature sensor,,rm 1224,vav,1224,,ebu3b,,analog input
 506_0_3001492,506,0,3001492,ebu3b rm 2238 zn t,nae 06 n2 1 vma117 zn t,zone temperature,64.0,zone temperature,zone temperature sensor,,rm 2238,vav,2238,,ebu3b,,analog input
@@ -1266,7 +1266,7 @@ Unique Identifier,BACnet Device ID,BACnet Object Type,BACnet Object ID,Johnson C
 506_1_3001506,506,1,3001506,ebu3b rm 2238 clgpid o,nae 06 n2 1 vma117 clgpid o,cooling command,98.0,cooling command,cooling command,,rm 2238,vav,2238,,ebu3b,,analog output
 506_1_3003190,506,1,3003190,ebu3b rm 3102 clgpid o,nae 06 n2 2 vma117 clgpid o,cooling command,98.0,cooling command,cooling command,,rm 3102,vav,3102,,ebu3b,,analog output
 505_1_3000179,505,1,3000179,ebu3b rm b220 clgpid o,nae 05 n2 1 vma 117 clgpid o,cooling command,98.0,cooling command,cooling command,,rm b220,vav,b220,,ebu3b,,analog output
-505_0_3014456,505,0,3014456,ebu3b rm b220 co2 level,nae 05 n2 1 vma 117 co2 lvl,co2 level,96.0,co2 level,co2 sensor,,rm b220,vav,b220,,ebu3b,,analog input
+505_0_3014456,505,0,3014456,ebu3b rm b220 co2 level,nae 05 n2 1 vma 117 co2 lvl,co2 level,96.0,co2 level,co2 level sensor,,rm b220,vav,b220,,ebu3b,,analog input
 505_3_3014457,505,3,3014457,ebu3b rm b220 co2 hi alarm,nae 05 n2 1 vma 117 co2 alm,co2 hi alarm,,co2 hi alarm,co2 high alarm,,rm b220,vav,b220,,ebu3b,,binary input
 505_4_3000182,505,4,3000182,ebu3b rm b220 fan c,nae 05 n2 1 vma 117 fan c,booster fan command,,booster fan command,booster fan start stop command,,rm b220,vav,b220,,ebu3b,,binary output
 505_0_3001910,505,0,3001910,ebu3b rm 1218 zn t,nae 05 n2 2 vma 118 zn t,zone temperature,64.0,zone temperature,zone temperature sensor,,rm 1218,vav,1218,,ebu3b,,analog input
@@ -1335,7 +1335,7 @@ Unique Identifier,BACnet Device ID,BACnet Object Type,BACnet Object ID,Johnson C
 506_1_3001527,506,1,3001527,ebu3b rm 2219 clgpid o,nae 06 n2 1 vma118 clgpid o,cooling command,98.0,cooling command,cooling command,,rm 2219,vav,2219,,ebu3b,,analog output
 506_1_3003210,506,1,3003210,ebu3b rm 3107 clgpid o,nae 06 n2 2 vma118 clgpid o,cooling command,98.0,cooling command,cooling command,,rm 3107,vav,3107,,ebu3b,,analog output
 505_1_3000201,505,1,3000201,ebu3b rm b230 clgpid o,nae 05 n2 1 vma 118 clgpid o,cooling command,98.0,cooling command,cooling command,,rm b230,vav,b230,,ebu3b,,analog output
-505_0_3014468,505,0,3014468,ebu3b rm b230 co2 level,nae 05 n2 1 vma 118 co2 lvl,co2 level,96.0,co2 level,co2 sensor,,rm b230,vav,b230,,ebu3b,,analog input
+505_0_3014468,505,0,3014468,ebu3b rm b230 co2 level,nae 05 n2 1 vma 118 co2 lvl,co2 level,96.0,co2 level,co2 level sensor,,rm b230,vav,b230,,ebu3b,,analog input
 505_3_3014469,505,3,3014469,ebu3b rm 230 co2 hi alarm,nae 05 n2 1 vma 118 co2 hia,co2 hi alarm,,co2 high alarm,co2 high alarm,,rm b230,vav,b230,,ebu3b,,binary input
 505_4_3000204,505,4,3000204,ebu3b rm b230 fan c,nae 05 n2 1 vma 118 fan c,booster fan command,,booster fan command,booster fan start stop command,,rm b230,vav,b230,,ebu3b,,binary output
 505_0_3001930,505,0,3001930,ebu3b rm 1212 zn t,nae 05 n2 2 vma 119 zn t,zone temperature,64.0,zone temperature,zone temperature sensor,,rm 1212,vav,1212,,ebu3b,,analog input
@@ -1404,7 +1404,7 @@ Unique Identifier,BACnet Device ID,BACnet Object Type,BACnet Object ID,Johnson C
 506_1_3001547,506,1,3001547,ebu3b rm 2244 clgpid o,nae 06 n2 1 vma119 clgpid o,cooling command,98.0,cooling command,cooling command,,rm 2244,vav,2244,,ebu3b,,analog output
 506_1_3003230,506,1,3003230,ebu3b rm 3105 clgpid o,nae 06 n2 2 vma119 clgpid o,cooling command,98.0,cooling command,cooling command,,rm 3105,vav,3105,,ebu3b,,analog output
 505_1_3000223,505,1,3000223,ebu3b rm b240 clgpid o,nae 05 n2 1 vma 119 clgpid o,cooling command,98.0,cooling command,cooling command,,rm b240,vav,b240,,ebu3b,,analog output
-505_0_3014470,505,0,3014470,ebu3b rm b240 co2 level,nae 05 n2 1 vma 119 co2 lvl,co2 level,96.0,co2 level,co2 sensor,,rm b240,vav,b240,,ebu3b,,analog input
+505_0_3014470,505,0,3014470,ebu3b rm b240 co2 level,nae 05 n2 1 vma 119 co2 lvl,co2 level,96.0,co2 level,co2 level sensor,,rm b240,vav,b240,,ebu3b,,analog input
 505_3_3014471,505,3,3014471,ebu3b rm b240 co2 hi alarm,nae 05 n2 1 vma 119 co2 hia,co2 hi alarm,,co2 hi alarm,co2 high alarm,,rm b240,vav,b240,,ebu3b,,binary input
 505_4_3000226,505,4,3000226,ebu3b rm b240 fan c,nae 05 n2 1 vma 119 fan c,booster fan command,,booster fan command,booster fan start stop command,,rm b240,vav,b240,,ebu3b,,binary output
 505_0_3001950,505,0,3001950,ebu3b rm 1208 zn t,nae 05 n2 2 vma 120 zn t,zone temperature,64.0,zone temperature,zone temperature sensor,,rm 1208,vav,1208,,ebu3b,,analog input
@@ -1476,7 +1476,7 @@ Unique Identifier,BACnet Device ID,BACnet Object Type,BACnet Object ID,Johnson C
 506_1_3001567,506,1,3001567,ebu3b rm 2227 clgpid o,nae 06 n2 1 vma120 clgpid o,cooling command,98.0,cooling command,cooling command,,rm 2227,vav,2227,,ebu3b,,analog output
 506_1_3003250,506,1,3003250,ebu3b rm 3152 clgpid o,nae 06 n2 2 vma120 clgpid o,cooling command,98.0,cooling command,cooling command,,rm 3152,vav,3152,,ebu3b,,analog output
 505_1_3000245,505,1,3000245,ebu3b rm b250 clgpid o,nae 05 n2 1 vma 120 clgpid o,cooling command,98.0,cooling command,cooling command,,rm b250,vav,b250,,ebu3b,,analog output
-505_0_3014472,505,0,3014472,ebu3b rm b250 co2 level,nae 05 n2 1 vma 120 co2 lvl,co2 level,96.0,co2 level,co2 sensor,,rm b250,vav,b250,,ebu3b,,analog input
+505_0_3014472,505,0,3014472,ebu3b rm b250 co2 level,nae 05 n2 1 vma 120 co2 lvl,co2 level,96.0,co2 level,co2 level sensor,,rm b250,vav,b250,,ebu3b,,analog input
 505_3_3014473,505,3,3014473,ebu3b rm b250 co2 hi alarm,nae 05 n2 1 vma 120 co2 hia,co2 hi alarm,,co2 hi alarm,co2 high alarm,,rm b250,vav,b250,,ebu3b,,binary input
 505_4_3000248,505,4,3000248,ebu3b rm b250 fan c,nae 05 n2 1 vma 120 fan c,booster fan command,,booster fan command,booster fan start stop command,,rm b250,vav,b250,,ebu3b,,binary output
 505_0_3001972,505,0,3001972,ebu3b rm 1208b zn t,nae 05 n2 2 vma 121 zn t,zone temperature,64.0,zone temperature,zone temperature sensor,,rm 1208b,vav,1208b,,ebu3b,,analog input
@@ -1639,7 +1639,7 @@ Unique Identifier,BACnet Device ID,BACnet Object Type,BACnet Object ID,Johnson C
 506_1_3001587,506,1,3001587,ebu3b rm 2250 clgpid o,nae 06 n2 1 vma121 clgpid o,cooling command,98.0,cooling command,cooling command,,rm 2250,vav,2250,,ebu3b,,analog output
 506_1_3003271,506,1,3003271,ebu3b rm 3150 clgpid o,nae 06 n2 2 vma121 clgpid o,cooling command,98.0,cooling command,cooling command,,rm 3150,vav,3150,,ebu3b,,analog output
 505_1_3000267,505,1,3000267,ebu3b rm b260 clgpid o,nae 05 n2 1 vma 121 clgpid o,cooling command,98.0,cooling command,cooling command,,rm b260,vav,b260,,ebu3b,,analog output
-505_0_3014474,505,0,3014474,ebu3b rm b260 co2 level,nae 05 n2 1 vma 121 co2 lvl,co2 level,96.0,co2 level,co2 sensor,,rm b260,vav,b260,,ebu3b,,analog input
+505_0_3014474,505,0,3014474,ebu3b rm b260 co2 level,nae 05 n2 1 vma 121 co2 lvl,co2 level,96.0,co2 level,co2 level sensor,,rm b260,vav,b260,,ebu3b,,analog input
 505_3_3014475,505,3,3014475,ebu3b rm b260 co2 hi alarm,nae 05 n2 1 vma 121 co2 hia,co2 hi alarm,,co2 hi alarm,co2 high alarm,,rm b260,vav,b260,,ebu3b,,binary input
 505_4_3000270,505,4,3000270,ebu3b rm b260 fan c,nae 05 n2 1 vma 121 fan c,booster fan command,,booster fan command,booster fan start stop command,,rm b260,vav,b260,,ebu3b,,binary output
 505_0_3001992,505,0,3001992,ebu3b rm 1203 zn t,nae 05 n2 2 vma 122 zn t,zone temperature,64.0,zone temperature,zone temperature sensor,,rm 1203,vav,1203,,ebu3b,,analog input
@@ -1707,7 +1707,7 @@ Unique Identifier,BACnet Device ID,BACnet Object Type,BACnet Object ID,Johnson C
 506_1_3001607,506,1,3001607,ebu3b rm 2256 clgpid o,nae 06 n2 1 vma122 clgpid o,cooling command,98.0,cooling command,cooling command,,rm 2256,vav,2256,,ebu3b,,analog output
 506_1_3003290,506,1,3003290,ebu3b rm 3127 clgpid o,nae 06 n2 2 vma122 clgpid o,cooling command,98.0,cooling command,cooling command,,rm 3127,vav,3127,,ebu3b,,analog output
 505_1_3000289,505,1,3000289,ebu3b rm b270 clgpid o,nae 05 n2 1 vma 122 clgpid o,cooling command,98.0,cooling command,cooling command,,rm b270,vav,b270,,ebu3b,,analog output
-505_0_3014476,505,0,3014476,ebu3b rm b270 co2 level,nae 05 n2 1 vma 122 co2 lvl,co2 level,96.0,co2 level,co2 sensor,,rm b270,vav,b270,,ebu3b,,analog input
+505_0_3014476,505,0,3014476,ebu3b rm b270 co2 level,nae 05 n2 1 vma 122 co2 lvl,co2 level,96.0,co2 level,co2 level sensor,,rm b270,vav,b270,,ebu3b,,analog input
 505_3_3014477,505,3,3014477,ebu3b rm b270 co2 hi alarm,nae 05 n2 1 vma 122 co2 hia,co2 hi alarm,,co2 hi alarm,co2 high alarm,,rm b270,vav,b270,,ebu3b,,binary input
 505_0_3002009,505,0,3002009,ebu3b rm 1221 zn t,nae 05 n2 2 vma 123 zn t,zone temperature,64.0,zone temperature,zone temperature sensor,,rm 1221,vav,1221,,ebu3b,,analog input
 506_0_3001613,506,0,3001613,ebu3b rm 2229a zn t,nae 06 n2 1 vma123 zn t,zone temperature work room,64.0,zone temperature,zone temperature sensor,,rm 2229a,vav,2229a,,ebu3b,,analog input
@@ -3098,8 +3098,8 @@ Unique Identifier,BACnet Device ID,BACnet Object Type,BACnet Object ID,Johnson C
 505_5_3017932,505,5,3017932,ebu3b load shed mtw2 t load shed,nae 05 programming ebu3b load shed ebu3b mtw2 t load shed,mtw2 t load shed,,mtw t load shed,unknown,2,,load shed,0,,ebu3b,,binary value
 505_2_3017930,505,2,3017930,ebu3b load shed mtw1t sp load shed,nae 05 programming ebu3b load shed ebu3b mtw1t sp load shed,mtw1t sp load shed,64.0,mtwt sp load shed,unknown,1,,load shed,0,,ebu3b,,analog value
 505_2_3017933,505,2,3017933,ebu3b load shed mtw2t sp load shed,nae 05 programming ebu3b load shed ebu3b mtw2t sp load shed,mtw2t sp load shed,64.0,mtwt sp load shed,unknown,2,,load shed,0,,ebu3b,,analog value
-505_3_3014605,505,3,3014605,ebu3b chwp3 vfd hoa sts,nae 05 n2 1 vnd 26 hoa sts,hand auto status,,hand auto status,manual auto status,,rm b102c,chilled water pump,3,chw sys pump,ebu3b,,binary input
-505_3_3014640,505,3,3014640,ebu3b chwp4 vfd hoa sts,nae 05 n2 1 vnd 27 hoa sts,hand auto status,,hand auto status,manual auto status,,rm b102c,chilled water pump,4,chw sys pump,ebu3b,,binary input
+505_3_3014605,505,3,3014605,ebu3b chwp3 vfd hoa sts,nae 05 n2 1 vnd 26 hoa sts,hand auto status,,hand auto status,hand auto status,,rm b102c,chilled water pump,3,chw sys pump,ebu3b,,binary input
+505_3_3014640,505,3,3014640,ebu3b chwp4 vfd hoa sts,nae 05 n2 1 vnd 27 hoa sts,hand auto status,,hand auto status,hand auto status,,rm b102c,chilled water pump,4,chw sys pump,ebu3b,,binary input
 505_3_3015295,505,3,3015295,ebu3b crac 1 man ovrd,nae 05 n2 2 vnd 162 man ovrd,manual override,,manual override,manual auto status,,server room,computer room air conditioning,1,,ebu3b,,binary input
 505_3_3015359,505,3,3015359,ebu3b crac 2 man ovrd,nae 05 n2 2 vnd 163 man ovrd,manual override,,manual override,manual auto status,,server room,computer room air conditioning,2,,ebu3b,,binary input
 505_3_3015231,505,3,3015231,ebu3b crac 3 man ovrd,nae 05 n2 2 vnd 161 man ovrd,manual override,,manual override,manual auto status,,server room,computer room air conditioning,3,,ebu3b,,binary input
@@ -3305,7 +3305,7 @@ Unique Identifier,BACnet Device ID,BACnet Object Type,BACnet Object ID,Johnson C
 506_1_3009387,506,1,3009387,ebu3b rm 2127 ocmnc sp,nae 06 n2 1 vma151 ocmnc sp,occupied clg min,84.0,minimum occupied cooling supply airflow,occupied cooling min supply air flow setpoint,,rm 2127,vav,2127,,ebu3b,,analog output
 506_1_3002236,506,1,3002236,ebu3b rm 4254 clgminflo,nae 06 n2 2 vma151 clgminflo,occupied clg min,84.0,minimum occupied cooling supply airflow,occupied cooling min supply air flow setpoint,,rm 4254,vav,4254,,ebu3b,,analog output
 506_3_3009380,506,3,3009380,ebu3b rm 2127 occ s,nae 06 n2 1 vma151 occ s,occupancy sensor,,occupancy sensor,occupancy sensor,,rm 2127,vav,2127,,ebu3b,,binary input
-506_13_3009395,506,13,3009395,ebu3b rm 2127 occ sts,nae 06 n2 1 vma151 occ sts,occupied status,,occupancy sensor,occupancy sensor,,rm 2127,vav,2127,,ebu3b,,multi state input
+506_13_3009395,506,13,3009395,ebu3b rm 2127 occ sts,nae 06 n2 1 vma151 occ sts,occupied status,,occupancy sensor,occupancy status,,rm 2127,vav,2127,,ebu3b,,multi state input
 505_14_3001622,505,14,3001622,ebu3b rm 1115 occ cmd,nae 05 n2 2 vma 151 occ cmd,occupied command,,occupancy command,occupied command,,rm 1115,vav,1115,,ebu3b,,multi state output
 506_14_3009394,506,14,3009394,ebu3b rm 2127 occ cmd,nae 06 n2 1 vma151 occ cmd,occupied command,,occupancy command,occupied command,,rm 2127,vav,2127,,ebu3b,,multi state output
 506_14_3002243,506,14,3002243,ebu3b rm 4254 occ cmd,nae 06 n2 2 vma151 occ cmd,occupied command,,occupancy command,occupied command,,rm 4254,vav,4254,,ebu3b,,multi state output
@@ -3568,7 +3568,7 @@ Unique Identifier,BACnet Device ID,BACnet Object Type,BACnet Object ID,Johnson C
 506_1_3000642,506,1,3000642,ebu3b rm 2109 htgpid o,nae 06 n2 1 vma156 htgpid o,heating command,98.0,heating command,heating command,,rm 2109,vav,2109,,ebu3b,,analog output
 506_1_3002343,506,1,3002343,ebu3b rm 4215 htgpid o,nae 06 n2 2 vma156 htgpid o,heating command,98.0,heating command,heating command,,rm 4215,vav,4215,,ebu3b,,analog output
 506_3_3002344,506,3,3002344,ebu3b rm 4215 ef5 s,nae 06 n2 2 vma156 ef s,exhaust fan status kitchen ex rm 4215,,exhaust fan status,exhaust fan status,,rm 4215,vav,4215,,ebu3b,,binary input
-506_4_3002345,506,4,3002345,ebu3b rm 4215 ef5 c,nae 06 n2 2 vma156 ef c,exhaust fan command,,exhaust fan command,zone temperature sensor,,rm 4215,vav,4215,,ebu3b,,binary output
+506_4_3002345,506,4,3002345,ebu3b rm 4215 ef5 c,nae 06 n2 2 vma156 ef c,exhaust fan command,,exhaust fan command,exhaust fan command,,rm 4215,vav,4215,,ebu3b,,binary output
 506_0_3000632,506,0,3000632,ebu3b rm 2109 dmpr pos,nae 06 n2 1 vma156 dmpr pos,damper position,98.0,damper position,damper position sensor,,rm 2109,vav,2109,,ebu3b,,analog input
 506_0_3002333,506,0,3002333,ebu3b rm 4215 dmpr pos,nae 06 n2 2 vma156 dmpr pos,damper position,98.0,damper position,damper position sensor,,rm 4215,vav,4215,,ebu3b,,analog input
 506_1_3000636,506,1,3000636,ebu3b rm 2109 dpr c,nae 06 n2 1 vma156 dpr c,damper command,98.0,damper command,damper command,,rm 2109,vav,2109,,ebu3b,,analog output
@@ -3723,7 +3723,7 @@ Unique Identifier,BACnet Device ID,BACnet Object Type,BACnet Object ID,Johnson C
 506_0_3002430,506,0,3002430,ebu3b rm 4134 actclgsp,nae 06 n2 2 vma161 actclgsp,actual cooling setpoint,64.0,actual cooling setpoint,effective cooling temperature setpoint,,rm 4134,vav,4134,,ebu3b,,analog input
 506_1_3009418,506,1,3009418,ebu3b rm 3223 ocmnc sp,nae 06 n2 1 vma161 ocmnc sp,occupied cooling min,84.0,minimum occupied cooling supply airflow,occupied cooling min discharge air flow setpoint,,rm 3223,vav,3223,,ebu3b,,analog output
 506_1_3002439,506,1,3002439,ebu3b rm 4134 clgminflo,nae 06 n2 2 vma161 clgminflo,occupied clg min,84.0,minimum occupied cooling supply airflow,occupied cooling min supply air flow setpoint,,rm 4134,vav,4134,,ebu3b,,analog output
-506_13_3009416,506,13,3009416,ebu3b rm 3223 occ sts,nae 06 n2 1 vma161 occ s 3,occupied status,,occupancy sensor,occupancy sensor,,rm 3223,vav,3223,,ebu3b,,multi state input
+506_13_3009416,506,13,3009416,ebu3b rm 3223 occ sts,nae 06 n2 1 vma161 occ s 3,occupied status,,occupancy sensor,occupancy status,,rm 3223,vav,3223,,ebu3b,,multi state input
 506_14_3009415,506,14,3009415,ebu3b rm 3223 occ cmd,nae 06 n2 1 vma161 occ s 2,occupied command,,occupancy command,occupied command,,rm 3223,vav,3223,,ebu3b,,multi state output
 506_14_3002445,506,14,3002445,ebu3b rm 4134 occ cmd,nae 06 n2 2 vma161 occ cmd,occupied command,,occupancy command,occupied command,,rm 4134,vav,4134,,ebu3b,,multi state output
 506_1_3002442,506,1,3002442,ebu3b rm 4134 htgpid o,nae 06 n2 2 vma161 htgpid o,heating command,98.0,heating command,heating command,,rm 4134,vav,4134,,ebu3b,,analog output
@@ -4444,7 +4444,7 @@ Unique Identifier,BACnet Device ID,BACnet Object Type,BACnet Object ID,Johnson C
 506_1_3001168,506,1,3001168,ebu3b rm 3215 htgpid o,nae 06 n2 1 vma182 htgpid o,heating command,98.0,heating command,heating command,,rm 3215,vav,3215,,ebu3b,,analog output
 506_1_3002867,506,1,3002867,ebu3b rm 4121 htgpid o,nae 06 n2 2 vma182 htgpid o,heating command,98.0,heating command,heating command,,rm 4121,vav,4121,,ebu3b,,analog output
 506_3_3002868,506,3,3002868,ebu3b rm 4121 ef3 s,nae 06 n2 2 vma182 ef s,ef sts ex 4121 3121 2121 1121 mech rm,,exhaust fan status,exhaust fan status,,rm 4121,vav,4121,,ebu3b,,binary input
-506_4_3002869,506,4,3002869,ebu3b rm 4121 ef3 c,nae 06 n2 2 vma182 ef c,exhaust fan command,,exhaust fan command,zone temperature sensor,,rm 4121,vav,4121,,ebu3b,,binary output
+506_4_3002869,506,4,3002869,ebu3b rm 4121 ef3 c,nae 06 n2 2 vma182 ef c,exhaust fan command,,exhaust fan command,exhaust fan command,,rm 4121,vav,4121,,ebu3b,,binary output
 506_0_3001158,506,0,3001158,ebu3b rm 3215 dmpr pos,nae 06 n2 1 vma182 dmpr pos,damper position,98.0,damper position,damper position sensor,,rm 3215,vav,3215,,ebu3b,,analog input
 506_0_3002857,506,0,3002857,ebu3b rm 4121 dmpr pos,nae 06 n2 2 vma182 dmpr pos,damper position,98.0,damper position,damper position sensor,,rm 4121,vav,4121,,ebu3b,,analog input
 506_1_3001162,506,1,3001162,ebu3b rm 3215 dpr c,nae 06 n2 1 vma182 dpr c,damper command,98.0,damper command,damper command,,rm 3215,vav,3215,,ebu3b,,analog output
@@ -4546,7 +4546,7 @@ Unique Identifier,BACnet Device ID,BACnet Object Type,BACnet Object ID,Johnson C
 505_0_3015196,505,0,3015196,ebu3b crac 3 capacty,nae 05 n2 2 vnd 161 capacty,capacity,98.0,crac capacity,capacity sensor,,server room,computer room air conditioning,3,,ebu3b,,analog input
 505_0_3015132,505,0,3015132,ebu3b crac 4 capacty,nae 05 n2 2 vnd 160 capacty,capacity,98.0,crac capacity,capacity sensor,,server room,computer room air conditioning,4,,ebu3b,,analog input
 506_1_3015835,506,1,3015835,ebu3b rm 2258 dpr cmd,nae 06 n2 1 vma185 dpr cmd,damper command,98.0,damper command,damper command,,rm 2258,vav,2258,,ebu3b,,analog output
-506_1_3015825,506,1,3015825,ebu3b rm 2258 clgminflo,nae 06 n2 1 vma185 clgminflo,cooling min flow,84.0,minimum supply cooling airflow,cooling min discharge air flow,,rm 2258,vav,2258,,ebu3b,,analog output
+506_1_3015825,506,1,3015825,ebu3b rm 2258 clgminflo,nae 06 n2 1 vma185 clgminflo,cooling min flow,84.0,minimum supply cooling airflow,cooling min discharge air flow setpoint,,rm 2258,vav,2258,,ebu3b,,analog output
 506_1_3015824,506,1,3015824,ebu3b rm 2258 clgmaxflo,nae 06 n2 1 vma185 clgmaxflo,cooling max flow,84.0,maximum supply airflow,cooling max discharge air flow setpoint,,rm 2258,vav,2258,,ebu3b,,analog output
 506_1_3015826,506,1,3015826,ebu3b rm 2258 clgpid o,nae 06 n2 1 vma185 clgpid o,cooling command,98.0,cooling command,cooling command,,rm 2258,vav,2258,,ebu3b,,analog output
 505_2_3002099,505,2,3002099,ebu3b bldg avg avg clg demand,nae 05 programming average floor cooling demand bldg avg,average cooling demand in building,302.0,average cooling demand,average cooling demand sensor,building,,vav,,,ebu3b,,analog value

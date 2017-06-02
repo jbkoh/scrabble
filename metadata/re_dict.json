@@ -115,6 +115,8 @@
       ["hx\\d.sp", "setpoint"],
       ["ocmnc.sp", "setpoint"],
       ["aclg.sp", "setpoint"],
+      ["clg.sp", "setpoint"],
+      ["htg.sp", "setpoint"],
       ["oa.sp", "setpoint"],
       ["ahtg.sp", "setpoint"],
       ["mtwdp.sp", "setpoint"],
@@ -163,6 +165,8 @@
       ["chwp", "pump"]
     ],
     "a": [
+      ["aclg", "effective"],
+      ["ahtg", "effective"],
       ["\\d+a", "leftidentifier"],
       ["\\d.a", "leftidentifier"]
     ]
@@ -379,6 +383,7 @@
       ["da.t", "temperature"],
       ["oa.t", "temperature"],
       ["rm.t", "temperature"],
+      ["ra.t", "temperature"],
       ["r-t", "temperature"],
       ["r t", "temperature"],
       ["ma.t", "temperature"]
@@ -389,7 +394,8 @@
     ],
     "h": [
       ["\\d+h", "leftidentifier"],
-      ["ra.h", "humidity"]
+      ["ra.h", "humidity"],
+      ["oa.h", "humidity"]
     ],
     "f": [
       ["fsd", "none"],
@@ -455,6 +461,8 @@
       ["mtr.tmp", "tempearture"]
     ],
     "a": [
+      ["aclg", "effective"],
+      ["ahtg", "effective"],
       ["\\d+a", "leftidentifier"]
     ],
     "j": [
@@ -464,7 +472,8 @@
       ["\\d+g", "leftidentifier"]
     ],
     "r": [
-      ["chwr", "return"]
+      ["chwr", "return"],
+      ["mtwr", "return"]
     ],
     "p": [
       ["p\\d", "pump"],
@@ -492,7 +501,11 @@
     ],
     "tm":[
       ["int tm", "time"]
+    ],
+    "lo": [
+      ["sf.lo", "low"]
     ]
+
   }
 }
 
