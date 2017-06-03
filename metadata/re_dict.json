@@ -505,7 +505,47 @@
     "lo": [
       ["sf.lo", "low"]
     ]
-
+  },
+  "ghc":{
+    "z": [
+      ["ztmp", "zone"],
+      ["zco", "zone"]
+    ],
+    "b": [
+      ["\\d+b", "leftidentifier"]
+    ],
+    "w": [
+      ["\\d+w", "leftidentifier"],
+      ["w.corridor", "rightidentifier"]
+    ],
+    "a":[
+        ["a\\d+", "leftidentifier"],
+        ["\\d+a", "leftidentifier"]
+    ],
+    "e": [
+      ["\\d+e", "leftidentifier"],
+      ["e.corridor", "rightidentifier"]
+    ],
+    "n": [
+      ["n.corridor", "rightidentifier"]
+    ],
+    "s": [
+      ["s.corridor", "rightidentifier"]
+    ],
+    "t": [
+        ["sup.t", "temperature"]
+    ],
+    "v": [
+        ["hwv", "valve"]
+    ],
+    "rh": [
+        ["outdoor.rh", "relative_humidity"],
+        ["return.rh", "reheat"],
+        ["rh.valve", "reheat"]
+    ],
+    "request": [
+        ["airflow.request", "command"]
+    ]
   }
 }
 

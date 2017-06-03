@@ -1,0 +1,999 @@
+[
+    [
+        "battery voltage",
+        "battery voltage",
+        "battery_voltage_sensor"
+    ],
+    [
+        "booster fan command",
+        "booster fan command",
+        "booster_fan_command"
+    ],
+
+    [
+        "heating on-off",
+        "heating on-off",
+        "heating_on_off_status"
+    ],
+    [
+        "dhw.sp",
+        "dhw.sp",
+        "domestic_hot_water_supply_temperature_setpoint"
+    ],
+
+    [
+        "co2 hi alarm",
+        "co2 hi alarm",
+        "co2_high_alarm"
+    ],
+    [
+        "co2 hia",
+        "co2 hia",
+        "co2_high_alarm"
+    ],
+    [
+        "low humidity setpoint",
+        "low humidity setpoint",
+        "low_humidity_alarm_setpoint"
+    ],
+
+    [
+        "curr.lim",
+        "curr.lim",
+        "current_limit_sensor"
+    ],
+    [
+        "current limit",
+        "current limit",
+        "current_limit_sensor"
+    ],
+    [
+        "run.time",
+        "run.time",
+        "run_time_sensor"
+    ],
+    [
+        "torque",
+        "torque",
+        "motor_torque_sensor"
+    ],
+    [
+        "off.remt",
+        "off.remt",
+        "remotely_on_off_status"
+    ],
+    [
+        "unit turned off remotely",
+        "unit turned off remotely",
+        "remotely_on_off_status"
+    ],
+    [
+        "unit turned off remotely",
+        "unit turned off remotely",
+        "remotely_on_off_status"
+    ],
+    [
+        "fault status",
+        "fault status",
+        "fault_status"
+    ],
+    [
+        "average cooling demand on flr",
+        "average cooling demand on flr",
+        "average_cooling_demand_sensor"
+    ],
+    [
+        "average floor cooling demand 3rd avg",
+        "average floor cooling demand 3rd avg",
+        "average_cooling_demand_sensor"
+    ],
+    [
+        "3xxx",
+        "3xxx",
+        "floor-3xxx"
+    ],
+    [
+        "humidifier problem",
+        "humidifier problem",
+        "humidifier_fault_status"
+    ],
+    [
+        "ef sts",
+        "ef sts",
+        "exhaust_fan_status"
+    ],
+    [
+        "rm.b",
+        "b",
+        "leftidentifier"
+    ],
+    [
+        "\\d+b",
+        "b",
+        "leftidentifier"
+    ],
+    [
+        "loss of airflow",
+        "loss of airflow",
+        "air_flow_loss_alarm"
+    ],
+    [
+        "loss.air",
+        "loss.air",
+        "air_flow_loss_alarm"
+    ],
+    [
+        "[er]f\\d.s",
+        "[er]f\\d.s",
+        "exhaust_fan_status"
+    ],
+    [
+        "ef s",
+        "ef s",
+        "exhaust_fan_status"
+    ],
+    [
+        "return fan 1 flow",
+        "return fan 1 flow",
+        "return_fan_air_flow_sensor"
+    ],
+    [
+        "ah \\d flow sensor",
+        "flow sensor",
+        "return_fan_air_flow_sensor"
+    ],
+    [
+        "chwdpsp",
+        "chwdpsp",
+        "chilled_water_differential_pressure_setpoint"
+    ],
+    [
+        "emergency power off switch",
+        "emergency power off switch",
+        "emergency_power_off_switch_command"
+    ],
+    [
+        "main fan overload",
+        "main fan overload",
+        "fan_overload_alarm"
+    ],
+    [
+        "run direction command",
+        "run direction command",
+        "run_direction_command"
+    ],
+    [
+        "chwdp.sp",
+        "chwdp.sp",
+        "chilled_water_differential_pressure_setpoint"
+    ],
+    [
+        "pid gain",
+        "pid gain",
+        "none"
+    ],
+    [
+        "epo system enable",
+        "epo system enable",
+        "emergency_power_off_system_enable_status"
+    ],
+    [
+        "epo enable",
+        "epo enable",
+        "emergency_power_off_system_enable_status"
+    ],
+
+    [
+        "standby unit on",
+        "standby unit on",
+        "standby_unit_on_off_status"
+    ],
+    [
+        "epo system enable",
+        "epo system enable",
+        "emergency_power_off_system_enable_status"
+    ],
+    [
+        "main fan",
+        "main fan",
+        "fan"
+    ],
+    [
+        "pid.ctrl",
+        "pid.ctrl",
+        "none"
+    ],
+    [
+        "pid.control",
+        "pid.control",
+        "none"
+    ],
+    [
+        "relative humidity",
+        "relative humidity",
+        "relative_humidity_sensor"
+    ],
+    [
+        "mech rm",
+        "mech rm",
+        "room-mech"
+    ],
+    [
+        "ef.sts",
+        "ef.sts",
+        "exhaust_fan_status"
+    ],
+    [
+        "ef.s",
+        "ef.s",
+        "exhaust_fan_status"
+    ],
+    [
+        "loss of power",
+        "loss of power",
+        "power_loss_alarm"
+    ],
+    [
+        "pow.loss",
+        "pow.loss",
+        "power_loss_alarm"
+    ],
+    [
+        "filter reset",
+        "filter reset",
+        "filter_reset_command"
+    ],
+    [
+        "ao\\d.cmd",
+        "ao\\d.cmd",
+        "none"
+    ],
+    [
+        "ao\\d command point",
+        "ao\\d command point",
+        "none"
+    ],
+    [
+        "\\d+c",
+        "\\d+c",
+        "leftidentifier"
+    ],
+    [
+        "cooling valve 2 cmd",
+        "cooling valve 2 cmd",
+        "cooling_valve_command"
+    ],
+    [
+        "chilled water pump \\d vfd command",
+        "chilled water pump \\d vfd command",
+        "chilled_water_pump_vfd_speed_command"
+    ],
+    [
+        "ebu2",
+        "ebu2",
+        "building-ebu2"
+    ],
+    [
+        "fschw",
+        "fschw",
+        "chilled_water_system"
+    ],
+    [
+        "run.enable",
+        "run.enable",
+        "run_enable_command"
+    ],
+    [
+        "rh.vlv",
+        "rh.vlv",
+        "reheat_valve"
+    ],
+    [
+        "rm.\\d+b",
+        "b",
+        "leftidentifier"
+    ],
+    [
+        "do \\d command",
+        "do \\d command",
+        "none"
+    ],
+    [
+        "do\\d cmd",
+        "do\\d cmd",
+        "none"
+    ],
+    [
+        "do\\d command",
+        "do\\d command",
+        "none"
+    ],
+    [
+        "aclg.sp",
+        "aclg.sp",
+        "effective_cooling_temperature_setpoint"
+    ],
+    [
+        "run direction status",
+        "run direction status",
+        "run_direction_status"
+    ],
+    [
+        "easf",
+        "easf",
+        "exhaust_air_stack_flow_sensor"
+    ],
+    [
+        "\\dth",
+        "\\dth",
+        "rightidentifier"
+    ],
+    [
+        "lobby",
+        "lobby",
+        "room-lobby"
+    ],
+    [
+        "epo.sw",
+        "epo.sw",
+        "emergency_power_off_switch_command"
+    ],
+    [
+        "dpr.c",
+        "dpr.c",
+        "damper_command"
+    ],
+    [
+        "damper command",
+        "damper command",
+        "damper_command"
+    ],
+    [
+        "pan lock",
+        "pan lock",
+        "panel_lock_command"
+    ],
+    [
+        "actual supply flow",
+        "actual supply flow",
+        "supply_air_flow_sensor"
+    ],
+    [
+        "-b\\d+",
+        "b",
+        "leftidentifier"
+    ],
+    [
+        "htgpid.o",
+        "htgpid.o",
+        "heating_command"
+    ],
+    [
+        "t\\d",
+        "t",
+        "networkadapapter-t"
+    ],
+    [
+        "chwp\\d.status",
+        "status",
+        "run_status"
+    ],
+    [
+        "vfd\\d+.status",
+        "status",
+        "run_status"
+    ],
+    [
+        "vfd.\\d+.status",
+        "status",
+        "run_status"
+    ],
+    [
+        "vma",
+        "vma",
+        "vav"
+    ],
+    [
+        "actual cooling setpoint",
+        "actual cooling setpoint",
+        "effective_cooling_temperature_setpoint"
+    ],
+    [
+        "actclgsp",
+        "actclgsp",
+        "effective_cooling_temperature_setpoint"
+    ],
+    [
+        "ebu3b",
+        "ebu3b",
+        "buliding-ebu3b"
+    ],
+    [
+        "ebu3",
+        "ebu3",
+        "buliding-ebu3b"
+    ],
+    [
+        "rm.\\d+",
+        "rm",
+        "room"
+    ],
+    [
+        "rm.b\\d+",
+        "rm",
+        "room"
+    ],
+    [
+        "zn.t",
+        "zn.t",
+        "zone_temperature_sensor"
+    ],
+    [
+        "actual sup flow sp",
+        "actual sup flow sp",
+        "supply_air_flow_setpoint"
+    ],
+    [
+        "sup.flow",
+        "sup.flow",
+        "supply_air_flow_sensor"
+    ],
+    [
+        "nae",
+        "nae",
+        "networkadapter-nae"
+    ],
+    [
+        "n\\d",
+        "n",
+        "networkadapter-n"
+    ],
+    [
+        "w.c.adj",
+        "w.c.adj",
+        "warm_cool_adjust_sensor"
+    ],
+    [
+        "stages",
+        "stages",
+        "none"
+    ],
+    [
+        "dmpr.pos",
+        "dmpr.pos",
+        "damper_position_sensor"
+    ],
+    [
+        "damper position",
+        "damper position",
+        "damper_position_sensor"
+    ],
+    [
+        "clgminflo",
+        "clgminflo",
+        "occupied_cooling_min_supply_air_flow_setpoint"
+    ],
+    [
+        "occupied clg min",
+        "occupied clg min",
+        "occupied_cooling_min_supply_air_flow_setpoint"
+    ],
+    [
+        "acthtgsp",
+        "acthtgsp",
+        "effective_heating_temperature_setpoint"
+    ],
+    [
+        "actual heating setpoint",
+        "actual heating setpoint",
+        "effective_heating_temperature_setpoint"
+    ],
+    [
+        "clgpid.o",
+        "clgpid.o",
+        "cooling_command"
+    ],
+    [
+        "heating command",
+        "heating command",
+        "heating_command"
+    ],
+    [
+        "htgpid.o",
+        "htgpid.o",
+        "heating_command"
+    ],
+    [
+        "cooling command",
+        "cooling command",
+        "cooling_command"
+    ],
+    [
+        "freq.output",
+        "freq.output",
+        "output_frequency_sensor"
+    ],
+    [
+        "rf",
+        "rf",
+        "return_fan"
+    ],
+    [
+        "ahu",
+        "ahu",
+        "ahu"
+    ],
+    [
+        "ah",
+        "ah",
+        "ahu"
+    ],
+    [
+        "energy",
+        "energy",
+        "energy_meter"
+    ],
+    [
+        "supflo.sp",
+        "supflo.sp",
+        "supply_air_flow_setpoint"
+    ],
+    [
+        "occupied htg flow",
+        "occupied htg flow",
+        "occupied_heating_supply_air_flow_setpoint"
+    ],
+    [
+        "htgflow",
+        "htgflow",
+        "occupied_heating_supply_air_flow_setpoint"
+    ],
+    [
+        "clgmaxflo",
+        "clgmaxflo",
+        "cooling_max_discharge_air_flow_setpoint"
+    ],
+    [
+        "coolingmaxflow",
+        "coolingmaxflow",
+        "cooling_max_discharge_air_flow_setpoint"
+    ],
+    [
+        "cooling max flow",
+        "cooling max flow",
+        "cooling_max_discharge_air_flow_setpoint"
+    ],
+    [
+        "zone temperature",
+        "zone temperature",
+        "zone_temperature"
+    ],
+    [
+        "commonsp",
+        "commonsp",
+        "temperature_setpoint"
+    ],
+    [
+        "common setpoint",
+        "common setpoint",
+        "temperature_setpoint"
+    ],
+    [
+        "vnd",
+        "vnd",
+        "networkadapter-vnd"
+    ],
+    [
+        "hi-head",
+        "hi-head",
+        "high_head_pressure_alarm"
+    ],
+    [
+        "pan.lock",
+        "pan.lock",
+        "panel_lockout_command"
+    ],
+    [
+        "occ.cmd",
+        "occ.cmd",
+        "occupied_command"
+    ],
+    [
+        "occupied command",
+        "occupied command",
+        "occupied_command"
+    ],
+    [
+        "drv.rdy",
+        "drv.rdy",
+        "drive_ready_status"
+    ],
+    [
+        "drive ready status",
+        "drive ready status",
+        "drive_ready_status"
+    ],
+    [
+        "frequency output",
+        "frequency output",
+        "output_frequency_sensor"
+    ],
+    [
+        "off-remt",
+        "off-remt",
+        "unit turned off remotely"
+    ],
+    [
+        "warm/cool adjust",
+        "warm/cool adjust",
+        "warm_cool_adjust_sensor"
+    ],
+    [
+        "sf",
+        "sf",
+        "supply_fan"
+    ],
+    [
+        "directoin",
+        "direction",
+        "run_direction_status"
+    ],
+    [
+        "\\d+a",
+        "a",
+        "leftidentifier"
+    ],
+    [
+        "humd-pan",
+        "humd-pan",
+        "humidifier_panel_no_water_alarm"
+    ],
+    [
+        "no water in humidifier pan",
+        "no water in humidifier pan",
+        "humidifier_panel_no_water_alarm"
+    ],
+    [
+        "\\d+",
+        "\\d+",
+        "leftidentifier"
+    ],
+    [
+        "ref.\\d",
+        "ref",
+        "none"
+    ],
+    [
+        "reference",
+        "reference",
+        "none"
+    ],
+    [
+        "reheat valve command",
+        "reheat valve command",
+        "reheat_valve_command"
+    ],
+    [
+        "temp.tol",
+        "temp.tol",
+        "temperature_tolerance_setpoint"
+    ],
+    [
+        "temperature tolerance",
+        "temperature tolerance",
+        "temperature_tolerance_setpoint"
+    ],
+    [
+        "ena-sts",
+        "ena.sts",
+        "run_enable_status"
+    ],
+    [
+        "run enable status",
+        "run enable status",
+        "run_enable_status"
+    ],
+    [
+        "t.occ",
+        "t.occ",
+        "temporary_occupancy_status"
+    ],
+    [
+        "ao\\d command point",
+        "ao\\d command point",
+        "none"
+    ],
+    [
+        "ao\\d-cmd",
+        "ao\\d-cmd",
+        "none"
+    ],
+    [
+        "vfd",
+        "vfd",
+        "vfd"
+    ],
+    [
+        "chwp",
+        "chwp",
+        "chilled_water_pump"
+    ],
+    [
+        "flt.rst",
+        "flt.rst",
+        "fault_reset_command"
+    ],
+    [
+        "fault reset",
+        "fault reset",
+        "fault_reset_command"
+    ],
+    [
+        "crac",
+        "crac",
+        "crac"
+    ],
+    [
+        "direct.cmd",
+        "direct.cmd",
+        "run_direction_command"
+    ],
+    [
+        "fan.command",
+        "fan.command",
+        "fan_command"
+    ],
+    [
+        "fan.c",
+        "fan.c",
+        "fan_command"
+    ],
+    [
+        "flt.reset",
+        "flt.reset",
+        "filter_reset_command"
+    ],
+    [
+        "temp setpoint",
+        "temp setpoint",
+        "temperature_setpoint"
+    ],
+    [
+        "tempsetf",
+        "tempsetf",
+        "temperature_setpoint"
+    ],
+    [
+        "dx",
+        "dx",
+        "networkadapter-dx"
+    ],
+    [
+        "rh",
+        "rh",
+        "relative_humidity_sensor"
+    ],
+    [
+        "chw.system",
+        "chw.system",
+        "chilled_water_system"
+    ],
+    [
+        "file server",
+        "file server",
+        "rightidentifier"
+    ],
+    [
+        "server",
+        "server",
+        "rightidentifier"
+    ],
+    [
+        "hwp",
+        "hwp",
+        "hot_water_pump"
+    ],
+    [
+        "direction",
+        "direction",
+        "direction_status"
+    ],
+    [
+        "clg.vlv",
+        "clg.vlv",
+        "cooling_valve"
+    ],
+    [
+        "temp occ sts",
+        "temp occ sts",
+        "temporary_occupancy_status"
+    ],
+    [
+        "standby",
+        "standby",
+        "standby_unit_on_off_status"
+    ],
+    [
+        "main fan overload",
+        "main fan overload",
+        "fan_overload_alarm"
+    ],
+    [
+        "programming",
+        "programming",
+        "none"
+    ],
+
+    
+    [
+        "file server",
+        "file server",
+        "rightidentifier"
+    ],
+    [
+        "standy glycool unit on",
+        "standy glycool unit on",
+        "none"
+    ],
+    [
+        "glycool",
+        "glycool",
+        "none"
+    ],
+    [
+        "ex",
+        "ex",
+        "none"
+    ],
+    [
+        "humdfier problem",
+        "humdfier problem",
+        "humdfier fault status"
+    ],
+    [
+        "humdfier",
+        "humdfier",
+        "humdfier"
+    ],
+    [
+        "hwp\\d vfd \\d status",
+        "status",
+        "run_status"
+    ],
+    [
+        "hwp\\d.status",
+        "status",
+        "run_status"
+    ],
+    [
+        "run status",
+        "run status",
+        "run_status"
+    ],
+    [
+        "room",
+        "room",
+        "room"
+    ],
+    [
+        "load.shed",
+        "load.shed",
+        "none"
+    ],
+    [
+        "main.fan",
+        "main.fan",
+        "rightidentifier"
+    ],
+    [
+        "flr",
+        "flr",
+        "floor"
+    ],
+    [
+        "average supflow",
+        "average supflow",
+        "average_supply_air_flow_sensor"
+    ],
+    [
+        "supflo avg",
+        "supflo avg",
+        "average_supply_air_flow_sensor"
+    ],
+    [
+        "bsmt",
+        "bsmt",
+        "basement"
+    ],
+    [
+        "\\drd.avg",
+        "\\drd.avg",
+        "none"
+    ],
+    [
+        "unit run",
+        "unit run",
+        "run_status"
+    ],
+    [
+        "unit.sts",
+        "unit.sts",
+        "run_status"
+    ],
+    [
+        "(feedback)",
+        "(feedback)",
+        "none"
+    ],
+    [
+        "supflow",
+        "supflow",
+        "supply_air_flow_sensor"
+    ],
+    [
+        "dir.sts",
+        "dir.sts",
+        "motor_directoin_status"
+    ],
+    [
+        "fault indicator",
+        "fault indicator",
+        "fault_indicator_status"
+    ],
+    [
+        "flt.sts",
+        "flt.sts",
+        "fault_status"
+    ],
+    [
+        "fault",
+        "fault",
+        "fault"
+    ],
+    [
+        "xxx",
+        "xxx",
+        "none"
+    ],
+    [
+        "rm",
+        "rm",
+        "room"
+    ],
+    [
+        "conference",
+        "conference",
+        "rightidentifier"
+    ],
+    [
+        "capacty",
+        "capacty",
+        "capacity_sensor"
+    ],
+    [
+        "capacity",
+        "capacity",
+        "capacity_sensor"
+    ],
+    [
+        "hw.sys",
+        "hw.sys",
+        "hot_water_system"
+    ],
+
+    [
+        "hours",
+        "hours",
+        "none"
+    ],
+    [
+        "batt",
+        "batt",
+        "battery"
+    ],
+    [
+        "[^0-9a-zA-Z]+",
+        "[^0-9a-zA-Z]+",
+        "none"
+    ]
+]
