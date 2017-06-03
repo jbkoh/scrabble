@@ -506,7 +506,8 @@ def learn_crf_model(building_list,
                     prev_step_data={
                         'learning_srcids':[],
                         'iter_cnt':0
-                    }
+                    },
+                    oversample_flag=False
                    ):
     sample_dict = dict()
     assert(isinstance(building_list, list))
@@ -575,6 +576,10 @@ def learn_crf_model(building_list,
                                                       source_sample_num, \
                                                       use_cluster_flag)
         learning_srcids += sample_srcid_list
+        
+        if oversample_flag:
+            sample_srcid_list = sample_srcid_list * \
+                                floor(1000 / len(sample_srcid_list))
 
         for srcid in sample_srcid_list:
             sentence = list(map(itemgetter(0), label_dict[srcid]))
@@ -3299,7 +3304,7 @@ def iteration_wrapper(iter_num, func, *args):
 
 def crf_entity_recognition_iteration(iter_num, *args):
     step_datas = iteration_wrapper(iter_num, entity_recognition_from_crf, *args)
-    with open('result/crf_entity_iter.json', 'w') as fp:
+    with open('result/crf_entity_iter_bml.json', 'w') as fp:
         json.dump(step_datas, fp, indent=2)
 
 
@@ -3728,8 +3733,16 @@ def entity_iter_result():
                 title = None
                 plotter.plot_multiple_2dline(xs, ys, xlabel, ylabel, xtick,\
                                  xtick_labels, ytick, ytick_labels, title, ax,\
-                                 fig, ylim, legends, xtickRotate=0, \
+                                 fig, ylim, None, legends, xtickRotate=0, \
                                  linestyles=[linestyles.pop()]*len(ys), cs=cs)
+
+    ax = axes[0]
+    handles, labels = ax.get_legend_handles_labels()
+    legend_order = [0, 4, 2, 6, 1, 5, 3, 7]
+    new_handles = [handles[i] for i in legend_order]
+    new_labels = [labels[i] for i in legend_order]
+    ax.legend(new_handles, new_labels)
+
     axes[0].grid(True)
     fig.set_size_inches(4,2.5)
     save_fig(fig, 'figs/entity_iter.pdf')
@@ -3854,8 +3867,8 @@ def entity_result():
 
 def crf_result():
     source_target_list = [('ebu3b', 'ap_m')]#, ('ap_m', 'ebu3b')]
-    n_list_list = [#[(1000,5), (1000,50), (1000,100), (1000,200)],
-                   [(200,5), (200,20), (200,50), (200,100), (200, 150), (200,200)],
+    n_list_list = [[(1000, 0), (1000,5), (1000,20), (1000,50), (1000,100), (1000, 150), (1000,200)],
+                   [(200, 0), (200,5), (200,20), (200,50), (200,100), (200, 150), (200,200)],
                    [(0,5), (0,20), (0,50), (0,100), (0,150), (0,200)]]
     char_precs_list = list()
     phrase_f1s_list = list()
@@ -3863,9 +3876,9 @@ def crf_result():
     fig, axes = plt.subplots(1,len(source_target_list))
     if isinstance(axes, Axes):
         axes = [axes]
-    fig.set_size_inches(4, 2.25)
-    cs = ['firebrick', 'deepskyblue', 'olive', 'goldenrod']
-    linestyles = ['--', '-']
+    fig.set_size_inches(4, 2)
+    cs = ['firebrick', 'deepskyblue']
+    linestyles = ['--', '-.', '-']
 
     for ax, (source, target) in zip(axes, source_target_list):
         plot_list = list()
@@ -3918,24 +3931,26 @@ def crf_result():
             xlabel = '# of Target Building Samples'
             ylabel = 'Score (%)'
             xtick = list(range(0, 205, 20))
+            xtick = [0] + [5] + xtick[1:]
             xtick_labels = [str(n) for n in xtick]
             ytick = range(0,101,20)
             ytick_labels = [str(n) for n in ytick]
-            ylim = (ytick[0]-2, ytick[-1]+10)
+            xlim = (xtick[0]-2, xtick[-1]+5)
+            ylim = (ytick[0]-2, ytick[-1]+5)
             legends = [#'#S:{0}, Char Prec'.format(n_s),
-                       '#S:{0}, F1'.format(n_s),
+                       '#$B_S$:{0}, $F_1$'.format(n_s),
                     #'#S:{0}, Char MF1'.format(n_s),
-                       '#S:{0}, MF1'.format(n_s),
+                       '#$B_S$:{0}, $MF_1$'.format(n_s),
                       ]
             legends_list += legends
             title = None
             _, plots = plotter.plot_multiple_2dline(xs, ys, xlabel, ylabel, xtick,\
                              xtick_labels, ytick, ytick_labels, title, ax, fig, \
-                             ylim, None, xtickRotate=0, \
+                             ylim, xlim, None, xtickRotate=0, \
                              linestyles=[linestyles.pop()]*len(ys), cs=cs)
             plot_list += plots
-    fig.legend(plot_list, legends_list, 'upper center', ncol=2
-            , bbox_to_anchor=(0, 1.02, 0.9, 0.102 ), mode='expand')
+    fig.legend(plot_list, legends_list, 'upper center', ncol=3
+            , bbox_to_anchor=(0, 1.06, 0.9, 0.102 ), mode='expand')
     for ax in axes:
         ax.grid(True)
     save_fig(fig, 'figs/crf.pdf')
