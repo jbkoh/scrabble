@@ -3334,8 +3334,9 @@ def iteration_wrapper(iter_num, func, *args):
     return step_datas
 
 def crf_entity_recognition_iteration(iter_num, *args):
+    building_list = args[0]
     step_datas = iteration_wrapper(iter_num, entity_recognition_from_crf, *args)
-    with open('result/crf_entity_iter.json', 'w') as fp:
+    with open('result/crf_entity_iter_{0}.json'.format(str(building_list)), 'w') as fp:
         json.dump(step_datas, fp, indent=2)
 
 
@@ -3405,7 +3406,7 @@ def entity_recognition_from_crf(prev_step_data,\
     global total_srcid_dict
     global tagset_tree
     global tree_depth_dict
-    inc_num = 10
+    inc_num = 20
 
     ### Initialize CRF Data
     crf_result_query = {
