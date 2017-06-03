@@ -125,7 +125,7 @@ logging.basicConfig(level=logging.INFO,
                         format='%(asctime)s %(message)s')
 
 def init_srcids_dict():
-    building_list = ['ebu3b', 'ap_m', 'bml']
+    building_list = ['ebu3b', 'ap_m', 'bml', 'ghc']
     srcids_dict = dict()
     for building in building_list:
         with open('metadata/{0}_char_label_dict.json'\
@@ -251,18 +251,14 @@ def get_score(pred_dict, true_dict, srcids, score_func, labels):
             score += score_func(pred_tagsets, true_tagsets, labels)
     return score / len(srcids)
 
-def get_macro_f1(pred_dict, true_dict, srcids):
-    tn_dict = defaultdict(float)
-    fn_dict = defaultdict(float)
-    tp_dict = defaultdict(float)
-    fp_dict = defaultdict(float)
-    for srcid in srcids:
-        true_tagsets = true_dict[srcid]
-        pred_tagsets = pred_dict[srcid]
-        for pred_tagset in true_tagsets:
-            if pred_tagset in true_tagsets:
-                pass
-
+def get_micro_f1(true_mat, pred_mat):
+    TP = np.sum(np.bitwise_and(true_mat==1, pred_mat==1))
+    TN = np.sum(np.bitwise_and(true_mat==0, pred_mat==0))
+    FN = np.sum(np.bitwise_and(true_mat==1, pred_mat==0))
+    FP = np.sum(np.bitwise_and(true_mat==0, pred_mat==1))
+    micro_prec = TP / (TP + FP)
+    micro_rec = TP / (TP + FN)
+    return 2 * micro_prec * micro_rec / (micro_prec + micro_rec)
 
 def add_words_from_ts(learning_srcids, target_srcids):
     with open("Binarizer/mlb.pkl", 'rb') as f:
@@ -288,6 +284,16 @@ def accuracy_func(pred_tagsets, true_tagsets, labels=None):
     true_tagsets = set(true_tagsets)
     return len(pred_tagsets.intersection(true_tagsets))\
             / len(pred_tagsets.union(true_tagsets))
+
+def get_accuracy(true_mat, pred_mat):
+    acc_list = list()
+    for true, pred in zip(true_mat, pred_mat):
+        true_pos_indices = set(np.where(true==1)[0])
+        pred_pos_indices = set(np.where(pred==1)[0])
+        acc = len(pred_pos_indices.intersection(true_pos_indices)) /\
+                len(pred_pos_indices.union(true_pos_indices))
+        acc_list.append(acc)
+    return np.mean(acc_list)
 
 def hierarchy_accuracy_func(pred_tagsets, true_tagsets, labels=None):
     true_tagsets = deepcopy(true_tagsets)
@@ -1087,14 +1093,35 @@ def tagsets_evaluation(truths_dict, pred_tagsets_dict, pred_certainty_dict,\
     true_tagsets_list = [list(map(disch2sup, truths_dict[srcid])) for srcid in srcids]
     eval_binarizer = MultiLabelBinarizer().fit(pred_tagsets_list +
                                                true_tagsets_list)
-    _, _, macro_f1, _ = precision_recall_fscore_support(\
-                            eval_binarizer.transform(true_tagsets_list),\
-                            eval_binarizer.transform(pred_tagsets_list),\
-                            average='macro')
+    #_, _, macro_f1, _ = precision_recall_fscore_support(\
+    #                        eval_binarizer.transform(true_tagsets_list),\
+    #                        eval_binarizer.transform(pred_tagsets_list),\
+    #                        average='macro')
     _, _, weighted_f1, _ = precision_recall_fscore_support(\
                             eval_binarizer.transform(true_tagsets_list),\
                             eval_binarizer.transform(pred_tagsets_list),\
                             average='weighted')
+    true_mat = eval_binarizer.transform(true_tagsets_list)
+    pred_mat = eval_binarizer.transform(pred_tagsets_list)
+    f1_list = []
+    prec_list = []
+    rec_list = []
+    sup_list = []
+    for i in range(0, true_mat.shape[1]):
+        true = true_mat[:,i]
+        pred = pred_mat[:,i]
+        if np.sum(true)!=0 or np.sum(pred)!=0:
+            prec, rec, f1, support = precision_recall_fscore_support(true, pred)
+            prec_list.append(prec)
+            rec_list.append(rec)
+            f1_list.append(f1)
+            sup_list.append(support)
+    macro_f1 = np.mean(f1_list)
+    #weighted_f1 = np.mean(f1_list)
+    print('avg prec: {0}'.format(np.mean(prec_list)))
+    print('avg rec: {0}'.format(np.mean(rec_list)))
+    print('avg f1: {0}'.format(np.mean(f1_list)))
+    micro_f1 = get_micro_f1(true_mat, pred_mat)
 
     for srcid in srcids:
         pred_tagsets = pred_tagsets_dict[srcid]
@@ -1218,6 +1245,7 @@ def tagsets_evaluation(truths_dict, pred_tagsets_dict, pred_certainty_dict,\
     result_dict['hierarchy_accuracy'] = hierarchy_accuracy
     result_dict['subset_accuracy'] = subset_accuracy
     result_dict['macro_f1'] = macro_f1
+    result_dict['micro_f1'] = micro_f1
     result_dict['weighted_f1'] = weighted_f1
     pp.pprint(dict([(k,v) for k, v in result_dict.items() \
                     if k not in ['correct', 'incorrect', 'phrase_usage', 'HA', 'A']]))
@@ -1847,7 +1875,10 @@ class StructuredClassifierChain():
         for i_discharge, i_supply in discharge_supply_map.items():
             discharge_indices = np.where(Y[:, i_discharge] == 1)
             Y[discharge_indices, i_discharge] = 0
-            Y[discharge_indices, i_supply] = 1
+            try:
+                Y[discharge_indices, i_supply] = 1
+            except:
+                pdb.set_trace()
 
         if self.prob_flag:
             new_Y = np.zeros(Y.shape)
@@ -2123,6 +2154,7 @@ def parameter_validation(vect_doc, truth_mat, srcids, params_list_dict,\
                 results_dict[key]['ha'][j] += validation_result['hierarchy_accuracy']
                 results_dict[key]['a'][j] += validation_result['accuracy']
                 results_dict[key]['mf1'][j] += validation_result['macro_f1']
+                results_dict[key]['micro_f1'][j] += validation_result['micro_f1']
     best_params = dict()
     for key, results in results_dict.items():
         metrics = results_dict[key]['mf1']
@@ -2155,7 +2187,7 @@ def parameter_validation(vect_doc, truth_mat, srcids, params_list_dict,\
                                            vectorizer=vectorizer)
     best_ha = validation_result['hierarchy_accuracy']
     best_a = validation_result['accuracy']
-    best_mf1 = validation_result['macro_f1']
+    best_mf1 = validation_result['micro_f1']
     pdb.set_trace()
 
     return meta_classifier(**best_params)
@@ -2514,7 +2546,9 @@ def build_tagset_classifier(building_list, target_building,\
     ## FITTING A CLASSIFIER
     if tagset_classifier_type == 'RandomForest':
         def meta_rf(**kwargs):
-            return RandomForestClassifier(**kwargs)
+            #return RandomForestClassifier(**kwargs)
+            return RandomForestClassifier(n_jobs=n_jobs, n_estimators=120)
+
         #tagset_classifier = RandomForestClassifier(n_estimators=100,
         #                                           random_state=0,\
         #                                           n_jobs=n_jobs)
@@ -2619,6 +2653,9 @@ def build_tagset_classifier(building_list, target_building,\
         params_list_dict = {}
     else:
         assert False
+
+    if not isinstance(truth_mat, csr_matrix):
+        truth_mat = csr_matrix(truth_mat)
 
     tagset_classifier = parameter_validation(learning_vect_doc[:orig_sample_num],
                          truth_mat[:orig_sample_num],
@@ -2814,7 +2851,7 @@ def entity_recognition_from_ground_truth(building_list,
                                              'hamming_loss_history': [],
                                              'hierarchy_accuracy_history': [],
                                              'weighted_f1_history': [],
-                                             'macro_f1_history': [],
+                                             'micro_f1_history': [],
                                              'metadata': {},
                                              'phrase_usage_history': []
                                          },
@@ -3108,9 +3145,9 @@ def entity_recognition_from_ground_truth(building_list,
         'weighted_f1_history': \
             prev_step_data['weighted_f1_history'] \
             + [target_result_dict['weighted_f1']],
-        'macro_f1_history': \
-            prev_step_data['macro_f1_history'] \
-            + [target_result_dict['macro_f1']],
+        'micro_f1_history': \
+            prev_step_data['micro_f1_history'] \
+            + [target_result_dict['micro_f1']],
         'metadata': prev_step_data['metadata'],
         'phrase_usage_history': prev_step_data['phrase_usage_history']
                                  + [target_result_dict['phrase_usage']],
@@ -3142,8 +3179,8 @@ def entity_recognition_from_ground_truth(building_list,
           .format(next_step_data['unfound_point_cnt_history']))
     print('history of accuracy: {0}'\
           .format(next_step_data['accuracy_history']))
-    print('history of macro f1: {0}'\
-          .format(next_step_data['macro_f1_history']))
+    print('history of micro f1: {0}'\
+          .format(next_step_data['micro_f1_history']))
 
     # Post processing to select next step learning srcids
     phrase_usages = list(target_result_dict['phrase_usage'].values())
@@ -3213,7 +3250,6 @@ def entity_recognition_from_ground_truth(building_list,
         pass
     with open('result/entity_iteration.json', 'w') as fp:
         json.dump(next_step_data, fp, indent=2)
-    #pdb.set_trace()
     return target_result_dict, next_step_data
 
 
@@ -3266,7 +3302,7 @@ def entity_recognition_iteration(iter_num, *args):
         'hamming_loss_history': [],
         'hierarchy_accuracy_history': [],
         'weighted_f1_history': [],
-        'macro_f1_history': [],
+        'micro_f1_history': [],
         'metadata': {},
         'phrase_usage_history': []
     }
@@ -3303,8 +3339,9 @@ def iteration_wrapper(iter_num, func, *args):
     return step_datas
 
 def crf_entity_recognition_iteration(iter_num, *args):
+    building_list = args[0]
     step_datas = iteration_wrapper(iter_num, entity_recognition_from_crf, *args)
-    with open('result/crf_entity_iter_bml.json', 'w') as fp:
+    with open('result/crf_entity_iter_{0}.json'.format(str(building_list)), 'w') as fp:
         json.dump(step_datas, fp, indent=2)
 
 
@@ -3374,7 +3411,7 @@ def entity_recognition_from_crf(prev_step_data,\
     global total_srcid_dict
     global tagset_tree
     global tree_depth_dict
-    inc_num = 10
+    inc_num = 20
 
     ### Initialize CRF Data
     crf_result_query = {
@@ -3617,7 +3654,7 @@ def entity_recognition_from_ground_truth_get_avg(N,
                                   return_dict.values())))
     hierarchy_accuracy = np.mean(list(map(partial(ig, 'hierarchy_accuracy'),
                                   return_dict.values())))
-    macro_f1 = np.mean(list(map(partial(ig, 'macro_f1'),
+    micro_f1 = np.mean(list(map(partial(ig, 'micro_f1'),
                                   return_dict.values())))
     print(args)
     print ('Averaged Point Precision: {0}'.format(point_precision))
@@ -3625,7 +3662,7 @@ def entity_recognition_from_ground_truth_get_avg(N,
     print ('Averaged Subset Accuracy: {0}'.format(subset_accuracy))
     print ('Averaged Accuracy: {0}'.format(accuracy))
     print ('Averaged Hierarchy Accuracy: {0}'.format(hierarchy_accuracy))
-    print ('Averaged Macro F1: {0}'.format(macro_f1))
+    print ('Averaged Macro F1: {0}'.format(micro_f1))
     print("FIN")
 
 def oxer(b):
@@ -3705,12 +3742,12 @@ def entity_iter_result():
                 accuracy_list = [val * 100 for val in result['accuracy_history']]
                 hierarchy_accuracy_list = [val * 100 for val in result['hierarchy_accuracy_history']]
                 weighted_f1_list = [val * 100 for val in result['weighted_f1_history']]
-                macro_f1_list = [val * 100 for val in result['macro_f1_history']]
-                exp_num = len(macro_f1_list)
+                micro_f1_list = [val * 100 for val in result['micro_f1_history']]
+                exp_num = len(micro_f1_list)
                 target_n_list = list(range(n_t, inc_num*exp_num+1, inc_num))
 
                 xs = target_n_list
-                ys = [accuracy_list, macro_f1_list]
+                ys = [accuracy_list, micro_f1_list]
                 xlabel = '# of Target Building Samples'
                 ylabel = 'Score (%)'
                 xtick = range(0,205, 20)
@@ -3788,7 +3825,7 @@ def entity_result():
                 accuracy_list = list()
                 hierarchy_accuracy_list = list()
                 weighted_f1_list = list()
-                macro_f1_list = list()
+                micro_f1_list = list()
 
                 for (n_s, n_t) in n_list:
                     if n_s == 0:
@@ -3818,11 +3855,11 @@ def entity_result():
                     accuracy_list.append(result['accuracy_history'][-1] * 100)
                     hierarchy_accuracy_list.append(result['hierarchy_accuracy_history'][-1] * 100)
                     weighted_f1_list.append(result['weighted_f1_history'][-1] * 100)
-                    macro_f1_list.append(result['macro_f1_history'][-1] * 100)
+                    micro_f1_list.append(result['micro_f1_history'][-1] * 100)
 
                 xs = target_n_list
-                ys = [hierarchy_accuracy_list, accuracy_list, macro_f1_list]
-                #ys = [subset_accuracy_list, accuracy_list, hierarchy_accuracy_list, weighted_f1_list, macro_f1_list]
+                ys = [hierarchy_accuracy_list, accuracy_list, micro_f1_list]
+                #ys = [subset_accuracy_list, accuracy_list, hierarchy_accuracy_list, weighted_f1_list, micro_f1_list]
                 xlabel = '# of Target Building Samples'
                 ylabel = 'Score (%)'
                 xtick = target_n_list
