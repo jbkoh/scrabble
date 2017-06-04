@@ -86,10 +86,10 @@ def store_model(model):
 def store_result(results):
     DB.get_collection('results').insert_one(results)
 
-def get_entity_results(query):
-    docs = DB.get_collection('results').find(query)
-    if not query.get('gen_time'):
-        docs = docs.sort('gen_time', -1).limit(1)
+def get_entity_results(query, n=1):
+    docs = DB.get_collection('results').find(query).sort([('_id',-1)]).limit(n)
+    #if not query.get('gen_time'):
+    #    docs = docs.sort('gen_time', -1).limit(1)
     if docs.count()>0:
         doc = docs[0]
         return doc
@@ -97,17 +97,17 @@ def get_entity_results(query):
         return None
 
 def get_tags_mapping(query):
-    docs = DB.get_collection('results').find(query)
-    if not query.get('gen_time'):
-        docs = docs.sort('gen_time', -1).limit(1)
+    docs = DB.get_collection('results').find(query).sort([('_id',-1)]).limit(1)
+    #if not query.get('gen_time'):
+    #    docs = docs.sort('gen_time', -1).limit(1)
     doc = docs[0]
     return doc['result']
 
 def get_crf_results(query, n=1):
     normalized_query = build_query(query)
-    docs = DB.get_collection('results').find(normalized_query)
-    if not query.get('date'):
-        docs = docs.sort('date', -1)
+    docs = DB.get_collection('results').find(normalized_query).sort([('_id',-1)]).limit(1)
+#    if not query.get('date'):
+#        docs = docs.sort('date', -1)
     if docs.count()>0:
         docs = docs.limit(n)
         print('Using the model generated at {0}'.format(docs[0]['date']))
