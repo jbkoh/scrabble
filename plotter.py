@@ -296,7 +296,7 @@ def plot_multiple_timeseries(xs, ys, xlabel, ylabel, xticks=None, xtickTags=None
     return fig, axes
 
 
-def plot_multiple_2dline(x, ys, xlabel=None, ylabel=None, xtick=None, xtickLabel = None, ytick=None, ytickLabel=None, title=None, axis=None, fig=None, ylim=None, xlim=None, dataLabels=None, xtickRotate=0, linestyles=[], cs=[]):
+def plot_multiple_2dline(x, ys, xlabel=None, ylabel=None, xtick=None, xtickLabel = None, ytick=None, ytickLabel=None, title=None, axis=None, fig=None, ylim=None, xlim=None, dataLabels=None, xtickRotate=0, linestyles=[], cs=[], lw=1):
     dataNum = len(ys)
     if axis==None and fig==None:
         fig, axis = plt.subplots(1,1)
@@ -312,7 +312,7 @@ def plot_multiple_2dline(x, ys, xlabel=None, ylabel=None, xtick=None, xtickLabel
             dataLabelIdx += 1
         else:
             dataLabel = None
-        plot = axis.plot(x,ys[i], label=dataLabel, color=cs[i], linestyle=linestyles[i])
+        plot = axis.plot(x,ys[i], label=dataLabel, color=cs[i], linestyle=linestyles[i], lw=lw)
         plotList += plot
     if dataLabels:
         axis.legend(fontsize=7, loc='best')

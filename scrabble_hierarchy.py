@@ -1103,10 +1103,10 @@ def tagsets_evaluation(truths_dict, pred_tagsets_dict, pred_certainty_dict,\
     true_tagsets_list = [list(map(disch2sup, truths_dict[srcid])) for srcid in srcids]
     eval_binarizer = MultiLabelBinarizer().fit(pred_tagsets_list +
                                                true_tagsets_list)
-    #_, _, macro_f1, _ = precision_recall_fscore_support(\
-    #                        eval_binarizer.transform(true_tagsets_list),\
-    #                        eval_binarizer.transform(pred_tagsets_list),\
-    #                        average='macro')
+    _, _, macro_f1, _ = precision_recall_fscore_support(\
+                            eval_binarizer.transform(true_tagsets_list),\
+                            eval_binarizer.transform(pred_tagsets_list),\
+                            average='macro')
     _, _, weighted_f1, _ = precision_recall_fscore_support(\
                             eval_binarizer.transform(true_tagsets_list),\
                             eval_binarizer.transform(pred_tagsets_list),\
@@ -1126,7 +1126,7 @@ def tagsets_evaluation(truths_dict, pred_tagsets_dict, pred_certainty_dict,\
             rec_list.append(rec)
             f1_list.append(f1)
             sup_list.append(support)
-    macro_f1 = np.mean(f1_list)
+    #macro_f1 = np.mean(f1_list)
     #weighted_f1 = np.mean(f1_list)
     print('avg prec: {0}'.format(np.mean(prec_list)))
     print('avg rec: {0}'.format(np.mean(rec_list)))
@@ -3925,10 +3925,7 @@ def crf_entity_result():
     cs = ['firebrick', 'deepskyblue']
     plot_list = list()
 
-    xlabel_flag = True
-    ylabel_flag = True
-
-    for ax, buildings in zip(axes, building_sets):
+    for i, (ax, buildings) in enumerate(zip(axes, building_sets)):
         result = baseline_results[str(buildings)]
         init_ns = result['ns']
         sample_numbers = result['sample_numbers']
@@ -3938,32 +3935,49 @@ def crf_entity_result():
         std_mf1 = result['std_mf1']
         xlabel = '# target building samples'
         ys = [avg_acc, avg_mf1]
-        xs = sample_numbers
+        x = sample_numbers
         xtick = sample_numbers
         xtick_labels = [str(no) for no in sample_numbers]
-        if ylabel_flag:
-            ytick = list(range(0, 100, 20))
-            ytick_labels = [str(no) for no in ytick]
-            ylabel = 'score (%)'
-            ylabel_flag = False
-        else:
-            ytick = None
-            ytick_labels = None
-            ylabel = None
+        ytick = list(range(0, 105, 20))
+        ytick_labels = [str(no) for no in ytick]
+        ylabel = 'score (%)'
+        ylabel_flag = False
         ylim = (-2, 105)
-        xlim = (-2, 260)
-        data_labels = ['Baseline A', 'Baseline MF']
-        linestyles = ['-', '-']
-        pdb.set_trace()
-        plot = plotter.plot_multiple_2dline(xs, ys, xlabel, ylabel, xtick,
-                             xtick_labels, ytick, ytick_labels, None,
-                             ax, fig, ylim, data_labels, 0, linestyles, cs)
+        xlim = (10, 205)
+        linestyles = [':', ':']
+        if i == 2:
+            data_labels = ['Baseline A', 'Baseline MF']
+        else:
+            data_labels = None
+        title = anon_building_dict[buildings[0]]
+        for building in  buildings[1:-1]:
+            title += ',{0}'.format(anon_building_dict[building])
+        title += '$\\Rightarrow${0}'.format(anon_building_dict[buildings[-1]])
+        lw = 1.2
+        _, plot = plotter.plot_multiple_2dline(x, ys, xlabel, ylabel, xtick,
+                             xtick_labels, ytick, ytick_labels, title,
+                             ax, fig, ylim, xlim, data_labels, 0, linestyles,
+                                               cs, lw)
+        if i == 2:
+            ax.legend(bbox_to_anchor=(1.05, 1.45), ncol=2)
         plot_list.append(plot)
-    fig.set_size_inches(8, 3)
-    #fig.legend(plot_list, legends_list, 'upper center', ncol=2
-    #        , bbox_to_anchor=(0, 1.02, 0.9, 0.102 ), mode='expand')
+        #errors = [std_acc, std_mf1]
+        #for y, error in zip(ys, errors):
+        #    plotter.errorbar(x, y, None, error, None, None, ax, fig, None)
+    fig.set_size_inches(9, 1.5)
     for ax in axes:
         ax.grid(True)
+    for i in range(1,len(building_sets)):
+        axes[i].set_yticklabels([])
+        axes[i].set_ylabel('')
+    for i in range(0,len(building_sets)):
+        if i != 2:
+            axes[i].set_xlabel('')
+
+    #legends_list = ['Baseline A', 'Baseline MF']
+    #axes[2].legend(loc='best', legends_list)
+
+
     save_fig(fig, 'figs/crf_entity.pdf')
 
 def crf_result():
