@@ -96,6 +96,14 @@ ts_feature_filename = 'TS_Features/features.pkl'
 
 from building_tokenizer import nae_dict
 
+
+anon_building_dict = {
+    'ebu3b': 'A-1',
+    'bml': 'A-2',
+    'ap_m': 'A-3',
+    'ghc': 'B-1'
+}
+
 point_tagsets += [#'unknown', \
                   #'run_command', \
                   #'low_outside_air_temperature_enable_differential_setpoint', \
@@ -463,7 +471,8 @@ def select_random_samples(building, \
                           use_cluster_flag,\
                           token_type='justseparate',
                           reverse=True,
-                          cluster_dict=None
+                          cluster_dict=None,
+                          shuffle_flag=True,
                          ):
     if not cluster_dict:
         cluster_filename = 'model/%s_word_clustering_%s.json' % (building, token_type)
@@ -481,7 +490,8 @@ def select_random_samples(building, \
         #n = len(sorted_cluster_dict) #TODO: Remove if not working well
         while len(sample_srcids) < n:
             cluster_dict_items = list(sorted_cluster_dict.items())
-            random.shuffle(cluster_dict_items)
+            if shuffle_flag:
+                random.shuffle(cluster_dict_items)
             for cluster_num, srcid_list in cluster_dict_items:
                 valid_srcid_list = set(srcid_list)\
                         .intersection(set(srcids))\
@@ -2947,7 +2957,9 @@ def entity_recognition_from_ground_truth(building_list,
                                     sentence_label_dict.keys(),\
                                     sample_num, \
                                     use_cluster_flag,\
-                                    token_type=token_type)
+                                    token_type=token_type,
+                                    reverse=True,
+                                    shuffle_flag=False)
             sample_srcid_list_dict[building] = sample_srcid_list
             learning_srcids += sample_srcid_list
             total_srcid_dict[building] = list(sentence_label_dict.keys())
@@ -3202,7 +3214,8 @@ def entity_recognition_from_ground_truth(building_list,
                           use_cluster_flag,\
                           token_type=token_type,
                           reverse=True,
-                          cluster_dict=cluster_srcid_dict
+                          cluster_dict=cluster_srcid_dict,
+                          shuffle_flag=False
                          )
     tot_todo_tagsets =  Counter(reduce(adder, [test_truths_dict[srcid] for srcid in todo_srcids], []))
     correct_todo_srcids = list()
@@ -3275,7 +3288,8 @@ def find_todo_srcids(usage_rate_dict, srcids, inc_num, sentence_dict,
                           True,\
                           token_type='justseparate',
                           reverse=True,
-                          cluster_dict=cluster_srcid_dict
+                          cluster_dict=cluster_srcid_dict,
+                          shuffle_flag=False
                          )
     return todo_srcids
 
@@ -3901,6 +3915,70 @@ def entity_result():
     fig.suptitle(suptitle)
     save_fig(fig, 'figs/entity.pdf')
 
+def crf_entity_result():
+    building_sets = [('ebu3b', 'ap_m'), ('ap_m', 'bml'),
+                 ('ebu3b', 'ghc'), ('ghc', 'ebu3b'), ('ebu3b', 'bml', 'ap_m')]
+    fig, axes = plt.subplots(1, len(building_sets))
+    with open('result/baseline.json', 'r') as fp:
+        baseline_results = json.load(fp)
+
+    cs = ['firebrick', 'deepskyblue']
+    plot_list = list()
+
+    for i, (ax, buildings) in enumerate(zip(axes, building_sets)):
+        result = baseline_results[str(buildings)]
+        init_ns = result['ns']
+        sample_numbers = result['sample_numbers']
+        avg_acc = result['avg_acc']
+        std_acc = result['std_acc']
+        avg_mf1 = result['avg_mf1']
+        std_mf1 = result['std_mf1']
+        xlabel = '# target building samples'
+        ys = [avg_acc, avg_mf1]
+        x = sample_numbers
+        xtick = sample_numbers
+        xtick_labels = [str(no) for no in sample_numbers]
+        ytick = list(range(0, 105, 20))
+        ytick_labels = [str(no) for no in ytick]
+        ylabel = 'score (%)'
+        ylabel_flag = False
+        ylim = (-2, 105)
+        xlim = (10, 205)
+        linestyles = [':', ':']
+        if i == 2:
+            data_labels = ['Baseline A', 'Baseline MF']
+        else:
+            data_labels = None
+        title = anon_building_dict[buildings[0]]
+        for building in  buildings[1:-1]:
+            title += ',{0}'.format(anon_building_dict[building])
+        title += '$\\Rightarrow${0}'.format(anon_building_dict[buildings[-1]])
+        lw = 1.2
+        _, plot = plotter.plot_multiple_2dline(x, ys, xlabel, ylabel, xtick,
+                             xtick_labels, ytick, ytick_labels, title,
+                             ax, fig, ylim, xlim, data_labels, 0, linestyles,
+                                               cs, lw)
+        if i == 2:
+            ax.legend(bbox_to_anchor=(1.05, 1.45), ncol=2)
+        plot_list.append(plot)
+        #errors = [std_acc, std_mf1]
+        #for y, error in zip(ys, errors):
+        #    plotter.errorbar(x, y, None, error, None, None, ax, fig, None)
+    fig.set_size_inches(9, 1.5)
+    for ax in axes:
+        ax.grid(True)
+    for i in range(1,len(building_sets)):
+        axes[i].set_yticklabels([])
+        axes[i].set_ylabel('')
+    for i in range(0,len(building_sets)):
+        if i != 2:
+            axes[i].set_xlabel('')
+
+    #legends_list = ['Baseline A', 'Baseline MF']
+    #axes[2].legend(loc='best', legends_list)
+
+
+    save_fig(fig, 'figs/crf_entity.pdf')
 
 def crf_result():
     source_target_list = [('ebu3b', 'ap_m')]#, ('ap_m', 'ebu3b')]
@@ -4193,15 +4271,18 @@ if __name__=='__main__':
                 n_jobs=args.n_jobs)
         """
     elif args.prog == 'result':
-        assert args.exp_type in ['crf', 'entity', 'crf_entity', 'entity_iter']
+        assert args.exp_type in ['crf', 'entity', 'crf_entity', 'entity_iter',
+                                 'etc']
         if args.exp_type == 'crf':
             crf_result()
         elif args.exp_type == 'entity':
             entity_result()
         elif args.exp_type == 'crf_entity':
-            pass
+            crf_entity_result()
         elif args.exp_type == 'entity_iter':
             entity_iter_result()
+        elif args.exp_type == 'etc':
+            etc_result()
 
     elif args.prog == 'init':
         init()
