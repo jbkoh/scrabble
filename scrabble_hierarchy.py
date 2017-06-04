@@ -1093,10 +1093,10 @@ def tagsets_evaluation(truths_dict, pred_tagsets_dict, pred_certainty_dict,\
     true_tagsets_list = [list(map(disch2sup, truths_dict[srcid])) for srcid in srcids]
     eval_binarizer = MultiLabelBinarizer().fit(pred_tagsets_list +
                                                true_tagsets_list)
-    #_, _, macro_f1, _ = precision_recall_fscore_support(\
-    #                        eval_binarizer.transform(true_tagsets_list),\
-    #                        eval_binarizer.transform(pred_tagsets_list),\
-    #                        average='macro')
+    _, _, macro_f1, _ = precision_recall_fscore_support(\
+                            eval_binarizer.transform(true_tagsets_list),\
+                            eval_binarizer.transform(pred_tagsets_list),\
+                            average='macro')
     _, _, weighted_f1, _ = precision_recall_fscore_support(\
                             eval_binarizer.transform(true_tagsets_list),\
                             eval_binarizer.transform(pred_tagsets_list),\
@@ -1116,7 +1116,7 @@ def tagsets_evaluation(truths_dict, pred_tagsets_dict, pred_certainty_dict,\
             rec_list.append(rec)
             f1_list.append(f1)
             sup_list.append(support)
-    macro_f1 = np.mean(f1_list)
+    #macro_f1 = np.mean(f1_list)
     #weighted_f1 = np.mean(f1_list)
     print('avg prec: {0}'.format(np.mean(prec_list)))
     print('avg rec: {0}'.format(np.mean(rec_list)))
