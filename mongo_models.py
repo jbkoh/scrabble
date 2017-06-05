@@ -104,7 +104,10 @@ def get_tags_mapping(query):
     return doc['result']
 
 def get_crf_results(query, n=1):
-    normalized_query = build_query(query)
+    if query.get('learning_srcids'):
+        normalized_query = {'learning_srcids': sorted(query['learning_srcids'])}
+    else:
+        normalized_query = build_query(query)
     docs = DB.get_collection('results').find(normalized_query)
     if not query.get('date'):
         docs = docs.sort('date', -1)
