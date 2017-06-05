@@ -180,7 +180,6 @@ class TsTfidfVectorizer():
         mlb_keys, Y_pred, Y_proba = self.ts2ir.kpredict(ts_features, srcids)
         pdb.set_trace()
 
-
     def transform(self, X):
         pass
 
@@ -2200,7 +2199,6 @@ def parameter_validation(vect_doc, truth_mat, srcids, params_list_dict,\
     best_ha = validation_result['hierarchy_accuracy']
     best_a = validation_result['accuracy']
     best_mf1 = validation_result['macro_f1']
-    pdb.set_trace()
 
     return meta_classifier(**best_params)
 
@@ -2874,7 +2872,7 @@ def entity_recognition_from_ground_truth(building_list,
     global tagset_list
     global total_srcid_dict
     global tree_depth_dict
-    inc_num = 10
+    inc_num = 20
     assert len(building_list) == len(source_sample_num_list)
 
     ########################## DATA INITIATION ##########################
@@ -2961,7 +2959,7 @@ def entity_recognition_from_ground_truth(building_list,
                                     use_cluster_flag,\
                                     token_type=token_type,
                                     reverse=True,
-                                    shuffle_flag=False)
+                                    shuffle_flag=True)
             sample_srcid_list_dict[building] = sample_srcid_list
             learning_srcids += sample_srcid_list
             total_srcid_dict[building] = list(sentence_label_dict.keys())
@@ -3357,7 +3355,7 @@ def iteration_wrapper(iter_num, func, *args):
 def crf_entity_recognition_iteration(iter_num, *args):
     building_list = args[0]
     step_datas = iteration_wrapper(iter_num, entity_recognition_from_crf, *args)
-    with open('result/crf_entity_iter_{0}_1.json'.format(''.join(building_list)), 'w') as fp:
+    with open('result/crf_entity_iter_{0}_zero.json'.format(''.join(building_list)), 'w') as fp:
         json.dump(step_datas, fp, indent=2)
 
 
@@ -3447,6 +3445,7 @@ def entity_recognition_from_crf(prev_step_data,\
 
 
     # TODO: Make below to learn if not exists
+    pdb.set_trace()
     crf_result = get_crf_results(crf_result_query)
     if not crf_result:
         if crf_result_query.get('learning_srcids'):
@@ -3719,11 +3718,13 @@ def entity_iter_result():
     query_list[1]['metadata.use_brick_flag'] = False
     fig, ax = plt.subplots(1, 1)
     axes = [ax]
-    linestyles = [':', '-.', '--', '-']
+    linestyles = [':', '-.', '-']
     cs = ['firebrick', 'deepskyblue']
     for ax, (source, target) in zip(axes, source_target_list):
         for query in query_list:
             for ns in n_list_list:
+                if query['metadata.use_brick_flag'] and ns[0]==0:
+                    continue
                 #subset_accuracy_list = list()
                 #accuracy_list = list()
                 #hierarchy_accuracy_list = list()
@@ -3795,7 +3796,7 @@ def entity_iter_result():
 
     ax = axes[0]
     handles, labels = ax.get_legend_handles_labels()
-    legend_order = [0, 4, 2, 6, 1, 5, 3, 7]
+    legend_order = [0, 2, 4, 1, 3, 5]
     new_handles = [handles[i] for i in legend_order]
     new_labels = [labels[i] for i in legend_order]
     ax.legend(new_handles, new_labels)
@@ -3803,8 +3804,9 @@ def entity_iter_result():
     axes[0].grid(True)
     fig.set_size_inches(4,2.5)
     save_fig(fig, 'figs/entity_iter.pdf')
+    subprocess.call('./send_figures')
 
-def entity_result():
+def entity_result_deprecated():
     source_target_list = [('ebu3b', 'ap_m')]#, ('ap_m', 'ebu3b')]
     n_list_list = [[(0,5), (0,50), (0,100), (0,150), (0,200)],
                    [(200,5), (200,50), (200,100), (0,150), (200,200)]]
@@ -3879,7 +3881,6 @@ def entity_result():
 
                 xs = target_n_list
                 ys = [hierarchy_accuracy_list, accuracy_list, macro_f1_list]
-                #ys = [subset_accuracy_list, accuracy_list, hierarchy_accuracy_list, weighted_f1_list, micro_f1_list]
                 xlabel = '# of Target Building Samples'
                 ylabel = 'Score (%)'
                 xtick = target_n_list
@@ -3888,29 +3889,23 @@ def entity_result():
                 ytick_labels = [str(n) for n in ytick]
                 ylim = (ytick[0]-1, ytick[-1]+2)
                 legends = [
-                    '{0}, NS:{1}, UB:{2}'\
-                    .format(n_s, 
-                            query['metadata.negative_flag'], 
-                            query['metadata.use_brick_flag']),
-                    '{0}, NS:{1}, UB:{2}'\
-                    .format(n_s, 
-                            query['metadata.negative_flag'], 
-                            query['metadata.use_brick_flag']),
-                    '{0}, NS:{1}, UB:{2}'\
-                    .format(n_s, 
-                            query['metadata.negative_flag'], 
-                            query['metadata.use_brick_flag'])
+                    '{0}, SA:{1}'\
+                    .format(n_s, query['metadata.use_brick_flag']),
+                    '{0}, SA:{1}'\
+                    .format(n_s, query['metadata.use_brick_flag']),
+                    '{0}, SA:{1}'\
+                    .format(n_s, query['metadata.use_brick_flag'])
                           ]
                 title = None
-                plotter.plot_multiple_2dline(xs, [ys[0]], xlabel, ylabel, xtick,\
-                                 xtick_labels, ytick, ytick_labels, title, axes[0], fig, \
-                                 ylim, [legends[0]])
-                plotter.plot_multiple_2dline(xs, [ys[1]], xlabel, ylabel, xtick,\
-                                 xtick_labels, ytick, ytick_labels, title, axes[1], fig, \
-                                 ylim, [legends[1]])
-                plotter.plot_multiple_2dline(xs, [ys[2]], xlabel, ylabel, xtick,\
-                                 xtick_labels, ytick, ytick_labels, title, axes[2], fig, \
-                                 ylim, [legends[2]])
+                plotter.plot_multiple_2dline(xs, ys, xlabel, ylabel, xtick,\
+                                 xtick_labels, ytick, ytick_labels, title, ax, fig, \
+                                 ylim, legends)
+                #plotter.plot_multiple_2dline(xs, [ys[1]], xlabel, ylabel, xtick,\
+                #                 xtick_labels, ytick, ytick_labels, title, axes[1], fig, \
+                #                 ylim, [legends[1]])
+                #plotter.plot_multiple_2dline(xs, [ys[2]], xlabel, ylabel, xtick,\
+                #                 xtick_labels, ytick, ytick_labels, title, axes[2], fig, \
+                #                 ylim, [legends[2]])
                 if not (query['metadata.negative_flag'] and
                         query['metadata.use_brick_flag']):
                     break
@@ -3932,6 +3927,7 @@ def crf_entity_result():
     plot_list = list()
 
     for i, (ax, buildings) in enumerate(zip(axes, building_sets)):
+        # Baseline
         result = baseline_results[str(buildings)]
         init_ns = result['ns']
         sample_numbers = result['sample_numbers']
@@ -3939,20 +3935,20 @@ def crf_entity_result():
         std_acc = result['std_acc']
         avg_mf1 = result['avg_mf1']
         std_mf1 = result['std_mf1']
-        xlabel = '# target building samples'
+        xlabel = '# Target Building Samples'
         ys = [avg_acc, avg_mf1]
         x = sample_numbers
         xtick = sample_numbers
         xtick_labels = [str(no) for no in sample_numbers]
         ytick = list(range(0, 105, 20))
         ytick_labels = [str(no) for no in ytick]
-        ylabel = 'score (%)'
+        ylabel = 'Score (%)'
         ylabel_flag = False
         ylim = (-2, 105)
         xlim = (10, 205)
         linestyles = [':', ':']
         if i == 2:
-            data_labels = ['Baseline A', 'Baseline MF']
+            data_labels = ['Baseline Accuracy', 'Baseline Macro $F_1$']
         else:
             data_labels = None
         title = anon_building_dict[buildings[0]]
@@ -3964,12 +3960,32 @@ def crf_entity_result():
                              xtick_labels, ytick, ytick_labels, title,
                              ax, fig, ylim, xlim, data_labels, 0, linestyles,
                                                cs, lw)
+        # scrabble
+        try:
+            with open('result/crf_entity_iter_{0}.json'.format(''.join(buildings)),
+                      'r') as fp:
+                result = json.load(fp)[0]
+        except:
+            continue
+        x = [len(learning_srcids)-200 for learning_srcids in
+             result['learning_srcids_history'][:-1]]
+        accuracy= [res['accuracy'] * 100 for res in result['result']['entity']]
+        mf1s = [res['macro_f1'] * 100 for res in result['result']['entity']]
+        ys = [accuracy, mf1s]
+        linestyles = ['-', '-']
         if i == 2:
-            ax.legend(bbox_to_anchor=(1.05, 1.45), ncol=2)
+            data_labels = ['Scrabble Accuracy', 'Scrabble Macro $F_1$']
+        else:
+            data_labels = None
+        _, plot = plotter.plot_multiple_2dline(x, ys, xlabel, ylabel, xtick,
+                             xtick_labels, ytick, ytick_labels, title,
+                             ax, fig, ylim, xlim, data_labels, 0, linestyles,
+                                               cs, lw)
+        if i == 2:
+            ax.legend(bbox_to_anchor=(3.2, 1.45), ncol=4, frameon=False)
         plot_list.append(plot)
-        #errors = [std_acc, std_mf1]
-        #for y, error in zip(ys, errors):
-        #    plotter.errorbar(x, y, None, error, None, None, ax, fig, None)
+
+
     fig.set_size_inches(9, 1.5)
     for ax in axes:
         ax.grid(True)
@@ -3985,9 +4001,10 @@ def crf_entity_result():
 
 
     save_fig(fig, 'figs/crf_entity.pdf')
+    subprocess.call('./send_figures')
 
 def crf_result():
-    source_target_list = [('ebu3b', 'ap_m')]#, ('ap_m', 'ebu3b')]
+    source_target_list = [('ebu3b', 'bml'), ('ghc', 'ebu3b')]
     n_list_list = [[(1000, 0), (1000,5), (1000,20), (1000,50), (1000,100), (1000, 150), (1000,200)],
                    [(200, 0), (200,5), (200,20), (200,50), (200,100), (200, 150), (200,200)],
                    [(0,5), (0,20), (0,50), (0,100), (0,150), (0,200)]]
@@ -4036,6 +4053,7 @@ def crf_result():
                 except:
                     print(n_t)
                     pdb.set_trace()
+                    continue
                     result = get_crf_results(result_query)
                 char_prec = result['char_precision'] * 100
                 char_precs.append(char_prec)
