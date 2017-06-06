@@ -6,7 +6,7 @@ from collections import OrderedDict, defaultdict, Counter
 import pdb
 from copy import deepcopy
 from operator import itemgetter
-from itertools import islice
+from itertools import islice, chain
 import argparse
 import logging
 from imp import reload
@@ -2212,8 +2212,10 @@ def build_tagset_classifier(building_list, target_building,\
                             source_target_buildings,
                             n_jobs,
                             ts_flag,
-                            negative_flag
+                            negative_flag,
+                            validation_truths_dict={}
                            ):
+    validation_srcids = list(validation_truths_dict.keys())
     learning_srcids = deepcopy(learning_srcids)
     orig_learning_srcids = deepcopy(learning_srcids)
     global total_srcid_dict
@@ -2265,13 +2267,15 @@ def build_tagset_classifier(building_list, target_building,\
     #                                    vocabulary=vocab_dict)
 
     learning_point_dict = dict()
-    for srcid, tagsets in learning_truths_dict.items():
+    for srcid, tagsets in chain(learning_truths_dict.items(),
+                                validation_truths_dict.items()):
         point_tagset = 'none'
         for tagset in tagsets:
             if tagset in point_tagsets:
                 point_tagset = tagset
                 break
         learning_point_dict[srcid] = point_tagset
+    learning_point_dict['dummy'] = 'unknown'
 
     ts2ir = None
     ts_learning_srcids = list()
@@ -2282,8 +2286,22 @@ def build_tagset_classifier(building_list, target_building,\
         tag_binarizer.fit(map(splitter, learning_point_dict.values()))
         with open(ts_feature_filename, 'rb') as fp:
             ts_features = pickle.load(fp, encoding='bytes')
+        new_ts_features = list()
+        for ts_feature in ts_features:
+            feats = ts_feature[0]
+            srcid = ts_feature[2]
+            if srcid in learning_srcids + validation_srcids:
+                point_tagset = learning_point_dict[srcid]
+                point_tags = point_tagset.split('_')
+                point_vec = tag_binarizer.transform([point_tags])
+                new_feature = [feats, point_vec, srcid]
+                new_ts_features.append(new_feature)
+            elif srcid in test_srcids:
+                new_ts_features.append(ts_feature)
+        ts_features = new_ts_features
+
         ts2ir = TimeSeriesToIR(mlb=tag_binarizer)
-        ts2ir.fit(ts_features, learning_srcids, learning_tags_dict)
+        ts2ir.fit(ts_features, learning_srcids, validation_srcids, learning_tags_dict)
         learning_ts_tags_pred = ts2ir.predict(ts_features, learning_srcids)
         for srcid, ts_tags in zip(learning_srcids, \
                                   tag_binarizer.inverse_transform(
@@ -2946,10 +2964,13 @@ def entity_recognition_from_ground_truth(building_list,
 
     ### Get Learning Data
     sample_srcid_list_dict = dict()
+    validation_srcids = []
+    validation_truths_dict = {}
     for building, sample_num in zip(building_list, source_sample_num_list):
         with open('metadata/{0}_char_label_dict.json'\
                   .format(building), 'r') as fp:
             sentence_label_dict = json.load(fp)
+        srcids = list(sentence_label_dict.keys())
         if iter_cnt == 1:
             sample_srcid_list = select_random_samples(\
                                     building,\
@@ -2964,8 +2985,27 @@ def entity_recognition_from_ground_truth(building_list,
             total_srcid_dict[building] = list(sentence_label_dict.keys())
         else:
             sample_srcid_list_dict[building] = [srcid for srcid\
-                                                in sentence_label_dict.keys()\
+                                                in srcids \
                                                 if srcid in learning_srcids]
+        validation_num = min(len(sentence_label_dict)
+                             - len(sample_srcid_list_dict[building]),
+                             len(sample_srcid_list_dict[building]))
+        validation_srcids += select_random_samples(\
+                                    building,\
+                                    srcids,\
+                                    validation_num,\
+                                    use_cluster_flag,\
+                                    token_type=token_type,
+                                    reverse=True,
+                                    shuffle_flag=False)
+    
+    _, \
+    _, \
+    validation_truths_dict, \
+    _ = get_multi_buildings_data(building_list, \
+                                           validation_srcids, \
+                                           eda_flag,\
+                                           token_type)
 
     learning_sentence_dict, \
     learning_token_label_dict, \
@@ -3018,7 +3058,8 @@ def entity_recognition_from_ground_truth(building_list,
                             source_target_buildings,
                             n_jobs,
                             ts_flag,
-                            negative_flag
+                            negative_flag,
+                            validation_truths_dict
                            )
     end_time = arrow.get()
     print('Training Time: {0}'.format(end_time-begin_time))
