@@ -2959,7 +2959,7 @@ def entity_recognition_from_ground_truth(building_list,
                                     use_cluster_flag,\
                                     token_type=token_type,
                                     reverse=True,
-                                    shuffle_flag=True)
+                                    shuffle_flag=False)
             sample_srcid_list_dict[building] = sample_srcid_list
             learning_srcids += sample_srcid_list
             total_srcid_dict[building] = list(sentence_label_dict.keys())
@@ -3352,10 +3352,13 @@ def iteration_wrapper(iter_num, func, *args):
         prev_data['iter_num'] += 1
     return step_datas
 
-def crf_entity_recognition_iteration(iter_num, *args):
+def crf_entity_recognition_iteration(iter_num, postfix, *args):
     building_list = args[0]
+    target_building = args[2]
     step_datas = iteration_wrapper(iter_num, entity_recognition_from_crf, *args)
-    with open('result/crf_entity_iter_{0}_zero.json'.format(''.join(building_list)), 'w') as fp:
+    with open('result/crf_entity_iter_{0}_{1}.json'\
+            .format(''.join(building_list+[target_building]), postfix), 'w') as fp:
+#with open('result/crf_entity_iter_{0}_2.json'.format(''.join(building_list+[target_building])), 'w') as fp:
         json.dump(step_datas, fp, indent=2)
 
 
@@ -3445,7 +3448,6 @@ def entity_recognition_from_crf(prev_step_data,\
 
 
     # TODO: Make below to learn if not exists
-    pdb.set_trace()
     crf_result = get_crf_results(crf_result_query)
     if not crf_result:
         if crf_result_query.get('learning_srcids'):
@@ -3918,7 +3920,7 @@ def entity_result_deprecated():
 
 def crf_entity_result():
     building_sets = [('ebu3b', 'ap_m'), ('ap_m', 'bml'),
-                 ('ebu3b', 'ghc'), ('ghc', 'ebu3b'), ('ebu3b', 'bml', 'ap_m')]
+                 ('ebu3b', 'ghc'), ('ghc', 'ebu3b'), ('ebu3b', 'bml', 'ap_m')] ### TODO TODO: this should be changed to use ebu3b,ap_m -> bml
     fig, axes = plt.subplots(1, len(building_sets))
     with open('result/baseline.json', 'r') as fp:
         baseline_results = json.load(fp)
@@ -4014,11 +4016,11 @@ def crf_result():
     fig, axes = plt.subplots(1,len(source_target_list))
     if isinstance(axes, Axes):
         axes = [axes]
-    fig.set_size_inches(4, 2)
+    fig.set_size_inches(4, 1.5)
     cs = ['firebrick', 'deepskyblue']
-    linestyles = ['--', '-.', '-']
 
-    for ax, (source, target) in zip(axes, source_target_list):
+    for i, (ax, (source, target)) in enumerate(zip(axes, source_target_list)):
+        linestyles = ['--', '-.', '-']
         plot_list = list()
         legends_list = list()
         for n_list in n_list_list:
@@ -4067,31 +4069,43 @@ def crf_result():
             xs = target_n_list
             ys = [phrase_f1s, phrase_macro_f1s]
             #ys = [char_precs, phrase_f1s, char_macro_f1s, phrase_macro_f1s]
-            xlabel = '# of Target Building Samples'
+            #xlabel = '# of Target Building Samples'
+            xlabel = None
             ylabel = 'Score (%)'
-            xtick = list(range(0, 205, 20))
-            xtick = [0] + [5] + xtick[1:]
+            xtick = list(range(0, 205, 40))
+            #xtick = [0] + [5] + xtick[1:]
             xtick_labels = [str(n) for n in xtick]
             ytick = range(0,101,20)
             ytick_labels = [str(n) for n in ytick]
             xlim = (xtick[0]-2, xtick[-1]+5)
             ylim = (ytick[0]-2, ytick[-1]+5)
-            legends = [#'#S:{0}, Char Prec'.format(n_s),
-                       '#$B_S$:{0}, $F_1$'.format(n_s),
-                    #'#S:{0}, Char MF1'.format(n_s),
-                       '#$B_S$:{0}, $MF_1$'.format(n_s),
-                      ]
-            legends_list += legends
+            if i == 0:
+                legends = [#'#S:{0}, Char Prec'.format(n_s),
+                    '#$B_S$:{0}'.format(n_s),
+#'#S:{0}, Char MF1'.format(n_s),
+                    '#$B_S$:{0}'.format(n_s),
+                ]
+            else:
+                legends = None
+#legends_list += legends
             title = None
             _, plots = plotter.plot_multiple_2dline(xs, ys, xlabel, ylabel, xtick,\
                              xtick_labels, ytick, ytick_labels, title, ax, fig, \
-                             ylim, xlim, None, xtickRotate=0, \
+                             ylim, xlim, legends, xtickRotate=0, \
                              linestyles=[linestyles.pop()]*len(ys), cs=cs)
             plot_list += plots
-    fig.legend(plot_list, legends_list, 'upper center', ncol=3
-            , bbox_to_anchor=(0, 1.06, 0.9, 0.102 ), mode='expand')
+
+#fig.legend(plot_list, legends_list, 'upper center', ncol=3
+#            , bbox_to_anchor=(0.5,1.3),frameon=False)
+    axes[0].legend(bbox_to_anchor=(0.15, 0.96), ncol=3, frameon=False)
     for ax in axes:
         ax.grid(True)
+    axes[1].set_yticklabels([])
+    axes[1].set_ylabel('')
+    plt.text(0, 1.16, '$F_1$: \nMacro $F_1$: ', va='center', ha='center', 
+            transform=axes[0].transAxes)
+    fig.text(0.5, -0.1, '# of Target Building Samples', ha='center')
+
     save_fig(fig, 'figs/crf.pdf')
     subprocess.call('./send_figures')
 
@@ -4216,6 +4230,11 @@ if __name__=='__main__':
                         type=str,
                         help='type of experiments for result output',
                         dest = 'exp_type')
+    parser.add_argument('-post', 
+                        type=str,
+                        help='postfix of result filename',
+                        default='0',
+                        dest = 'postfix')
 
     args = parser.parse_args()
 
@@ -4278,8 +4297,9 @@ if __name__=='__main__':
                   args.eda_flag,
                   args.negative_flag,
                   args.debug_flag,
-                  args.n_jobs)
-        crf_entity_recognition_iteration(args.iter_num, *params)
+                  args.n_jobs,
+                  args.ts_flag)
+        crf_entity_recognition_iteration(args.iter_num, args.postfix, *params)
 
         """
         entity_recognition_from_crf(\

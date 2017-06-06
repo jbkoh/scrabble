@@ -64,7 +64,7 @@ def build_query(q):
         query['$and'].append(
             {'source_list.{0}'.format(building): {'$exists': True}})
         query['$and'].append({'$where': \
-                                    'this.source_list.{0}.length={1}'.\
+                                    'this.source_list.{0}.length=={1}'.\
                                     format(building, source_sample_num)})
         query['source_cnt_list'].append([building, source_sample_num])
     query['$and'].append({'source_building_count':len(building_list)})
@@ -74,7 +74,7 @@ def build_query(q):
 
 def get_model(query):
     docs = DB.get_collection('model').find(query)
-    if not query.get('gen_time'):
+    if query.get('gen_time'):
         docs = docs.sort('gen_time', -1)#.limit(1)
     #print('Using the model generated at {0}'.format(docs[0]['date']))
     print('Using the model generated at {0}'.format(docs[0]['gen_time']))
@@ -86,10 +86,10 @@ def store_model(model):
 def store_result(results):
     DB.get_collection('results').insert_one(results)
 
-def get_entity_results(query):
-    docs = DB.get_collection('results').find(query)
-    if not query.get('gen_time'):
-        docs = docs.sort('gen_time', -1).limit(1)
+def get_entity_results(query, n=1):
+    docs = DB.get_collection('results').find(query).sort([('_id',-1)]).limit(n)
+    #if not query.get('gen_time'):
+    #    docs = docs.sort('gen_time', -1).limit(1)
     if docs.count()>0:
         doc = docs[0]
         return doc
@@ -97,20 +97,15 @@ def get_entity_results(query):
         return None
 
 def get_tags_mapping(query):
-    docs = DB.get_collection('results').find(query)
-    if not query.get('gen_time'):
-        docs = docs.sort('gen_time', -1).limit(1)
+    docs = DB.get_collection('results').find(query).sort([('_id',-1)]).limit(1)
+    #if not query.get('gen_time'):
+    #    docs = docs.sort('gen_time', -1).limit(1)
     doc = docs[0]
     return doc['result']
 
 def get_crf_results(query, n=1):
-    if query.get('learning_srcids'):
-        normalized_query = {'learning_srcids': sorted(query['learning_srcids'])}
-    else:
-        normalized_query = build_query(query)
-    docs = DB.get_collection('results').find(normalized_query)
-    if not query.get('date'):
-        docs = docs.sort('date', -1)
+    normalized_query = build_query(query)
+    docs = DB.get_collection('results').find(normalized_query).sort([('_id',-1)]).limit(1)
     if docs.count()>0:
         docs = docs.limit(n)
         print('Using the model generated at {0}'.format(docs[0]['date']))
