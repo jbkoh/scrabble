@@ -33,6 +33,9 @@ class TimeSeriesToIR:
         self.num_cores = multiprocessing.cpu_count()
         self.classes_indx = []
 
+    def get_binarizer(self):
+        return self.mlb
+
     def train_model(self, features, include_feature=None, cluster_filepath=None, training_percent=.4):
         temp = []
         if(include_feature is None):
