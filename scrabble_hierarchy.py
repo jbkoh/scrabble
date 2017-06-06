@@ -6,7 +6,7 @@ from collections import OrderedDict, defaultdict, Counter
 import pdb
 from copy import deepcopy
 from operator import itemgetter
-from itertools import islice
+from itertools import islice, chain
 import argparse
 import logging
 from imp import reload
@@ -30,6 +30,7 @@ import numpy as np
 import matplotlib
 matplotlib.use('Agg')
 import matplotlib.pyplot as plt
+from mpl_toolkits.axes_grid.anchored_artists import AnchoredText
 #plt.rcParams['font.family'] = 'sans-serif'
 #plt.rcParams['font.sans-serif'] = 'Helvetica'
 plt.rcParams['axes.labelpad'] = 0
@@ -2213,8 +2214,10 @@ def build_tagset_classifier(building_list, target_building,\
                             source_target_buildings,
                             n_jobs,
                             ts_flag,
-                            negative_flag
+                            negative_flag,
+                            validation_truths_dict={}
                            ):
+    validation_srcids = list(validation_truths_dict.keys())
     learning_srcids = deepcopy(learning_srcids)
     orig_learning_srcids = deepcopy(learning_srcids)
     global total_srcid_dict
@@ -2266,13 +2269,15 @@ def build_tagset_classifier(building_list, target_building,\
     #                                    vocabulary=vocab_dict)
 
     learning_point_dict = dict()
-    for srcid, tagsets in learning_truths_dict.items():
+    for srcid, tagsets in chain(learning_truths_dict.items(),
+                                validation_truths_dict.items()):
         point_tagset = 'none'
         for tagset in tagsets:
             if tagset in point_tagsets:
                 point_tagset = tagset
                 break
         learning_point_dict[srcid] = point_tagset
+    learning_point_dict['dummy'] = 'unknown'
 
     ts2ir = None
     ts_learning_srcids = list()
@@ -2283,8 +2288,22 @@ def build_tagset_classifier(building_list, target_building,\
         tag_binarizer.fit(map(splitter, learning_point_dict.values()))
         with open(ts_feature_filename, 'rb') as fp:
             ts_features = pickle.load(fp, encoding='bytes')
+        new_ts_features = list()
+        for ts_feature in ts_features:
+            feats = ts_feature[0]
+            srcid = ts_feature[2]
+            if srcid in learning_srcids + validation_srcids:
+                point_tagset = learning_point_dict[srcid]
+                point_tags = point_tagset.split('_')
+                point_vec = tag_binarizer.transform([point_tags])
+                new_feature = [feats, point_vec, srcid]
+                new_ts_features.append(new_feature)
+            elif srcid in test_srcids:
+                new_ts_features.append(ts_feature)
+        ts_features = new_ts_features
+
         ts2ir = TimeSeriesToIR(mlb=tag_binarizer)
-        ts2ir.fit(ts_features, learning_srcids, learning_tags_dict)
+        ts2ir.fit(ts_features, learning_srcids, validation_srcids, learning_tags_dict)
         learning_ts_tags_pred = ts2ir.predict(ts_features, learning_srcids)
         for srcid, ts_tags in zip(learning_srcids, \
                                   tag_binarizer.inverse_transform(
@@ -2557,7 +2576,7 @@ def build_tagset_classifier(building_list, target_building,\
     if tagset_classifier_type == 'RandomForest':
         def meta_rf(**kwargs):
             #return RandomForestClassifier(**kwargs)
-            return RandomForestClassifier(n_jobs=n_jobs, n_estimators=120)
+            return RandomForestClassifier(n_jobs=n_jobs, n_estimators=150)
 
         #tagset_classifier = RandomForestClassifier(n_estimators=100,
         #                                           random_state=0,\
@@ -2947,10 +2966,13 @@ def entity_recognition_from_ground_truth(building_list,
 
     ### Get Learning Data
     sample_srcid_list_dict = dict()
+    validation_srcids = []
+    validation_truths_dict = {}
     for building, sample_num in zip(building_list, source_sample_num_list):
         with open('metadata/{0}_char_label_dict.json'\
                   .format(building), 'r') as fp:
             sentence_label_dict = json.load(fp)
+        srcids = list(sentence_label_dict.keys())
         if iter_cnt == 1:
             sample_srcid_list = select_random_samples(\
                                     building,\
@@ -2965,8 +2987,27 @@ def entity_recognition_from_ground_truth(building_list,
             total_srcid_dict[building] = list(sentence_label_dict.keys())
         else:
             sample_srcid_list_dict[building] = [srcid for srcid\
-                                                in sentence_label_dict.keys()\
+                                                in srcids \
                                                 if srcid in learning_srcids]
+        validation_num = min(len(sentence_label_dict)
+                             - len(sample_srcid_list_dict[building]),
+                             len(sample_srcid_list_dict[building]))
+        validation_srcids += select_random_samples(\
+                                    building,\
+                                    srcids,\
+                                    validation_num,\
+                                    use_cluster_flag,\
+                                    token_type=token_type,
+                                    reverse=True,
+                                    shuffle_flag=False)
+    
+    _, \
+    _, \
+    validation_truths_dict, \
+    _ = get_multi_buildings_data(building_list, \
+                                           validation_srcids, \
+                                           eda_flag,\
+                                           token_type)
 
     learning_sentence_dict, \
     learning_token_label_dict, \
@@ -3019,7 +3060,8 @@ def entity_recognition_from_ground_truth(building_list,
                             source_target_buildings,
                             n_jobs,
                             ts_flag,
-                            negative_flag
+                            negative_flag,
+                            validation_truths_dict
                            )
     end_time = arrow.get()
     print('Training Time: {0}'.format(end_time-begin_time))
@@ -3692,11 +3734,9 @@ def oxer(b):
     else:
         return 'X'
 
-def entity_iter_result():
+def entity_ts_result():
     source_target_list = [('ebu3b', 'ap_m')]
-    n_list_list = [(200,5),
-                   (0,5),]
-#                   (1000,1)]
+    n_list_list = [(200,5)]
     ts_flag = False
     eda_flag = False
     inc_num = 20
@@ -3716,24 +3756,21 @@ def entity_iter_result():
     }
     query_list = [deepcopy(default_query),
                   deepcopy(default_query)]
-    query_list[1]['metadata.negative_flag'] = False
-    query_list[1]['metadata.use_brick_flag'] = False
-    fig, ax = plt.subplots(1, 1)
+    query_list[0]['metadata.ts_flag'] = True
+    fig, ax = plt.subplots(1, len(source_target_list))
     axes = [ax]
-    linestyles = [':', '-.', '-']
     cs = ['firebrick', 'deepskyblue']
-    for ax, (source, target) in zip(axes, source_target_list):
+    for i, (ax, (source, target)) in enumerate(zip(axes, source_target_list)):
+        linestyles = [':', '-.', '-']
         for query in query_list:
             for ns in n_list_list:
                 if query['metadata.use_brick_flag'] and ns[0]==0:
                     continue
-                #subset_accuracy_list = list()
-                #accuracy_list = list()
-                #hierarchy_accuracy_list = list()
-                #weighted_f1_list = list()
-                #macro_f1_list = list()
                 n_s = ns[0]
-                n_t = ns[1]
+                if i==1 and ns[1]==5:
+                    n_t = 5
+                else:
+                    n_t = ns[1]
 
                 if n_s == 0:
                     building_list = [target]
@@ -3771,40 +3808,199 @@ def entity_iter_result():
 
                 xs = target_n_list
                 ys = [accuracy_list, macro_f1_list]
-                xlabel = '# of Target Building Samples'
+                #xlabel = '# of Target Building Samples'
+                xlabel = None
                 ylabel = 'Score (%)'
-                xtick = range(0,205, 20)
+                xtick = range(0,205, 50)
                 xtick_labels = [str(n) for n in xtick]
-                ytick = range(0,102,10)
+                ytick = range(0,102,20)
                 ytick_labels = [str(n) for n in ytick]
                 ylim = (ytick[0]-1, ytick[-1]+2)
-                legends = [
-                    '{0:<4}, {1:<4}, NS:{2:<2}, UB:{3:<2}'\
-                    .format('A',
-                            n_s,
-                            oxer(query['metadata.negative_flag']),
-                            oxer(query['metadata.use_brick_flag'])),
-                    '{0:<4}, {1:<4}, NS:{2:<2}, UB:{3:<2}'\
-                    .format('MF1',
-                            n_s,
-                            oxer(query['metadata.negative_flag']),
-                            oxer(query['metadata.use_brick_flag'])),
-                          ]
+                if i==0:
+                    legends = [
+                        '{0}, SA: {1}'
+                        .format(n_s,
+                                oxer(query['metadata.use_brick_flag'])),
+                        '{0}, SA: {1}'
+                        .format(n_s,
+                                oxer(query['metadata.use_brick_flag']))
+                    ]
+                else:
+                    legends = None
                 title = None
                 plotter.plot_multiple_2dline(xs, ys, xlabel, ylabel, xtick,\
                                  xtick_labels, ytick, ytick_labels, title, ax,\
                                  fig, ylim, None, legends, xtickRotate=0, \
                                  linestyles=[linestyles.pop()]*len(ys), cs=cs)
 
+
+    for ax in axes:
+        ax.grid(True)
+    for ax, (source, target) in zip(axes, source_target_list):
+        #ax.set_title('{0} $\Rightarrow$ {1}'.format(
+        #    anon_building_dict[source], anon_building_dict[target]))
+        ax.text(0.45, 0.2, '{0} $\Rightarrow$ {1}'.format(
+            anon_building_dict[source], anon_building_dict[target]),
+            fontsize=11,
+            transform=ax.transAxes)
+
+    for i in range(1,len(source_target_list)):
+        axes[i].set_yticklabels([])
+        axes[i].set_ylabel('')
+
+    ax = axes[0]
+    #handles, labels = ax.get_legend_handles_labels()
+    #legend_order = [0,1,2,3,4,5]
+    #new_handles = [handles[i] for i in legend_order]
+    #new_labels = [labels[i] for i in legend_order]
+    #ax.legend(new_handles, new_labels, bbox_to_anchor=(0.15,0.96), ncol=3, frameon=False)
+    plt.text(0, 1.2, 'Accuracy: \nMacro $F_1$: ', ha='center', va='center',
+            transform=ax.transAxes)
+    fig.text(0.5, -0.1, '# of Target Building Samples', ha='center', 
+            alpha=0)
+
+    for i, ax in enumerate(axes):
+        if i != 0:
+            ax.set_xlabel('')
+
+    fig.set_size_inches(4.4,1.5)
+    save_fig(fig, 'figs/entity_ts.pdf')
+    subprocess.call('./send_figures')
+
+def entity_iter_result():
+    source_target_list = [('ebu3b', 'bml'), ('ghc', 'ebu3b')]
+    n_list_list = [(200,5),
+                   (0,5),]
+#                   (1000,1)]
+    ts_flag = False
+    eda_flag = False
+    inc_num = 20
+    iter_num = 10
+    default_query = {
+        'metadata.label_type': 'label',
+        'metadata.token_type': 'justseparate',
+        'metadata.use_cluster_flag': True,
+        'metadata.building_list' : [],
+        'metadata.source_sample_num_list': [],
+        'metadata.target_building': '',
+        'metadata.ts_flag': ts_flag,
+        'metadata.eda_flag': eda_flag,
+        'metadata.use_brick_flag': True,
+        'metadata.negative_flag': True,
+        'metadata.inc_num': inc_num,
+    }
+    query_list = [deepcopy(default_query),
+                  deepcopy(default_query)]
+    query_list[1]['metadata.negative_flag'] = False
+    query_list[1]['metadata.use_brick_flag'] = False
+    fig, axes = plt.subplots(1, len(source_target_list))
+#    axes = [ax]
+    cs = ['firebrick', 'deepskyblue']
+    for i, (ax, (source, target)) in enumerate(zip(axes, source_target_list)):
+        linestyles = [':', '-.', '-']
+        for query in query_list:
+            for ns in n_list_list:
+                if query['metadata.use_brick_flag'] and ns[0]==0:
+                    continue
+                n_s = ns[0]
+                if i==1 and ns[1]==5:
+                    n_t = 5
+                else:
+                    n_t = ns[1]
+
+                if n_s == 0:
+                    building_list = [target]
+                    source_sample_num_list = [n_t]
+                elif n_t == 0:
+                    building_list = [source]
+                    source_sample_num_list = [n_s]
+                else:
+                    building_list = [source, target]
+                    source_sample_num_list = [n_s, n_t]
+                query['metadata.building_list'] = building_list
+                query['metadata.source_sample_num_list'] = \
+                        source_sample_num_list
+                query['metadata.target_building'] = target
+                q = {'$and': [query, {'$where': \
+                                      'this.accuracy_history.length=={0}'\
+                                      .format(iter_num)}]}
+
+                result = get_entity_results(q)
+                try:
+                    assert result
+                except:
+                    print(n_t)
+                    pdb.set_trace()
+                    result = get_entity_results(query)
+                #point_precs = result['point_precision_history'][-1]
+                #point_recall = result['point_recall'][-1]
+                subset_accuracy_list = [val * 100 for val in result['subset_accuracy_history']]
+                accuracy_list = [val * 100 for val in result['accuracy_history']]
+                hierarchy_accuracy_list = [val * 100 for val in result['hierarchy_accuracy_history']]
+                weighted_f1_list = [val * 100 for val in result['weighted_f1_history']]
+                macro_f1_list = [val * 100 for val in result['macro_f1_history']]
+                exp_num = len(macro_f1_list)
+                target_n_list = list(range(n_t, inc_num*exp_num+1, inc_num))
+
+                xs = target_n_list
+                ys = [accuracy_list, macro_f1_list]
+                #xlabel = '# of Target Building Samples'
+                xlabel = None
+                ylabel = 'Score (%)'
+                xtick = range(0,205, 50)
+                xtick_labels = [str(n) for n in xtick]
+                ytick = range(0,102,20)
+                ytick_labels = [str(n) for n in ytick]
+                ylim = (ytick[0]-1, ytick[-1]+2)
+                if i==0:
+                    legends = [
+                        '{0}, SA: {1}'
+                        .format(n_s,
+                                oxer(query['metadata.use_brick_flag'])),
+                        '{0}, SA: {1}'
+                        .format(n_s,
+                                oxer(query['metadata.use_brick_flag']))
+                    ]
+                else:
+                    legends = None
+                title = None
+                plotter.plot_multiple_2dline(xs, ys, xlabel, ylabel, xtick,\
+                                 xtick_labels, ytick, ytick_labels, title, ax,\
+                                 fig, ylim, None, legends, xtickRotate=0, \
+                                 linestyles=[linestyles.pop()]*len(ys), cs=cs)
+            pdb.set_trace()
+
+
+    for ax in axes:
+        ax.grid(True)
+    for ax, (source, target) in zip(axes, source_target_list):
+        #ax.set_title('{0} $\Rightarrow$ {1}'.format(
+        #    anon_building_dict[source], anon_building_dict[target]))
+        ax.text(0.45, 0.2, '{0} $\Rightarrow$ {1}'.format(
+            anon_building_dict[source], anon_building_dict[target]),
+            fontsize=11,
+            transform=ax.transAxes)
+
+    for i in range(1,len(source_target_list)):
+        axes[i].set_yticklabels([])
+        axes[i].set_ylabel('')
+
     ax = axes[0]
     handles, labels = ax.get_legend_handles_labels()
-    legend_order = [0, 2, 4, 1, 3, 5]
+    legend_order = [0,1,2,3,4,5]
     new_handles = [handles[i] for i in legend_order]
     new_labels = [labels[i] for i in legend_order]
-    ax.legend(new_handles, new_labels)
+    ax.legend(new_handles, new_labels, bbox_to_anchor=(0.15,0.96), ncol=3, frameon=False)
+    plt.text(0, 1.2, 'Accuracy: \nMacro $F_1$: ', ha='center', va='center',
+            transform=ax.transAxes)
+    fig.text(0.5, -0.1, '# of Target Building Samples', ha='center', 
+            alpha=0)
 
-    axes[0].grid(True)
-    fig.set_size_inches(4,2.5)
+    for i, ax in enumerate(axes):
+        if i != 0:
+            ax.set_xlabel('')
+
+    fig.set_size_inches(4.4,1.5)
     save_fig(fig, 'figs/entity_iter.pdf')
     subprocess.call('./send_figures')
 
@@ -3929,6 +4125,7 @@ def crf_entity_result():
     plot_list = list()
 
     for i, (ax, buildings) in enumerate(zip(axes, building_sets)):
+        print(i)
         # Baseline
         result = baseline_results[str(buildings)]
         init_ns = result['ns']
@@ -3963,16 +4160,34 @@ def crf_entity_result():
                              ax, fig, ylim, xlim, data_labels, 0, linestyles,
                                                cs, lw)
         # scrabble
+        if ''.join(buildings) == 'ebu3bbmlap_m':
+            srcids_offset = 400
+        else:
+            srcids_offset = 200
+
         try:
             with open('result/crf_entity_iter_{0}.json'.format(''.join(buildings)),
                       'r') as fp:
                 result = json.load(fp)[0]
         except:
+            pdb.set_trace()
             continue
-        x = [len(learning_srcids)-200 for learning_srcids in
+        zerofile = 'result/crf_entity_iter_{0}_zero.json'.format(''.join(buildings))
+        if os.path.isfile(zerofile):
+            with open(zerofile, 'r') as fp:
+                zero_result = json.load(fp)[0]
+            x_zero = [0]
+            acc_zero = [zero_result['result']['entity'][0]['accuracy'] * 100]
+            mf1_zero =  [zero_result['result']['entity'][0]['macro_f1'] * 100]
+        else:
+            x_zero = []
+            acc_zero = []
+            mf1_zero = []
+
+        x = x_zero + [len(learning_srcids) - srcids_offset for learning_srcids in
              result['learning_srcids_history'][:-1]]
-        accuracy= [res['accuracy'] * 100 for res in result['result']['entity']]
-        mf1s = [res['macro_f1'] * 100 for res in result['result']['entity']]
+        accuracy= acc_zero + [res['accuracy'] * 100 for res in result['result']['entity']]
+        mf1s = mf1_zero + [res['macro_f1'] * 100 for res in result['result']['entity']]
         ys = [accuracy, mf1s]
         linestyles = ['-', '-']
         if i == 2:
@@ -4109,6 +4324,113 @@ def crf_result():
     save_fig(fig, 'figs/crf.pdf')
     subprocess.call('./send_figures')
 
+def etc_result():
+    buildings = ['ebu3b', 'bml', 'ap_m', 'ghc']
+    tagsets_dict = dict()
+    tags_dict = dict()
+    tagset_numbers = []
+    avg_required_tags = []
+    tagset_type_numbers = []
+    tags_numbers = []
+    tags_type_numbers = []
+    avg_tagsets = []
+    median_occ_numbers = []
+    avg_tags = []
+    avg_tokens = []#TODO: Need to use words other than tokens
+    avg_unfound_tags = []#TODO: Need to use words other than tokens
+    once_numbers = []
+    top20_numbers = []
+    std_tags = []
+    std_tagsets = []
+
+    ignore_tagsets = ['leftidentifier', 'rightidentifier', 'none', 'unknown']
+    total_tagsets = list(set(point_tagsets + location_tagsets + equip_tagsets))
+    total_tags = list(set(reduce(adder, map(splitter, total_tagsets))))
+
+    for building in buildings:
+        with open('metadata/{0}_ground_truth.json'\
+                  .format(building), 'r') as fp:
+            truth_dict = json.load(fp)
+        with open('metadata/{0}_label_dict_justseparate.json'.\
+                  format(building), 'r') as fp:
+            label_dict = json.load(fp)
+        with open('metadata/{0}_sentence_dict_justseparate.json'\
+                  .format(building), 'r') as fp:
+            sentence_dict = json.load(fp)
+        new_label_dict = dict()
+        for srcid, labels in label_dict.items():
+            new_label_dict[srcid] = list(reduce(adder, [label.split('_')
+                                                   for label in labels if label
+                                                   not in ignore_tagsets]))
+        label_dict = new_label_dict
+        srcids = list(label_dict.keys())
+        label_dict = OrderedDict([(srcid, label_dict[srcid])
+                                 for srcid in srcids])
+        truth_dict = OrderedDict([(srcid, truth_dict[srcid])
+                                 for srcid in srcids])
+        sentence_dict = OrderedDict([(srcid, sentence_dict[srcid])
+                                    for srcid in srcids])
+
+        tagsets = [tagset for tagset in
+                   list(reduce(adder, truth_dict.values()))
+                   if tagset not in ignore_tagsets]
+        def tagerize(tagsets):
+            return list(set(reduce(adder, map(splitter, tagsets))))
+        required_tags = list(map(tagerize, truth_dict.values()))
+        tags = list(reduce(adder, map(splitter, tagsets)))
+        tagsets_counter = Counter(tagsets)
+        tagsets_dict[building] = Counter(tagsets)
+        tagset_numbers.append(len(tagsets))
+        tags_numbers.append(len(tags))
+        tagset_type_numbers.append(len(set(tagsets)))
+        tags_type_numbers.append(len(set(tags)))
+        tokens_list = [[token for token in tokens
+                        if re.match('[a-zA-Z]+', token)]
+                       for tokens in sentence_dict.values()]
+        unfound_tags_list = list()
+        for srcid, tagsets in truth_dict.items():
+            unfound_tags = set()
+            for tagset in tagsets:
+                for tag in tagset.split('_'):
+                    if tag not in label_dict[srcid]:
+                        unfound_tags.add(tag)
+            unfound_tags_list.append(unfound_tags)
+        avg_tokens.append(np.mean(list(map(lengther, tokens_list))))
+        avg_tags.append(np.mean(list(map(lengther, map(set,label_dict.values())))))
+        std_tags.append(np.std(list(map(lengther, map(set,label_dict.values())))))
+        avg_tagsets.append(np.mean(list(map(lengther, truth_dict.values()))))
+        std_tagsets.append(np.std(list(map(lengther, truth_dict.values()))))
+        avg_required_tags.append(np.mean(list(map(lengther, required_tags))))
+        avg_unfound_tags.append(np.mean(list(map(lengther, unfound_tags_list))))
+        once_occurring_tagsets = [tagset for tagset, cnt
+                                 in tagsets_counter.items() if cnt==1]
+
+        once_numbers.append(len(once_occurring_tagsets))
+        top20_numbers.append(np.sum(sorted(tagsets_counter.values(),
+                                           reverse=True)[0:20]))
+        median_occ_numbers.append(np.median(list(tagsets_counter.values())))
+
+    tags_cnt = 0
+    for tagset in total_tagsets:
+        tags_cnt += len(splitter(tagset))
+    avg_len_tagset = tags_cnt / len(total_tagsets)
+    print('tot tags :', tagset_numbers)
+    print('tot tagsets:', tags_numbers)
+    print('avg len tagset:', avg_len_tagset)
+    print('avg tokens:', avg_tokens)
+    print('avg tags :', avg_tags)
+    print('std tags :', std_tags)
+    print('avg tagsets:', avg_tagsets)
+    print('std tagsets:', std_tagsets)
+    print('avg required tags:', avg_required_tags)
+    print('avg unfound tags:', avg_unfound_tags)
+    print('tot tagset:', tagset_type_numbers)
+    print('tot tags:', tags_type_numbers)
+    print('top20 explains: ', top20_numbers)
+    print('num once occur: ', once_numbers)
+    print('median occs: ', median_occ_numbers)
+    print('brick tagsets: ', len(total_tagsets))
+    print('brick tags: ', len(total_tags))
 
 
 def str2bool(v):
@@ -4316,7 +4638,7 @@ if __name__=='__main__':
         """
     elif args.prog == 'result':
         assert args.exp_type in ['crf', 'entity', 'crf_entity', 'entity_iter',
-                                 'etc']
+                                 'etc', 'entity_ts']
         if args.exp_type == 'crf':
             crf_result()
         elif args.exp_type == 'entity':
@@ -4325,6 +4647,8 @@ if __name__=='__main__':
             crf_entity_result()
         elif args.exp_type == 'entity_iter':
             entity_iter_result()
+        elif args.exp_type == 'entity_ts':
+            entity_ts_result()
         elif args.exp_type == 'etc':
             etc_result()
 
