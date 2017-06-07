@@ -4201,6 +4201,7 @@ def crf_entity_result():
         if i == 2:
             ax.legend(bbox_to_anchor=(3.2, 1.45), ncol=4, frameon=False)
         plot_list.append(plot)
+        pdb.set_trace()
 
 
     fig.set_size_inches(9, 1.5)
@@ -4308,7 +4309,14 @@ def crf_result():
                              xtick_labels, ytick, ytick_labels, title, ax, fig, \
                              ylim, xlim, legends, xtickRotate=0, \
                              linestyles=[linestyles.pop()]*len(ys), cs=cs)
+            text = '{0} $\\Rightarrow$ {1}'.format(\
+                    anon_building_dict[source],
+                    anon_building_dict[target])
+            ax.text(0.8, 0.1, text, transform=ax.transAxes, ha='right',
+                    backgroundcolor='white'
+                    )#, alpha=0)
             plot_list += plots
+            pdb.set_trace()
 
 #fig.legend(plot_list, legends_list, 'upper center', ncol=3
 #            , bbox_to_anchor=(0.5,1.3),frameon=False)
