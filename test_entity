@@ -1,9 +1,8 @@
 #!/bin/bash
-python scrabble_hierarchy.py entity -bl ebu3b,ap_m -nl 200,5 -c true -ub false -nj 1 -t ap_m &
-python scrabble_hierarchy.py entity -bl ebu3b,ap_m -nl 200,50 -c true -ub false -nj 1 -t ap_m &
-python scrabble_hierarchy.py entity -bl ebu3b,ap_m -nl 200,100 -c true -ub false -nj 1 -t ap_m &
-python scrabble_hierarchy.py entity -bl ebu3b,ap_m -nl 200,200 -c true -ub false -nj 1 -t ap_m &
-python scrabble_hierarchy.py entity -bl ap_m -nl 5 -c true -ub false -nj 1 -t ap_m &
-python scrabble_hierarchy.py entity -bl ap_m -nl 50 -c true -ub false -nj 1 -t ap_m &
-python scrabble_hierarchy.py entity -bl ap_m -nl 100 -c true -ub false -nj 1 -t ap_m &
-python scrabble_hierarchy.py entity -bl ap_m -nl 200 -c true -ub false -nj 1 -t ap_m &
+nohup python scrabble_hierarchy.py entity -bl bml -nl 5  -c true -ub false -neg false -nj 1 -t bml -iter 10 > 1.out &
+nohup python scrabble_hierarchy.py entity -bl ebu3b,bml -nl 200,5 -c true -ub false -neg false -nj 2 -t bml -iter 10  > 2.out &
+nohup python scrabble_hierarchy.py entity -bl ebu3b,bml -nl 200,5 -c true -ub true  -neg true  -nj 6 -t bml -iter 10 > 3.out &
+
+#nohup python scrabble_hierarchy.py entity -bl ebu3b -nl 5  -c true -ub false -neg false -nj 1 -t ebu3b -iter 10 > 4.out &
+#nohup python scrabble_hierarchy.py entity -bl ghc,ebu3b -nl 200,5 -c true -ub false -neg false -nj 2 -t ebu3b -iter 10  > 5.out &
+#nohup python scrabble_hierarchy.py entity -bl ghc,ebu3b -nl 200,5 -c true -ub true  -neg true  -nj 6 -t ebu3b -iter 10 > 6.out &

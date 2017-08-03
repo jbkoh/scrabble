@@ -1,0 +1,13 @@
+2017-06-05 19:40:01,545 Entity Recognition Get Started.
+Brick Loaded
+
+
+################ Iteration 1 ################
+Traceback (most recent call last):
+  File "scrabble_hierarchy.py", line 4588, in <module>
+    args.n_jobs
+  File "scrabble_hierarchy.py", line 3384, in entity_recognition_iteration
+    prev_step_data = step_data
+  File "scrabble_hierarchy.py", line 3032, in entity_recognition_from_ground_truth
+    .format(target_building), 'r') as fp:
+FileNotFoundError: [Errno 2] No such file or directory: 'metadata/None_char_label_dict.json'

@@ -229,6 +229,7 @@
     "time": "none"
   },
   "ap_m": {
+      "stsp": "setpoint",
     "cw": "chilled_water",
     "occcupied": "occupied",
     "cooler": "cool",

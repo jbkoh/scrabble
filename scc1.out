@@ -1,0 +1,2318 @@
+2017-06-05 11:12:16,595 Entity Recognition Get Started.
+2017-06-05 11:12:19,326 Start adding Brick samples
+2017-06-05 11:12:19,461 Finished adding Brick samples
+2017-06-05 11:12:19,461 start tagset vectorizing
+2017-06-05 11:12:19,474 finished tagset vectorizing
+2017-06-05 11:12:22,334 Start learning multi-label classifier
+Brick Loaded
+
+
+################ Iteration 1 ################
+2017-06-05 11:12:22,938 Start augmenting label mat with superclasses
+2017-06-05 11:12:35,309 Finished augmenting label mat with superclasses
+2017-06-05 11:12:35,828 0th learning step
+2017-06-05 11:13:40,102 200th learning step
+2017-06-05 11:15:03,790 400th learning step
+2017-06-05 11:16:15,931 600th learning step
+2017-06-05 11:18:26,692 800th learning step
+2017-06-05 11:19:02,707 Finished learning multi-label classifier
+2017-06-05 11:19:02,732 Start prediction
+2017-06-05 11:19:02,749 Start Tagset prediction
+2017-06-05 11:19:02,749 Start predicting
+2017-06-05 11:19:05,750 Start distilling
+2017-06-05 11:19:13,797 Finished distilling
+2017-06-05 11:19:13,798 Finished predicting
+2017-06-05 11:19:13,798 Finished Tagset prediction
+2017-06-05 11:19:13,798 Start point prediction
+2017-06-05 11:19:13,798 Finished point prediction
+2017-06-05 11:19:13,937 Finished prediction
+2017-06-05 11:19:13,938 Start prediction
+2017-06-05 11:19:13,943 Start Tagset prediction
+2017-06-05 11:19:13,943 Start predicting
+2017-06-05 11:19:14,651 Start distilling
+2017-06-05 11:19:16,038 Finished distilling
+2017-06-05 11:19:16,038 Finished predicting
+2017-06-05 11:19:16,038 Finished Tagset prediction
+2017-06-05 11:19:16,038 Start point prediction
+2017-06-05 11:19:16,038 Finished point prediction
+2017-06-05 11:19:16,063 Finished prediction
+/home/jbkoh/anaconda3/lib/python3.6/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision and F-score are ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/home/jbkoh/anaconda3/lib/python3.6/site-packages/sklearn/metrics/classification.py:1115: UndefinedMetricWarning: Recall and F-score are ill-defined and being set to 0.0 in labels with no true samples.
+  'recall', 'true', average, warn_for)
+2017-06-05 11:19:20,057 Start prediction
+2017-06-05 11:19:20,070 Start Tagset prediction
+2017-06-05 11:19:20,070 Start predicting
+2017-06-05 11:19:23,060 Start distilling
+2017-06-05 11:19:32,005 Finished distilling
+2017-06-05 11:19:32,006 Finished predicting
+2017-06-05 11:19:32,006 Finished Tagset prediction
+2017-06-05 11:19:32,006 Start point prediction
+2017-06-05 11:19:32,006 Finished point prediction
+2017-06-05 11:19:32,152 Finished prediction
+Training Time: 0:06:43.596054
+avg prec: 0.9765416184352268
+avg rec: 0.9739819047819321
+avg f1: 0.9748974202540827
+------------------------------------result---------------
+point precision: 1.0
+point recall: 0.9740932642487047
+rate points not found in source               among sensors where point is not found: 
+	0.0
+sensors where a point is not found:  0.3333333333333333 5
+sensors where incorrect points are found:  0.0 0
+unknown reason:  0.2 3
+invalid points:  7
+-----------
+{'accuracy': 0.9807103174603174,
+ 'hamming_loss': 0.0001020408163265306,
+ 'hierarchy_accuracy': 0.9807103174603174,
+ 'macro_f1': 0.95019914605838862,
+ 'micro_f1': 0.99266692396757994,
+ 'point_correct_cnt': 188,
+ 'point_incorrect_cnt': 0,
+ 'point_precision': 1.0,
+ 'point_recall': 0.9740932642487047,
+ 'precision': 0.925,
+ 'subset_accuracy': 0.925,
+ 'unfound_point_cnt': 5,
+ 'weighted_f1': 0.98963686093656666}
+avg prec: [ 0.98285353  0.42150277]
+avg rec: [ 0.99763401  0.38335635]
+avg f1: [ 0.98509326  0.38558411]
+INCORRECT POINT (513_1_3006141) FOUND: occupied_cooling_min_supply_air_flow_setpoint -> occupied_cooling_supply_air_flow_setpoint
+INCORRECT POINT (604_4_3013349) FOUND: run_direction_command -> direction_command
+INCORRECT POINT (514_1_3009067) FOUND: occupied_heating_min_supply_air_flow_setpoint -> setpoint
+INCORRECT POINT (513_1_3004803) FOUND: occupied_heating_temperature_setpoint -> setpoint
+INCORRECT POINT (513_1_3006002) FOUND: occupied_cooling_temperature_setpoint -> setpoint
+INCORRECT POINT (514_1_3006791) FOUND: occupied_heating_min_supply_air_flow_setpoint -> occupied_heating_supply_air_flow_setpoint
+INCORRECT POINT (514_1_3007053) FOUND: occupied_cooling_min_supply_air_flow_setpoint -> occupied_cooling_supply_air_flow_setpoint
+INCORRECT POINT (513_1_3004894) FOUND: occupied_heating_min_supply_air_flow_setpoint -> occupied_heating_supply_air_flow_setpoint
+INCORRECT POINT (604_1_3012440) FOUND: occupied_heating_min_supply_air_flow_setpoint -> occupied_heating_supply_air_flow_setpoint
+INCORRECT POINT (513_1_3005529) FOUND: occupied_cooling_min_supply_air_flow_setpoint -> occupied_cooling_supply_air_flow_setpoint
+INCORRECT POINT (604_1_3014148) FOUND: exhaust_air_static_pressure_proportional_band_setpoint -> static_pressure_proportional_band_setpoint
+INCORRECT POINT (513_2_3016876) FOUND: supply_air_static_pressure_setpoint -> supply_air_temperature_setpoint
+INCORRECT POINT (513_1_3006581) FOUND: setpoint -> temperature_setpoint
+INCORRECT POINT (513_1_3005329) FOUND: occupied_cooling_temperature_setpoint -> setpoint
+INCORRECT POINT (513_1_3005550) FOUND: occupied_cooling_min_supply_air_flow_setpoint -> occupied_cooling_supply_air_flow_setpoint
+INCORRECT POINT (513_1_3005122) FOUND: occupied_cooling_temperature_setpoint -> setpoint
+INCORRECT POINT (604_1_3013088) FOUND: occupied_cooling_min_supply_air_flow_setpoint -> occupied_cooling_supply_air_flow_setpoint
+INCORRECT POINT (514_1_3006963) FOUND: occupied_heating_temperature_setpoint -> setpoint
+INCORRECT POINT (513_1_3007489) FOUND: occupied_cooling_min_supply_air_flow_setpoint -> occupied_cooling_supply_air_flow_setpoint
+INCORRECT POINT (513_1_3004872) FOUND: occupied_heating_temperature_setpoint -> setpoint
+INCORRECT POINT (513_1_3007258) FOUND: occupied_cooling_min_supply_air_flow_setpoint -> occupied_cooling_supply_air_flow_setpoint
+INCORRECT POINT (513_1_3006350) FOUND: occupied_heating_temperature_setpoint -> setpoint
+INCORRECT POINT (604_1_3013119) FOUND: occupied_heating_min_supply_air_flow_setpoint -> occupied_heating_supply_air_flow_setpoint
+INCORRECT POINT (604_1_3012765) FOUND: setpoint -> temperature_setpoint
+INCORRECT POINT (604_1_3013057) FOUND: occupied_heating_min_supply_air_flow_setpoint -> occupied_heating_supply_air_flow_setpoint
+INCORRECT POINT (513_1_3004616) FOUND: heating_supply_air_temperature_proportional_band_setpoint -> integral_time_setpoint
+INCORRECT POINT (513_1_3006796) FOUND: occupied_cooling_min_supply_air_flow_setpoint -> occupied_cooling_supply_air_flow_setpoint
+INCORRECT POINT (514_3_3007479) FOUND: run_direction_status -> direction_status
+INCORRECT POINT (604_1_3012396) FOUND: occupied_heating_min_supply_air_flow_setpoint -> occupied_heating_supply_air_flow_setpoint
+INCORRECT POINT (513_0_3005365) FOUND: current_sensor -> load_current_sensor
+INCORRECT POINT (513_1_3006255) FOUND: occupied_cooling_temperature_setpoint -> setpoint
+INCORRECT POINT (514_1_3011263) FOUND: unoccupied_cooling_supply_air_flow_setpoint -> supply_air_flow_setpoint
+INCORRECT POINT (513_1_3005818) FOUND: occupied_cooling_temperature_setpoint -> setpoint
+INCORRECT POINT (514_1_3006378) FOUND: cooling_supply_air_temperature_proportional_band_setpoint -> integral_time_setpoint
+INCORRECT POINT (513_1_3005284) FOUND: occupied_cooling_min_supply_air_flow_setpoint -> occupied_cooling_supply_air_flow_setpoint
+INCORRECT POINT (513_1_3006278) FOUND: occupied_cooling_temperature_setpoint -> setpoint
+INCORRECT POINT (514_4_3006984) FOUND: run_direction_command -> direction_command
+INCORRECT POINT (513_1_3004802) FOUND: occupied_heating_min_supply_air_flow_setpoint -> occupied_heating_supply_air_flow_setpoint
+INCORRECT POINT (604_4_3013388) FOUND: panel_lockout_command -> exhaust_fan_vfd_speed_command
+INCORRECT POINT (604_3_3012539) FOUND: run_direction_status -> direction_status
+INCORRECT POINT (604_1_3012513) FOUND: occupied_cooling_temperature_setpoint -> setpoint
+INCORRECT POINT (604_1_3012531) FOUND: occupied_heating_temperature_setpoint -> setpoint
+INCORRECT POINT (514_1_3007429) FOUND: occupied_heating_temperature_setpoint -> setpoint
+INCORRECT POINT (513_1_3005887) FOUND: occupied_cooling_temperature_setpoint -> setpoint
+INCORRECT POINT (514_1_3007052) FOUND: occupied_cooling_temperature_setpoint -> setpoint
+INCORRECT POINT (513_1_3007358) FOUND: setpoint -> temperature_setpoint
+INCORRECT POINT (513_1_3005101) FOUND: occupied_heating_min_supply_air_flow_setpoint -> occupied_heating_supply_air_flow_setpoint
+INCORRECT POINT (604_1_3012485) FOUND: occupied_heating_min_supply_air_flow_setpoint -> occupied_heating_supply_air_flow_setpoint
+INCORRECT POINT (513_2_3015101) FOUND: chilled_water_differential_pressure_increase_decrease_step_setpoint -> increase_decrease_step_setpoint
+INCORRECT POINT (513_1_3006164) FOUND: occupied_cooling_min_supply_air_flow_setpoint -> occupied_cooling_supply_air_flow_setpoint
+INCORRECT POINT (604_1_3013570) FOUND: setpoint -> temperature_setpoint
+INCORRECT POINT (604_1_3013228) FOUND: exhaust_air_static_pressure_proportional_band_setpoint -> static_pressure_proportional_band_setpoint
+INCORRECT POINT (514_0_3006891) FOUND: zone_temperature_sensor -> temperature_sensor
+INCORRECT POINT (514_1_3006412) FOUND: vfd_command -> exhaust_fan_vfd_speed_command
+INCORRECT POINT (513_1_3004939) FOUND: occupied_cooling_min_supply_air_flow_setpoint -> occupied_cooling_supply_air_flow_setpoint
+INCORRECT POINT (514_1_3007222) FOUND: occupied_heating_temperature_setpoint -> setpoint
+INCORRECT POINT (513_1_3006838) FOUND: occupied_cooling_min_supply_air_flow_setpoint -> occupied_cooling_supply_air_flow_setpoint
+INCORRECT POINT (513_1_3007190) FOUND: setpoint -> temperature_setpoint
+INCORRECT POINT (604_4_3012538) FOUND: run_direction_command -> direction_command
+INCORRECT POINT (513_1_3006418) FOUND: occupied_heating_min_supply_air_flow_setpoint -> occupied_heating_supply_air_flow_setpoint
+INCORRECT POINT (513_0_3005431) FOUND: current_sensor -> load_current_sensor
+INCORRECT POINT (514_1_3007240) FOUND: occupied_heating_temperature_setpoint -> setpoint
+INCORRECT POINT (513_1_3006210) FOUND: occupied_cooling_min_supply_air_flow_setpoint -> occupied_cooling_supply_air_flow_setpoint
+INCORRECT POINT (513_1_3005079) FOUND: occupied_heating_temperature_setpoint -> setpoint
+INCORRECT POINT (604_1_3012948) FOUND: occupied_cooling_temperature_setpoint -> setpoint
+INCORRECT POINT (514_1_3006864) FOUND: occupied_heating_min_supply_air_flow_setpoint -> occupied_heating_supply_air_flow_setpoint
+INCORRECT POINT (604_1_3012979) FOUND: occupied_cooling_min_supply_air_flow_setpoint -> occupied_cooling_supply_air_flow_setpoint
+INCORRECT POINT (514_1_3006535) FOUND: occupied_heating_temperature_setpoint -> setpoint
+INCORRECT POINT (513_1_3007006) FOUND: occupied_cooling_min_supply_air_flow_setpoint -> occupied_cooling_supply_air_flow_setpoint
+INCORRECT POINT (513_1_3005263) FOUND: occupied_heating_temperature_setpoint -> setpoint
+INCORRECT POINT (604_0_3013343) FOUND: current_sensor -> load_current_sensor
+INCORRECT POINT (604_1_3013236) FOUND: exhaust_air_static_pressure_integral_time_setpoint -> static_pressure_integral_time_setpoint
+INCORRECT POINT (513_1_3005726) FOUND: occupied_cooling_temperature_setpoint -> setpoint
+INCORRECT POINT (604_1_3012965) FOUND: occupied_heating_min_supply_air_flow_setpoint -> occupied_heating_supply_air_flow_setpoint
+INCORRECT POINT (513_1_3005795) FOUND: occupied_cooling_temperature_setpoint -> setpoint
+INCORRECT POINT (513_1_3006094) FOUND: occupied_cooling_temperature_setpoint -> setpoint
+INCORRECT POINT (513_1_3006232) FOUND: occupied_cooling_temperature_setpoint -> setpoint
+INCORRECT POINT (604_1_3012936) FOUND: occupied_heating_temperature_setpoint -> setpoint
+INCORRECT POINT (513_2_3004145) FOUND: medium_temperature_hot_water_supply_temperature_low_reset_setpoint -> temperature_setpoint
+INCORRECT POINT (604_1_3013058) FOUND: occupied_heating_temperature_setpoint -> setpoint
+INCORRECT POINT (514_1_3007032) FOUND: occupied_heating_temperature_setpoint -> setpoint
+INCORRECT POINT (604_1_3012501) FOUND: occupied_heating_temperature_setpoint -> setpoint
+INCORRECT POINT (514_1_3006812) FOUND: occupied_cooling_temperature_setpoint -> setpoint
+INCORRECT POINT (513_1_3004778) FOUND: occupied_cooling_min_supply_air_flow_setpoint -> occupied_cooling_supply_air_flow_setpoint
+INCORRECT POINT (513_1_3005821) FOUND: occupied_heating_temperature_setpoint -> setpoint
+INCORRECT POINT (513_1_3006004) FOUND: occupied_heating_min_supply_air_flow_setpoint -> occupied_heating_supply_air_flow_setpoint
+INCORRECT POINT (513_1_3005728) FOUND: occupied_heating_min_supply_air_flow_setpoint -> occupied_heating_supply_air_flow_setpoint
+INCORRECT POINT (604_1_3013559) FOUND: occupied_cooling_min_supply_air_flow_setpoint -> occupied_cooling_supply_air_flow_setpoint
+INCORRECT POINT (604_4_3013287) FOUND: run_direction_command -> direction_command
+INCORRECT POINT (513_1_3005774) FOUND: occupied_heating_min_supply_air_flow_setpoint -> occupied_heating_supply_air_flow_setpoint
+INCORRECT POINT (604_1_3013013) FOUND: occupied_heating_temperature_setpoint -> setpoint
+INCORRECT POINT (514_1_3006457) FOUND: occupied_heating_temperature_setpoint -> setpoint
+INCORRECT POINT (604_1_3013214) FOUND: occupied_heating_min_supply_air_flow_setpoint -> occupied_heating_supply_air_flow_setpoint
+INCORRECT POINT (604_4_3013298) FOUND: run_direction_command -> direction_command
+INCORRECT POINT (514_1_3006651) FOUND: occupied_cooling_temperature_setpoint -> setpoint
+INCORRECT POINT (514_1_3009049) FOUND: occupied_heating_temperature_setpoint -> setpoint
+INCORRECT POINT (604_1_3012841) FOUND: occupied_cooling_min_supply_air_flow_setpoint -> occupied_cooling_supply_air_flow_setpoint
+INCORRECT POINT (604_1_3013272) FOUND: exhaust_air_static_pressure_proportional_band_setpoint -> static_pressure_proportional_band_setpoint
+INCORRECT POINT (514_1_3007231) FOUND: occupied_heating_temperature_setpoint -> setpoint
+INCORRECT POINT (513_1_3005866) FOUND: occupied_heating_min_supply_air_flow_setpoint -> occupied_heating_supply_air_flow_setpoint
+INCORRECT POINT (513_1_3005751) FOUND: occupied_heating_min_supply_air_flow_setpoint -> occupied_heating_supply_air_flow_setpoint
+INCORRECT POINT (513_1_3007447) FOUND: occupied_cooling_min_supply_air_flow_setpoint -> occupied_cooling_supply_air_flow_setpoint
+INCORRECT POINT (513_1_3005910) FOUND: occupied_cooling_temperature_setpoint -> setpoint
+INCORRECT POINT (514_1_3006654) FOUND: occupied_heating_temperature_setpoint -> setpoint
+INCORRECT POINT (604_1_3013028) FOUND: occupied_heating_temperature_setpoint -> setpoint
+INCORRECT POINT (604_1_3012950) FOUND: occupied_heating_min_supply_air_flow_setpoint -> occupied_heating_supply_air_flow_setpoint
+INCORRECT POINT (513_1_3006071) FOUND: occupied_cooling_temperature_setpoint -> setpoint
+INCORRECT POINT (514_1_3006839) FOUND: occupied_heating_min_supply_air_flow_setpoint -> occupied_heating_supply_air_flow_setpoint
+INCORRECT POINT (514_1_3011262) FOUND: unoccupied_cooling_supply_air_flow_setpoint -> supply_air_flow_setpoint
+INCORRECT POINT (513_1_3005124) FOUND: occupied_heating_min_supply_air_flow_setpoint -> occupied_heating_supply_air_flow_setpoint
+INCORRECT POINT (513_3_3005441) FOUND: run_direction_status -> direction_status
+INCORRECT POINT (514_1_3006769) FOUND: occupied_heating_temperature_setpoint -> setpoint
+INCORRECT POINT (514_0_3006893) FOUND: zone_temperature_sensor -> temperature_sensor
+INCORRECT POINT (604_1_3012498) FOUND: occupied_cooling_temperature_setpoint -> setpoint
+INCORRECT POINT (513_1_3006754) FOUND: occupied_cooling_min_supply_air_flow_setpoint -> occupied_cooling_supply_air_flow_setpoint
+INCORRECT POINT (513_0_3007079) FOUND: effective_cooling_temperature_setpoint -> supply_air_flow_setpoint
+INCORRECT POINT (514_1_3007402) FOUND: occupied_heating_temperature_setpoint -> setpoint
+INCORRECT POINT (514_1_3006486) FOUND: occupied_cooling_temperature_setpoint -> setpoint
+INCORRECT POINT (604_1_3013247) FOUND: exhaust_air_static_pressure_integral_time_setpoint -> static_pressure_integral_time_setpoint
+INCORRECT POINT (514_1_3006912) FOUND: occupied_cooling_temperature_setpoint -> setpoint
+INCORRECT POINT (513_0_3008149) FOUND: outside_air_co2_sensor -> co2_level_sensor
+INCORRECT POINT (513_1_3004556) FOUND: heating_supply_air_temperature_proportional_band_setpoint -> integral_time_setpoint
+INCORRECT POINT (513_1_3005053) FOUND: occupied_cooling_temperature_setpoint -> setpoint
+INCORRECT POINT (513_1_3004710) FOUND: occupied_heating_min_supply_air_flow_setpoint -> occupied_heating_supply_air_flow_setpoint
+INCORRECT POINT (604_1_3013675) FOUND: setpoint -> temperature_setpoint
+INCORRECT POINT (604_1_3012933) FOUND: occupied_cooling_temperature_setpoint -> setpoint
+INCORRECT POINT (604_1_3013103) FOUND: occupied_cooling_min_supply_air_flow_setpoint -> occupied_cooling_supply_air_flow_setpoint
+INCORRECT POINT (513_3_3005419) FOUND: run_direction_status -> direction_status
+INCORRECT POINT (514_1_3006698) FOUND: occupied_cooling_min_supply_air_flow_setpoint -> occupied_cooling_supply_air_flow_setpoint
+INCORRECT POINT (513_1_3005148) FOUND: occupied_heating_temperature_setpoint -> setpoint
+INCORRECT POINT (513_2_3017147) FOUND: supply_air_static_pressure_increase_decrease_step_setpoint -> increase_decrease_step_setpoint
+INCORRECT POINT (513_1_3006943) FOUND: occupied_cooling_min_supply_air_flow_setpoint -> occupied_cooling_supply_air_flow_setpoint
+INCORRECT POINT (514_5_3004142) FOUND: exhaust_fan_disable_command -> fans_stage_command
+INCORRECT POINT (513_1_3004545) FOUND: supply_water_temperature_dead_band_setpoint -> dead_band_setpoint
+INCORRECT POINT (513_1_3007048) FOUND: occupied_cooling_min_supply_air_flow_setpoint -> occupied_cooling_supply_air_flow_setpoint
+INCORRECT POINT (604_1_3012547) FOUND: setpoint -> temperature_setpoint
+INCORRECT POINT (514_1_3011265) FOUND: unoccupied_cooling_supply_air_flow_setpoint -> supply_air_flow_setpoint
+INCORRECT POINT (513_0_3005387) FOUND: current_sensor -> load_current_sensor
+INCORRECT POINT (514_1_3006402) FOUND: exhaust_air_static_pressure_integral_time_setpoint -> static_pressure_integral_time_setpoint
+INCORRECT POINT (514_1_3006865) FOUND: occupied_heating_temperature_setpoint -> setpoint
+INCORRECT POINT (513_1_3006140) FOUND: occupied_cooling_temperature_setpoint -> setpoint
+INCORRECT POINT (513_1_3006025) FOUND: occupied_cooling_temperature_setpoint -> setpoint
+INCORRECT POINT (604_1_3012874) FOUND: occupied_heating_temperature_setpoint -> setpoint
+INCORRECT POINT (604_1_3013679) FOUND: occupied_cooling_min_supply_air_flow_setpoint -> occupied_cooling_supply_air_flow_setpoint
+INCORRECT POINT (514_1_3007159) FOUND: occupied_heating_temperature_setpoint -> setpoint
+INCORRECT POINT (604_1_3012782) FOUND: occupied_cooling_min_supply_air_flow_setpoint -> occupied_cooling_supply_air_flow_setpoint
+INCORRECT POINT (604_1_3013589) FOUND: occupied_cooling_min_supply_air_flow_setpoint -> occupied_cooling_supply_air_flow_setpoint
+INCORRECT POINT (604_1_3012454) FOUND: occupied_cooling_min_supply_air_flow_setpoint -> occupied_cooling_supply_air_flow_setpoint
+INCORRECT POINT (513_1_3004847) FOUND: occupied_cooling_min_supply_air_flow_setpoint -> occupied_cooling_supply_air_flow_setpoint
+INCORRECT POINT (513_1_3004755) FOUND: occupied_cooling_min_supply_air_flow_setpoint -> occupied_cooling_supply_air_flow_setpoint
+INCORRECT POINT (513_1_3007400) FOUND: setpoint -> temperature_setpoint
+INCORRECT POINT (513_1_3004846) FOUND: occupied_cooling_temperature_setpoint -> setpoint
+INCORRECT POINT (513_1_3005261) FOUND: occupied_cooling_min_supply_air_flow_setpoint -> occupied_cooling_supply_air_flow_setpoint
+INCORRECT POINT (513_1_3006026) FOUND: occupied_cooling_min_supply_air_flow_setpoint -> occupied_cooling_supply_air_flow_setpoint
+INCORRECT POINT (604_1_3013304) FOUND: vfd_speed_command -> exhaust_fan_vfd_speed_command
+INCORRECT POINT (604_1_3012438) FOUND: occupied_cooling_temperature_setpoint -> setpoint
+INCORRECT POINT (604_1_3012693) FOUND: setpoint -> temperature_setpoint
+INCORRECT POINT (604_1_3012526) FOUND: occupied_heating_max_supply_air_flow_setpoint -> occupied_heating_supply_air_flow_setpoint
+INCORRECT POINT (604_1_3012528) FOUND: occupied_cooling_temperature_setpoint -> setpoint
+INCORRECT POINT (604_1_3013117) FOUND: occupied_cooling_temperature_setpoint -> setpoint
+INCORRECT POINT (604_1_3013183) FOUND: occupied_cooling_min_supply_air_flow_setpoint -> occupied_cooling_supply_air_flow_setpoint
+INCORRECT POINT (513_1_3006096) FOUND: occupied_heating_min_supply_air_flow_setpoint -> occupied_heating_supply_air_flow_setpoint
+INCORRECT POINT (604_1_3012996) FOUND: occupied_heating_temperature_setpoint -> setpoint
+INCORRECT POINT (513_1_3005982) FOUND: occupied_heating_temperature_setpoint -> setpoint
+INCORRECT POINT (513_1_3005775) FOUND: occupied_heating_temperature_setpoint -> setpoint
+INCORRECT POINT (604_1_3012592) FOUND: occupied_cooling_min_supply_air_flow_setpoint -> occupied_cooling_supply_air_flow_setpoint
+INCORRECT POINT (514_1_3007539) FOUND: exhaust_air_static_pressure_dead_band_setpoint -> static_pressure_dead_band_setpoint
+INCORRECT POINT (513_1_3004800) FOUND: occupied_cooling_temperature_setpoint -> setpoint
+INCORRECT POINT (604_4_3012521) FOUND: occupied_command -> command
+INCORRECT POINT (513_1_3004708) FOUND: occupied_cooling_temperature_setpoint -> setpoint
+INCORRECT POINT (514_1_3007130) FOUND: setpoint -> temperature_setpoint
+INCORRECT POINT (514_1_3006631) FOUND: occupied_heating_temperature_setpoint -> setpoint
+INCORRECT POINT (604_1_3012920) FOUND: occupied_heating_min_supply_air_flow_setpoint -> occupied_heating_supply_air_flow_setpoint
+INCORRECT POINT (604_1_3012978) FOUND: occupied_cooling_temperature_setpoint -> setpoint
+INCORRECT POINT (513_4_3005396) FOUND: run_direction_command -> direction_command
+INCORRECT POINT (513_1_3004918) FOUND: occupied_heating_temperature_setpoint -> setpoint
+INCORRECT POINT (514_0_3006997) FOUND: current_sensor -> load_current_sensor
+INCORRECT POINT (514_1_3009060) FOUND: cooling_max_supply_air_flow_setpoint -> setpoint
+INCORRECT POINT (513_1_3007106) FOUND: setpoint -> temperature_setpoint
+INCORRECT POINT (513_1_3005704) FOUND: occupied_cooling_min_supply_air_flow_setpoint -> occupied_cooling_supply_air_flow_setpoint
+INCORRECT POINT (604_1_3012622) FOUND: occupied_cooling_min_supply_air_flow_setpoint -> occupied_cooling_supply_air_flow_setpoint
+INCORRECT POINT (513_1_3006097) FOUND: occupied_heating_temperature_setpoint -> setpoint
+INCORRECT POINT (604_1_3013355) FOUND: vfd_speed_command -> exhaust_fan_vfd_speed_command
+INCORRECT POINT (514_1_3007030) FOUND: occupied_cooling_min_supply_air_flow_setpoint -> occupied_cooling_supply_air_flow_setpoint
+INCORRECT POINT (513_1_3004824) FOUND: occupied_cooling_min_supply_air_flow_setpoint -> occupied_cooling_supply_air_flow_setpoint
+INCORRECT POINT (513_1_3004555) FOUND: heating_supply_air_temperature_dead_band_setpoint -> supply_air_heating_dead_band_setpoint
+INCORRECT POINT (513_1_3005956) FOUND: occupied_cooling_temperature_setpoint -> setpoint
+INCORRECT POINT (513_1_3006347) FOUND: occupied_cooling_temperature_setpoint -> setpoint
+INCORRECT POINT (514_4_3007010) FOUND: panel_lockout_command -> exhaust_fan_vfd_speed_command
+INCORRECT POINT (604_1_3013269) FOUND: exhaust_air_static_pressure_integral_time_setpoint -> static_pressure_integral_time_setpoint
+INCORRECT POINT (604_1_3013252) FOUND: vfd_command -> exhaust_fan_vfd_speed_command
+INCORRECT POINT (604_4_3013373) FOUND: run_direction_command -> direction_command
+INCORRECT POINT (513_1_3005660) FOUND: occupied_heating_temperature_setpoint -> setpoint
+INCORRECT POINT (604_1_3012779) FOUND: setpoint -> temperature_setpoint
+INCORRECT POINT (604_1_3012411) FOUND: occupied_heating_min_supply_air_flow_setpoint -> occupied_heating_supply_air_flow_setpoint
+INCORRECT POINT (513_1_3007127) FOUND: setpoint -> temperature_setpoint
+INCORRECT POINT (514_14_3009021) FOUND: occupancy_command -> command
+INCORRECT POINT (513_1_3006791) FOUND: setpoint -> temperature_setpoint
+INCORRECT POINT (513_1_3005007) FOUND: occupied_cooling_temperature_setpoint -> setpoint
+INCORRECT POINT (514_1_3006455) FOUND: occupied_cooling_min_supply_air_flow_setpoint -> occupied_cooling_supply_air_flow_setpoint
+INCORRECT POINT (513_1_3007295) FOUND: setpoint -> temperature_setpoint
+INCORRECT POINT (604_1_3012906) FOUND: occupied_heating_temperature_setpoint -> setpoint
+INCORRECT POINT (513_1_3006074) FOUND: occupied_heating_temperature_setpoint -> setpoint
+INCORRECT POINT (604_1_3012564) FOUND: occupied_cooling_min_supply_air_flow_setpoint -> occupied_cooling_supply_air_flow_setpoint
+INCORRECT POINT (514_1_3007029) FOUND: occupied_cooling_temperature_setpoint -> setpoint
+INCORRECT POINT (514_1_3006814) FOUND: occupied_heating_min_supply_air_flow_setpoint -> occupied_heating_supply_air_flow_setpoint
+INCORRECT POINT (513_1_3005820) FOUND: occupied_heating_min_supply_air_flow_setpoint -> occupied_heating_supply_air_flow_setpoint
+INCORRECT POINT (513_1_3004546) FOUND: supply_water_temperature_integral_time_setpoint -> integral_time_setpoint
+INCORRECT POINT (513_1_3005842) FOUND: occupied_cooling_min_supply_air_flow_setpoint -> occupied_cooling_supply_air_flow_setpoint
+INCORRECT POINT (513_3_3012744) FOUND: run_direction_status -> direction_status
+INCORRECT POINT (513_1_3006256) FOUND: occupied_cooling_min_supply_air_flow_setpoint -> occupied_cooling_supply_air_flow_setpoint
+INCORRECT POINT (604_1_3013199) FOUND: occupied_heating_min_supply_air_flow_setpoint -> occupied_heating_supply_air_flow_setpoint
+INCORRECT POINT (514_1_3006375) FOUND: supply_air_static_pressure_dead_band_setpoint -> static_pressure_dead_band_setpoint
+INCORRECT POINT (513_1_3005981) FOUND: occupied_heating_min_supply_air_flow_setpoint -> occupied_heating_supply_air_flow_setpoint
+INCORRECT POINT (513_4_3005440) FOUND: run_direction_command -> direction_command
+INCORRECT POINT (514_1_3006372) FOUND: heat_exchanger_supply_water_temperature_dead_band_setpoint -> dead_band_setpoint
+INCORRECT POINT (513_1_3007405) FOUND: occupied_cooling_min_supply_air_flow_setpoint -> occupied_cooling_supply_air_flow_setpoint
+INCORRECT POINT (513_1_3006117) FOUND: occupied_cooling_temperature_setpoint -> setpoint
+INCORRECT POINT (513_1_3004507) FOUND: hot_water_supply_temperature_setpoint -> setpoint
+INCORRECT POINT (604_1_3012456) FOUND: occupied_heating_temperature_setpoint -> setpoint
+INCORRECT POINT (604_1_3013056) FOUND: occupied_cooling_min_supply_air_flow_setpoint -> occupied_cooling_supply_air_flow_setpoint
+INCORRECT POINT (514_1_3006697) FOUND: occupied_cooling_temperature_setpoint -> setpoint
+INCORRECT POINT (514_1_3007195) FOUND: occupied_heating_temperature_setpoint -> setpoint
+INCORRECT POINT (513_4_3005955) FOUND: occupied_command -> command
+INCORRECT POINT (514_1_3006990) FOUND: vfd_speed_command -> exhaust_fan_vfd_speed_command
+INCORRECT POINT (514_1_3007249) FOUND: occupied_heating_temperature_setpoint -> setpoint
+INCORRECT POINT (513_1_3006707) FOUND: setpoint -> temperature_setpoint
+INCORRECT POINT (513_1_3006419) FOUND: occupied_heating_temperature_setpoint -> setpoint
+INCORRECT POINT (604_1_3013250) FOUND: exhaust_air_static_pressure_proportional_band_setpoint -> static_pressure_proportional_band_setpoint2017-06-05 11:19:32,703 # of not detected tagsets: [86]
+2017-06-05 11:19:32,703 # of learnt but not detected tagsets: [23]
+2017-06-05 11:19:32,741 # total found tagsets in todo: 35
+2017-06-05 11:19:32,741 # unfound tagsets: 86
+2017-06-05 11:19:32,741 # todo tagsets accounting unfound tagsets: 32
+2017-06-05 11:19:32,741 Ratio of correctly found todo srcids: 1.0
+2017-06-05 11:19:33,010 Entity Recognition Get Started.
+2017-06-05 11:19:35,965 Start adding Brick samples
+2017-06-05 11:19:36,159 Finished adding Brick samples
+2017-06-05 11:19:36,160 start tagset vectorizing
+2017-06-05 11:19:36,189 finished tagset vectorizing
+2017-06-05 11:19:40,359 Start learning multi-label classifier
+
+INCORRECT POINT (514_0_3006964) FOUND: zone_temperature_sensor -> temperature_sensor
+INCORRECT POINT (514_1_3007012) FOUND: vfd_speed_command -> exhaust_fan_vfd_speed_command
+INCORRECT POINT (604_1_3013087) FOUND: occupied_cooling_temperature_setpoint -> setpoint
+INCORRECT POINT (513_1_3005238) FOUND: occupied_cooling_min_supply_air_flow_setpoint -> occupied_cooling_supply_air_flow_setpoint
+INCORRECT POINT (513_4_3005378) FOUND: panel_lockout_command -> vfd_speed_command
+INCORRECT POINT (513_1_3006349) FOUND: occupied_heating_min_supply_air_flow_setpoint -> occupied_heating_supply_air_flow_setpoint
+INCORRECT POINT (514_1_3009066) FOUND: occupied_cooling_min_supply_air_flow_setpoint -> setpoint
+INCORRECT POINT (604_3_3013369) FOUND: run_direction_status -> direction_status
+INCORRECT POINT (513_1_3006775) FOUND: occupied_cooling_min_supply_air_flow_setpoint -> occupied_cooling_supply_air_flow_setpoint
+INCORRECT POINT (604_0_3013397) FOUND: current_sensor -> load_current_sensor
+INCORRECT POINT (604_1_3013168) FOUND: occupied_heating_temperature_setpoint -> setpoint
+INCORRECT POINT (604_1_3013153) FOUND: occupied_heating_temperature_setpoint -> setpoint
+INCORRECT POINT (604_4_3013403) FOUND: run_direction_command -> direction_command
+INCORRECT POINT (514_1_3006766) FOUND: occupied_cooling_temperature_setpoint -> setpoint
+INCORRECT POINT (604_1_3013055) FOUND: occupied_cooling_temperature_setpoint -> setpoint
+INCORRECT POINT (513_0_3004530) FOUND: supply_air_static_pressure_sensor -> supply_air_static_pressure_setpoint
+INCORRECT POINT (514_1_3007366) FOUND: occupied_heating_temperature_setpoint -> setpoint
+INCORRECT POINT (514_1_3009029) FOUND: occupied_heating_temperature_setpoint -> setpoint
+INCORRECT POINT (604_1_3013318) FOUND: vfd_speed_command -> exhaust_fan_vfd_speed_command
+INCORRECT POINT (513_1_3007064) FOUND: setpoint -> temperature_setpoint
+INCORRECT POINT (513_1_3005659) FOUND: occupied_heating_min_supply_air_flow_setpoint -> occupied_heating_supply_air_flow_setpoint
+INCORRECT POINT (513_1_3004963) FOUND: occupied_heating_min_supply_air_flow_setpoint -> occupied_heating_supply_air_flow_setpoint
+INCORRECT POINT (513_1_3006393) FOUND: occupied_cooling_temperature_setpoint -> setpoint
+INCORRECT POINT (604_1_3012856) FOUND: occupied_cooling_temperature_setpoint -> setpoint
+INCORRECT POINT (513_1_3005194) FOUND: occupied_heating_temperature_setpoint -> setpoint
+INCORRECT POINT (514_1_3007267) FOUND: occupied_heating_temperature_setpoint -> setpoint
+INCORRECT POINT (604_1_3012409) FOUND: occupied_cooling_temperature_setpoint -> setpoint
+INCORRECT POINT (604_1_3013238) FOUND: exhaust_air_static_pressure_proportional_band_setpoint -> static_pressure_proportional_band_setpoint
+INCORRECT POINT (514_1_3009046) FOUND: occupied_cooling_temperature_setpoint -> setpoint
+INCORRECT POINT (604_1_3013165) FOUND: occupied_cooling_temperature_setpoint -> setpoint
+INCORRECT POINT (604_1_3012995) FOUND: occupied_heating_min_supply_air_flow_setpoint -> occupied_heating_supply_air_flow_setpoint
+------------------------------------result---------------
+point precision: 0.6997690531177829
+point recall: 0.7890625
+rate points not found in source               among sensors where point is not found: 
+	0.0
+sensors where a point is not found:  0.150278293135436 162
+sensors where incorrect points are found:  0.24118738404452691 260
+unknown reason:  0.5612244897959183 605
+invalid points:  51
+-----------
+{'accuracy': 0.5900812039366236,
+ 'hamming_loss': 0.0032850562789868937,
+ 'hierarchy_accuracy': 0.6356940398958436,
+ 'macro_f1': 0.38558411490231193,
+ 'micro_f1': 0.73663208300079797,
+ 'point_correct_cnt': 606,
+ 'point_incorrect_cnt': 260,
+ 'point_precision': 0.6997690531177829,
+ 'point_recall': 0.7890625,
+ 'precision': 0.0009267840593141798,
+ 'subset_accuracy': 0.0009267840593141798,
+ 'unfound_point_cnt': 162,
+ 'weighted_f1': 0.62942383397848845}
+################################# Iter# 1
+history of point precision: [0.6997690531177829]
+history of point recall: [0.7890625]
+history of correct point cnt: [606]
+history of incorrect point cnt: [260]
+history of unfound point cnt: [162]
+history of accuracy: [0.5900812039366236]
+history of micro f1: [0.38558411490231193]
+
+
+################ Iteration 2 ################
+2017-06-05 11:19:41,468 Start augmenting label mat with superclasses
+2017-06-05 11:19:53,181 Finished augmenting label mat with superclasses
+2017-06-05 11:19:54,111 0th learning step
+2017-06-05 11:20:52,082 200th learning step
+2017-06-05 11:21:52,346 400th learning step
+2017-06-05 11:22:40,660 600th learning step
+2017-06-05 11:24:22,175 800th learning step
+2017-06-05 11:24:52,194 Finished learning multi-label classifier
+2017-06-05 11:24:52,199 Start prediction
+2017-06-05 11:24:52,206 Start Tagset prediction
+2017-06-05 11:24:52,206 Start predicting
+2017-06-05 11:24:53,831 Start distilling
+2017-06-05 11:24:59,487 Finished distilling
+2017-06-05 11:24:59,487 Finished predicting
+2017-06-05 11:24:59,487 Finished Tagset prediction
+2017-06-05 11:24:59,487 Start point prediction
+2017-06-05 11:24:59,487 Finished point prediction
+2017-06-05 11:24:59,564 Finished prediction
+2017-06-05 11:24:59,564 Start prediction
+2017-06-05 11:24:59,568 Start Tagset prediction
+2017-06-05 11:24:59,568 Start predicting
+2017-06-05 11:25:00,085 Start distilling
+2017-06-05 11:25:01,658 Finished distilling
+2017-06-05 11:25:01,658 Finished predicting
+2017-06-05 11:25:01,658 Finished Tagset prediction
+2017-06-05 11:25:01,658 Start point prediction
+2017-06-05 11:25:01,658 Finished point prediction
+2017-06-05 11:25:01,680 Finished prediction
+/home/jbkoh/anaconda3/lib/python3.6/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision and F-score are ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/home/jbkoh/anaconda3/lib/python3.6/site-packages/sklearn/metrics/classification.py:1115: UndefinedMetricWarning: Recall and F-score are ill-defined and being set to 0.0 in labels with no true samples.
+  'recall', 'true', average, warn_for)
+2017-06-05 11:25:02,222 Start prediction
+2017-06-05 11:25:02,235 Start Tagset prediction
+2017-06-05 11:25:02,235 Start predicting
+2017-06-05 11:25:04,245 Start distilling
+2017-06-05 11:25:10,963 Finished distilling
+2017-06-05 11:25:10,963 Finished predicting
+2017-06-05 11:25:10,964 Finished Tagset prediction
+2017-06-05 11:25:10,964 Start point prediction
+2017-06-05 11:25:10,964 Finished point prediction
+2017-06-05 11:25:11,053 Finished prediction
+Training Time: 0:05:16.481817
+avg prec: 0.983108367256148
+avg rec: 0.9777694519070231
+avg f1: 0.9795233196210624
+INCORRECT POINT (513_1_3004556) FOUND: heating_supply_air_temperature_proportional_band_setpoint -> supply_air_heating_proportional_band_setpoint
+INCORRECT POINT (513_1_3004556) FOUND: heating_supply_air_temperature_proportional_band_setpoint -> supply_air_heating_proportional_band_setpoint
+INCORRECT POINT (513_1_3004556) FOUND: heating_supply_air_temperature_proportional_band_setpoint -> supply_air_heating_proportional_band_setpoint
+------------------------------------result---------------
+point precision: 0.9878542510121457
+point recall: 0.9799196787148594
+rate points not found in source               among sensors where point is not found: 
+	0.0
+sensors where a point is not found:  0.2 5
+sensors where incorrect points are found:  0.12 3
+unknown reason:  0.36 9
+invalid points:  8
+-----------
+{'accuracy': 0.9784493284493287,
+ 'hamming_loss': 0.00011567379988432615,
+ 'hierarchy_accuracy': 0.9784493284493287,
+ 'macro_f1': 0.95942901581123008,
+ 'micro_f1': 0.99169632265717678,
+ 'point_correct_cnt': 244,
+ 'point_incorrect_cnt': 3,
+ 'point_precision': 0.9878542510121457,
+ 'point_recall': 0.9799196787148594,
+ 'precision': 0.9038461538461539,
+ 'subset_accuracy': 0.9038461538461539,
+ 'unfound_point_cnt': 5,
+ 'weighted_f1': 0.99350805492419636}
+avg prec: [ 0.99728163  0.5332735 ]
+avg rec: [ 0.99782195  0.49820204]
+avg f1: [ 0.99750064  0.5026904 ]
+INCORRECT POINT (513_1_3004894) FOUND: occupied_heating_min_supply_air_flow_setpoint -> occupied_heating_supply_air_flow_setpoint
+INCORRECT POINT (513_1_3005529) FOUND: occupied_cooling_min_supply_air_flow_setpoint -> occupied_cooling_supply_air_flow_setpoint
+INCORRECT POINT (514_1_3009066) FOUND: occupied_cooling_min_supply_air_flow_setpoint -> setpoint
+INCORRECT POINT (513_1_3005704) FOUND: occupied_cooling_min_supply_air_flow_setpoint -> occupied_cooling_supply_air_flow_setpoint
+INCORRECT POINT (513_1_3006881) FOUND: occupied_heating_min_supply_air_flow_setpoint -> heating_supply_air_flow_setpoint
+INCORRECT POINT (514_1_3006412) FOUND: vfd_command -> exhaust_fan_vfd_speed_command
+INCORRECT POINT (604_1_3013570) FOUND: setpoint -> temperature_setpoint
+INCORRECT POINT (604_1_3012991) FOUND: occupied_heating_max_supply_air_flow_setpoint -> occupied_heating_supply_air_flow_setpoint
+INCORRECT POINT (604_4_3013287) FOUND: run_direction_command -> direction_command
+INCORRECT POINT (514_1_3011262) FOUND: unoccupied_cooling_supply_air_flow_setpoint -> supply_air_flow_setpoint
+INCORRECT POINT (514_14_3009021) FOUND: occupancy_command -> occupied_command
+INCORRECT POINT (513_1_3005774) FOUND: occupied_heating_min_supply_air_flow_setpoint -> occupied_heating_supply_air_flow_setpoint
+INCORRECT POINT (513_1_3005348) FOUND: occupied_heating_max_supply_air_flow_setpoint -> occupied_heating_supply_air_flow_setpoint
+INCORRECT POINT (514_0_3006964) FOUND: zone_temperature_sensor -> temperature_sensor
+INCORRECT POINT (513_1_3004865) FOUND: occupied_heating_max_supply_air_flow_setpoint -> occupied_heating_supply_air_flow_setpoint
+INCORRECT POINT (513_1_3005820) FOUND: occupied_heating_min_supply_air_flow_setpoint -> occupied_heating_supply_air_flow_setpoint
+INCORRECT POINT (604_1_3013250) FOUND: exhaust_air_static_pressure_proportional_band_setpoint -> static_pressure_proportional_band_setpoint
+INCORRECT POINT (514_3_3006436) FOUND: power_meter -> steam_usage_meter
+INCORRECT POINT (514_1_3006864) FOUND: occupied_heating_min_supply_air_flow_setpoint -> occupied_heating_supply_air_flow_setpoint
+INCORRECT POINT (513_1_3004934) FOUND: occupied_heating_max_supply_air_flow_setpoint -> occupied_heating_supply_air_flow_setpoint
+INCORRECT POINT (604_1_3013183) FOUND: occupied_cooling_min_supply_air_flow_setpoint -> occupied_cooling_supply_air_flow_setpoint
+INCORRECT POINT (513_0_3012743) FOUND: motor_torque_sensor -> torque_sensor
+INCORRECT POINT (604_1_3013132) FOUND: occupied_heating_max_supply_air_flow_setpoint -> occupied_heating_supply_air_flow_setpoint
+INCORRECT POINT (514_1_3011263) FOUND: unoccupied_cooling_supply_air_flow_setpoint -> supply_air_flow_setpoint
+INCORRECT POINT (513_1_3007238) FOUND: occupied_heating_min_supply_air_flow_setpoint -> heating_supply_air_flow_setpoint
+INCORRECT POINT (514_1_3006482) FOUND: occupied_heating_max_supply_air_flow_setpoint -> occupied_heating_supply_air_flow_setpoint
+INCORRECT POINT (513_1_3006141) FOUND: occupied_cooling_min_supply_air_flow_setpoint -> occupied_cooling_supply_air_flow_setpoint
+INCORRECT POINT (513_1_3007447) FOUND: occupied_cooling_min_supply_air_flow_setpoint -> occupied_cooling_supply_air_flow_setpoint
+INCORRECT POINT (604_0_3013397) FOUND: current_sensor -> load_current_sensor
+INCORRECT POINT (513_1_3004847) FOUND: occupied_cooling_min_supply_air_flow_setpoint -> occupied_cooling_supply_air_flow_setpoint
+INCORRECT POINT (513_1_3006943) FOUND: occupied_cooling_min_supply_air_flow_setpoint -> occupied_cooling_supply_air_flow_setpoint
+INCORRECT POINT (513_0_3004530) FOUND: supply_air_static_pressure_sensor -> supply_air_static_pressure_setpoint
+INCORRECT POINT (513_1_3006791) FOUND: setpoint -> temperature_setpoint
+INCORRECT POINT (604_1_3012531) FOUND: occupied_heating_temperature_setpoint -> setpoint
+INCORRECT POINT (513_1_3004710) FOUND: occupied_heating_min_supply_air_flow_setpoint -> occupied_heating_supply_air_flow_setpoint
+INCORRECT POINT (513_2_3015101) FOUND: chilled_water_differential_pressure_increase_decrease_step_setpoint -> increase_decrease_step_setpoint
+INCORRECT POINT (513_1_3005998) FOUND: occupied_heating_max_supply_air_flow_setpoint -> occupied_heating_supply_air_flow_setpoint
+INCORRECT POINT (513_1_3007048) FOUND: occupied_cooling_min_supply_air_flow_setpoint -> occupied_cooling_supply_air_flow_setpoint
+INCORRECT POINT (604_1_3013272) FOUND: exhaust_air_static_pressure_proportional_band_setpoint -> static_pressure_proportional_band_setpoint
+INCORRECT POINT (604_1_3012411) FOUND: occupied_heating_min_supply_air_flow_setpoint -> occupied_heating_supply_air_flow_setpoint
+INCORRECT POINT (513_1_3006418) FOUND: occupied_heating_min_supply_air_flow_setpoint -> occupied_heating_supply_air_flow_setpoint
+INCORRECT POINT (513_1_3005866) FOUND: occupied_heating_min_supply_air_flow_setpoint -> occupied_heating_supply_air_flow_setpoint
+INCORRECT POINT (604_1_3012797) FOUND: occupied_heating_min_supply_air_flow_setpoint -> heating_supply_air_flow_setpoint
+INCORRECT POINT (513_1_3006734) FOUND: occupied_heating_min_supply_air_flow_setpoint -> heating_supply_air_flow_setpoint
+INCORRECT POINT (604_1_3012564) FOUND: occupied_cooling_min_supply_air_flow_setpoint -> occupied_cooling_supply_air_flow_setpoint
+INCORRECT POINT (513_1_3005550) FOUND: occupied_cooling_min_supply_air_flow_setpoint -> occupied_cooling_supply_air_flow_setpoint
+INCORRECT POINT (604_1_3013119) FOUND: occupied_heating_min_supply_air_flow_setpoint -> occupied_heating_supply_air_flow_setpoint
+INCORRECT POINT (513_1_3004846) FOUND: occupied_cooling_temperature_setpoint -> setpoint
+INCORRECT POINT (604_1_3012916) FOUND: occupied_heating_max_supply_air_flow_setpoint -> occupied_heating_supply_air_flow_setpoint
+INCORRECT POINT (513_1_3007175) FOUND: occupied_heating_min_supply_air_flow_setpoint -> heating_supply_air_flow_setpoint
+INCORRECT POINT (513_1_3004507) FOUND: hot_water_supply_temperature_setpoint -> setpoint
+INCORRECT POINT (513_1_3005956) FOUND: occupied_cooling_temperature_setpoint -> setpoint
+INCORRECT POINT (604_1_3013023) FOUND: occupied_heating_max_supply_air_flow_setpoint -> occupied_heating_supply_air_flow_setpoint
+INCORRECT POINT (513_1_3007322) FOUND: occupied_heating_min_supply_air_flow_setpoint -> heating_supply_air_flow_setpoint
+INCORRECT POINT (604_1_3012841) FOUND: occupied_cooling_min_supply_air_flow_setpoint -> occupied_cooling_supply_air_flow_setpoint
+INCORRECT POINT (514_1_3006455) FOUND: occupied_cooling_min_supply_air_flow_setpoint -> occupied_cooling_supply_air_flow_setpoint
+INCORRECT POINT (513_1_3006412) FOUND: occupied_heating_max_supply_air_flow_setpoint -> occupied_heating_supply_air_flow_setpoint
+INCORRECT POINT (604_1_3014148) FOUND: exhaust_air_static_pressure_proportional_band_setpoint -> static_pressure_proportional_band_setpoint
+INCORRECT POINT (604_1_3012422) FOUND: occupied_heating_max_supply_air_flow_setpoint -> occupied_heating_supply_air_flow_setpoint
+INCORRECT POINT (513_1_3005261) FOUND: occupied_cooling_min_supply_air_flow_setpoint -> occupied_cooling_supply_air_flow_setpoint
+INCORRECT POINT (604_1_3012547) FOUND: setpoint -> temperature_setpoint
+INCORRECT POINT (513_3_3005419) FOUND: run_direction_status -> direction_status
+INCORRECT POINT (604_1_3012592) FOUND: occupied_cooling_min_supply_air_flow_setpoint -> occupied_cooling_supply_air_flow_setpoint
+INCORRECT POINT (513_1_3007006) FOUND: occupied_cooling_min_supply_air_flow_setpoint -> occupied_cooling_supply_air_flow_setpoint
+INCORRECT POINT (513_1_3004616) FOUND: heating_supply_air_temperature_proportional_band_setpoint -> supply_air_heating_proportional_band_setpoint
+INCORRECT POINT (604_1_3012485) FOUND: occupied_heating_min_supply_air_flow_setpoint -> occupied_heating_supply_air_flow_setpoint
+INCORRECT POINT (604_1_3012693) FOUND: setpoint -> temperature_setpoint
+INCORRECT POINT (514_1_3006406) FOUND: exhaust_air_static_pressure_setpoint -> pressure_setpoint
+INCORRECT POINT (513_1_3005551) FOUND: occupied_heating_min_supply_air_flow_setpoint -> heating_supply_air_flow_setpoint
+INCORRECT POINT (513_1_3005284) FOUND: occupied_cooling_min_supply_air_flow_setpoint -> occupied_cooling_supply_air_flow_setpoint
+INCORRECT POINT (604_4_3013403) FOUND: run_direction_command -> direction_command
+INCORRECT POINT (604_1_3013088) FOUND: occupied_cooling_min_supply_air_flow_setpoint -> occupied_cooling_supply_air_flow_setpoint
+INCORRECT POINT (604_1_3012779) FOUND: setpoint -> temperature_setpoint
+INCORRECT POINT (604_1_3012782) FOUND: occupied_cooling_min_supply_air_flow_setpoint -> occupied_cooling_supply_air_flow_setpoint
+INCORRECT POINT (513_0_3005387) FOUND: current_sensor -> load_current_sensor
+INCORRECT POINT (604_1_3012396) FOUND: occupied_heating_min_supply_air_flow_setpoint -> occupied_heating_supply_air_flow_setpoint
+INCORRECT POINT (604_1_3012496) FOUND: occupied_heating_max_supply_air_flow_setpoint -> occupied_heating_supply_air_flow_setpoint
+INCORRECT POINT (514_1_3006375) FOUND: supply_air_static_pressure_dead_band_setpoint -> pressure_setpoint
+INCORRECT POINT (513_1_3004556) FOUND: heating_supply_air_temperature_proportional_band_setpoint -> supply_air_heating_proportional_band_setpoint
+INCORRECT POINT (513_1_3006026) FOUND: occupied_cooling_min_supply_air_flow_setpoint -> occupied_cooling_supply_air_flow_setpoint
+INCORRECT POINT (513_1_3007358) FOUND: setpoint -> temperature_setpoint
+INCORRECT POINT (514_1_3006378) FOUND: cooling_supply_air_temperature_proportional_band_setpoint -> supply_air_temperature_cooling_setpoint
+INCORRECT POINT (514_0_3006997) FOUND: current_sensor -> load_current_sensor
+INCORRECT POINT (604_1_3012979) FOUND: occupied_cooling_min_supply_air_flow_setpoint -> occupied_cooling_supply_air_flow_setpoint
+INCORRECT POINT (513_1_3006256) FOUND: occupied_cooling_min_supply_air_flow_setpoint -> occupied_cooling_supply_air_flow_setpoint
+INCORRECT POINT (513_1_3007064) FOUND: setpoint -> temperature_setpoint
+INCORRECT POINT (604_4_3012538) FOUND: run_direction_command -> direction_command
+INCORRECT POINT (513_1_3006796) FOUND: occupied_cooling_min_supply_air_flow_setpoint -> occupied_cooling_supply_air_flow_setpoint
+INCORRECT POINT (513_1_3007190) FOUND: setpoint -> temperature_setpoint
+INCORRECT POINT (514_1_3011265) FOUND: unoccupied_cooling_supply_air_flow_setpoint -> supply_air_flow_setpoint
+INCORRECT POINT (604_3_3012539) FOUND: run_direction_status -> direction_status
+INCORRECT POINT (513_1_3005238) FOUND: occupied_cooling_min_supply_air_flow_setpoint -> occupied_cooling_supply_air_flow_setpoint
+INCORRECT POINT (513_3_3005441) FOUND: run_direction_status -> direction_status
+INCORRECT POINT (513_1_3006608) FOUND: occupied_heating_min_supply_air_flow_setpoint -> heating_supply_air_flow_setpoint
+INCORRECT POINT (513_1_3005842) FOUND: occupied_cooling_min_supply_air_flow_setpoint -> occupied_cooling_supply_air_flow_setpoint
+INCORRECT POINT (513_1_3005906) FOUND: occupied_heating_max_supply_air_flow_setpoint -> occupied_heating_supply_air_flow_setpoint
+INCORRECT POINT (514_1_3009067) FOUND: occupied_heating_min_supply_air_flow_setpoint -> setpoint
+INCORRECT POINT (604_1_3013214) FOUND: occupied_heating_min_supply_air_flow_setpoint -> occupied_heating_supply_air_flow_setpoint
+INCORRECT POINT (513_1_3007091) FOUND: occupied_heating_min_supply_air_flow_setpoint -> occupied_heating_supply_air_flow_setpoint
+INCORRECT POINT (604_1_3013545) FOUND: occupied_heating_min_supply_air_flow_setpoint -> heating_supply_air_flow_setpoint
+INCORRECT POINT (513_1_3004888) FOUND: occupied_heating_max_supply_air_flow_setpoint -> occupied_heating_supply_air_flow_setpoint
+INCORRECT POINT (604_1_3013589) FOUND: occupied_cooling_min_supply_air_flow_setpoint -> occupied_cooling_supply_air_flow_setpoint
+INCORRECT POINT (513_1_3007385) FOUND: occupied_heating_min_supply_air_flow_setpoint -> heating_supply_air_flow_setpoint
+INCORRECT POINT (514_1_3009060) FOUND: cooling_max_supply_air_flow_setpoint -> setpoint
+INCORRECT POINT (513_4_3005396) FOUND: run_direction_command -> direction_command
+INCORRECT POINT (514_1_3006839) FOUND: occupied_heating_min_supply_air_flow_setpoint -> occupied_heating_supply_air_flow_setpoint
+INCORRECT POINT (513_1_3006923) FOUND: occupied_heating_min_supply_air_flow_setpoint -> heating_supply_air_flow_setpoint
+INCORRECT POINT (604_1_3013530) FOUND: occupied_heating_min_supply_air_flow_setpoint -> heating_supply_air_flow_setpoint
+INCORRECT POINT (513_1_3007406) FOUND: occupied_heating_min_supply_air_flow_setpoint -> heating_supply_air_flow_setpoint
+INCORRECT POINT (604_1_3012653) FOUND: occupied_heating_min_supply_air_flow_setpoint -> heating_supply_air_flow_setpoint
+INCORRECT POINT (513_1_3007127) FOUND: setpoint -> temperature_setpoint
+INCORRECT POINT (513_1_3005751) FOUND: occupied_heating_min_supply_air_flow_setpoint -> occupied_heating_supply_air_flow_setpoint
+INCORRECT POINT (604_1_3012995) FOUND: occupied_heating_min_supply_air_flow_setpoint -> occupied_heating_supply_air_flow_setpoint
+INCORRECT POINT (604_1_3013252) FOUND: vfd_command -> exhaust_fan_vfd_speed_command
+INCORRECT POINT (513_1_3005659) FOUND: occupied_heating_min_supply_air_flow_setpoint -> occupied_heating_supply_air_flow_setpoint
+INCORRECT POINT (513_1_3007106) FOUND: setpoint -> temperature_setpoint
+INCORRECT POINT (604_3_3013369) FOUND: run_direction_status -> direction_status
+INCORRECT POINT (513_1_3004963) FOUND: occupied_heating_min_supply_air_flow_setpoint -> occupied_heating_supply_air_flow_setpoint
+INCORRECT POINT (514_1_3006372) FOUND: heat_exchanger_supply_water_temperature_dead_band_setpoint -> supply_water_temperature_dead_band_setpoint
+INCORRECT POINT (513_2_3004145) FOUND: medium_temperature_hot_water_supply_temperature_low_reset_setpoint -> hot_water_supply_temperature_low_reset_setpoint
+INCORRECT POINT (514_1_3006408) FOUND: exhaust_air_static_pressure_setpoint -> pressure_setpoint
+INCORRECT POINT (604_1_3012827) FOUND: occupied_heating_min_supply_air_flow_setpoint -> heating_supply_air_flow_setpoint
+INCORRECT POINT (513_1_3004778) FOUND: occupied_cooling_min_supply_air_flow_setpoint -> occupied_cooling_supply_air_flow_setpoint
+INCORRECT POINT (513_1_3004755) FOUND: occupied_cooling_min_supply_air_flow_setpoint -> occupied_cooling_supply_air_flow_setpoint
+INCORRECT POINT (604_4_3013349) FOUND: run_direction_command -> direction_command
+INCORRECT POINT (513_1_3006775) FOUND: occupied_cooling_min_supply_air_flow_setpoint -> occupied_cooling_supply_air_flow_setpoint
+INCORRECT POINT (513_1_3007007) FOUND: occupied_heating_min_supply_air_flow_setpoint -> heating_supply_air_flow_setpoint
+INCORRECT POINT (513_2_3016876) FOUND: supply_air_static_pressure_setpoint -> supply_air_temperature_setpoint
+INCORRECT POINT (514_4_3006984) FOUND: run_direction_command -> direction_command
+INCORRECT POINT (514_1_3007343) FOUND: occupied_heating_min_supply_air_flow_setpoint -> heating_supply_air_flow_setpoint
+INCORRECT POINT (513_1_3005101) FOUND: occupied_heating_min_supply_air_flow_setpoint -> occupied_heating_supply_air_flow_setpoint
+INCORRECT POINT (604_1_3013650) FOUND: occupied_heating_min_supply_air_flow_setpoint -> heating_supply_air_flow_setpoint
+INCORRECT POINT (513_1_3006707) FOUND: setpoint -> temperature_setpoint
+INCORRECT POINT (604_4_3013373) FOUND: run_direction_command -> direction_command
+INCORRECT POINT (514_1_3006505) FOUND: occupied_heating_max_supply_air_flow_setpoint -> occupied_heating_supply_air_flow_setpoint
+INCORRECT POINT (604_1_3013238) FOUND: exhaust_air_static_pressure_proportional_band_setpoint -> static_pressure_proportional_band_setpoint
+INCORRECT POINT (604_1_3013057) FOUND: occupied_heating_min_supply_air_flow_setpoint -> occupied_heating_supply_air_flow_setpoint
+INCORRECT POINT (604_1_3012440) FOUND: occupied_heating_min_supply_air_flow_setpoint -> occupied_heating_supply_air_flow_setpoint
+INCORRECT POINT (514_1_3007130) FOUND: setpoint -> temperature_setpoint
+INCORRECT POINT (514_1_3006791) FOUND: occupied_heating_min_supply_air_flow_setpoint -> occupied_heating_supply_air_flow_setpoint
+INCORRECT POINT (604_1_3013103) FOUND: occupied_cooling_min_supply_air_flow_setpoint -> occupied_cooling_supply_air_flow_setpoint
+INCORRECT POINT (514_1_3007539) FOUND: exhaust_air_static_pressure_dead_band_setpoint -> pressure_setpoint
+INCORRECT POINT (513_1_3006671) FOUND: occupied_heating_min_supply_air_flow_setpoint -> heating_supply_air_flow_setpoint
+INCORRECT POINT (604_1_3013679) FOUND: occupied_cooling_min_supply_air_flow_setpoint -> occupied_cooling_supply_air_flow_setpoint
+INCORRECT POINT (604_1_3012965) FOUND: occupied_heating_min_supply_air_flow_setpoint -> occupied_heating_supply_air_flow_setpoint
+INCORRECT POINT (513_1_3007609) FOUND: setpoint -> temperature_setpoint
+INCORRECT POINT (513_1_3005728) FOUND: occupied_heating_min_supply_air_flow_setpoint -> occupied_heating_supply_air_flow_setpoint
+INCORRECT POINT (514_1_3007030) FOUND: occupied_cooling_min_supply_air_flow_setpoint -> occupied_cooling_supply_air_flow_setpoint
+INCORRECT POINT (513_1_3006503) FOUND: occupied_heating_min_supply_air_flow_setpoint -> heating_supply_air_flow_setpoint
+INCORRECT POINT (513_1_3007405) FOUND: occupied_cooling_min_supply_air_flow_setpoint -> occupied_cooling_supply_air_flow_setpoint
+INCORRECT POINT (513_0_3005365) FOUND: current_sensor -> load_current_sensor
+INCORRECT POINT (604_1_3012454) FOUND: occupied_cooling_min_supply_air_flow_setpoint -> occupied_cooling_supply_air_flow_setpoint
+INCORRECT POINT (513_1_3006210) FOUND: occupied_cooling_min_supply_air_flow_setpoint -> occupied_cooling_supply_air_flow_setpoint
+INCORRECT POINT (513_0_3005431) FOUND: current_sensor -> load_current_sensor
+INCORRECT POINT (513_1_3006159) FOUND: occupied_heating_max_supply_air_flow_setpoint -> occupied_heating_supply_air_flow_setpoint
+INCORRECT POINT (514_1_3006931) FOUND: occupied_heating_max_supply_air_flow_setpoint -> occupied_heating_supply_air_flow_setpoint
+INCORRECT POINT (513_1_3007489) FOUND: occupied_cooling_min_supply_air_flow_setpoint -> occupied_cooling_supply_air_flow_setpoint
+INCORRECT POINT (604_1_3012579) FOUND: occupied_heating_min_supply_air_flow_setpoint -> heating_supply_air_flow_setpoint
+INCORRECT POINT (513_1_3007469) FOUND: occupied_heating_min_supply_air_flow_setpoint -> heating_supply_air_flow_setpoint
+INCORRECT POINT (604_1_3013199) FOUND: occupied_heating_min_supply_air_flow_setpoint -> occupied_heating_supply_air_flow_setpoint
+INCORRECT POINT (604_1_3012528) FOUND: occupied_cooling_temperature_setpoint -> setpoint
+INCORRECT POINT (604_0_3013368) FOUND: motor_torque_sensor -> torque_sensor
+INCORRECT POINT (513_1_3006349) FOUND: occupied_heating_min_supply_air_flow_setpoint -> occupied_heating_supply_air_flow_setpoint
+INCORRECT POINT (604_1_3012526) FOUND: occupied_heating_max_supply_air_flow_setpoint -> occupied_heating_supply_air_flow_setpoint
+INCORRECT POINT (604_1_3012869) FOUND: occupied_heating_max_supply_air_flow_setpoint -> occupied_heating_supply_air_flow_setpoint
+INCORRECT POINT (513_1_3006004) FOUND: occupied_heating_min_supply_air_flow_setpoint -> occupied_heating_supply_air_flow_setpoint
+INCORRECT POINT (604_1_3013675) FOUND: setpoint -> temperature_setpoint
+INCORRECT POINT (513_1_3004593) FOUND: supply_air_temperature_setpoint -> temperature_setpoint
+INCORRECT POINT (513_1_3006581) FOUND: setpoint -> temperature_setpoint
+INCORRECT POINT (513_1_3004824) FOUND: occupied_cooling_min_supply_air_flow_setpoint -> occupied_cooling_supply_air_flow_setpoint
+INCORRECT POINT (604_1_3012622) FOUND: occupied_cooling_min_supply_air_flow_setpoint -> occupied_cooling_supply_air_flow_setpoint
+INCORRECT POINT (604_1_3013053) FOUND: occupied_heating_max_supply_air_flow_setpoint -> occupied_heating_supply_air_flow_setpoint
+INCORRECT POINT (513_1_3005699) FOUND: occupied_heating_max_supply_air_flow_setpoint -> occupied_heating_supply_air_flow_setpoint
+INCORRECT POINT (604_1_3013056) FOUND: occupied_cooling_min_supply_air_flow_setpoint -> occupied_cooling_supply_air_flow_setpoint
+INCORRECT POINT (513_1_3007295) FOUND: setpoint -> temperature_setpoint
+INCORRECT POINT (514_5_3004142) FOUND: exhaust_fan_disable_command -> building_exhaust_fans_stage_command
+INCORRECT POINT (513_1_3006117) FOUND: occupied_cooling_temperature_setpoint -> setpoint
+INCORRECT POINT (514_1_3006698) FOUND: occupied_cooling_min_supply_air_flow_setpoint -> occupied_cooling_supply_air_flow_setpoint
+INCORRECT POINT (514_0_3006893) FOUND: zone_temperature_sensor -> temperature_sensor
+INCORRECT POINT (604_1_3012920) FOUND: occupied_heating_min_supply_air_flow_setpoint -> occupied_heating_supply_air_flow_setpoint
+INCORRECT POINT (604_1_3013590) FOUND: occupied_heating_min_supply_air_flow_setpoint -> heating_supply_air_flow_setpoint
+INCORRECT POINT (604_1_3012950) FOUND: occupied_heating_min_supply_air_flow_setpoint -> occupied_heating_supply_air_flow_setpoint
+INCORRECT POINT (513_1_3006692) FOUND: occupied_heating_min_supply_air_flow_setpoint -> heating_supply_air_flow_setpoint
+INCORRECT POINT (604_1_3012593) FOUND: occupied_heating_min_supply_air_flow_setpoint -> heating_supply_air_flow_setpoint
+INCORRECT POINT (513_1_3006754) FOUND: occupied_cooling_min_supply_air_flow_setpoint -> occupied_cooling_supply_air_flow_setpoint
+INCORRECT POINT (513_1_3006164) FOUND: occupied_cooling_min_supply_air_flow_setpoint -> occupied_cooling_supply_air_flow_setpoint
+INCORRECT POINT (513_1_3006797) FOUND: occupied_heating_min_supply_air_flow_setpoint -> heating_supply_air_flow_setpoint
+INCORRECT POINT (513_1_3006902) FOUND: occupied_heating_min_supply_air_flow_setpoint -> heating_supply_air_flow_setpoint
+INCORRECT POINT (604_1_3012456) FOUND: occupied_heating_temperature_setpoint -> setpoint
+INCORRECT POINT (513_1_3006232) FOUND: occupied_cooling_temperature_setpoint -> setpoint
+INCORRECT POINT (513_0_3007079) FOUND: effective_cooling_temperature_setpoint -> supply_air_flow_setpoint
+INCORRECT POINT (514_1_3006814) FOUND: occupied_heating_min_supply_air_flow_setpoint -> occupied_heating_supply_air_flow_setpoint
+INCORRECT POINT (513_1_3007258) FOUND: occupied_cooling_min_supply_air_flow_setpoint -> occupied_cooling_supply_air_flow_setpoint
+INCORRECT POINT (513_1_3006838) FOUND: occupied_cooling_min_supply_air_flow_setpoint -> occupied_cooling_supply_air_flow_setpoint
+INCORRECT POINT (513_4_3005440) FOUND: run_direction_command -> direction_command
+INCORRECT POINT (604_1_3013559) FOUND: occupied_cooling_min_supply_air_flow_setpoint -> occupied_cooling_supply_air_flow_setpoint
+INCORRECT POINT (513_1_3004802) FOUND: occupied_heating_min_supply_air_flow_setpoint -> occupied_heating_supply_air_flow_setpoint
+INCORRECT POINT (604_1_3013210) FOUND: occupied_heating_max_supply_air_flow_setpoint -> occupied_heating_supply_air_flow_setpoint
+INCORRECT POINT (604_4_3013298) FOUND: run_direction_command -> direction_command
+INCORRECT POINT (514_0_3007489) FOUND: last_fault_code_status -> fault_status
+INCORRECT POINT (513_1_3005124) FOUND: occupied_heating_min_supply_air_flow_setpoint -> occupied_heating_supply_air_flow_setpoint
+INCORRECT POINT (514_1_3007053) FOUND: occupied_cooling_min_supply_air_flow_setpoint -> occupied_cooling_supply_air_flow_setpoint
+INCORRECT POINT (513_1_3005981) FOUND: occupied_heating_min_supply_air_flow_setpoint -> occupied_heating_supply_air_flow_setpoint2017-06-05 11:25:11,386 # of not detected tagsets: [86, 72]
+2017-06-05 11:25:11,386 # of learnt but not detected tagsets: [23, 28]
+2017-06-05 11:25:11,395 # total found tagsets in todo: 38
+2017-06-05 11:25:11,395 # unfound tagsets: 72
+2017-06-05 11:25:11,395 # todo tagsets accounting unfound tagsets: 27
+2017-06-05 11:25:11,395 Ratio of correctly found todo srcids: 1.0
+2017-06-05 11:25:11,569 Entity Recognition Get Started.
+2017-06-05 11:25:13,899 Start adding Brick samples
+2017-06-05 11:25:14,035 Finished adding Brick samples
+2017-06-05 11:25:14,035 start tagset vectorizing
+2017-06-05 11:25:14,049 finished tagset vectorizing
+2017-06-05 11:25:17,259 Start learning multi-label classifier
+
+INCORRECT POINT (513_1_3004939) FOUND: occupied_cooling_min_supply_air_flow_setpoint -> occupied_cooling_supply_air_flow_setpoint
+INCORRECT POINT (604_0_3013343) FOUND: current_sensor -> load_current_sensor
+INCORRECT POINT (514_1_3006670) FOUND: occupied_heating_max_supply_air_flow_setpoint -> occupied_heating_supply_air_flow_setpoint
+INCORRECT POINT (604_1_3013228) FOUND: exhaust_air_static_pressure_proportional_band_setpoint -> static_pressure_proportional_band_setpoint
+INCORRECT POINT (513_1_3006096) FOUND: occupied_heating_min_supply_air_flow_setpoint -> occupied_heating_supply_air_flow_setpoint
+INCORRECT POINT (513_3_3012744) FOUND: run_direction_status -> direction_status
+INCORRECT POINT (513_2_3017147) FOUND: supply_air_static_pressure_increase_decrease_step_setpoint -> increase_decrease_step_setpoint
+INCORRECT POINT (604_1_3013233) FOUND: exhaust_air_static_pressure_setpoint -> pressure_setpoint
+INCORRECT POINT (514_3_3007479) FOUND: run_direction_status -> direction_status
+INCORRECT POINT (514_1_3006624) FOUND: occupied_heating_max_supply_air_flow_setpoint -> occupied_heating_supply_air_flow_setpoint
+INCORRECT POINT (513_1_3006251) FOUND: occupied_heating_max_supply_air_flow_setpoint -> occupied_heating_supply_air_flow_setpoint
+INCORRECT POINT (604_1_3012765) FOUND: setpoint -> temperature_setpoint
+INCORRECT POINT (514_0_3006891) FOUND: zone_temperature_sensor -> temperature_sensor
+INCORRECT POINT (513_1_3007400) FOUND: setpoint -> temperature_setpoint
+------------------------------------result---------------
+point precision: 0.7814702920443102
+point recall: 0.9451887941534713
+rate points not found in source               among sensors where point is not found: 
+	0.0
+sensors where a point is not found:  0.1048951048951049 45
+sensors where incorrect points are found:  0.5058275058275058 217
+unknown reason:  0.2937062937062937 126
+invalid points:  41
+-----------
+{'accuracy': 0.900310399105581,
+ 'hamming_loss': 0.0008172821833479519,
+ 'hierarchy_accuracy': 0.9627449357871058,
+ 'macro_f1': 0.50269039716779718,
+ 'micro_f1': 0.94510931336497961,
+ 'point_correct_cnt': 776,
+ 'point_incorrect_cnt': 217,
+ 'point_precision': 0.7814702920443102,
+ 'point_recall': 0.9451887941534713,
+ 'precision': 0.6024096385542169,
+ 'subset_accuracy': 0.6024096385542169,
+ 'unfound_point_cnt': 45,
+ 'weighted_f1': 0.9504398509299723}
+################################# Iter# 2
+history of point precision: [0.6997690531177829, 0.7814702920443102]
+history of point recall: [0.7890625, 0.9451887941534713]
+history of correct point cnt: [606, 776]
+history of incorrect point cnt: [260, 217]
+history of unfound point cnt: [162, 45]
+history of accuracy: [0.5900812039366236, 0.900310399105581]
+history of micro f1: [0.38558411490231193, 0.50269039716779718]
+
+
+################ Iteration 3 ################
+2017-06-05 11:25:17,895 Start augmenting label mat with superclasses
+2017-06-05 11:25:26,515 Finished augmenting label mat with superclasses
+2017-06-05 11:25:27,283 0th learning step
+2017-06-05 11:26:15,129 200th learning step
+2017-06-05 11:27:15,044 400th learning step
+2017-06-05 11:28:07,036 600th learning step
+2017-06-05 11:29:57,729 800th learning step
+2017-06-05 11:30:24,974 Finished learning multi-label classifier
+2017-06-05 11:30:24,979 Start prediction
+2017-06-05 11:30:24,988 Start Tagset prediction
+2017-06-05 11:30:24,989 Start predicting
+2017-06-05 11:30:26,182 Start distilling
+2017-06-05 11:30:31,542 Finished distilling
+2017-06-05 11:30:31,542 Finished predicting
+2017-06-05 11:30:31,542 Finished Tagset prediction
+2017-06-05 11:30:31,542 Start point prediction
+2017-06-05 11:30:31,542 Finished point prediction
+2017-06-05 11:30:31,616 Finished prediction
+2017-06-05 11:30:31,616 Start prediction
+2017-06-05 11:30:31,620 Start Tagset prediction
+2017-06-05 11:30:31,621 Start predicting
+2017-06-05 11:30:32,205 Start distilling
+2017-06-05 11:30:34,023 Finished distilling
+2017-06-05 11:30:34,023 Finished predicting
+2017-06-05 11:30:34,023 Finished Tagset prediction
+2017-06-05 11:30:34,023 Start point prediction
+2017-06-05 11:30:34,023 Finished point prediction
+2017-06-05 11:30:34,049 Finished prediction
+/home/jbkoh/anaconda3/lib/python3.6/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision and F-score are ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/home/jbkoh/anaconda3/lib/python3.6/site-packages/sklearn/metrics/classification.py:1115: UndefinedMetricWarning: Recall and F-score are ill-defined and being set to 0.0 in labels with no true samples.
+  'recall', 'true', average, warn_for)
+2017-06-05 11:30:34,922 Start prediction
+2017-06-05 11:30:34,934 Start Tagset prediction
+2017-06-05 11:30:34,934 Start predicting
+2017-06-05 11:30:36,396 Start distilling
+2017-06-05 11:30:42,760 Finished distilling
+2017-06-05 11:30:42,760 Finished predicting
+2017-06-05 11:30:42,760 Finished Tagset prediction
+2017-06-05 11:30:42,760 Start point prediction
+2017-06-05 11:30:42,760 Finished point prediction
+2017-06-05 11:30:42,846 Finished prediction
+Training Time: 0:05:11.311600
+avg prec: 0.9750609519031955
+avg rec: 0.968499011567467
+avg f1: 0.9706626007133459
+INCORRECT POINT (513_1_3004556) FOUND: heating_supply_air_temperature_proportional_band_setpoint -> supply_air_heating_proportional_band_setpoint
+INCORRECT POINT (513_1_3004556) FOUND: heating_supply_air_temperature_proportional_band_setpoint -> supply_air_heating_proportional_band_setpoint
+INCORRECT POINT (513_1_3004556) FOUND: heating_supply_air_temperature_proportional_band_setpoint -> supply_air_heating_proportional_band_setpoint
+------------------------------------result---------------
+point precision: 0.9900662251655629
+point recall: 0.9739413680781759
+rate points not found in source               among sensors where point is not found: 
+	0.0
+sensors where a point is not found:  0.22857142857142856 8
+sensors where incorrect points are found:  0.08571428571428572 3
+unknown reason:  0.4 14
+invalid points:  10
+-----------
+{'accuracy': 0.9738665674603173,
+ 'hamming_loss': 0.00013426423200859288,
+ 'hierarchy_accuracy': 0.9738665674603173,
+ 'macro_f1': 0.94173107967610625,
+ 'micro_f1': 0.99039846375420071,
+ 'point_correct_cnt': 299,
+ 'point_incorrect_cnt': 3,
+ 'point_precision': 0.9900662251655629,
+ 'point_recall': 0.9739413680781759,
+ 'precision': 0.890625,
+ 'subset_accuracy': 0.890625,
+ 'unfound_point_cnt': 8,
+ 'weighted_f1': 0.99147650477671667}
+avg prec: [ 0.9982731   0.56404262]
+avg rec: [ 0.998519   0.5469544]
+avg f1: [ 0.99836854  0.54733846]
+INCORRECT POINT (604_1_3013210) FOUND: occupied_heating_max_supply_air_flow_setpoint -> occupied_heating_supply_air_flow_setpoint
+INCORRECT POINT (513_1_3006354) FOUND: supply_air_flow_setpoint -> air_flow_setpoint
+INCORRECT POINT (513_1_3004846) FOUND: occupied_cooling_temperature_setpoint -> setpoint
+INCORRECT POINT (514_1_3006461) FOUND: supply_air_flow_setpoint -> air_flow_setpoint
+INCORRECT POINT (604_1_3012683) FOUND: supply_air_flow_setpoint -> air_flow_setpoint
+INCORRECT POINT (513_0_3005431) FOUND: current_sensor -> load_current_sensor
+INCORRECT POINT (604_1_3013053) FOUND: occupied_heating_max_supply_air_flow_setpoint -> occupied_heating_supply_air_flow_setpoint
+INCORRECT POINT (513_3_3005419) FOUND: run_direction_status -> direction_status
+INCORRECT POINT (514_0_3007489) FOUND: last_fault_code_status -> fault_status
+INCORRECT POINT (513_1_3005699) FOUND: occupied_heating_max_supply_air_flow_setpoint -> occupied_heating_supply_air_flow_setpoint
+INCORRECT POINT (513_1_3005152) FOUND: supply_air_flow_setpoint -> air_flow_setpoint
+INCORRECT POINT (513_1_3006251) FOUND: occupied_heating_max_supply_air_flow_setpoint -> occupied_heating_supply_air_flow_setpoint
+INCORRECT POINT (513_4_3005440) FOUND: run_direction_command -> direction_command
+INCORRECT POINT (604_0_3013368) FOUND: motor_torque_sensor -> torque_sensor
+INCORRECT POINT (513_1_3006990) FOUND: supply_air_flow_setpoint -> air_flow_setpoint
+INCORRECT POINT (604_1_3013272) FOUND: exhaust_air_static_pressure_proportional_band_setpoint -> static_pressure_proportional_band_setpoint
+INCORRECT POINT (514_5_3004142) FOUND: exhaust_fan_disable_command -> fans_stage_command
+INCORRECT POINT (514_1_3006624) FOUND: occupied_heating_max_supply_air_flow_setpoint -> occupied_heating_supply_air_flow_setpoint
+INCORRECT POINT (604_0_3013397) FOUND: current_sensor -> load_current_sensor
+INCORRECT POINT (513_0_3007079) FOUND: effective_cooling_temperature_setpoint -> supply_air_flow_setpoint
+INCORRECT POINT (513_1_3005221) FOUND: supply_air_flow_setpoint -> air_flow_setpoint
+INCORRECT POINT (513_1_3006412) FOUND: occupied_heating_max_supply_air_flow_setpoint -> occupied_heating_supply_air_flow_setpoint
+INCORRECT POINT (513_4_3005396) FOUND: run_direction_command -> direction_command
+INCORRECT POINT (513_1_3006791) FOUND: setpoint -> temperature_setpoint
+INCORRECT POINT (604_1_3012743) FOUND: supply_air_flow_setpoint -> air_flow_setpoint
+INCORRECT POINT (513_1_3004888) FOUND: occupied_heating_max_supply_air_flow_setpoint -> occupied_heating_supply_air_flow_setpoint
+INCORRECT POINT (513_1_3006507) FOUND: supply_air_flow_setpoint -> air_flow_setpoint
+INCORRECT POINT (604_1_3013252) FOUND: vfd_command -> exhaust_fan_vfd_speed_command
+INCORRECT POINT (513_0_3005365) FOUND: current_sensor -> load_current_sensor
+INCORRECT POINT (513_1_3006581) FOUND: setpoint -> temperature_setpoint
+INCORRECT POINT (604_1_3013675) FOUND: setpoint -> temperature_setpoint
+INCORRECT POINT (604_1_3012625) FOUND: supply_air_flow_setpoint -> air_flow_setpoint
+INCORRECT POINT (513_1_3004922) FOUND: supply_air_flow_setpoint -> air_flow_setpoint
+INCORRECT POINT (513_1_3004555) FOUND: heating_supply_air_temperature_dead_band_setpoint -> supply_air_heating_dead_band_setpoint
+INCORRECT POINT (604_4_3013403) FOUND: run_direction_command -> direction_command
+INCORRECT POINT (604_0_3013343) FOUND: current_sensor -> load_current_sensor
+INCORRECT POINT (513_1_3005998) FOUND: occupied_heating_max_supply_air_flow_setpoint -> occupied_heating_supply_air_flow_setpoint
+INCORRECT POINT (513_1_3006159) FOUND: occupied_heating_max_supply_air_flow_setpoint -> occupied_heating_supply_air_flow_setpoint
+INCORRECT POINT (604_1_3012908) FOUND: supply_air_flow_setpoint -> air_flow_setpoint
+INCORRECT POINT (513_1_3004968) FOUND: supply_air_flow_setpoint -> air_flow_setpoint
+INCORRECT POINT (604_1_3012456) FOUND: occupied_heating_temperature_setpoint -> setpoint
+INCORRECT POINT (513_1_3007242) FOUND: supply_air_flow_setpoint -> air_flow_setpoint
+INCORRECT POINT (604_1_3012531) FOUND: occupied_heating_temperature_setpoint -> setpoint
+INCORRECT POINT (604_1_3013023) FOUND: occupied_heating_max_supply_air_flow_setpoint -> occupied_heating_supply_air_flow_setpoint
+INCORRECT POINT (513_1_3005290) FOUND: supply_air_flow_setpoint -> air_flow_setpoint
+INCORRECT POINT (513_1_3005348) FOUND: occupied_heating_max_supply_air_flow_setpoint -> occupied_heating_supply_air_flow_setpoint
+INCORRECT POINT (513_1_3006055) FOUND: supply_air_flow_setpoint -> air_flow_setpoint
+INCORRECT POINT (604_1_3012422) FOUND: occupied_heating_max_supply_air_flow_setpoint -> occupied_heating_supply_air_flow_setpoint
+INCORRECT POINT (514_4_3006984) FOUND: run_direction_command -> direction_command
+INCORRECT POINT (514_1_3006931) FOUND: occupied_heating_max_supply_air_flow_setpoint -> occupied_heating_supply_air_flow_setpoint
+INCORRECT POINT (604_1_3012916) FOUND: occupied_heating_max_supply_air_flow_setpoint -> occupied_heating_supply_air_flow_setpoint
+INCORRECT POINT (514_1_3006482) FOUND: occupied_heating_max_supply_air_flow_setpoint -> occupied_heating_supply_air_flow_setpoint
+INCORRECT POINT (604_1_3012829) FOUND: supply_air_flow_setpoint -> air_flow_setpoint
+INCORRECT POINT (513_1_3004507) FOUND: hot_water_supply_temperature_setpoint -> setpoint
+INCORRECT POINT (513_2_3015101) FOUND: chilled_water_differential_pressure_increase_decrease_step_setpoint -> increase_decrease_step_setpoint
+INCORRECT POINT (513_3_3012744) FOUND: run_direction_status -> direction_status
+INCORRECT POINT (513_1_3004934) FOUND: occupied_heating_max_supply_air_flow_setpoint -> occupied_heating_supply_air_flow_setpoint
+INCORRECT POINT (604_1_3013570) FOUND: setpoint -> temperature_setpoint
+INCORRECT POINT (513_1_3007190) FOUND: setpoint -> temperature_setpoint
+INCORRECT POINT (604_1_3013030) FOUND: supply_air_flow_setpoint -> air_flow_setpoint
+INCORRECT POINT (514_1_3011262) FOUND: unoccupied_cooling_supply_air_flow_setpoint -> supply_air_flow_setpoint
+INCORRECT POINT (604_1_3013170) FOUND: supply_air_flow_setpoint -> air_flow_setpoint
+INCORRECT POINT (513_1_3006780) FOUND: supply_air_flow_setpoint -> air_flow_setpoint
+INCORRECT POINT (513_0_3004530) FOUND: supply_air_static_pressure_sensor -> supply_air_static_pressure_setpoint
+INCORRECT POINT (604_1_3012765) FOUND: setpoint -> temperature_setpoint
+INCORRECT POINT (604_1_3012713) FOUND: supply_air_flow_setpoint -> air_flow_setpoint
+INCORRECT POINT (513_1_3004738) FOUND: supply_air_flow_setpoint -> air_flow_setpoint
+INCORRECT POINT (514_1_3007323) FOUND: occupied_cooling_min_supply_air_flow_setpoint -> occupied_cooling_supply_air_flow_setpoint
+INCORRECT POINT (604_1_3014148) FOUND: exhaust_air_static_pressure_proportional_band_setpoint -> static_pressure_proportional_band_setpoint
+INCORRECT POINT (604_1_3013187) FOUND: supply_air_flow_setpoint -> air_flow_setpoint
+INCORRECT POINT (604_1_3013092) FOUND: supply_air_flow_setpoint -> air_flow_setpoint
+INCORRECT POINT (513_1_3004761) FOUND: supply_air_flow_setpoint -> air_flow_setpoint
+INCORRECT POINT (514_1_3011265) FOUND: unoccupied_cooling_supply_air_flow_setpoint -> supply_air_flow_setpoint
+INCORRECT POINT (513_1_3005848) FOUND: supply_air_flow_setpoint -> air_flow_setpoint
+INCORRECT POINT (513_1_3005906) FOUND: occupied_heating_max_supply_air_flow_setpoint -> occupied_heating_supply_air_flow_setpoint
+INCORRECT POINT (604_1_3012547) FOUND: setpoint -> temperature_setpoint
+INCORRECT POINT (513_2_3004145) FOUND: medium_temperature_hot_water_supply_temperature_low_reset_setpoint -> hot_water_supply_temperature_low_reset_setpoint
+INCORRECT POINT (513_1_3006927) FOUND: supply_air_flow_setpoint -> air_flow_setpoint
+INCORRECT POINT (513_1_3006948) FOUND: supply_air_flow_setpoint -> air_flow_setpoint
+INCORRECT POINT (514_1_3006505) FOUND: occupied_heating_max_supply_air_flow_setpoint -> occupied_heating_supply_air_flow_setpoint
+INCORRECT POINT (604_4_3013298) FOUND: run_direction_command -> direction_command
+INCORRECT POINT (513_1_3007116) FOUND: supply_air_flow_setpoint -> air_flow_setpoint
+INCORRECT POINT (514_1_3007282) FOUND: supply_air_flow_setpoint -> air_flow_setpoint
+INCORRECT POINT (604_1_3012699) FOUND: supply_air_flow_setpoint -> air_flow_setpoint
+INCORRECT POINT (604_4_3013287) FOUND: run_direction_command -> direction_command
+INCORRECT POINT (604_1_3012526) FOUND: occupied_heating_max_supply_air_flow_setpoint -> occupied_heating_supply_air_flow_setpoint
+INCORRECT POINT (604_0_3012522) FOUND: effective_cooling_temperature_setpoint -> setpoint
+INCORRECT POINT (604_1_3012429) FOUND: supply_air_flow_setpoint -> air_flow_setpoint
+INCORRECT POINT (514_1_3006378) FOUND: cooling_supply_air_temperature_proportional_band_setpoint -> proportional_band_setpoint
+INCORRECT POINT (604_1_3012876) FOUND: supply_air_flow_setpoint -> air_flow_setpoint
+INCORRECT POINT (604_3_3012539) FOUND: run_direction_status -> direction_status
+INCORRECT POINT (604_1_3012869) FOUND: occupied_heating_max_supply_air_flow_setpoint -> occupied_heating_supply_air_flow_setpoint
+INCORRECT POINT (604_1_3012693) FOUND: setpoint -> temperature_setpoint
+INCORRECT POINT (513_1_3007295) FOUND: setpoint -> temperature_setpoint
+INCORRECT POINT (513_1_3007127) FOUND: setpoint -> temperature_setpoint
+INCORRECT POINT (513_0_3008149) FOUND: outside_air_co2_sensor -> co2_level_sensor
+INCORRECT POINT (604_3_3013369) FOUND: run_direction_status -> direction_status
+INCORRECT POINT (513_1_3004865) FOUND: occupied_heating_max_supply_air_flow_setpoint -> occupied_heating_supply_air_flow_setpoint
+INCORRECT POINT (604_1_3012893) FOUND: supply_air_flow_setpoint -> air_flow_setpoint
+INCORRECT POINT (513_1_3007064) FOUND: setpoint -> temperature_setpoint
+INCORRECT POINT (513_1_3007609) FOUND: setpoint -> temperature_setpoint
+INCORRECT POINT (604_1_3013228) FOUND: exhaust_air_static_pressure_proportional_band_setpoint -> static_pressure_proportional_band_setpoint
+INCORRECT POINT (513_1_3005576) FOUND: supply_air_flow_setpoint -> air_flow_setpoint
+INCORRECT POINT (513_1_3005940) FOUND: supply_air_flow_setpoint -> air_flow_setpoint
+INCORRECT POINT (604_4_3013349) FOUND: run_direction_command -> direction_command
+INCORRECT POINT (604_1_3013015) FOUND: supply_air_flow_setpoint -> air_flow_setpoint
+INCORRECT POINT (514_1_3006670) FOUND: occupied_heating_max_supply_air_flow_setpoint -> occupied_heating_supply_air_flow_setpoint
+INCORRECT POINT (514_1_3006848) FOUND: supply_air_flow_setpoint -> air_flow_setpoint
+INCORRECT POINT (513_1_3007400) FOUND: setpoint -> temperature_setpoint
+INCORRECT POINT (604_4_3013373) FOUND: run_direction_command -> direction_command
+INCORRECT POINT (514_14_3009021) FOUND: occupancy_command -> command
+INCORRECT POINT (604_1_3013238) FOUND: exhaust_air_static_pressure_proportional_band_setpoint -> static_pressure_proportional_band_setpoint
+INCORRECT POINT (513_1_3004616) FOUND: heating_supply_air_temperature_proportional_band_setpoint -> supply_air_heating_proportional_band_setpoint
+INCORRECT POINT (513_0_3005387) FOUND: current_sensor -> load_current_sensor
+INCORRECT POINT (513_2_3017147) FOUND: supply_air_static_pressure_increase_decrease_step_setpoint -> increase_decrease_step_setpoint
+INCORRECT POINT (604_4_3012538) FOUND: run_direction_command -> direction_command
+INCORRECT POINT (513_1_3007179) FOUND: supply_air_flow_setpoint -> air_flow_setpoint
+INCORRECT POINT (514_0_3006997) FOUND: current_sensor -> load_current_sensor
+INCORRECT POINT (514_3_3007479) FOUND: run_direction_status -> direction_status
+INCORRECT POINT (514_1_3006372) FOUND: heat_exchanger_supply_water_temperature_dead_band_setpoint -> supply_water_temperature_dead_band_setpoint
+INCORRECT POINT (513_0_3012743) FOUND: motor_torque_sensor -> torque_sensor
+INCORRECT POINT (513_1_3004556) FOUND: heating_supply_air_temperature_proportional_band_setpoint -> supply_air_heating_proportional_band_setpoint
+INCORRECT POINT (514_1_3011263) FOUND: unoccupied_cooling_supply_air_flow_setpoint -> supply_air_flow_setpoint
+INCORRECT POINT (513_1_3005733) FOUND: supply_air_flow_setpoint -> air_flow_setpoint
+INCORRECT POINT (513_1_3006707) FOUND: setpoint -> temperature_setpoint
+INCORRECT POINT (513_1_3007358) FOUND: setpoint -> temperature_setpoint
+INCORRECT POINT (513_1_3006759) FOUND: supply_air_flow_setpoint -> air_flow_setpoint
+INCORRECT POINT (514_1_3006412) FOUND: vfd_command -> exhaust_fan_vfd_speed_command
+INCORRECT POINT (513_1_3005986) FOUND: supply_air_flow_setpoint -> air_flow_setpoint
+INCORRECT POINT (604_1_3012496) FOUND: occupied_heating_max_supply_air_flow_setpoint -> occupied_heating_supply_air_flow_setpoint
+INCORRECT POINT (514_1_3009060) FOUND: cooling_max_supply_air_flow_setpoint -> setpoint
+INCORRECT POINT (513_1_3005198) FOUND: supply_air_flow_setpoint -> air_flow_setpoint
+INCORRECT POINT (513_1_3005825) FOUND: supply_air_flow_setpoint -> air_flow_setpoint
+INCORRECT POINT (513_1_3007106) FOUND: setpoint -> temperature_setpoint
+INCORRECT POINT (604_1_3013132) FOUND: occupied_heating_max_supply_air_flow_setpoint -> occupied_heating_supply_air_flow_setpoint
+INCORRECT POINT (513_2_3016876) FOUND: supply_air_static_pressure_setpoint -> supply_air_temperature_setpoint
+INCORRECT POINT (604_1_3013250) FOUND: exhaust_air_static_pressure_proportional_band_setpoint -> static_pressure_proportional_band_setpoint
+INCORRECT POINT (514_1_3006375) FOUND: supply_air_static_pressure_dead_band_setpoint -> static_pressure_dead_band_setpoint
+INCORRECT POINT (513_2_3003278) FOUND: supply_air_flow_demand_setpoint -> sensor
+INCORRECT POINT (604_1_3012779) FOUND: setpoint -> temperature_setpoint
+INCORRECT POINT (513_0_3006221) FOUND: effective_cooling_temperature_setpoint -> setpoint
+INCORRECT POINT (514_1_3007130) FOUND: setpoint -> temperature_setpoint
+INCORRECT POINT (514_1_3007539) FOUND: exhaust_air_static_pressure_dead_band_setpoint -> static_pressure_dead_band_setpoint
+INCORRECT POINT (604_1_3012991) FOUND: occupied_heating_max_supply_air_flow_setpoint -> occupied_heating_supply_air_flow_setpoint
+INCORRECT POINT (604_1_3013107) FOUND: supply_air_flow_setpoint -> air_flow_setpoint
+INCORRECT POINT (513_3_3005441) FOUND: run_direction_status -> direction_status
+------------------------------------result---------------
+point precision: 0.8567222767419038
+point recall: 0.9786995515695067
+rate points not found in source               among sensors where point is not found: 
+	0.0
+sensors where a point is not found:  0.06761565836298933 19
+sensors where incorrect points are found:  0.5195729537366548 146
+unknown reason:  0.2669039145907473 75
+invalid points:  41
+-----------
+{'accuracy': 0.9335532606616943,
+ 'hamming_loss': 0.0005285954194369808,
+ 'hierarchy_accuracy': 0.9703413470732752,
+ 'macro_f1': 0.54733846016026111,
+ 'micro_f1': 0.96460707858428307,
+ 'point_correct_cnt': 873,
+ 'point_incorrect_cnt': 146,
+ 'point_precision': 0.8567222767419038,
+ 'point_recall': 0.9786995515695067,
+ 'precision': 0.7395736793327155,
+ 'subset_accuracy': 0.7395736793327155,
+ 2017-06-05 11:30:43,151 # of not detected tagsets: [86, 72, 60]
+2017-06-05 11:30:43,151 # of learnt but not detected tagsets: [23, 28, 27]
+2017-06-05 11:30:43,160 # total found tagsets in todo: 35
+2017-06-05 11:30:43,160 # unfound tagsets: 60
+2017-06-05 11:30:43,160 # todo tagsets accounting unfound tagsets: 23
+2017-06-05 11:30:43,160 Ratio of correctly found todo srcids: 1.0
+2017-06-05 11:30:43,301 Entity Recognition Get Started.
+2017-06-05 11:30:45,243 Start adding Brick samples
+2017-06-05 11:30:45,373 Finished adding Brick samples
+2017-06-05 11:30:45,373 start tagset vectorizing
+2017-06-05 11:30:45,386 finished tagset vectorizing
+2017-06-05 11:30:48,657 Start learning multi-label classifier
+'unfound_point_cnt': 19,
+ 'weighted_f1': 0.97200937956197775}
+################################# Iter# 3
+history of point precision: [0.6997690531177829, 0.7814702920443102, 0.8567222767419038]
+history of point recall: [0.7890625, 0.9451887941534713, 0.9786995515695067]
+history of correct point cnt: [606, 776, 873]
+history of incorrect point cnt: [260, 217, 146]
+history of unfound point cnt: [162, 45, 19]
+history of accuracy: [0.5900812039366236, 0.900310399105581, 0.9335532606616943]
+history of micro f1: [0.38558411490231193, 0.50269039716779718, 0.54733846016026111]
+
+
+################ Iteration 4 ################
+2017-06-05 11:30:49,195 Start augmenting label mat with superclasses
+2017-06-05 11:30:57,911 Finished augmenting label mat with superclasses
+2017-06-05 11:30:58,132 0th learning step
+2017-06-05 11:31:43,845 200th learning step
+2017-06-05 11:32:41,598 400th learning step
+2017-06-05 11:33:29,283 600th learning step
+2017-06-05 11:35:12,949 800th learning step
+2017-06-05 11:35:41,560 Finished learning multi-label classifier
+2017-06-05 11:35:41,566 Start prediction
+2017-06-05 11:35:41,575 Start Tagset prediction
+2017-06-05 11:35:41,575 Start predicting
+2017-06-05 11:35:42,937 Start distilling
+2017-06-05 11:35:48,397 Finished distilling
+2017-06-05 11:35:48,397 Finished predicting
+2017-06-05 11:35:48,397 Finished Tagset prediction
+2017-06-05 11:35:48,397 Start point prediction
+2017-06-05 11:35:48,397 Finished point prediction
+2017-06-05 11:35:48,472 Finished prediction
+2017-06-05 11:35:48,473 Start prediction
+2017-06-05 11:35:48,477 Start Tagset prediction
+2017-06-05 11:35:48,477 Start predicting
+2017-06-05 11:35:49,101 Start distilling
+2017-06-05 11:35:51,411 Finished distilling
+2017-06-05 11:35:51,412 Finished predicting
+2017-06-05 11:35:51,412 Finished Tagset prediction
+2017-06-05 11:35:51,412 Start point prediction
+2017-06-05 11:35:51,412 Finished point prediction
+2017-06-05 11:35:51,444 Finished prediction
+/home/jbkoh/anaconda3/lib/python3.6/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision and F-score are ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/home/jbkoh/anaconda3/lib/python3.6/site-packages/sklearn/metrics/classification.py:1115: UndefinedMetricWarning: Recall and F-score are ill-defined and being set to 0.0 in labels with no true samples.
+  'recall', 'true', average, warn_for)
+2017-06-05 11:35:52,395 Start prediction
+2017-06-05 11:35:52,409 Start Tagset prediction
+2017-06-05 11:35:52,409 Start predicting
+2017-06-05 11:35:54,314 Start distilling
+2017-06-05 11:36:01,032 Finished distilling
+2017-06-05 11:36:01,032 Finished predicting
+2017-06-05 11:36:01,032 Finished Tagset prediction
+2017-06-05 11:36:01,032 Start point prediction
+2017-06-05 11:36:01,032 Finished point prediction
+2017-06-05 11:36:01,119 Finished prediction
+Training Time: 0:04:56.559352
+avg prec: 0.9780336248288045
+avg rec: 0.9721918465330786
+avg f1: 0.9736664890505892
+INCORRECT POINT (604_2_3014444) FOUND: average_exhaust_air_static_pressure_setpoint -> supply_air_temperature_sensor
+INCORRECT POINT (513_1_3004556) FOUND: heating_supply_air_temperature_proportional_band_setpoint -> supply_air_heating_proportional_band_setpoint
+INCORRECT POINT (604_2_3014444) FOUND: average_exhaust_air_static_pressure_setpoint -> supply_air_temperature_sensor
+INCORRECT POINT (604_2_3014444) FOUND: average_exhaust_air_static_pressure_setpoint -> supply_air_temperature_sensor
+INCORRECT POINT (513_1_3004556) FOUND: heating_supply_air_temperature_proportional_band_setpoint -> supply_air_heating_proportional_band_setpoint
+INCORRECT POINT (513_1_3004556) FOUND: heating_supply_air_temperature_proportional_band_setpoint -> supply_air_heating_proportional_band_setpoint
+------------------------------------result---------------
+point precision: 0.9831932773109243
+point recall: 0.9722991689750693
+rate points not found in source               among sensors where point is not found: 
+	0.0
+sensors where a point is not found:  0.2564102564102564 10
+sensors where incorrect points are found:  0.15384615384615385 6
+unknown reason:  0.2564102564102564 10
+invalid points:  13
+-----------
+{'accuracy': 0.9742710944026732,
+ 'hamming_loss': 0.0001300243088925321,
+ 'hierarchy_accuracy': 0.9742710944026732,
+ 'macro_f1': 0.94770452320587661,
+ 'micro_f1': 0.9905853458862055,
+ 'point_correct_cnt': 351,
+ 'point_incorrect_cnt': 6,
+ 'point_precision': 0.9831932773109243,
+ 'point_recall': 0.9722991689750693,
+ 'precision': 0.8973684210526316,
+ 'subset_accuracy': 0.8973684210526316,
+ 'unfound_point_cnt': 10,
+ 'weighted_f1': 0.99044332284289449}
+avg prec: [ 0.9984815   0.61793453]
+avg rec: [ 0.99868953  0.6181957 ]
+avg f1: [ 0.9985563   0.60898583]
+INCORRECT POINT (514_0_3007489) FOUND: last_fault_code_status -> fault_status
+INCORRECT POINT (513_1_3007190) FOUND: setpoint -> temperature_setpoint
+INCORRECT POINT (513_0_3007079) FOUND: effective_cooling_temperature_setpoint -> supply_air_flow_setpoint
+INCORRECT POINT (514_1_3006375) FOUND: supply_air_static_pressure_dead_band_setpoint -> static_pressure_dead_band_setpoint
+INCORRECT POINT (513_1_3004556) FOUND: heating_supply_air_temperature_proportional_band_setpoint -> supply_air_heating_proportional_band_setpoint
+INCORRECT POINT (513_1_3005487) FOUND: max_frequency_command -> output_frequency_sensor
+INCORRECT POINT (604_4_3013287) FOUND: run_direction_command -> direction_command
+INCORRECT POINT (604_4_3013403) FOUND: run_direction_command -> direction_command
+INCORRECT POINT (604_1_3012547) FOUND: setpoint -> temperature_setpoint
+INCORRECT POINT (514_1_3006987) FOUND: max_frequency_command -> output_frequency_sensor
+INCORRECT POINT (514_1_3006412) FOUND: vfd_command -> exhaust_fan_vfd_speed_command
+INCORRECT POINT (514_2_3010336) FOUND: supply_air_temperature_reset_differential_setpoint -> differential_temperature_sensor
+INCORRECT POINT (513_1_3006581) FOUND: setpoint -> temperature_setpoint
+INCORRECT POINT (513_2_3017147) FOUND: supply_air_static_pressure_increase_decrease_step_setpoint -> increase_decrease_step_setpoint
+INCORRECT POINT (513_4_3005440) FOUND: run_direction_command -> direction_command
+INCORRECT POINT (513_1_3004616) FOUND: heating_supply_air_temperature_proportional_band_setpoint -> supply_air_heating_proportional_band_setpoint
+INCORRECT POINT (513_1_3004555) FOUND: heating_supply_air_temperature_dead_band_setpoint -> dead_band_setpoint
+INCORRECT POINT (604_1_3014148) FOUND: exhaust_air_static_pressure_proportional_band_setpoint -> static_pressure_proportional_band_setpoint
+INCORRECT POINT (604_2_3014444) FOUND: average_exhaust_air_static_pressure_setpoint -> supply_air_temperature_sensor
+INCORRECT POINT (514_4_3006984) FOUND: run_direction_command -> direction_command
+INCORRECT POINT (604_0_3013368) FOUND: motor_torque_sensor -> torque_sensor
+INCORRECT POINT (513_1_3006791) FOUND: setpoint -> temperature_setpoint
+INCORRECT POINT (513_1_3007295) FOUND: setpoint -> temperature_setpoint
+INCORRECT POINT (513_2_3003278) FOUND: supply_air_flow_demand_setpoint -> sensor
+INCORRECT POINT (604_3_3012539) FOUND: run_direction_status -> direction_status
+INCORRECT POINT (604_1_3013228) FOUND: exhaust_air_static_pressure_proportional_band_setpoint -> static_pressure_proportional_band_setpoint
+INCORRECT POINT (514_1_3006372) FOUND: heat_exchanger_supply_water_temperature_dead_band_setpoint -> supply_water_temperature_dead_band_setpoint
+INCORRECT POINT (513_4_3005396) FOUND: run_direction_command -> direction_command
+INCORRECT POINT (604_1_3012779) FOUND: setpoint -> temperature_setpoint
+INCORRECT POINT (604_1_3013272) FOUND: exhaust_air_static_pressure_proportional_band_setpoint -> static_pressure_proportional_band_setpoint
+INCORRECT POINT (604_4_3012538) FOUND: run_direction_command -> direction_command
+INCORRECT POINT (604_1_3013250) FOUND: exhaust_air_static_pressure_proportional_band_setpoint -> static_pressure_proportional_band_setpoint
+INCORRECT POINT (513_0_3004530) FOUND: supply_air_static_pressure_sensor -> supply_air_static_pressure_setpoint
+INCORRECT POINT (513_2_3016876) FOUND: supply_air_static_pressure_setpoint -> supply_air_temperature_setpoint
+INCORRECT POINT (513_3_3005419) FOUND: run_direction_status -> direction_status
+INCORRECT POINT (514_1_3009060) FOUND: cooling_max_supply_air_flow_setpoint -> cooling_temperature_setpoint
+INCORRECT POINT (513_1_3004507) FOUND: hot_water_supply_temperature_setpoint -> setpoint
+INCORRECT POINT (604_3_3013369) FOUND: run_direction_status -> direction_status
+INCORRECT POINT (513_3_3012744) FOUND: run_direction_status -> direction_status
+INCORRECT POINT (513_1_3005399) FOUND: max_frequency_command -> output_frequency_sensor
+INCORRECT POINT (514_1_3007539) FOUND: exhaust_air_static_pressure_dead_band_setpoint -> static_pressure_dead_band_setpoint
+INCORRECT POINT (604_1_3013675) FOUND: setpoint -> temperature_setpoint
+INCORRECT POINT (513_1_3007106) FOUND: setpoint -> temperature_setpoint
+INCORRECT POINT (513_1_3007127) FOUND: setpoint -> temperature_setpoint
+INCORRECT POINT (513_0_3012743) FOUND: motor_torque_sensor -> torque_sensor
+INCORRECT POINT (513_1_3007064) FOUND: setpoint -> temperature_setpoint
+INCORRECT POINT (513_1_3007400) FOUND: setpoint -> temperature_setpoint
+INCORRECT POINT (513_3_3005441) FOUND: run_direction_status -> direction_status
+INCORRECT POINT (604_4_3013373) FOUND: run_direction_command -> direction_command
+INCORRECT POINT (513_1_3007358) FOUND: setpoint -> temperature_setpoint
+INCORRECT POINT (604_1_3013238) FOUND: exhaust_air_static_pressure_proportional_band_setpoint -> static_pressure_proportional_band_setpoint
+INCORRECT POINT (604_4_3013298) FOUND: run_direction_command -> direction_command
+INCORRECT POINT (514_14_3009021) FOUND: occupancy_command -> command
+INCORRECT POINT (514_1_3006378) FOUND: cooling_supply_air_temperature_proportional_band_setpoint -> proportional_band_setpoint
+INCORRECT POINT (513_1_3006707) FOUND: setpoint -> temperature_setpoint
+INCORRECT POINT (604_1_3013570) FOUND: setpoint -> temperature_setpoint
+INCORRECT POINT (604_1_3013252) FOUND: vfd_command -> exhaust_fan_vfd_speed_command
+INCORRECT POINT (604_4_3013349) FOUND: run_direction_command -> direction_command
+INCORRECT POINT (514_3_3007479) FOUND: run_direction_status -> direction_status
+INCORRECT POINT (514_1_3007130) FOUND: setpoint -> temperature_setpoint
+INCORRECT POINT (604_1_3012765) FOUND: setpoint -> temperature_setpoint
+INCORRECT POINT (604_1_3012693) FOUND: setpoint -> temperature_setpoint
+INCORRECT POINT (513_1_3007609) FOUND: setpoint -> temperature_setpoint
+------------------------------------result---------------
+point precision: 0.938715953307393
+point recall: 0.9897435897435898
+rate points not found in source               among sensors where point is not found: 
+	0.0
+sensors where a point is not found:  0.043859649122807015 10
+sensors where incorrect points are found:  0.27631578947368424 63
+unknown reason:  0.5 114
+invalid points:  41
+-----------
+{'accuracy': 0.946379657825442,
+ 'hamming_loss': 0.00043900297546461012017-06-05 11:36:01,422 # of not detected tagsets: [86, 72, 60, 47]
+2017-06-05 11:36:01,422 # of learnt but not detected tagsets: [23, 28, 27, 23]
+2017-06-05 11:36:01,428 # total found tagsets in todo: 35
+2017-06-05 11:36:01,428 # unfound tagsets: 47
+2017-06-05 11:36:01,428 # todo tagsets accounting unfound tagsets: 19
+2017-06-05 11:36:01,428 Ratio of correctly found todo srcids: 1.0
+2017-06-05 11:36:01,573 Entity Recognition Get Started.
+2017-06-05 11:36:03,623 Start adding Brick samples
+2017-06-05 11:36:03,755 Finished adding Brick samples
+2017-06-05 11:36:03,755 start tagset vectorizing
+2017-06-05 11:36:03,769 finished tagset vectorizing
+2017-06-05 11:36:07,188 Start learning multi-label classifier
+,
+ 'hierarchy_accuracy': 0.9758591141121266,
+ 'macro_f1': 0.60898583187308652,
+ 'micro_f1': 0.97062154420091928,
+ 'point_correct_cnt': 965,
+ 'point_incorrect_cnt': 63,
+ 'point_precision': 0.938715953307393,
+ 'point_recall': 0.9897435897435898,
+ 'precision': 0.788693234476367,
+ 'subset_accuracy': 0.788693234476367,
+ 'unfound_point_cnt': 10,
+ 'weighted_f1': 0.97716804426982007}
+################################# Iter# 4
+history of point precision: [0.6997690531177829, 0.7814702920443102, 0.8567222767419038, 0.938715953307393]
+history of point recall: [0.7890625, 0.9451887941534713, 0.9786995515695067, 0.9897435897435898]
+history of correct point cnt: [606, 776, 873, 965]
+history of incorrect point cnt: [260, 217, 146, 63]
+history of unfound point cnt: [162, 45, 19, 10]
+history of accuracy: [0.5900812039366236, 0.900310399105581, 0.9335532606616943, 0.946379657825442]
+history of micro f1: [0.38558411490231193, 0.50269039716779718, 0.54733846016026111, 0.60898583187308652]
+
+
+################ Iteration 5 ################
+2017-06-05 11:36:07,731 Start augmenting label mat with superclasses
+2017-06-05 11:36:16,982 Finished augmenting label mat with superclasses
+2017-06-05 11:36:17,211 0th learning step
+2017-06-05 11:37:05,760 200th learning step
+2017-06-05 11:38:06,374 400th learning step
+2017-06-05 11:38:56,419 600th learning step
+2017-06-05 11:40:42,291 800th learning step
+2017-06-05 11:41:14,643 Finished learning multi-label classifier
+2017-06-05 11:41:14,647 Start prediction
+2017-06-05 11:41:14,654 Start Tagset prediction
+2017-06-05 11:41:14,654 Start predicting
+2017-06-05 11:41:15,835 Start distilling
+2017-06-05 11:41:21,192 Finished distilling
+2017-06-05 11:41:21,192 Finished predicting
+2017-06-05 11:41:21,192 Finished Tagset prediction
+2017-06-05 11:41:21,192 Start point prediction
+2017-06-05 11:41:21,192 Finished point prediction
+2017-06-05 11:41:21,265 Finished prediction
+2017-06-05 11:41:21,266 Start prediction
+2017-06-05 11:41:21,271 Start Tagset prediction
+2017-06-05 11:41:21,271 Start predicting
+2017-06-05 11:41:21,852 Start distilling
+2017-06-05 11:41:24,399 Finished distilling
+2017-06-05 11:41:24,399 Finished predicting
+2017-06-05 11:41:24,399 Finished Tagset prediction
+2017-06-05 11:41:24,399 Start point prediction
+2017-06-05 11:41:24,399 Finished point prediction
+2017-06-05 11:41:24,435 Finished prediction
+/home/jbkoh/anaconda3/lib/python3.6/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision and F-score are ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/home/jbkoh/anaconda3/lib/python3.6/site-packages/sklearn/metrics/classification.py:1115: UndefinedMetricWarning: Recall and F-score are ill-defined and being set to 0.0 in labels with no true samples.
+  'recall', 'true', average, warn_for)
+2017-06-05 11:41:25,356 Start prediction
+2017-06-05 11:41:25,368 Start Tagset prediction
+2017-06-05 11:41:25,368 Start predicting
+2017-06-05 11:41:26,851 Start distilling
+2017-06-05 11:41:33,024 Finished distilling
+2017-06-05 11:41:33,024 Finished predicting
+2017-06-05 11:41:33,024 Finished Tagset prediction
+2017-06-05 11:41:33,024 Start point prediction
+2017-06-05 11:41:33,024 Finished point prediction
+2017-06-05 11:41:33,115 Finished prediction
+Training Time: 0:05:11.285157
+avg prec: 0.9786499628708166
+avg rec: 0.9712115497392693
+avg f1: 0.9738254698104442
+INCORRECT POINT (513_2_3004145) FOUND: medium_temperature_hot_water_supply_temperature_low_reset_setpoint -> supply_water_temperature_setpoint
+INCORRECT POINT (513_1_3004616) FOUND: heating_supply_air_temperature_proportional_band_setpoint -> supply_air_heating_proportional_band_setpoint
+INCORRECT POINT (513_1_3004556) FOUND: heating_supply_air_temperature_proportional_band_setpoint -> supply_air_heating_proportional_band_setpoint
+INCORRECT POINT (513_2_3004145) FOUND: medium_temperature_hot_water_supply_temperature_low_reset_setpoint -> supply_water_temperature_setpoint
+INCORRECT POINT (513_1_3004555) FOUND: heating_supply_air_temperature_dead_band_setpoint -> supply_air_heating_dead_band_setpoint
+INCORRECT POINT (513_1_3004555) FOUND: heating_supply_air_temperature_dead_band_setpoint -> supply_air_heating_dead_band_setpoint
+INCORRECT POINT (513_1_3004556) FOUND: heating_supply_air_temperature_proportional_band_setpoint -> supply_air_heating_proportional_band_setpoint
+INCORRECT POINT (513_1_3004556) FOUND: heating_supply_air_temperature_proportional_band_setpoint -> supply_air_heating_proportional_band_setpoint
+INCORRECT POINT (513_1_3004555) FOUND: heating_supply_air_temperature_dead_band_setpoint -> supply_air_heating_dead_band_setpoint
+INCORRECT POINT (513_1_3004616) FOUND: heating_supply_air_temperature_proportional_band_setpoint -> supply_air_heating_proportional_band_setpoint
+INCORRECT POINT (513_2_3004145) FOUND: medium_temperature_hot_water_supply_temperature_low_reset_setpoint -> supply_water_temperature_setpoint
+INCORRECT POINT (513_1_3004616) FOUND: heating_supply_air_temperature_proportional_band_setpoint -> supply_air_heating_proportional_band_setpoint
+------------------------------------result---------------
+point precision: 0.9710843373493976
+point recall: 0.9829268292682927
+rate points not found in source               among sensors where point is not found: 
+	0.0
+sensors where a point is not found:  0.1206896551724138 7
+sensors where incorrect points are found:  0.20689655172413793 12
+unknown reason:  0.3620689655172414 21
+invalid points:  18
+-----------
+{'accuracy': 0.9687752525252524,
+ 'hamming_loss': 0.00014891123913680316,
+ 'hierarchy_accuracy': 0.9687752525252524,
+ 'macro_f1': 0.94803333490249342,
+ 'micro_f1': 0.98891513719789215,
+ 'point_correct_cnt': 403,
+ 'point_incorrect_cnt': 12,
+ 'point_precision': 0.9710843373493976,
+ 'point_recall': 0.9829268292682927,
+ 'precision': 0.8681818181818182,
+ 'subset_accuracy': 0.8681818181818182,
+ 'unfound_point_cnt': 7,
+ 'weighted_f1': 0.9931923921917819}
+avg prec: [ 0.99874329  0.7176419 ]
+avg rec: [ 0.9990384   0.70709111]
+avg f1: [ 0.99886866  0.7078784 ]
+INCORRECT POINT (604_4_3013298) FOUND: run_direction_command -> direction_command
+INCORRECT POINT (514_1_3007130) FOUND: setpoint -> temperature_setpoint
+INCORRECT POINT (514_3_3007479) FOUND: run_direction_status -> direction_status
+INCORRECT POINT (513_1_3007400) FOUND: setpoint -> temperature_setpoint
+INCORRECT POINT (514_1_3007012) FOUND: vfd_speed_command -> exhaust_fan_vfd_speed_command
+INCORRECT POINT (513_1_3007190) FOUND: setpoint -> temperature_setpoint
+INCORRECT POINT (604_1_3013675) FOUND: setpoint -> temperature_setpoint
+INCORRECT POINT (513_4_3005396) FOUND: run_direction_command -> direction_command
+INCORRECT POINT (604_4_3013287) FOUND: run_direction_command -> direction_command
+INCORRECT POINT (514_0_3007489) FOUND: last_fault_code_status -> fault_status
+INCORRECT POINT (513_1_3006791) FOUND: setpoint -> temperature_setpoint
+INCORRECT POINT (514_1_3006412) FOUND: vfd_command -> exhaust_fan_vfd_speed_command
+INCORRECT POINT (604_1_3013304) FOUND: vfd_speed_command -> exhaust_fan_vfd_speed_command
+INCORRECT POINT (513_1_3007064) FOUND: setpoint -> temperature_setpoint
+INCORRECT POINT (513_1_3006581) FOUND: setpoint -> temperature_setpoint
+INCORRECT POINT (513_1_3007106) FOUND: setpoint -> temperature_setpoint
+INCORRECT POINT (513_1_3004507) FOUND: hot_water_supply_temperature_setpoint -> setpoint
+INCORRECT POINT (604_1_3012693) FOUND: setpoint -> temperature_setpoint
+INCORRECT POINT (604_1_3013252) FOUND: vfd_command -> exhaust_fan_vfd_speed_command
+INCORRECT POINT (604_0_3013368) FOUND: motor_torque_sensor -> torque_sensor
+INCORRECT POINT (604_4_3013349) FOUND: run_direction_command -> direction_command
+INCORRECT POINT (513_3_3005441) FOUND: run_direction_status -> direction_status
+INCORRECT POINT (514_1_3006372) FOUND: heat_exchanger_supply_water_temperature_dead_band_setpoint -> supply_water_temperature_dead_band_setpoint
+INCORRECT POINT (604_3_3013369) FOUND: run_direction_status -> direction_status
+INCORRECT POINT (513_1_3004593) FOUND: supply_air_temperature_setpoint -> temperature_setpoint
+INCORRECT POINT (513_0_3004530) FOUND: supply_air_static_pressure_sensor -> supply_air_static_pressure_setpoint
+INCORRECT POINT (514_14_3009021) FOUND: occupancy_command -> command
+INCORRECT POINT (604_4_3013403) FOUND: run_direction_command -> direction_command
+INCORRECT POINT (513_1_3007127) FOUND: setpoint -> temperature_setpoint
+INCORRECT POINT (604_1_3012779) FOUND: setpoint -> temperature_setpoint
+INCORRECT POINT (604_1_3013355) FOUND: vfd_speed_command -> exhaust_fan_vfd_speed_command
+INCORRECT POINT (513_3_3004631) FOUND: exhaust_fan_status -> sensor
+INCORRECT POINT (514_1_3009060) FOUND: cooling_max_supply_air_flow_setpoint -> cooling_temperature_setpoint
+INCORRECT POINT (514_1_3006378) FOUND: cooling_supply_air_temperature_proportional_band_setpoint -> supply_air_temperature_cooling_setpoint
+INCORRECT POINT (513_0_3008149) FOUND: outside_air_co2_sensor -> co2_level_sensor
+INCORRECT POINT (513_1_3007609) FOUND: setpoint -> temperature_setpoint
+INCORRECT POINT (513_2_3016876) FOUND: supply_air_static_pressure_setpoint -> supply_air_temperature_setpoint
+INCORRECT POINT (513_1_3004555) FOUND: heating_supply_air_temperature_dead_band_setpoint -> supply_air_heating_dead_band_setpoint
+INCORRECT POINT (513_1_3007358) FOUND: setpoint -> temperature_setpoint
+INCORRECT POINT (514_1_3006990) FOUND: vfd_speed_command -> exhaust_fan_vfd_speed_command
+INCORRECT POINT (513_1_3007295) FOUND: setpoint -> temperature_setpoint
+INCORRECT POINT (604_4_3013373) FOUND: run_direction_command -> direction_command
+INCORRECT POINT (513_3_3012744) FOUND: run_direction_status -> direction_status
+INCORRECT POINT (513_3_3005419) FOUND: run_direction_status -> direction_status
+INCORRECT POINT (513_1_3006707) FOUND: setpoint -> temperature_setpoint
+INCORRECT POINT (513_4_3005440) FOUND: run_direction_command -> direction_command
+INCORRECT POINT (604_1_3012765) FOUND: setpoint -> temperature_setpoint
+INCORRECT POINT (604_1_3013570) FOUND: setpoint -> temperature_setpoint
+INCORRECT POINT (513_1_3004616) FOUND: heating_supply_air_temperature_proportional_band_setpoint -> supply_air_heating_proportional_band_setpoint
+INCORRECT POINT (604_1_3013318) FOUND: vfd_speed_command -> exhaust_fan_vfd_speed_command
+INCORRECT POINT (513_0_3007079) FOUND: effective_cooling_temperature_setpoint -> supply_air_flow_setpoint
+INCORRECT POINT (604_4_3012538) FOUND: run_direction_command -> direction_command
+INCORRECT POINT (604_1_3012547) FOUND: setpoint -> temperature_setpoint
+INCORRECT POINT (514_4_3006984) FOUND: run_direction_command -> direction_command
+INCORRECT POINT (513_2_3004145) FOUND: medium_temperature_hot_water_supply_temperature_low_reset_setpoint -> supply_water_temperature_setpoint
+INCORRECT POINT (604_3_3012539) FOUND: run_direction_status -> direction_status
+INCORRECT POINT (514_3_3006427) FOUND: exhaust_fan_status -> sensor
+INCORRECT POINT (513_1_3004556) FOUND: heating_supply_air_temperature_proportional_band_setpoint -> supply_air_heating_proportional_band_setpoint
+INCORRECT POINT (513_0_3012743) FOUND: motor_torque_sensor -> torque_sensor
+------------------------------------result---------------
+point precision: 0.9429400386847195
+point recall: 0.9938837920489296
+rate points not found in source               among sensors where point is not found: 
+	0.0
+sensors where a point is not found:  0.036585365853658534 6
+sensors where incorrect points are found: 2017-06-05 11:41:33,403 # of not detected tagsets: [86, 72, 60, 47, 41]
+2017-06-05 11:41:33,403 # of learnt but not detected tagsets: [23, 28, 27, 23, 24]
+2017-06-05 11:41:33,407 # total found tagsets in todo: 28
+2017-06-05 11:41:33,407 # unfound tagsets: 41
+2017-06-05 11:41:33,407 # todo tagsets accounting unfound tagsets: 16
+2017-06-05 11:41:33,407 Ratio of correctly found todo srcids: 1.0
+2017-06-05 11:41:33,550 Entity Recognition Get Started.
+2017-06-05 11:41:35,588 Start adding Brick samples
+2017-06-05 11:41:35,720 Finished adding Brick samples
+2017-06-05 11:41:35,721 start tagset vectorizing
+2017-06-05 11:41:35,735 finished tagset vectorizing
+2017-06-05 11:41:39,249 Start learning multi-label classifier
+ 0.3597560975609756 59
+unknown reason:  0.36585365853658536 60
+invalid points:  39
+-----------
+{'accuracy': 0.9618558483016314,
+ 'hamming_loss': 0.0003046143095060568,
+ 'hierarchy_accuracy': 0.9808451755740916,
+ 'macro_f1': 0.70787839552846255,
+ 'micro_f1': 0.97959727963728493,
+ 'point_correct_cnt': 975,
+ 'point_incorrect_cnt': 59,
+ 'point_precision': 0.9429400386847195,
+ 'point_recall': 0.9938837920489296,
+ 'precision': 0.8480074142724745,
+ 'subset_accuracy': 0.8480074142724745,
+ 'unfound_point_cnt': 6,
+ 'weighted_f1': 0.98584205595502683}
+################################# Iter# 5
+history of point precision: [0.6997690531177829, 0.7814702920443102, 0.8567222767419038, 0.938715953307393, 0.9429400386847195]
+history of point recall: [0.7890625, 0.9451887941534713, 0.9786995515695067, 0.9897435897435898, 0.9938837920489296]
+history of correct point cnt: [606, 776, 873, 965, 975]
+history of incorrect point cnt: [260, 217, 146, 63, 59]
+history of unfound point cnt: [162, 45, 19, 10, 6]
+history of accuracy: [0.5900812039366236, 0.900310399105581, 0.9335532606616943, 0.946379657825442, 0.9618558483016314]
+history of micro f1: [0.38558411490231193, 0.50269039716779718, 0.54733846016026111, 0.60898583187308652, 0.70787839552846255]
+
+
+################ Iteration 6 ################
+2017-06-05 11:41:39,790 Start augmenting label mat with superclasses
+2017-06-05 11:41:49,369 Finished augmenting label mat with superclasses
+2017-06-05 11:41:49,600 0th learning step
+2017-06-05 11:42:38,707 200th learning step
+2017-06-05 11:43:41,243 400th learning step
+2017-06-05 11:44:34,186 600th learning step
+2017-06-05 11:46:24,044 800th learning step
+2017-06-05 11:46:58,623 Finished learning multi-label classifier
+2017-06-05 11:46:58,631 Start prediction
+2017-06-05 11:46:58,642 Start Tagset prediction
+2017-06-05 11:46:58,642 Start predicting
+2017-06-05 11:46:59,841 Start distilling
+2017-06-05 11:47:05,238 Finished distilling
+2017-06-05 11:47:05,238 Finished predicting
+2017-06-05 11:47:05,238 Finished Tagset prediction
+2017-06-05 11:47:05,238 Start point prediction
+2017-06-05 11:47:05,238 Finished point prediction
+2017-06-05 11:47:05,313 Finished prediction
+2017-06-05 11:47:05,313 Start prediction
+2017-06-05 11:47:05,319 Start Tagset prediction
+2017-06-05 11:47:05,319 Start predicting
+2017-06-05 11:47:05,929 Start distilling
+2017-06-05 11:47:08,788 Finished distilling
+2017-06-05 11:47:08,788 Finished predicting
+2017-06-05 11:47:08,788 Finished Tagset prediction
+2017-06-05 11:47:08,789 Start point prediction
+2017-06-05 11:47:08,789 Finished point prediction
+2017-06-05 11:47:08,827 Finished prediction
+/home/jbkoh/anaconda3/lib/python3.6/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision and F-score are ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/home/jbkoh/anaconda3/lib/python3.6/site-packages/sklearn/metrics/classification.py:1115: UndefinedMetricWarning: Recall and F-score are ill-defined and being set to 0.0 in labels with no true samples.
+  'recall', 'true', average, warn_for)
+2017-06-05 11:47:09,397 Start prediction
+2017-06-05 11:47:09,409 Start Tagset prediction
+2017-06-05 11:47:09,409 Start predicting
+2017-06-05 11:47:10,871 Start distilling
+2017-06-05 11:47:17,049 Finished distilling
+2017-06-05 11:47:17,049 Finished predicting
+2017-06-05 11:47:17,050 Finished Tagset prediction
+2017-06-05 11:47:17,050 Start point prediction
+2017-06-05 11:47:17,050 Finished point prediction
+2017-06-05 11:47:17,135 Finished prediction
+2017-06-05 11:47:17,420 # of not detected tagsets: [86, 72, 60, 47, 41, 38]
+2017-06-05 11:47:17,421 # of learnt but not detected tagsets: [23, 28, 27, 23, 24, 27]
+Training Time: 0:05:23.298042
+avg prec: 0.9715061362348517
+avg rec: 0.9653942046420046
+avg f1: 0.9673459467481766
+INCORRECT POINT (513_1_3004616) FOUND: heating_supply_air_temperature_proportional_band_setpoint -> supply_air_heating_proportional_band_setpoint
+INCORRECT POINT (513_1_3004555) FOUND: heating_supply_air_temperature_dead_band_setpoint -> supply_air_heating_dead_band_setpoint
+INCORRECT POINT (513_1_3004556) FOUND: heating_supply_air_temperature_proportional_band_setpoint -> supply_air_heating_proportional_band_setpoint
+INCORRECT POINT (513_1_3004616) FOUND: heating_supply_air_temperature_proportional_band_setpoint -> supply_air_heating_proportional_band_setpoint
+INCORRECT POINT (513_2_3004145) FOUND: medium_temperature_hot_water_supply_temperature_low_reset_setpoint -> supply_water_temperature_setpoint
+INCORRECT POINT (513_2_3004145) FOUND: medium_temperature_hot_water_supply_temperature_low_reset_setpoint -> supply_water_temperature_setpoint
+INCORRECT POINT (513_1_3004556) FOUND: heating_supply_air_temperature_proportional_band_setpoint -> supply_air_heating_proportional_band_setpoint
+INCORRECT POINT (513_1_3004556) FOUND: heating_supply_air_temperature_proportional_band_setpoint -> supply_air_heating_proportional_band_setpoint
+INCORRECT POINT (513_1_3004616) FOUND: heating_supply_air_temperature_proportional_band_setpoint -> supply_air_heating_proportional_band_setpoint
+INCORRECT POINT (513_2_3004145) FOUND: medium_temperature_hot_water_supply_temperature_low_reset_setpoint -> supply_water_temperature_setpoint
+INCORRECT POINT (513_1_3004555) FOUND: heating_supply_air_temperature_dead_band_setpoint -> supply_air_heating_dead_band_setpoint
+INCORRECT POINT (513_1_3004555) FOUND: heating_supply_air_temperature_dead_band_setpoint -> supply_air_heating_dead_band_setpoint
+------------------------------------result---------------
+point precision: 0.9733924611973392
+point recall: 0.9606126914660832
+rate points not found in source               among sensors where point is not found: 
+	0.0
+sensors where a point is not found:  0.2727272727272727 18
+sensors where incorrect points are found:  0.18181818181818182 12
+unknown reason:  0.30303030303030304 20
+invalid points:  16
+-----------
+{'accuracy': 0.9688594338078871,
+ 'hamming_loss': 0.00015945607760195786,
+ 'hierarchy_accuracy': 0.9688594338078871,
+ 'macro_f1': 0.93508774312303256,
+ 'micro_f1': 0.98793969849246244,
+ 'point_correct_cnt': 439,
+ 'point_incorrect_cnt': 12,
+ 'point_precision': 0.9733924611973392,
+ 'point_recall': 0.9606126914660832,
+ 'precision': 0.8639175257731959,
+ 'subset_accuracy': 0.8639175257731959,
+ 'unfound_point_cnt': 18,
+ 'weighted_f1': 0.98955309552415882}
+avg prec: [ 0.99869569  0.75081633]
+avg rec: [ 0.99901393  0.74318922]
+avg f1: [ 0.99883117  0.73740921]
+INCORRECT POINT (513_3_3005449) FOUND: vfd_alarm -> alarm
+INCORRECT POINT (513_1_3007609) FOUND: setpoint -> temperature_setpoint
+INCORRECT POINT (604_4_3013373) FOUND: run_direction_command -> direction_command
+INCORRECT POINT (513_1_3004555) FOUND: heating_supply_air_temperature_dead_band_setpoint -> supply_air_heating_dead_band_setpoint
+INCORRECT POINT (513_3_3012744) FOUND: run_direction_status -> direction_status
+INCORRECT POINT (604_1_3012547) FOUND: setpoint -> temperature_setpoint
+INCORRECT POINT (513_1_3004618) FOUND: dead_band_setpoint -> supply_water_temperature_dead_band_setpoint
+INCORRECT POINT (513_1_3007358) FOUND: setpoint -> temperature_setpoint
+INCORRECT POINT (513_3_3005419) FOUND: run_direction_status -> direction_status
+INCORRECT POINT (513_4_3005396) FOUND: run_direction_command -> direction_command
+INCORRECT POINT (513_0_3004530) FOUND: supply_air_static_pressure_sensor -> supply_air_static_pressure_setpoint
+INCORRECT POINT (604_3_3013339) FOUND: vfd_alarm -> alarm
+INCORRECT POINT (513_1_3007127) FOUND: setpoint -> temperature_setpoint
+INCORRECT POINT (514_1_3006372) FOUND: heat_exchanger_supply_water_temperature_dead_band_setpoint -> supply_water_temperature_dead_band_setpoint
+INCORRECT POINT (604_3_3013369) FOUND: run_direction_status -> direction_status
+INCORRECT POINT (604_4_3012538) FOUND: run_direction_command -> direction_command
+INCORRECT POINT (513_1_3004616) FOUND: heating_supply_air_temperature_proportional_band_setpoint -> supply_air_heating_proportional_band_setpoint
+INCORRECT POINT (514_3_3007015) FOUND: vfd_alarm -> alarm
+INCORRECT POINT (514_4_3006984) FOUND: run_direction_command -> direction_command
+INCORRECT POINT (513_1_3007295) FOUND: setpoint -> temperature_setpoint
+INCORRECT POINT (604_1_3013570) FOUND: setpoint -> temperature_setpoint
+INCORRECT POINT (513_1_3006581) FOUND: setpoint -> temperature_setpoint
+INCORRECT POINT (604_4_3013287) FOUND: run_direction_command -> direction_command
+INCORRECT POINT (604_0_3013368) FOUND: motor_torque_sensor -> torque_sensor
+INCORRECT POINT (604_3_3013431) FOUND: vfd_alarm -> alarm
+INCORRECT POINT (513_1_3007064) FOUND: setpoint -> temperature_setpoint
+INCORRECT POINT (513_2_3004145) FOUND: medium_temperature_hot_water_supply_temperature_low_reset_setpoint -> supply_water_temperature_setpoint
+INCORRECT POINT (604_4_3013403) FOUND: run_direction_command -> direction_command
+INCORRECT POINT (514_1_3006412) FOUND: vfd_command -> exhaust_fan_vfd_speed_command
+INCORRECT POINT (513_3_3005427) FOUND: vfd_alarm -> alarm
+INCORRECT POINT (513_1_3004556) FOUND: heating_supply_air_temperature_proportional_band_setpoint -> supply_air_heating_proportional_band_setpoint
+INCORRECT POINT (604_1_3012693) FOUND: setpoint -> temperature_setpoint
+INCORRECT POINT (513_1_3004507) FOUND: hot_water_supply_temperature_setpoint -> setpoint
+INCORRECT POINT (604_1_3012779) FOUND: setpoint -> temperature_setpoint
+INCORRECT POINT (513_1_3007106) FOUND: setpoint -> temperature_setpoint
+INCORRECT POINT (514_0_3007489) FOUND: last_fault_code_status -> fault_status
+INCORRECT POINT (604_1_3013252) FOUND: vfd_command -> exhaust_fan_vfd_speed_command
+INCORRECT POINT (604_1_3012765) FOUND: setpoint -> temperature_setpoint
+INCORRECT POINT (514_1_3006378) FOUND: cooling_supply_air_temperature_proportional_band_setpoint -> supply_air_temperature_cooling_setpoint
+INCORRECT POINT (513_0_3012743) FOUND: motor_torque_sensor -> torque_sensor
+INCORRECT POINT (604_1_3013675) FOUND: setpoint -> temperature_setpoint
+INCORRECT POINT (513_1_3006707) FOUND: setpoint -> temperature_setpoint
+INCORRECT POINT (513_1_3007190) FOUND: setpoint -> temperature_setpoint
+INCORRECT POINT (604_4_3013298) FOUND: run_direction_command -> direction_command
+INCORRECT POINT (513_1_3007400) FOUND: setpoint -> temperature_setpoint
+INCORRECT POINT (514_1_3007130) FOUND: setpoint -> temperature_setpoint
+INCORRECT POINT (513_3_3005441) FOUND: run_direction_status -> direction_status
+INCORRECT POINT (513_4_3005440) FOUND: run_direction_command -> direction_command
+INCORRECT POINT (604_3_3012539) FOUND: run_direction_status -> direction_status
+INCORRECT POINT (513_0_3007079) FOUND: effective_cooling_temperature_setpoint -> supply_air_flow_setpoint
+INCORRECT POINT (513_1_3006791) FOUND: setpoint -> temperature_setpoint
+INCORRECT POINT (604_4_3013349) FOUND: run_direction_command -> direction_command
+INCORRECT POINT (514_3_3007479) FOUND: run_direction_status -> direction_status
+------------------------------------result---------------
+point precision: 0.9481915933528837
+point recall: 0.9817813765182186
+rate points not found in source               among sensors where point is not found: 
+	0.0
+sensors where a point is not found:  0.11042944785276074 18
+sensors where incorrect points are found:  0.32515337423312884 53
+unknown reason:  0.3312883435582822 54
+invalid points:  38
+-----------
+{'accuracy': 0.9620099445400652,
+ 'hamming_loss': 0.0003076007243051355,
+ 'hierarchy_accuracy': 0.9814571472704008,
+ 'macro_f1': 0.73740921215820265,
+ 'micro_f1': 0.9793931310436812,
+ 'point_correct_cnt': 970,
+ 'point_incorrect_cnt': 53,
+ 'point_precision': 0.9481915933528837,
+ 'point_recall': 0.9817813765182186,
+ 'precision': 0.8489341983317887,
+ 'subset_accuracy': 0.8489341983317887,
+ 'unfound_point_cnt': 18,
+ 'weighted_f1': 0.98477837564010007}
+################################# Iter# 6
+history of point precision: [0.6997690531177829, 0.7814702920443102, 0.8567222767419038, 0.938715953307393, 0.9429400386847195, 0.9481915933528837]2017-06-05 11:47:17,425 # total found tagsets in todo: 11
+2017-06-05 11:47:17,425 # unfound tagsets: 38
+2017-06-05 11:47:17,426 # todo tagsets accounting unfound tagsets: 4
+2017-06-05 11:47:17,426 Ratio of correctly found todo srcids: 0.8823529411764706
+2017-06-05 11:47:17,571 Entity Recognition Get Started.
+2017-06-05 11:47:19,864 Start adding Brick samples
+2017-06-05 11:47:19,993 Finished adding Brick samples
+2017-06-05 11:47:19,994 start tagset vectorizing
+2017-06-05 11:47:20,009 finished tagset vectorizing
+2017-06-05 11:47:23,699 Start learning multi-label classifier
+
+history of point recall: [0.7890625, 0.9451887941534713, 0.9786995515695067, 0.9897435897435898, 0.9938837920489296, 0.9817813765182186]
+history of correct point cnt: [606, 776, 873, 965, 975, 970]
+history of incorrect point cnt: [260, 217, 146, 63, 59, 53]
+history of unfound point cnt: [162, 45, 19, 10, 6, 18]
+history of accuracy: [0.5900812039366236, 0.900310399105581, 0.9335532606616943, 0.946379657825442, 0.9618558483016314, 0.9620099445400652]
+history of micro f1: [0.38558411490231193, 0.50269039716779718, 0.54733846016026111, 0.60898583187308652, 0.70787839552846255, 0.73740921215820265]
+
+
+################ Iteration 7 ################
+2017-06-05 11:47:24,248 Start augmenting label mat with superclasses
+2017-06-05 11:47:34,327 Finished augmenting label mat with superclasses
+2017-06-05 11:47:34,565 0th learning step
+2017-06-05 11:48:25,589 200th learning step
+2017-06-05 11:49:30,169 400th learning step
+2017-06-05 11:50:24,543 600th learning step
+2017-06-05 11:52:18,459 800th learning step
+2017-06-05 11:52:53,235 Finished learning multi-label classifier
+2017-06-05 11:52:53,241 Start prediction
+2017-06-05 11:52:53,250 Start Tagset prediction
+2017-06-05 11:52:53,250 Start predicting
+2017-06-05 11:52:54,434 Start distilling
+2017-06-05 11:52:59,856 Finished distilling
+2017-06-05 11:52:59,857 Finished predicting
+2017-06-05 11:52:59,857 Finished Tagset prediction
+2017-06-05 11:52:59,857 Start point prediction
+2017-06-05 11:52:59,857 Finished point prediction
+2017-06-05 11:52:59,930 Finished prediction
+2017-06-05 11:52:59,930 Start prediction
+2017-06-05 11:52:59,936 Start Tagset prediction
+2017-06-05 11:52:59,936 Start predicting
+2017-06-05 11:53:00,580 Start distilling
+2017-06-05 11:53:03,774 Finished distilling
+2017-06-05 11:53:03,774 Finished predicting
+2017-06-05 11:53:03,774 Finished Tagset prediction
+2017-06-05 11:53:03,774 Start point prediction
+2017-06-05 11:53:03,774 Finished point prediction
+2017-06-05 11:53:03,817 Finished prediction
+/home/jbkoh/anaconda3/lib/python3.6/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision and F-score are ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/home/jbkoh/anaconda3/lib/python3.6/site-packages/sklearn/metrics/classification.py:1115: UndefinedMetricWarning: Recall and F-score are ill-defined and being set to 0.0 in labels with no true samples.
+  'recall', 'true', average, warn_for)
+2017-06-05 11:53:04,760 Start prediction
+2017-06-05 11:53:04,772 Start Tagset prediction
+2017-06-05 11:53:04,772 Start predicting
+2017-06-05 11:53:06,235 Start distilling
+2017-06-05 11:53:12,488 Finished distilling
+2017-06-05 11:53:12,488 Finished predicting
+2017-06-05 11:53:12,488 Finished Tagset prediction
+2017-06-05 11:53:12,488 Start point prediction
+2017-06-05 11:53:12,488 Finished point prediction
+2017-06-05 11:53:12,574 Finished prediction
+2017-06-05 11:53:12,867 # of not detected tagsets: [86, 72, 60, 47, 41, 38, 33]
+2017-06-05 11:53:12,867 # of learnt but not detected tagsets: [23, 28, 27, 23, 24, 27, 23]
+Training Time: 0:05:33.650231
+avg prec: 0.9712681475299042
+avg rec: 0.967220783771706
+avg f1: 0.9685507925812914
+INCORRECT POINT (513_2_3004145) FOUND: medium_temperature_hot_water_supply_temperature_low_reset_setpoint -> supply_water_temperature_setpoint
+INCORRECT POINT (513_1_3004556) FOUND: heating_supply_air_temperature_proportional_band_setpoint -> supply_air_heating_proportional_band_setpoint
+INCORRECT POINT (513_1_3004616) FOUND: heating_supply_air_temperature_proportional_band_setpoint -> supply_air_heating_proportional_band_setpoint
+INCORRECT POINT (513_2_3004145) FOUND: medium_temperature_hot_water_supply_temperature_low_reset_setpoint -> supply_water_temperature_setpoint
+INCORRECT POINT (513_1_3004616) FOUND: heating_supply_air_temperature_proportional_band_setpoint -> supply_air_heating_proportional_band_setpoint
+INCORRECT POINT (513_1_3004556) FOUND: heating_supply_air_temperature_proportional_band_setpoint -> supply_air_heating_proportional_band_setpoint
+INCORRECT POINT (513_2_3004145) FOUND: medium_temperature_hot_water_supply_temperature_low_reset_setpoint -> supply_water_temperature_setpoint
+INCORRECT POINT (513_1_3004555) FOUND: heating_supply_air_temperature_dead_band_setpoint -> supply_air_heating_dead_band_setpoint
+INCORRECT POINT (513_1_3004556) FOUND: heating_supply_air_temperature_proportional_band_setpoint -> supply_air_heating_proportional_band_setpoint
+INCORRECT POINT (513_1_3004555) FOUND: heating_supply_air_temperature_dead_band_setpoint -> supply_air_heating_dead_band_setpoint
+INCORRECT POINT (513_1_3004555) FOUND: heating_supply_air_temperature_dead_band_setpoint -> supply_air_heating_dead_band_setpoint
+INCORRECT POINT (513_1_3004616) FOUND: heating_supply_air_temperature_proportional_band_setpoint -> supply_air_heating_proportional_band_setpoint
+------------------------------------result---------------
+point precision: 0.9763313609467456
+point recall: 0.9744094488188977
+rate points not found in source               among sensors where point is not found: 
+	0.0
+sensors where a point is not found:  0.19402985074626866 13
+sensors where incorrect points are found:  0.1791044776119403 12
+unknown reason:  0.3880597014925373 26
+invalid points:  16
+-----------
+{'accuracy': 0.970476486614546,
+ 'hamming_loss': 0.0001442839508152044,
+ 'hierarchy_accuracy': 0.970476486614546,
+ 'macro_f1': 0.9374539055539961,
+ 'micro_f1': 0.9890677194047981,
+ 'point_correct_cnt': 495,
+ 'point_incorrect_cnt': 12,
+ 'point_precision': 0.9763313609467456,
+ 'point_recall': 0.9744094488188977,
+ 'precision': 0.875,
+ 'subset_accuracy': 0.875,
+ 'unfound_point_cnt': 13,
+ 'weighted_f1': 0.99200736648033327}
+avg prec: [ 0.99851953  0.75832671]
+avg rec: [ 0.9988024   0.76222003]
+avg f1: [ 0.99863031  0.74978723]
+INCORRECT POINT (604_1_3013252) FOUND: vfd_command -> exhaust_fan_vfd_speed_command
+INCORRECT POINT (513_4_3005440) FOUND: run_direction_command -> direction_command
+INCORRECT POINT (513_1_3007190) FOUND: setpoint -> temperature_setpoint
+INCORRECT POINT (604_1_3012547) FOUND: setpoint -> temperature_setpoint
+INCORRECT POINT (513_0_3004530) FOUND: supply_air_static_pressure_sensor -> supply_air_static_pressure_setpoint
+INCORRECT POINT (604_1_3012765) FOUND: setpoint -> temperature_setpoint
+INCORRECT POINT (604_4_3013349) FOUND: run_direction_command -> direction_command
+INCORRECT POINT (513_1_3004555) FOUND: heating_supply_air_temperature_dead_band_setpoint -> supply_air_heating_dead_band_setpoint
+INCORRECT POINT (513_1_3007295) FOUND: setpoint -> temperature_setpoint
+INCORRECT POINT (514_1_3006412) FOUND: vfd_command -> exhaust_fan_vfd_speed_command
+INCORRECT POINT (513_1_3006707) FOUND: setpoint -> temperature_setpoint
+INCORRECT POINT (604_1_3013570) FOUND: setpoint -> temperature_setpoint
+INCORRECT POINT (513_1_3005399) FOUND: max_frequency_command -> output_frequency_sensor
+INCORRECT POINT (514_4_3006984) FOUND: run_direction_command -> direction_command
+INCORRECT POINT (604_4_3013403) FOUND: run_direction_command -> direction_command
+INCORRECT POINT (513_1_3007400) FOUND: setpoint -> temperature_setpoint
+INCORRECT POINT (513_3_3005419) FOUND: run_direction_status -> direction_status
+INCORRECT POINT (513_1_3006791) FOUND: setpoint -> temperature_setpoint
+INCORRECT POINT (604_4_3013287) FOUND: run_direction_command -> direction_command
+INCORRECT POINT (513_3_3004502) FOUND: condensate_leak_alarm -> alarm
+INCORRECT POINT (604_3_3012539) FOUND: run_direction_status -> direction_status
+INCORRECT POINT (513_1_3004556) FOUND: heating_supply_air_temperature_proportional_band_setpoint -> supply_air_heating_proportional_band_setpoint
+INCORRECT POINT (604_1_3013675) FOUND: setpoint -> temperature_setpoint
+INCORRECT POINT (513_1_3006581) FOUND: setpoint -> temperature_setpoint
+INCORRECT POINT (513_0_3007079) FOUND: effective_cooling_temperature_setpoint -> supply_air_flow_setpoint
+INCORRECT POINT (604_4_3013298) FOUND: run_direction_command -> direction_command
+INCORRECT POINT (604_4_3013373) FOUND: run_direction_command -> direction_command
+INCORRECT POINT (604_4_3012538) FOUND: run_direction_command -> direction_command
+INCORRECT POINT (514_1_3006372) FOUND: heat_exchanger_supply_water_temperature_dead_band_setpoint -> supply_water_temperature_dead_band_setpoint
+INCORRECT POINT (513_1_3004618) FOUND: dead_band_setpoint -> supply_water_temperature_dead_band_setpoint
+INCORRECT POINT (513_3_3012744) FOUND: run_direction_status -> direction_status
+INCORRECT POINT (513_1_3007609) FOUND: setpoint -> temperature_setpoint
+INCORRECT POINT (513_1_3004507) FOUND: hot_water_supply_temperature_setpoint -> setpoint
+INCORRECT POINT (514_3_3007479) FOUND: run_direction_status -> direction_status
+INCORRECT POINT (513_4_3005396) FOUND: run_direction_command -> direction_command
+INCORRECT POINT (513_1_3005487) FOUND: max_frequency_command -> output_frequency_sensor
+INCORRECT POINT (514_1_3006987) FOUND: max_frequency_command -> output_frequency_sensor
+INCORRECT POINT (514_1_3007130) FOUND: setpoint -> temperature_setpoint
+INCORRECT POINT (604_1_3012693) FOUND: setpoint -> temperature_setpoint
+INCORRECT POINT (514_1_3006378) FOUND: cooling_supply_air_temperature_proportional_band_setpoint -> supply_air_temperature_cooling_setpoint
+INCORRECT POINT (513_1_3007127) FOUND: setpoint -> temperature_setpoint
+INCORRECT POINT (513_2_3004145) FOUND: medium_temperature_hot_water_supply_temperature_low_reset_setpoint -> supply_water_temperature_setpoint
+INCORRECT POINT (513_1_3007106) FOUND: setpoint -> temperature_setpoint
+INCORRECT POINT (513_1_3007064) FOUND: setpoint -> temperature_setpoint
+INCORRECT POINT (513_3_3005441) FOUND: run_direction_status -> direction_status
+INCORRECT POINT (513_1_3007358) FOUND: setpoint -> temperature_setpoint
+INCORRECT POINT (604_3_3013369) FOUND: run_direction_status -> direction_status
+INCORRECT POINT (513_1_3004616) FOUND: heating_supply_air_temperature_proportional_band_setpoint -> supply_air_heating_proportional_band_setpoint
+INCORRECT POINT (604_1_3012779) FOUND: setpoint -> temperature_setpoint
+------------------------------------result---------------
+point precision: 0.9527027027027027
+point recall: 0.9959636730575177
+rate points not found in source               among sensors where point is not found: 
+	0.0
+sensors where a point is not found:  0.02040816326530612 4
+sensors where incorrect points are found:  0.25 49
+unknown reason:  0.5306122448979592 104
+invalid points:  39
+-----------
+{'accuracy': 0.9563716404077856,
+ 'hamming_loss': 0.0003713109066854871,
+ 'hierarchy_accuracy': 0.9814913500154471,
+ 'macro_f1': 0.74978722831759204,
+ 'micro_f1': 0.97513499100059986,
+ 'point_correct_cnt': 987,
+ 'point_incorrect_cnt': 49,
+ 'point_precision': 0.9527027027027027,
+ 'point_recall': 0.9959636730575177,
+ 'precision': 0.8183503243744208,
+ 'subset_accuracy': 0.8183503243744208,
+ 'unfound_point_cnt': 4,
+ 'weighted_f1': 0.9801751616790535}
+################################# Iter# 7
+history of point precision: [0.6997690531177829, 0.7814702920443102, 0.8567222767419038, 0.938715953307393, 0.9429400386847195, 0.9481915933528837, 0.9527027027027027]
+history of point recall: [0.7890625, 0.9451887941534713, 0.9786995515695067, 0.9897435897435898, 0.9938837920489296, 0.9817813765182186, 0.9959636730575177]2017-06-05 11:53:12,872 # total found tagsets in todo: 13
+2017-06-05 11:53:12,872 # unfound tagsets: 33
+2017-06-05 11:53:12,872 # todo tagsets accounting unfound tagsets: 5
+2017-06-05 11:53:12,872 Ratio of correctly found todo srcids: 0.6
+2017-06-05 11:53:13,023 Entity Recognition Get Started.
+2017-06-05 11:53:15,116 Start adding Brick samples
+2017-06-05 11:53:15,247 Finished adding Brick samples
+2017-06-05 11:53:15,247 start tagset vectorizing
+2017-06-05 11:53:15,261 finished tagset vectorizing
+2017-06-05 11:53:19,024 Start learning multi-label classifier
+
+history of correct point cnt: [606, 776, 873, 965, 975, 970, 987]
+history of incorrect point cnt: [260, 217, 146, 63, 59, 53, 49]
+history of unfound point cnt: [162, 45, 19, 10, 6, 18, 4]
+history of accuracy: [0.5900812039366236, 0.900310399105581, 0.9335532606616943, 0.946379657825442, 0.9618558483016314, 0.9620099445400652, 0.9563716404077856]
+history of micro f1: [0.38558411490231193, 0.50269039716779718, 0.54733846016026111, 0.60898583187308652, 0.70787839552846255, 0.73740921215820265, 0.74978722831759204]
+
+
+################ Iteration 8 ################
+2017-06-05 11:53:19,568 Start augmenting label mat with superclasses
+2017-06-05 11:53:29,795 Finished augmenting label mat with superclasses
+2017-06-05 11:53:30,055 0th learning step
+2017-06-05 11:54:21,830 200th learning step
+2017-06-05 11:55:27,792 400th learning step
+2017-06-05 11:56:22,086 600th learning step
+2017-06-05 11:58:16,295 800th learning step
+2017-06-05 11:58:51,822 Finished learning multi-label classifier
+2017-06-05 11:58:51,827 Start prediction
+2017-06-05 11:58:51,840 Start Tagset prediction
+2017-06-05 11:58:51,840 Start predicting
+2017-06-05 11:58:53,112 Start distilling
+2017-06-05 11:58:58,562 Finished distilling
+2017-06-05 11:58:58,562 Finished predicting
+2017-06-05 11:58:58,562 Finished Tagset prediction
+2017-06-05 11:58:58,562 Start point prediction
+2017-06-05 11:58:58,562 Finished point prediction
+2017-06-05 11:58:58,636 Finished prediction
+2017-06-05 11:58:58,637 Start prediction
+2017-06-05 11:58:58,643 Start Tagset prediction
+2017-06-05 11:58:58,643 Start predicting
+2017-06-05 11:58:59,296 Start distilling
+2017-06-05 11:59:02,431 Finished distilling
+2017-06-05 11:59:02,431 Finished predicting
+2017-06-05 11:59:02,431 Finished Tagset prediction
+2017-06-05 11:59:02,432 Start point prediction
+2017-06-05 11:59:02,432 Finished point prediction
+2017-06-05 11:59:02,475 Finished prediction
+/home/jbkoh/anaconda3/lib/python3.6/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision and F-score are ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/home/jbkoh/anaconda3/lib/python3.6/site-packages/sklearn/metrics/classification.py:1115: UndefinedMetricWarning: Recall and F-score are ill-defined and being set to 0.0 in labels with no true samples.
+  'recall', 'true', average, warn_for)
+2017-06-05 11:59:03,420 Start prediction
+2017-06-05 11:59:03,432 Start Tagset prediction
+2017-06-05 11:59:03,432 Start predicting
+2017-06-05 11:59:04,917 Start distilling
+2017-06-05 11:59:11,070 Finished distilling
+2017-06-05 11:59:11,070 Finished predicting
+2017-06-05 11:59:11,070 Finished Tagset prediction
+2017-06-05 11:59:11,070 Start point prediction
+2017-06-05 11:59:11,070 Finished point prediction
+2017-06-05 11:59:11,155 Finished prediction
+Training Time: 0:05:36.990325
+avg prec: 0.9740792970338811
+avg rec: 0.9690179453785345
+avg f1: 0.9704980261382106
+INCORRECT POINT (513_1_3004616) FOUND: heating_supply_air_temperature_proportional_band_setpoint -> supply_air_heating_proportional_band_setpoint
+INCORRECT POINT (513_1_3004555) FOUND: heating_supply_air_temperature_dead_band_setpoint -> supply_air_heating_dead_band_setpoint
+INCORRECT POINT (513_1_3004616) FOUND: heating_supply_air_temperature_proportional_band_setpoint -> supply_air_heating_proportional_band_setpoint
+INCORRECT POINT (513_1_3004616) FOUND: heating_supply_air_temperature_proportional_band_setpoint -> supply_air_heating_proportional_band_setpoint
+INCORRECT POINT (513_1_3004555) FOUND: heating_supply_air_temperature_dead_band_setpoint -> supply_air_heating_dead_band_setpoint
+INCORRECT POINT (513_1_3004556) FOUND: heating_supply_air_temperature_proportional_band_setpoint -> supply_air_heating_proportional_band_setpoint
+INCORRECT POINT (513_2_3004145) FOUND: medium_temperature_hot_water_supply_temperature_low_reset_setpoint -> supply_water_temperature_setpoint
+INCORRECT POINT (513_2_3004145) FOUND: medium_temperature_hot_water_supply_temperature_low_reset_setpoint -> supply_water_temperature_setpoint
+INCORRECT POINT (513_1_3004556) FOUND: heating_supply_air_temperature_proportional_band_setpoint -> supply_air_heating_proportional_band_setpoint
+INCORRECT POINT (513_2_3004145) FOUND: medium_temperature_hot_water_supply_temperature_low_reset_setpoint -> supply_water_temperature_setpoint
+INCORRECT POINT (513_1_3004555) FOUND: heating_supply_air_temperature_dead_band_setpoint -> supply_air_heating_dead_band_setpoint
+INCORRECT POINT (513_1_3004556) FOUND: heating_supply_air_temperature_proportional_band_setpoint -> supply_air_heating_proportional_band_setpoint
+------------------------------------result---------------
+point precision: 0.9770114942528736
+point recall: 0.9751434034416826
+rate points not found in source               among sensors where point is not found: 
+	0.0
+sensors where a point is not found:  0.20634920634920634 13
+sensors where incorrect points are found:  0.19047619047619047 12
+unknown reason:  0.3492063492063492 22
+invalid points:  16
+-----------
+{'accuracy': 0.9738253680177453,
+ 'hamming_loss': 0.0001306091258740578,
+ 'hierarchy_accuracy': 0.9738253680177453,
+ 'macro_f1': 0.94131148722857261,
+ 'micro_f1': 0.99004013676230118,
+ 'point_correct_cnt': 510,
+ 'point_incorrect_cnt': 12,
+ 'point_precision': 0.9770114942528736,
+ 'point_recall': 0.9751434034416826,
+ 'precision': 0.8856624319419237,
+ 'subset_accuracy': 0.8856624319419237,
+ 'unfound_point_cnt': 13,
+ 'weighted_f1': 0.99236095463064267}
+avg prec: [ 0.99788048  0.78008782]
+avg rec: [ 0.99864672  0.76803822]
+avg f1: [ 0.99821185  0.764482  ]
+INCORRECT POINT (514_3_3007479) FOUND: run_direction_status -> direction_status
+INCORRECT POINT (604_1_3012779) FOUND: setpoint -> temperature_setpoint
+INCORRECT POINT (604_4_3013373) FOUND: run_direction_command -> direction_command
+INCORRECT POINT (513_3_3012744) FOUND: run_direction_status -> direction_status
+INCORRECT POINT (513_2_3004145) FOUND: medium_temperature_hot_water_supply_temperature_low_reset_setpoint -> supply_water_temperature_setpoint
+INCORRECT POINT (604_4_3013287) FOUND: run_direction_command -> direction_command
+INCORRECT POINT (514_1_3006378) FOUND: cooling_supply_air_temperature_proportional_band_setpoint -> temperature_setpoint
+INCORRECT POINT (514_0_3007199) FOUND: effective_heating_temperature_setpoint -> setpoint
+INCORRECT POINT (604_1_3012547) FOUND: setpoint -> temperature_setpoint
+INCORRECT POINT (513_1_3007064) FOUND: setpoint -> temperature_setpoint
+INCORRECT POINT (513_1_3004616) FOUND: heating_supply_air_temperature_proportional_band_setpoint -> supply_air_heating_proportional_band_setpoint
+INCORRECT POINT (604_1_3012765) FOUND: setpoint -> temperature_setpoint
+INCORRECT POINT (513_1_3004556) FOUND: heating_supply_air_temperature_proportional_band_setpoint -> supply_air_heating_proportional_band_setpoint
+INCORRECT POINT (604_3_3013369) FOUND: run_direction_status -> direction_status
+INCORRECT POINT (514_1_3006412) FOUND: vfd_command -> exhaust_fan_command
+INCORRECT POINT (604_4_3012538) FOUND: run_direction_command -> direction_command
+INCORRECT POINT (514_1_3007130) FOUND: setpoint -> temperature_setpoint
+INCORRECT POINT (513_1_3004618) FOUND: dead_band_setpoint -> supply_water_temperature_dead_band_setpoint
+INCORRECT POINT (513_1_3007106) FOUND: setpoint -> temperature_setpoint
+INCORRECT POINT (513_1_3006707) FOUND: setpoint -> temperature_setpoint
+INCORRECT POINT (514_4_3006984) FOUND: run_direction_command -> direction_command
+INCORRECT POINT (513_0_3004530) FOUND: supply_air_static_pressure_sensor -> supply_air_static_pressure_setpoint
+INCORRECT POINT (513_4_3005396) FOUND: run_direction_command -> direction_command
+INCORRECT POINT (513_1_3007127) FOUND: setpoint -> temperature_setpoint
+INCORRECT POINT (513_3_3005419) FOUND: run_direction_status -> direction_status
+INCORRECT POINT (604_1_3013252) FOUND: vfd_command -> exhaust_fan_command
+INCORRECT POINT (604_1_3013570) FOUND: setpoint -> temperature_setpoint
+INCORRECT POINT (513_1_3007358) FOUND: setpoint -> temperature_setpoint
+INCORRECT POINT (513_1_3007609) FOUND: setpoint -> temperature_setpoint
+INCORRECT POINT (604_3_3012539) FOUND: run_direction_status -> direction_status
+INCORRECT POINT (514_0_3007181) FOUND: effective_heating_temperature_setpoint -> setpoint
+INCORRECT POINT (513_1_3007400) FOUND: setpoint -> temperature_setpoint
+INCORRECT POINT (513_0_3007079) FOUND: effective_cooling_temperature_setpoint -> supply_air_flow_setpoint
+INCORRECT POINT (513_0_3012743) FOUND: motor_torque_sensor -> torque_sensor
+INCORRECT POINT (513_1_3005487) FOUND: max_frequency_command -> output_frequency_sensor
+INCORRECT POINT (513_3_3005441) FOUND: run_direction_status -> direction_status
+INCORRECT POINT (514_0_3007370) FOUND: effective_heating_temperature_setpoint -> setpoint
+INCORRECT POINT (604_1_3013675) FOUND: setpoint -> temperature_setpoint
+INCORRECT POINT (513_1_3007295) FOUND: setpoint -> temperature_setpoint
+INCORRECT POINT (604_4_3013298) FOUND: run_direction_command -> direction_command
+INCORRECT POINT (513_1_3005399) FOUND: max_frequency_command -> output_frequency_sensor
+INCORRECT POINT (513_1_3004555) FOUND: heating_supply_air_temperature_dead_band_setpoint -> supply_air_heating_dead_band_setpoint
+INCORRECT POINT (604_0_3013368) FOUND: motor_torque_sensor -> torque_sensor
+INCORRECT POINT (513_1_3006791) FOUND: setpoint -> temperature_setpoint
+INCORRECT POINT (513_1_3007190) FOUND: setpoint -> temperature_setpoint
+INCORRECT POINT (513_4_3005440) FOUND: run_direction_command -> direction_command
+INCORRECT POINT (514_1_3006372) FOUND: heat_exchanger_supply_water_temperature_dead_band_setpoint -> supply_water_temperature_dead_band_setpoint
+INCORRECT POINT (604_1_3012693) FOUND: setpoint -> temperature_setpoint
+INCORRECT POINT (514_0_3007244) FOUND: effective_heating_temperature_setpoint -> setpoint
+INCORRECT POINT (604_3_3013455) FOUND: exhaust_fan_status -> sensor
+INCORRECT POINT (604_4_3013349) FOUND: run_direction_command -> direction_command
+INCORRECT POINT (604_4_3013403) FOUND: run_direction_command -> direction_command
+INCORRECT POINT (514_1_3006987) FOUND: max_frequency_command -> output_frequency_sensor
+INCORRECT POINT (513_1_3004507) FOUND: hot_water_supply_temperature_setpoint -> setpoint
+INCORRECT POINT (513_1_3006581) FOUND: setpoint -> temperature_setpoint
+------------------------------------result---------------
+point precision: 0.9469623915139826
+point recall: 0.9979674796747967
+rate points not found in source               among sensors where point is not found: 
+	0.0
+sensors where a point is not found:  0.01015228426395939 2
+sensors where incorrect points are found:  0.27918781725888325 55
+unknown reason:  0.5076142131979695 100
+invalid points:  40
+-----------
+{'accuracy': 0.9508193947952986,
+ 'hamming_loss': 0.0004270573162682949,
+ 'hierarchy_accuracy': 0.9814234961825323,
+ 'macro_f1': 0.76448200358728069,
+ 'micro_f1': 0.97140190653956404,
+ 'point_correct_cnt': 982,
+ 'point_incorrect_cnt': 55,
+ 'point_precision'2017-06-05 11:59:11,446 # of not detected tagsets: [86, 72, 60, 47, 41, 38, 33, 34]
+2017-06-05 11:59:11,446 # of learnt but not detected tagsets: [23, 28, 27, 23, 24, 27, 23, 25]
+2017-06-05 11:59:11,451 # total found tagsets in todo: 9
+2017-06-05 11:59:11,451 # unfound tagsets: 34
+2017-06-05 11:59:11,451 # todo tagsets accounting unfound tagsets: 3
+2017-06-05 11:59:11,451 Ratio of correctly found todo srcids: 1.0
+2017-06-05 11:59:11,602 Entity Recognition Get Started.
+2017-06-05 11:59:13,718 Start adding Brick samples
+2017-06-05 11:59:13,848 Finished adding Brick samples
+2017-06-05 11:59:13,848 start tagset vectorizing
+2017-06-05 11:59:13,863 finished tagset vectorizing
+2017-06-05 11:59:17,682 Start learning multi-label classifier
+: 0.9469623915139826,
+ 'point_recall': 0.9979674796747967,
+ 'precision': 0.8174235403151066,
+ 'subset_accuracy': 0.8174235403151066,
+ 'unfound_point_cnt': 2,
+ 'weighted_f1': 0.97960810088880335}
+################################# Iter# 8
+history of point precision: [0.6997690531177829, 0.7814702920443102, 0.8567222767419038, 0.938715953307393, 0.9429400386847195, 0.9481915933528837, 0.9527027027027027, 0.9469623915139826]
+history of point recall: [0.7890625, 0.9451887941534713, 0.9786995515695067, 0.9897435897435898, 0.9938837920489296, 0.9817813765182186, 0.9959636730575177, 0.9979674796747967]
+history of correct point cnt: [606, 776, 873, 965, 975, 970, 987, 982]
+history of incorrect point cnt: [260, 217, 146, 63, 59, 53, 49, 55]
+history of unfound point cnt: [162, 45, 19, 10, 6, 18, 4, 2]
+history of accuracy: [0.5900812039366236, 0.900310399105581, 0.9335532606616943, 0.946379657825442, 0.9618558483016314, 0.9620099445400652, 0.9563716404077856, 0.9508193947952986]
+history of micro f1: [0.38558411490231193, 0.50269039716779718, 0.54733846016026111, 0.60898583187308652, 0.70787839552846255, 0.73740921215820265, 0.74978722831759204, 0.76448200358728069]
+
+
+################ Iteration 9 ################
+2017-06-05 11:59:18,225 Start augmenting label mat with superclasses
+2017-06-05 11:59:28,613 Finished augmenting label mat with superclasses
+2017-06-05 11:59:29,159 0th learning step
+2017-06-05 12:00:22,003 200th learning step
+2017-06-05 12:01:28,774 400th learning step
+2017-06-05 12:02:24,596 600th learning step
+2017-06-05 12:04:21,356 800th learning step
+2017-06-05 12:04:55,769 Finished learning multi-label classifier
+2017-06-05 12:04:55,778 Start prediction
+2017-06-05 12:04:55,792 Start Tagset prediction
+2017-06-05 12:04:55,792 Start predicting
+2017-06-05 12:04:57,030 Start distilling
+2017-06-05 12:05:02,332 Finished distilling
+2017-06-05 12:05:02,332 Finished predicting
+2017-06-05 12:05:02,332 Finished Tagset prediction
+2017-06-05 12:05:02,333 Start point prediction
+2017-06-05 12:05:02,333 Finished point prediction
+2017-06-05 12:05:02,407 Finished prediction
+2017-06-05 12:05:02,407 Start prediction
+2017-06-05 12:05:02,413 Start Tagset prediction
+2017-06-05 12:05:02,414 Start predicting
+2017-06-05 12:05:03,086 Start distilling
+2017-06-05 12:05:06,279 Finished distilling
+2017-06-05 12:05:06,279 Finished predicting
+2017-06-05 12:05:06,279 Finished Tagset prediction
+2017-06-05 12:05:06,279 Start point prediction
+2017-06-05 12:05:06,280 Finished point prediction
+2017-06-05 12:05:06,324 Finished prediction
+/home/jbkoh/anaconda3/lib/python3.6/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision and F-score are ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/home/jbkoh/anaconda3/lib/python3.6/site-packages/sklearn/metrics/classification.py:1115: UndefinedMetricWarning: Recall and F-score are ill-defined and being set to 0.0 in labels with no true samples.
+  'recall', 'true', average, warn_for)
+2017-06-05 12:05:07,262 Start prediction
+2017-06-05 12:05:07,274 Start Tagset prediction
+2017-06-05 12:05:07,274 Start predicting
+2017-06-05 12:05:08,759 Start distilling
+2017-06-05 12:05:14,944 Finished distilling
+2017-06-05 12:05:14,944 Finished predicting
+2017-06-05 12:05:14,944 Finished Tagset prediction
+2017-06-05 12:05:14,944 Start point prediction
+2017-06-05 12:05:14,944 Finished point prediction
+2017-06-05 12:05:15,035 Finished prediction
+Training Time: 0:05:42.339452
+avg prec: 0.9668847071487764
+avg rec: 0.9620233521169775
+avg f1: 0.9632736927389871
+INCORRECT POINT (513_1_3004555) FOUND: heating_supply_air_temperature_dead_band_setpoint -> supply_air_heating_dead_band_setpoint
+INCORRECT POINT (513_1_3004616) FOUND: heating_supply_air_temperature_proportional_band_setpoint -> supply_air_heating_proportional_band_setpoint
+INCORRECT POINT (513_1_3004616) FOUND: heating_supply_air_temperature_proportional_band_setpoint -> supply_air_heating_proportional_band_setpoint
+INCORRECT POINT (513_2_3004145) FOUND: medium_temperature_hot_water_supply_temperature_low_reset_setpoint -> supply_water_temperature_setpoint
+INCORRECT POINT (513_1_3004555) FOUND: heating_supply_air_temperature_dead_band_setpoint -> supply_air_heating_dead_band_setpoint
+INCORRECT POINT (513_2_3004145) FOUND: medium_temperature_hot_water_supply_temperature_low_reset_setpoint -> supply_water_temperature_setpoint
+INCORRECT POINT (513_1_3004556) FOUND: heating_supply_air_temperature_proportional_band_setpoint -> supply_air_heating_proportional_band_setpoint
+INCORRECT POINT (513_1_3004556) FOUND: heating_supply_air_temperature_proportional_band_setpoint -> supply_air_heating_proportional_band_setpoint
+INCORRECT POINT (513_1_3004616) FOUND: heating_supply_air_temperature_proportional_band_setpoint -> supply_air_heating_proportional_band_setpoint
+INCORRECT POINT (513_1_3004555) FOUND: heating_supply_air_temperature_dead_band_setpoint -> supply_air_heating_dead_band_setpoint
+INCORRECT POINT (513_2_3004145) FOUND: medium_temperature_hot_water_supply_temperature_low_reset_setpoint -> supply_water_temperature_setpoint
+INCORRECT POINT (513_1_3004556) FOUND: heating_supply_air_temperature_proportional_band_setpoint -> supply_air_heating_proportional_band_setpoint
+------------------------------------result---------------
+point precision: 0.978021978021978
+point recall: 0.978021978021978
+rate points not found in source               among sensors where point is not found: 
+	0.0
+sensors where a point is not found:  0.21052631578947367 12
+sensors where incorrect points are found:  0.21052631578947367 12
+unknown reason:  0.43859649122807015 25
+invalid points:  8
+-----------
+{'accuracy': 0.977800213135902,
+ 'hamming_loss': 0.0001176591149757281,
+ 'hierarchy_accuracy': 0.977800213135902,
+ 'macro_f1': 0.92682684066074472,
+ 'micro_f1': 0.99102749638205501,
+ 'point_correct_cnt': 534,
+ 'point_incorrect_cnt': 12,
+ 'point_precision': 0.978021978021978,
+ 'point_recall': 0.978021978021978,
+ 'precision': 0.8992932862190812,
+ 'subset_accuracy': 0.8992932862190812,
+ 'unfound_point_cnt': 12,
+ 'weighted_f1': 0.99248757226469597}
+avg prec: [ 0.99835906  0.77684998]
+avg rec: [ 0.99883807  0.77425539]
+avg f1: [ 0.99856676  0.76618362]
+INCORRECT POINT (514_1_3006412) FOUND: vfd_command -> exhaust_fan_vfd_speed_command
+INCORRECT POINT (513_4_3005396) FOUND: run_direction_command -> direction_command
+INCORRECT POINT (513_3_3005441) FOUND: run_direction_status -> direction_status
+INCORRECT POINT (604_3_3013431) FOUND: vfd_alarm -> alarm
+INCORRECT POINT (513_1_3007358) FOUND: setpoint -> temperature_setpoint
+INCORRECT POINT (514_4_3006485) FOUND: occupied_command -> command
+INCORRECT POINT (513_4_3006369) FOUND: occupied_command -> command
+INCORRECT POINT (513_0_3004530) FOUND: supply_air_static_pressure_sensor -> supply_air_static_pressure_setpoint
+INCORRECT POINT (513_1_3004555) FOUND: heating_supply_air_temperature_dead_band_setpoint -> supply_air_heating_dead_band_setpoint
+INCORRECT POINT (604_1_3013252) FOUND: vfd_command -> exhaust_fan_vfd_speed_command
+INCORRECT POINT (513_4_3005440) FOUND: run_direction_command -> direction_command
+INCORRECT POINT (514_4_3006742) FOUND: occupied_command -> command
+INCORRECT POINT (513_4_3006185) FOUND: occupied_command -> command
+INCORRECT POINT (604_4_3013143) FOUND: occupied_command -> command
+INCORRECT POINT (604_3_3012539) FOUND: run_direction_status -> direction_status
+INCORRECT POINT (513_14_3006543) FOUND: occupied_command -> command
+INCORRECT POINT (604_4_3013373) FOUND: run_direction_command -> direction_command
+INCORRECT POINT (514_4_3007158) FOUND: occupied_command -> command
+INCORRECT POINT (513_14_3007320) FOUND: occupied_command -> command
+INCORRECT POINT (513_1_3007127) FOUND: setpoint -> temperature_setpoint
+INCORRECT POINT (513_4_3005259) FOUND: occupied_command -> command
+INCORRECT POINT (513_1_3007295) FOUND: setpoint -> temperature_setpoint
+INCORRECT POINT (513_3_3012744) FOUND: run_direction_status -> direction_status
+INCORRECT POINT (513_4_3005909) FOUND: occupied_command -> command
+INCORRECT POINT (604_3_3013339) FOUND: vfd_alarm -> alarm
+INCORRECT POINT (514_3_3007479) FOUND: run_direction_status -> direction_status
+INCORRECT POINT (604_4_3012956) FOUND: occupied_command -> command
+INCORRECT POINT (514_1_3006372) FOUND: heat_exchanger_supply_water_temperature_dead_band_setpoint -> supply_water_temperature_dead_band_setpoint
+INCORRECT POINT (513_4_3005098) FOUND: occupied_command -> command
+INCORRECT POINT (513_4_3006323) FOUND: occupied_command -> command
+INCORRECT POINT (604_1_3013675) FOUND: setpoint -> temperature_setpoint
+INCORRECT POINT (513_1_3006581) FOUND: setpoint -> temperature_setpoint
+INCORRECT POINT (513_1_3004507) FOUND: hot_water_supply_temperature_setpoint -> setpoint
+INCORRECT POINT (514_4_3006470) FOUND: occupied_command -> command
+INCORRECT POINT (513_14_3006648) FOUND: occupied_command -> command
+INCORRECT POINT (513_14_3007404) FOUND: occupied_command -> command
+INCORRECT POINT (604_1_3012693) FOUND: setpoint -> temperature_setpoint
+INCORRECT POINT (514_4_3007410) FOUND: occupied_command -> command
+INCORRECT POINT (604_4_3012491) FOUND: occupied_command -> command
+INCORRECT POINT (604_1_3012547) FOUND: setpoint -> temperature_setpoint
+INCORRECT POINT (514_4_3006788) FOUND: occupied_command -> command
+INCORRECT POINT (513_1_3007400) FOUND: setpoint -> temperature_setpoint
+INCORRECT POINT (514_3_3007015) FOUND: vfd_alarm -> alarm
+INCORRECT POINT (514_4_3006453) FOUND: occupied_command -> command
+INCORRECT POINT (513_14_3006942) FOUND: occupied_command -> command
+INCORRECT POINT (513_1_3007609) FOUND: setpoint -> temperature_setpoint
+INCORRECT POINT (514_4_3007383) FOUND: occupied_command -> command
+INCORRECT POINT (513_4_3005282) FOUND: occupied_command -> command
+INCORRECT POINT (604_4_3013349) FOUND: run_direction_command -> direction_command
+INCORRECT POINT (513_1_3006791) FOUND: setpoint -> temperature_setpoint
+INCORRECT POINT (604_1_3012779) FOUND: setpoint -> temperature_setpoint
+INCORRECT POINT (604_4_3012476) FOUND: occupied_command -> command
+INCORRECT POINT (514_14_3007070) FOUND: occupied_command -> command
+INCORRECT POINT (513_14_3006795) FOUND: occupied_command -> command
+INCORRECT POINT (513_1_3007064) FOUND: setpoint -> temperature_setpoint
+INCORRECT POINT (513_4_3005029) FOUND: occupied_command -> command
+INCORRECT POINT (604_1_3013570) FOUND: setpoint -> temperature_setpoint
+INCORRECT POINT (513_1_3004556) FOUND: heating_supply_air_temperature_proportional_band_setpoint -> supply_air_heating_proportional_band_setpoint
+INCORRECT POINT (514_4_3007212) FOUND: occupied_command -> command
+INCORRECT POINT (513_14_3007026) FOUND: occupied_command -> command
+INCORRECT POINT (513_1_3006707) FOUND: setpoint -> temperature_setpoint
+INCORRECT POINT (513_14_3007005) FOUND: occupied_command -> command
+INCORRECT POINT (604_1_3012765) FOUND: setpoint -> temperature_setpoint
+INCORRECT POINT (604_14_3012570) FOUND: occupied_command -> command
+INCORRECT POINT (513_4_3005075) FOUND: occupied_command -> command
+INCORRECT POINT (513_4_3005679) FOUND: occupied_command -> command
+INCORRECT POINT (513_14_3006732) FOUND: occupied_command -> command
+INCORRECT POINT (604_14_3012833) FOUND: occupied_command -> command
+INCORRECT POINT (514_14_3007307) FOUND: occupied_command -> command
+INCORRECT POINT (514_4_3006984) FOUND: run_direction_command -> direction_command
+INCORRECT POINT (513_4_3005840) FOUND: occupied_command -> command
+INCORRECT POINT (513_14_3007068) FOUND: occupied_command -> command
+INCORRECT POINT (513_4_3006208) FOUND: occupied_command -> command
+INCORRECT POINT (513_14_3007110) FOUND: occupied_command -> command2017-06-05 12:05:15,326 # of not detected tagsets: [86, 72, 60, 47, 41, 38, 33, 34, 33]
+2017-06-05 12:05:15,327 # of learnt but not detected tagsets: [23, 28, 27, 23, 24, 27, 23, 25, 24]
+2017-06-05 12:05:15,333 # total found tagsets in todo: 8
+2017-06-05 12:05:15,333 # unfound tagsets: 33
+2017-06-05 12:05:15,333 # todo tagsets accounting unfound tagsets: 3
+2017-06-05 12:05:15,334 Ratio of correctly found todo srcids: 1.0
+2017-06-05 12:05:15,491 Entity Recognition Get Started.
+2017-06-05 12:05:17,659 Start adding Brick samples
+2017-06-05 12:05:17,789 Finished adding Brick samples
+2017-06-05 12:05:17,789 start tagset vectorizing
+2017-06-05 12:05:17,803 finished tagset vectorizing
+2017-06-05 12:05:22,116 Start learning multi-label classifier
+
+INCORRECT POINT (604_4_3013158) FOUND: occupied_command -> command
+INCORRECT POINT (513_4_3004960) FOUND: occupied_command -> command
+INCORRECT POINT (604_14_3012644) FOUND: occupied_command -> command
+INCORRECT POINT (514_14_3007292) FOUND: occupied_command -> command
+INCORRECT POINT (513_3_3005427) FOUND: vfd_alarm -> alarm
+INCORRECT POINT (513_14_3007299) FOUND: occupied_command -> command
+INCORRECT POINT (513_0_3012743) FOUND: motor_torque_sensor -> torque_sensor
+INCORRECT POINT (513_4_3005144) FOUND: occupied_command -> command
+INCORRECT POINT (513_14_3007257) FOUND: occupied_command -> command
+INCORRECT POINT (604_0_3013368) FOUND: motor_torque_sensor -> torque_sensor
+INCORRECT POINT (513_1_3004616) FOUND: heating_supply_air_temperature_proportional_band_setpoint -> supply_air_heating_proportional_band_setpoint
+INCORRECT POINT (604_4_3012986) FOUND: occupied_command -> command
+INCORRECT POINT (513_14_3006564) FOUND: occupied_command -> command
+INCORRECT POINT (514_4_3007401) FOUND: occupied_command -> command
+INCORRECT POINT (513_1_3007190) FOUND: setpoint -> temperature_setpoint
+INCORRECT POINT (513_4_3005794) FOUND: occupied_command -> command
+INCORRECT POINT (604_4_3013003) FOUND: occupied_command -> command
+INCORRECT POINT (514_1_3007130) FOUND: setpoint -> temperature_setpoint
+INCORRECT POINT (604_4_3012941) FOUND: occupied_command -> command
+INCORRECT POINT (514_4_3006719) FOUND: occupied_command -> command
+INCORRECT POINT (513_3_3005449) FOUND: vfd_alarm -> alarm
+INCORRECT POINT (604_4_3013298) FOUND: run_direction_command -> direction_command
+INCORRECT POINT (513_2_3004145) FOUND: medium_temperature_hot_water_supply_temperature_low_reset_setpoint -> supply_water_temperature_setpoint
+INCORRECT POINT (513_3_3005419) FOUND: run_direction_status -> direction_status
+INCORRECT POINT (604_4_3013287) FOUND: run_direction_command -> direction_command
+INCORRECT POINT (604_4_3012538) FOUND: run_direction_command -> direction_command
+INCORRECT POINT (513_14_3006711) FOUND: occupied_command -> command
+INCORRECT POINT (513_0_3007079) FOUND: effective_cooling_temperature_setpoint -> supply_air_flow_setpoint
+INCORRECT POINT (513_1_3007106) FOUND: setpoint -> temperature_setpoint
+INCORRECT POINT (604_4_3013403) FOUND: run_direction_command -> direction_command
+INCORRECT POINT (604_3_3013369) FOUND: run_direction_status -> direction_status
+------------------------------------result---------------
+point precision: 0.8990384615384616
+point recall: 0.9989316239316239
+rate points not found in source               among sensors where point is not found: 
+	0.0
+sensors where a point is not found:  0.005319148936170213 1
+sensors where incorrect points are found:  0.5585106382978723 105
+unknown reason:  0.23404255319148937 44
+invalid points:  38
+-----------
+{'accuracy': 0.953022713564882,
+ 'hamming_loss': 0.00039221581027903973,
+ 'hierarchy_accuracy': 0.9789848036835997,
+ 'macro_f1': 0.76618362055024003,
+ 'micro_f1': 0.97367717797969011,
+ 'point_correct_cnt': 935,
+ 'point_incorrect_cnt': 105,
+ 'point_precision': 0.8990384615384616,
+ 'point_recall': 0.9989316239316239,
+ 'precision': 0.8257645968489342,
+ 'subset_accuracy': 0.8257645968489342,
+ 'unfound_point_cnt': 1,
+ 'weighted_f1': 0.97770700822474987}
+################################# Iter# 9
+history of point precision: [0.6997690531177829, 0.7814702920443102, 0.8567222767419038, 0.938715953307393, 0.9429400386847195, 0.9481915933528837, 0.9527027027027027, 0.9469623915139826, 0.8990384615384616]
+history of point recall: [0.7890625, 0.9451887941534713, 0.9786995515695067, 0.9897435897435898, 0.9938837920489296, 0.9817813765182186, 0.9959636730575177, 0.9979674796747967, 0.9989316239316239]
+history of correct point cnt: [606, 776, 873, 965, 975, 970, 987, 982, 935]
+history of incorrect point cnt: [260, 217, 146, 63, 59, 53, 49, 55, 105]
+history of unfound point cnt: [162, 45, 19, 10, 6, 18, 4, 2, 1]
+history of accuracy: [0.5900812039366236, 0.900310399105581, 0.9335532606616943, 0.946379657825442, 0.9618558483016314, 0.9620099445400652, 0.9563716404077856, 0.9508193947952986, 0.953022713564882]
+history of micro f1: [0.38558411490231193, 0.50269039716779718, 0.54733846016026111, 0.60898583187308652, 0.70787839552846255, 0.73740921215820265, 0.74978722831759204, 0.76448200358728069, 0.76618362055024003]
+
+
+################ Iteration 10 ################
+2017-06-05 12:05:22,666 Start augmenting label mat with superclasses
+2017-06-05 12:05:33,755 Finished augmenting label mat with superclasses
+2017-06-05 12:05:34,016 0th learning step
+2017-06-05 12:06:28,553 200th learning step
+2017-06-05 12:07:38,241 400th learning step
+2017-06-05 12:08:36,450 600th learning step
+2017-06-05 12:10:37,460 800th learning step
+2017-06-05 12:11:14,741 Finished learning multi-label classifier
+2017-06-05 12:11:14,750 Start prediction
+2017-06-05 12:11:14,764 Start Tagset prediction
+2017-06-05 12:11:14,764 Start predicting
+2017-06-05 12:11:15,996 Start distilling
+2017-06-05 12:11:21,431 Finished distilling
+2017-06-05 12:11:21,431 Finished predicting
+2017-06-05 12:11:21,431 Finished Tagset prediction
+2017-06-05 12:11:21,431 Start point prediction
+2017-06-05 12:11:21,431 Finished point prediction
+2017-06-05 12:11:21,505 Finished prediction
+2017-06-05 12:11:21,505 Start prediction
+2017-06-05 12:11:21,512 Start Tagset prediction
+2017-06-05 12:11:21,512 Start predicting
+2017-06-05 12:11:22,272 Start distilling
+2017-06-05 12:11:25,870 Finished distilling
+2017-06-05 12:11:25,870 Finished predicting
+2017-06-05 12:11:25,870 Finished Tagset prediction
+2017-06-05 12:11:25,870 Start point prediction
+2017-06-05 12:11:25,870 Finished point prediction
+2017-06-05 12:11:25,921 Finished prediction
+/home/jbkoh/anaconda3/lib/python3.6/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision and F-score are ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/home/jbkoh/anaconda3/lib/python3.6/site-packages/sklearn/metrics/classification.py:1115: UndefinedMetricWarning: Recall and F-score are ill-defined and being set to 0.0 in labels with no true samples.
+  'recall', 'true', average, warn_for)
+2017-06-05 12:11:26,533 Start prediction
+2017-06-05 12:11:26,546 Start Tagset prediction
+2017-06-05 12:11:26,546 Start predicting
+2017-06-05 12:11:28,032 Start distilling
+2017-06-05 12:11:34,311 Finished distilling
+2017-06-05 12:11:34,312 Finished predicting
+2017-06-05 12:11:34,312 Finished Tagset prediction
+2017-06-05 12:11:34,312 Start point prediction
+2017-06-05 12:11:34,312 Finished point prediction
+2017-06-05 12:11:34,398 Finished prediction
+2017-06-05 12:11:34,680 # of not detected tagsets: [86, 72, 60, 47, 41, 38, 33, 34, 33, 32]
+2017-06-05 12:11:34,681 # of learnt but not detected tagsets: [23, 28, 27, 23, 24, 27, 23, 25, 24, 24]
+Training Time: 0:05:57.387240
+avg prec: 0.9693491455677075
+avg rec: 0.9629431291535787
+avg f1: 0.9649513356049799
+INCORRECT POINT (513_1_3004555) FOUND: heating_supply_air_temperature_dead_band_setpoint -> supply_air_heating_dead_band_setpoint
+INCORRECT POINT (513_1_3004555) FOUND: heating_supply_air_temperature_dead_band_setpoint -> supply_air_heating_dead_band_setpoint
+INCORRECT POINT (513_1_3004556) FOUND: heating_supply_air_temperature_proportional_band_setpoint -> supply_air_heating_proportional_band_setpoint
+INCORRECT POINT (513_2_3004145) FOUND: medium_temperature_hot_water_supply_temperature_low_reset_setpoint -> supply_water_temperature_setpoint
+INCORRECT POINT (513_1_3004616) FOUND: heating_supply_air_temperature_proportional_band_setpoint -> supply_air_heating_proportional_band_setpoint
+INCORRECT POINT (513_1_3004555) FOUND: heating_supply_air_temperature_dead_band_setpoint -> supply_air_heating_dead_band_setpoint
+INCORRECT POINT (513_1_3004556) FOUND: heating_supply_air_temperature_proportional_band_setpoint -> supply_air_heating_proportional_band_setpoint
+INCORRECT POINT (513_1_3004556) FOUND: heating_supply_air_temperature_proportional_band_setpoint -> supply_air_heating_proportional_band_setpoint
+INCORRECT POINT (513_1_3004616) FOUND: heating_supply_air_temperature_proportional_band_setpoint -> supply_air_heating_proportional_band_setpoint
+INCORRECT POINT (513_1_3004616) FOUND: heating_supply_air_temperature_proportional_band_setpoint -> supply_air_heating_proportional_band_setpoint
+INCORRECT POINT (513_2_3004145) FOUND: medium_temperature_hot_water_supply_temperature_low_reset_setpoint -> supply_water_temperature_setpoint
+INCORRECT POINT (513_2_3004145) FOUND: medium_temperature_hot_water_supply_temperature_low_reset_setpoint -> supply_water_temperature_setpoint
+------------------------------------result---------------
+point precision: 0.9798994974874372
+point recall: 0.9717607973421927
+rate points not found in source               among sensors where point is not found: 
+	0.0
+sensors where a point is not found:  0.288135593220339 17
+sensors where incorrect points are found:  0.2033898305084746 12
+unknown reason:  0.3050847457627119 18
+invalid points:  12
+-----------
+{'accuracy': 0.9800744206095643,
+ 'hamming_loss': 0.00010295020984684446,
+ 'hierarchy_accuracy': 0.9800744206095643,
+ 'macro_f1': 0.93014939418851972,
+ 'micro_f1': 0.99218953397552723,
+ 'point_correct_cnt': 585,
+ 'point_incorrect_cnt': 12,
+ 'point_precision': 0.9798994974874372,
+ 'point_recall': 0.9717607973421927,
+ 'precision': 0.9057507987220448,
+ 'subset_accuracy': 0.9057507987220448,
+ 'unfound_point_cnt': 17,
+ 'weighted_f1': 0.99191724082632915}
+avg prec: [ 0.99943303  0.81069132]
+avg rec: [ 0.99946353  0.80177183]
+avg f1: [ 0.99944562  0.80013453]
+INCORRECT POINT (513_0_3007079) FOUND: effective_cooling_temperature_setpoint -> supply_air_flow_setpoint
+INCORRECT POINT (604_0_3013368) FOUND: motor_torque_sensor -> torque_sensor
+INCORRECT POINT (513_4_3005396) FOUND: run_direction_command -> direction_command
+INCORRECT POINT (604_4_3013298) FOUND: run_direction_command -> direction_command
+INCORRECT POINT (604_1_3012779) FOUND: setpoint -> temperature_setpoint
+INCORRECT POINT (513_1_3007358) FOUND: setpoint -> temperature_setpoint
+INCORRECT POINT (604_1_3012765) FOUND: setpoint -> temperature_setpoint
+INCORRECT POINT (604_1_3012693) FOUND: setpoint -> temperature_setpoint
+INCORRECT POINT (513_1_3007127) FOUND: setpoint -> temperature_setpoint
+INCORRECT POINT (604_3_3013369) FOUND: run_direction_status -> direction_status
+INCORRECT POINT (514_1_3006372) FOUND: heat_exchanger_supply_water_temperature_dead_band_setpoint -> supply_water_temperature_dead_band_setpoint
+INCORRECT POINT (513_1_3004507) FOUND: hot_water_supply_temperature_setpoint -> setpoint
+INCORRECT POINT (604_4_3012538) FOUND: run_direction_command -> direction_command
+INCORRECT POINT (514_1_3006412) FOUND: vfd_command -> exhaust_fan_vfd_speed_command
+INCORRECT POINT (513_1_3007295) FOUND: setpoint -> temperature_setpoint
+INCORRECT POINT (514_3_3007479) FOUND: run_direction_status -> direction_status
+INCORRECT POINT (604_3_3012539) FOUND: run_direction_status -> direction_status
+INCORRECT POINT (513_1_3004618) FOUND: dead_band_setpoint -> supply_water_temperature_dead_band_setpoint
+INCORRECT POINT (513_1_3007106) FOUND: setpoint -> temperature_setpoint
+INCORRECT POINT (513_1_3007064) FOUND: setpoint -> temperature_setpoint
+INCORRECT POINT (513_1_3007190) FOUND: setpoint -> temperature_setpoint
+INCORRECT POINT (513_3_3012744) FOUND: run_direction_status -> direction_status
+INCORRECT POINT (514_1_3007130) FOUND: setpoint -> temperature_setpoint
+INCORRECT POINT (513_1_3007400) FOUND: setpoint -> temperature_setpoint
+INCORRECT POINT (513_4_3005440) FOUND: run_direction_command -> direction_command
+INCORRECT POINT (513_1_3004556) FOUND: heating_supply_air_temperature_proportional_band_setpoint -> supply_air_heating_proportional_band_setpoint
+INCORRECT POINT (513_1_3004555) FOUND: heating_supply_air_temperature_dead_band_setpoint -> supply_air_heating_dead_band_setpoint
+INCORRECT POINT (513_1_3006581) FOUND: setpoint -> temperature_setpoint
+INCORRECT POINT (513_3_3005441) FOUND: run_direction_status -> direction_status
+INCORRECT POINT (604_1_3013252) FOUND: vfd_command -> exhaust_fan_vfd_speed_command
+INCORRECT POINT (604_4_3013349) FOUND: run_direction_command -> direction_command
+INCORRECT POINT (604_1_3013570) FOUND: setpoint -> temperature_setpoint
+INCORRECT POINT (604_1_3012547) FOUND: setpoint -> temperature_setpoint
+INCORRECT POINT (513_1_3006791) FOUND: setpoint -> temperature_setpoint
+INCORRECT POINT (513_1_3004616) FOUND: heating_supply_air_temperature_proportional_band_setpoint -> supply_air_heating_proportional_band_setpoint
+INCORRECT POINT (513_3_3005419) FOUND: run_direction_status -> direction_status
+INCORRECT POINT (604_4_3013287) FOUND: run_direction_command -> direction_command
+INCORRECT POINT (604_4_3013403) FOUND: run_direction_command -> direction_command
+INCORRECT POINT (604_1_3013675) FOUND: setpoint -> temperature_setpoint
+INCORRECT POINT (513_0_3012743) FOUND: motor_torque_sensor -> torque_sensor
+INCORRECT POINT (513_0_3004530) FOUND: supply_air_static_pressure_sensor -> supply_air_static_pressure_setpoint
+INCORRECT POINT (604_4_3013373) FOUND: run_direction_command -> direction_command
+INCORRECT POINT (514_4_3006984) FOUND: run_direction_command -> direction_command
+INCORRECT POINT (513_1_3007609) FOUND: setpoint -> temperature_setpoint
+INCORRECT POINT (513_1_3006707) FOUND: setpoint -> temperature_setpoint
+INCORRECT POINT (513_2_3004145) FOUND: medium_temperature_hot_water_supply_temperature_low_reset_setpoint -> supply_water_temperature_setpoint
+------------------------------------result---------------
+point precision: 0.9569288389513109
+point recall: 0.998046875
+rate points not found in source               among sensors where point is not found: 
+	0.0
+sensors where a point is not found:  0.02197802197802198 2
+sensors where incorrect points are found:  0.5054945054945055 46
+unknown reason:  0.37362637362637363 34
+invalid points:  9
+-----------
+{'accuracy': 0.9778388278388279,
+ 'hamming_loss': 0.0001801803595444324,
+ 'hierarchy_accuracy': 0.9884158428586137,
+ 'macro_f1': 0.80013453198014539,
+ 'micro_f1': 0.98790349528837795,
+ 'point_correct_cnt': 1022,
+ 'point_incorrect_cnt': 46,
+ 'point_precision': 0.9569288389513109,
+ 'point_recall': 0.998046875,
+ 'precision': 0.9156626506024096,
+ 'subset_accuracy': 0.9156626506024096,
+ 'unfound_point_cnt': 2,
+ 'weighted_f1': 0.98952896465664586}
+################################# Iter# 10
+history of point precision: [0.6997690531177829, 0.7814702920443102, 0.8567222767419038, 0.938715953307393, 0.9429400386847195, 0.9481915933528837, 0.9527027027027027, 0.9469623915139826, 0.8990384615384616, 0.9569288389513109]
+history of point recall: [0.7890625, 0.9451887941534713, 0.9786995515695067, 0.9897435897435898, 0.9938837920489296, 0.9817813765182186, 0.9959636730575177, 0.9979674796747967, 0.9989316239316239, 0.998046875]
+history of correct point cnt: [606, 776, 873, 965, 975, 970, 987, 982, 935, 1022]
+history of incorrect point cnt: [260, 217, 146, 63, 59, 53, 49, 55, 105, 46]2017-06-05 12:11:34,685 # total found tagsets in todo: 9
+2017-06-05 12:11:34,685 # unfound tagsets: 32
+2017-06-05 12:11:34,685 # todo tagsets accounting unfound tagsets: 3
+2017-06-05 12:11:34,685 Ratio of correctly found todo srcids: 1.0
+
+history of unfound point cnt: [162, 45, 19, 10, 6, 18, 4, 2, 1, 2]
+history of accuracy: [0.5900812039366236, 0.900310399105581, 0.9335532606616943, 0.946379657825442, 0.9618558483016314, 0.9620099445400652, 0.9563716404077856, 0.9508193947952986, 0.953022713564882, 0.9778388278388279]
+history of micro f1: [0.38558411490231193, 0.50269039716779718, 0.54733846016026111, 0.60898583187308652, 0.70787839552846255, 0.73740921215820265, 0.74978722831759204, 0.76448200358728069, 0.76618362055024003, 0.80013453198014539]

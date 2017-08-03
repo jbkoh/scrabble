@@ -1,0 +1,19 @@
+{
+    "id_1" : [
+    "damper_position_sensor",
+    "networkadapter-n",
+    "room",
+    "networkadapter-nae",
+    "building-buildingA",
+    "damper",
+    "vav"
+  ],
+  "id_2": [
+    "occupied_cooling_min_supply_air_flow_setpoint",
+    "networkadapter-n",
+    "room",
+    "networkadapter-nae",
+    "building-buildingA",
+    "vav"
+  ]
+}

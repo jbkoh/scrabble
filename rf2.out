@@ -1,0 +1,1236 @@
+2017-06-05 19:05:09,468 Entity Recognition Get Started.
+2017-06-05 19:05:13,000 Start adding Brick samples
+2017-06-05 19:05:13,192 Finished adding Brick samples
+2017-06-05 19:05:13,192 start tagset vectorizing
+2017-06-05 19:05:13,216 finished tagset vectorizing
+2017-06-05 19:05:16,970 Start learning multi-label classifier
+2017-06-05 19:07:31,545 Finished learning multi-label classifier
+2017-06-05 19:07:31,552 Start prediction
+2017-06-05 19:07:31,558 Start Tagset prediction
+2017-06-05 19:07:43,413 Finished Tagset prediction
+2017-06-05 19:07:43,413 Start point prediction
+2017-06-05 19:07:43,413 Finished point prediction
+2017-06-05 19:07:43,490 Finished prediction
+2017-06-05 19:07:43,491 Start prediction
+2017-06-05 19:07:43,493 Start Tagset prediction
+2017-06-05 19:07:47,932 Finished Tagset prediction
+2017-06-05 19:07:47,932 Start point prediction
+2017-06-05 19:07:47,933 Finished point prediction
+2017-06-05 19:07:47,950 Finished prediction
+/home/jbkoh/anaconda3/lib/python3.6/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision and F-score are ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/home/jbkoh/anaconda3/lib/python3.6/site-packages/sklearn/metrics/classification.py:1115: UndefinedMetricWarning: Recall and F-score are ill-defined and being set to 0.0 in labels with no true samples.
+  'recall', 'true', average, warn_for)
+2017-06-05 19:07:48,465 Start prediction
+2017-06-05 19:07:48,478 Start Tagset prediction
+2017-06-05 19:08:01,824 Finished Tagset prediction
+2017-06-05 19:08:01,825 Start point prediction
+2017-06-05 19:08:01,825 Finished point prediction
+2017-06-05 19:08:01,913 Finished prediction
+Brick Loaded
+
+
+################ Iteration 1 ################
+Training Time: 0:02:18.763557
+avg prec: 0.9698363817038734
+avg rec: 0.9687342203224633
+avg f1: 0.9691388030177146
+------------------------------------result---------------
+point precision: 1.0
+point recall: 1.0
+sensors where a point is not found:  0.0 0
+sensors where incorrect points are found:  0.0 0
+unknown reason:  0.3125 5
+invalid points:  11
+-----------
+{'accuracy': 0.9850464576074333,
+ 'hamming_loss': 0.00011003117549972492,
+ 'hierarchy_accuracy': 0.9850464576074333,
+ 'macro_f1': 0.93868890839918051,
+ 'micro_f1': 0.99213188460097412,
+ 'point_correct_cnt': 194,
+ 'point_incorrect_cnt': 0,
+ 'point_precision': 1.0,
+ 'point_recall': 1.0,
+ 'precision': 0.9219512195121952,
+ 'subset_accuracy': 0.9219512195121952,
+ 'unfound_point_cnt': 0,
+ 'weighted_f1': 0.99127889961954929}
+avg prec: [ 0.98046275  0.12448928]
+avg rec: [ 0.99913912  0.09896827]
+avg f1: [ 0.98613541  0.09996721]
+INCORRECT POINT (513_0_3004904) FOUND: effective_cooling_temperature_setpoint -> effective_heating_temperature_setpoint
+INCORRECT POINT (514_0_3007094) FOUND: effective_cooling_temperature_setpoint -> effective_heating_temperature_setpoint
+INCORRECT POINT (514_0_3009023) FOUND: effective_cooling_temperature_setpoint -> effective_heating_temperature_setpoint
+INCORRECT POINT (513_0_3006405) FOUND: effective_cooling_temperature_setpoint -> effective_heating_temperature_setpoint
+INCORRECT POINT (513_0_3006701) FOUND: effective_cooling_temperature_setpoint -> effective_heating_temperature_setpoint
+INCORRECT POINT (514_0_3006498) FOUND: effective_cooling_temperature_setpoint -> effective_heating_temperature_setpoint
+INCORRECT POINT (604_0_3012897) FOUND: effective_cooling_temperature_setpoint -> effective_heating_temperature_setpoint
+INCORRECT POINT (513_0_3006680) FOUND: effective_cooling_temperature_setpoint -> effective_heating_temperature_setpoint
+INCORRECT POINT (513_0_3006152) FOUND: effective_cooling_temperature_setpoint -> effective_heating_temperature_setpoint
+INCORRECT POINT (514_0_3006640) FOUND: effective_cooling_temperature_setpoint -> effective_heating_temperature_setpoint
+INCORRECT POINT (513_0_3007037) FOUND: effective_cooling_temperature_setpoint -> effective_heating_temperature_setpoint
+INCORRECT POINT (514_1_3006828) FOUND: average_zone_temperature_sensor -> zone_temperature_sensor
+INCORRECT POINT (514_0_3006732) FOUND: effective_cooling_temperature_setpoint -> effective_heating_temperature_setpoint
+INCORRECT POINT (513_0_3004927) FOUND: effective_cooling_temperature_setpoint -> effective_heating_temperature_setpoint
+INCORRECT POINT (513_0_3005111) FOUND: effective_cooling_temperature_setpoint -> effective_heating_temperature_setpoint
+INCORRECT POINT (514_0_3006686) FOUND: effective_cooling_temperature_setpoint -> effective_heating_temperature_setpoint
+INCORRECT POINT (513_0_3007121) FOUND: effective_cooling_temperature_setpoint -> effective_heating_temperature_setpoint
+INCORRECT POINT (514_14_3009021) FOUND: occupancy_command -> occupied_command
+INCORRECT POINT (604_0_3012532) FOUND: supply_air_flow_sensor -> supply_air_flow_setpoint
+INCORRECT POINT (514_0_3006443) FOUND: effective_cooling_temperature_setpoint -> effective_heating_temperature_setpoint
+INCORRECT POINT (513_0_3007100) FOUND: effective_cooling_temperature_setpoint -> effective_heating_temperature_setpoint
+INCORRECT POINT (513_0_3006638) FOUND: effective_cooling_temperature_setpoint -> effective_heating_temperature_setpoint
+INCORRECT POINT (513_0_3005899) FOUND: effective_cooling_temperature_setpoint -> effective_heating_temperature_setpoint
+INCORRECT POINT (513_0_3005539) FOUND: effective_cooling_temperature_setpoint -> effective_heating_temperature_setpoint
+INCORRECT POINT (513_0_3005602) FOUND: effective_cooling_temperature_setpoint -> effective_heating_temperature_setpoint
+INCORRECT POINT (513_0_3005226) FOUND: effective_cooling_temperature_setpoint -> effective_heating_temperature_setpoint
+INCORRECT POINT (513_0_3005295) FOUND: effective_cooling_temperature_setpoint -> effective_heating_temperature_setpoint
+INCORRECT POINT (513_0_3005581) FOUND: effective_cooling_temperature_setpoint -> effective_heating_temperature_setpoint
+INCORRECT POINT (604_0_3012761) FOUND: effective_cooling_temperature_setpoint -> effective_heating_temperature_setpoint
+INCORRECT POINT (514_0_3006617) FOUND: effective_cooling_temperature_setpoint -> effective_heating_temperature_setpoint
+INCORRECT POINT (513_0_3005019) FOUND: effective_cooling_temperature_setpoint -> effective_heating_temperature_setpoint
+INCORRECT POINT (514_0_3006801) FOUND: effective_cooling_temperature_setpoint -> effective_heating_temperature_setpoint
+INCORRECT POINT (513_0_3005761) FOUND: effective_cooling_temperature_setpoint -> effective_heating_temperature_setpoint
+INCORRECT POINT (513_0_3006037) FOUND: effective_cooling_temperature_setpoint -> effective_heating_temperature_setpoint
+INCORRECT POINT (604_0_3012601) FOUND: effective_cooling_temperature_setpoint -> effective_heating_temperature_setpoint
+INCORRECT POINT (513_0_3005157) FOUND: effective_cooling_temperature_setpoint -> effective_heating_temperature_setpoint
+INCORRECT POINT (513_0_3005272) FOUND: effective_cooling_temperature_setpoint -> effective_heating_temperature_setpoint
+INCORRECT POINT (513_0_3005065) FOUND: effective_cooling_temperature_setpoint -> effective_heating_temperature_setpoint
+INCORRECT POINT (513_0_3005692) FOUND: effective_cooling_temperature_setpoint -> effective_heating_temperature_setpoint
+INCORRECT POINT (513_0_3005042) FOUND: effective_cooling_temperature_setpoint -> effective_heating_temperature_setpoint
+INCORRECT POINT (513_0_3005853) FOUND: effective_cooling_temperature_setpoint -> effective_heating_temperature_setpoint
+INCORRECT POINT (514_0_3006521) FOUND: effective_cooling_temperature_setpoint -> effective_heating_temperature_setpoint
+INCORRECT POINT (513_0_3007478) FOUND: effective_cooling_temperature_setpoint -> effective_heating_temperature_setpoint
+INCORRECT POINT (513_0_3006175) FOUND: effective_cooling_temperature_setpoint -> effective_heating_temperature_setpoint
+INCORRECT POINT (513_0_3005341) FOUND: effective_cooling_temperature_setpoint -> effective_heating_temperature_setpoint
+INCORRECT POINT (604_0_3013049) FOUND: effective_cooling_temperature_setpoint -> effective_heating_temperature_setpoint
+INCORRECT POINT (513_0_3005560) FOUND: effective_cooling_temperature_setpoint -> effective_heating_temperature_setpoint
+INCORRECT POINT (513_0_3006743) FOUND: effective_cooling_temperature_setpoint -> effective_heating_temperature_setpoint
+INCORRECT POINT (513_0_3007205) FOUND: effective_cooling_temperature_setpoint -> effective_heating_temperature_setpoint
+INCORRECT POINT (604_0_3012403) FOUND: effective_cooling_temperature_setpoint -> effective_heating_temperature_setpoint
+INCORRECT POINT (513_0_3007394) FOUND: effective_cooling_temperature_setpoint -> effective_heating_temperature_setpoint
+INCORRECT POINT (513_0_3005968) FOUND: effective_cooling_temperature_setpoint -> effective_heating_temperature_setpoint
+INCORRECT POINT (513_0_3005807) FOUND: effective_cooling_temperature_setpoint -> effective_heating_temperature_setpoint
+INCORRECT POINT (513_0_3006512) FOUND: effective_cooling_temperature_setpoint -> effective_heating_temperature_setpoint
+INCORRECT POINT (514_1_3006951) FOUND: average_zone_temperature_sensor -> zone_temperature_sensor
+INCORRECT POINT (604_0_3013176) FOUND: effective_cooling_temperature_setpoint -> effective_heating_temperature_setpoint
+INCORRECT POINT (513_0_3004989) FOUND: supply_air_flow_sensor -> supply_air_flow_setpoint
+------------------------------------result---------------
+point precision: 0.8352601156069365
+point recall: 0.2976313079299691
+rate points not found in source               among sensors where point is not found: 
+	0.0
+sensors where a point is not found:  0.8451053283767038 682
+sensors where incorrect points are found:  0.07063197026022305 57
+unknown reason:  0.021065675340768277 17
+invalid points:  51
+-----------
+{'accuracy': 0.7591622901863907,
+ 'hamming_loss': 0.0017570073734581376,
+ 'hierarchy_accuracy': 0.7606752406451245,
+ 'macro_f1': 0.0999672077885375022017-06-05 19:08:02,226 # of not detected tagsets: [129]
+2017-06-05 19:08:02,226 # of learnt but not detected tagsets: [42]
+2017-06-05 19:08:02,240 # total found tagsets in todo: 27
+2017-06-05 19:08:02,240 # unfound tagsets: 129
+2017-06-05 19:08:02,240 # todo tagsets accounting unfound tagsets: 25
+2017-06-05 19:08:02,240 Ratio of correctly found todo srcids: 1.0
+2017-06-05 19:08:02,567 Entity Recognition Get Started.
+2017-06-05 19:08:05,208 Start adding Brick samples
+2017-06-05 19:08:05,336 Finished adding Brick samples
+2017-06-05 19:08:05,336 start tagset vectorizing
+2017-06-05 19:08:05,349 finished tagset vectorizing
+2017-06-05 19:08:08,215 Start learning multi-label classifier
+2017-06-05 19:11:59,762 Finished learning multi-label classifier
+2017-06-05 19:11:59,804 Start prediction
+2017-06-05 19:11:59,864 Start Tagset prediction
+2017-06-05 19:12:31,411 Finished Tagset prediction
+2017-06-05 19:12:31,417 Start point prediction
+2017-06-05 19:12:31,417 Finished point prediction
+2017-06-05 19:12:31,692 Finished prediction
+2017-06-05 19:12:31,693 Start prediction
+2017-06-05 19:12:31,711 Start Tagset prediction
+2017-06-05 19:12:44,393 Finished Tagset prediction
+2017-06-05 19:12:44,393 Start point prediction
+2017-06-05 19:12:44,394 Finished point prediction
+2017-06-05 19:12:44,448 Finished prediction
+/home/jbkoh/anaconda3/lib/python3.6/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision and F-score are ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/home/jbkoh/anaconda3/lib/python3.6/site-packages/sklearn/metrics/classification.py:1115: UndefinedMetricWarning: Recall and F-score are ill-defined and being set to 0.0 in labels with no true samples.
+  'recall', 'true', average, warn_for)
+2017-06-05 19:12:46,063 Start prediction
+2017-06-05 19:12:46,118 Start Tagset prediction
+2017-06-05 19:13:10,253 Finished Tagset prediction
+2017-06-05 19:13:10,253 Start point prediction
+2017-06-05 19:13:10,253 Finished point prediction
+2017-06-05 19:13:10,372 Finished prediction
+,
+ 'micro_f1': 0.86780016478166433,
+ 'point_correct_cnt': 289,
+ 'point_incorrect_cnt': 57,
+ 'point_precision': 0.8352601156069365,
+ 'point_recall': 0.2976313079299691,
+ 'precision': 0.2520852641334569,
+ 'subset_accuracy': 0.2520852641334569,
+ 'unfound_point_cnt': 682,
+ 'weighted_f1': 0.79564049453297891}
+################################# Iter# 1
+history of point precision: [0.8352601156069365]
+history of point recall: [0.2976313079299691]
+history of correct point cnt: [289]
+history of incorrect point cnt: [57]
+history of unfound point cnt: [682]
+history of accuracy: [0.7591622901863907]
+history of micro f1: [0.099967207788537502]
+
+
+################ Iteration 2 ################
+Training Time: 0:03:54.797267
+avg prec: 0.9725973880118084
+avg rec: 0.9718245788881591
+avg f1: 0.9721409232458457
+------------------------------------result---------------
+point precision: 1.0
+point recall: 1.0
+sensors where a point is not found:  0.0 0
+sensors where incorrect points are found:  0.0 0
+unknown reason:  0.35714285714285715 5
+invalid points:  9
+-----------
+{'accuracy': 0.9900808625336927,
+ 'hamming_loss': 7.701193685021177e-05,
+ 'hierarchy_accuracy': 0.9900808625336927,
+ 'macro_f1': 0.94454052807563704,
+ 'micro_f1': 0.99450390512004616,
+ 'point_correct_cnt': 256,
+ 'point_incorrect_cnt': 0,
+ 'point_precision': 1.0,
+ 'point_recall': 1.0,
+ 'precision': 0.9471698113207547,
+ 'subset_accuracy': 0.9471698113207547,
+ 'unfound_point_cnt': 0,
+ 'weighted_f1': 0.99412207693135246}
+avg prec: [ 0.98964712  0.24667498]
+avg rec: [ 0.99858955  0.20373414]
+avg f1: [ 0.99371088  0.21116862]
+INCORRECT POINT (514_0_3006640) FOUND: effective_cooling_temperature_setpoint -> effective_heating_temperature_setpoint
+INCORRECT POINT (514_0_3007094) FOUND: effective_cooling_temperature_setpoint -> effective_heating_temperature_setpoint
+INCORRECT POINT (513_0_3005560) FOUND: effective_cooling_temperature_setpoint -> effective_heating_temperature_setpoint
+INCORRECT POINT (604_1_3013210) FOUND: occupied_heating_max_supply_air_flow_setpoint -> effective_heating_temperature_setpoint
+INCORRECT POINT (513_0_3005272) FOUND: effective_cooling_temperature_setpoint -> effective_heating_temperature_setpoint
+INCORRECT POINT (513_0_3006152) FOUND: effective_cooling_temperature_setpoint -> effective_heating_temperature_setpoint
+INCORRECT POINT (514_0_3006521) FOUND: effective_cooling_temperature_setpoint -> effective_heating_temperature_setpoint
+INCORRECT POINT (513_0_3005042) FOUND: effective_cooling_temperature_setpoint -> effective_heating_temperature_setpoint
+INCORRECT POINT (513_1_3005998) FOUND: occupied_heating_max_supply_air_flow_setpoint -> effective_heating_temperature_setpoint
+INCORRECT POINT (604_1_3012869) FOUND: occupied_heating_max_supply_air_flow_setpoint -> effective_heating_temperature_setpoint
+INCORRECT POINT (514_1_3006624) FOUND: occupied_heating_max_supply_air_flow_setpoint -> effective_heating_temperature_setpoint
+INCORRECT POINT (513_0_3004927) FOUND: effective_cooling_temperature_setpoint -> effective_heating_temperature_setpoint
+INCORRECT POINT (514_0_3006732) FOUND: effective_cooling_temperature_setpoint -> effective_heating_temperature_setpoint
+INCORRECT POINT (513_1_3005906) FOUND: occupied_heating_max_supply_air_flow_setpoint -> effective_heating_temperature_setpoint
+INCORRECT POINT (514_1_3006951) FOUND: average_zone_temperature_sensor -> zone_temperature_sensor
+INCORRECT POINT (513_1_3005699) FOUND: occupied_heating_max_supply_air_flow_setpoint -> effective_heating_temperature_setpoint
+INCORRECT POINT (604_0_3012403) FOUND: effective_cooling_temperature_setpoint -> effective_heating_temperature_setpoint
+INCORRECT POINT (513_1_3004865) FOUND: occupied_heating_max_supply_air_flow_setpoint -> effective_heating_temperature_setpoint
+INCORRECT POINT (513_0_3005968) FOUND: effective_cooling_temperature_setpoint -> effective_heating_temperature_setpoint
+INCORRECT POINT (513_0_3005539) FOUND: effective_cooling_temperature_setpoint -> effective_heating_temperature_setpoint
+INCORRECT POINT (513_0_3007205) FOUND: effective_cooling_temperature_setpoint -> effective_heating_temperature_setpoint
+INCORRECT POINT (513_2_3015660) FOUND: max_supply_air_temperature_setpoint -> min_supply_air_temperature_setpoint
+INCORRECT POINT (604_0_3013450) FOUND: exhaust_air_static_pressure_sensor -> exhaust_air_static_pressure_setpoint
+INCORRECT POINT (604_1_3012991) FOUND: occupied_heating_max_supply_air_flow_setpoint -> effective_heating_temperature_setpoint
+INCORRECT POINT (604_0_3012761) FOUND: effective_cooling_temperature_setpoint -> effective_heating_temperature_setpoint
+INCORRECT POINT (513_0_3006512) FOUND: effective_cooling_temperature_setpoint -> effective_heating_temperature_setpoint
+INCORRECT POINT (513_0_3005581) FOUND: effective_cooling_temperature_setpoint -> effective_heating_temperature_setpoint
+INCORRECT POINT (604_0_3013049) FOUND: effective_cooling_temperature_setpoint -> effective_heating_temperature_setpoint
+INCORRECT POINT (513_0_3004989) FOUND: supply_air_flow_sensor -> supply_air_flow_setpoint
+INCORRECT POINT (513_0_3006405) FOUND: effective_cooling_temperature_setpoint -> effective_heating_temperature_setpoint
+INCORRECT POINT (513_0_3005226) FOUND: effective_cooling_temperature_setpoint -> effective_heating_temperature_setpoint
+INCORRECT POINT (604_1_3012916) FOUND: occupied_heating_max_supply_air_flow_setpoint -> effective_heating_temperature_setpoint
+INCORRECT POINT (604_1_3012456) FOUND: occupied_heating_temperature_setpoint -> effective_heating_temperature_setpoint
+INCORRECT POINT (514_0_3006617) FOUND: effective_cooling_temperature_setpoint -> effective_heating_temperature_setpoint
+INCORRECT POINT (604_1_3012422) FOUND: occupied_heating_max_supply_air_flow_setpoint -> effective_heating_temperature_setpoint
+INCORRECT POINT (514_0_3006686) FOUND: effective_cooling_temperature_setpoint -> effective_heating_temperature_setpoint
+INCORRECT POINT (513_0_3005853) FOUND: effective_cooling_temperature_setpoint -> effective_heating_temperature_setpoint
+INCORRECT POINT (514_1_3006670) FOUND: occupied_heating_max_supply_air_flow_setpoint -> effective_heating_temperature_setpoint
+INCORRECT POINT (513_0_3005807) FOUND: effective_cooling_temperature_setpoint -> effective_heating_temperature_setpoint
+INCORRECT POINT (514_0_3009023) FOUND: effective_cooling_temperature_setpoint -> effective_heating_temperature_setpoint
+INCORRECT POINT (513_0_3005692) FOUND: effective_cooling_temperature_setpoint -> effective_heating_temperature_setpoint
+INCORRECT POINT (513_0_3007394) FOUND: effective_cooling_temperature_setpoint -> effective_heating_temperature_setpoint
+INCORRECT POINT (514_14_3009021) FOUND: occupancy_command -> occupied_command
+INCORRECT POINT (513_1_3004888) FOUND: occupied_heating_max_supply_air_flow_setpoint -> effective_heating_temperature_setpoint
+INCORRECT POINT (514_1_3006482) FOUND: occupied_heating_max_supply_air_flow_setpoint -> effective_heating_temperature_setpoint
+INCORRECT POINT (604_1_3013053) FOUND: occupied_heating_max_supply_air_flow_setpoint -> effective_heating_temperature_setpoint
+INCORRECT POINT (513_0_3005295) FOUND: effective_cooling_temperature_setpoint -> effective_heating_temperature_setpoint
+INCORRECT POINT (604_0_3012601) FOUND: effective_cooling_temperature_setpoint -> effective_heating_temperature_setpoint
+INCORRECT POINT (514_0_3006498) FOUND: effective_cooling_temperature_setpoint -> effective_heating_temperature_setpoint
+INCORRECT POINT (513_0_3005899) FOUND: effective_cooling_temperature_setpoint -> effective_heating_temperature_setpoint
+INCORRECT POINT (513_1_3006159) FOUND: occupied_heating_max_supply_air_flow_setpoint -> effective_heating_temperature_setpoint
+INCORRECT POINT (513_0_3006701) FOUND: effective_cooling_temperature_setpoint -> effective_heating_temperature_setpoint
+INCORRECT POINT (514_1_3011277) FOUND: damper_command -> occupied_command
+INCORRECT POINT (513_0_3005065) FOUND: effective_cooling_temperature_setpoint -> effective_heating_temperature_setpoint
+INCORRECT POINT (604_1_3013023) FOUND: occupied_heating_max_supply_air_flow_setpoint -> effective_heating_temperature_setpoint
+INCORRECT POINT (513_1_3004934) FOUND: occupied_heating_max_supply_air_flow_setpoint -> effective_heating_temperature_setpoint2017-06-05 19:13:10,912 # of not detected tagsets: [129, 125]
+2017-06-05 19:13:10,912 # of learnt but not detected tagsets: [42, 51]
+2017-06-05 19:13:10,986 # total found tagsets in todo: 27
+2017-06-05 19:13:10,986 # unfound tagsets: 125
+2017-06-05 19:13:10,986 # todo tagsets accounting unfound tagsets: 24
+2017-06-05 19:13:10,986 Ratio of correctly found todo srcids: 1.0
+2017-06-05 19:13:12,122 Entity Recognition Get Started.
+2017-06-05 19:13:28,143 Start adding Brick samples
+2017-06-05 19:13:28,364 Finished adding Brick samples
+2017-06-05 19:13:28,364 start tagset vectorizing
+2017-06-05 19:13:28,383 finished tagset vectorizing
+2017-06-05 19:13:32,398 Start learning multi-label classifier
+2017-06-05 19:16:18,023 Finished learning multi-label classifier
+2017-06-05 19:16:18,036 Start prediction
+2017-06-05 19:16:18,048 Start Tagset prediction
+2017-06-05 19:16:34,913 Finished Tagset prediction
+2017-06-05 19:16:34,914 Start point prediction
+2017-06-05 19:16:34,914 Finished point prediction
+2017-06-05 19:16:35,017 Finished prediction
+2017-06-05 19:16:35,018 Start prediction
+2017-06-05 19:16:35,027 Start Tagset prediction
+2017-06-05 19:16:43,265 Finished Tagset prediction
+2017-06-05 19:16:43,266 Start point prediction
+2017-06-05 19:16:43,266 Finished point prediction
+2017-06-05 19:16:43,293 Finished prediction
+/home/jbkoh/anaconda3/lib/python3.6/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision and F-score are ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/home/jbkoh/anaconda3/lib/python3.6/site-packages/sklearn/metrics/classification.py:1115: UndefinedMetricWarning: Recall and F-score are ill-defined and being set to 0.0 in labels with no true samples.
+  'recall', 'true', average, warn_for)
+2017-06-05 19:16:44,530 Start prediction
+2017-06-05 19:16:44,546 Start Tagset prediction
+2017-06-05 19:17:04,243 Finished Tagset prediction
+2017-06-05 19:17:04,244 Start point prediction
+2017-06-05 19:17:04,244 Finished point prediction
+2017-06-05 19:17:04,388 Finished prediction
+
+INCORRECT POINT (604_0_3012532) FOUND: supply_air_flow_sensor -> supply_air_flow_setpoint
+INCORRECT POINT (514_1_3006931) FOUND: occupied_heating_max_supply_air_flow_setpoint -> effective_heating_temperature_setpoint
+INCORRECT POINT (513_0_3005019) FOUND: effective_cooling_temperature_setpoint -> effective_heating_temperature_setpoint
+INCORRECT POINT (604_0_3013176) FOUND: effective_cooling_temperature_setpoint -> effective_heating_temperature_setpoint
+INCORRECT POINT (513_0_3007478) FOUND: effective_cooling_temperature_setpoint -> effective_heating_temperature_setpoint
+INCORRECT POINT (513_1_3005348) FOUND: occupied_heating_max_supply_air_flow_setpoint -> effective_heating_temperature_setpoint
+INCORRECT POINT (514_2_3010565) FOUND: max_supply_air_temperature_setpoint -> min_supply_air_temperature_setpoint
+INCORRECT POINT (513_0_3006680) FOUND: effective_cooling_temperature_setpoint -> effective_heating_temperature_setpoint
+INCORRECT POINT (514_0_3006443) FOUND: effective_cooling_temperature_setpoint -> effective_heating_temperature_setpoint
+INCORRECT POINT (513_0_3006743) FOUND: effective_cooling_temperature_setpoint -> effective_heating_temperature_setpoint
+INCORRECT POINT (513_1_3006412) FOUND: occupied_heating_max_supply_air_flow_setpoint -> effective_heating_temperature_setpoint
+INCORRECT POINT (604_1_3013132) FOUND: occupied_heating_max_supply_air_flow_setpoint -> effective_heating_temperature_setpoint
+INCORRECT POINT (513_0_3006638) FOUND: effective_cooling_temperature_setpoint -> effective_heating_temperature_setpoint
+INCORRECT POINT (514_1_3006505) FOUND: occupied_heating_max_supply_air_flow_setpoint -> effective_heating_temperature_setpoint
+INCORRECT POINT (514_1_3011269) FOUND: damper_command -> occupied_command
+INCORRECT POINT (513_0_3007037) FOUND: effective_cooling_temperature_setpoint -> effective_heating_temperature_setpoint
+INCORRECT POINT (513_1_3006251) FOUND: occupied_heating_max_supply_air_flow_setpoint -> effective_heating_temperature_setpoint
+INCORRECT POINT (513_2_3016876) FOUND: supply_air_static_pressure_setpoint -> min_supply_air_temperature_setpoint
+INCORRECT POINT (604_0_3012897) FOUND: effective_cooling_temperature_setpoint -> effective_heating_temperature_setpoint
+INCORRECT POINT (513_0_3005602) FOUND: effective_cooling_temperature_setpoint -> effective_heating_temperature_setpoint
+INCORRECT POINT (513_2_3015530) FOUND: max_supply_air_temperature_setpoint -> min_supply_air_temperature_setpoint
+INCORRECT POINT (513_0_3005157) FOUND: effective_cooling_temperature_setpoint -> effective_heating_temperature_setpoint
+INCORRECT POINT (514_1_3006828) FOUND: average_zone_temperature_sensor -> zone_temperature_sensor
+INCORRECT POINT (514_0_3006801) FOUND: effective_cooling_temperature_setpoint -> effective_heating_temperature_setpoint
+INCORRECT POINT (513_0_3007100) FOUND: effective_cooling_temperature_setpoint -> effective_heating_temperature_setpoint
+INCORRECT POINT (513_0_3005341) FOUND: effective_cooling_temperature_setpoint -> effective_heating_temperature_setpoint
+INCORRECT POINT (604_1_3012531) FOUND: occupied_heating_temperature_setpoint -> effective_heating_temperature_setpoint
+INCORRECT POINT (513_0_3006037) FOUND: effective_cooling_temperature_setpoint -> effective_heating_temperature_setpoint
+INCORRECT POINT (513_0_3007121) FOUND: effective_cooling_temperature_setpoint -> effective_heating_temperature_setpoint
+INCORRECT POINT (513_0_3006175) FOUND: effective_cooling_temperature_setpoint -> effective_heating_temperature_setpoint
+INCORRECT POINT (513_0_3004904) FOUND: effective_cooling_temperature_setpoint -> effective_heating_temperature_setpoint
+INCORRECT POINT (513_0_3005111) FOUND: effective_cooling_temperature_setpoint -> effective_heating_temperature_setpoint
+INCORRECT POINT (514_1_3011266) FOUND: damper_command -> occupied_command
+INCORRECT POINT (513_0_3005761) FOUND: effective_cooling_temperature_setpoint -> effective_heating_temperature_setpoint
+INCORRECT POINT (604_1_3012496) FOUND: occupied_heating_max_supply_air_flow_setpoint -> effective_heating_temperature_setpoint
+------------------------------------result---------------
+point precision: 0.7941176470588235
+point recall: 0.37103594080338265
+rate points not found in source               among sensors where point is not found: 
+	0.0
+sensors where a point is not found:  0.800807537012113 595
+sensors where incorrect points are found:  0.1224764468371467 91
+unknown reason:  0.020188425302826378 15
+invalid points:  42
+-----------
+{'accuracy': 0.8517605219412469,
+ 'hamming_loss': 0.0011129372484567676,
+ 'hierarchy_accuracy': 0.8524730791297076,
+ 'macro_f1': 0.21116862431742725,
+ 'micro_f1': 0.92044969403728483,
+ 'point_correct_cnt': 351,
+ 'point_incorrect_cnt': 91,
+ 'point_precision': 0.7941176470588235,
+ 'point_recall': 0.37103594080338265,
+ 'precision': 0.3113994439295644,
+ 'subset_accuracy': 0.3113994439295644,
+ 'unfound_point_cnt': 595,
+ 'weighted_f1': 0.86489280616467368}
+################################# Iter# 2
+history of point precision: [0.8352601156069365, 0.7941176470588235]
+history of point recall: [0.2976313079299691, 0.37103594080338265]
+history of correct point cnt: [289, 351]
+history of incorrect point cnt: [57, 91]
+history of unfound point cnt: [682, 595]
+history of accuracy: [0.7591622901863907, 0.8517605219412469]
+history of micro f1: [0.099967207788537502, 0.21116862431742725]
+
+
+################ Iteration 3 ################
+Training Time: 0:02:50.296678
+avg prec: 0.9538824256073462
+avg rec: 0.9506633762578883
+avg f1: 0.9513391472687777
+------------------------------------result---------------
+point precision: 1.0
+point recall: 1.0
+sensors where a point is not found:  0.0 0
+sensors where incorrect points are found:  0.0 0
+unknown reason:  0.725 29
+invalid points:  11
+-----------
+{'accuracy': 0.9700439560439563,
+ 'hamming_loss': 0.00022804263405767162,
+ 'hierarchy_accuracy': 0.9700439560439563,
+ 'macro_f1': 0.90334312205998313,
+ 'micro_f1': 0.98318303680233976,
+ 'point_correct_cnt': 314,
+ 'point_incorrect_cnt': 0,
+ 'point_precision': 1.0,
+ 'point_recall': 1.0,
+ 'precision': 0.8769230769230769,
+ 'subset_accuracy': 0.8769230769230769,
+ 'unfound_point_cnt': 0,
+ 'weighted_f1': 0.98347486815285001}
+avg prec: [ 0.99009124  0.32189853]
+avg rec: [ 0.99883125  0.25879324]
+avg f1: [ 0.99390362  0.27423863]
+INCORRECT POINT (513_1_3006409) FOUND: occupied_cooling_max_supply_air_flow_setpoint -> cooling_max_discharge_air_flow_setpoint
+INCORRECT POINT (513_1_3005926) FOUND: occupied_cooling_max_supply_air_flow_setpoint -> cooling_max_discharge_air_flow_setpoint
+INCORRECT POINT (513_1_3005857) FOUND: occupied_cooling_max_supply_air_flow_setpoint -> cooling_max_discharge_air_flow_setpoint
+INCORRECT POINT (604_1_3012456) FOUND: occupied_heating_temperature_setpoint -> occupied_cooling_temperature_setpoint
+INCORRECT POINT (513_1_3005673) FOUND: occupied_cooling_max_supply_air_flow_setpoint -> cooling_max_discharge_air_flow_setpoint
+INCORRECT POINT (604_1_3013051) FOUND: occupied_cooling_max_supply_air_flow_setpoint -> cooling_max_discharge_air_flow_setpoint
+INCORRECT POINT (514_1_3006548) FOUND: occupied_cooling_max_supply_air_flow_setpoint -> cooling_max_discharge_air_flow_setpoint
+INCORRECT POINT (514_1_3006621) FOUND: occupied_cooling_max_supply_air_flow_setpoint -> cooling_max_discharge_air_flow_setpoint
+INCORRECT POINT (513_1_3004931) FOUND: occupied_cooling_max_supply_air_flow_setpoint -> cooling_max_discharge_air_flow_setpoint
+INCORRECT POINT (514_14_3009021) FOUND: occupancy_command -> occupied_command
+INCORRECT POINT (604_1_3012852) FOUND: occupied_cooling_max_supply_air_flow_setpoint -> cooling_max_discharge_air_flow_setpoint
+INCORRECT POINT (604_1_3013021) FOUND: occupied_cooling_max_supply_air_flow_setpoint -> cooling_max_discharge_air_flow_setpoint
+INCORRECT POINT (514_1_3006951) FOUND: average_zone_temperature_sensor -> zone_temperature_sensor
+INCORRECT POINT (513_1_3005345) FOUND: occupied_cooling_max_supply_air_flow_setpoint -> cooling_max_discharge_air_flow_setpoint
+INCORRECT POINT (513_1_3005276) FOUND: occupied_cooling_max_supply_air_flow_setpoint -> cooling_max_discharge_air_flow_setpoint
+INCORRECT POINT (513_1_3005161) FOUND: occupied_cooling_max_supply_air_flow_setpoint -> cooling_max_discharge_air_flow_setpoint2017-06-05 19:17:04,923 # of not detected tagsets: [129, 125, 122]
+2017-06-05 19:17:04,923 # of learnt but not detected tagsets: [42, 51, 62]
+2017-06-05 19:17:04,970 # total found tagsets in todo: 38
+2017-06-05 19:17:04,970 # unfound tagsets: 122
+2017-06-05 19:17:04,970 # todo tagsets accounting unfound tagsets: 34
+2017-06-05 19:17:04,970 Ratio of correctly found todo srcids: 1.0
+2017-06-05 19:17:05,762 Entity Recognition Get Started.
+2017-06-05 19:17:09,643 Start adding Brick samples
+2017-06-05 19:17:09,792 Finished adding Brick samples
+2017-06-05 19:17:09,792 start tagset vectorizing
+2017-06-05 19:17:09,806 finished tagset vectorizing
+2017-06-05 19:17:13,856 Start learning multi-label classifier
+2017-06-05 19:19:21,799 Finished learning multi-label classifier
+2017-06-05 19:19:21,807 Start prediction
+2017-06-05 19:19:21,816 Start Tagset prediction
+2017-06-05 19:19:33,087 Finished Tagset prediction
+2017-06-05 19:19:33,087 Start point prediction
+2017-06-05 19:19:33,087 Finished point prediction
+2017-06-05 19:19:33,162 Finished prediction
+2017-06-05 19:19:33,162 Start prediction
+2017-06-05 19:19:33,167 Start Tagset prediction
+2017-06-05 19:19:42,159 Finished Tagset prediction
+2017-06-05 19:19:42,159 Start point prediction
+2017-06-05 19:19:42,159 Finished point prediction
+2017-06-05 19:19:42,192 Finished prediction
+/home/jbkoh/anaconda3/lib/python3.6/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision and F-score are ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/home/jbkoh/anaconda3/lib/python3.6/site-packages/sklearn/metrics/classification.py:1115: UndefinedMetricWarning: Recall and F-score are ill-defined and being set to 0.0 in labels with no true samples.
+  'recall', 'true', average, warn_for)
+2017-06-05 19:19:42,994 Start prediction
+2017-06-05 19:19:43,006 Start Tagset prediction
+2017-06-05 19:19:55,813 Finished Tagset prediction
+2017-06-05 19:19:55,813 Start point prediction
+2017-06-05 19:19:55,813 Finished point prediction
+2017-06-05 19:19:55,902 Finished prediction
+
+INCORRECT POINT (514_1_3006713) FOUND: occupied_cooling_max_supply_air_flow_setpoint -> cooling_max_discharge_air_flow_setpoint
+INCORRECT POINT (514_1_3006360) FOUND: supply_air_static_pressure_setpoint -> supply_air_static_pressure_sensor
+INCORRECT POINT (513_2_3015660) FOUND: max_supply_air_temperature_setpoint -> min_supply_air_temperature_setpoint
+INCORRECT POINT (513_1_3006271) FOUND: occupied_cooling_max_supply_air_flow_setpoint -> cooling_max_discharge_air_flow_setpoint
+INCORRECT POINT (513_1_3005650) FOUND: occupied_cooling_max_supply_air_flow_setpoint -> cooling_max_discharge_air_flow_setpoint
+INCORRECT POINT (514_1_3007022) FOUND: occupied_cooling_max_supply_air_flow_setpoint -> cooling_max_discharge_air_flow_setpoint
+INCORRECT POINT (513_1_3006133) FOUND: occupied_cooling_max_supply_air_flow_setpoint -> cooling_max_discharge_air_flow_setpoint
+INCORRECT POINT (513_2_3015530) FOUND: max_supply_air_temperature_setpoint -> min_supply_air_temperature_setpoint
+INCORRECT POINT (513_5_3019206) FOUND: zone_unoccupied_load_shed_command -> load_shed_command
+INCORRECT POINT (513_1_3005811) FOUND: occupied_cooling_max_supply_air_flow_setpoint -> cooling_max_discharge_air_flow_setpoint
+INCORRECT POINT (513_1_3006340) FOUND: occupied_cooling_max_supply_air_flow_setpoint -> cooling_max_discharge_air_flow_setpoint
+INCORRECT POINT (514_1_3006830) FOUND: occupied_cooling_max_supply_air_flow_setpoint -> cooling_max_discharge_air_flow_setpoint
+INCORRECT POINT (604_1_3012494) FOUND: occupied_cooling_max_supply_air_flow_setpoint -> cooling_max_discharge_air_flow_setpoint
+INCORRECT POINT (514_1_3006828) FOUND: average_zone_temperature_sensor -> zone_temperature_sensor
+INCORRECT POINT (604_1_3012867) FOUND: occupied_cooling_max_supply_air_flow_setpoint -> cooling_max_discharge_air_flow_setpoint
+INCORRECT POINT (514_1_3006378) FOUND: cooling_supply_air_temperature_proportional_band_setpoint -> heating_discharge_air_temperature_proportional_band_setpoint
+INCORRECT POINT (513_1_3005184) FOUND: occupied_cooling_max_supply_air_flow_setpoint -> cooling_max_discharge_air_flow_setpoint
+INCORRECT POINT (604_1_3013193) FOUND: occupied_cooling_max_supply_air_flow_setpoint -> cooling_max_discharge_air_flow_setpoint
+INCORRECT POINT (604_1_3012531) FOUND: occupied_heating_temperature_setpoint -> occupied_cooling_temperature_setpoint
+INCORRECT POINT (513_1_3005322) FOUND: occupied_cooling_max_supply_air_flow_setpoint -> cooling_max_discharge_air_flow_setpoint
+INCORRECT POINT (514_1_3007323) FOUND: occupied_cooling_min_supply_air_flow_setpoint -> occupied_heating_min_discharge_air_flow_setpoint
+INCORRECT POINT (604_1_3013178) FOUND: occupied_cooling_max_supply_air_flow_setpoint -> cooling_max_discharge_air_flow_setpoint
+INCORRECT POINT (604_1_3012479) FOUND: occupied_cooling_max_supply_air_flow_setpoint -> cooling_max_discharge_air_flow_setpoint
+INCORRECT POINT (513_1_3005092) FOUND: occupied_cooling_max_supply_air_flow_setpoint -> cooling_max_discharge_air_flow_setpoint
+INCORRECT POINT (513_1_3004747) FOUND: occupied_cooling_max_supply_air_flow_setpoint -> cooling_max_discharge_air_flow_setpoint
+INCORRECT POINT (604_1_3012929) FOUND: occupied_cooling_max_supply_air_flow_setpoint -> cooling_max_discharge_air_flow_setpoint
+INCORRECT POINT (604_1_3012944) FOUND: occupied_cooling_max_supply_air_flow_setpoint -> cooling_max_discharge_air_flow_setpoint
+INCORRECT POINT (513_1_3006018) FOUND: occupied_cooling_max_supply_air_flow_setpoint -> cooling_max_discharge_air_flow_setpoint
+------------------------------------result---------------
+point precision: 0.921146953405018
+point recall: 0.5171026156941649
+rate points not found in source               among sensors where point is not found: 
+	0.0
+sensors where a point is not found:  0.6620689655172414 480
+sensors where incorrect points are found:  0.060689655172413794 44
+unknown reason:  0.2206896551724138 160
+invalid points:  41
+-----------
+{'accuracy': 0.8506082939817897,
+ 'hamming_loss': 0.0011597244136423393,
+ 'hierarchy_accuracy': 0.8511708004177903,
+ 'macro_f1': 0.27423862599820142,
+ 'micro_f1': 0.91773179860179366,
+ 'point_correct_cnt': 514,
+ 'point_incorrect_cnt': 44,
+ 'point_precision': 0.921146953405018,
+ 'point_recall': 0.5171026156941649,
+ 'precision': 0.32808155699721964,
+ 'subset_accuracy': 0.32808155699721964,
+ 'unfound_point_cnt': 480,
+ 'weighted_f1': 0.88071460143790203}
+################################# Iter# 3
+history of point precision: [0.8352601156069365, 0.7941176470588235, 0.921146953405018]
+history of point recall: [0.2976313079299691, 0.37103594080338265, 0.5171026156941649]
+history of correct point cnt: [289, 351, 514]
+history of incorrect point cnt: [57, 91, 44]
+history of unfound point cnt: [682, 595, 480]
+history of accuracy: [0.7591622901863907, 0.8517605219412469, 0.8506082939817897]
+history of micro f1: [0.099967207788537502, 0.21116862431742725, 0.27423862599820142]
+
+
+################ Iteration 4 ################
+Training Time: 0:02:12.486557
+avg prec: 0.9505059841990342
+avg rec: 0.9474330616285179
+avg f1: 0.9480825948121279
+------------------------------------result---------------
+point precision: 1.0
+point recall: 1.0
+sensors where a point is not found:  0.0 0
+sensors where incorrect points are found:  0.0 0
+unknown reason:  0.7446808510638298 35
+invalid points:  12
+-----------
+{'accuracy': 0.9678787878787879,
+ 'hamming_loss': 0.00022877230181204408,
+ 'hierarchy_accuracy': 0.9678787878787879,
+ 'macro_f1': 0.89679497193948055,
+ 'micro_f1': 0.98344771901493733,
+ 'point_correct_cnt': 373,
+ 'point_incorrect_cnt': 0,
+ 'point_precision': 1.0,
+ 'point_recall': 1.0,
+ 'precision': 0.8779220779220779,
+ 'subset_accuracy': 0.8779220779220779,
+ 'unfound_point_cnt': 0,
+ 'weighted_f1': 0.98365350076989222}
+avg prec: [ 0.99517426  0.41400444]
+avg rec: [ 0.99911675  0.36576803]
+avg f1: [ 0.99704318  0.37006038]
+INCORRECT POINT (514_14_3009021) FOUND: occupancy_command -> occupied_command
+INCORRECT POINT (513_2_3015660) FOUND: max_supply_air_temperature_setpoint -> min_supply_air_temperature_setpoint
+INCORRECT POINT (513_0_3011341) FOUND: chilled_water_differential_pressure_sensor -> chilled_water_pump_status
+INCORRECT POINT (513_4_3011359) FOUND: chilled_water_system_enable_command -> chilled_water_pump_status
+INCORRECT POINT (514_1_3006360) FOUND: supply_air_static_pressure_setpoint -> supply_air_static_pressure_sensor
+INCORRECT POINT (513_1_3004545) FOUND: supply_water_temperature_dead_band_setpoint -> supply_water_temperature_integral_time_setpoint
+INCORRECT POINT (514_1_3006951) FOUND: average_zone_temperature_sensor -> zone_temperature_sensor
+INCORRECT POINT (514_1_3006372) FOUND: heat_exchanger_supply_water_temperature_dead_band_setpoint -> supply_water_temperature_integral_time_setpoint
+INCORRECT POINT (514_1_3006828) FOUND: average_zone_temperature_sensor -> zone_temperature_sensor
+INCORRECT POINT (513_4_3011358) FOUND: chilled_water_bypass_valve_command -> chilled_water_pump_status
+INCORRECT POINT (604_1_3012526) FOUND: occupied_heating_max_supply_air_flow_setpoint -> occupied_cooling_max_supply_air_flow_setpoint
+INCORRECT POINT (604_3_3013695) FOUND: alarm -> humidity_sensor
+INCORRECT POINT (604_0_3013703) FOUND: capacity_sensor -> humidity_sensor
+INCORRECT POINT (604_0_3013690) FOUND: capacity_sensor -> humidity_sensor
+INCORRECT POINT (514_1_3006378) FOUND: cooling_supply_air_temperature_proportional_band_setpoint -> heating_discharge_air_temperature_proportional_band_setpoint
+INCORRECT POINT (513_5_3019206) FOUND: zone_unoccupied_load_shed_command -> load_shed_command
+INCORRECT POINT (513_2_3015530) FOUND: max_supply_air_temperature_setpoint -> min_supply_air_temperature_setpoint
+------------------------------------result---------------
+point precision: 0.9782886334610472
+point recall: 0.7509803921568627
+rate points not found in source               among sensors where point is not found: 
+	0.0
+sensors where a point is not found:  0.5607064017660044 254
+sensors where incorrect points are found:  0.037527593818984545 17
+unknown reason:  0.3090507726269316 140
+invalid points:  42
+-----------
+{'accuracy': 0.9100636980155064,
+ 'hamming_loss': 0.000680902574190008,
+ 'hierarchy_accuracy': 0.91062620445150692017-06-05 19:19:56,198 # of not detected tagsets: [129, 125, 122, 109]
+2017-06-05 19:19:56,198 # of learnt but not detected tagsets: [42, 51, 62, 57]
+2017-06-05 19:19:56,214 # total found tagsets in todo: 33
+2017-06-05 19:19:56,214 # unfound tagsets: 109
+2017-06-05 19:19:56,214 # todo tagsets accounting unfound tagsets: 28
+2017-06-05 19:19:56,214 Ratio of correctly found todo srcids: 1.0
+2017-06-05 19:19:56,577 Entity Recognition Get Started.
+2017-06-05 19:19:59,182 Start adding Brick samples
+2017-06-05 19:19:59,311 Finished adding Brick samples
+2017-06-05 19:19:59,311 start tagset vectorizing
+2017-06-05 19:19:59,324 finished tagset vectorizing
+2017-06-05 19:20:02,968 Start learning multi-label classifier
+2017-06-05 19:21:50,277 Finished learning multi-label classifier
+2017-06-05 19:21:50,283 Start prediction
+2017-06-05 19:21:50,294 Start Tagset prediction
+2017-06-05 19:22:02,156 Finished Tagset prediction
+2017-06-05 19:22:02,156 Start point prediction
+2017-06-05 19:22:02,156 Finished point prediction
+2017-06-05 19:22:02,231 Finished prediction
+2017-06-05 19:22:02,232 Start prediction
+2017-06-05 19:22:02,237 Start Tagset prediction
+2017-06-05 19:22:10,899 Finished Tagset prediction
+2017-06-05 19:22:10,899 Start point prediction
+2017-06-05 19:22:10,900 Finished point prediction
+2017-06-05 19:22:10,937 Finished prediction
+/home/jbkoh/anaconda3/lib/python3.6/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision and F-score are ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/home/jbkoh/anaconda3/lib/python3.6/site-packages/sklearn/metrics/classification.py:1115: UndefinedMetricWarning: Recall and F-score are ill-defined and being set to 0.0 in labels with no true samples.
+  'recall', 'true', average, warn_for)
+2017-06-05 19:22:11,497 Start prediction
+2017-06-05 19:22:11,515 Start Tagset prediction
+2017-06-05 19:22:24,590 Finished Tagset prediction
+2017-06-05 19:22:24,590 Start point prediction
+2017-06-05 19:22:24,590 Finished point prediction
+2017-06-05 19:22:24,677 Finished prediction
+2017-06-05 19:22:24,961 # of not detected tagsets: [129, 125, 122, 109, 94]
+2017-06-05 19:22:24,961 # of learnt but not detected tagsets: [42, 51, 62, 57, 49]
+2017-06-05 19:22:24,971 # total found tagsets in todo: 30
+2017-06-05 19:22:24,972 # unfound tagsets: 94
+2017-06-05 19:22:24,972 # todo tagsets accounting unfound tagsets: 24
+2017-06-05 19:22:24,972 Ratio of correctly found todo srcids: 1.0
+2017-06-05 19:22:25,351 Entity Recognition Get Started.
+2017-06-05 19:22:28,239 Start adding Brick samples
+2017-06-05 19:22:28,367 Finished adding Brick samples
+2017-06-05 19:22:28,367 start tagset vectorizing
+2017-06-05 19:22:28,381 finished tagset vectorizing
+2017-06-05 19:22:32,048 Start learning multi-label classifier
+2017-06-05 19:24:17,260 Finished learning multi-label classifier
+2017-06-05 19:24:17,267 Start prediction
+2017-06-05 19:24:17,273 Start Tagset prediction
+2017-06-05 19:24:29,279 Finished Tagset prediction
+2017-06-05 19:24:29,279 Start point prediction
+2017-06-05 19:24:29,279 Finished point prediction
+2017-06-05 19:24:29,353 Finished prediction
+2017-06-05 19:24:29,353 Start prediction
+2017-06-05 19:24:29,359 Start Tagset prediction
+2017-06-05 19:24:38,148 Finished Tagset prediction
+2017-06-05 19:24:38,148 Start point prediction
+2017-06-05 19:24:38,148 Finished point prediction
+2017-06-05 19:24:38,188 Finished prediction
+/home/jbkoh/anaconda3/lib/python3.6/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision and F-score are ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/home/jbkoh/anaconda3/lib/python3.6/site-packages/sklearn/metrics/classification.py:1115: UndefinedMetricWarning: Recall and F-score are ill-defined and being set to 0.0 in labels with no true samples.
+  'recall', 'true', average, warn_for)
+2017-06-05 19:24:39,013 Start prediction
+2017-06-05 19:24:39,024 Start Tagset prediction
+2017-06-05 19:24:51,985 Finished Tagset prediction
+2017-06-05 19:24:51,985 Start point prediction
+2017-06-05 19:24:51,985 Finished point prediction
+2017-06-05 19:24:52,080 Finished prediction
+,
+ 'macro_f1': 0.37006037850655521,
+ 'micro_f1': 0.95300906842539157,
+ 'point_correct_cnt': 766,
+ 'point_incorrect_cnt': 17,
+ 'point_precision': 0.9782886334610472,
+ 'point_recall': 0.7509803921568627,
+ 'precision': 0.5801668211306765,
+ 'subset_accuracy': 0.5801668211306765,
+ 'unfound_point_cnt': 254,
+ 'weighted_f1': 0.93436547869144093}
+################################# Iter# 4
+history of point precision: [0.8352601156069365, 0.7941176470588235, 0.921146953405018, 0.9782886334610472]
+history of point recall: [0.2976313079299691, 0.37103594080338265, 0.5171026156941649, 0.7509803921568627]
+history of correct point cnt: [289, 351, 514, 766]
+history of incorrect point cnt: [57, 91, 44, 17]
+history of unfound point cnt: [682, 595, 480, 254]
+history of accuracy: [0.7591622901863907, 0.8517605219412469, 0.8506082939817897, 0.9100636980155064]
+history of micro f1: [0.099967207788537502, 0.21116862431742725, 0.27423862599820142, 0.37006037850655521]
+
+
+################ Iteration 5 ################
+Training Time: 0:01:51.364176
+avg prec: 0.9470779008012724
+avg rec: 0.9433176455750929
+avg f1: 0.9440426450545586
+------------------------------------result---------------
+point precision: 1.0
+point recall: 1.0
+sensors where a point is not found:  0.0 0
+sensors where incorrect points are found:  0.0 0
+unknown reason:  0.5942028985507246 41
+invalid points:  28
+-----------
+{'accuracy': 0.9523595505617979,
+ 'hamming_loss': 0.0002655112902641839,
+ 'hierarchy_accuracy': 0.9523595505617979,
+ 'macro_f1': 0.88878559286017855,
+ 'micro_f1': 0.98076250437215817,
+ 'point_correct_cnt': 417,
+ 'point_incorrect_cnt': 0,
+ 'point_precision': 1.0,
+ 'point_recall': 1.0,
+ 'precision': 0.8449438202247191,
+ 'subset_accuracy': 0.8449438202247191,
+ 'unfound_point_cnt': 0,
+ 'weighted_f1': 0.97920627058288034}
+avg prec: [ 0.99616591  0.47000329]
+avg rec: [ 0.99911667  0.41881541]
+avg f1: [ 0.99754765  0.42616034]
+INCORRECT POINT (514_1_3006360) FOUND: supply_air_static_pressure_setpoint -> supply_air_static_pressure_sensor
+INCORRECT POINT (514_1_3006951) FOUND: average_zone_temperature_sensor -> zone_temperature_sensor
+INCORRECT POINT (514_1_3006378) FOUND: cooling_supply_air_temperature_proportional_band_setpoint -> heating_discharge_air_temperature_proportional_band_setpoint
+INCORRECT POINT (514_1_3007539) FOUND: exhaust_air_static_pressure_dead_band_setpoint -> exhaust_air_static_pressure_proportional_band_setpoint
+INCORRECT POINT (513_2_3015660) FOUND: max_supply_air_temperature_setpoint -> min_supply_air_temperature_setpoint
+INCORRECT POINT (514_1_3007323) FOUND: occupied_cooling_min_supply_air_flow_setpoint -> occupied_heating_min_discharge_air_flow_setpoint
+INCORRECT POINT (604_3_3013698) FOUND: power_loss_alarm -> humidity_sensor
+INCORRECT POINT (514_1_3006828) FOUND: average_zone_temperature_sensor -> zone_temperature_sensor
+INCORRECT POINT (514_14_3009021) FOUND: occupancy_command -> occupied_command
+INCORRECT POINT (604_0_3013703) FOUND: capacity_sensor -> humidity_sensor
+INCORRECT POINT (604_3_3013695) FOUND: alarm -> humidity_sensor
+INCORRECT POINT (513_4_3011358) FOUND: chilled_water_bypass_valve_command -> chilled_water_pump_status
+INCORRECT POINT (513_2_3015530) FOUND: max_supply_air_temperature_setpoint -> min_supply_air_temperature_setpoint
+INCORRECT POINT (604_0_3013690) FOUND: capacity_sensor -> humidity_sensor
+INCORRECT POINT (513_5_3019206) FOUND: zone_unoccupied_load_shed_command -> load_shed_command
+------------------------------------result---------------
+point precision: 0.9832962138084632
+point recall: 0.8449760765550239
+rate points not found in source               among sensors where point is not found: 
+	0.0
+sensors where a point is not found:  0.4764705882352941 162
+sensors where incorrect points are found:  0.04411764705882353 15
+unknown reason:  0.4235294117647059 144
+invalid points:  19
+-----------
+{'accuracy': 0.9257539314768229,
+ 'hamming_loss': 0.0005455184366317616,
+ 'hierarchy_accuracy': 0.9263164379128234,
+ 'macro_f1': 0.42616033562653233,
+ 'micro_f1': 0.96270586634000277,
+ 'point_correct_cnt': 883,
+ 'point_incorrect_cnt': 15,
+ 'point_precision': 0.9832962138084632,
+ 'point_recall': 0.8449760765550239,
+ 'precision': 0.6848934198331789,
+ 'subset_accuracy': 0.6848934198331789,
+ 'unfound_point_cnt': 162,
+ 'weighted_f1': 0.95140157221911503}
+################################# Iter# 5
+history of point precision: [0.8352601156069365, 0.7941176470588235, 0.921146953405018, 0.9782886334610472, 0.9832962138084632]
+history of point recall: [0.2976313079299691, 0.37103594080338265, 0.5171026156941649, 0.7509803921568627, 0.8449760765550239]
+history of correct point cnt: [289, 351, 514, 766, 883]
+history of incorrect point cnt: [57, 91, 44, 17, 15]
+history of unfound point cnt: [682, 595, 480, 254, 162]
+history of accuracy: [0.7591622901863907, 0.8517605219412469, 0.8506082939817897, 0.9100636980155064, 0.9257539314768229]
+history of micro f1: [0.099967207788537502, 0.21116862431742725, 0.27423862599820142, 0.37006037850655521, 0.42616033562653233]
+
+
+################ Iteration 6 ################
+Training Time: 0:01:49.315141
+avg prec: 0.9483332573709674
+avg rec: 0.9455790785918083
+avg f1: 0.9461501140196495
+------------------------------------result---------------
+point precision: 1.0
+point recall: 1.0
+sensors where a point is not found:  0.0 0
+sensors where incorrect points are found:  0.0 0
+unknown reason:  0.8103448275862069 47
+invalid points:  11
+-----------
+{'accuracy': 0.9710089580386613,
+ 'hamming_loss': 0.00022333060373706554,
+ 'hierarchy_accuracy': 0.9710089580386613,
+ 'macro_f1': 0.89287165149234116,
+ 'micro_f1': 0.98377877336629072,
+ 'point_correct_cnt': 494,
+ 'point_incorrect_cnt': 0,
+ 'point_precision': 1.0,
+ 'point_recall': 1.0,
+ 'precision': 0.8851485148514852,
+ 'subset_accuracy': 0.8851485148514852,
+ 'unfound_point_cnt': 0,
+ 'weighted_f1': 0.98401888127259873}
+avg prec: [ 0.99688899  0.5289688 ]
+avg rec: [ 0.99900161  0.48486744]
+avg f1: [ 0.99785516  0.49227137]
+INCORRECT POINT (514_1_3006828) FOUND: average_zone_temperature_sensor -> zone_temperature_sensor
+INCORRECT POINT (604_3_3013698) FOUND: power_loss_alarm -> humidity_sensor
+INCORRECT POINT (513_0_3011341) FOUND: chilled_water_differential_pressure_sensor -> chilled_water_pump_status
+INCORRECT POINT (514_1_3007539) FOUND: exhaust_air_static_pressure_dead_band_setpoint -> exhaust_air_static_pressure_proportional_band_setpoint
+INCORRECT POINT (604_3_3013699) FOUND: cooling_on_off_status -> humidity_sensor
+INCORRECT POINT (604_3_3013695) FOUND: alarm -> humidity_sensor
+INCORRECT POINT (514_1_3006372) FOUND: heat_exchanger_supply_water_temperature_dead_band_setpoint -> supply_water_temperature_dead_band_setpoint
+INCORRECT POINT (513_5_3019206) FOUND: zone_unoccupied_load_shed_command -> load_shed_command
+INCORRECT POINT (514_14_3009021) FOUND: occupancy_command -> occupied_command
+INCORRECT POINT (513_1_3004618) FOUND: dead_band_setpoint -> supply_water_temperature_dead_band_setpoint
+INCORRECT POINT (513_4_3011358) FOUND: chilled_water_bypass_valve_command -> chilled_water_pump_status
+INCORRECT POINT (604_0_3013690) FOUND: capacity_sensor -> humidity_sensor
+INCORRECT POINT (514_1_3006360) FOUND: supply_air_static_pressure_setpoint -> supply_air_static_pressure_sensor
+INCORRECT POINT (604_0_3013703) FOUND: capacity_sensor -> humidity_sensor
+INCORRECT POINT (514_1_3006951) FOUND: average_zone_temperature_sensor -> zone_temperature_sensor
+INCORRECT POINT (513_4_3011359) FOUND: chilled_water_system_enable_command -> chilled_water_pump_status
+INCORRECT POINT (514_1_3006378) FOUND: cooling_supply_air_temperature_proportional_band_setpoint -> heating_discharge_air_temperature_proportional_band_setpoint
+------------------------------------result---------------
+point precision: 0.9828973843058351
+point recall: 0.9287072243346007
+rate points not found in source               among sensors where point is not found: 
+	0.0
+sensors where a point is not found:  0.2840909090909091 75
+sensors where incorrect points are found:  0.06439393939393939 17
+unknown reason:  0.6136363636363636 162
+invalid points:  10
+-----------
+{'accuracy': 0.9408759580446322,
+ 'hamming_loss': 0.0004519441062606191,
+ 'hierarchy_accuracy'2017-06-05 19:24:52,376 # of not detected tagsets: [129, 125, 122, 109, 94, 90]
+2017-06-05 19:24:52,376 # of learnt but not detected tagsets: [42, 51, 62, 57, 49, 49]
+2017-06-05 19:24:52,389 # total found tagsets in todo: 36
+2017-06-05 19:24:52,389 # unfound tagsets: 90
+2017-06-05 19:24:52,389 # todo tagsets accounting unfound tagsets: 29
+2017-06-05 19:24:52,389 Ratio of correctly found todo srcids: 1.0
+2017-06-05 19:24:52,768 Entity Recognition Get Started.
+2017-06-05 19:24:55,565 Start adding Brick samples
+2017-06-05 19:24:55,695 Finished adding Brick samples
+2017-06-05 19:24:55,695 start tagset vectorizing
+2017-06-05 19:24:55,709 finished tagset vectorizing
+2017-06-05 19:24:59,731 Start learning multi-label classifier
+2017-06-05 19:26:53,261 Finished learning multi-label classifier
+2017-06-05 19:26:53,268 Start prediction
+2017-06-05 19:26:53,275 Start Tagset prediction
+2017-06-05 19:27:05,091 Finished Tagset prediction
+2017-06-05 19:27:05,091 Start point prediction
+2017-06-05 19:27:05,091 Finished point prediction
+2017-06-05 19:27:05,165 Finished prediction
+2017-06-05 19:27:05,166 Start prediction
+2017-06-05 19:27:05,172 Start Tagset prediction
+2017-06-05 19:27:14,242 Finished Tagset prediction
+2017-06-05 19:27:14,243 Start point prediction
+2017-06-05 19:27:14,243 Finished point prediction
+2017-06-05 19:27:14,289 Finished prediction
+/home/jbkoh/anaconda3/lib/python3.6/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision and F-score are ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/home/jbkoh/anaconda3/lib/python3.6/site-packages/sklearn/metrics/classification.py:1115: UndefinedMetricWarning: Recall and F-score are ill-defined and being set to 0.0 in labels with no true samples.
+  'recall', 'true', average, warn_for)
+2017-06-05 19:27:15,132 Start prediction
+2017-06-05 19:27:15,144 Start Tagset prediction
+2017-06-05 19:27:27,871 Finished Tagset prediction
+2017-06-05 19:27:27,871 Start point prediction
+2017-06-05 19:27:27,871 Finished point prediction
+2017-06-05 19:27:27,959 Finished prediction
+2017-06-05 19:27:28,245 # of not detected tagsets: [129, 125, 122, 109, 94, 90, 74]
+2017-06-05 19:27:28,245 # of learnt but not detected tagsets: [42, 51, 62, 57, 49, 49, 38]
+2017-06-05 19:27:28,252 # total found tagsets in todo: 37
+2017-06-05 19:27:28,252 # unfound tagsets: 74
+2017-06-05 19:27:28,252 # todo tagsets accounting unfound tagsets: 27
+2017-06-05 19:27:28,253 Ratio of correctly found todo srcids: 1.0
+2017-06-05 19:27:28,640 Entity Recognition Get Started.
+2017-06-05 19:27:31,428 Start adding Brick samples
+2017-06-05 19:27:31,557 Finished adding Brick samples
+2017-06-05 19:27:31,557 start tagset vectorizing
+2017-06-05 19:27:31,572 finished tagset vectorizing
+2017-06-05 19:27:35,688 Start learning multi-label classifier
+2017-06-05 19:29:31,861 Finished learning multi-label classifier
+2017-06-05 19:29:31,871 Start prediction
+2017-06-05 19:29:31,877 Start Tagset prediction
+2017-06-05 19:29:43,546 Finished Tagset prediction
+2017-06-05 19:29:43,546 Start point prediction
+2017-06-05 19:29:43,546 Finished point prediction
+2017-06-05 19:29:43,622 Finished prediction
+2017-06-05 19:29:43,622 Start prediction
+2017-06-05 19:29:43,629 Start Tagset prediction
+2017-06-05 19:29:53,175 Finished Tagset prediction
+2017-06-05 19:29:53,175 Start point prediction
+2017-06-05 19:29:53,175 Finished point prediction
+2017-06-05 19:29:53,226 Finished prediction
+/home/jbkoh/anaconda3/lib/python3.6/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision and F-score are ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/home/jbkoh/anaconda3/lib/python3.6/site-packages/sklearn/metrics/classification.py:1115: UndefinedMetricWarning: Recall and F-score are ill-defined and being set to 0.0 in labels with no true samples.
+  'recall', 'true', average, warn_for)
+2017-06-05 19:29:54,084 Start prediction
+2017-06-05 19:29:54,096 Start Tagset prediction
+2017-06-05 19:30:06,662 Finished Tagset prediction
+2017-06-05 19:30:06,664 Start point prediction
+2017-06-05 19:30:06,664 Finished point prediction
+2017-06-05 19:30:06,769 Finished prediction
+2017-06-05 19:30:07,108 # of not detected tagsets: [129, 125, 122, 109, 94, 90, 74, 56]
+2017-06-05 19:30:07,108 # of learnt but not detected tagsets: [42, 51, 62, 57, 49, 49, 38, 30]
+2017-06-05 19:30:07,117 # total found tagsets in todo: 41
+2017-06-05 19:30:07,117 # unfound tagsets: 56
+2017-06-05 19:30:07,117 # todo tagsets accounting unfound tagsets: 27
+2017-06-05 19:30:07,117 Ratio of correctly found todo srcids: 1.0
+2017-06-05 19:30:07,547 Entity Recognition Get Started.
+2017-06-05 19:30:10,441 Start adding Brick samples
+2017-06-05 19:30:10,571 Finished adding Brick samples
+2017-06-05 19:30:10,571 start tagset vectorizing
+2017-06-05 19:30:10,586 finished tagset vectorizing
+2017-06-05 19:30:14,936 Start learning multi-label classifier
+2017-06-05 19:32:11,405 Finished learning multi-label classifier
+: 0.9418305088485805,
+ 'macro_f1': 0.49227136505371777,
+ 'micro_f1': 0.96937398812736097,
+ 'point_correct_cnt': 977,
+ 'point_incorrect_cnt': 17,
+ 'point_precision': 0.9828973843058351,
+ 'point_recall': 0.9287072243346007,
+ 'precision': 0.7553290083410565,
+ 'subset_accuracy': 0.7553290083410565,
+ 'unfound_point_cnt': 75,
+ 'weighted_f1': 0.96450836825400987}
+################################# Iter# 6
+history of point precision: [0.8352601156069365, 0.7941176470588235, 0.921146953405018, 0.9782886334610472, 0.9832962138084632, 0.9828973843058351]
+history of point recall: [0.2976313079299691, 0.37103594080338265, 0.5171026156941649, 0.7509803921568627, 0.8449760765550239, 0.9287072243346007]
+history of correct point cnt: [289, 351, 514, 766, 883, 977]
+history of incorrect point cnt: [57, 91, 44, 17, 15, 17]
+history of unfound point cnt: [682, 595, 480, 254, 162, 75]
+history of accuracy: [0.7591622901863907, 0.8517605219412469, 0.8506082939817897, 0.9100636980155064, 0.9257539314768229, 0.9408759580446322]
+history of micro f1: [0.099967207788537502, 0.21116862431742725, 0.27423862599820142, 0.37006037850655521, 0.42616033562653233, 0.49227136505371777]
+
+
+################ Iteration 7 ################
+Training Time: 0:01:58.007258
+avg prec: 0.9446361473232212
+avg rec: 0.9409913801622553
+avg f1: 0.9416823368799093
+------------------------------------result---------------
+point precision: 1.0
+point recall: 1.0
+sensors where a point is not found:  0.0 0
+sensors where incorrect points are found:  0.0 0
+unknown reason:  0.6024096385542169 50
+invalid points:  33
+-----------
+{'accuracy': 0.9535545722713864,
+ 'hamming_loss': 0.0002528445006321114,
+ 'hierarchy_accuracy': 0.9535545722713864,
+ 'macro_f1': 0.88399425955653377,
+ 'micro_f1': 0.98139079333986279,
+ 'point_correct_cnt': 532,
+ 'point_incorrect_cnt': 0,
+ 'point_precision': 1.0,
+ 'point_recall': 1.0,
+ 'precision': 0.8530973451327434,
+ 'subset_accuracy': 0.8530973451327434,
+ 'unfound_point_cnt': 0,
+ 'weighted_f1': 0.97972579423401351}
+avg prec: [ 0.99828077  0.58899852]
+avg rec: [ 0.99905917  0.54631039]
+avg f1: [ 0.99864907  0.55817612]
+INCORRECT POINT (604_3_3013695) FOUND: alarm -> humidity_sensor
+INCORRECT POINT (513_1_3004618) FOUND: dead_band_setpoint -> supply_water_temperature_dead_band_setpoint
+INCORRECT POINT (514_1_3006378) FOUND: cooling_supply_air_temperature_proportional_band_setpoint -> heating_discharge_air_temperature_proportional_band_setpoint
+INCORRECT POINT (514_1_3006828) FOUND: average_zone_temperature_sensor -> zone_temperature_sensor
+INCORRECT POINT (514_1_3006372) FOUND: heat_exchanger_supply_water_temperature_dead_band_setpoint -> supply_water_temperature_dead_band_setpoint
+INCORRECT POINT (514_1_3006951) FOUND: average_zone_temperature_sensor -> zone_temperature_sensor
+INCORRECT POINT (514_2_3010564) FOUND: min_supply_air_temperature_setpoint -> max_supply_air_temperature_setpoint
+INCORRECT POINT (514_14_3009021) FOUND: occupancy_command -> occupied_command
+------------------------------------result---------------
+point precision: 0.991869918699187
+point recall: 0.9251184834123223
+rate points not found in source               among sensors where point is not found: 
+	0.0
+sensors where a point is not found:  0.32113821138211385 79
+sensors where incorrect points are found:  0.032520325203252036 8
+unknown reason:  0.5813008130081301 143
+invalid points:  16
+-----------
+{'accuracy': 0.9444815893611073,
+ 'hamming_loss': 0.00041312071387259255,
+ 'hierarchy_accuracy': 0.94522761375171,
+ 'macro_f1': 0.55817611885456808,
+ 'micro_f1': 0.97204822523068635,
+ 'point_correct_cnt': 976,
+ 'point_incorrect_cnt': 8,
+ 'point_precision': 0.991869918699187,
+ 'point_recall': 0.9251184834123223,
+ 'precision': 0.7720111214087118,
+ 'subset_accuracy': 0.7720111214087118,
+ 'unfound_point_cnt': 79,
+ 'weighted_f1': 0.96650912421345503}
+################################# Iter# 7
+history of point precision: [0.8352601156069365, 0.7941176470588235, 0.921146953405018, 0.9782886334610472, 0.9832962138084632, 0.9828973843058351, 0.991869918699187]
+history of point recall: [0.2976313079299691, 0.37103594080338265, 0.5171026156941649, 0.7509803921568627, 0.8449760765550239, 0.9287072243346007, 0.9251184834123223]
+history of correct point cnt: [289, 351, 514, 766, 883, 977, 976]
+history of incorrect point cnt: [57, 91, 44, 17, 15, 17, 8]
+history of unfound point cnt: [682, 595, 480, 254, 162, 75, 79]
+history of accuracy: [0.7591622901863907, 0.8517605219412469, 0.8506082939817897, 0.9100636980155064, 0.9257539314768229, 0.9408759580446322, 0.9444815893611073]
+history of micro f1: [0.099967207788537502, 0.21116862431742725, 0.27423862599820142, 0.37006037850655521, 0.42616033562653233, 0.49227136505371777, 0.55817611885456808]
+
+
+################ Iteration 8 ################
+Training Time: 0:02:00.760297
+avg prec: 0.9474825215842103
+avg rec: 0.9446526488436936
+avg f1: 0.945196611704746
+------------------------------------result---------------
+point precision: 1.0
+point recall: 1.0
+sensors where a point is not found:  0.0 0
+sensors where incorrect points are found:  0.0 0
+unknown reason:  0.7681159420289855 53
+invalid points:  16
+-----------
+{'accuracy': 0.9712838095238092,
+ 'hamming_loss': 0.00020966702470461885,
+ 'hierarchy_accuracy': 0.9712838095238092,
+ 'macro_f1': 0.8908864767073722,
+ 'micro_f1': 0.98472326571500135,
+ 'point_correct_cnt': 609,
+ 'point_incorrect_cnt': 0,
+ 'point_precision': 1.0,
+ 'point_recall': 1.0,
+ 'precision': 0.8896,
+ 'subset_accuracy': 0.8896,
+ 'unfound_point_cnt': 0,
+ 'weighted_f1': 0.98476517234327776}
+avg prec: [ 0.99866412  0.68025828]
+avg rec: [ 0.99910453  0.64243358]
+avg f1: [ 0.99886501  0.65198603]
+INCORRECT POINT (513_4_3011358) FOUND: chilled_water_bypass_valve_command -> chilled_water_differential_pressure_sensor
+INCORRECT POINT (514_1_3006378) FOUND: cooling_supply_air_temperature_proportional_band_setpoint -> heating_discharge_air_temperature_proportional_band_setpoint
+INCORRECT POINT (514_14_3009021) FOUND: occupancy_command -> occupied_command
+INCORRECT POINT (514_1_3006372) FOUND: heat_exchanger_supply_water_temperature_dead_band_setpoint -> supply_water_temperature_dead_band_setpoint
+INCORRECT POINT (513_1_3004618) FOUND: dead_band_setpoint -> supply_water_temperature_dead_band_setpoint
+------------------------------------result---------------
+point precision: 0.9951409135082604
+point recall: 0.9597000937207123
+rate points not found in source               among sensors where point is not found: 
+	0.0
+sensors where a point is not found:  0.22164948453608246 43
+sensors where incorrect points are found:  0.02577319587628866 5
+unknown reason:  0.7164948453608248 139
+invalid points:  7
+-----------
+{'accuracy': 0.9545938332082912,
+ 'hamming_loss': 0.00034941053149224077,
+ 'hierarchy_accuracy': 0.9549858775762391,
+ 'macro_f1': 0.65198602711178322,
+ 'micro_f1': 0.97643820903537626,
+ 'point_correct_cnt': 1024,
+ 'point_incorrect_cnt': 5,
+ 'point_precision': 0.9951409135082604,
+ 'point_recall': 0.9597000937207123,
+ 'precision': 0.8202038924930491,
+ 'subset_accuracy': 0.8202038924930491,
+ 'unfound_point_cnt': 43,
+ 'weighted_f1': 0.97349354710266844}
+################################# Iter# 8
+history of point precision: [0.8352601156069365, 0.7941176470588235, 0.921146953405018, 0.9782886334610472, 0.9832962138084632, 0.9828973843058351, 0.991869918699187, 0.9951409135082604]
+history of point recall: [0.2976313079299691, 0.37103594080338265, 0.5171026156941649, 0.7509803921568627, 0.8449760765550239, 0.9287072243346007, 0.9251184834123223, 0.9597000937207123]
+history of correct point cnt: [289, 351, 514, 766, 883, 977, 976, 1024]
+history of incorrect point cnt: [57, 91, 44, 17, 15, 17, 8, 5]
+history of unfound point cnt: [682, 595, 480, 254, 162, 75, 79, 43]
+history of accuracy: [0.7591622901863907, 0.8517605219412469, 0.8506082939817897, 0.9100636980155064, 0.9257539314768229, 0.9408759580446322, 0.9444815893611073, 0.9545938332082912]
+history of micro f1: [0.099967207788537502, 0.21116862431742725, 0.27423862599820142, 0.37006037850655521, 0.42616033562653233, 0.49227136505371777, 0.55817611885456808, 0.65198602711178322]
+
+
+################ Iteration 9 ################
+Training Time: 0:02:01.3036572017-06-05 19:32:11,415 Start prediction
+2017-06-05 19:32:11,421 Start Tagset prediction
+2017-06-05 19:32:22,622 Finished Tagset prediction
+2017-06-05 19:32:22,622 Start point prediction
+2017-06-05 19:32:22,622 Finished point prediction
+2017-06-05 19:32:22,698 Finished prediction
+2017-06-05 19:32:22,698 Start prediction
+2017-06-05 19:32:22,708 Start Tagset prediction
+2017-06-05 19:32:33,192 Finished Tagset prediction
+2017-06-05 19:32:33,192 Start point prediction
+2017-06-05 19:32:33,192 Finished point prediction
+2017-06-05 19:32:33,247 Finished prediction
+/home/jbkoh/anaconda3/lib/python3.6/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision and F-score are ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/home/jbkoh/anaconda3/lib/python3.6/site-packages/sklearn/metrics/classification.py:1115: UndefinedMetricWarning: Recall and F-score are ill-defined and being set to 0.0 in labels with no true samples.
+  'recall', 'true', average, warn_for)
+2017-06-05 19:32:34,241 Start prediction
+2017-06-05 19:32:34,254 Start Tagset prediction
+2017-06-05 19:32:47,269 Finished Tagset prediction
+2017-06-05 19:32:47,271 Start point prediction
+2017-06-05 19:32:47,271 Finished point prediction
+2017-06-05 19:32:47,366 Finished prediction
+2017-06-05 19:32:47,685 # of not detected tagsets: [129, 125, 122, 109, 94, 90, 74, 56, 37]
+2017-06-05 19:32:47,685 # of learnt but not detected tagsets: [42, 51, 62, 57, 49, 49, 38, 30, 22]
+2017-06-05 19:32:47,697 # total found tagsets in todo: 40
+2017-06-05 19:32:47,697 # unfound tagsets: 37
+2017-06-05 19:32:47,697 # todo tagsets accounting unfound tagsets: 26
+2017-06-05 19:32:47,697 Ratio of correctly found todo srcids: 1.0
+2017-06-05 19:32:48,162 Entity Recognition Get Started.
+2017-06-05 19:32:51,405 Start adding Brick samples
+2017-06-05 19:32:51,537 Finished adding Brick samples
+2017-06-05 19:32:51,538 start tagset vectorizing
+2017-06-05 19:32:51,554 finished tagset vectorizing
+2017-06-05 19:32:56,196 Start learning multi-label classifier
+2017-06-05 19:34:55,835 Finished learning multi-label classifier
+2017-06-05 19:34:55,850 Start prediction
+2017-06-05 19:34:55,859 Start Tagset prediction
+2017-06-05 19:35:08,359 Finished Tagset prediction
+2017-06-05 19:35:08,361 Start point prediction
+2017-06-05 19:35:08,361 Finished point prediction
+2017-06-05 19:35:08,439 Finished prediction
+2017-06-05 19:35:08,440 Start prediction
+2017-06-05 19:35:08,455 Start Tagset prediction
+2017-06-05 19:35:19,433 Finished Tagset prediction
+2017-06-05 19:35:19,433 Start point prediction
+2017-06-05 19:35:19,433 Finished point prediction
+2017-06-05 19:35:19,492 Finished prediction
+/home/jbkoh/anaconda3/lib/python3.6/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision and F-score are ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/home/jbkoh/anaconda3/lib/python3.6/site-packages/sklearn/metrics/classification.py:1115: UndefinedMetricWarning: Recall and F-score are ill-defined and being set to 0.0 in labels with no true samples.
+  'recall', 'true', average, warn_for)
+2017-06-05 19:35:20,521 Start prediction
+2017-06-05 19:35:20,533 Start Tagset prediction
+2017-06-05 19:35:33,496 Finished Tagset prediction
+2017-06-05 19:35:33,497 Start point prediction
+2017-06-05 19:35:33,497 Finished point prediction
+2017-06-05 19:35:33,590 Finished prediction
+2017-06-05 19:35:33,891 # of not detected tagsets: [129, 125, 122, 109, 94, 90, 74, 56, 37, 18]
+2017-06-05 19:35:33,891 # of learnt but not detected tagsets: [42, 51, 62, 57, 49, 49, 38, 30, 22, 11]
+2017-06-05 19:35:33,904 # total found tagsets in todo: 25
+2017-06-05 19:35:33,904 # unfound tagsets: 18
+2017-06-05 19:35:33,904 # todo tagsets accounting unfound tagsets: 13
+2017-06-05 19:35:33,904 Ratio of correctly found todo srcids: 0.8
+
+avg prec: 0.9457248757213635
+avg rec: 0.9428228186039977
+avg f1: 0.9433467565172388
+------------------------------------result---------------
+point precision: 1.0
+point recall: 1.0
+sensors where a point is not found:  0.0 0
+sensors where incorrect points are found:  0.0 0
+unknown reason:  0.7560975609756098 62
+invalid points:  20
+-----------
+{'accuracy': 0.9691501564129303,
+ 'hamming_loss': 0.00022579911718817382,
+ 'hierarchy_accuracy': 0.9691501564129303,
+ 'macro_f1': 0.88719451210185085,
+ 'micro_f1': 0.98350893266147499,
+ 'point_correct_cnt': 665,
+ 'point_incorrect_cnt': 0,
+ 'point_precision': 1.0,
+ 'point_recall': 1.0,
+ 'precision': 0.8802919708029197,
+ 'subset_accuracy': 0.8802919708029197,
+ 'unfound_point_cnt': 0,
+ 'weighted_f1': 0.98336334437556405}
+avg prec: [ 0.99885161  0.75329507]
+avg rec: [ 0.99907277  0.72877443]
+avg f1: [ 0.99894237  0.7334349 ]
+INCORRECT POINT (604_1_3014148) FOUND: exhaust_air_static_pressure_proportional_band_setpoint -> exhaust_air_static_pressure_dead_band_setpoint
+INCORRECT POINT (514_1_3006372) FOUND: heat_exchanger_supply_water_temperature_dead_band_setpoint -> supply_water_temperature_dead_band_setpoint
+INCORRECT POINT (513_1_3004618) FOUND: dead_band_setpoint -> supply_water_temperature_dead_band_setpoint
+INCORRECT POINT (514_14_3009021) FOUND: occupancy_command -> occupied_command
+INCORRECT POINT (514_2_3010564) FOUND: min_supply_air_temperature_setpoint -> max_supply_air_temperature_setpoint
+INCORRECT POINT (513_2_3004101) FOUND: outside_air_temperature_high_reset_setpoint -> outside_air_temperature_low_reset_setpoint
+------------------------------------result---------------
+point precision: 0.994291151284491
+point recall: 0.979381443298969
+rate points not found in source               among sensors where point is not found: 
+	0.0
+sensors where a point is not found:  0.125 22
+sensors where incorrect points are found:  0.03409090909090909 6
+unknown reason:  0.8068181818181818 142
+invalid points:  6
+-----------
+{'accuracy': 0.9582862585874631,
+ 'hamming_loss': 0.00032751015629899505,
+ 'hierarchy_accuracy': 0.9586783029554112,
+ 'macro_f1': 0.73343490129707434,
+ 'micro_f1': 0.97796530707923113,
+ 'point_correct_cnt': 1045,
+ 'point_incorrect_cnt': 6,
+ 'point_precision': 0.994291151284491,
+ 'point_recall': 0.979381443298969,
+ 'precision': 0.8368860055607044,
+ 'subset_accuracy': 0.8368860055607044,
+ 'unfound_point_cnt': 22,
+ 'weighted_f1': 0.97660027570100338}
+################################# Iter# 9
+history of point precision: [0.8352601156069365, 0.7941176470588235, 0.921146953405018, 0.9782886334610472, 0.9832962138084632, 0.9828973843058351, 0.991869918699187, 0.9951409135082604, 0.994291151284491]
+history of point recall: [0.2976313079299691, 0.37103594080338265, 0.5171026156941649, 0.7509803921568627, 0.8449760765550239, 0.9287072243346007, 0.9251184834123223, 0.9597000937207123, 0.979381443298969]
+history of correct point cnt: [289, 351, 514, 766, 883, 977, 976, 1024, 1045]
+history of incorrect point cnt: [57, 91, 44, 17, 15, 17, 8, 5, 6]
+history of unfound point cnt: [682, 595, 480, 254, 162, 75, 79, 43, 22]
+history of accuracy: [0.7591622901863907, 0.8517605219412469, 0.8506082939817897, 0.9100636980155064, 0.9257539314768229, 0.9408759580446322, 0.9444815893611073, 0.9545938332082912, 0.9582862585874631]
+history of micro f1: [0.099967207788537502, 0.21116862431742725, 0.27423862599820142, 0.37006037850655521, 0.42616033562653233, 0.49227136505371777, 0.55817611885456808, 0.65198602711178322, 0.73343490129707434]
+
+
+################ Iteration 10 ################
+Training Time: 0:02:04.808475
+avg prec: 0.9497346150905628
+avg rec: 0.9464351184203228
+avg f1: 0.9471328222015601
+------------------------------------result---------------
+point precision: 1.0
+point recall: 1.0
+sensors where a point is not found:  0.0 0
+sensors where incorrect points are found:  0.0 0
+unknown reason:  0.7906976744186046 68
+invalid points:  18
+-----------
+{'accuracy': 0.9702924256951098,
+ 'hamming_loss': 0.00022203158903971347,
+ 'hierarchy_accuracy': 0.9702924256951098,
+ 'macro_f1': 0.89474231302294538,
+ 'micro_f1': 0.98362747182649368,
+ 'point_correct_cnt': 727,
+ 'point_incorrect_cnt': 0,
+ 'point_precision': 1.0,
+ 'point_recall': 1.0,
+ 'precision': 0.8845637583892617,
+ 'subset_accuracy': 0.8845637583892617,
+ 'unfound_point_cnt': 0,
+ 'weighted_f1': 0.98372327366292822}
+avg prec: [ 0.99898463  0.81678713]
+avg rec: [ 0.99906648  0.81215557]
+avg f1: [ 0.99900558  0.81058219]
+INCORRECT POINT (514_1_3006372) FOUND: heat_exchanger_supply_water_temperature_dead_band_setpoint -> supply_water_temperature_dead_band_setpoint
+INCORRECT POINT (513_2_3004101) FOUND: outside_air_temperature_high_reset_setpoint -> outside_air_temperature_low_reset_setpoint
+INCORRECT POINT (514_14_3009021) FOUND: occupancy_command -> occupied_command
+INCORRECT POINT (513_1_3004618) FOUND: dead_band_setpoint -> supply_water_temperature_dead_band_setpoint
+INCORRECT POINT (604_1_3014148) FOUND: exhaust_air_static_pressure_proportional_band_setpoint -> exhaust_air_static_pressure_dead_band_setpoint
+------------------------------------result---------------
+point precision: 0.9953139643861293
+point recall: 0.9915966386554622
+rate points not found in source               among sensors where point is not found: 
+	0.0
+sensors where a point is not found:  0.05625 9
+sensors where incorrect points are found:  0.03125 5
+unknown reason:  0.89375 143
+invalid points:  3
+-----------
+{'accuracy': 0.9626215484649215,
+ 'hamming_loss': 0.0003076007243051355,
+ 'hierarchy_accuracy': 0.9630135928328698,
+ 'macro_f1': 0.81058219029053025,
+ 'micro_f1': 0.97933525045141445,
+ 'point_correct_cnt': 1062,
+ 'point_incorrect_cnt': 5,
+ 'point_precision': 0.9953139643861293,
+ 'point_recall': 0.9915966386554622,
+ 'precision': 0.8517145505097312,
+ 'subset_accuracy': 0.8517145505097312,
+ 'unfound_point_cnt': 9,
+ 'weighted_f1': 0.97889652396253179}
+################################# Iter# 10
+history of point precision: [0.8352601156069365, 0.7941176470588235, 0.921146953405018, 0.9782886334610472, 0.9832962138084632, 0.9828973843058351, 0.991869918699187, 0.9951409135082604, 0.994291151284491, 0.9953139643861293]
+history of point recall: [0.2976313079299691, 0.37103594080338265, 0.5171026156941649, 0.7509803921568627, 0.8449760765550239, 0.9287072243346007, 0.9251184834123223, 0.9597000937207123, 0.979381443298969, 0.9915966386554622]
+history of correct point cnt: [289, 351, 514, 766, 883, 977, 976, 1024, 1045, 1062]
+history of incorrect point cnt: [57, 91, 44, 17, 15, 17, 8, 5, 6, 5]
+history of unfound point cnt: [682, 595, 480, 254, 162, 75, 79, 43, 22, 9]
+history of accuracy: [0.7591622901863907, 0.8517605219412469, 0.8506082939817897, 0.9100636980155064, 0.9257539314768229, 0.9408759580446322, 0.9444815893611073, 0.9545938332082912, 0.9582862585874631, 0.9626215484649215]
+history of micro f1: [0.099967207788537502, 0.21116862431742725, 0.27423862599820142, 0.37006037850655521, 0.42616033562653233, 0.49227136505371777, 0.55817611885456808, 0.65198602711178322, 0.73343490129707434, 0.81058219029053025]

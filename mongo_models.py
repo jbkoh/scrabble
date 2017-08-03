@@ -64,7 +64,7 @@ def build_query(q):
         query['$and'].append(
             {'source_list.{0}'.format(building): {'$exists': True}})
         query['$and'].append({'$where': \
-                                    'this.source_list.{0}.length={1}'.\
+                                    'this.source_list.{0}.length=={1}'.\
                                     format(building, source_sample_num)})
         query['source_cnt_list'].append([building, source_sample_num])
     query['$and'].append({'source_building_count':len(building_list)})

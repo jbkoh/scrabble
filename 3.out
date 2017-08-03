@@ -1,0 +1,1573 @@
+2017-06-04 16:35:39,134 Entity Recognition Get Started.
+2017-06-04 16:35:41,698 Start adding Brick samples
+2017-06-04 16:35:41,924 Finished adding Brick samples
+2017-06-04 16:35:41,924 start tagset vectorizing
+2017-06-04 16:35:41,937 finished tagset vectorizing
+2017-06-04 16:35:44,726 Start learning multi-label classifier
+Brick Loaded
+
+
+################ Iteration 1 ################
+2017-06-04 16:35:45,495 Start augmenting label mat with superclasses
+2017-06-04 16:35:52,786 Finished augmenting label mat with superclasses
+2017-06-04 16:35:53,062 0th learning step
+2017-06-04 16:35:58,110 200th learning step
+2017-06-04 16:36:32,506 400th learning step
+2017-06-04 16:37:06,491 600th learning step
+2017-06-04 16:37:37,056 800th learning step
+2017-06-04 16:38:00,401 Finished learning multi-label classifier
+2017-06-04 16:38:00,405 Start prediction
+2017-06-04 16:38:00,415 Start Tagset prediction
+2017-06-04 16:38:00,415 Start predicting
+2017-06-04 16:38:01,586 Start distilling
+2017-06-04 16:38:07,347 Finished distilling
+2017-06-04 16:38:07,348 Finished predicting
+2017-06-04 16:38:07,348 Finished Tagset prediction
+2017-06-04 16:38:07,348 Start point prediction
+2017-06-04 16:38:07,348 Finished point prediction
+2017-06-04 16:38:07,427 Finished prediction
+2017-06-04 16:38:07,427 Start prediction
+2017-06-04 16:38:07,430 Start Tagset prediction
+2017-06-04 16:38:07,430 Start predicting
+2017-06-04 16:38:07,979 Start distilling
+2017-06-04 16:38:09,265 Finished distilling
+2017-06-04 16:38:09,266 Finished predicting
+2017-06-04 16:38:09,266 Finished Tagset prediction
+2017-06-04 16:38:09,266 Start point prediction
+2017-06-04 16:38:09,266 Finished point prediction
+2017-06-04 16:38:09,284 Finished prediction
+/home/jbkoh/anaconda3/lib/python3.6/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision and F-score are ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/home/jbkoh/anaconda3/lib/python3.6/site-packages/sklearn/metrics/classification.py:1115: UndefinedMetricWarning: Recall and F-score are ill-defined and being set to 0.0 in labels with no true samples.
+  'recall', 'true', average, warn_for)
+2017-06-04 16:38:10,018 Start prediction
+2017-06-04 16:38:10,030 Start Tagset prediction
+2017-06-04 16:38:10,030 Start predicting
+2017-06-04 16:38:11,545 Start distilling
+2017-06-04 16:38:18,404 Finished distilling
+2017-06-04 16:38:18,404 Finished predicting
+2017-06-04 16:38:18,404 Finished Tagset prediction
+2017-06-04 16:38:18,404 Start point prediction
+2017-06-04 16:38:18,404 Finished point prediction
+2017-06-04 16:38:18,496 Finished prediction
+Training Time: 0:02:18.982329
+avg prec: 0.9733196094132869
+avg rec: 0.9689034188046828
+avg f1: 0.9704423134217048
+------------------------------------result---------------
+point precision: 1.0
+point recall: 0.9746192893401016
+rate points not found in source               among sensors where point is not found: 
+	0.0
+sensors where a point is not found:  0.2777777777777778 5
+sensors where incorrect points are found:  0.0 0
+unknown reason:  0.2777777777777778 5
+invalid points:  8
+-----------
+{'accuracy': 0.9779287650019358,
+ 'hamming_loss': 0.00011014948859166014,
+ 'hierarchy_accuracy': 0.9779287650019358,
+ 'macro_f1': 0.94130769938116177,
+ 'micro_f1': 0.99212007504690436,
+ 'point_correct_cnt': 192,
+ 'point_incorrect_cnt': 0,
+ 'point_precision': 1.0,
+ 'point_recall': 0.9746192893401016,
+ 'precision': 0.9121951219512195,
+ 'subset_accuracy': 0.9121951219512195,
+ 'unfound_point_cnt': 5,
+ 'weighted_f1': 0.99016505101347274}
+avg prec: [ 0.99619825  0.38382772]
+avg rec: [ 0.99813277  0.37720646]
+avg f1: [ 0.99709595  0.36421506]
+INCORRECT POINT (510_4_3005223) FOUND: vfd_command -> drive_temperature_sensor
+INCORRECT POINT (510_0_3005205) FOUND: power_meter -> steam_usage_meter
+INCORRECT POINT (510_3_3005232) FOUND: vfd_status -> drive_temperature_sensor
+INCORRECT POINT (510_1_3013435) FOUND: unoccupied_cooling_min_supply_air_flow_setpoint -> setpoint
+INCORRECT POINT (510_1_3008964) FOUND: dehumidification_integral_time_setpoint -> integral_time_setpoint
+INCORRECT POINT (510_2_3008741) FOUND: supply_air_temperature_reset_low_setpoint -> supply_air_temperature_sensor
+INCORRECT POINT (510_1_3012757) FOUND: unoccupied_cooling_min_supply_air_flow_setpoint -> setpoint
+INCORRECT POINT (510_1_3012763) FOUND: unoccupied_cooling_min_supply_air_flow_setpoint -> setpoint
+INCORRECT POINT (510_1_3013516) FOUND: unoccupied_cooling_min_supply_air_flow_setpoint -> setpoint
+INCORRECT POINT (510_1_3005332) FOUND: integral_time_setpoint -> static_pressure_integral_time_setpoint
+INCORRECT POINT (510_1_3013513) FOUND: unoccupied_cooling_min_supply_air_flow_setpoint -> setpoint
+INCORRECT POINT (510_1_3012790) FOUND: unoccupied_cooling_min_supply_air_flow_setpoint -> setpoint
+INCORRECT POINT (510_3_3005233) FOUND: alarm -> vfd_alarm
+INCORRECT POINT (510_1_3013432) FOUND: unoccupied_cooling_min_supply_air_flow_setpoint -> setpoint
+INCORRECT POINT (510_2_3008705) FOUND: highest_zone_cooling_command -> cooling_command
+INCORRECT POINT (510_1_3012787) FOUND: unoccupied_cooling_min_supply_air_flow_setpoint -> setpoint
+INCORRECT POINT (510_1_3013420) FOUND: unoccupied_cooling_min_supply_air_flow_setpoint -> setpoint
+INCORRECT POINT (510_5_3008068) FOUND: pump_lead_lag_status -> pump_lead_on_off_command
+INCORRECT POINT (510_1_3013481) FOUND: unoccupied_cooling_min_supply_air_flow_setpoint -> setpoint
+INCORRECT POINT (510_4_3005225) FOUND: vfd_command -> drive_temperature_sensor
+INCORRECT POINT (510_1_3012772) FOUND: unoccupied_cooling_min_supply_air_flow_setpoint -> setpoint
+INCORRECT POINT (510_1_3013467) FOUND: unoccupied_cooling_min_supply_air_flow_setpoint -> setpoint
+INCORRECT POINT (510_1_3013499) FOUND: unoccupied_cooling_min_supply_air_flow_setpoint -> setpoint
+INCORRECT POINT (510_1_3012799) FOUND: unoccupied_cooling_min_supply_air_flow_setpoint -> setpoint
+INCORRECT POINT (510_2_3008706) FOUND: supply_air_temperature_high_limit_setpoint -> supply_air_temperature_sensor
+INCORRECT POINT (510_1_3013552) FOUND: unoccupied_cooling_min_supply_air_flow_setpoint -> setpoint
+INCORRECT POINT (510_1_3006213) FOUND: building_static_pressure_setpoint -> setpoint
+INCORRECT POINT (510_1_3013461) FOUND: unoccupied_cooling_min_supply_air_flow_setpoint -> setpoint
+INCORRECT POINT (510_1_3013472) FOUND: unoccupied_cooling_min_supply_air_flow_setpoint -> setpoint
+INCORRECT POINT (510_1_3013510) FOUND: unoccupied_cooling_min_supply_air_flow_setpoint -> setpoint
+INCORRECT POINT (510_1_3013456) FOUND: unoccupied_cooling_min_supply_air_flow_setpoint -> setpoint
+INCORRECT POINT (510_4_3005236) FOUND: vfd_command -> drive_temperature_sensor
+INCORRECT POINT (510_1_3013406) FOUND: unoccupied_cooling_min_supply_air_flow_setpoint -> setpoint
+INCORRECT POINT (510_2_3008739) FOUND: highest_zone_cooling_command -> reset_command
+INCORRECT POINT (510_1_3005275) FOUND: supply_air_static_pressure_integral_time_setpoint -> static_pressure_integral_time_setpoint
+INCORRECT POINT (510_3_3013252) FOUND: smoke_damper_status -> on_off_status
+INCORRECT POINT (510_1_3013496) FOUND: unoccupied_cooling_min_supply_air_flow_setpoint -> setpoint
+INCORRECT POINT (510_1_3012751) FOUND: unoccupied_cooling_min_supply_air_flow_setpoint -> setpoint
+INCORRECT POINT (510_1_3005272) FOUND: supply_air_cooling_integral_time_setpoint -> integral_time_setpoint
+INCORRECT POINT (510_0_3005231) FOUND: power_meter -> steam_usage_meter
+INCORRECT POINT (510_1_3005317) FOUND: supply_air_heating_dead_band_setpoint -> zone_heating_temperature_dead_band_setpoint
+INCORRECT POINT (510_1_3013478) FOUND: unoccupied_cooling_min_supply_air_flow_setpoint -> setpoint
+INCORRECT POINT (510_1_3012754) FOUND: unoccupied_cooling_min_supply_air_flow_setpoint -> setpoint
+INCORRECT POINT (510_1_3005325) FOUND: temperature_differential_reset_setpoint -> economizer_differential_air_temperature_setpoint
+INCORRECT POINT (510_1_3013543) FOUND: unoccupied_cooling_min_supply_air_flow_setpoint -> setpoint
+INCORRECT POINT (510_1_3013470) FOUND: unoccupied_cooling_min_supply_air_flow_setpoint -> setpoint
+INCORRECT POINT (510_1_3005328) FOUND: supply_air_static_pressure_proportional_band_setpoint -> static_pressure_proportional_band_setpoint
+INCORRECT POINT (510_1_3012745) FOUND: unoccupied_cooling_min_supply_air_flow_setpoint -> setpoint
+INCORRECT POINT (510_1_3006184) FOUND: supply_air_static_pressure_proportional_band_setpoint -> static_pressure_proportional_band_setpoint
+INCORRECT POINT (510_1_3013441) FOUND: unoccupied_cooling_min_supply_air_flow_setpoint -> setpoint
+INCORRECT POINT (510_1_3006193) FOUND: dead_band_setpoint -> static_pressure_dead_band_setpoint
+INCORRECT POINT (510_1_3005276) FOUND: supply_air_static_pressure_proportional_band_setpoint -> static_pressure_proportional_band_setpoint
+INCORRECT POINT (510_1_3012811) FOUND: unoccupied_cooling_min_supply_air_flow_setpoint -> setpoint
+INCORRECT POINT (510_1_3012742) FOUND: unoccupied_cooling_min_supply_air_flow_setpoint -> setpoint
+INCORRECT POINT (510_3_3006248) FOUND: vfd_status -> return_fan_status
+INCORRECT POINT (510_0_3005218) FOUND: power_meter -> steam_usage_meter
+INCORRECT POINT (510_1_3005277) FOUND: supply_air_static_pressure_setpoint -> supply_air_static_pressure_integral_time_setpoint
+INCORRECT POINT (510_3_3006225) FOUND: vfd_status -> supply_fan_status
+INCORRECT POINT (510_1_3013502) FOUND: unoccupied_cooling_min_supply_air_flow_setpoint -> setpoint
+INCORRECT POINT (510_3_3013250) FOUND: smoke_damper_status -> on_off_status
+INCORRECT POINT (510_1_3013429) FOUND: unoccupied_cooling_min_supply_air_flow_setpoint -> setpoint
+INCORRECT POINT (510_1_3005331) FOUND: static_pressure_setpoint -> setpoint
+INCORRECT POINT (510_1_3013567) FOUND: unoccupied_cooling_min_supply_air_flow_setpoint -> setpoint
+INCORRECT POINT (510_1_3012805) FOUND: unoccupied_cooling_min_supply_air_flow_setpoint -> setpoint
+INCORRECT POINT (510_1_3012814) FOUND: unoccupied_cooling_min_supply_air_flow_setpoint -> setpoint
+INCORRECT POINT (510_1_3013546) FOUND: unoccupied_cooling_min_supply_air_flow_setpoint -> setpoint
+INCORRECT POINT (510_1_3013414) FOUND: unoccupied_cooling_min_supply_air_flow_setpoint -> setpoint
+INCORRECT POINT (510_1_3013426) FOUND: unoccupied_cooling_min_supply_air_flow_setpoint -> setpoint
+INCORRECT POINT (510_1_3006267) FOUND: temperature_setpoint -> setpoint
+INCORRECT POINT (510_1_3013519) FOUND: unoccupied_cooling_min_supply_air_flow_setpoint -> setpoint
+INCORRECT POINT (510_1_3006185) FOUND: supply_air_static_pressure_integral_time_setpoint -> static_pressure_integral_time_setpoint
+INCORRECT POINT (510_1_3005329) FOUND: supply_air_static_pressure_integral_time_setpoint -> static_pressure_integral_time_setpoint
+INCORRECT POINT (510_1_3013447) FOUND: unoccupied_cooling_min_supply_air_flow_setpoint -> setpoint2017-06-04 16:38:18,800 # of not detected tagsets: [75]
+2017-06-04 16:38:18,800 # of learnt but not detected tagsets: [21]
+2017-06-04 16:38:18,813 # total found tagsets in todo: 35
+2017-06-04 16:38:18,813 # unfound tagsets: 75
+2017-06-04 16:38:18,813 # todo tagsets accounting unfound tagsets: 25
+2017-06-04 16:38:18,813 Ratio of correctly found todo srcids: 1.0
+2017-06-04 16:38:18,949 Entity Recognition Get Started.
+2017-06-04 16:38:20,927 Start adding Brick samples
+2017-06-04 16:38:21,061 Finished adding Brick samples
+2017-06-04 16:38:21,061 start tagset vectorizing
+2017-06-04 16:38:21,074 finished tagset vectorizing
+2017-06-04 16:38:24,042 Start learning multi-label classifier
+
+INCORRECT POINT (510_3_3006168) FOUND: alarm -> pressure_status
+INCORRECT POINT (510_1_3013558) FOUND: unoccupied_cooling_min_supply_air_flow_setpoint -> setpoint
+INCORRECT POINT (510_1_3005278) FOUND: supply_air_static_pressure_dead_band_setpoint -> static_pressure_dead_band_setpoint
+INCORRECT POINT (510_1_3013561) FOUND: unoccupied_cooling_min_supply_air_flow_setpoint -> setpoint
+INCORRECT POINT (510_1_3013493) FOUND: unoccupied_cooling_min_supply_air_flow_setpoint -> setpoint
+INCORRECT POINT (510_0_3005179) FOUND: medium_temperature_water_return_temperature_sensor -> medium_temperature_hot_water_return_temperature_sensor
+INCORRECT POINT (510_1_3005334) FOUND: dead_band_setpoint -> static_pressure_dead_band_setpoint
+INCORRECT POINT (510_1_3013540) FOUND: unoccupied_cooling_min_supply_air_flow_setpoint -> setpoint
+INCORRECT POINT (510_1_3013570) FOUND: unoccupied_cooling_min_supply_air_flow_setpoint -> setpoint
+INCORRECT POINT (510_1_3012808) FOUND: unoccupied_cooling_min_supply_air_flow_setpoint -> setpoint
+INCORRECT POINT (510_3_3013196) FOUND: smoke_damper_status -> on_off_status
+INCORRECT POINT (510_4_3005238) FOUND: vfd_command -> drive_temperature_sensor
+INCORRECT POINT (510_1_3013411) FOUND: unoccupied_cooling_min_supply_air_flow_setpoint -> setpoint
+INCORRECT POINT (510_1_3013564) FOUND: unoccupied_cooling_min_supply_air_flow_setpoint -> setpoint
+INCORRECT POINT (510_1_3006192) FOUND: integral_time_setpoint -> static_pressure_integral_time_setpoint
+INCORRECT POINT (510_1_3012766) FOUND: unoccupied_cooling_min_supply_air_flow_setpoint -> setpoint
+INCORRECT POINT (510_3_3005220) FOUND: alarm -> hot_water_pump_alarm
+INCORRECT POINT (510_1_3013528) FOUND: unoccupied_cooling_min_supply_air_flow_setpoint -> setpoint
+INCORRECT POINT (510_1_3013459) FOUND: unoccupied_cooling_min_supply_air_flow_setpoint -> setpoint
+INCORRECT POINT (510_1_3013450) FOUND: unoccupied_cooling_min_supply_air_flow_setpoint -> setpoint
+INCORRECT POINT (510_1_3012832) FOUND: unoccupied_cooling_min_supply_air_flow_setpoint -> setpoint
+INCORRECT POINT (510_1_3013453) FOUND: unoccupied_cooling_min_supply_air_flow_setpoint -> setpoint
+INCORRECT POINT (510_1_3013525) FOUND: unoccupied_cooling_min_supply_air_flow_setpoint -> setpoint
+------------------------------------result---------------
+point precision: 0.8808933002481389
+point recall: 0.7959641255605381
+rate points not found in source               among sensors where point is not found: 
+	0.0
+sensors where a point is not found:  0.4323040380047506 182
+sensors where incorrect points are found:  0.22802850356294538 96
+unknown reason:  0.2042755344418052 86
+invalid points:  57
+-----------
+{'accuracy': 0.8927111856776944,
+ 'hamming_loss': 0.0009096053917785686,
+ 'hierarchy_accuracy': 0.9192328588919516,
+ 'macro_f1': 0.36421506065073184,
+ 'micro_f1': 0.9393107236029109,
+ 'point_correct_cnt': 710,
+ 'point_incorrect_cnt': 96,
+ 'point_precision': 0.8808933002481389,
+ 'point_recall': 0.7959641255605381,
+ 'precision': 0.5971291866028708,
+ 'subset_accuracy': 0.5971291866028708,
+ 'unfound_point_cnt': 182,
+ 'weighted_f1': 0.91592163331630028}
+################################# Iter# 1
+history of point precision: [0.8808933002481389]
+history of point recall: [0.7959641255605381]
+history of correct point cnt: [710]
+history of incorrect point cnt: [96]
+history of unfound point cnt: [182]
+history of accuracy: [0.8927111856776944]
+history of micro f1: [0.36421506065073184]
+
+
+################ Iteration 2 ################
+2017-06-04 16:38:24,658 Start augmenting label mat with superclasses
+2017-06-04 16:38:32,437 Finished augmenting label mat with superclasses
+2017-06-04 16:38:32,643 0th learning step
+2017-06-04 16:38:37,397 200th learning step
+2017-06-04 16:39:10,848 400th learning step
+2017-06-04 16:39:44,828 600th learning step
+2017-06-04 16:40:15,427 800th learning step
+2017-06-04 16:40:38,030 Finished learning multi-label classifier
+2017-06-04 16:40:38,034 Start prediction
+2017-06-04 16:40:38,039 Start Tagset prediction
+2017-06-04 16:40:38,040 Start predicting
+2017-06-04 16:40:39,164 Start distilling
+2017-06-04 16:40:44,720 Finished distilling
+2017-06-04 16:40:44,720 Finished predicting
+2017-06-04 16:40:44,720 Finished Tagset prediction
+2017-06-04 16:40:44,720 Start point prediction
+2017-06-04 16:40:44,720 Finished point prediction
+2017-06-04 16:40:44,800 Finished prediction
+2017-06-04 16:40:44,801 Start prediction
+2017-06-04 16:40:44,804 Start Tagset prediction
+2017-06-04 16:40:44,804 Start predicting
+2017-06-04 16:40:45,272 Start distilling
+2017-06-04 16:40:46,814 Finished distilling
+2017-06-04 16:40:46,814 Finished predicting
+2017-06-04 16:40:46,814 Finished Tagset prediction
+2017-06-04 16:40:46,814 Start point prediction
+2017-06-04 16:40:46,814 Finished point prediction
+2017-06-04 16:40:46,837 Finished prediction
+/home/jbkoh/anaconda3/lib/python3.6/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision and F-score are ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/home/jbkoh/anaconda3/lib/python3.6/site-packages/sklearn/metrics/classification.py:1115: UndefinedMetricWarning: Recall and F-score are ill-defined and being set to 0.0 in labels with no true samples.
+  'recall', 'true', average, warn_for)
+2017-06-04 16:40:47,195 Start prediction
+2017-06-04 16:40:47,206 Start Tagset prediction
+2017-06-04 16:40:47,206 Start predicting
+2017-06-04 16:40:48,715 Start distilling
+2017-06-04 16:40:55,063 Finished distilling
+2017-06-04 16:40:55,063 Finished predicting
+2017-06-04 16:40:55,064 Finished Tagset prediction
+2017-06-04 16:40:55,064 Start point prediction
+2017-06-04 16:40:55,064 Finished point prediction
+2017-06-04 16:40:55,155 Finished prediction
+2017-06-04 16:40:55,439 # of not detected tagsets: [75, 54]
+2017-06-04 16:40:55,439 # of learnt but not detected tagsets: [21, 18]
+2017-06-04 16:40:55,447 # total found tagsets in todo: 34
+2017-06-04 16:40:55,447 # unfound tagsets: 54
+2017-06-04 16:40:55,448 # todo tagsets accounting unfound tagsets: 20
+2017-06-04 16:40:55,448 Ratio of correctly found todo srcids: 0.95
+2017-06-04 16:40:55,583 Entity Recognition Get Started.
+2017-06-04 16:40:57,973 Start adding Brick samples
+2017-06-04 16:40:58,163 Finished adding Brick samples
+2017-06-04 16:40:58,163 start tagset vectorizing
+2017-06-04 16:40:58,175 finished tagset vectorizing
+2017-06-04 16:41:01,280 Start learning multi-label classifier
+Training Time: 0:02:17.320863
+avg prec: 0.9824517744122654
+avg rec: 0.978881647537585
+avg f1: 0.9801712987647673
+------------------------------------result---------------
+point precision: 1.0
+point recall: 0.9800796812749004
+rate points not found in source               among sensors where point is not found: 
+	0.0
+sensors where a point is not found:  0.15625 5
+sensors where incorrect points are found:  0.0 0
+unknown reason:  0.40625 13
+invalid points:  14
+-----------
+{'accuracy': 0.971564839772387,
+ 'hamming_loss': 0.00015013187259078925,
+ 'hierarchy_accuracy': 0.971564839772387,
+ 'macro_f1': 0.9608523504710379,
+ 'micro_f1': 0.98917178811823225,
+ 'point_correct_cnt': 246,
+ 'point_incorrect_cnt': 0,
+ 'point_precision': 1.0,
+ 'point_recall': 0.9800796812749004,
+ 'precision': 0.879245283018868,
+ 'subset_accuracy': 0.879245283018868,
+ 'unfound_point_cnt': 5,
+ 'weighted_f1': 0.98529772137835836}
+avg prec: [ 0.99862626  0.57166199]
+avg rec: [ 0.99909034  0.55174707]
+avg f1: [ 0.99884801  0.54488003]
+INCORRECT POINT (510_3_3013196) FOUND: smoke_damper_status -> on_off_status
+INCORRECT POINT (510_3_3006225) FOUND: vfd_status -> run_time_sensor
+INCORRECT POINT (510_4_3005238) FOUND: vfd_command -> command
+INCORRECT POINT (510_1_3005266) FOUND: supply_air_temperature_setpoint -> supply_air_temperature_sensor
+INCORRECT POINT (510_1_3005334) FOUND: dead_band_setpoint -> static_pressure_dead_band_setpoint
+INCORRECT POINT (510_1_3006184) FOUND: supply_air_static_pressure_proportional_band_setpoint -> supply_air_static_pressure_sensor
+INCORRECT POINT (510_0_3005205) FOUND: power_meter -> steam_usage_meter
+INCORRECT POINT (510_2_3008705) FOUND: highest_zone_cooling_command -> cooling_command
+INCORRECT POINT (510_1_3005275) FOUND: supply_air_static_pressure_integral_time_setpoint -> supply_air_static_pressure_setpoint
+INCORRECT POINT (510_1_3005325) FOUND: temperature_differential_reset_setpoint -> economizer_differential_air_temperature_setpoint
+INCORRECT POINT (510_1_3005328) FOUND: supply_air_static_pressure_proportional_band_setpoint -> proportional_band_setpoint
+INCORRECT POINT (510_1_3005329) FOUND: supply_air_static_pressure_integral_time_setpoint -> integral_time_setpoint
+INCORRECT POINT (510_1_3006193) FOUND: dead_band_setpoint -> static_pressure_dead_band_setpoint
+INCORRECT POINT (510_1_3006185) FOUND: supply_air_static_pressure_integral_time_setpoint -> supply_air_static_pressure_sensor
+INCORRECT POINT (510_3_3006168) FOUND: alarm -> supply_air_duct_pressure_status
+INCORRECT POINT (510_1_3005276) FOUND: supply_air_static_pressure_proportional_band_setpoint -> static_pressure_proportional_band_setpoint
+INCORRECT POINT (510_0_3005231) FOUND: power_meter -> steam_usage_meter
+INCORRECT POINT (510_3_3005220) FOUND: alarm -> hot_water_pump_alarm
+INCORRECT POINT (510_1_3005332) FOUND: integral_time_setpoint -> static_pressure_integral_time_setpoint
+INCORRECT POINT (510_2_3008739) FOUND: highest_zone_cooling_command -> cooling_command
+INCORRECT POINT (510_5_3008068) FOUND: pump_lead_lag_status -> pump_lead_on_off_command
+INCORRECT POINT (510_3_3005232) FOUND: vfd_status -> return_fan_status
+INCORRECT POINT (510_3_3013250) FOUND: smoke_damper_status -> on_off_status
+INCORRECT POINT (510_4_3005225) FOUND: vfd_command -> command
+INCORRECT POINT (510_1_3005331) FOUND: static_pressure_setpoint -> setpoint
+INCORRECT POINT (510_1_3005272) FOUND: supply_air_cooling_integral_time_setpoint -> integral_time_setpoint
+INCORRECT POINT (510_3_3013252) FOUND: smoke_damper_status -> on_off_status
+INCORRECT POINT (510_4_3006183) FOUND: return_fan_start_stop_command -> start_stop_command
+INCORRECT POINT (510_1_3005277) FOUND: supply_air_static_pressure_setpoint -> supply_air_static_pressure_integral_time_setpoint
+INCORRECT POINT (510_0_3005218) FOUND: power_meter -> steam_usage_meter
+INCORRECT POINT (510_1_3006192) FOUND: integral_time_setpoint -> static_pressure_integral_time_setpoint
+INCORRECT POINT (510_0_3005179) FOUND: medium_temperature_water_return_temperature_sensor -> medium_temperature_hot_water_return_temperature_sensor
+INCORRECT POINT (510_3_3006248) FOUND: vfd_status -> return_fan_status
+INCORRECT POINT (510_1_3006267) FOUND: temperature_setpoint -> setpoint
+------------------------------------result---------------
+point precision: 0.962800875273523
+point recall: 0.9195402298850575
+rate points not found in source               among sensors where point is not found: 
+	0.0
+sensors where a point is not found:  0.4074074074074074 77
+sensors where incorrect points are found:  0.17989417989417988 34
+unknown reason:  0.12698412698412698 24
+invalid points:  54
+-----------
+{'accuracy': 0.9566538246442552,
+ 'hamming_loss': 0.00036322477748623765,
+ 'hierarchy_accuracy': 0.9634791092745637,
+ 'macro_f1': 0.54488002879226327,
+ 'micro_f1': 0.97615348240221567,
+ 'point_correct_cnt': 880,
+ 'point_incorrect_cnt': 34,
+ 'point_precision': 0.962800875273523,
+ 'point_recall': 0.9195402298850575,
+ 'precision': 0.8191387559808613,
+ 'subset_accuracy': 0.8191387559808613,
+ 'unfound_point_cnt': 77,
+ 'weighted_f1': 0.97173682391497129}
+################################# Iter# 2
+history of point precision: [0.8808933002481389, 0.962800875273523]
+history of point recall: [0.7959641255605381, 0.9195402298850575]
+history of correct point cnt: [710, 880]
+history of incorrect point cnt: [96, 34]
+history of unfound point cnt: [182, 77]
+history of accuracy: [0.8927111856776944, 0.9566538246442552]
+history of micro f1: [0.36421506065073184, 0.54488002879226327]
+
+
+################ Iteration 3 ################
+2017-06-04 16:41:01,888 Start augmenting label mat with superclasses
+2017-06-04 16:41:10,131 Finished augmenting label mat with superclasses
+2017-06-04 16:41:10,345 0th learning step
+2017-06-04 16:41:15,286 200th learning step
+2017-06-04 16:41:51,421 400th learning step
+2017-06-04 16:42:25,831 600th learning step
+2017-06-04 16:42:54,634 800th learning step
+2017-06-04 16:43:18,792 Finished learning multi-label classifier
+2017-06-04 16:43:18,799 Start prediction
+2017-06-04 16:43:18,813 Start Tagset prediction
+2017-06-04 16:43:18,813 Start predicting
+2017-06-04 16:43:20,048 Start distilling
+2017-06-04 16:43:25,607 Finished distilling
+2017-06-04 16:43:25,607 Finished predicting
+2017-06-04 16:43:25,607 Finished Tagset prediction
+2017-06-04 16:43:25,607 Start point prediction
+2017-06-04 16:43:25,607 Finished point prediction
+2017-06-04 16:43:25,684 Finished prediction
+2017-06-04 16:43:25,685 Start prediction
+2017-06-04 16:43:25,688 Start Tagset prediction
+2017-06-04 16:43:25,688 Start predicting
+2017-06-04 16:43:26,177 Start distilling
+2017-06-04 16:43:28,116 Finished distilling
+2017-06-04 16:43:28,116 Finished predicting
+2017-06-04 16:43:28,116 Finished Tagset prediction
+2017-06-04 16:43:28,116 Start point prediction
+2017-06-04 16:43:28,116 Finished point prediction
+2017-06-04 16:43:28,143 Finished prediction
+/home/jbkoh/anaconda3/lib/python3.6/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision and F-score are ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/home/jbkoh/anaconda3/lib/python3.6/site-packages/sklearn/metrics/classification.py:1115: UndefinedMetricWarning: Recall and F-score are ill-defined and being set to 0.0 in labels with no true samples.
+  'recall', 'true', average, warn_for)
+2017-06-04 16:43:28,511 Start prediction
+2017-06-04 16:43:28,521 Start Tagset prediction
+2017-06-04 16:43:28,521 Start predicting
+2017-06-04 16:43:29,786 Start distilling
+2017-06-04 16:43:35,867 Finished distilling
+2017-06-04 16:43:35,867 Finished predicting
+2017-06-04 16:43:35,867 Finished Tagset prediction
+2017-06-04 16:43:35,867 Start point prediction
+2017-06-04 16:43:35,867 Finished point prediction
+2017-06-04 16:43:35,953 Finished prediction
+2017-06-04 16:43:36,219 # of not detected tagsets: [75, 54, 51]
+2017-06-04 16:43:36,219 # of learnt but not detected tagsets: [21, 18, 19]
+2017-06-04 16:43:36,225 # total found tagsets in todo: 39
+2017-06-04 16:43:36,225 # unfound tagsets: 51
+2017-06-04 16:43:36,225 # todo tagsets accounting unfound tagsets: 20
+2017-06-04 16:43:36,225 Ratio of correctly found todo srcids: 1.0
+2017-06-04 16:43:36,353 Entity Recognition Get Started.
+2017-06-04 16:43:38,294 Start adding Brick samples
+2017-06-04 16:43:38,421 Finished adding Brick samples
+2017-06-04 16:43:38,421 start tagset vectorizing
+2017-06-04 16:43:38,433 finished tagset vectorizing
+2017-06-04 16:43:41,691 Start learning multi-label classifier
+Training Time: 0:02:21.181133
+avg prec: 0.981903591111078
+avg rec: 0.9785670826691492
+avg f1: 0.9793913412554383
+INCORRECT POINT (510_1_3005271) FOUND: supply_air_cooling_proportional_band_setpoint -> proportional_band_setpoint
+INCORRECT POINT (510_1_3005271) FOUND: supply_air_cooling_proportional_band_setpoint -> proportional_band_setpoint
+INCORRECT POINT (510_1_3005271) FOUND: supply_air_cooling_proportional_band_setpoint -> proportional_band_setpoint
+------------------------------------result---------------
+point precision: 0.9898648648648649
+point recall: 0.966996699669967
+rate points not found in source               among sensors where point is not found: 
+	0.0
+sensors where a point is not found:  0.19230769230769232 10
+sensors where incorrect points are found:  0.057692307692307696 3
+unknown reason:  0.38461538461538464 20
+invalid points:  19
+-----------
+{'accuracy': 0.9700634920634916,
+ 'hamming_loss': 0.00017866004962779162,
+ 'hierarchy_accuracy': 0.9700634920634916,
+ 'macro_f1': 0.95934958242166424,
+ 'micro_f1': 0.98719165085388982,
+ 'point_correct_cnt': 293,
+ 'point_incorrect_cnt': 3,
+ 'point_precision': 0.9898648648648649,
+ 'point_recall': 0.966996699669967,
+ 'precision': 0.84,
+ 'subset_accuracy': 0.84,
+ 'unfound_point_cnt': 10,
+ 'weighted_f1': 0.98260712375759873}
+avg prec: [ 0.9987393   0.57626628]
+avg rec: [ 0.99871358  0.57405372]
+avg f1: [ 0.9986999  0.5597369]
+INCORRECT POINT (510_3_3006225) FOUND: vfd_status -> supply_fan_status
+INCORRECT POINT (510_3_3013196) FOUND: smoke_damper_status -> on_off_status
+INCORRECT POINT (510_1_3005271) FOUND: supply_air_cooling_proportional_band_setpoint -> proportional_band_setpoint
+INCORRECT POINT (510_3_3006168) FOUND: alarm -> pressure_status
+INCORRECT POINT (510_1_3005321) FOUND: supply_air_cooling_proportional_band_setpoint -> proportional_band_setpoint
+INCORRECT POINT (510_1_3006267) FOUND: temperature_setpoint -> setpoint
+INCORRECT POINT (510_1_3005329) FOUND: supply_air_static_pressure_integral_time_setpoint -> static_pressure_integral_time_setpoint
+INCORRECT POINT (510_3_3005232) FOUND: vfd_status -> return_fan_status
+INCORRECT POINT (510_3_3005220) FOUND: alarm -> hot_water_pump_alarm
+INCORRECT POINT (510_3_3006248) FOUND: vfd_status -> return_fan_status
+INCORRECT POINT (510_1_3005277) FOUND: supply_air_static_pressure_setpoint -> supply_air_static_pressure_integral_time_setpoint
+INCORRECT POINT (510_1_3005325) FOUND: temperature_differential_reset_setpoint -> economizer_differential_air_temperature_setpoint
+INCORRECT POINT (510_1_3005317) FOUND: supply_air_heating_dead_band_setpoint -> zone_heating_temperature_dead_band_setpoint
+INCORRECT POINT (510_1_3005272) FOUND: supply_air_cooling_integral_time_setpoint -> integral_time_setpoint
+INCORRECT POINT (510_3_3013250) FOUND: smoke_damper_status -> on_off_status
+INCORRECT POINT (510_3_3013252) FOUND: smoke_damper_status -> on_off_status
+INCORRECT POINT (510_1_3005331) FOUND: static_pressure_setpoint -> setpoint
+INCORRECT POINT (510_0_3005205) FOUND: power_meter -> steam_usage_meter
+INCORRECT POINT (510_4_3006183) FOUND: return_fan_start_stop_command -> start_stop_command
+INCORRECT POINT (510_1_3005275) FOUND: supply_air_static_pressure_integral_time_setpoint -> setpoint
+INCORRECT POINT (510_1_3006185) FOUND: supply_air_static_pressure_integral_time_setpoint -> static_pressure_integral_time_setpoint
+INCORRECT POINT (510_5_3008068) FOUND: pump_lead_lag_status -> pump_lead_on_off_command
+INCORRECT POINT (510_0_3005218) FOUND: power_meter -> steam_usage_meter
+INCORRECT POINT (510_0_3005231) FOUND: power_meter -> steam_usage_meter
+INCORRECT POINT (510_0_3005179) FOUND: medium_temperature_water_return_temperature_sensor -> medium_temperature_hot_water_return_temperature_sensor
+------------------------------------result---------------
+point precision: 0.9743326488706365
+point recall: 0.9783505154639175
+rate points not found in source               among sensors where point is not found: 
+	0.0
+sensors where a point is not found:  0.125 21
+sensors where incorrect points are found:  0.1488095238095238 25
+unknown reason:  0.42857142857142855 72
+invalid points:  50
+-----------
+{'accuracy': 0.9561572664443492,
+ 'hamming_loss': 0.00039203580799506034,
+ 'hierarchy_accuracy': 0.9729748613959142,
+ 'macro_f1': 0.55973690312107982,
+ 'micro_f1': 0.97437966512003227,
+ 'point_correct_cnt': 949,
+ 'point_incorrect_cnt': 25,
+ 'point_precision': 0.9743326488706365,
+ 'point_recall': 0.9783505154639175,
+ 'precision': 0.8392344497607656,
+ 'subset_accuracy': 0.8392344497607656,
+ 'unfound_point_cnt': 21,
+ 'weighted_f1': 0.97039074977138084}
+################################# Iter# 3
+history of point precision: [0.8808933002481389, 0.962800875273523, 0.9743326488706365]
+history of point recall: [0.7959641255605381, 0.9195402298850575, 0.9783505154639175]
+history of correct point cnt: [710, 880, 949]
+history of incorrect point cnt: [96, 34, 25]
+history of unfound point cnt: [182, 77, 21]
+history of accuracy: [0.8927111856776944, 0.9566538246442552, 0.9561572664443492]
+history of micro f1: [0.36421506065073184, 0.54488002879226327, 0.55973690312107982]
+
+
+################ Iteration 4 ################
+2017-06-04 16:43:42,294 Start augmenting label mat with superclasses
+2017-06-04 16:43:51,059 Finished augmenting label mat with superclasses
+2017-06-04 16:43:51,286 0th learning step
+2017-06-04 16:43:55,947 200th learning step
+2017-06-04 16:44:29,677 400th learning step
+2017-06-04 16:45:05,845 600th learning step
+2017-06-04 16:45:37,500 800th learning step
+2017-06-04 16:45:59,878 Finished learning multi-label classifier
+2017-06-04 16:45:59,886 Start prediction
+2017-06-04 16:45:59,897 Start Tagset prediction
+2017-06-04 16:45:59,897 Start predicting
+2017-06-04 16:46:01,071 Start distilling
+2017-06-04 16:46:06,632 Finished distilling
+2017-06-04 16:46:06,632 Finished predicting
+2017-06-04 16:46:06,632 Finished Tagset prediction
+2017-06-04 16:46:06,632 Start point prediction
+2017-06-04 16:46:06,633 Finished point prediction
+2017-06-04 16:46:06,709 Finished prediction
+2017-06-04 16:46:06,709 Start prediction
+2017-06-04 16:46:06,714 Start Tagset prediction
+2017-06-04 16:46:06,714 Start predicting
+2017-06-04 16:46:07,247 Start distilling
+2017-06-04 16:46:09,496 Finished distilling
+2017-06-04 16:46:09,496 Finished predicting
+2017-06-04 16:46:09,496 Finished Tagset prediction
+2017-06-04 16:46:09,496 Start point prediction
+2017-06-04 16:46:09,496 Finished point prediction
+2017-06-04 16:46:09,529 Finished prediction
+/home/jbkoh/anaconda3/lib/python3.6/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision and F-score are ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/home/jbkoh/anaconda3/lib/python3.6/site-packages/sklearn/metrics/classification.py:1115: UndefinedMetricWarning: Recall and F-score are ill-defined and being set to 0.0 in labels with no true samples.
+  'recall', 'true', average, warn_for)
+2017-06-04 16:46:09,913 Start prediction
+2017-06-04 16:46:09,923 Start Tagset prediction
+2017-06-04 16:46:09,923 Start predicting
+2017-06-04 16:46:11,233 Start distilling
+2017-06-04 16:46:17,397 Finished distilling
+2017-06-04 16:46:17,397 Finished predicting
+2017-06-04 16:46:17,397 Finished Tagset prediction
+2017-06-04 16:46:17,397 Start point prediction
+2017-06-04 16:46:17,397 Finished point prediction
+2017-06-04 16:46:17,484 Finished prediction
+2017-06-04 16:46:17,746 # of not detected tagsets: [75, 54, 51, 42]
+2017-06-04 16:46:17,746 # of learnt but not detected tagsets: [21, 18, 19, 22]
+2017-06-04 16:46:17,752 # total found tagsets in todo: 32
+2017-06-04 16:46:17,752 # unfound tagsets: 42
+2017-06-04 16:46:17,752 # todo tagsets accounting unfound tagsets: 16
+2017-06-04 16:46:17,752 Ratio of correctly found todo srcids: 0.95
+2017-06-04 16:46:17,886 Entity Recognition Get Started.
+2017-06-04 16:46:19,864 Start adding Brick samples
+2017-06-04 16:46:19,992 Finished adding Brick samples
+2017-06-04 16:46:19,992 start tagset vectorizing
+2017-06-04 16:46:20,005 finished tagset vectorizing
+2017-06-04 16:46:23,435 Start learning multi-label classifier
+Training Time: 0:02:21.823924
+avg prec: 0.9806232643075906
+avg rec: 0.9763879367396417
+avg f1: 0.9775288850795563
+INCORRECT POINT (510_1_3005271) FOUND: supply_air_cooling_proportional_band_setpoint -> proportional_band_setpoint
+INCORRECT POINT (510_1_3005271) FOUND: supply_air_cooling_proportional_band_setpoint -> proportional_band_setpoint
+INCORRECT POINT (510_1_3005271) FOUND: supply_air_cooling_proportional_band_setpoint -> proportional_band_setpoint
+------------------------------------result---------------
+point precision: 0.9914529914529915
+point recall: 0.9693593314763231
+rate points not found in source               among sensors where point is not found: 
+	0.0
+sensors where a point is not found:  0.18032786885245902 11
+sensors where incorrect points are found:  0.04918032786885246 3
+unknown reason:  0.39344262295081966 24
+invalid points:  23
+-----------
+{'accuracy': 0.9689466089466086,
+ 'hamming_loss': 0.0001787459851975981,
+ 'hierarchy_accuracy': 0.9689466089466086,
+ 'macro_f1': 0.95558256050819324,
+ 'micro_f1': 0.98719999999999997,
+ 'point_correct_cnt': 348,
+ 'point_incorrect_cnt': 3,
+ 'point_precision': 0.9914529914529915,
+ 'point_recall': 0.9693593314763231,
+ 'precision': 0.8415584415584415,
+ 'subset_accuracy': 0.8415584415584415,
+ 'unfound_point_cnt': 11,
+ 'weighted_f1': 0.98310272626373485}
+avg prec: [ 0.99937022  0.69275463]
+avg rec: [ 0.99940156  0.67595637]
+avg f1: [ 0.99938227  0.67148917]
+INCORRECT POINT (510_1_3005320) FOUND: supply_air_cooling_dead_band_setpoint -> zone_cooling_temperature_dead_band_setpoint
+INCORRECT POINT (510_3_3013250) FOUND: smoke_damper_status -> on_off_status
+INCORRECT POINT (510_1_3005271) FOUND: supply_air_cooling_proportional_band_setpoint -> proportional_band_setpoint
+INCORRECT POINT (510_0_3005231) FOUND: power_meter -> steam_usage_meter
+INCORRECT POINT (510_4_3006183) FOUND: return_fan_start_stop_command -> start_stop_command
+INCORRECT POINT (510_3_3006225) FOUND: vfd_status -> run_status
+INCORRECT POINT (510_0_3005218) FOUND: power_meter -> steam_usage_meter
+INCORRECT POINT (510_1_3005331) FOUND: static_pressure_setpoint -> setpoint
+INCORRECT POINT (510_2_3008739) FOUND: highest_zone_cooling_command -> reset_command
+INCORRECT POINT (510_1_3005272) FOUND: supply_air_cooling_integral_time_setpoint -> integral_time_setpoint
+INCORRECT POINT (510_3_3005220) FOUND: alarm -> hot_water_pump_alarm
+INCORRECT POINT (510_5_3008068) FOUND: pump_lead_lag_status -> pump_lead_on_off_command
+INCORRECT POINT (510_1_3005325) FOUND: temperature_differential_reset_setpoint -> economizer_temperature_setpoint
+INCORRECT POINT (510_1_3005321) FOUND: supply_air_cooling_proportional_band_setpoint -> proportional_band_setpoint
+INCORRECT POINT (510_1_3005270) FOUND: supply_air_cooling_dead_band_setpoint -> zone_cooling_temperature_dead_band_setpoint
+INCORRECT POINT (510_4_3005262) FOUND: supply_fan_start_stop_command -> command
+INCORRECT POINT (510_0_3005179) FOUND: medium_temperature_water_return_temperature_sensor -> medium_temperature_hot_water_return_temperature_sensor
+INCORRECT POINT (510_1_3006267) FOUND: temperature_setpoint -> setpoint
+INCORRECT POINT (510_4_3005225) FOUND: vfd_command -> command
+INCORRECT POINT (510_1_3005277) FOUND: supply_air_static_pressure_setpoint -> supply_air_static_pressure_integral_time_setpoint
+INCORRECT POINT (510_0_3005205) FOUND: power_meter -> steam_usage_meter
+INCORRECT POINT (510_1_3005275) FOUND: supply_air_static_pressure_integral_time_setpoint -> supply_air_static_pressure_setpoint
+INCORRECT POINT (510_3_3006248) FOUND: vfd_status -> run_status
+INCORRECT POINT (510_3_3013252) FOUND: smoke_damper_status -> on_off_status
+------------------------------------result---------------
+point precision: 0.9755849440488301
+point recall: 0.9845995893223819
+rate points not found in source               among sensors where point is not found: 
+	0.0
+sensors where a point is not found:  0.15 15
+sensors where incorrect points are found:  0.24 24
+unknown reason:  0.14 14
+invalid points:  47
+-----------
+{'accuracy': 0.9769677982835878,
+ 'hamming_loss': 0.00018830066368266674,
+ 'hierarchy_accuracy': 0.979663173084226,
+ 'macro_f1': 0.67148917278831322,
+ 'micro_f1': 0.98769416986080294,
+ 'point_correct_cnt': 959,
+ 'point_incorrect_cnt': 24,
+ 'point_precision': 0.9755849440488301,
+ 'point_recall': 0.9845995893223819,
+ 'precision': 0.9043062200956937,
+ 'subset_accuracy': 0.9043062200956937,
+ 'unfound_point_cnt': 15,
+ 'weighted_f1': 0.98787692843892005}
+################################# Iter# 4
+history of point precision: [0.8808933002481389, 0.962800875273523, 0.9743326488706365, 0.9755849440488301]
+history of point recall: [0.7959641255605381, 0.9195402298850575, 0.9783505154639175, 0.9845995893223819]
+history of correct point cnt: [710, 880, 949, 959]
+history of incorrect point cnt: [96, 34, 25, 24]
+history of unfound point cnt: [182, 77, 21, 15]
+history of accuracy: [0.8927111856776944, 0.9566538246442552, 0.9561572664443492, 0.9769677982835878]
+history of micro f1: [0.36421506065073184, 0.54488002879226327, 0.55973690312107982, 0.67148917278831322]
+
+
+################ Iteration 5 ################
+2017-06-04 16:46:24,031 Start augmenting label mat with superclasses
+2017-06-04 16:46:33,394 Finished augmenting label mat with superclasses
+2017-06-04 16:46:33,634 0th learning step
+2017-06-04 16:46:38,763 200th learning step
+2017-06-04 16:47:15,613 400th learning step
+2017-06-04 16:47:52,943 600th learning step
+2017-06-04 16:48:25,801 800th learning step
+2017-06-04 16:48:49,770 Finished learning multi-label classifier
+2017-06-04 16:48:49,772 Start prediction
+2017-06-04 16:48:49,782 Start Tagset prediction
+2017-06-04 16:48:49,783 Start predicting
+2017-06-04 16:48:50,914 Start distilling
+2017-06-04 16:48:56,341 Finished distilling
+2017-06-04 16:48:56,341 Finished predicting
+2017-06-04 16:48:56,343 Finished Tagset prediction
+2017-06-04 16:48:56,343 Start point prediction
+2017-06-04 16:48:56,343 Finished point prediction
+2017-06-04 16:48:56,419 Finished prediction
+2017-06-04 16:48:56,419 Start prediction
+2017-06-04 16:48:56,424 Start Tagset prediction
+2017-06-04 16:48:56,424 Start predicting
+2017-06-04 16:48:57,008 Start distilling
+2017-06-04 16:48:59,564 Finished distilling
+2017-06-04 16:48:59,565 Finished predicting
+2017-06-04 16:48:59,565 Finished Tagset prediction
+2017-06-04 16:48:59,565 Start point prediction
+2017-06-04 16:48:59,565 Finished point prediction
+2017-06-04 16:48:59,603 Finished prediction
+/home/jbkoh/anaconda3/lib/python3.6/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision and F-score are ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/home/jbkoh/anaconda3/lib/python3.6/site-packages/sklearn/metrics/classification.py:1115: UndefinedMetricWarning: Recall and F-score are ill-defined and being set to 0.0 in labels with no true samples.
+  'recall', 'true', average, warn_for)
+2017-06-04 16:49:00,350 Start prediction
+2017-06-04 16:49:00,360 Start Tagset prediction
+2017-06-04 16:49:00,361 Start predicting
+2017-06-04 16:49:01,662 Start distilling
+2017-06-04 16:49:07,898 Finished distilling
+2017-06-04 16:49:07,898 Finished predicting
+2017-06-04 16:49:07,898 Finished Tagset prediction
+2017-06-04 16:49:07,898 Start point prediction
+2017-06-04 16:49:07,898 Finished point prediction
+2017-06-04 16:49:07,985 Finished prediction
+2017-06-04 16:49:08,251 # of not detected tagsets: [75, 54, 51, 42, 34]
+2017-06-04 16:49:08,251 # of learnt but not detected tagsets: [21, 18, 19, 22, 19]
+2017-06-04 16:49:08,260 # total found tagsets in todo: 28
+2017-06-04 16:49:08,260 # unfound tagsets: 34
+2017-06-04 16:49:08,260 # todo tagsets accounting unfound tagsets: 12
+2017-06-04 16:49:08,260 Ratio of correctly found todo srcids: 0.95
+2017-06-04 16:49:08,395 Entity Recognition Get Started.
+2017-06-04 16:49:10,233 Start adding Brick samples
+2017-06-04 16:49:10,361 Finished adding Brick samples
+2017-06-04 16:49:10,361 start tagset vectorizing
+2017-06-04 16:49:10,374 finished tagset vectorizing
+2017-06-04 16:49:14,028 Start learning multi-label classifier
+Training Time: 0:02:30.154277
+avg prec: 0.973189833923619
+avg rec: 0.9672058687575937
+avg f1: 0.9682588605489999
+INCORRECT POINT (510_1_3005271) FOUND: supply_air_cooling_proportional_band_setpoint -> proportional_band_setpoint
+INCORRECT POINT (510_1_3005271) FOUND: supply_air_cooling_proportional_band_setpoint -> proportional_band_setpoint
+INCORRECT POINT (510_1_3005271) FOUND: supply_air_cooling_proportional_band_setpoint -> proportional_band_setpoint
+INCORRECT POINT (505_1_3005607) FOUND: domestic_hot_water_supply_temperature_setpoint -> setpoint
+------------------------------------result---------------
+point precision: 0.9902200488997555
+point recall: 0.9782608695652174
+rate points not found in source               among sensors where point is not found: 
+	0.0
+sensors where a point is not found:  0.13636363636363635 9
+sensors where incorrect points are found:  0.06060606060606061 4
+unknown reason:  0.3939393939393939 26
+invalid points:  27
+-----------
+{'accuracy': 0.96999821651507,
+ 'hamming_loss': 0.00017880874713060277,
+ 'hierarchy_accuracy': 0.9702871410736575,
+ 'macro_f1': 0.93701943918248509,
+ 'micro_f1': 0.98709002093510123,
+ 'point_correct_cnt': 405,
+ 'point_incorrect_cnt': 4,
+ 'point_precision': 0.9902200488997555,
+ 'point_recall': 0.9782608695652174,
+ 'precision': 0.851685393258427,
+ 'subset_accuracy': 0.851685393258427,
+ 'unfound_point_cnt': 9,
+ 'weighted_f1': 0.98351884254107347}
+avg prec: [ 0.99922988  0.74988095]
+avg rec: [ 0.99969812  0.73523759]
+avg f1: [ 0.99945759  0.73185731]
+INCORRECT POINT (510_0_3005218) FOUND: power_meter -> steam_usage_meter
+INCORRECT POINT (510_1_3006267) FOUND: temperature_setpoint -> setpoint
+INCORRECT POINT (510_0_3005179) FOUND: medium_temperature_water_return_temperature_sensor -> medium_temperature_hot_water_return_temperature_sensor
+INCORRECT POINT (510_0_3005205) FOUND: power_meter -> steam_usage_meter
+INCORRECT POINT (510_1_3005321) FOUND: supply_air_cooling_proportional_band_setpoint -> proportional_band_setpoint
+INCORRECT POINT (510_0_3005231) FOUND: power_meter -> steam_usage_meter
+INCORRECT POINT (510_3_3005220) FOUND: alarm -> hot_water_pump_alarm
+INCORRECT POINT (510_4_3005262) FOUND: supply_fan_start_stop_command -> command
+INCORRECT POINT (510_4_3005225) FOUND: vfd_command -> command
+INCORRECT POINT (510_4_3006183) FOUND: return_fan_start_stop_command -> start_stop_command
+INCORRECT POINT (510_1_3005272) FOUND: supply_air_cooling_integral_time_setpoint -> integral_time_setpoint
+INCORRECT POINT (510_3_3006225) FOUND: vfd_status -> run_status
+INCORRECT POINT (510_1_3005271) FOUND: supply_air_cooling_proportional_band_setpoint -> proportional_band_setpoint
+INCORRECT POINT (510_1_3005277) FOUND: supply_air_static_pressure_setpoint -> supply_air_static_pressure_integral_time_setpoint
+INCORRECT POINT (510_3_3006248) FOUND: vfd_status -> run_status
+------------------------------------result---------------
+point precision: 0.9843096234309623
+point recall: 0.9344587884806356
+rate points not found in source               among sensors where point is not found: 
+	0.0
+sensors where a point is not found:  0.5546218487394958 66
+sensors where incorrect points are found:  0.12605042016806722 15
+unknown reason:  0.12605042016806722 15
+invalid points:  23
+-----------
+{'accuracy': 0.9802911548844567,
+ 'hamming_loss': 0.00016051859854915838,
+ 'hierarchy_accuracy': 0.9822371182777885,
+ 'macro_f1': 0.73185731402741372,
+ 'micro_f1': 0.98946515397082657,
+ 'point_correct_cnt': 941,
+ 'point_incorrect_cnt': 15,
+ 'point_precision': 0.9843096234309623,
+ 'point_recall': 0.9344587884806356,
+ 'precision': 0.8861244019138756,
+ 'subset_accuracy': 0.8861244019138756,
+ 'unfound_point_cnt': 66,
+ 'weighted_f1': 0.98580057710225855}
+################################# Iter# 5
+history of point precision: [0.8808933002481389, 0.962800875273523, 0.9743326488706365, 0.9755849440488301, 0.9843096234309623]
+history of point recall: [0.7959641255605381, 0.9195402298850575, 0.9783505154639175, 0.9845995893223819, 0.9344587884806356]
+history of correct point cnt: [710, 880, 949, 959, 941]
+history of incorrect point cnt: [96, 34, 25, 24, 15]
+history of unfound point cnt: [182, 77, 21, 15, 66]
+history of accuracy: [0.8927111856776944, 0.9566538246442552, 0.9561572664443492, 0.9769677982835878, 0.9802911548844567]
+history of micro f1: [0.36421506065073184, 0.54488002879226327, 0.55973690312107982, 0.67148917278831322, 0.73185731402741372]
+
+
+################ Iteration 6 ################
+2017-06-04 16:49:14,630 Start augmenting label mat with superclasses
+2017-06-04 16:49:24,645 Finished augmenting label mat with superclasses
+2017-06-04 16:49:24,883 0th learning step
+2017-06-04 16:49:29,796 200th learning step
+2017-06-04 16:50:08,013 400th learning step
+2017-06-04 16:50:46,268 600th learning step
+2017-06-04 16:51:24,210 800th learning step
+2017-06-04 16:51:47,731 Finished learning multi-label classifier
+2017-06-04 16:51:47,735 Start prediction
+2017-06-04 16:51:47,748 Start Tagset prediction
+2017-06-04 16:51:47,748 Start predicting
+2017-06-04 16:51:48,893 Start distilling
+2017-06-04 16:51:54,347 Finished distilling
+2017-06-04 16:51:54,347 Finished predicting
+2017-06-04 16:51:54,348 Finished Tagset prediction
+2017-06-04 16:51:54,348 Start point prediction
+2017-06-04 16:51:54,348 Finished point prediction
+2017-06-04 16:51:54,424 Finished prediction
+2017-06-04 16:51:54,424 Start prediction
+2017-06-04 16:51:54,430 Start Tagset prediction
+2017-06-04 16:51:54,430 Start predicting
+2017-06-04 16:51:55,069 Start distilling
+2017-06-04 16:51:58,016 Finished distilling
+2017-06-04 16:51:58,016 Finished predicting
+2017-06-04 16:51:58,016 Finished Tagset prediction
+2017-06-04 16:51:58,016 Start point prediction
+2017-06-04 16:51:58,016 Finished point prediction
+2017-06-04 16:51:58,058 Finished prediction
+/home/jbkoh/anaconda3/lib/python3.6/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision and F-score are ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/home/jbkoh/anaconda3/lib/python3.6/site-packages/sklearn/metrics/classification.py:1115: UndefinedMetricWarning: Recall and F-score are ill-defined and being set to 0.0 in labels with no true samples.
+  'recall', 'true', average, warn_for)
+2017-06-04 16:51:58,471 Start prediction
+2017-06-04 16:51:58,481 Start Tagset prediction
+2017-06-04 16:51:58,482 Start predicting
+2017-06-04 16:51:59,795 Start distilling
+2017-06-04 16:52:05,944 Finished distilling
+2017-06-04 16:52:05,944 Finished predicting
+2017-06-04 16:52:05,944 Finished Tagset prediction
+2017-06-04 16:52:05,944 Start point prediction
+2017-06-04 16:52:05,944 Finished point prediction
+2017-06-04 16:52:06,031 Finished prediction
+2017-06-04 16:52:06,292 # of not detected tagsets: [75, 54, 51, 42, 34, 30]
+2017-06-04 16:52:06,292 # of learnt but not detected tagsets: [21, 18, 19, 22, 19, 18]
+2017-06-04 16:52:06,298 # total found tagsets in todo: 16
+2017-06-04 16:52:06,298 # unfound tagsets: 30
+2017-06-04 16:52:06,298 # todo tagsets accounting unfound tagsets: 6
+2017-06-04 16:52:06,298 Ratio of correctly found todo srcids: 1.0
+2017-06-04 16:52:06,434 Entity Recognition Get Started.
+2017-06-04 16:52:08,510 Start adding Brick samples
+2017-06-04 16:52:08,637 Finished adding Brick samples
+2017-06-04 16:52:08,637 start tagset vectorizing
+2017-06-04 16:52:08,650 finished tagset vectorizing
+2017-06-04 16:52:12,443 Start learning multi-label classifier
+Training Time: 0:02:37.768233
+avg prec: 0.9820182602037365
+avg rec: 0.975275541433091
+avg f1: 0.9766029760160241
+INCORRECT POINT (510_1_3005271) FOUND: supply_air_cooling_proportional_band_setpoint -> proportional_band_setpoint
+INCORRECT POINT (510_1_3005271) FOUND: supply_air_cooling_proportional_band_setpoint -> proportional_band_setpoint
+INCORRECT POINT (510_1_3005271) FOUND: supply_air_cooling_proportional_band_setpoint -> proportional_band_setpoint
+------------------------------------result---------------
+point precision: 0.9936170212765958
+point recall: 0.9873150105708245
+rate points not found in source               among sensors where point is not found: 
+	0.0
+sensors where a point is not found:  0.08823529411764706 6
+sensors where incorrect points are found:  0.04411764705882353 3
+unknown reason:  0.4411764705882353 30
+invalid points:  29
+-----------
+{'accuracy': 0.9700550055005497,
+ 'hamming_loss': 0.00017672735015437008,
+ 'hierarchy_accuracy': 0.9700550055005497,
+ 'macro_f1': 0.9536986992822869,
+ 'micro_f1': 0.98730304420988224,
+ 'point_correct_cnt': 467,
+ 'point_incorrect_cnt': 3,
+ 'point_precision': 0.9936170212765958,
+ 'point_recall': 0.9873150105708245,
+ 'precision': 0.8653465346534653,
+ 'subset_accuracy': 0.8653465346534653,
+ 'unfound_point_cnt': 6,
+ 'weighted_f1': 0.98423090722587836}
+avg prec: [ 0.99962388  0.78689173]
+avg rec: [ 0.99969754  0.78111971]
+avg f1: [ 0.99966001  0.77549986]
+INCORRECT POINT (510_0_3005205) FOUND: power_meter -> steam_usage_meter
+INCORRECT POINT (510_1_3005321) FOUND: supply_air_cooling_proportional_band_setpoint -> proportional_band_setpoint
+INCORRECT POINT (510_1_3005272) FOUND: supply_air_cooling_integral_time_setpoint -> integral_time_setpoint
+INCORRECT POINT (510_3_3005220) FOUND: alarm -> hot_water_pump_alarm
+INCORRECT POINT (510_0_3005218) FOUND: power_meter -> steam_usage_meter
+INCORRECT POINT (510_1_3005277) FOUND: supply_air_static_pressure_setpoint -> supply_air_static_pressure_integral_time_setpoint
+INCORRECT POINT (510_3_3006225) FOUND: vfd_status -> run_status
+INCORRECT POINT (510_1_3006267) FOUND: temperature_setpoint -> setpoint
+INCORRECT POINT (510_0_3005231) FOUND: power_meter -> steam_usage_meter
+INCORRECT POINT (510_1_3005271) FOUND: supply_air_cooling_proportional_band_setpoint -> proportional_band_setpoint
+INCORRECT POINT (510_3_3006248) FOUND: vfd_status -> run_status
+INCORRECT POINT (510_3_3005233) FOUND: alarm -> status
+INCORRECT POINT (510_1_3005275) FOUND: supply_air_static_pressure_integral_time_setpoint -> supply_air_static_pressure_setpoint
+INCORRECT POINT (510_4_3006183) FOUND: return_fan_start_stop_command -> start_stop_command
+------------------------------------result---------------
+point precision: 0.9862475442043221
+point recall: 0.994059405940594
+rate points not found in source               among sensors where point is not found: 
+	0.0
+sensors where a point is not found:  0.10909090909090909 6
+sensors where incorrect points are found:  0.2545454545454545 14
+unknown reason:  0.2545454545454545 14
+invalid points:  21
+-----------
+{'accuracy': 0.9875900840254911,
+ 'hamming_loss': 9.878067603025151e-05,
+ 'hierarchy_accuracy': 0.9895184212827755,
+ 'macro_f1': 0.77549986374152868,
+ 'micro_f1': 0.99354231131440884,
+ 'point_correct_cnt': 1004,
+ 'point_incorrect_cnt': 14,
+ 'point_precision': 0.9862475442043221,
+ 'point_recall': 0.994059405940594,
+ 'precision': 0.9473684210526315,
+ 'subset_accuracy': 0.9473684210526315,
+ 'unfound_point_cnt': 6,
+ 'weighted_f1': 0.99370702295336066}
+################################# Iter# 6
+history of point precision: [0.8808933002481389, 0.962800875273523, 0.9743326488706365, 0.9755849440488301, 0.9843096234309623, 0.9862475442043221]
+history of point recall: [0.7959641255605381, 0.9195402298850575, 0.9783505154639175, 0.9845995893223819, 0.9344587884806356, 0.994059405940594]
+history of correct point cnt: [710, 880, 949, 959, 941, 1004]
+history of incorrect point cnt: [96, 34, 25, 24, 15, 14]
+history of unfound point cnt: [182, 77, 21, 15, 66, 6]
+history of accuracy: [0.8927111856776944, 0.9566538246442552, 0.9561572664443492, 0.9769677982835878, 0.9802911548844567, 0.9875900840254911]
+history of micro f1: [0.36421506065073184, 0.54488002879226327, 0.55973690312107982, 0.67148917278831322, 0.73185731402741372, 0.77549986374152868]
+
+
+################ Iteration 7 ################
+2017-06-04 16:52:13,039 Start augmenting label mat with superclasses
+2017-06-04 16:52:23,698 Finished augmenting label mat with superclasses
+2017-06-04 16:52:23,944 0th learning step
+2017-06-04 16:52:29,571 200th learning step
+2017-06-04 16:53:10,282 400th learning step
+2017-06-04 16:53:50,476 600th learning step
+2017-06-04 16:54:29,159 800th learning step
+2017-06-04 16:54:52,651 Finished learning multi-label classifier
+2017-06-04 16:54:52,654 Start prediction
+2017-06-04 16:54:52,665 Start Tagset prediction
+2017-06-04 16:54:52,665 Start predicting
+2017-06-04 16:54:53,771 Start distilling
+2017-06-04 16:54:59,232 Finished distilling
+2017-06-04 16:54:59,232 Finished predicting
+2017-06-04 16:54:59,232 Finished Tagset prediction
+2017-06-04 16:54:59,232 Start point prediction
+2017-06-04 16:54:59,233 Finished point prediction
+2017-06-04 16:54:59,310 Finished prediction
+2017-06-04 16:54:59,310 Start prediction
+2017-06-04 16:54:59,316 Start Tagset prediction
+2017-06-04 16:54:59,316 Start predicting
+2017-06-04 16:54:59,994 Start distilling
+2017-06-04 16:55:03,319 Finished distilling
+2017-06-04 16:55:03,319 Finished predicting
+2017-06-04 16:55:03,319 Finished Tagset prediction
+2017-06-04 16:55:03,319 Start point prediction
+2017-06-04 16:55:03,319 Finished point prediction
+2017-06-04 16:55:03,365 Finished prediction
+/home/jbkoh/anaconda3/lib/python3.6/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision and F-score are ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/home/jbkoh/anaconda3/lib/python3.6/site-packages/sklearn/metrics/classification.py:1115: UndefinedMetricWarning: Recall and F-score are ill-defined and being set to 0.0 in labels with no true samples.
+  'recall', 'true', average, warn_for)
+2017-06-04 16:55:03,794 Start prediction
+2017-06-04 16:55:03,804 Start Tagset prediction
+2017-06-04 16:55:03,805 Start predicting
+2017-06-04 16:55:05,133 Start distilling
+2017-06-04 16:55:11,373 Finished distilling
+2017-06-04 16:55:11,373 Finished predicting
+2017-06-04 16:55:11,373 Finished Tagset prediction
+2017-06-04 16:55:11,374 Start point prediction
+2017-06-04 16:55:11,374 Finished point prediction
+2017-06-04 16:55:11,460 Finished prediction
+2017-06-04 16:55:11,717 # of not detected tagsets: [75, 54, 51, 42, 34, 30, 28]
+2017-06-04 16:55:11,718 # of learnt but not detected tagsets: [21, 18, 19, 22, 19, 18, 17]
+2017-06-04 16:55:11,723 # total found tagsets in todo: 11
+2017-06-04 16:55:11,723 # unfound tagsets: 28
+2017-06-04 16:55:11,723 # todo tagsets accounting unfound tagsets: 3
+2017-06-04 16:55:11,723 Ratio of correctly found todo srcids: 1.0
+2017-06-04 16:55:11,864 Entity Recognition Get Started.
+2017-06-04 16:55:13,945 Start adding Brick samples
+2017-06-04 16:55:14,074 Finished adding Brick samples
+2017-06-04 16:55:14,075 start tagset vectorizing
+2017-06-04 16:55:14,088 finished tagset vectorizing
+2017-06-04 16:55:17,954 Start learning multi-label classifier
+Training Time: 0:02:44.423851
+avg prec: 0.9846260914629481
+avg rec: 0.9769519661973607
+avg f1: 0.9786297709246742
+INCORRECT POINT (510_1_3005271) FOUND: supply_air_cooling_proportional_band_setpoint -> proportional_band_setpoint
+INCORRECT POINT (510_1_3005271) FOUND: supply_air_cooling_proportional_band_setpoint -> proportional_band_setpoint
+INCORRECT POINT (510_1_3005271) FOUND: supply_air_cooling_proportional_band_setpoint -> proportional_band_setpoint
+------------------------------------result---------------
+point precision: 0.9940944881889764
+point recall: 0.9730250481695568
+rate points not found in source               among sensors where point is not found: 
+	0.0
+sensors where a point is not found:  0.16666666666666666 14
+sensors where incorrect points are found:  0.03571428571428571 3
+unknown reason:  0.35714285714285715 30
+invalid points:  37
+-----------
+{'accuracy': 0.9689695317602289,
+ 'hamming_loss': 0.0002000500125031255,
+ 'hierarchy_accuracy': 0.9689695317602289,
+ 'macro_f1': 0.95783690548737799,
+ 'micro_f1': 0.98563535911602207,
+ 'point_correct_cnt': 505,
+ 'point_incorrect_cnt': 3,
+ 'point_precision': 0.9940944881889764,
+ 'point_recall': 0.9730250481695568,
+ 'precision': 0.8497316636851521,
+ 'subset_accuracy': 0.8497316636851521,
+ 'unfound_point_cnt': 14,
+ 'weighted_f1': 0.98253485003444885}
+avg prec: [ 0.99962158  0.79995973]
+avg rec: [ 0.99975221  0.78782285]
+avg f1: [ 0.9996863   0.78506561]
+INCORRECT POINT (510_1_3005320) FOUND: supply_air_cooling_dead_band_setpoint -> zone_cooling_temperature_dead_band_setpoint
+INCORRECT POINT (510_1_3006267) FOUND: temperature_setpoint -> setpoint
+INCORRECT POINT (510_1_3005272) FOUND: supply_air_cooling_integral_time_setpoint -> integral_time_setpoint
+INCORRECT POINT (510_3_3005220) FOUND: alarm -> hot_water_pump_alarm
+INCORRECT POINT (510_3_3006225) FOUND: vfd_status -> run_status
+INCORRECT POINT (510_1_3005270) FOUND: supply_air_cooling_dead_band_setpoint -> zone_cooling_temperature_dead_band_setpoint
+INCORRECT POINT (510_0_3005231) FOUND: power_meter -> steam_usage_meter
+INCORRECT POINT (510_1_3005321) FOUND: supply_air_cooling_proportional_band_setpoint -> proportional_band_setpoint
+INCORRECT POINT (510_3_3006248) FOUND: vfd_status -> run_status
+INCORRECT POINT (510_1_3005277) FOUND: supply_air_static_pressure_setpoint -> supply_air_static_pressure_integral_time_setpoint
+INCORRECT POINT (510_0_3005205) FOUND: power_meter -> steam_usage_meter
+INCORRECT POINT (510_4_3006183) FOUND: return_fan_start_stop_command -> start_stop_command
+INCORRECT POINT (510_1_3005271) FOUND: supply_air_cooling_proportional_band_setpoint -> proportional_band_setpoint
+INCORRECT POINT (510_3_3005233) FOUND: alarm -> status
+INCORRECT POINT (510_0_3005218) FOUND: power_meter -> steam_usage_meter
+------------------------------------result---------------
+point precision: 0.985279685966634
+point recall: 0.994059405940594
+rate points not found in source               among sensors where point is not found: 
+	0.0
+sensors where a point is not found:  0.10714285714285714 6
+sensors where incorrect points are found:  0.26785714285714285 15
+unknown reason:  0.26785714285714285 15
+invalid points:  20
+-----------
+{'accuracy': 0.9885137085137083,
+ 'hamming_loss': 9.054895302773057e-05,
+ 'hierarchy_accuracy': 0.9898881990329359,
+ 'macro_f1': 0.78506560855457297,
+ 'micro_f1': 0.99407726477318614,
+ 'point_correct_cnt': 1004,
+ 'point_incorrect_cnt': 15,
+ 'point_precision': 0.985279685966634,
+ 'point_recall': 0.994059405940594,
+ 'precision': 0.9464114832535885,
+ 'subset_accuracy': 0.9464114832535885,
+ 'unfound_point_cnt': 6,
+ 'weighted_f1': 0.99390588717606865}
+################################# Iter# 7
+history of point precision: [0.8808933002481389, 0.962800875273523, 0.9743326488706365, 0.9755849440488301, 0.9843096234309623, 0.9862475442043221, 0.985279685966634]
+history of point recall: [0.7959641255605381, 0.9195402298850575, 0.9783505154639175, 0.9845995893223819, 0.9344587884806356, 0.994059405940594, 0.994059405940594]
+history of correct point cnt: [710, 880, 949, 959, 941, 1004, 1004]
+history of incorrect point cnt: [96, 34, 25, 24, 15, 14, 15]
+history of unfound point cnt: [182, 77, 21, 15, 66, 6, 6]
+history of accuracy: [0.8927111856776944, 0.9566538246442552, 0.9561572664443492, 0.9769677982835878, 0.9802911548844567, 0.9875900840254911, 0.9885137085137083]
+history of micro f1: [0.36421506065073184, 0.54488002879226327, 0.55973690312107982, 0.67148917278831322, 0.73185731402741372, 0.77549986374152868, 0.78506560855457297]
+
+
+################ Iteration 8 ################
+2017-06-04 16:55:18,564 Start augmenting label mat with superclasses
+2017-06-04 16:55:29,415 Finished augmenting label mat with superclasses
+2017-06-04 16:55:29,669 0th learning step
+2017-06-04 16:55:35,581 200th learning step
+2017-06-04 16:56:16,680 400th learning step
+2017-06-04 16:56:58,142 600th learning step
+2017-06-04 16:57:38,340 800th learning step
+2017-06-04 16:58:05,232 Finished learning multi-label classifier
+2017-06-04 16:58:05,235 Start prediction
+2017-06-04 16:58:05,245 Start Tagset prediction
+2017-06-04 16:58:05,245 Start predicting
+2017-06-04 16:58:06,394 Start distilling
+2017-06-04 16:58:11,852 Finished distilling
+2017-06-04 16:58:11,852 Finished predicting
+2017-06-04 16:58:11,852 Finished Tagset prediction
+2017-06-04 16:58:11,852 Start point prediction
+2017-06-04 16:58:11,853 Finished point prediction
+2017-06-04 16:58:11,930 Finished prediction
+2017-06-04 16:58:11,930 Start prediction
+2017-06-04 16:58:11,936 Start Tagset prediction
+2017-06-04 16:58:11,936 Start predicting
+2017-06-04 16:58:12,636 Start distilling
+2017-06-04 16:58:16,008 Finished distilling
+2017-06-04 16:58:16,008 Finished predicting
+2017-06-04 16:58:16,008 Finished Tagset prediction
+2017-06-04 16:58:16,009 Start point prediction
+2017-06-04 16:58:16,009 Finished point prediction
+2017-06-04 16:58:16,057 Finished prediction
+/home/jbkoh/anaconda3/lib/python3.6/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision and F-score are ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/home/jbkoh/anaconda3/lib/python3.6/site-packages/sklearn/metrics/classification.py:1115: UndefinedMetricWarning: Recall and F-score are ill-defined and being set to 0.0 in labels with no true samples.
+  'recall', 'true', average, warn_for)
+2017-06-04 16:58:16,837 Start prediction
+2017-06-04 16:58:16,847 Start Tagset prediction
+2017-06-04 16:58:16,847 Start predicting
+2017-06-04 16:58:18,220 Start distilling
+2017-06-04 16:58:24,422 Finished distilling
+2017-06-04 16:58:24,423 Finished predicting
+2017-06-04 16:58:24,423 Finished Tagset prediction
+2017-06-04 16:58:24,423 Start point prediction
+2017-06-04 16:58:24,423 Finished point prediction
+2017-06-04 16:58:24,511 Finished prediction
+2017-06-04 16:58:24,766 # of not detected tagsets: [75, 54, 51, 42, 34, 30, 28, 24]
+2017-06-04 16:58:24,767 # of learnt but not detected tagsets: [21, 18, 19, 22, 19, 18, 17, 15]
+2017-06-04 16:58:24,772 # total found tagsets in todo: 10
+2017-06-04 16:58:24,772 # unfound tagsets: 24
+2017-06-04 16:58:24,772 # todo tagsets accounting unfound tagsets: 2
+2017-06-04 16:58:24,772 Ratio of correctly found todo srcids: 1.0
+2017-06-04 16:58:24,924 Entity Recognition Get Started.
+2017-06-04 16:58:26,809 Start adding Brick samples
+2017-06-04 16:58:26,937 Finished adding Brick samples
+2017-06-04 16:58:26,937 start tagset vectorizing
+2017-06-04 16:58:26,950 finished tagset vectorizing
+2017-06-04 16:58:30,828 Start learning multi-label classifier
+Training Time: 0:02:51.573018
+avg prec: 0.9848603412355545
+avg rec: 0.977709766589641
+avg f1: 0.9795630047365537
+INCORRECT POINT (510_1_3005271) FOUND: supply_air_cooling_proportional_band_setpoint -> proportional_band_setpoint
+INCORRECT POINT (510_1_3005271) FOUND: supply_air_cooling_proportional_band_setpoint -> proportional_band_setpoint
+INCORRECT POINT (510_1_3005271) FOUND: supply_air_cooling_proportional_band_setpoint -> proportional_band_setpoint
+------------------------------------result---------------
+point precision: 0.994328922495274
+point recall: 0.9704797047970479
+rate points not found in source               among sensors where point is not found: 
+	0.0
+sensors where a point is not found:  0.1951219512195122 16
+sensors where incorrect points are found:  0.036585365853658534 3
+unknown reason:  0.4146341463414634 34
+invalid points:  29
+-----------
+{'accuracy': 0.9721136828715222,
+ 'hamming_loss': 0.00018170919036379282,
+ 'hierarchy_accuracy': 0.9721136828715222,
+ 'macro_f1': 0.95964018052887767,
+ 'micro_f1': 0.98702688243948111,
+ 'point_correct_cnt': 526,
+ 'point_incorrect_cnt': 3,
+ 'point_precision': 0.994328922495274,
+ 'point_recall': 0.9704797047970479,
+ 'precision': 0.8571428571428571,
+ 'subset_accuracy': 0.8571428571428571,
+ 'unfound_point_cnt': 16,
+ 'weighted_f1': 0.98467027873106883}
+avg prec: [ 0.99967592  0.84692821]
+avg rec: [ 0.9997882   0.83456442]
+avg f1: [ 0.9997315   0.83206675]
+INCORRECT POINT (510_3_3006225) FOUND: vfd_status -> run_status
+INCORRECT POINT (510_1_3005271) FOUND: supply_air_cooling_proportional_band_setpoint -> proportional_band_setpoint
+INCORRECT POINT (510_1_3005277) FOUND: supply_air_static_pressure_setpoint -> supply_air_static_pressure_integral_time_setpoint
+INCORRECT POINT (510_1_3005321) FOUND: supply_air_cooling_proportional_band_setpoint -> proportional_band_setpoint
+INCORRECT POINT (510_1_3006267) FOUND: temperature_setpoint -> setpoint
+INCORRECT POINT (510_1_3005272) FOUND: supply_air_cooling_integral_time_setpoint -> integral_time_setpoint
+INCORRECT POINT (510_3_3006248) FOUND: vfd_status -> run_status
+INCORRECT POINT (510_3_3005220) FOUND: alarm -> pump_alarm
+INCORRECT POINT (510_1_3005270) FOUND: supply_air_cooling_dead_band_setpoint -> zone_cooling_temperature_dead_band_setpoint
+INCORRECT POINT (510_4_3006183) FOUND: return_fan_start_stop_command -> start_stop_command
+INCORRECT POINT (510_1_3005320) FOUND: supply_air_cooling_dead_band_setpoint -> zone_cooling_temperature_dead_band_setpoint
+------------------------------------result---------------
+point precision: 0.9892156862745098
+point recall: 0.9931102362204725
+rate points not found in source               among sensors where point is not found: 
+	0.0
+sensors where a point is not found:  0.14285714285714285 7
+sensors where incorrect points are found:  0.22448979591836735 11
+unknown reason:  0.2653061224489796 13
+invalid points:  18
+-----------
+{'accuracy': 0.9900721500721501,
+ 'hamming_loss': 7.51144723980038e-05,
+ 'hierarchy_accuracy': 0.9910057340320497,
+ 'macro_f1': 0.83206675494174864,
+ 'micro_f1': 0.99508781374066357,
+ 'point_correct_cnt': 1009,
+ 'point_incorrect_cnt': 11,
+ 'point_precision': 0.9892156862745098,
+ 'point_recall': 0.9931102362204725,
+ 'precision': 0.9531100478468899,
+ 'subset_accuracy': 0.9531100478468899,
+ 'unfound_point_cnt': 7,
+ 'weighted_f1': 0.99489144183532596}
+################################# Iter# 8
+history of point precision: [0.8808933002481389, 0.962800875273523, 0.9743326488706365, 0.9755849440488301, 0.9843096234309623, 0.9862475442043221, 0.985279685966634, 0.9892156862745098]
+history of point recall: [0.7959641255605381, 0.9195402298850575, 0.9783505154639175, 0.9845995893223819, 0.9344587884806356, 0.994059405940594, 0.994059405940594, 0.9931102362204725]
+history of correct point cnt: [710, 880, 949, 959, 941, 1004, 1004, 1009]
+history of incorrect point cnt: [96, 34, 25, 24, 15, 14, 15, 11]
+history of unfound point cnt: [182, 77, 21, 15, 66, 6, 6, 7]
+history of accuracy: [0.8927111856776944, 0.9566538246442552, 0.9561572664443492, 0.9769677982835878, 0.9802911548844567, 0.9875900840254911, 0.9885137085137083, 0.9900721500721501]
+history of micro f1: [0.36421506065073184, 0.54488002879226327, 0.55973690312107982, 0.67148917278831322, 0.73185731402741372, 0.77549986374152868, 0.78506560855457297, 0.83206675494174864]
+
+
+################ Iteration 9 ################
+2017-06-04 16:58:31,432 Start augmenting label mat with superclasses
+2017-06-04 16:58:42,426 Finished augmenting label mat with superclasses
+2017-06-04 16:58:42,674 0th learning step
+2017-06-04 16:58:48,294 200th learning step
+2017-06-04 16:59:29,880 400th learning step
+2017-06-04 17:00:07,280 600th learning step
+2017-06-04 17:00:47,018 800th learning step
+2017-06-04 17:01:17,525 Finished learning multi-label classifier
+2017-06-04 17:01:17,529 Start prediction
+2017-06-04 17:01:17,543 Start Tagset prediction
+2017-06-04 17:01:17,543 Start predicting
+2017-06-04 17:01:18,731 Start distilling
+2017-06-04 17:01:24,150 Finished distilling
+2017-06-04 17:01:24,150 Finished predicting
+2017-06-04 17:01:24,150 Finished Tagset prediction
+2017-06-04 17:01:24,150 Start point prediction
+2017-06-04 17:01:24,150 Finished point prediction
+2017-06-04 17:01:24,227 Finished prediction
+2017-06-04 17:01:24,228 Start prediction
+2017-06-04 17:01:24,234 Start Tagset prediction
+2017-06-04 17:01:24,234 Start predicting
+2017-06-04 17:01:24,941 Start distilling
+2017-06-04 17:01:28,480 Finished distilling
+2017-06-04 17:01:28,480 Finished predicting
+2017-06-04 17:01:28,480 Finished Tagset prediction
+2017-06-04 17:01:28,481 Start point prediction
+2017-06-04 17:01:28,481 Finished point prediction
+2017-06-04 17:01:28,529 Finished prediction
+/home/jbkoh/anaconda3/lib/python3.6/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision and F-score are ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/home/jbkoh/anaconda3/lib/python3.6/site-packages/sklearn/metrics/classification.py:1115: UndefinedMetricWarning: Recall and F-score are ill-defined and being set to 0.0 in labels with no true samples.
+  'recall', 'true', average, warn_for)
+2017-06-04 17:01:29,316 Start prediction
+2017-06-04 17:01:29,327 Start Tagset prediction
+2017-06-04 17:01:29,327 Start predicting
+2017-06-04 17:01:30,736 Start distilling
+2017-06-04 17:01:36,874 Finished distilling
+2017-06-04 17:01:36,875 Finished predicting
+2017-06-04 17:01:36,875 Finished Tagset prediction
+2017-06-04 17:01:36,875 Start point prediction
+2017-06-04 17:01:36,875 Finished point prediction
+2017-06-04 17:01:36,964 Finished prediction
+Training Time: 0:02:51.004461
+avg prec: 0.9794123033003743
+avg rec: 0.9717510682386742
+avg f1: 0.9735045031325749
+INCORRECT POINT (510_1_3005271) FOUND: supply_air_cooling_proportional_band_setpoint -> proportional_band_setpoint
+INCORRECT POINT (510_1_3005271) FOUND: supply_air_cooling_proportional_band_setpoint -> proportional_band_setpoint
+INCORRECT POINT (510_1_3005271) FOUND: supply_air_cooling_proportional_band_setpoint -> proportional_band_setpoint
+------------------------------------result---------------
+point precision: 0.9941060903732809
+point recall: 0.9656488549618321
+rate points not found in source               among sensors where point is not found: 
+	0.0
+sensors where a point is not found:  0.17142857142857143 18
+sensors where incorrect points are found:  0.02857142857142857 3
+unknown reason:  0.29523809523809524 31
+invalid points:  53
+-----------
+{'accuracy': 0.9659879584017509,
+ 'hamming_loss': 0.00022061549870226125,
+ 'hierarchy_accuracy': 0.9659879584017509,
+ 'macro_f1': 0.94763543958739249,
+ 'micro_f1': 0.98419024843895309,
+ 'point_correct_cnt': 506,
+ 'point_incorrect_cnt': 3,
+ 'point_precision': 0.9941060903732809,
+ 'point_recall': 0.9656488549618321,
+ 'precision': 0.8189655172413793,
+ 'subset_accuracy': 0.8189655172413793,
+ 'unfound_point_cnt': 18,
+ 'weighted_f1': 0.98064908835601439}
+avg prec: [ 0.99965318  0.86227053]
+avg rec: [ 0.99934941  0.85957152]
+avg f1: [ 0.99949349  0.8518354 ]
+INCORRECT POINT (510_1_3012849) FOUND: supply_air_flow_setpoint -> supply_air_flow_sensor
+INCORRECT POINT (510_1_3013958) FOUND: supply_air_flow_setpoint -> supply_air_flow_sensor
+INCORRECT POINT (510_1_3012929) FOUND: supply_air_flow_setpoint -> supply_air_flow_sensor
+INCORRECT POINT (510_1_3013237) FOUND: supply_air_flow_setpoint -> supply_air_flow_sensor
+INCORRECT POINT (510_1_3014126) FOUND: supply_air_flow_setpoint -> supply_air_flow_sensor
+INCORRECT POINT (510_1_3013701) FOUND: supply_air_flow_setpoint -> supply_air_flow_sensor
+INCORRECT POINT (510_1_3013325) FOUND: supply_air_flow_setpoint -> supply_air_flow_sensor
+INCORRECT POINT (510_1_3014636) FOUND: supply_air_flow_setpoint -> supply_air_flow_sensor
+INCORRECT POINT (510_1_3014030) FOUND: supply_air_flow_setpoint -> supply_air_flow_sensor
+INCORRECT POINT (510_1_3013113) FOUND: supply_air_flow_setpoint -> supply_air_flow_sensor
+INCORRECT POINT (510_1_3014360) FOUND: supply_air_flow_setpoint -> supply_air_flow_sensor
+INCORRECT POINT (510_1_3014066) FOUND: supply_air_flow_setpoint -> supply_air_flow_sensor
+INCORRECT POINT (510_1_3014086) FOUND: supply_air_flow_setpoint -> supply_air_flow_sensor
+INCORRECT POINT (510_1_3013820) FOUND: supply_air_flow_setpoint -> supply_air_flow_sensor
+INCORRECT POINT (510_3_3006248) FOUND: vfd_status -> run_status
+INCORRECT POINT (510_1_3014146) FOUND: supply_air_flow_setpoint -> supply_air_flow_sensor
+INCORRECT POINT (510_1_3014206) FOUND: supply_air_flow_setpoint -> supply_air_flow_sensor
+INCORRECT POINT (510_1_3014676) FOUND: supply_air_flow_setpoint -> supply_air_flow_sensor
+INCORRECT POINT (510_1_3012965) FOUND: supply_air_flow_setpoint -> supply_air_flow_sensor
+INCORRECT POINT (510_1_3014246) FOUND: supply_air_flow_setpoint -> supply_air_flow_sensor
+INCORRECT POINT (510_1_3014540) FOUND: supply_air_flow_setpoint -> supply_air_flow_sensor
+INCORRECT POINT (510_1_3014600) FOUND: supply_air_flow_setpoint -> supply_air_flow_sensor
+INCORRECT POINT (510_1_3014560) FOUND: supply_air_flow_setpoint -> supply_air_flow_sensor
+INCORRECT POINT (510_1_3013800) FOUND: supply_air_flow_setpoint -> supply_air_flow_sensor
+INCORRECT POINT (510_1_3013049) FOUND: supply_air_flow_setpoint -> supply_air_flow_sensor
+INCORRECT POINT (510_1_3013257) FOUND: supply_air_flow_setpoint -> supply_air_flow_sensor
+INCORRECT POINT (510_1_3014400) FOUND: supply_air_flow_setpoint -> supply_air_flow_sensor
+INCORRECT POINT (510_1_3013901) FOUND: supply_air_flow_setpoint -> supply_air_flow_sensor
+INCORRECT POINT (510_1_3013721) FOUND: supply_air_flow_setpoint -> supply_air_flow_sensor
+INCORRECT POINT (510_1_3012889) FOUND: supply_air_flow_setpoint -> supply_air_flow_sensor
+INCORRECT POINT (510_1_3014440) FOUND: supply_air_flow_setpoint -> supply_air_flow_sensor
+INCORRECT POINT (510_1_3005321) FOUND: supply_air_cooling_proportional_band_setpoint -> proportional_band_setpoint
+INCORRECT POINT (510_1_3014226) FOUND: supply_air_flow_setpoint -> supply_air_flow_sensor
+INCORRECT POINT (510_4_3006183) FOUND: return_fan_start_stop_command -> start_stop_command
+INCORRECT POINT (510_1_3013780) FOUND: supply_air_flow_setpoint -> supply_air_flow_sensor
+INCORRECT POINT (510_1_3005271) FOUND: supply_air_cooling_proportional_band_setpoint -> proportional_band_setpoint
+INCORRECT POINT (510_1_3013065) FOUND: supply_air_flow_setpoint -> supply_air_flow_sensor
+INCORRECT POINT (510_1_3014580) FOUND: supply_air_flow_setpoint -> supply_air_flow_sensor
+INCORRECT POINT (510_1_3012997) FOUND: supply_air_flow_setpoint -> supply_air_flow_sensor
+INCORRECT POINT (510_3_3006225) FOUND: vfd_status -> run_status
+INCORRECT POINT (510_1_3013097) FOUND: supply_air_flow_setpoint -> supply_air_flow_sensor
+INCORRECT POINT (510_1_3014500) FOUND: supply_air_flow_setpoint -> supply_air_flow_sensor
+INCORRECT POINT (510_1_3014681) FOUND: supply_air_flow_setpoint -> supply_air_flow_sensor
+INCORRECT POINT (510_1_3014323) FOUND: supply_air_flow_setpoint -> supply_air_flow_sensor
+INCORRECT POINT (510_1_3014620) FOUND: supply_air_flow_setpoint -> supply_air_flow_sensor
+INCORRECT POINT (510_1_3013644) FOUND: supply_air_flow_setpoint -> supply_air_flow_sensor
+INCORRECT POINT (510_1_3013293) FOUND: supply_air_flow_setpoint -> supply_air_flow_sensor
+INCORRECT POINT (510_1_3005277) FOUND: supply_air_static_pressure_setpoint -> supply_air_static_pressure_integral_time_setpoint
+INCORRECT POINT (510_1_3012909) FOUND: supply_air_flow_setpoint -> supply_air_flow_sensor
+INCORRECT POINT (510_1_3013684) FOUND: supply_air_flow_setpoint -> supply_air_flow_sensor
+INCORRECT POINT (510_1_3014343) FOUND: supply_air_flow_setpoint -> supply_air_flow_sensor
+INCORRECT POINT (510_1_3005272) FOUND: supply_air_cooling_integral_time_setpoint -> integral_time_setpoint
+INCORRECT POINT (510_1_3014420) FOUND: supply_air_flow_setpoint -> supply_air_flow_sensor
+INCORRECT POINT (510_1_3014460) FOUND: supply_air_flow_setpoint -> supply_air_flow_sensor
+INCORRECT POINT (510_1_3006267) FOUND: temperature_setpoint -> setpoint
+INCORRECT POINT (510_1_3013860) FOUND: supply_air_flow_setpoint -> supply_air_flow_sensor
+INCORRECT POINT (510_1_3013345) FOUND: supply_air_flow_setpoint -> supply_air_flow_sensor
+INCORRECT POINT (510_1_3012869) FOUND: supply_air_flow_setpoint -> supply_air_flow_sensor
+INCORRECT POINT (510_1_3014283) FOUND: supply_air_flow_setpoint -> supply_air_flow_sensor
+INCORRECT POINT (510_1_3013741) FOUND: supply_air_flow_setpoint -> supply_air_flow_sensor
+INCORRECT POINT (510_1_3013994) FOUND: supply_air_flow_setpoint -> supply_air_flow_sensor
+INCORRECT POINT (510_1_3014046) FOUND: supply_air_flow_setpoint -> supply_air_flow_sensor
+INCORRECT POINT (510_1_3014480) FOUND: supply_air_flow_setpoint -> supply_air_flow_sensor
+INCORRECT POINT (510_1_3013624) FOUND: supply_air_flow_setpoint -> supply_air_flow_sensor
+INCORRECT POINT (510_1_3013664) FOUND: supply_air_flow_setpoint -> supply_air_flow_sensor
+INCORRECT POINT (510_1_3014186) FOUND: supply_air_flow_setpoint -> supply_air_flow_sensor
+INCORRECT POINT (510_1_3014303) FOUND: supply_air_flow_setpoint -> supply_air_flow_sensor
+------------------------------------result---------------
+point precision: 0.9338598223099703
+point recall: 0.9926547743966422
+rate points not found in source               among sensors where point is not found: 
+	0.0
+sensors where a point is not found:  0.0625 7
+sensors where incorrect points are found:  0.5982142857142857 67
+unknown reason:  0.11607142857142858 13
+invalid points:  25
+-----------
+{'accuracy': 0.9830470114680641,
+ 'hamming_loss': 0.00013479446416628046,
+ 'hierarchy_accuracy': 0.9840119237487661,
+ 'macro_f1': 0.85183540367799238,
+ 'micro_f1': 0.99121689574254102,
+ 'point_correct_cnt': 946,
+ 'point_incorrect_cnt': 67,
+ 'point_precision': 0.9338598223099703,
+ 'point_recall'2017-06-04 17:01:37,220 # of not detected tagsets: [75, 54, 51, 42, 34, 30, 28, 24, 23]
+2017-06-04 17:01:37,221 # of learnt but not detected tagsets: [21, 18, 19, 22, 19, 18, 17, 15, 14]
+2017-06-04 17:01:37,263 # total found tagsets in todo: 8
+2017-06-04 17:01:37,263 # unfound tagsets: 23
+2017-06-04 17:01:37,263 # todo tagsets accounting unfound tagsets: 0
+2017-06-04 17:01:37,263 Ratio of correctly found todo srcids: 0.0
+2017-06-04 17:01:37,411 Entity Recognition Get Started.
+2017-06-04 17:01:39,304 Start adding Brick samples
+2017-06-04 17:01:39,432 Finished adding Brick samples
+2017-06-04 17:01:39,432 start tagset vectorizing
+2017-06-04 17:01:39,445 finished tagset vectorizing
+2017-06-04 17:01:43,356 Start learning multi-label classifier
+: 0.9926547743966422,
+ 'precision': 0.8928229665071771,
+ 'subset_accuracy': 0.8928229665071771,
+ 'unfound_point_cnt': 7,
+ 'weighted_f1': 0.99240535065044755}
+################################# Iter# 9
+history of point precision: [0.8808933002481389, 0.962800875273523, 0.9743326488706365, 0.9755849440488301, 0.9843096234309623, 0.9862475442043221, 0.985279685966634, 0.9892156862745098, 0.9338598223099703]
+history of point recall: [0.7959641255605381, 0.9195402298850575, 0.9783505154639175, 0.9845995893223819, 0.9344587884806356, 0.994059405940594, 0.994059405940594, 0.9931102362204725, 0.9926547743966422]
+history of correct point cnt: [710, 880, 949, 959, 941, 1004, 1004, 1009, 946]
+history of incorrect point cnt: [96, 34, 25, 24, 15, 14, 15, 11, 67]
+history of unfound point cnt: [182, 77, 21, 15, 66, 6, 6, 7, 7]
+history of accuracy: [0.8927111856776944, 0.9566538246442552, 0.9561572664443492, 0.9769677982835878, 0.9802911548844567, 0.9875900840254911, 0.9885137085137083, 0.9900721500721501, 0.9830470114680641]
+history of micro f1: [0.36421506065073184, 0.54488002879226327, 0.55973690312107982, 0.67148917278831322, 0.73185731402741372, 0.77549986374152868, 0.78506560855457297, 0.83206675494174864, 0.85183540367799238]
+
+
+################ Iteration 10 ################
+2017-06-04 17:01:43,961 Start augmenting label mat with superclasses
+2017-06-04 17:01:54,953 Finished augmenting label mat with superclasses
+2017-06-04 17:01:55,205 0th learning step
+2017-06-04 17:02:00,441 200th learning step
+2017-06-04 17:02:39,952 400th learning step
+2017-06-04 17:03:21,314 600th learning step
+2017-06-04 17:04:00,831 800th learning step
+2017-06-04 17:04:26,735 Finished learning multi-label classifier
+2017-06-04 17:04:26,739 Start prediction
+2017-06-04 17:04:26,751 Start Tagset prediction
+2017-06-04 17:04:26,751 Start predicting
+2017-06-04 17:04:27,924 Start distilling
+2017-06-04 17:04:33,471 Finished distilling
+2017-06-04 17:04:33,471 Finished predicting
+2017-06-04 17:04:33,471 Finished Tagset prediction
+2017-06-04 17:04:33,471 Start point prediction
+2017-06-04 17:04:33,471 Finished point prediction
+2017-06-04 17:04:33,551 Finished prediction
+2017-06-04 17:04:33,551 Start prediction
+2017-06-04 17:04:33,557 Start Tagset prediction
+2017-06-04 17:04:33,557 Start predicting
+2017-06-04 17:04:34,269 Start distilling
+2017-06-04 17:04:37,672 Finished distilling
+2017-06-04 17:04:37,672 Finished predicting
+2017-06-04 17:04:37,672 Finished Tagset prediction
+2017-06-04 17:04:37,672 Start point prediction
+2017-06-04 17:04:37,672 Finished point prediction
+2017-06-04 17:04:37,721 Finished prediction
+/home/jbkoh/anaconda3/lib/python3.6/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision and F-score are ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/home/jbkoh/anaconda3/lib/python3.6/site-packages/sklearn/metrics/classification.py:1115: UndefinedMetricWarning: Recall and F-score are ill-defined and being set to 0.0 in labels with no true samples.
+  'recall', 'true', average, warn_for)
+2017-06-04 17:04:38,158 Start prediction
+2017-06-04 17:04:38,168 Start Tagset prediction
+2017-06-04 17:04:38,168 Start predicting
+2017-06-04 17:04:39,527 Start distilling
+2017-06-04 17:04:45,683 Finished distilling
+2017-06-04 17:04:45,683 Finished predicting
+2017-06-04 17:04:45,683 Finished Tagset prediction
+2017-06-04 17:04:45,683 Start point prediction
+2017-06-04 17:04:45,683 Finished point prediction
+2017-06-04 17:04:45,769 Finished prediction
+Training Time: 0:02:47.722305
+avg prec: 0.9764989264663065
+avg rec: 0.9703972626692162
+avg f1: 0.9717789408116635
+INCORRECT POINT (510_1_3005271) FOUND: supply_air_cooling_proportional_band_setpoint -> proportional_band_setpoint
+INCORRECT POINT (510_1_3005271) FOUND: supply_air_cooling_proportional_band_setpoint -> proportional_band_setpoint
+INCORRECT POINT (510_1_3005271) FOUND: supply_air_cooling_proportional_band_setpoint -> proportional_band_setpoint
+------------------------------------result---------------
+point precision: 0.9943396226415094
+point recall: 0.9652014652014652
+rate points not found in source               among sensors where point is not found: 
+	0.0
+sensors where a point is not found:  0.21348314606741572 19
+sensors where incorrect points are found:  0.033707865168539325 3
+unknown reason:  0.3707865168539326 33
+invalid points:  34
+-----------
+{'accuracy': 0.9692382041438641,
+ 'hamming_loss': 0.00018997030561242336,
+ 'hierarchy_accuracy': 0.9692382041438641,
+ 'macro_f1': 0.94409638830670695,
+ 'micro_f1': 0.98643487422626097,
+ 'point_correct_cnt': 527,
+ 'point_incorrect_cnt': 3,
+ 'point_precision': 0.9943396226415094,
+ 'point_recall': 0.9652014652014652,
+ 'precision': 0.8473413379073756,
+ 'subset_accuracy': 0.8473413379073756,
+ 'unfound_point_cnt': 19,
+ 'weighted_f1': 0.98281590532491547}
+avg prec: [ 0.99968341  0.85066554]
+avg rec: [ 0.99935694  0.84510124]
+avg f1: [ 0.99951272  0.83966024]
+INCORRECT POINT (510_1_3005272) FOUND: supply_air_cooling_integral_time_setpoint -> integral_time_setpoint
+INCORRECT POINT (510_1_3012889) FOUND: supply_air_flow_setpoint -> supply_air_flow_sensor
+INCORRECT POINT (510_1_3013325) FOUND: supply_air_flow_setpoint -> supply_air_flow_sensor
+INCORRECT POINT (510_1_3013741) FOUND: supply_air_flow_setpoint -> supply_air_flow_sensor
+INCORRECT POINT (510_1_3013113) FOUND: supply_air_flow_setpoint -> supply_air_flow_sensor
+INCORRECT POINT (510_1_3013257) FOUND: supply_air_flow_setpoint -> supply_air_flow_sensor
+INCORRECT POINT (510_1_3012909) FOUND: supply_air_flow_setpoint -> supply_air_flow_sensor
+INCORRECT POINT (510_1_3013901) FOUND: supply_air_flow_setpoint -> supply_air_flow_sensor
+INCORRECT POINT (510_1_3014480) FOUND: supply_air_flow_setpoint -> supply_air_flow_sensor
+INCORRECT POINT (510_3_3006225) FOUND: vfd_status -> run_status
+INCORRECT POINT (510_1_3014620) FOUND: supply_air_flow_setpoint -> supply_air_flow_sensor
+INCORRECT POINT (510_1_3012849) FOUND: supply_air_flow_setpoint -> supply_air_flow_sensor
+INCORRECT POINT (510_1_3014146) FOUND: supply_air_flow_setpoint -> supply_air_flow_sensor
+INCORRECT POINT (510_1_3014226) FOUND: supply_air_flow_setpoint -> supply_air_flow_sensor
+INCORRECT POINT (510_1_3005271) FOUND: supply_air_cooling_proportional_band_setpoint -> proportional_band_setpoint
+INCORRECT POINT (510_1_3013644) FOUND: supply_air_flow_setpoint -> supply_air_flow_sensor
+INCORRECT POINT (510_1_3014580) FOUND: supply_air_flow_setpoint -> supply_air_flow_sensor
+INCORRECT POINT (510_1_3014126) FOUND: supply_air_flow_setpoint -> supply_air_flow_sensor
+INCORRECT POINT (510_1_3014046) FOUND: supply_air_flow_setpoint -> supply_air_flow_sensor
+INCORRECT POINT (510_1_3013049) FOUND: supply_air_flow_setpoint -> supply_air_flow_sensor
+INCORRECT POINT (510_1_3013664) FOUND: supply_air_flow_setpoint -> supply_air_flow_sensor
+INCORRECT POINT (510_1_3013345) FOUND: supply_air_flow_setpoint -> supply_air_flow_sensor
+INCORRECT POINT (510_1_3005321) FOUND: supply_air_cooling_proportional_band_setpoint -> proportional_band_setpoint
+INCORRECT POINT (510_1_3014681) FOUND: supply_air_flow_setpoint -> supply_air_flow_sensor
+INCORRECT POINT (510_1_3014420) FOUND: supply_air_flow_setpoint -> supply_air_flow_sensor
+INCORRECT POINT (510_1_3014676) FOUND: supply_air_flow_setpoint -> supply_air_flow_sensor
+INCORRECT POINT (510_1_3013065) FOUND: supply_air_flow_setpoint -> supply_air_flow_sensor
+INCORRECT POINT (510_1_3013994) FOUND: supply_air_flow_setpoint -> supply_air_flow_sensor
+INCORRECT POINT (510_1_3013780) FOUND: supply_air_flow_setpoint -> supply_air_flow_sensor
+INCORRECT POINT (510_1_3014460) FOUND: supply_air_flow_setpoint -> supply_air_flow_sensor
+INCORRECT POINT (510_1_3013800) FOUND: supply_air_flow_setpoint -> supply_air_flow_sensor
+INCORRECT POINT (510_1_3013684) FOUND: supply_air_flow_setpoint -> supply_air_flow_sensor
+INCORRECT POINT (510_1_3012965) FOUND: supply_air_flow_setpoint -> supply_air_flow_sensor
+INCORRECT POINT (510_1_3014560) FOUND: supply_air_flow_setpoint -> supply_air_flow_sensor
+INCORRECT POINT (510_1_3013701) FOUND: supply_air_flow_setpoint -> supply_air_flow_sensor
+INCORRECT POINT (510_1_3014086) FOUND: supply_air_flow_setpoint -> supply_air_flow_sensor
+INCORRECT POINT (510_1_3014360) FOUND: supply_air_flow_setpoint -> supply_air_flow_sensor
+INCORRECT POINT (510_1_3012869) FOUND: supply_air_flow_setpoint -> supply_air_flow_sensor
+INCORRECT POINT (510_1_3014323) FOUND: supply_air_flow_setpoint -> supply_air_flow_sensor
+INCORRECT POINT (510_1_3014440) FOUND: supply_air_flow_setpoint -> supply_air_flow_sensor
+INCORRECT POINT (510_1_3014206) FOUND: supply_air_flow_setpoint -> supply_air_flow_sensor
+INCORRECT POINT (510_1_3014303) FOUND: supply_air_flow_setpoint -> supply_air_flow_sensor
+INCORRECT POINT (510_1_3013721) FOUND: supply_air_flow_setpoint -> supply_air_flow_sensor
+INCORRECT POINT (510_1_3014343) FOUND: supply_air_flow_setpoint -> supply_air_flow_sensor
+INCORRECT POINT (510_1_3014246) FOUND: supply_air_flow_setpoint -> supply_air_flow_sensor
+INCORRECT POINT (510_1_3013820) FOUND: supply_air_flow_setpoint -> supply_air_flow_sensor
+INCORRECT POINT (510_1_3013293) FOUND: supply_air_flow_setpoint -> supply_air_flow_sensor
+INCORRECT POINT (510_1_3012929) FOUND: supply_air_flow_setpoint -> supply_air_flow_sensor
+INCORRECT POINT (510_1_3013958) FOUND: supply_air_flow_setpoint -> supply_air_flow_sensor
+INCORRECT POINT (510_1_3012997) FOUND: supply_air_flow_setpoint -> supply_air_flow_sensor
+INCORRECT POINT (510_1_3014066) FOUND: supply_air_flow_setpoint -> supply_air_flow_sensor
+INCORRECT POINT (510_1_3013097) FOUND: supply_air_flow_setpoint -> supply_air_flow_sensor
+INCORRECT POINT (510_1_3014636) FOUND: supply_air_flow_setpoint -> supply_air_flow_sensor
+INCORRECT POINT (510_1_3005277) FOUND: supply_air_static_pressure_setpoint -> supply_air_static_pressure_integral_time_setpoint
+INCORRECT POINT (510_1_3014186) FOUND: supply_air_flow_setpoint -> supply_air_flow_sensor
+INCORRECT POINT (510_1_3013860) FOUND: supply_air_flow_setpoint -> supply_air_flow_sensor
+INCORRECT POINT (510_3_3006248) FOUND: vfd_status -> run_status
+INCORRECT POINT (510_1_3014540) FOUND: supply_air_flow_setpoint -> supply_air_flow_sensor
+INCORRECT POINT (510_1_3014400) FOUND: supply_air_flow_setpoint -> supply_air_flow_sensor
+INCORRECT POINT (510_1_3013624) FOUND: supply_air_flow_setpoint -> supply_air_flow_sensor
+INCORRECT POINT (510_1_3006267) FOUND: temperature_setpoint -> setpoint
+INCORRECT POINT (510_1_3014283) FOUND: supply_air_flow_setpoint -> supply_air_flow_sensor
+INCORRECT POINT (510_1_3014600) FOUND: supply_air_flow_setpoint -> supply_air_flow_sensor
+INCORRECT POINT (510_1_3013237) FOUND: supply_air_flow_setpoint -> supply_air_flow_sensor
+INCORRECT POINT (510_1_3014030) FOUND: supply_air_flow_setpoint -> supply_air_flow_sensor
+INCORRECT POINT (510_1_3014500) FOUND: supply_air_flow_setpoint -> supply_air_flow_sensor
+------------------------------------result---------------
+point precision: 0.9351032448377581
+point recall: 0.990625
+rate points not found in source               among sensors where point is not found: 
+	0.0
+sensors where a point is not found:  0.08333333333333333 9
+sensors where incorrect points are found:  0.6111111111111112 66
+unknown reason:  0.12962962962962962 14
+invalid points:  19
+-----------
+{'accuracy': 0.9835311764259136,
+ 'hamming_loss': 0.00012964963728970486,
+ 'hierarchy_accuracy': 0.9843252069567862,
+ 'macro_f1': 0.83966024253489724,
+ 'micro_f1': 0.99155382759082977,
+ 'point_correct_cnt': 951,
+ 'point_incorrect_cnt': 66,
+ 'point_precision': 0.9351032448377581,
+ 'point_recall': 0.990625,
+ 'precision': 0.8966507177033493,
+ 'subset_accuracy': 0.8966507177033493,
+ 2017-06-04 17:04:46,025 # of not detected tagsets: [75, 54, 51, 42, 34, 30, 28, 24, 23, 25]
+2017-06-04 17:04:46,025 # of learnt but not detected tagsets: [21, 18, 19, 22, 19, 18, 17, 15, 14, 16]
+2017-06-04 17:04:46,031 # total found tagsets in todo: 10
+2017-06-04 17:04:46,031 # unfound tagsets: 25
+2017-06-04 17:04:46,031 # todo tagsets accounting unfound tagsets: 2
+2017-06-04 17:04:46,031 Ratio of correctly found todo srcids: 1.0
+'unfound_point_cnt': 9,
+ 'weighted_f1': 0.99277831622537305}
+################################# Iter# 10
+history of point precision: [0.8808933002481389, 0.962800875273523, 0.9743326488706365, 0.9755849440488301, 0.9843096234309623, 0.9862475442043221, 0.985279685966634, 0.9892156862745098, 0.9338598223099703, 0.9351032448377581]
+history of point recall: [0.7959641255605381, 0.9195402298850575, 0.9783505154639175, 0.9845995893223819, 0.9344587884806356, 0.994059405940594, 0.994059405940594, 0.9931102362204725, 0.9926547743966422, 0.990625]
+history of correct point cnt: [710, 880, 949, 959, 941, 1004, 1004, 1009, 946, 951]
+history of incorrect point cnt: [96, 34, 25, 24, 15, 14, 15, 11, 67, 66]
+history of unfound point cnt: [182, 77, 21, 15, 66, 6, 6, 7, 7, 9]
+history of accuracy: [0.8927111856776944, 0.9566538246442552, 0.9561572664443492, 0.9769677982835878, 0.9802911548844567, 0.9875900840254911, 0.9885137085137083, 0.9900721500721501, 0.9830470114680641, 0.9835311764259136]
+history of micro f1: [0.36421506065073184, 0.54488002879226327, 0.55973690312107982, 0.67148917278831322, 0.73185731402741372, 0.77549986374152868, 0.78506560855457297, 0.83206675494174864, 0.85183540367799238, 0.83966024253489724]

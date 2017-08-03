@@ -1,55 +1,55 @@
 {
   "location": [
     "outside",
-    "wing",
-    "city",
-    "floor",
-    "room",
-    "laboratory",
-    "environment_box",
-    "hot_box",
-    "freezer",
-    "cold_box",
-    "server_room",
-    "building",
     "zone",
     "lighting_zone",
     "hvac_zone",
-    "basement",
+    "city",
+    "room",
+    "server_room",
+    "laboratory",
+    "cold_box",
+    "freezer",
+    "hot_box",
+    "environment_box",
     "space",
-    "roof"
+    "floor",
+    "basement",
+    "roof",
+    "building",
+    "wing"
   ],
   "outside": [],
-  "wing": [],
-  "city": [],
-  "floor": [],
-  "room": [
-    "laboratory",
-    "environment_box",
-    "hot_box",
-    "freezer",
-    "cold_box",
-    "server_room"
-  ],
-  "laboratory": [
-    "environment_box",
-    "hot_box",
-    "freezer",
-    "cold_box"
-  ],
-  "environment_box": [],
-  "hot_box": [],
-  "freezer": [],
-  "cold_box": [],
-  "server_room": [],
-  "building": [],
   "zone": [
     "lighting_zone",
     "hvac_zone"
   ],
   "lighting_zone": [],
   "hvac_zone": [],
-  "basement": [],
+  "city": [],
+  "room": [
+    "server_room",
+    "laboratory",
+    "cold_box",
+    "freezer",
+    "hot_box",
+    "environment_box"
+  ],
+  "server_room": [],
+  "laboratory": [
+    "cold_box",
+    "freezer",
+    "hot_box",
+    "environment_box"
+  ],
+  "cold_box": [],
+  "freezer": [],
+  "hot_box": [],
+  "environment_box": [],
   "space": [],
-  "roof": []
+  "floor": [],
+  "basement": [],
+  "roof": [],
+  "building": [],
+  "wing": []
 }

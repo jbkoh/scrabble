@@ -1,0 +1,7 @@
+#!/bin/bash
+
+
+nohup python scrabble_hierarchy.py entity -bl ebu3b,ap_m -nl 200,0 -t ap_m -c true -ub true -ct RandomForest -iter 10 -nj 2 > rf1.out &
+nohup python scrabble_hierarchy.py entity -bl ebu3b,ap_m  -nl 200,0  -t ap_m -c true -ub true -ct RandomForest -iter 10 -nj 2 > rf2.out &
+nohup python scrabble_hierarchy.py entity -bl ebu3b,ap_m  -nl 200,0  -t ap_m -c true -ub true -iter 10 -nj 2 > scc1.out &
+nohup python scrabble_hierarchy.py entity -bl ebu3b,ap_m  -nl 200,0  -t ap_m -c true -ub true -iter 10 -nj 2 > scc2.out &

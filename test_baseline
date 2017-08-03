@@ -1,9 +1,9 @@
 #!/bin/bash
 
 
-python naive_baseline.py -bl ebu3b,ap_m -t ap_m -nl 1000,0 -avg 12
-python naive_baseline.py -bl ap_m,bml -t bml -nl 1000,0 -avg 12
-python naive_baseline.py -bl ebu3b,ghc -t ghc -nl 1000,0 -avg 12
-python naive_baseline.py -bl ghc,ebu3b -t ebu3b -nl 1000,0 -avg 12
-python naive_baseline.py -bl ebu3b,bml,ap_m -t ap_m -nl 1000,1000,0 -avg 12
-
+python naive_baseline.py -bl ebu3b,ap_m -t ap_m -nl 200,0 -avg 4
+python naive_baseline.py -bl ap_m,bml -t bml -nl 200,0 -avg 4
+python naive_baseline.py -bl ebu3b,ghc -t ghc -nl 200,0 -avg 4
+python naive_baseline.py -bl ghc,ebu3b -t ebu3b -nl 200,0 -avg 4
+python naive_baseline.py -bl ebu3b,bml,ap_m -t ap_m -nl 200,200,0 -avg 4
+python naive_baseline.py -bl ebu3b,bml,ap_m -t ap_m -nl 200,200,0 -avg 4

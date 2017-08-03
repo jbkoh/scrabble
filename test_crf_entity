@@ -1,0 +1,3 @@
+#!/bin/bash
+
+python scrabble_hierarchy.py crf_entity -bl ebu3b,ap_m -nl 200,5 -c true -ub true -neg true -iter 20

@@ -1,8 +1,12 @@
 {
-  "char_precision": 0.9737580846617118,
-  "phrase_precision": 0.9705159705159705,
-  "phrase_recall": 0.9718737939019684,
-  "pessimistic_phrase_precision": 0.9694281561669924,
-  "pessimistic_phrase_recall": 0.9707417444544816,
-  "date": "2017-05-20 10:02:05.825107+00:00"
+  "char_precision": 0.9332826639431869,
+  "phrase_precision": 0.940058613426138,
+  "phrase_recall": 0.9023339633422707,
+  "pessimistic_phrase_precision": 0.9160486034401136,
+  "pessimistic_phrase_recall": 0.839358010410642,
+  "char_macro_f1": 0.52080115016446,
+  "char_weighted_f1": 0.9275960269558642,
+  "phrase_macro_f1": 0.49488188998412425,
+  "phrase_weighted_f1": 0.9477781669778831,
+  "date": "2017-05-28 23:14:42.253610+00:00"
 }

@@ -2613,6 +2613,13 @@ def build_tagset_classifier(building_list, target_building,\
         meta_classifier = meta_proj
         params_list_dict = {}
 
+    elif tagset_classifier_type == 'CC':
+        def meta_cc(**kwargs):
+            base_classifier = RandomForest()
+            tagset_classifier = ClassifierChain(classifier=base_classifier)
+            return base_classifier
+        meta_classifier = meta_cc
+        params_list_dict = {}
 
     elif tagset_classifier_type == 'StructuredCC':
         def meta_scc(**kwargs):
@@ -2656,16 +2663,27 @@ def build_tagset_classifier(building_list, target_building,\
             'min_samples_split': [2,4,8]
         }
         params_list_dict = gb_params_list_dict
-    elif tagset_classifier_type == 'StructuredCC_LinearSVC':
-        base_classifier = LinearSVC(loss='hinge', tol=1e-5,\
-                                    max_iter=2000, C=2,
-                                    fit_intercept=False,
-                                    class_weight='balanced')
+    elif tagset_classifier_type == 'StructuredCC_RF':
+        base_classifier = RandomForest()
         tagset_classifier = StructuredClassifierChain(base_classifier,
                                                       tagset_binarizer,
                                                       subclass_dict,
                                                       tagset_vectorizer.vocabulary,
                                                       n_jobs)
+    elif tagset_classifier_type == 'StructuredCC_LinearSVC':
+        def meta_scc_svc(**kwargs):
+            base_classifier = LinearSVC(loss='hinge', tol=1e-5,\
+                                        max_iter=2000, C=2,
+                                        fit_intercept=False,
+                                        class_weight='balanced')
+            tagset_classifier = StructuredClassifierChain(base_classifier,
+                                                          tagset_binarizer,
+                                                          subclass_dict,
+                                                          tagset_vectorizer.vocabulary,
+                                                          n_jobs)
+            return tagset_classifier
+        params_list_dict = {}
+        meta_classifier = meta_scc_svc
     elif tagset_classifier_type == 'OneVsRest':
         base_classifier = LinearSVC(loss='hinge', tol=1e-5,\
                                     max_iter=2000, C=2,
@@ -3959,7 +3977,7 @@ def entity_iter_result():
                                  xtick_labels, ytick, ytick_labels, title, ax,\
                                  fig, ylim, None, legends, xtickRotate=0, \
                                  linestyles=[linestyles.pop()]*len(ys), cs=cs)
-            pdb.set_trace()
+                pdb.set_trace()
 
 
     for ax in axes:
@@ -4176,11 +4194,26 @@ def crf_entity_result():
             acc_zero = []
             mf1_zero = []
 
-        x = x_zero + [len(learning_srcids) - srcids_offset for learning_srcids in
+        fivefile = 'result/crf_entity_iter_{0}_five.json'.format(''.join(list(buildings)+[buildings[-1]]))
+        if os.path.isfile(fivefile):
+            with open(fivefile, 'r') as fp:
+                five_result = json.load(fp)[0]
+            x_five = [5]
+            acc_five = [five_result['result']['entity'][0]['accuracy'] * 100]
+            mf1_five =  [five_result['result']['entity'][0]['macro_f1'] * 100]
+            pdb.set_trace()
+        else:
+            x_five = []
+            acc_five = []
+            mf1_five = []
+
+
+        x = x_zero + x_five + [len(learning_srcids) - srcids_offset for learning_srcids in
              result['learning_srcids_history'][:-1]]
-        accuracy= acc_zero + [res['accuracy'] * 100 for res in result['result']['entity']]
-        mf1s = mf1_zero + [res['macro_f1'] * 100 for res in result['result']['entity']]
+        accuracy= acc_zero + acc_five + [res['accuracy'] * 100 for res in result['result']['entity']]
+        mf1s = mf1_zero + mf1_five + [res['macro_f1'] * 100 for res in result['result']['entity']]
         ys = [accuracy, mf1s]
+        pdb.set_trace()
         linestyles = ['-', '-']
         if i == 2:
             data_labels = ['Scrabble Accuracy', 'Scrabble Macro $F_1$']
@@ -4211,6 +4244,60 @@ def crf_entity_result():
 
     save_fig(fig, 'figs/crf_entity.pdf')
     subprocess.call('./send_figures')
+
+def cls_comp_result():
+    source_target_list = ('ebu3b', 'ap_m')
+    keys = ['best', 'ts', 'rf', 'svc']
+    xs = list(range(5, 205, 20))
+    accuracy_dict = OrderedDict({
+        'best':[0.8631033290671848, 0.9024136840401907, 0.9233413507509902, 0.9500121364579196, 0.9527101078305895, 0.9650918693087369, 0.9677129764479163, 0.9593822175147483, 0.9711269988378419, 0.9697809553231241],
+        'ts': [0.8713471602025806, 0.9166264458433141, 0.9185595580405604, 0.9428053539499326, 0.9417577736854855, 0.9573296850405294, 0.9489047766156204, 0.9534092413610498, 0.953262734588037, 0.9595308306151684],
+        'rf': [0.756387822351681, 0.854248495814764, 0.8465179398914331, 0.859092781381938, 0.9137193462494689, 0.9384494020036196, 0.9460637421480792, 0.9512496873942656, 0.9582711799579264, 0.9597065919355077],
+        'svc': [0.7210336660658784, 0.8278964869103078, 0.8371634459716821, 0.8901948134091584, 0.9289625735354351, 0.9062837090984304, 0.9072457164626379, 0.9094597402145658, 0.9061470144946531, 0.9317219571018263]
+    })
+    mf1_dict = OrderedDict({
+        'best': [0.43460544517064525, 0.46207967166726716, 0.60572075680286364, 0.65253670730553948, 0.71164857967833528, 0.77075401369085861, 0.77409145497551546, 0.78223293415400674, 0.79434165930991263, 0.78765666427863568],
+        'ts': [0.38456663841099153, 0.47135950957306999, 0.50801383768831809, 0.58379558680943822, 0.61765049559624907, 0.67617354377548211, 0.66706236361751792, 0.70816840695824457, 0.68736126966336153, 0.70501274992734486],
+        'rf': [0.094018355593671443, 0.21622362914898177, 0.2939715246436253, 0.38083088857608816, 0.45237091518218492, 0.51912845475805691, 0.56752106411334313, 0.6314794515347395, 0.73066778675441313, 0.81505177770253923],
+        'svc': [0.19122967879394315, 0.2501766458806039, 0.27629897715774632, 0.31374977389303144, 0.35811497520318963, 0.36814352938387473, 0.37145631338451729, 0.38910680891542943, 0.35511959588962361, 0.39688667191674587]
+    })
+    legends = ['SCRBL', 'w/ TS', 'RF', 'w/ SVC'] * 2
+    linestyles = ['-', ':', '-.', '--'] * 2
+    cs = ['firebrick']*len(keys) + ['deepskyblue'] * len(keys)
+    fig, ax = plt.subplots(1,1)
+    fig.set_size_inches(4,1.7)
+    axes = [ax]
+    mult = lambda x: x*100
+    hundreder = lambda seq: list(map(mult, seq))
+    ys = list(map(hundreder, list(accuracy_dict.values()) + list(mf1_dict.values())))
+    #ys = [char_precs, phrase_f1s, char_macro_f1s, phrase_macro_f1s]
+    xlabel = '# of Target Building Samples'
+    ylabel = 'Score (%)'
+    xtick = list(range(0, 205, 20))
+    xtick_labels = [str(n) for n in xtick]
+    ytick = range(0,101,20)
+    ytick_labels = [str(n) for n in ytick]
+    xlim = (xtick[0]-2, xtick[-1]+5)
+    ylim = (ytick[0]-2, ytick[-1]+5)
+    title = None
+    _, plots = plotter.plot_multiple_2dline(xs, ys, xlabel, ylabel, xtick,\
+                            xtick_labels, ytick, ytick_labels, title, ax, fig, \
+                            ylim, xlim, None , xtickRotate=0, \
+                            linestyles=linestyles, cs=cs)
+   #ax.legend(plots, legends, 'upper center', ncol=4
+    legend_order = [0,4,1,5,2,6,3,7]
+    new_handles = [plots[i] for i in legend_order]
+    new_legends = [legends[i] for i in legend_order]
+    fig.legend(new_handles, new_legends, ncol=4, bbox_to_anchor=(-0.1, 1.04, 1, 0.095),
+               prop={'size':7}, frameon=False )
+    for ax in axes:
+        ax.grid(True)
+    plt.text(0.03, 1.135, 'Accuracy: \nMacro $F_1$: ', ha='center', va='center',
+            transform=ax.transAxes, fontsize=7)
+    save_fig(fig, 'figs/cls.pdf')
+    subprocess.call('./send_figures')
+
+
 
 def crf_result():
     source_target_list = [('ebu3b', 'bml')]#, ('ap_m', 'ebu3b')]
@@ -4611,7 +4698,7 @@ if __name__=='__main__':
         """
     elif args.prog == 'result':
         assert args.exp_type in ['crf', 'entity', 'crf_entity', 'entity_iter',
-                                 'etc', 'entity_ts']
+                                 'etc', 'entity_ts', 'cls']
         if args.exp_type == 'crf':
             crf_result()
         elif args.exp_type == 'entity':
@@ -4622,6 +4709,8 @@ if __name__=='__main__':
             entity_iter_result()
         elif args.exp_type == 'entity_ts':
             entity_ts_result()
+        elif args.exp_type == 'cls':
+            cls_comp_result()
         elif args.exp_type == 'etc':
             etc_result()
 

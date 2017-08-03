@@ -1,6 +1,7 @@
 import json
 from collections import OrderedDict
 import random
+import pdb
 
 def select_random_samples(cluster_filename, srcids, n, use_cluster_flag, token_type='alphaandnum'):  
 
@@ -16,7 +17,8 @@ def select_random_samples(cluster_filename, srcids, n, use_cluster_flag, token_t
         sorted_cluster_dict = OrderedDict(                                      
             sorted(cluster_dict.items(), key=length_counter, reverse=True))         
         while len(sample_srcids) < n:                                           
-            for cluster_num, srcid_list in sorted_cluster_dict.items():         
+            for cluster_num, srcid_list in sorted_cluster_dict.items():  
+                # pdb.set_trace()       
                 valid_srcid_list = set(srcid_list).intersection(set(srcids)).difference(set(sample_srcids))                         
                 if len(valid_srcid_list) > 0:                                   
                     sample_srcids.add(random.choice(list(valid_srcid_list)))              

@@ -1,0 +1,12 @@
+{
+  "char_precision": 0.988920029451583,
+  "phrase_precision": 0.9888726073816283,
+  "phrase_recall": 0.984499658080693,
+  "pessimistic_phrase_precision": 0.9836673504813003,
+  "pessimistic_phrase_recall": 0.9734520184274225,
+  "char_macro_f1": 0.7031167433365662,
+  "char_weighted_f1": 0.9876517512079197,
+  "phrase_macro_f1": 0.6786814801794477,
+  "phrase_weighted_f1": 0.9890626694612413,
+  "date": "2017-05-26 21:14:34.656114+00:00"
+}
