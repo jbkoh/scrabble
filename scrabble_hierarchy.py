@@ -1681,7 +1681,8 @@ class StructuredClassifierChain():
             try:
                 assert len(found_upper_tagsets) == len(upper_tagsets)
             except:
-                pdb.set_trace()
+                #pdb.set_trace()
+                pass
             self.upper_y_index_list.append([
                 np.where(self.binarizer.classes_ == ts)[0][0]
                                             for ts in upper_tagsets])
@@ -1849,7 +1850,8 @@ class StructuredClassifierChain():
             try:
                 assert sum([i <= y_index for y_index in upper_y_indices]) == 0
             except:
-                pdb.set_trace()
+                #pdb.set_trace()
+                [y_index for y_index in upper_y_indices if y_index < i]
             sub_Y = Y[:, upper_y_indices]
             augmented_X = self._augment_X(X, sub_Y)
             if i==414 and X.shape[0]>800 and False:
@@ -2164,7 +2166,7 @@ def parameter_validation(vect_doc, truth_mat, srcids, params_list_dict,\
                 results_dict[key]['ha'][j] += validation_result['hierarchy_accuracy']
                 results_dict[key]['a'][j] += validation_result['accuracy']
                 results_dict[key]['mf1'][j] += validation_result['macro_f1']
-                results_dict[key]['micro_f1'][j] += validation_result['micro_f1']
+                results_dict[key]['macro_f1'][j] += validation_result['macro_f1']
     best_params = dict()
     for key, results in results_dict.items():
         metrics = results_dict[key]['mf1']
@@ -3410,10 +3412,13 @@ def iteration_wrapper(iter_num, func, *args):
         prev_data['iter_num'] += 1
     return step_datas
 
-def crf_entity_recognition_iteration(iter_num, *args):
+def crf_entity_recognition_iteration(iter_num, postfix, *args):
     building_list = args[0]
+    target_building = args[2]
     step_datas = iteration_wrapper(iter_num, entity_recognition_from_crf, *args)
-    with open('result/crf_entity_iter_{0}.json'.format(str(building_list)), 'w') as fp:
+    with open('result/crf_entity_iter_{0}_{1}.json'\
+            .format(''.join(building_list+[target_building]), postfix), 'w') as fp:
+#with open('result/crf_entity_iter_{0}_2.json'.format(''.join(building_list+[target_building])), 'w') as fp:
         json.dump(step_datas, fp, indent=2)
 
 
@@ -3431,7 +3436,11 @@ def determine_used_phrases(phrases, tagsets):
                 used_cnt += 1 / len(phrase_tags)
             else:
                 unused_cnt += 1 / len(phrase_tags)
-    return used_cnt / (used_cnt + unused_cnt)
+    if used_cnt == 0:
+        score = 0
+    else:
+        score = used_cnt / (used_cnt + unused_cnt) 
+    return score
 
 
 def determine_used_tokens(sentence, token_labels, tagsets):
@@ -4088,7 +4097,6 @@ def entity_result_deprecated():
 
                 xs = target_n_list
                 ys = [hierarchy_accuracy_list, accuracy_list, macro_f1_list]
-                #ys = [subset_accuracy_list, accuracy_list, hierarchy_accuracy_list, weighted_f1_list, macro_f1_list]
                 xlabel = '# of Target Building Samples'
                 ylabel = 'Score (%)'
                 xtick = target_n_list
@@ -4126,7 +4134,7 @@ def entity_result_deprecated():
 
 def crf_entity_result():
     building_sets = [('ebu3b', 'ap_m'), ('ap_m', 'bml'),
-                 ('ebu3b', 'ghc'), ('ghc', 'ebu3b'), ('ebu3b', 'bml', 'ap_m')]
+                 ('ebu3b', 'ghc'), ('ghc', 'ebu3b'), ('ebu3b', 'bml', 'ap_m')] ### TODO TODO: this should be changed to use ebu3b,ap_m -> bml
     fig, axes = plt.subplots(1, len(building_sets))
     with open('result/baseline.json', 'r') as fp:
         baseline_results = json.load(fp)
@@ -4226,6 +4234,7 @@ def crf_entity_result():
         if i == 2:
             ax.legend(bbox_to_anchor=(3.2, 1.45), ncol=4, frameon=False)
         plot_list.append(plot)
+        pdb.set_trace()
 
 
     fig.set_size_inches(9, 1.5)
@@ -4300,7 +4309,7 @@ def cls_comp_result():
 
 
 def crf_result():
-    source_target_list = [('ebu3b', 'bml')]#, ('ap_m', 'ebu3b')]
+    source_target_list = [('ebu3b', 'bml'), ('ghc', 'ebu3b')]
     n_list_list = [[(1000, 0), (1000,5), (1000,20), (1000,50), (1000,100), (1000, 150), (1000,200)],
                    [(200, 0), (200,5), (200,20), (200,50), (200,100), (200, 150), (200,200)],
                    [(0,5), (0,20), (0,50), (0,100), (0,150), (0,200)]]
@@ -4310,11 +4319,11 @@ def crf_result():
     fig, axes = plt.subplots(1,len(source_target_list))
     if isinstance(axes, Axes):
         axes = [axes]
-    fig.set_size_inches(4, 2)
+    fig.set_size_inches(4, 1.5)
     cs = ['firebrick', 'deepskyblue']
-    linestyles = ['--', '-.', '-']
 
-    for ax, (source, target) in zip(axes, source_target_list):
+    for i, (ax, (source, target)) in enumerate(zip(axes, source_target_list)):
+        linestyles = ['--', '-.', '-']
         plot_list = list()
         legends_list = list()
         for n_list in n_list_list:
@@ -4349,6 +4358,7 @@ def crf_result():
                 except:
                     print(n_t)
                     pdb.set_trace()
+                    continue
                     result = get_crf_results(result_query)
                 char_prec = result['char_precision'] * 100
                 char_precs.append(char_prec)
@@ -4362,31 +4372,50 @@ def crf_result():
             xs = target_n_list
             ys = [phrase_f1s, phrase_macro_f1s]
             #ys = [char_precs, phrase_f1s, char_macro_f1s, phrase_macro_f1s]
-            xlabel = '# of Target Building Samples'
+            #xlabel = '# of Target Building Samples'
+            xlabel = None
             ylabel = 'Score (%)'
-            xtick = list(range(0, 205, 20))
-            xtick = [0] + [5] + xtick[1:]
+            xtick = list(range(0, 205, 40))
+            #xtick = [0] + [5] + xtick[1:]
             xtick_labels = [str(n) for n in xtick]
             ytick = range(0,101,20)
             ytick_labels = [str(n) for n in ytick]
             xlim = (xtick[0]-2, xtick[-1]+5)
             ylim = (ytick[0]-2, ytick[-1]+5)
-            legends = [#'#S:{0}, Char Prec'.format(n_s),
-                       '#$B_S$:{0}, $F_1$'.format(n_s),
-                    #'#S:{0}, Char MF1'.format(n_s),
-                       '#$B_S$:{0}, $MF_1$'.format(n_s),
-                      ]
-            legends_list += legends
+            if i == 0:
+                legends = [#'#S:{0}, Char Prec'.format(n_s),
+                    '#$B_S$:{0}'.format(n_s),
+#'#S:{0}, Char MF1'.format(n_s),
+                    '#$B_S$:{0}'.format(n_s),
+                ]
+            else:
+                legends = None
+#legends_list += legends
             title = None
             _, plots = plotter.plot_multiple_2dline(xs, ys, xlabel, ylabel, xtick,\
                              xtick_labels, ytick, ytick_labels, title, ax, fig, \
-                             ylim, xlim, None, xtickRotate=0, \
+                             ylim, xlim, legends, xtickRotate=0, \
                              linestyles=[linestyles.pop()]*len(ys), cs=cs)
+            text = '{0} $\\Rightarrow$ {1}'.format(\
+                    anon_building_dict[source],
+                    anon_building_dict[target])
+            ax.text(0.8, 0.1, text, transform=ax.transAxes, ha='right',
+                    backgroundcolor='white'
+                    )#, alpha=0)
             plot_list += plots
-    fig.legend(plot_list, legends_list, 'upper center', ncol=3
-            , bbox_to_anchor=(0, 1.06, 0.9, 0.102 ), mode='expand')
+            pdb.set_trace()
+
+#fig.legend(plot_list, legends_list, 'upper center', ncol=3
+#            , bbox_to_anchor=(0.5,1.3),frameon=False)
+    axes[0].legend(bbox_to_anchor=(0.15, 0.96), ncol=3, frameon=False)
     for ax in axes:
         ax.grid(True)
+    axes[1].set_yticklabels([])
+    axes[1].set_ylabel('')
+    plt.text(0, 1.16, '$F_1$: \nMacro $F_1$: ', va='center', ha='center', 
+            transform=axes[0].transAxes)
+    fig.text(0.5, -0.1, '# of Target Building Samples', ha='center')
+
     save_fig(fig, 'figs/crf.pdf')
     subprocess.call('./send_figures')
 
@@ -4618,6 +4647,11 @@ if __name__=='__main__':
                         type=str,
                         help='type of experiments for result output',
                         dest = 'exp_type')
+    parser.add_argument('-post', 
+                        type=str,
+                        help='postfix of result filename',
+                        default='0',
+                        dest = 'postfix')
 
     args = parser.parse_args()
 
@@ -4680,8 +4714,9 @@ if __name__=='__main__':
                   args.eda_flag,
                   args.negative_flag,
                   args.debug_flag,
-                  args.n_jobs)
-        crf_entity_recognition_iteration(args.iter_num, *params)
+                  args.n_jobs,
+                  args.ts_flag)
+        crf_entity_recognition_iteration(args.iter_num, args.postfix, *params)
 
         """
         entity_recognition_from_crf(\

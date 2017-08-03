@@ -20,6 +20,16 @@ class Resulter():
         self.token_type = token_type
         self.spec = spec
 
+    def calc_accuracy(true_tagsets_list, pred_tagsets_list):
+        acc_list = list()
+        for true_tagsets, pred_tagsets in zip(true_tagsets_list, \
+                                                pred_tagsets_list):
+            true_tagsets = set(true_tagsets)
+            pred_tagsets = set(pred_tagsets)
+            acc_list.append(len(true_tagsets.intersection(pred_tagsets))/\
+                            len(true_tagsets.union(pred_tagsets)))
+        return np.mean(acc_list)
+
     def add_one_result(self, srcid, sentence, \
                              pred_token_labels, orig_token_labels):
         # Check the size of data
@@ -171,9 +181,22 @@ class Resulter():
         return self.summary
 
 
-    def serialize_result(self, filename):
+    def serialize_result(self, filename): #TODO: This should use query
         with open(filename, 'w') as fp:
             json.dump(self.result_dict, fp, indent=2)
+            """
+            pred_list = list()
+                ...: true_list = list()
+                ...: sentence_list = list()
+                ...: for srcid, mapping in crf_mapping.items():
+                        ...:     pred_list.append(srcid)
+                                     ...:     true_list.append(srcid)
+                                     ...:     sentence_list.append(srcid)
+                                     ...:     for c, p, t in zip(mapping['sentence'], mapping['pred_token_labels'], mapping['orig_token_labels']):
+                                             ...:         pred_list.append(p)
+                                                              ...:         true_list.append(t)
+                                                              ...:         sentence_list.append(c)
+                                                          """
 
     def store_result_db(self):
         #summary_query = copy(summary_query_template)
@@ -226,3 +249,4 @@ class Resulter():
                 except:
                     pdb.set_trace()
         return phrase_labels
+
