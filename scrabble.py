@@ -145,8 +145,6 @@ if __name__=='__main__':
         crf_test(building_list=args.source_building_list,
                  source_sample_num_list=args.sample_num_list,
                  target_building=args.target_building,
-                 token_type='justseparate',
-                 label_type=args.label_type,
                  use_cluster_flag=args.use_cluster_flag,
                  use_brick_flag=args.use_brick_flag)
     elif args.prog == 'entity':

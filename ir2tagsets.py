@@ -133,8 +133,6 @@ def tree_flatter(tree, init_flag=True):
 def entity_recognition_from_ground_truth(building_list,
                                          source_sample_num_list,
                                          target_building,
-                                         token_type='justseparate',
-                                         label_type='label',
                                          use_cluster_flag=False,
                                          use_brick_flag=False,
                                          debug_flag=False,
@@ -176,8 +174,6 @@ def entity_recognition_from_ground_truth(building_list,
                        in zip(building_list, source_sample_num_list)]
     if not prev_step_data['metadata']:
         metadata = {
-            'token_type': token_type,
-            'label_type': label_type,
             'use_cluster_flag': use_cluster_flag,
             'use_brick_flag': use_brick_flag,
             'eda_flag': eda_flag,
@@ -254,7 +250,6 @@ def entity_recognition_from_ground_truth(building_list,
                                     sentence_label_dict.keys(),\
                                     sample_num, \
                                     use_cluster_flag,\
-                                    token_type=token_type,
                                     reverse=True,
                                     shuffle_flag=False)
             sample_srcid_list_dict[building] = sample_srcid_list
@@ -272,7 +267,6 @@ def entity_recognition_from_ground_truth(building_list,
                                     srcids,\
                                     validation_num,\
                                     use_cluster_flag,\
-                                    token_type=token_type,
                                     reverse=True,
                                     shuffle_flag=False)
     
@@ -282,7 +276,7 @@ def entity_recognition_from_ground_truth(building_list,
     _ = get_multi_buildings_data(building_list, \
                                            validation_srcids, \
                                            eda_flag,\
-                                           token_type)
+                                           )
 
     learning_sentence_dict, \
     learning_token_label_dict, \
@@ -290,7 +284,7 @@ def entity_recognition_from_ground_truth(building_list,
     phrase_dict = get_multi_buildings_data(building_list, \
                                            learning_srcids, \
                                            eda_flag,\
-                                           token_type)
+                                           )
     found_points = [tagset for tagset \
                      in reduce(adder, learning_truths_dict.values(), []) \
                              if tagset in point_tagsets]
@@ -309,7 +303,7 @@ def entity_recognition_from_ground_truth(building_list,
     test_phrase_dict,\
     test_truths_dict,\
     test_srcid_dict = get_building_data(target_building, test_srcids,\
-                                                eda_flag, token_type)
+                                                eda_flag)
 
     extend_tagset_list(reduce(adder, \
                 [learning_truths_dict[srcid] for srcid in learning_srcids]\
@@ -395,7 +389,7 @@ def entity_recognition_from_ground_truth(building_list,
     target_truths_dict,\
     _                   = get_building_data(target_building, \
                                             target_srcids,\
-                                            eda_flag, token_type)
+                                            eda_flag)
     target_pred_tagsets_dict, \
     target_pred_certainty_dict, \
     target_pred_point_dict = tagsets_prediction(\
@@ -529,7 +523,6 @@ def entity_recognition_from_ground_truth(building_list,
                           list(todo_sentence_dict.keys()),
                           min(inc_num, len(todo_sentence_dict)), \
                           use_cluster_flag,\
-                          token_type=token_type,
                           reverse=True,
                           cluster_dict=cluster_srcid_dict,
                           shuffle_flag=False
@@ -674,15 +667,13 @@ def entity_recognition_iteration(iter_num, *args):
                               building_list = args[0],\
                               source_sample_num_list = args[1],\
                               target_building = args[2],\
-                              token_type = args[3],\
-                              label_type = args[4],\
-                              use_cluster_flag = args[5],\
-                              use_brick_flag = args[6],\
-                              debug_flag = args[7],\
-                              eda_flag = args[8],\
-                              ts_flag = args[9], \
-                              negative_flag = args[10],
-                              n_jobs = args[11],\
+                              use_cluster_flag = args[3],\
+                              use_brick_flag = args[4],\
+                              debug_flag = args[5],\
+                              eda_flag = args[6],\
+                              ts_flag = args[7], \
+                              negative_flag = args[8],
+                              n_jobs = args[9],\
                               prev_step_data = step_data
                             )
     store_result(step_data)
