@@ -5,6 +5,7 @@ import pandas as pd
 import json
 import pickle
 import pdb
+from copy import copy
 
 with open('metadata/bacnet_devices.json', 'r') as fp:
     sensor_dict = json.load(fp)
@@ -159,6 +160,18 @@ def get_unit_dict(building_name):
 
 
 def parse_sentences(building_name):
+    if building_name == 'pouya':
+        metadata_file = 'metadata/pouya.csv'
+        df = pd.read_csv(metadata_file)
+        names = df['Address'].tolist()
+        srcids = copy(names)
+        names = [parse_sentence(name) for name in names]
+        blanks = ['' for name in names]
+        jcinames = copy(blanks)
+        descs = copy(blanks)
+        units = copy(blanks)
+        bacnettypes = copy(blanks)
+        return None, srcids, names, jcinames, descs, units, bacnettypes 
     unitMap = pd.read_csv('metadata/unit_mapping.csv').set_index('unit')
     bacnettypeMap = pd.read_csv('metadata/bacnettype_mapping.csv').set_index('bacnet_type_str')
     naeList = nae_dict[building_name]
@@ -358,4 +371,4 @@ def structure_metadata(buildingName=None, tokenType=None, bigramFlag=False, vali
         sensor_df.set_index('source_id', inplace=True)
 #sensor_df = sensor_df.set_index('source_id')
 #sensor_df = sensor_df.groupby(sensor_df.index).first()
-        return sensor_df, nameList, jcinameList, descList, unitList, bacnettypeList, wordList
+        return sensor_df, nameList, cinameList, descList, unitList, bacnettypeList, wordList
