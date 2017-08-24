@@ -7,6 +7,8 @@ def gen_uuid():
     return str(uuid4())
 from pprint import PrettyPrinter
 pp = PrettyPrinter()
+from multiprocessing import Pool, Manager, Process
+import pdb
 
 import arrow
 import numpy as np
@@ -46,6 +48,7 @@ from brick_parser import pointTagsetList        as  point_tagsets,\
 from hcc import StructuredClassifierChain
 from mongo_models import store_model, get_model, get_tags_mapping, \
                          get_crf_results, store_result, get_entity_results
+from char2ir import crf_test, learn_crf_model
 
 # Init Brick schema with customizations.
 
@@ -157,14 +160,45 @@ def entity_recognition_from_ground_truth(building_list,
                                              'metadata': {},
                                              'phrase_usage_history': []
                                          },
-                                         crf_phrase_dict=None,
-                                         crf_srcids=None
                                         ):
+    """
+    Input:
+        building_list: learning building lists
+        source_sample_num_list: # samples from each building in building_list
+        target_building: target building's name
+        use_cluster_flag: whether to use bow clustering to select samples
+        use_brick_flag: whether to use brick tagsets when learning or not
+        debug_flag: debugging mode or not. May call pdb and/or print more.
+        eda_flag: whether to use EasyDomainAdaptation algorithm or not.
+        ts_flag: whether to exploit timeseries features or not
+        negative_flag: whether to generate negative examples or not.
+        n_jobs: parallel processing CPU num.
+        prev_step_data: for iteration. default = {
+                                            'learning_srcids':[],
+                                            'iter_cnt':0,
+                                            'point_precision_history': [],
+                                            'point_recall_history':  [],
+                                            'correct_point_cnt_history': [],
+                                            'incorrect_point_cnt_history': [],
+                                            'unfound_point_cnt_history': [],
+                                            'subset_accuracy_history':  [],
+                                            'accuracy_history': [],
+                                            'hamming_loss_history': [],
+                                            'hierarchy_accuracy_history': [],
+                                            'weighted_f1_history': [],
+                                            'macro_f1_history': [],
+                                            'metadata': {},
+                                            'phrase_usage_history': []
+                                            },
+
+    """
+
+
     logging.info('Entity Recognition Get Started.')
     global tagset_list
     global total_srcid_dict
     global tree_depth_dict
-    inc_num = 20
+    inc_num = 20 # Sample increase step
     assert len(building_list) == len(source_sample_num_list)
 
     ########################## DATA INITIATION ##########################
@@ -202,37 +236,6 @@ def entity_recognition_from_ground_truth(building_list,
     prev_result_dict = prev_step_data.get('result_dict')
     prev_iter_cnt = prev_step_data.get('iter_cnt')
     iter_cnt = prev_step_data['iter_cnt'] + 1
-
-
-
-    if iter_cnt>1:
-        """
-        with open('metadata/{0}_char_label_dict.json'\
-                  .format(target_building), 'r') as fp:
-            sentence_label_dict = json.load(fp)
-        test_srcids = [srcid for srcid in sentence_label_dict.keys() \
-                       if srcid not in learning_srcids]
-        todo_srcids = select_random_samples(target_building,
-                                            test_srcids,
-                                            int(inc_num/2),
-                                            use_cluster_flag,
-                                            token_type='justseparate',
-                                            reverse=True)
-        todo_srcids += select_random_samples(target_building,
-                                            test_srcids,
-                                            int(inc_num/2),
-                                            use_cluster_flag,
-                                            token_type='justseparate',
-                                            reverse=False)
-        #learning_srcids = cross_validation(building_list, source_sample_num_list, \
-        #                 target_building, \
-        #                 learning_srcids, prev_test_srcids, \
-        #                 prev_pred_phrase_dict, prev_pred_tagsets_dict,
-        #                 prev_result_dict, 4, \
-        #                 eda_flag, token_type, use_brick_flag, ts_flag)
-        learning_srcids += todo_srcids * 5
-        """
-    print('\n')
     print('################ Iteration {0} ################'.format(iter_cnt))
 
     ### Get Learning Data
@@ -242,8 +245,9 @@ def entity_recognition_from_ground_truth(building_list,
     for building, sample_num in zip(building_list, source_sample_num_list):
         with open('metadata/{0}_char_label_dict.json'\
                   .format(building), 'r') as fp:
-            sentence_label_dict = json.load(fp)
+            sentence_label_dict = json.load(fp) # char-level labels
         srcids = list(sentence_label_dict.keys())
+        # If it is the first iteration, select random samples.
         if iter_cnt == 1:
             sample_srcid_list = select_random_samples(\
                                     building,\
@@ -255,10 +259,14 @@ def entity_recognition_from_ground_truth(building_list,
             sample_srcid_list_dict[building] = sample_srcid_list
             learning_srcids += sample_srcid_list
             total_srcid_dict[building] = list(sentence_label_dict.keys())
+        # Otherwise, choose based on given learning_srcids
         else:
             sample_srcid_list_dict[building] = [srcid for srcid\
                                                 in srcids \
                                                 if srcid in learning_srcids]
+        # Get validation samples
+        # TODO: This is incorrect and maybe fixed later.
+        #       No validation process for now.
         validation_num = min(len(sentence_label_dict)
                              - len(sample_srcid_list_dict[building]),
                              len(sample_srcid_list_dict[building]))
@@ -269,22 +277,14 @@ def entity_recognition_from_ground_truth(building_list,
                                     use_cluster_flag,\
                                     reverse=True,
                                     shuffle_flag=False)
-    
-    _, \
-    _, \
-    validation_truths_dict, \
-    _ = get_multi_buildings_data(building_list, \
-                                           validation_srcids, \
-                                           eda_flag,\
-                                           )
-
+    _, _, validation_truths_dict, _ = get_multi_buildings_data(building_list,\
+                                                            validation_srcids, \
+                                                            eda_flag)
     learning_sentence_dict, \
     learning_token_label_dict, \
     learning_truths_dict, \
-    phrase_dict = get_multi_buildings_data(building_list, \
-                                           learning_srcids, \
-                                           eda_flag,\
-                                           )
+    phrase_dict = get_multi_buildings_data(building_list, learning_srcids)
+    # found_points is just for debugging
     found_points = [tagset for tagset \
                      in reduce(adder, learning_truths_dict.values(), []) \
                              if tagset in point_tagsets]
@@ -302,25 +302,27 @@ def entity_recognition_from_ground_truth(building_list,
     test_token_label_dict,\
     test_phrase_dict,\
     test_truths_dict,\
-    test_srcid_dict = get_building_data(target_building, test_srcids,\
-                                                eda_flag)
+    test_srcid_dict = get_building_data(target_building, test_srcids)
 
+    # Include tagsets not defined in Brick but added by the ground truth.
+    # This better be removed if Brick is complete.
     extend_tagset_list(reduce(adder, \
                 [learning_truths_dict[srcid] for srcid in learning_srcids]\
                 + [test_truths_dict[srcid] for srcid in test_srcids], []))
+    # Augment the tagset tree based on the newly added tagsets
     augment_tagset_tree(tagset_list)
     tree_depth_dict = calc_leaves_depth(tagset_tree)
     assert tree_depth_dict['supply_air_static_pressure_integral_time_setpoint']\
             > 3
 
+    ###########################  LEARNING  ################################
+    ### Learning IR-Tagsets model
     source_target_buildings = list(set(building_list + [target_building]))
     begin_time = arrow.get()
     tagset_classifier, tagset_vectorizer, tagset_binarizer, \
             point_classifier, ts2ir = \
             build_tagset_classifier(building_list, target_building,\
-            #                learning_sentence_dict, ,\
                             test_sentence_dict,\
-            #                learning_token_label_dict,\
                             test_token_label_dict,\
                             phrase_dict, test_phrase_dict,\
                             learning_truths_dict,\
@@ -335,28 +337,26 @@ def entity_recognition_from_ground_truth(building_list,
     end_time = arrow.get()
     print('Training Time: {0}'.format(end_time-begin_time))
 
-    ###########################  LEARNING  ################################
-
-    ## Brick Validation
+    ####################      TEST      #################
+    ### Test on Brick
     brick_doc = []
     if use_brick_flag:
         brick_phrase_dict = dict([(str(i), tagset.split('_')) for i, tagset\
                                   in enumerate(tagset_list)])
         brick_srcids = list(brick_phrase_dict.keys())
-        brick_pred_tagsets_dict, brick_pred_certainty_dict, \
-                brick_pred_point_dict = \
+        brick_pred_tagsets_dict, \
+        brick_pred_certainty_dict, \
+        brick_pred_point_dict = \
                 tagsets_prediction(tagset_classifier, tagset_vectorizer, \
                                    tagset_binarizer, \
                                    brick_phrase_dict, \
-                                   list(brick_phrase_dict.keys()),
-                                   source_target_buildings,
-                                   eda_flag,
-                                   point_classifier
+                                   list(brick_phrase_dict.keys()),\
+                                   source_target_buildings,\
+                                   eda_flag,\
+                                   point_classifier\
                                   )
 
-    ####################      TEST      #################
-    ### Self Evaluation
-
+    ### Test on the learning samples
     learning_pred_tagsets_dict, \
     learning_pred_certainty_dict, \
     learning_pred_point_dict = tagsets_prediction(\
@@ -371,15 +371,15 @@ def entity_recognition_from_ground_truth(building_list,
                                 ts2ir)
     eval_learning_srcids = deepcopy(learning_srcids)
     random.shuffle(eval_learning_srcids)
-    learning_result_dict = tagsets_evaluation(learning_truths_dict,
-                                         learning_pred_tagsets_dict,
-                                         learning_pred_certainty_dict,
-                                         eval_learning_srcids,
-                                         learning_pred_point_dict,\
-                                         phrase_dict,\
-                                         debug_flag,
-                                         tagset_classifier,
-                                         tagset_vectorizer)
+    learning_result_dict = tagsets_evaluation(learning_truths_dict,\
+                                              learning_pred_tagsets_dict,\
+                                              learning_pred_certainty_dict,\
+                                              eval_learning_srcids,\
+                                              learning_pred_point_dict,\
+                                              phrase_dict,\
+                                              debug_flag,\
+                                              tagset_classifier,\
+                                              tagset_vectorizer)
 
     ### Test on the entire target building
     target_srcids = raw_srcids_dict[target_building]
@@ -387,9 +387,7 @@ def entity_recognition_from_ground_truth(building_list,
     _,\
     target_phrase_dict,\
     target_truths_dict,\
-    _                   = get_building_data(target_building, \
-                                            target_srcids,\
-                                            eda_flag)
+    _                   = get_building_data(target_building, target_srcids)
     target_pred_tagsets_dict, \
     target_pred_certainty_dict, \
     target_pred_point_dict = tagsets_prediction(\
@@ -413,7 +411,6 @@ def entity_recognition_from_ground_truth(building_list,
                                             debug_flag,
                                            tagset_classifier,
                                            tagset_vectorizer)
-
     learnt_tagsets = Counter(reduce(adder, [learning_truths_dict[srcid]
                                     for srcid in learning_srcids]))
     unfound_tagsets = list()
@@ -427,7 +424,6 @@ def entity_recognition_from_ground_truth(building_list,
     learnt_unfound_tagsets = dict([(tagset, learnt_tagsets[tagset])
                  for tagset in unfound_tagsets.keys()
                  if tagset in learnt_tagsets.keys()])
-
     next_step_data = {
         'debug': prev_step_data['debug'],
         'exp_type': 'entity_from_ground_truth',
@@ -484,10 +480,9 @@ def entity_recognition_from_ground_truth(building_list,
     print('################################# Iter# {0}'.format(iter_cnt))
     #logging.info('Learnt but not detected tagsets: {0}'.format(
     #    learnt_unfound_tagsets))
-    lengther = lambda x: len(x)
-    logging.info('# of not detected tagsets: {0}'.format(list(map(lengther,
+    logging.info('# of not detected tagsets: {0}'.format(list(map(len,
                     next_step_data['unfound_tagsets_history']))))
-    logging.info('# of learnt but not detected tagsets: {0}'.format(list(map(lengther,
+    logging.info('# of learnt but not detected tagsets: {0}'.format(list(map(len,
                     next_step_data['learnt_but_unfound_tagsets_history']))))
 
     print('history of point precision: {0}'\
@@ -505,10 +500,11 @@ def entity_recognition_from_ground_truth(building_list,
     print('history of micro f1: {0}'\
           .format(next_step_data['macro_f1_history']))
 
-    # Post processing to select next step learning srcids
+    ###### Post processing to select next step learning srcids
     phrase_usages = list(target_result_dict['phrase_usage'].values())
     mean_usage_rate = np.mean(phrase_usages)
     std_usage_rate = np.std(phrase_usages)
+    # Select underexploited sentences.
     threshold = mean_usage_rate - std_usage_rate
     todo_sentence_dict = dict((srcid, alpha_tokenizer(''.join(\
                                                 test_sentence_dict[srcid]))) \
@@ -527,7 +523,8 @@ def entity_recognition_from_ground_truth(building_list,
                           cluster_dict=cluster_srcid_dict,
                           shuffle_flag=False
                          )
-    tot_todo_tagsets =  Counter(reduce(adder, [test_truths_dict[srcid] for srcid in todo_srcids], []))
+    tot_todo_tagsets =  Counter(reduce(adder, [test_truths_dict[srcid] \
+                                               for srcid in todo_srcids], []))
     correct_todo_srcids = list()
     for srcid in todo_srcids:
         todo_tagsets = test_truths_dict[srcid]
@@ -581,8 +578,6 @@ def entity_recognition_from_ground_truth_get_avg(N,
                                                  building_list,
                                                  source_sample_num_list,
                                                  target_building,
-                                                 token_type='justseparate',
-                                                 label_type='label',
                                                  use_cluster_flag=False,
                                                  use_brick_flag=False,
                                                  eda_flag=False,
@@ -598,8 +593,6 @@ def entity_recognition_from_ground_truth_get_avg(N,
     args = (building_list,\
             source_sample_num_list,\
             target_building,\
-            token_type,
-            label_type,
             use_cluster_flag,
             use_brick_flag,
             False,
@@ -691,8 +684,7 @@ def get_multi_buildings_data(building_list, srcids=[], \
         temp_token_label_dict,\
         temp_phrase_dict,\
         temp_truths_dict,\
-        temp_srcid_dict = get_building_data(building, srcids,\
-                                                    eda_flag, token_type)
+        temp_srcid_dict = get_building_data(building, srcids)
         sentence_dict.update(temp_sentence_dict)
         token_label_dict.update(temp_token_label_dict)
         truths_dict.update(temp_truths_dict)
@@ -702,10 +694,9 @@ def get_multi_buildings_data(building_list, srcids=[], \
     return sentence_dict, token_label_dict, truths_dict, phrase_dict
 
 
-def get_building_data(building, srcids, eda_flag=False, \
-                      token_type='justseparate'):
-    with open('metadata/{0}_char_sentence_dict_{1}.json'\
-              .format(building, token_type), 'r') as fp:
+def get_building_data(building, srcids):
+    with open('metadata/{0}_char_sentence_dict.json'\
+              .format(building), 'r') as fp:
         sentence_dict = json.load(fp)
     with open('metadata/{0}_char_label_dict.json'\
               .format(building), 'r') as fp:
@@ -720,11 +711,8 @@ def get_building_data(building, srcids, eda_flag=False, \
     token_label_dict = sub_dict_by_key_set(token_label_dict, \
                                                 srcids)
     # Remove truths_dict subdictionary if needed
-    truths_dict = sub_dict_by_key_set(truths_dict, \
-                                                srcids)
-
-    phrase_dict = make_phrase_dict(sentence_dict, token_label_dict, \
-                                   srcid_dict, eda_flag)
+    truths_dict = sub_dict_by_key_set(truths_dict, srcids)
+    phrase_dict = make_phrase_dict(sentence_dict, token_label_dict, srcid_dict)
 
     return sentence_dict, token_label_dict, phrase_dict,\
             truths_dict, srcid_dict
@@ -1707,3 +1695,254 @@ def determine_used_phrases(phrases, tagsets):
     else:
         score = used_cnt / (used_cnt + unused_cnt) 
     return score
+
+def crf_entity_recognition_iteration(iter_num, postfix, *args):
+    building_list = args[0]
+    target_building = args[2]
+    step_datas = iteration_wrapper(iter_num, entity_recognition_from_crf, *args)
+    with open('result/crf_entity_iter_{0}_{1}.json'\
+            .format(''.join(building_list+[target_building]), postfix), 'w') as fp:
+        json.dump(step_datas, fp, indent=2)
+
+def iteration_wrapper(iter_num, func, *args):
+    step_data = {
+        'learning_srcids': [],
+        'iter_num': 0,
+    }
+    step_datas = list()
+    prev_data = {'iter_num':0}
+    for i in range(0, iter_num):
+        step_data = func(prev_data, *args)
+        step_datas.append(step_data)
+        prev_data = step_data
+        prev_data['iter_num'] += 1
+    return step_datas
+
+def entity_recognition_from_crf(prev_step_data,\
+                                building_list,\
+                                source_sample_num_list,\
+                                target_building,\
+                                use_cluster_flag=False,\
+                                use_brick_flag=True,\
+                                eda_flag=False,\
+                                negative_flag = True,\
+                                debug_flag=False,
+                                n_jobs=4,
+                                ts_flag=False):
+
+    global tagset_list
+    global total_srcid_dict
+    global tagset_tree
+    global tree_depth_dict
+    inc_num = 20
+
+    ### Initialize CRF Data
+    crf_result_query = {
+        'use_cluster_flag': use_cluster_flag,
+        'building_list': building_list,
+        'source_sample_num_list': source_sample_num_list,
+        'target_building': target_building,
+    }
+    # Read previous step's configuration
+    if prev_step_data.get('learning_srcids_history'):
+        iter_cnt = len(prev_step_data['learning_srcids_history'])
+        crf_result_query['learning_srcids'] = \
+                prev_step_data['learning_srcids_history'][-1]
+        target_idx = building_list.index(target_building)
+        crf_result_query['source_sample_num_list'] = source_sample_num_list
+
+    # Read CRF result
+    crf_result = get_crf_results(crf_result_query)
+    # If not exists, generate one.
+    if not crf_result:
+        if crf_result_query.get('learning_srcids'):
+            learning_srcids = sorted(crf_result_query['learning_srcids'])
+        else:
+            learning_srcids = []
+        # Learn CRF model if necessary
+        learn_crf_model(building_list,
+                    source_sample_num_list,
+                    use_cluster_flag,
+                    use_brick_flag,
+                    {
+                        'learning_srcids': deepcopy(learning_srcids),
+                        'iter_cnt': prev_step_data['iter_num']
+                    })
+        # Label BILOUS tags based on the above model.
+        crf_test(building_list,
+                 source_sample_num_list,
+                 target_building,
+                 use_cluster_flag,
+                 use_brick_flag,
+                 learning_srcids)
+        crf_result = get_crf_results(crf_result_query)
+        if not crf_result:
+            pdb.set_trace()
+            crf_result = get_crf_results(crf_result_query)
+        assert crf_result
+
+    # given_srcids == srcids labeled by CRF == entire target set
+    given_srcids = list(reduce(adder,\
+                            list(crf_result['source_list'].values()), []))
+    crf_sentence_dict = dict()
+    crf_token_label_dict = {}
+    for srcid, one_crf_result in crf_result['result'].items():
+        crf_token_label_dict[srcid] = one_crf_result['pred_token_labels']
+        crf_sentence_dict[srcid] = one_crf_result['sentence']
+    crf_phrase_dict = make_phrase_dict(crf_sentence_dict,\
+                                       crf_token_label_dict, \
+                                       {target_building: \
+                                        crf_token_label_dict.keys()})
+    crf_srcids = [srcid for srcid in crf_sentence_dict.keys() \
+                  if srcid not in given_srcids]
+
+    ### Initialize Given (Learning) Data
+    _,_,_, crf_truths_dict, _ = get_building_data(target_building, crf_srcids)
+    given_sentence_dict, \
+    given_token_label_dict, \
+    given_truths_dict, \
+    given_phrase_dict = get_multi_buildings_data(building_list, given_srcids)
+
+    # Add tagsets in the learning dataset if not exists.
+    extend_tagset_list(reduce(adder, \
+                [given_truths_dict[srcid] for srcid in given_srcids]\
+                + [crf_truths_dict[srcid] for srcid in crf_srcids], []))
+    augment_tagset_tree(tagset_list)
+    source_target_buildings = list(set(building_list + [target_building]))
+
+    # Learning IR->Tagset model
+    classifier, vectorizer, binarizer, point_classifier, ts2ir = \
+            build_tagset_classifier(building_list, target_building,\
+                                    crf_sentence_dict, crf_token_label_dict,\
+                                    given_phrase_dict, crf_phrase_dict,\
+                                    given_truths_dict,\
+                                    given_srcids, crf_srcids,\
+                                    tagset_list, eda_flag, use_brick_flag,
+                                    source_target_buildings,
+                                    n_jobs,
+                                    ts_flag,
+                                    negative_flag
+                                   )
+    tree_depth_dict = calc_leaves_depth(tagset_tree)
+
+    # Infer Tagsets based on the above model.
+    crf_pred_tagsets_dict, \
+    crf_pred_certainty_dict, \
+    crf_pred_point_dict = tagsets_prediction(\
+                                   classifier, vectorizer, \
+                                   binarizer, crf_phrase_dict, \
+                                   crf_srcids, source_target_buildings,
+                                   eda_flag, point_classifier, ts2ir)
+
+    # Calculate utilization
+    crf_token_usage_dict = determine_used_tokens_multiple(\
+                                crf_sentence_dict, crf_token_label_dict, \
+                                crf_pred_tagsets_dict, crf_srcids)
+    crf_token_usage_rate_dict = dict((srcid, sum(usage)/len(usage))\
+                                     for srcid, usage \
+                                     in crf_token_usage_dict.items())
+    usage_rates = list(crf_token_usage_rate_dict.values())
+    usage_rate_mean = np.mean(usage_rates)
+    usage_rate_mean = np.std(usage_rates)
+
+    # Evaluate the result
+    crf_entity_result_dict = tagsets_evaluation(crf_truths_dict, crf_pred_tagsets_dict,
+                       crf_pred_certainty_dict, crf_srcids,
+                       crf_pred_point_dict, crf_phrase_dict, debug_flag)
+    # Select srcids to ask for the next step
+    todo_srcids = find_todo_srcids(crf_token_usage_rate_dict, crf_srcids, \
+                                   inc_num, crf_sentence_dict, target_building)
+    curr_learning_srcids = sorted(reduce(adder, crf_result['source_list']\
+                                         .values()))
+    updated_learning_srcids = sorted(todo_srcids + curr_learning_srcids)
+    del crf_result['result']
+    del crf_result['_id']
+    next_step_data = prev_step_data
+    if not next_step_data.get('result'):
+        next_step_data['result'] = dict()
+    if not next_step_data['result'].get('crf'):
+        next_step_data['result']['crf'] = []
+    if not next_step_data['result'].get('entity'):
+        next_step_data['result']['entity'] = []
+    if not next_step_data.get('learning_srcids_history'):
+        next_step_data['learning_srcids_history'] = [curr_learning_srcids]
+
+    #next_step_data['iter_num'] += 1 # TODO: Looks redundant. Validate later.
+    next_step_data['learning_srcids_history'].append(updated_learning_srcids)
+    next_step_data['result']['entity'].append(crf_entity_result_dict)
+    next_step_data['result']['crf'].append(crf_result)
+    return next_step_data
+
+def determine_used_tokens_multiple(sentence_dict, token_label_dict, \
+                                   tagsets_dict, srcids):
+    token_usage_dict = dict()
+    for srcid in srcids:
+        token_usage_dict[srcid] = determine_used_tokens(\
+                                        sentence_dict[srcid],\
+                                        token_label_dict[srcid],\
+                                        tagsets_dict[srcid])
+    return token_usage_dict
+
+def find_todo_srcids(usage_rate_dict, srcids, inc_num, sentence_dict,
+                     target_building):
+    # Post processing to select next step learning srcids
+    usages = list(usage_rate_dict.values())
+    mean_usage_rate = np.mean(usages)
+    std_usage_rate = np.std(usages)
+    threshold = mean_usage_rate - std_usage_rate
+    todo_sentence_dict = dict((srcid, alpha_tokenizer(''.join(\
+                                                sentence_dict[srcid]))) \
+                              for srcid, usage_rate \
+                              in usage_rate_dict.items()
+                              if usage_rate<threshold and srcid in srcids)
+    try:
+        cluster_srcid_dict = hier_clustering(todo_sentence_dict, threshold=2)
+    except:
+        cluster_srcid_dict = hier_clustering(test_sentence_dict, threshold=2)
+    todo_srcids = select_random_samples(target_building, \
+                          list(todo_sentence_dict.keys()),
+                          min(inc_num, len(todo_sentence_dict)), \
+                          True,\
+                          token_type='justseparate',
+                          reverse=True,
+                          cluster_dict=cluster_srcid_dict,
+                          shuffle_flag=False
+                         )
+    return todo_srcids
+
+
+def determine_used_tokens(sentence, token_labels, tagsets):
+    """
+    Calculate how much tokens are used for the labels. == utilization
+    """
+    token_usages = list()
+    tags = reduce(adder, [tagset.split('_') for tagset in tagsets], [])
+    for token, label in zip(sentence, token_labels):
+        if label=='O':
+            token_usages.append(0)
+        else:
+            tags_in_label = label[2:].split('_')
+            if tags_in_label[0] in ['leftidentifier',
+                                    'rightidentifier']:
+                continue
+            included_cnt = 0
+            for tag in tags_in_label:
+                if tag in tags:
+                    included_cnt += 1
+            token_usages.append(included_cnt / len(tags_in_label))
+
+    return token_usages
+
+def determine_used_tokens_multiple(sentence_dict, token_label_dict, \
+                                   tagsets_dict, srcids):
+    """
+    Calculate utilization per srcid
+    """
+
+    token_usage_dict = dict()
+    for srcid in srcids:
+        token_usage_dict[srcid] = determine_used_tokens(\
+                                        sentence_dict[srcid],\
+                                        token_label_dict[srcid],\
+                                        tagsets_dict[srcid])
+    return token_usage_dict

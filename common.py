@@ -127,8 +127,7 @@ def bilou_tagset_phraser(sentence, token_labels):
     phrase_labels = list(reduce(adder, map(splitter, phrase_labels), []))
     return phrase_labels
 
-def make_phrase_dict(sentence_dict, token_label_dict, srcid_dict, \
-                     eda_flag=False):
+def make_phrase_dict(sentence_dict, token_label_dict, srcid_dict):
     #phrase_dict = OrderedDict()
     phrase_dict = dict()
     for srcid, sentence in sentence_dict.items():
@@ -144,14 +143,6 @@ def make_phrase_dict(sentence_dict, token_label_dict, srcid_dict, \
                 pass
         phrases = [phrase for i, phrase in enumerate(phrases)\
                    if i not in remove_indices]
-        """
-        if eda_flag:
-    #        phrases += phrases
-            building_name = find_key(srcid, srcid_dict, check_in)
-            assert building_name
-            prefixer = build_prefixer(building_name)
-            phrases = phrases + list(map(prefixer, phrases))
-        """
         #phrase_dict[srcid] = phrases + phrases # TODO: Why did I put this before?
         phrase_dict[srcid] = phrases
     return phrase_dict
@@ -180,3 +171,6 @@ def hier_clustering(d, threshold=3):
 
 logging.basicConfig(level=logging.INFO,
                         format='%(asctime)s %(message)s')
+
+def parallel_func(orig_func, return_idx, return_dict, *args):
+    return_dict[return_idx] = orig_func(*args)

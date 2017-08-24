@@ -91,10 +91,10 @@ def calc_features(sentence, building=None):
             features['SECOND'] = 1.0
         else:
             features['-2:word.lower=' + sentence[i-2].lower()] = 1.0
-        if i<len(sentence)-1:
-            features['+1:word.lower='+sentence[i+1].lower()] = 1.0
-        else:
-            features['EOS'] = 1.0
+        #if i<len(sentence)-1:
+        #    features['+1:word.lower='+sentence[i+1].lower()] = 1.0
+        #else:
+        #    features['EOS'] = 1.0
         sentenceFeatures.append(features)
     return sentenceFeatures
 
@@ -258,7 +258,8 @@ def crf_test(building_list,
                                     format(building, source_sample_num)})
         result_metadata['source_cnt_list'].append([building, source_sample_num])
     if learning_srcids:
-        model_query = {'learning_srcids': sorted(learning_srcids)}
+        learning_srcids = sorted(learning_srcids)
+        model_query = {'learning_srcids': learning_srcids}
     try:
         # Retrieve the most recent model matching the query
         model = get_model(model_query)
@@ -269,7 +270,7 @@ def crf_test(building_list,
     if not learning_srcids:
         learning_srcids = sorted(list(reduce(adder, model['source_list'].values())))
     assert sorted(learning_srcids) == sorted(list(reduce(adder, model['source_list'].values())))
-    
+
     result_metadata['learning_srcids'] = learning_srcids
 
     # Store model file read from MongoDB to read from tagger.

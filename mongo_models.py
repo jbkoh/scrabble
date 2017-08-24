@@ -12,8 +12,6 @@ summary_query_template = {
     'source_building': None,
     'target_building': None,
     'source_sample_num': None,
-    'label_type': None,
-    'token_type': None,
     'use_cluster_flag': None
 }
 
@@ -26,14 +24,10 @@ model_template = {
     'model_binary': 'bson.binary.Binary',
     'gen_time': 'datetime',
     'use_cluster_flag': bool,
-    'token_type': 'justseparate',
-    'label_type': 'label'
 }
 
 result_template = {
     # Metadata
-    'label_type': '',
-    'token_type': '',
     'use_cluster_flag': '',
     'source_cnt_list': [['building1', 100], ['building2', 10]],
     'target_building': 'building3',
@@ -41,24 +35,20 @@ result_template = {
 }
 
 def build_query(q):
-    if not q.get('label_type'):
-        label_type = 'label'
-    else:
-        label_type = q['label_type']
-    if not q.get('use_cluster_flag'):
+    if q.get('use_cluster_flag') == None:
         use_cluster_flag = True
     else:
         use_cluster_flag = q['use_cluster_flag']
     building_list = q['building_list']
     query = {
         '$and':[{
-            'label_type': label_type,
             'use_cluster_flag': use_cluster_flag,
             'source_building_count': len(building_list),
         }]
     }
-    query['source_cnt_list'] = []
-    query['target_building'] = q['target_building']
+    #query['source_cnt_list'] = []
+    #query['target_building'] = q['target_building']
+    query['$and'].append({'target_building': q['target_building']})
     for building, source_sample_num in \
             zip(building_list, q['source_sample_num_list']):
         query['$and'].append(
@@ -66,10 +56,10 @@ def build_query(q):
         query['$and'].append({'$where': \
                                     'this.source_list.{0}.length=={1}'.\
                                     format(building, source_sample_num)})
-        query['source_cnt_list'].append([building, source_sample_num])
+        #query['source_cnt_list'].append([building, source_sample_num])
     query['$and'].append({'source_building_count':len(building_list)})
     if q.get('learning_srcids'):
-        query['$and'].append({'learning_srcids': q['learning_srcids']})
+        query['$and'].append({'learning_srcids': sorted(q['learning_srcids'])})
     return query
 
 def get_model(query):

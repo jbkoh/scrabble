@@ -2,7 +2,7 @@ import argparse
 
 from common import *
 from char2ir import crf_test, learn_crf_model
-from ir2tagsets import entity_recognition_from_ground_truth_get_avg, entity_recognition_iteration
+from ir2tagsets import entity_recognition_from_ground_truth_get_avg, entity_recognition_iteration, crf_entity_recognition_iteration
 
 def str2bool(v):
     if v in ['true', 'True']:
@@ -62,7 +62,7 @@ if __name__=='__main__':
                         type='bool',
                         help='flag to indicate use hierarchical cluster \
                                 to select learning samples.',
-                        default=False,
+                        default=True,
                         dest='use_cluster_flag')
     parser.add_argument('-d',
                         type='bool',
@@ -153,8 +153,6 @@ if __name__=='__main__':
                                          args.source_building_list,
                                          args.sample_num_list,
                                          args.target_building,
-                                         'justseparate',
-                                         args.label_type,
                                          args.use_cluster_flag,
                                          args.use_brick_flag,
                                          args.debug_flag,
@@ -168,8 +166,6 @@ if __name__=='__main__':
                 building_list=args.source_building_list,
                 source_sample_num_list=args.sample_num_list,
                 target_building=args.target_building,
-                token_type='justseparate',
-                label_type=args.label_type,
                 use_cluster_flag=args.use_cluster_flag,
                 use_brick_flag=args.use_brick_flag,
                 eda_flag=args.eda_flag,
@@ -181,8 +177,6 @@ if __name__=='__main__':
         params = (args.source_building_list,
                   args.sample_num_list,
                   args.target_building,
-                  'justseparate',
-                  args.label_type,
                   args.use_cluster_flag,
                   args.use_brick_flag,
                   args.eda_flag,
