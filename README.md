@@ -2,13 +2,13 @@
 Python 3.6>, MongoDB
 From PIP: pycrfsuite, arrow..... (can't recall all of them for now.)
 
-## File Descriptions
+## File Descriptions (./)
 1. scrabble.py: Main file.
 2. char2ir.py: CRF Mapping.
 3. ir2tagsets.py: IR to TagSets learning and iteration functions.
 4. hcc.py: Hierarchical Cluster Chain (It's named StructuredCC in the file currently.)
 
-## Metadata Descriptions
+## Metadata Descriptions (./metadata/)
 Metadata files are generated with manual preprocessing stage. Please stick to existing ones.
 1. xxx\_char\_sentence\_dict.json: raw sentences in char list.
 2. xxx\_sentence\_dict.json: raw sentences in tokens.
