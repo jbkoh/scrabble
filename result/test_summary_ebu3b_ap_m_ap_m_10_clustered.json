@@ -1,12 +1,12 @@
 {
-  "char_precision": 0.933050262851162,
-  "phrase_precision": 0.9215757465734774,
-  "phrase_recall": 0.9053457577243746,
-  "pessimistic_phrase_precision": 0.8708932830653228,
-  "pessimistic_phrase_recall": 0.8420621931260229,
-  "char_macro_f1": 0.5305160168766904,
-  "char_weighted_f1": 0.9222394295594396,
-  "phrase_macro_f1": 0.48939245637853046,
-  "phrase_weighted_f1": 0.9466441458199683,
-  "date": "2017-08-24 02:20:54.432803+00:00"
+  "char_precision": 0.7659673160636552,
+  "phrase_precision": 0.7143959335572297,
+  "phrase_recall": 0.8061146105392534,
+  "pessimistic_phrase_precision": 0.6736939293683157,
+  "pessimistic_phrase_recall": 0.6981342688566416,
+  "char_macro_f1": 0.4015312896712128,
+  "char_weighted_f1": 0.7322206913599889,
+  "phrase_macro_f1": 0.4243491601201546,
+  "phrase_weighted_f1": 0.8278654342306351,
+  "date": "2017-08-24 09:20:29.672594+00:00"
 }

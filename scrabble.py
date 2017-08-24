@@ -26,7 +26,7 @@ if __name__=='__main__':
     parser.register('type','slist', str2slist)
     parser.register('type','ilist', str2ilist)
 
-    parser.add_argument(choices=['learn', 'predict', 'entity', 'crf_entity', \
+    parser.add_argument(choices=['learn_crf', 'predict_crf', 'entity', 'crf_entity', \
                                  'init', 'result'],
                         dest = 'prog')
 
@@ -133,7 +133,7 @@ if __name__=='__main__':
 
     tagset_classifier_type = args.tagset_classifier_type
 
-    if args.prog == 'learn':
+    if args.prog == 'learn_crf':
         learn_crf_model(building_list=args.source_building_list,
                         source_sample_num_list=args.sample_num_list,
                         token_type='justseparate',
@@ -141,7 +141,7 @@ if __name__=='__main__':
                         use_cluster_flag=args.use_cluster_flag,
                         debug_flag=args.debug_flag,
                         use_brick_flag=args.use_brick_flag)
-    elif args.prog == 'predict':
+    elif args.prog == 'predict_crf':
         crf_test(building_list=args.source_building_list,
                  source_sample_num_list=args.sample_num_list,
                  target_building=args.target_building,

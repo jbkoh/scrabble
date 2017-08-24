@@ -1,10 +1,34 @@
+# Dependencies
+Python 3.6>, 
+From PIP: pycrfsuite, arrow..... (can't recall all of them for now.)
 
-# Ground truth generation instruction
+# File Descriptions
+1. scrabble.py: Main file.
+2. char2ir.py: CRF Mapping.
+3. ir2tagsets.py: IR to TagSets learning and iteration functions.
+4. hcc.py: Hierarchical Cluster Chain (It's named StructuredCC in the file currently.)
+
+# Preprocessing
 1. Generate ground truth (from schema\_map at Dropbox.)
 2. Tokenize sentences with predefined rules (sentence\_normalizer.ipynb)
 3. Label them with rules and experts (label\_with\_experts.ipynb)
 4. Generate tokenized labels. (conv\_word\_labels\_to\_char\_labels.ipynb)
-5. Generate ground truth file (ground_truth_gen.py <building>)
-6. Learn CRF model (python scrabble_hierarchy.py learn --bl=bld1,bld2, -nl=200,10) #Select 200 samples from bld1 and 10 from bld2 to construct a CRF model.)
-7. Learn Brick model.
-8. Test.
+5. Generate ground truth file (ground\_truth\_gen.py <building>)
+
+# How to use?
+## Configuration options
+ - -bl: Building list: list of source building names deliminated by comma (e.g., -bl ebu3b,bml).
+ - -nl: Sample number list: list of sample numbers per building. The order should be same as bl. (e.g., -nl 200,1)
+ - -t: Target building name: Name of the target building. (e.g., -t bml)
+ - -c: Whether to use clustering for random selection or not (e.g., -c true)
+ - -avg: How many times run experiments to get average? (e.g., -avg 5)
+ - -iter: How many times to iterate the process? (e.g., -iter 10)
+ - -d: Debug mode flag (e.g., -d false)
+ - -ub: Whethre to use Brick when learning. (e.g., -ub true)
+ - Note: Please refer scrabble.py to learn the other options.
+
+## CRF only.
+1. python scrabble.py learn\_crf -bl ebu3b,ap\_m -nl 200,10 -c true
+
+python scrabble.py 
+
