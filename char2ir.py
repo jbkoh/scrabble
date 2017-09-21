@@ -146,7 +146,6 @@ def learn_crf_model(building_list,
     # algorithm: {'lbfgs', 'l2sgd', 'ap', 'pa', 'arow'}
     trainer.set_params({'feature.possible_states': True,
                         'feature.possible_transitions': True})
-    #data_available_buildings = []
 
     # Select samples
     learning_srcids = list()
@@ -163,6 +162,8 @@ def learn_crf_model(building_list,
             label_dict = json.load(fp)
 
         # Select learning samples.
+        # Learning samples can be chosen from the previous stage.
+        # Or randomly selected.
         if prev_step_data['learning_srcids']:
             sample_srcid_list = [srcid for srcid in sentence_dict.keys() \
                                  if srcid in prev_step_data['learning_srcids']] # TODO: This seems to be "NOT if srcid in~~" Validate it.
@@ -183,13 +184,13 @@ def learn_crf_model(building_list,
             labels = list(map(itemgetter(1), label_dict[srcid]))
             trainer.append(pycrfsuite.ItemSequence(
                 calc_features(sentence, None)), labels)
-        sample_dict[building] = list(sample_srcid_list)
+        sample_dict[building] = list(sample_srcid_list) # For debugging
     if prev_step_data.get('learning_srcids_history'):
         assert set(prev_step_data['learning_srcids_history'][-1]) == \
                 set(learning_srcids)
 
-
-    # Add Brick tags to the trainer.
+    # Add Brick tags to the trainer. 
+    # Commonly disabled. Accuracy gets worse.
     if use_brick_flag:
         with open('metadata/brick_tags_labels.json', 'r') as fp:
             tag_label_list = json.load(fp)
@@ -203,7 +204,6 @@ def learn_crf_model(building_list,
             char_labels = list(map(itemgetter(1), tag_labels))
             trainer.append(pycrfsuite.ItemSequence(
                 calc_features(char_tags, None)), char_labels)
-
 
     # Train and store the model file
     trainer.train(crf_model_file)
@@ -221,8 +221,8 @@ def learn_crf_model(building_list,
     os.remove(crf_model_file)
 
     end_time = arrow.get()
-    print('CRF Learning took: ', end_time - begin_time)
-    logging.info("Finished!!!")
+    logging.info('CRF Learning took: ' + str(end_time - begin_time))
+    logging.info('Finished!!!')
 
 def crf_test(building_list,
              source_sample_num_list,
@@ -232,13 +232,13 @@ def crf_test(building_list,
              learning_srcids=[]
             ):
     """
-    similar to learn_crf_model
+    Inputs are similar to learn_crf_model
     """
     assert len(building_list) == len(source_sample_num_list)
 
     source_building_names = '_'.join(building_list)
 
-    # Retrieve model from mongodb
+    # Define a query to retrieve model from mongodb
     model_query = {'$and':[]}
     model_metadata = {
         'use_cluster_flag': use_cluster_flag,
@@ -262,6 +262,7 @@ def crf_test(building_list,
     if learning_srcids:
         learning_srcids = sorted(learning_srcids)
         model_query = {'learning_srcids': learning_srcids}
+
     try:
         # Retrieve the most recent model matching the query
         model = get_model(model_query)
@@ -280,7 +281,7 @@ def crf_test(building_list,
     with open(crf_model_file, 'wb') as fp:
         fp.write(model['model_binary'])
 
-    # Init resulter (storing/interpreting results
+    # Init resulter (a module storing/interpreting results)
     resulter = Resulter(spec=result_metadata)
     log_filename = 'logs/test_{0}_{1}_{2}_{3}.log'\
             .format(source_building_names, 
@@ -291,8 +292,6 @@ def crf_test(building_list,
                         level=logging.DEBUG,
                         format='%(asctime)s %(message)s')
     logging.info("Started!!!")
-
-    data_available_buildings = []
 
     with open('metadata/{0}_char_label_dict.json'\
                 .format(target_building), 'r') as fp:
@@ -318,6 +317,7 @@ def crf_test(building_list,
         predicted = tagger.tag(calc_features(sentence))
         predicted_dict[srcid] = predicted
         score_dict[srcid] = tagger.probability(predicted)
+    pdb.set_trace()
 
     # Analysis of the result.
     precisionOfTrainingDataset = 0

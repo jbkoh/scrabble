@@ -729,6 +729,7 @@ def build_tagset_classifier(building_list, target_building,\
                             negative_flag,
                             validation_truths_dict={}
                            ):
+
     validation_srcids = list(validation_truths_dict.keys())
     learning_srcids = deepcopy(learning_srcids)
     orig_learning_srcids = deepcopy(learning_srcids)
@@ -738,16 +739,17 @@ def build_tagset_classifier(building_list, target_building,\
     global tree_depth_dict
 #    source_target_buildings = list(set(building_list + [target_building]))
 
+    # Update TagSet pool to include TagSets not in Brick.
     orig_sample_num = len(learning_srcids)
     new_tagset_list = tree_flatter(tagset_tree, [])
     new_tagset_list = new_tagset_list + [ts for ts in tagset_list \
                                      if ts not in new_tagset_list]
     tagset_list = new_tagset_list
-
     tagset_binarizer = MultiLabelBinarizer(tagset_list)
     tagset_binarizer.fit([tagset_list])
     assert tagset_list == tagset_binarizer.classes_.tolist()
 
+    # Point only classifier. Just for testing.
     point_classifier = RandomForestClassifier(n_estimators=10, n_jobs=n_jobs)
 
     ## Init brick tag_list
@@ -755,31 +757,26 @@ def build_tagset_classifier(building_list, target_building,\
     tag_list = deepcopy(raw_tag_list)
 
 
-    # Extend tag_list with prefixes
     """
+    # Extend tag_list with prefixes
     if eda_flag:
         for building in set(building_list + [target_building]):
             prefixer = build_prefixer(building)
             building_tag_list = list(map(prefixer, raw_tag_list))
             tag_list = tag_list + building_tag_list
     """
+    # All possible vocabularies.
     vocab_dict = dict([(tag, i) for i, tag in enumerate(tag_list)])
-
-    proj_vectors = list()
-    for tagset in tagset_list:
-        tags = tagset.split('_')
-        tags = tags + [building + '#' + tag for tag in tags \
-                       for building in source_target_buildings]
-        proj_vectors.append([1 if tag in tags else 0 for tag in tag_list])
-    proj_vectors = np.asarray(proj_vectors)
 
     # Define Vectorizer
     tokenizer = lambda x: x.split()
+    # TODO: We could use word embedding like word2vec here instead.
     tagset_vectorizer = TfidfVectorizer(tokenizer=tokenizer,\
                                         vocabulary=vocab_dict)
     #tagset_vectorizer = CountVectorizer(tokenizer=tokenizer,\
     #                                    vocabulary=vocab_dict)
 
+    # Dataset only for points. Just for testing.
     learning_point_dict = dict()
     for srcid, tagsets in chain(learning_truths_dict.items(),
                                 validation_truths_dict.items()):
@@ -791,6 +788,7 @@ def build_tagset_classifier(building_list, target_building,\
         learning_point_dict[srcid] = point_tagset
     learning_point_dict['dummy'] = 'unknown'
 
+    # Augment vocab frequencies with timeseries features.
     ts2ir = None
     ts_learning_srcids = list()
     if ts_flag:
@@ -846,7 +844,6 @@ def build_tagset_classifier(building_list, target_building,\
     ## Transform learning samples
     learning_doc = [' '.join(learning_phrase_dict[srcid]) \
                     for srcid in learning_srcids]
-
     test_doc = [' '.join(test_phrase_dict[srcid]) \
                 for srcid in test_srcids]
 
@@ -894,12 +891,8 @@ def build_tagset_classifier(building_list, target_building,\
             negative_doc.append('')
             negative_truths_dict[negative_srcid] = []
 
-    #learning_doc += negative_doc
-    #learning_srcids += negative_srcids
-    #learning_truths_dict.update(negative_truths_dict)
 
-
-    ## Init Brick document
+    ## Init Brick samples.
     brick_truths_dict = dict()
     brick_srcids = []
     brick_doc = []
@@ -955,6 +948,7 @@ def build_tagset_classifier(building_list, target_building,\
     tagset_vectorizer.fit(learning_doc + test_doc)# + brick_doc)
     logging.info('finished tagset vectorizing')
 
+    # Apply Easy-Domain-Adaptation mechanism. Not useful.
     if eda_flag:
         unlabeled_phrase_dict = make_phrase_dict(\
                                     test_sentence_dict, \
@@ -979,25 +973,7 @@ def build_tagset_classifier(building_list, target_building,\
                 added_test_vect_doc = test_vect_doc
             unlabeled_vect_doc = np.hstack([unlabeled_vect_doc,\
                                             added_test_vect_doc])
-    #learning_doc += brick_doc
-    #learning_srcids += brick_srcids
-    #learning_truths_dict.update(brick_truths_dict)
 
-    """
-    raw_learning_vect_doc = tagset_vectorizer.transform(learning_doc)
-    learning_vect_doc = raw_learning_vect_doc.toarray()
-    if eda_flag:
-        for building in source_target_buildings:
-            building_mask = np.array([1 if srcid in brick_srcids \
-                                or find_key(srcid, total_srcid_dict, check_in)\
-                                    == building\
-                                        else 0 for srcid in learning_srcids])
-            pdb.set_trace()
-            learning_vect_doc = np.hstack([learning_vect_doc] \
-                                 + [np.asmatrix(building_mask \
-                                    * learning_vect.toarray()[0]).T \
-                                for learning_vect in raw_learning_vect_doc.T])
-    """
     if eda_flag:
         learning_vect_doc = tagset_vectorizer.transform(learning_doc +
                                                         negative_doc).todense()
@@ -1044,8 +1020,8 @@ def build_tagset_classifier(building_list, target_building,\
                                            new_brick_vect_doc])
             brick_srcids = new_brick_srcids
             learning_srcids += brick_srcids
-
     else:
+        # Make TagSet vectors.
         learning_vect_doc = tagset_vectorizer.transform(learning_doc +
                                                         negative_doc +
                                                         brick_doc).todense()
@@ -1059,7 +1035,6 @@ def build_tagset_classifier(building_list, target_building,\
     point_truths_dict = dict()
     point_srcids = list()
     for srcid in learning_srcids:
-    #for srcid, truths in learning_truths_dict.items():
         truths = learning_truths_dict[srcid]
         point_tagset = None
         for tagset in truths:
@@ -1084,7 +1059,7 @@ def build_tagset_classifier(building_list, target_building,\
         learning_vect_doc = np.vstack([learning_vect_doc, unlabeled_vect_doc])
     logging.info('Start learning multi-label classifier')
 
-    ## FITTING A CLASSIFIER
+    ## Learn the classifier. StructuredCC is the default model.
     if tagset_classifier_type == 'RandomForest':
         def meta_rf(**kwargs):
             #return RandomForestClassifier(**kwargs)
@@ -1216,12 +1191,15 @@ def build_tagset_classifier(building_list, target_building,\
     if not isinstance(truth_mat, csr_matrix):
         truth_mat = csr_matrix(truth_mat)
 
+    # TODO: This was for hyper-parameter optimization.
+    #       But I disabled it because it's too slow.
     tagset_classifier = parameter_validation(learning_vect_doc[:orig_sample_num],
                          truth_mat[:orig_sample_num],
                          orig_learning_srcids,
                          params_list_dict, meta_classifier, tagset_vectorizer,
                          tagset_binarizer, source_target_buildings, eda_flag)
 
+    # Actual fitting.
     if isinstance(tagset_classifier, StructuredClassifierChain):
         tagset_classifier.fit(learning_vect_doc, truth_mat.toarray(), \
                               orig_sample_num=len(learning_vect_doc)
