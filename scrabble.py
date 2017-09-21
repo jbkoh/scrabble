@@ -136,10 +136,7 @@ if __name__=='__main__':
     if args.prog == 'learn_crf':
         learn_crf_model(building_list=args.source_building_list,
                         source_sample_num_list=args.sample_num_list,
-                        token_type='justseparate',
-                        label_type=args.label_type,
                         use_cluster_flag=args.use_cluster_flag,
-                        debug_flag=args.debug_flag,
                         use_brick_flag=args.use_brick_flag)
     elif args.prog == 'predict_crf':
         crf_test(building_list=args.source_building_list,

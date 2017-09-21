@@ -119,7 +119,7 @@ def learn_crf_model(building_list,
         prev_step_data: Previous step information for iteration.
         oversample_flag: duplicate examples to overfit the model. Not used.
     """
-
+    begin_time = arrow.get()
     assert(isinstance(building_list, list))
     assert(isinstance(source_sample_num_list, list))
     assert(len(building_list)==len(source_sample_num_list))
@@ -220,6 +220,8 @@ def learn_crf_model(building_list,
     store_model(model)
     os.remove(crf_model_file)
 
+    end_time = arrow.get()
+    print('CRF Learning took: ', end_time - begin_time)
     logging.info("Finished!!!")
 
 def crf_test(building_list,
