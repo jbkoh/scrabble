@@ -9,11 +9,11 @@ From PIP: pycrfsuite, arrow..... (can't recall all of them for now.)
 4. hcc.py: Hierarchical Cluster Chain (It's named StructuredCC in the file currently.)
 
 ## Metadata Descriptions (./metadata/)
-Metadata files are generated with manual preprocessing stage. Please stick to existing ones.
+Metadata files are generated with manual preprocessing stage. Please stick to existing ones. Words are characters with unit meaning. A string is a word if the meaning of the token is not interpretable for the users when the token is separated more
 1. xxx\_char\_sentence\_dict.json: raw sentences in char list.
-2. xxx\_sentence\_dict.json: raw sentences in tokens.
+2. xxx\_sentence\_dict.json: raw sentences in tokens (~=words).
 4. xxx\_label\_dict.json: Tags label per token. This should be aligned with 2.
-3. xxx\_ground\_truth.json: Ground truth labels.
+3. xxx\_ground\_truth.json: Ground truth labels of tokens (~=words).
 4. xxx\_true\_tagsets.json: Ground truth TagSets.
 
 ## How to use?
