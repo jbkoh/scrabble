@@ -1,7 +1,8 @@
 import argparse
+import pdb
 
 from common import *
-from char2ir import crf_test, learn_crf_model
+from char2ir import crf_test, learn_crf_model, char2ir_iteration
 from ir2tagsets import entity_recognition_from_ground_truth_get_avg, entity_recognition_iteration, crf_entity_recognition_iteration
 
 def str2bool(v):
@@ -27,7 +28,7 @@ if __name__=='__main__':
     parser.register('type','ilist', str2ilist)
 
     parser.add_argument(choices=['learn_crf', 'predict_crf', 'entity', 'crf_entity', \
-                                 'init', 'result'],
+                                 'init', 'result', 'iter_crf'],
                         dest = 'prog')
 
     parser.add_argument('predict',
@@ -73,6 +74,11 @@ if __name__=='__main__':
                         type=str,
                         help='Target buildling name',
                         dest='target_building')
+    parser.add_argument('-crftype',
+                        type=str,
+                        help='CRF Package Name',
+                        default='crfsuite',
+                        dest='crftype')
     parser.add_argument('-eda',
                         type='bool',
                         help='Flag to use Easy Domain Adapatation',
@@ -144,6 +150,17 @@ if __name__=='__main__':
                  target_building=args.target_building,
                  use_cluster_flag=args.use_cluster_flag,
                  use_brick_flag=args.use_brick_flag)
+    elif args.prog == 'iter_crf':
+        params = (args.source_building_list,
+                  args.sample_num_list,
+                  args.target_building,
+                  args.use_cluster_flag,
+                  args.use_brick_flag,
+#                  args.n_jobs)
+                 )
+        char2ir_iteration(args.iter_num, args.postfix, args.crftype, *params)
+
+
     elif args.prog == 'entity':
         if args.avgnum == 1:
             entity_recognition_iteration(args.iter_num,
