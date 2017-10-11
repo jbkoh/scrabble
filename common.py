@@ -4,6 +4,8 @@ from functools import reduce, partial
 import logging
 import re
 from collections import defaultdict, OrderedDict
+import pdb
+import sys
 
 from sklearn.feature_extraction.text import TfidfVectorizer, CountVectorizer
 from scipy.cluster.hierarchy import linkage
@@ -65,9 +67,6 @@ def select_random_samples(building, \
                 if len(sample_srcids) >= n:
                     break
     else:
-#        random_idx_list = random.sample(\
-#                            range(0,len(srcids)),n)
-#        sample_srcids = [labeled_srcid_list[i] for i in random_idx_list]
         sample_srcids = random.sample(srcids, n)
     return list(sample_srcids)
 
@@ -84,7 +83,7 @@ def bilou_tagset_phraser(sentence, token_labels):
     phrase_labels = list()
     curr_phrase = ''
     for i, (c, label) in enumerate(zip(sentence, token_labels)):
-        if label[2:] in ['right_identifier', 'left_identifier']:
+        if label[2:] in ['rightidentifier', 'leftidentifier']:
             continue
         tag = label[0]
         if tag=='B':
@@ -93,11 +92,11 @@ def bilou_tagset_phraser(sentence, token_labels):
                 phrase_labels.append(curr_phrase)
             curr_phrase = label[2:]
         elif tag == 'I':
-            if curr_phrase != label[2:]:
+            if curr_phrase != label[2:] and curr_phrase:
                 phrase_labels.append(curr_phrase)
                 curr_phrase = label[2:]
         elif tag == 'L':
-            if curr_phrase != label[2:]:
+            if curr_phrase != label[2:] and curr_phrase:
                 # Add if the previous label is different                    
                 phrase_labels.append(curr_phrase)
             # Add current label                                             
@@ -114,24 +113,24 @@ def bilou_tagset_phraser(sentence, token_labels):
             phrase_labels.append(label[2:])
         else:
             print('Tag is incorrect in: {0}.'.format(label))
-            try:
-                assert False
-            except:
+            pdb.set_trace()
+        if len(phrase_labels)>0:
+            if phrase_labels[-1] == '':
                 pdb.set_trace()
     if curr_phrase != '':
         phrase_labels.append(curr_phrase)
     phrase_labels = [leave_one_word(\
-                         leave_one_word(phrase_label, 'left_identifier'),\
-                            'right_identifier')\
+                         leave_one_word(phrase_label, 'leftidentifier'),\
+                            'rightidentifier')\
                         for phrase_label in phrase_labels]
     phrase_labels = list(reduce(adder, map(splitter, phrase_labels), []))
     return phrase_labels
 
-def make_phrase_dict(sentence_dict, token_label_dict, srcid_dict):
+def make_phrase_dict(sentence_dict, token_label_dict):
     #phrase_dict = OrderedDict()
     phrase_dict = dict()
-    for srcid, sentence in sentence_dict.items():
-        token_labels = token_label_dict[srcid]
+    for srcid, token_labels in token_label_dict.items():
+        sentence = sentence_dict[srcid]
         phrases = bilou_tagset_phraser(sentence, token_labels)
         remove_indices = list()
         for i, phrase in enumerate(phrases):
@@ -169,8 +168,92 @@ def hier_clustering(d, threshold=3):
     return OrderedDict(\
                sorted(cluster_dict.items(), key=value_lengther, reverse=True))
 
-logging.basicConfig(level=logging.INFO,
-                        format='%(asctime)s %(message)s')
+def set_logger(logfile=None):
+    logger = logging.getLogger()
+    logger.setLevel(logging.DEBUG)
+    formatter = logging.Formatter('%(asctime)s %(message)s')
+
+    # Console Handler
+    ch = logging.StreamHandler(stream=sys.stdout)
+    ch.setFormatter(formatter)
+    ch.setLevel(logging.DEBUG)
+    logger.addHandler(ch)
+
+    # File Handler
+    if logfile:
+        fh = logging.FileHandler(logfile, mode='w+')
+        fh.setFormatter(formatter)
+        fh.setLevel(logging.DEBUG)
+        logger.addHandler(fh)
+    return logger
+
 
 def parallel_func(orig_func, return_idx, return_dict, *args):
     return_dict[return_idx] = orig_func(*args)
+
+
+def iteration_wrapper(iter_num, func, prev_data=None, *params):
+    step_datas = list()
+    if not prev_data:
+        prev_data = {'iter_num':0,
+                     'learning_srcids': [],
+                     'model_uuid': None}
+    for i in range(0, iter_num):
+        step_data = func(prev_data, *params)
+        step_datas.append(step_data)
+        prev_data = step_data
+        prev_data['iter_num'] += 1
+    return step_datas
+
+
+def replace_num_or_special(word):
+    if re.match('\d+', word):
+        return 'NUMBER'
+    elif re.match('[a-zA-Z]+', word):
+        return word
+    else:
+        return 'SPECIAL'
+
+def adder(x, y):
+    return x + y
+
+
+def get_random_srcids(building_list, source_sample_num_list):
+    srcids = list()
+    for building, source_sample_num in zip(building_list, 
+                                           source_sample_num_list): 
+                                        #  Load raw sentences of a building
+        with open("metadata/%s_char_sentence_dict.json" % (building), 
+                      "r") as fp:
+            sentence_dict = json.load(fp)
+        sentence_dict = dict((srcid, [char for char in sentence]) 
+                             for (srcid, sentence) in sentence_dict.items())
+
+        # Load character label mappings.
+        with open('metadata/{0}_char_label_dict.json'.format(building), 
+                      'r') as fp:
+            label_dict = json.load(fp)
+
+        # Select learning samples.
+        # Learning samples can be chosen from the previous stage.
+        # Or randomly selected.
+        sample_srcid_list = select_random_samples(building, \
+                                                  label_dict.keys(), \
+                                                  source_sample_num, \
+                                                  use_cluster_flag=True)
+        srcids += sample_srcid_list
+    return srcids
+
+def get_cluster_dict(building):
+    cluster_filename = 'model/%s_word_clustering_justseparate.json' % \
+                           (building)
+    with open(cluster_filename, 'r') as fp:
+        cluster_dict = json.load(fp)
+    return cluster_dict
+
+def get_label_dict(building):
+    filename = 'metadata/%s_label_dict_justseparate.json' % \
+                           (building)
+    with open(filename, 'r') as fp:
+        data = json.load(fp)
+    return data

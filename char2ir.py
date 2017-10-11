@@ -77,11 +77,10 @@ from crfsharp import CRFSharp
 from common import *
 
 
-crf_package_name = 'crfsuite'
-#crf_package_name = 'crfsharp'
 crfsharp_other_postfixes = ['.alpha', '.feature', '.feature.raw_text']
 thread_num = 28
-logger = get_logger()
+crfsharp_maxiter = 20
+#logger = get_logger()
 
 
 def calc_features(sentence, building=None):
@@ -112,8 +111,9 @@ def learn_crf_model(building_list,
                     source_sample_num_list,
                     use_cluster_flag=False,
                     use_brick_flag=False,
-                    prev_step_data={
-                        'learning_srcids':[], #TODO: Make sure it includes newly added samples.
+                    crftype='crfsuite',
+                    step_data={
+                        'next_learning_srcids':[], #TODO: Make sure it includes newly added samples.
                         'iter_num':0,
                         'model_uuid': None
                     },
@@ -126,7 +126,7 @@ def learn_crf_model(building_list,
                                 This has to be aligned with building_list
         use_cluster_flag: whether to select samples heterogeneously or randomly
         use_brick_flag: whether to include brick tags in the sample.
-        prev_step_data: Previous step information for iteration.
+        step_data: Previous step information for iteration.
         oversample_flag: duplicate examples to overfit the model. Not used.
     """
     begin_time = arrow.get()
@@ -145,9 +145,9 @@ def learn_crf_model(building_list,
             .format(building_list[0], source_sample_num_list[0], \
                     'clustered' if use_cluster_flag else 'unclustered')
     
-    logger = get_logger(log_filename)
-    logger.info('{0}th Start learning CRF model'.format(\
-                                                prev_step_data['iter_num']))
+    #logger = get_logger(log_filename)
+    logger = logging.getLogger()
+    logger.info('{0}th Start learning CRF model'.format(step_data['iter_num']))
 
     ### TRAINING PHASE ###
     # Select samples
@@ -172,9 +172,10 @@ def learn_crf_model(building_list,
         # Select learning samples.
         # Learning samples can be chosen from the previous stage.
         # Or randomly selected.
-        if prev_step_data['learning_srcids']:
+        if step_data['next_learning_srcids']:
             sample_srcid_list = [srcid for srcid in one_sentence_dict.keys() \
-                                 if srcid in prev_step_data['learning_srcids']] # TODO: This seems to be "NOT if srcid in~~" Validate it.
+                                 if srcid in step_data['next_learning_srcids']] 
+                    # TODO: This seems to be "NOT if srcid in~~" Validate it.
         else:
             sample_srcid_list = select_random_samples(building, \
                                                       one_label_dict.keys(), \
@@ -201,12 +202,12 @@ def learn_crf_model(building_list,
         ## TODO: Add info extraction from target building if necessary?
 
 
-    if prev_step_data.get('learning_srcids_history'):
+    if step_data.get('learning_srcids_history'):
         # learning_srcids_history's last item is 
         # actually current learning srcids.
-        assert set(prev_step_data['learning_srcids_history'][-1]) == \
-                set(learning_srcids)
-        assert set(prev_step_data['learning_srcids']) == set(learning_srcids)
+        #assert set(step_data['learning_srcids_history'][-1]) == \
+        #        set(learning_srcids)
+        assert set(step_data['learning_srcids']) == set(learning_srcids)
 
 
     # Add Brick tags to the trainer. 
@@ -224,36 +225,40 @@ def learn_crf_model(building_list,
             char_tags = list(map(itemgetter(0), tag_labels))
             #char_labels = ['O'] + list(map(itemgetter(1), tag_labels)) + ['O']
             char_labels = list(map(itemgetter(1), tag_labels))
-            brick_sentence_dict[''.join(char_tags)] = char_tags
-            brick_label_dict[''.join(char_tags)] = char_labels
+            brick_sentence_dict[''.join(char_tags)] = char_tags + ['NEWLINE']
+            brick_label_dict[''.join(char_tags)] = char_labels + ['O']
             #trainer.append(pycrfsuite.ItemSequence(
             #    calc_features(char_tags, None)), char_labels)
     brick_srcids = list(brick_sentence_dict.keys())
     
     # Add samples to the trainer
-    if crf_package_name == 'crfsharp':
-        if prev_step_data['model_uuid']:
+    if crftype == 'crfsharp':
+        if step_data['model_uuid']:
             # If previous step contains model, retrain a model from it.
-            prev_model_uuid = prev_step_data['model_uuid']
-            prev_model_filename = './temp/model/' + prev_model_uuid + \
-                                        '.crfsharp.model'
-            prev_model = get_model({'uuid': prev_model_uuid})
-            load_crfsharp_model_files(prev_model, prev_model_filename)
-            curr_learning_srcids = prev_step_data['added_learning_srcids']
+            # TODO: Validate retrain generates same tags
+            #prev_model_uuid = step_data['model_uuid']
+            #prev_model_filename = './temp/model/' + prev_model_uuid + \
+            #                            '.crfsharp.model'
+            #prev_model = get_model({'uuid': prev_model_uuid})
+            #load_crfsharp_model_files(prev_model, prev_model_filename, crftype)
+            prev_model_filename = None
+            curr_learning_srcids = learning_srcids
         else:
             prev_model_filename = None
             curr_learning_srcids = learning_srcids
         trainer = CRFSharp(base_dir = './temp', \
                            template = './model/scrabble.template',
                            thread = thread_num,
-                           maxiter = 200,
+                           maxiter = crfsharp_maxiter,
                            nbest = 1)
-        sentences = [sentence_dict[srcid] for srcid in curr_learning_srcids]
-        labels = [label_dict[srcid] for srcid in curr_learning_srcids]
+        sentences = [sentence_dict[srcid] for srcid in curr_learning_srcids] #+\
+                        #[brick_sentence_dict[srcid] for srcid in brick_srcids]
+        labels = [label_dict[srcid] for srcid in curr_learning_srcids] #+ \
+                     #[brick_label_dict[srcid] for srcid in brick_srcids]
         if use_brick_flag and not prev_model_filename:
             prev_model_filename = 'model/brick_crfsharp.model'
         crf_model_file = trainer.encode(sentences, labels, prev_model_filename)
-    elif crf_package_name == 'crfsuite':
+    elif crftype == 'crfsuite':
         # Init CRFSuite
         algo = 'ap'
         trainer = pycrfsuite.Trainer(verbose=False, algorithm=algo)
@@ -274,10 +279,10 @@ def learn_crf_model(building_list,
             trainer.append(pycrfsuite.ItemSequence(
                 calc_features(sentence, None)), labels)
         crf_model_file = 'temp/{0}.{1}.model'.format(gen_uuid(), \
-                                                     crf_package_name)
+                                                     crftype)
         trainer.train(crf_model_file)
     else:
-        raise Exception('Not existing crf package name: ' + crf_package_name)
+        raise Exception('Not existing crf package name: ' + crftype)
         
 
     # Train and store the model file
@@ -292,9 +297,9 @@ def learn_crf_model(building_list,
         'source_building_count': len(building_list),
         'learning_srcids': sorted(learning_srcids),
         'uuid': model_uuid,
-        'crf_package_name': crf_package_name
+        'crftype': crftype
     }
-    if crf_package_name == 'crfsharp':
+    if crftype == 'crfsharp':
         for postfix in crfsharp_other_postfixes:
             with open(crf_model_file + postfix, 'rb') as fp:
                 model_bin = fp.read()
@@ -313,6 +318,7 @@ def crf_test(building_list,
              target_building,
              use_cluster_flag=False,
              use_brick_flag=False,
+             crftype='crfsuite',
              learning_srcids=[],
              model_uuid=None
             ):
@@ -328,7 +334,7 @@ def crf_test(building_list,
         model_query = {'uuid': model_uuid}
     else: 
         model_query = {'$and':[]}
-        model_query['$and'].append({'crf_package_name': crf_package_name})
+        model_query['$and'].append({'crftype': crftype})
         model_metadata = {
             'use_cluster_flag': use_cluster_flag,
             'source_building_count': len(building_list),
@@ -377,7 +383,8 @@ def crf_test(building_list,
                     target_building,
                     source_sample_num, 
                     'clustered' if use_cluster_flag else 'unclustered')
-    logger = get_logger(log_filename)
+    logger = logging.getLogger()
+    #logger = get_logger(log_filename)
     logger.info("Started!!!")
 
     with open('metadata/{0}_char_label_dict.json'\
@@ -402,7 +409,7 @@ def crf_test(building_list,
     
     # Store model file read from MongoDB to read from tagger.
     begin_time = arrow.get()
-    predicted_dict, score_dict = predict_func(model, sentence_dict)
+    predicted_dict, score_dict = predict_func(model, sentence_dict, crftype)
     end_time = arrow.get()
     logger.info('tagging took: ' + str(end_time - begin_time))
 
@@ -411,7 +418,10 @@ def crf_test(building_list,
     totalWordCount = 0
     error_rate_dict = dict()
 
-    for srcid, sentence_label in target_label_dict.items():
+    # TODO: Validate working
+    #for srcid, sentence_label in target_label_dict.items():
+    for srcid, score in sorted(score_dict.items(), key=itemgetter(1)):
+        sentence_label = target_label_dict[srcid]
         sentence = sentence_dict[srcid]
         predicted = predicted_dict[srcid]
         printing_pairs = list()
@@ -478,23 +488,37 @@ def crf_test(building_list,
     error_rate_list = [error_rate_list[i] for i in i_list]
     trendline = np.polyfit(score_list, error_rate_list, 1)
     p = np.poly1d(trendline)
-    #plt.scatter(score_list, error_rate_list, alpha=0.3)
-    #plt.plot(score_list, p(score_list), "r--")
-    #save_fig(plt.gcf(), error_plot_file)
+
+    # Construct output data
+    pred_phrase_dict = make_phrase_dict(sentence_dict, predicted_dict)
     step_data = {
         'learning_srcids': learning_srcids,
-        'result': resulter.get_summary()
+        'result': {
+            'crf': resulter.get_summary()
+        },
+        'phrase_dict': pred_phrase_dict
     }
+    for k, v in result_metadata.items():
+        if k in ['_id', 'model_binary', 'gen_time', 'model_binary_alpha', 
+                 'model_binary_feature', 'model_binary_feature_raw_text']:
+            continue
+        step_data[k] = v
     return step_data
 
 
 def query_active_learning_samples(prev_learning_srcids,
                                   target_building,
-                                  model_uuid):
+                                  model_uuid,
+                                  crftype='crfsuite'):
 
+    logger = logging.getLogger()
     # Load ground truth
     with open('metadata/{0}_char_label_dict.json'.format(target_building), 'r') as fp:
         label_dict = json.load(fp)
+    with open('metadata/{0}_label_dict_justseparate.json'
+                  .format(target_building), 
+              'r') as fp:
+        phrase_label_dict = json.load(fp)
     with open('metadata/{0}_char_sentence_dict.json'\
                 .format(target_building), 'r') as fp:
         raw_sentence_dict = json.load(fp)
@@ -511,23 +535,22 @@ def query_active_learning_samples(prev_learning_srcids,
 
 
     # Predict CRF
-    predicted_dict, score_dict = predict_func(model, sentence_dict)
-    for srcid, score in score_dict.items():
-        # Normalize with length
-        score_dict[srcid] = np.log(score) / len(sentence_dict[srcid])
-    sorted_scores = sorted(score_dict.items(), key=itemgetter(1))
-
+    predicted_dict, score_dict = predict_func(model, sentence_dict, crftype)
+    query_strategy = 'confidence'
+    if query_strategy == 'confidence':
+        for srcid, score in score_dict.items():
+            # Normalize with length
+            score_dict[srcid] = np.log(score) / len(sentence_dict[srcid])
+        sorted_scores = sorted(score_dict.items(), key=itemgetter(1))
+    else:
+        assert False
 
     # Query new srcids for active learning
 
     ### load word clusters not to select too similar samples.
-    cluster_filename = 'model/%s_word_clustering_justseparate.json' % \
-                           (target_building)
-    with open(cluster_filename, 'r') as fp:
-        cluster_dict = json.load(fp)
+    cluster_dict = get_cluster_dict(target_building)
         
     added_cids = []
-
     new_srcids = []
     new_srcid_num = 5
     new_srcid_cnt = 0
@@ -559,6 +582,8 @@ def query_active_learning_samples(prev_learning_srcids,
     low_score_srcids = []
     avg_score = np.mean(list(score_dict.values()))
     for srcid in prev_learning_srcids:
+        if srcid not in label_dict.keys():
+            continue
         # Find corresponding cluster
         for cid, cluster in cluster_dict.items():
             if srcid in cluster:
@@ -585,15 +610,6 @@ def query_active_learning_samples(prev_learning_srcids,
                 subscore_dict[sid] = score_dict[sid]
     print(subscore_dict)
         
-    
-    ### Check if known srcid covers corresponding clusters based on accuracy
-    with open('metadata/{0}_label_dict_justseparate.json'
-                  .format(target_building), 
-              'r') as fp:
-        phrase_label_dict = json.load(fp)
-    for srcid in prev_learning_srcids:
-        for cid, cluster in cluster_dict.items():
-            pass
 
     ### Check if known words are correctly inferred.
     pred_phrase_dict = make_phrase_dict(sentence_dict, predicted_dict)
@@ -602,7 +618,12 @@ def query_active_learning_samples(prev_learning_srcids,
     splitter = lambda s: s.split('_')
     adder = lambda x,y: x + y
     for srcid in prev_learning_srcids:
-        sentence = ''.join(sentence_dict[srcid])
+        if srcid not in label_dict.keys():
+            continue
+        try:
+            sentence = ''.join(sentence_dict[srcid])
+        except:
+            pdb.set_trace()
         pred_phrases = pred_phrase_dict[srcid]
         true_phrases = [phrase for phrase in phrase_label_dict[srcid] \
                         if phrase not in ['leftidentifier',
@@ -623,9 +644,6 @@ def query_active_learning_samples(prev_learning_srcids,
     avg_score = tot_score / cnt
         
         
-
-
-
     ### Finding words known and unknown.
     with open('metadata/{0}_sentence_dict_justseparate.json'\
                   .format(target_building), 'r') as fp:
@@ -665,35 +683,21 @@ def char2ir_onestep(step_data,
                     target_building,
                     use_cluster_flag=False,
                     use_brick_flag=False,
-                    gen_next_step=True):
+                    crftype='crfsuite'):
+    #                gen_next_step=True): TODO: Validate this
+    step_data = deepcopy(step_data)
     begin_time = arrow.get()
-    if not step_data['learning_srcids']:
-        learning_srcids = list()
-        for building, source_sample_num in zip(building_list, 
-                                               source_sample_num_list): #  Load raw sentences of a building
-            with open("metadata/%s_char_sentence_dict.json" % (building), "r") as fp:
-                sentence_dict = json.load(fp)
-            sentence_dict = dict((srcid, [char for char in sentence]) for (srcid, sentence) in sentence_dict.items())
 
-            # Load character label mappings.
-            with open('metadata/{0}_char_label_dict.json'.format(building), 'r') as fp:
-                label_dict = json.load(fp)
-
-            # Select learning samples.
-            # Learning samples can be chosen from the previous stage.
-            # Or randomly selected.
-            sample_srcid_list = select_random_samples(building, \
-                                                      label_dict.keys(), \
-                                                      source_sample_num, \
-                                                      use_cluster_flag)
-            learning_srcids += sample_srcid_list
-        step_data['learning_srcids'] = learning_srcids
+    assert step_data.get('next_learning_srcids')
+    learning_srcids = step_data['next_learning_srcids']
+    
 
     # Learn Model
     model_uuid = learn_crf_model(building_list,
                     source_sample_num_list,
                     use_cluster_flag,
                     use_brick_flag,
+                    crftype,
                     step_data,
                     False # Oversample Flag,
                    )
@@ -704,59 +708,56 @@ def char2ir_onestep(step_data,
                    target_building,
                    use_cluster_flag,
                    use_brick_flag,
-                   learning_srcids=step_data['learning_srcids'],
+                   crftype,
+                   learning_srcids,
                    model_uuid=model_uuid
                   )
 
     # Ask query for active learning
     new_learning_srcids = query_active_learning_samples(
-        step_data['learning_srcids'], 
-        target_building,
-        model_uuid
-    )
-    """
-    next_step_data = {
-        'iter_num': step_data['iter_num'] + 1,
-        'learning_srcids': learning_srcids
-    }
-    """
-    next_step_data['iter_num'] = step_data['iter_num'] + 1
-    next_step_data['learning_srcids'] = new_learning_srcids
-    next_step_data['added_learning_srcids'] = [srcid for srcid \
-                                             in new_learning_srcids
-                                             if srcid not in 
-                                             step_data['learning_srcids']]
+                              learning_srcids, 
+                              target_building,
+                              model_uuid,
+                              crftype)
+    #next_step_data['iter_num'] = step_data['iter_num'] + 1
+    next_step_data['learning_srcids'] = learning_srcids
+    next_step_data['next_learning_srcids'] = new_learning_srcids
+    next_step_data['added_learning_srcids'] = [srcid for srcid
+                                               in new_learning_srcids
+                                               if srcid not in 
+                                               learning_srcids]
     next_step_data['model_uuid'] = model_uuid
+    next_step_data['iter_num'] = step_data['iter_num']
     end_time = arrow.get()
     print('An interation took: ', end_time - begin_time)
 
     return next_step_data 
 
-def load_crfsharp_model_files(model, filename):
+def load_crfsharp_model_files(model, filename, crftype):
     crf_model_file = filename
     with open(crf_model_file, 'wb') as fp:
         fp.write(model['model_binary'])
-    if crf_package_name == 'crfsharp':
+    if crftype == 'crfsharp':
         for postfix in crfsharp_other_postfixes:
             with open(crf_model_file + postfix, 'wb') as fp:
                 fp.write(model['model_binary' + postfix.replace('.','_')])
 
-def predict_func(model, sentence_dict):
-    crf_model_file = 'temp/{0}.{1}.model'.format(gen_uuid(), crf_package_name)
+def predict_func(model, sentence_dict, crftype):
+    crf_model_file = 'temp/{0}.{1}.model'.format(gen_uuid(), crftype)
     """
     with open(crf_model_file, 'wb') as fp:
         fp.write(model['model_binary'])
-    if crf_package_name == 'crfsharp':
+    if crftype == 'crfsharp':
         for postfix in crfsharp_other_postfixes:
             with open(crf_model_file + postfix, 'wb') as fp:
                 fp.write(model['model_binary' + postfix.replace('.','_')])
     """
-    load_crfsharp_model_files(model, crf_model_file)
+    load_crfsharp_model_files(model, crf_model_file, crftype)
 
     predicted_dict = dict()
     score_dict = dict()
     begin_time = arrow.get()
-    if crf_package_name == 'crfsuite':
+    if crftype == 'crfsuite':
         # Init tagger
         tagger = pycrfsuite.Tagger()
         tagger.open(crf_model_file)
@@ -766,13 +767,13 @@ def predict_func(model, sentence_dict):
             predicted = tagger.tag(calc_features(sentence))
             predicted_dict[srcid] = predicted
             score_dict[srcid] = tagger.probability(predicted)
-    elif crf_package_name ==  'crfsharp':
+    elif crftype ==  'crfsharp':
         tagger = CRFSharp(base_dir = './temp', \
                            template = './model/scrabble.template',
-                           thread = thread_num * 2,
+                           thread = thread_num,
                            nbest = 1,
                            modelfile = crf_model_file,
-                           maxiter=100
+                           maxiter=crfsharp_maxiter
                            )
         srcids = list(sentence_dict.keys())
         sentences = [sentence_dict[srcid] for srcid in srcids]
@@ -784,7 +785,7 @@ def predict_func(model, sentence_dict):
     return predicted_dict, score_dict
     
 
-def char2ir_iteration(iter_num, custom_postfix='', crftype='crfsuite', *args):
+def char2ir_iteration(iter_num, custom_postfix='', *args):
     """
     args: 
         building_list,
@@ -792,20 +793,27 @@ def char2ir_iteration(iter_num, custom_postfix='', crftype='crfsuite', *args):
         target_building,
         use_cluster_flag=False,
         use_brick_flag=False,
+        crftype='crfsuite'
         learning_srcids=[]):
     """
-    global crf_package_name
+    logfilename = 'logs/char2ir_iter_{0}.log'.format(custom_postfix)
+    set_logger(logfilename)
     begin_time = arrow.get()
-    crf_package_name = crftype
-
-    step_datas = iteration_wrapper(iter_num, char2ir_onestep, *args)
+    building_list = args[0]
+    source_sample_num_list = args[1]
+    prev_data = {'iter_num':0,
+                 'next_learning_srcids': get_random_srcids(
+                                        building_list,
+                                        source_sample_num_list),
+                 'model_uuid': None}
+    step_datas = iteration_wrapper(iter_num, char2ir_onestep, prev_data, *args)
 
     building_list = args[0]
     target_building = args[2]
     postfix = 'char2ir_iter' 
     if custom_postfix:
         postfix += '_' + custom_postfix
-    with open('result/crf_entity_iter_{0}_{1}.json'\
+    with open('result/crf_iter_{0}_{1}.json'\
             .format(''.join(building_list+[target_building]), postfix), 'w') as fp:
         json.dump(step_datas, fp, indent=2)
     end_time = arrow.get()
@@ -855,7 +863,7 @@ def brick_crfsharp_pretrain():
     trainer = CRFSharp(base_dir = './temp', \
                        template = './model/scrabble.template',
                        thread = thread_num,
-                       maxiter = 100,
+                       maxiter = crfsharp_maxiter,
                        nbest = 1)
     sentences = [brick_sentence_dict[srcid] for srcid in brick_srcids] + \
                     building_sentences
