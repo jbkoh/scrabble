@@ -27,6 +27,7 @@ from sklearn.preprocessing import MultiLabelBinarizer
 from sklearn.neural_network import MLPClassifier
 from scipy.cluster.hierarchy import linkage
 import scipy.cluster.hierarchy as hier
+from scipy.stats import entropy as get_entropy
 from sklearn.naive_bayes import GaussianNB
 from sklearn.gaussian_process import GaussianProcessClassifier
 from sklearn.discriminant_analysis import QuadraticDiscriminantAnalysis
@@ -144,6 +145,7 @@ def entity_recognition_from_ground_truth(building_list,
                                          ts_flag=False,
                                          negative_flag=True,
                                          n_jobs=4,
+                                         inc_num=10,
                                          prev_step_data={
                                              'learning_srcids':[],
                                              'iter_cnt':0,
@@ -347,20 +349,23 @@ def entity_recognition_from_ground_truth(building_list,
         brick_srcids = list(brick_phrase_dict.keys())
         brick_pred_tagsets_dict, \
         brick_pred_certainty_dict, \
-        brick_pred_point_dict = \
-                tagsets_prediction(tagset_classifier, tagset_vectorizer, \
-                                   tagset_binarizer, \
-                                   brick_phrase_dict, \
-                                   list(brick_phrase_dict.keys()),\
-                                   source_target_buildings,\
-                                   eda_flag,\
-                                   point_classifier\
+        brick_pred_point_dict, \
+        _ =                 tagsets_prediction(
+                                   tagset_classifier, 
+                                   tagset_vectorizer,
+                                   tagset_binarizer,
+                                   brick_phrase_dict,
+                                   list(brick_phrase_dict.keys()),
+                                   source_target_buildings,
+                                   eda_flag,
+                                   point_classifier
                                   )
 
     ### Test on the learning samples
     learning_pred_tagsets_dict, \
     learning_pred_certainty_dict, \
-    learning_pred_point_dict = tagsets_prediction(\
+    learning_pred_point_dict, \
+    _                     = tagsets_prediction(\
                                 tagset_classifier, \
                                 tagset_vectorizer, \
                                 tagset_binarizer, \
@@ -372,14 +377,14 @@ def entity_recognition_from_ground_truth(building_list,
                                 ts2ir)
     eval_learning_srcids = deepcopy(learning_srcids)
     random.shuffle(eval_learning_srcids)
-    learning_result_dict = tagsets_evaluation(learning_truths_dict,\
-                                              learning_pred_tagsets_dict,\
-                                              learning_pred_certainty_dict,\
-                                              eval_learning_srcids,\
-                                              learning_pred_point_dict,\
-                                              phrase_dict,\
-                                              debug_flag,\
-                                              tagset_classifier,\
+    learning_result_dict = tagsets_evaluation(learning_truths_dict,
+                                              learning_pred_tagsets_dict,
+                                              learning_pred_certainty_dict,
+                                              eval_learning_srcids,
+                                              learning_pred_point_dict,
+                                              phrase_dict,
+                                              debug_flag,
+                                              tagset_classifier,
                                               tagset_vectorizer)
 
     ### Test on the entire target building
@@ -391,7 +396,8 @@ def entity_recognition_from_ground_truth(building_list,
     _                   = get_building_data(target_building, target_srcids)
     target_pred_tagsets_dict, \
     target_pred_certainty_dict, \
-    target_pred_point_dict = tagsets_prediction(\
+    target_pred_point_dict, \
+    target_prob_mat = tagsets_prediction(\
                                 tagset_classifier, \
                                 tagset_vectorizer, \
                                 tagset_binarizer, \
@@ -502,28 +508,66 @@ def entity_recognition_from_ground_truth(building_list,
           .format(next_step_data['macro_f1_history']))
 
     ###### Post processing to select next step learning srcids
-    phrase_usages = list(target_result_dict['phrase_usage'].values())
-    mean_usage_rate = np.mean(phrase_usages)
-    std_usage_rate = np.std(phrase_usages)
-    # Select underexploited sentences.
-    threshold = mean_usage_rate - std_usage_rate
-    todo_sentence_dict = dict((srcid, alpha_tokenizer(''.join(\
-                                                test_sentence_dict[srcid]))) \
-                              for srcid, usage_rate \
-                              in target_result_dict['phrase_usage'].items() \
-                              if usage_rate<threshold and srcid in test_srcids)
-    try:
-        cluster_srcid_dict = hier_clustering(todo_sentence_dict, threshold=2)
-    except:
-        cluster_srcid_dict = hier_clustering(test_sentence_dict, threshold=2)
-    todo_srcids = select_random_samples(target_building, \
-                          list(todo_sentence_dict.keys()),
-                          min(inc_num, len(todo_sentence_dict)), \
-                          use_cluster_flag,\
-                          reverse=True,
-                          cluster_dict=cluster_srcid_dict,
-                          shuffle_flag=False
-                         )
+    query_strategy = 'phrase_util'
+    """
+    if query_strategy == 'util':
+        phrase_usages = list(target_result_dict['phrase_usage'].values())
+        mean_usage_rate = np.mean(phrase_usages)
+        std_usage_rate = np.std(phrase_usages)
+        # Select underexploited sentences.
+        threshold = mean_usage_rate - std_usage_rate
+        todo_sentence_dict = dict((srcid, alpha_tokenizer(''.join(\
+                                                    test_sentence_dict[srcid]))) \
+                                  for srcid, usage_rate \
+                                  in target_result_dict['phrase_usage'].items() \
+                                  if usage_rate<threshold and srcid in test_srcids)
+        try:
+            cluster_srcid_dict = hier_clustering(todo_sentence_dict, threshold=2)
+        except:
+            cluster_srcid_dict = hier_clustering(test_sentence_dict, threshold=2)
+        todo_srcids = select_random_samples(target_building, \
+                              list(todo_sentence_dict.keys()),
+                              min(inc_num, len(todo_sentence_dict)), \
+                              use_cluster_flag,\
+                              reverse=True,
+                              cluster_dict=cluster_srcid_dict,
+                              shuffle_flag=False
+                             )
+    """
+    if query_strategy == 'phrase_util':
+        todo_srcids = ir2tagset_al_query_samples_phrase_util(
+                            test_srcids,
+                            target_building,
+                            test_sentence_dict,
+                            test_phrase_dict,
+                            target_pred_tagsets_dict,
+                            inc_num)
+    elif query_strategy == 'entropy':
+        entropies = get_entropy(target_prob_mat.T)
+        sorted_entropies = sorted([(target_srcids[i], ent) for i, ent 
+                                   in enumerate(entropies)], key=itemgetter(1))
+        cluster_dict = get_cluster_dict(target_building)
+        added_cids = []
+        todo_srcids = []
+        new_srcid_cnt = 0
+        for srcid, ent in sorted_entropies:
+            if srcid in learning_srcids:
+                continue
+            the_cid = None
+            for cid, cluster in cluster_dict.items():
+                if srcid in cluster:
+                    the_cid = cid
+                    break
+            if the_cid in added_cids:
+                continue
+            added_cids.append(the_cid)
+            todo_srcids.append(srcid)
+            new_srcid_cnt += 1
+            if new_srcid_cnt == inc_num:
+                break
+    else:
+        assert False
+
     tot_todo_tagsets =  Counter(reduce(adder, [test_truths_dict[srcid] \
                                                for srcid in todo_srcids], []))
     correct_todo_srcids = list()
@@ -670,6 +714,7 @@ def entity_recognition_iteration(iter_num, *args):
                               ts_flag = args[7], \
                               negative_flag = args[8],
                               n_jobs = args[9],\
+                              inc_num = args[10],\
                               prev_step_data = step_data
                             )
         step_datas.append(deepcopy(step_data))
@@ -1345,6 +1390,7 @@ def tagsets_prediction(classifier, vectorizer, binarizer, \
     tagsets_dict = dict()
     logging.info('Start Tagset prediction')
     pred_mat = classifier.predict(vect_doc)
+    prob_mat = classifier.predict_proba(vect_doc)
     logging.info('Finished Tagset prediction')
     if not isinstance(pred_mat, np.ndarray):
         try:
@@ -1352,9 +1398,7 @@ def tagsets_prediction(classifier, vectorizer, binarizer, \
         except:
             pred_mat = np.asarray(pred_mat)
     logging.info('Start point prediction')
-    #point_mat = point_classifier.predict(vect_doc)
     logging.info('Finished point prediction')
-    #prob_mat = classifier.predict_proba(vect_doc)
     pred_tagsets_dict = dict()
     pred_certainty_dict = dict()
     pred_point_dict = dict()
@@ -1371,7 +1415,7 @@ def tagsets_prediction(classifier, vectorizer, binarizer, \
     pred_certainty_dict = OrderedDict(sorted(pred_certainty_dict.items(), \
                                              key=itemgetter(1), reverse=True))
     logging.info('Finished prediction')
-    return pred_tagsets_dict, pred_certainty_dict, pred_point_dict
+    return pred_tagsets_dict, pred_certainty_dict, pred_point_dict, prob_mat
 
 
 def tagsets_evaluation(truths_dict, pred_tagsets_dict, pred_certainty_dict,\
@@ -1854,7 +1898,44 @@ def determine_used_tokens_multiple(sentence_dict, token_label_dict, \
                                         tagsets_dict[srcid])
     return token_usage_dict
 
-def ir2tagset_query_active_learning_samples_util(learning_srcids,
+def ir2tagset_al_query_samples_phrase_util(test_srcids,
+                                           building,
+                                           sentence_dict,
+                                           pred_phrase_dict,
+                                           pred_tagsets_dict,
+                                           inc_num,
+                                           learning_srcids=[]):
+    phrase_usage_dict = {}
+    for srcid in test_srcids:
+        if srcid in learning_srcids:
+            continue
+        pred_tagsets = pred_tagsets_dict[srcid]
+        phrase_usage_dict[srcid] = determine_used_phrases(
+                                       pred_phrase_dict[srcid],
+                                       pred_tagsets)
+
+    phrase_usages = list(phrase_usage_dict.values())
+    mean_usage_rate = np.mean(phrase_usages)
+    std_usage_rate = np.std(phrase_usages)
+    # Select underexploited sentences.
+    threshold = mean_usage_rate - std_usage_rate
+    todo_sentence_dict = dict((srcid, alpha_tokenizer(''.join(
+                               sentence_dict[srcid])))
+                               for srcid, usage_rate
+                               in phrase_usage_dict.items()
+                               if usage_rate < threshold and srcid in test_srcids)
+    cluster_dict = get_cluster_dict(building)
+    todo_srcids = select_random_samples(building, \
+                          list(todo_sentence_dict.keys()),
+                          min(inc_num, len(todo_sentence_dict)), \
+                          True,\
+                          reverse=True,
+                          cluster_dict=cluster_dict,
+                          shuffle_flag=False
+                         )
+    return todo_srcids
+
+def ir2tagset_al_query_samples_token_util(learning_srcids,
                                                  building,
                                                  sentence_dict,
                                                  token_label_dict,
@@ -1887,6 +1968,36 @@ def ir2tagset_query_active_learning_samples_util(learning_srcids,
                           cluster_dict=get_cluster_dict(building),
                           shuffle_flag=False
                          )
+    return todo_srcids
+
+def ir2tagset_al_query_entropy(target_prob_mat, 
+                               target_srcids, 
+                               learning_srcids,
+                               target_building,
+                               inc_num
+                               ):
+    entropies = get_entropy(target_prob_mat.T)
+    sorted_entropies = sorted([(target_srcids[i], ent) for i, ent 
+                               in enumerate(entropies)], key=itemgetter(1))
+    cluster_dict = get_cluster_dict(target_building)
+    added_cids = []
+    todo_srcids = []
+    new_srcid_cnt = 0
+    for srcid, ent in sorted_entropies:
+        if srcid in learning_srcids:
+            continue
+        the_cid = None
+        for cid, cluster in cluster_dict.items():
+            if srcid in cluster:
+                the_cid = cid
+                break
+        if the_cid in added_cids:
+            continue
+        added_cids.append(the_cid)
+        todo_srcids.append(srcid)
+        new_srcid_cnt += 1
+        if new_srcid_cnt == inc_num:
+            break
     return todo_srcids
 
 
@@ -1966,11 +2077,11 @@ def ir2tagset_onestep(step_data,
                      negative_flag = True,
                      debug_flag=False,
                      n_jobs=4,
-                     ts_flag=False):
-                    #TODO: Add inc_num
+                     ts_flag=False,
+                     inc_num=5,
+                     query_strategy='phrase_util'):
     
     step_data['learning_srcids'] = step_data['next_learning_srcids']
-    pdb.set_trace()
 
     global tagset_list
     global total_srcid_dict
@@ -2033,7 +2144,8 @@ def ir2tagset_onestep(step_data,
     # Infer Tagsets based on the above model.
     crf_pred_tagsets_dict, \
     crf_pred_certainty_dict, \
-    crf_pred_point_dict = tagsets_prediction(\
+    crf_pred_point_dict,\
+    target_prob_mat          = tagsets_prediction(\
                                    classifier, vectorizer, \
                                    binarizer, crf_phrase_dict, \
                                    crf_srcids, source_target_buildings,
@@ -2055,18 +2167,32 @@ def ir2tagset_onestep(step_data,
                        crf_pred_certainty_dict, crf_srcids,
                        crf_pred_point_dict, crf_phrase_dict, debug_flag)
 
-    query_strategy = 'util'
-    if query_strategy == 'util':
-        new_srcids = ir2tagset_query_active_learning_samples_util(
+    #query_strategy = 'entropy'
+    if query_strategy == 'token_util' and False:
+        new_srcids = ir2tagset_al_query_samples_token_util(
                          learning_srcids,
                          target_building,
                          crf_sentence_dict,
                          crf_token_label_dict,
                          crf_pred_tagsets_dict,
-                         5) #TODO: Add inc_num var
+                         inc_num)
         step_data['next_learning_srcids'] += new_srcids
-
-
+    elif query_strategy == 'phrase_util':
+        new_srcids = ir2tagset_al_query_samples_phrase_util(
+                            crf_srcids,
+                            target_building,
+                            crf_sentence_dict,
+                            crf_phrase_dict,
+                            crf_pred_tagsets_dict,
+                            inc_num,
+                            learning_srcids)
+    elif query_strategy == 'entropy':
+        new_srcids = ir2tagset_al_query_entropy(
+                         target_prob_mat, 
+                         crf_srcids, 
+                         learning_srcids,
+                         target_building,
+                         inc_num)
 
     # Select srcids to ask for the next step
 

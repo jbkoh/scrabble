@@ -3,7 +3,8 @@ import pdb
 
 from common import *
 from char2ir import crf_test, learn_crf_model, char2ir_iteration
-from ir2tagsets import entity_recognition_from_ground_truth_get_avg, entity_recognition_iteration, crf_entity_recognition_iteration
+from ir2tagsets import entity_recognition_from_ground_truth_get_avg, entity_recognition_iteration, crf_entity_recognition_iteration, ir2tagset_iteration
+from char2tagset import char2tagset_iteration
 
 def str2bool(v):
     if v in ['true', 'True']:
@@ -109,6 +110,11 @@ if __name__=='__main__':
                         help='Number of processes for multiprocessing',
                         dest='n_jobs',
                         default=4)
+    parser.add_argument('-inc',
+                        type=int,
+                        help='Inc num in each strage',
+                        dest='inc_num',
+                        default=10)
     parser.add_argument('-ct',
                         type=str,
                         help='Tagset classifier type. one of RandomForest, \
@@ -134,6 +140,17 @@ if __name__=='__main__':
                         help='postfix of result filename',
                         default='0',
                         dest = 'postfix')
+    parser.add_argument('-crf_qs', 
+                        type=str,
+                        help='Query strategy for CRF',
+                        default='confidence',
+                        dest = 'crfqs')
+    parser.add_argument('-entity_qs',
+                        type=str,
+                        help='Query strategy for CRF',
+                        default='phrase_util',
+                        dest = 'entityqs')
+                        
 
     args = parser.parse_args()
 
@@ -143,7 +160,8 @@ if __name__=='__main__':
         learn_crf_model(building_list=args.source_building_list,
                         source_sample_num_list=args.sample_num_list,
                         use_cluster_flag=args.use_cluster_flag,
-                        use_brick_flag=args.use_brick_flag)
+                        use_brick_flag=args.use_brick_flag,
+                        crftype=args.crftype)
     elif args.prog == 'predict_crf':
         crf_test(building_list=args.source_building_list,
                  source_sample_num_list=args.sample_num_list,
@@ -156,9 +174,11 @@ if __name__=='__main__':
                   args.target_building,
                   args.use_cluster_flag,
                   args.use_brick_flag,
+                  args.crftype,
+                  args.inc_num
 #                  args.n_jobs)
                  )
-        char2ir_iteration(args.iter_num, args.postfix, args.crftype, *params)
+        char2ir_iteration(args.iter_num, args.postfix, *params)
 
 
     elif args.prog == 'entity':
@@ -173,8 +193,22 @@ if __name__=='__main__':
                                          args.eda_flag,
                                          args.ts_flag,
                                          args.negative_flag,
-                                         args.n_jobs
+                                         args.n_jobs,
+                                         args.inc_num
                                         )
+            """
+            params = (args.source_building_list,
+                      args.sample_num_list,
+                      args.target_building,
+                      args.use_cluster_flag,
+                      args.use_brick_flag,
+                      args.eda_flag,
+                      args.negative_flag,
+                      args.debug_flag,
+                      args.n_jobs,
+                      args.ts_flag)
+            ir2tagset_iteration(args.iter_num, args.postfix, *params)
+            """
         elif args.avgnum>1:
             entity_recognition_from_ground_truth_get_avg(args.avgnum,
                 building_list=args.source_building_list,
@@ -188,6 +222,7 @@ if __name__=='__main__':
                 n_jobs=args.n_jobs,
                 worker_num=args.worker_num)
     elif args.prog == 'crf_entity':
+        """
         params = (args.source_building_list,
                   args.sample_num_list,
                   args.target_building,
@@ -199,20 +234,20 @@ if __name__=='__main__':
                   args.n_jobs,
                   args.ts_flag)
         crf_entity_recognition_iteration(args.iter_num, args.postfix, *params)
-
         """
-        entity_recognition_from_crf(\
-                building_list=args.source_building_list,\
-                source_sample_num_list=args.sample_num_list,\
-                target_building=args.target_building,\
-                token_type='justseparate',\
-                label_type=args.label_type,\
-                use_cluster_flag=args.use_cluster_flag,\
-                use_brick_flag=args.use_brick_flag,\
-                eda_flag=args.eda_flag,
-                debug_flag=args.debug_flag,
-                n_jobs=args.n_jobs)
-        """
+        params = (args.source_building_list,
+                  args.sample_num_list,
+                  args.target_building,
+                  args.use_cluster_flag,
+                  args.use_brick_flag,
+                  args.crftype,
+                  args.eda_flag,
+                  args.negative_flag,
+                  args.debug_flag,
+                  args.n_jobs,
+                  args.ts_flag,
+                  args.inc_num)
+        char2tagset_iteration(args.iter_num, args.postfix, *params)
     elif args.prog == 'result':
         assert args.exp_type in ['crf', 'entity', 'crf_entity', 'entity_iter',
                                  'etc', 'entity_ts', 'cls']

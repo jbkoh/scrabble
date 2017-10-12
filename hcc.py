@@ -250,9 +250,18 @@ class StructuredClassifierChain():
             except:
                 pred_y = np.zeros(augmented_X.shape[0])
             Y[:, i] = pred_y
-        Y = self._distill_Y(Y)
+
+        if not self.prob_flag:
+            Y = self._distill_Y(Y)
+            
         logging.info('Finished predicting')
         return Y
+
+    def predict_proba(self, X):
+        self.prob_flag = True
+        prob = self.predict(X)
+        self.prob_flag = False
+        return prob
 
     def _distill_Y(self, Y):
         logging.info('Start distilling')

@@ -509,7 +509,9 @@ def crf_test(building_list,
 def query_active_learning_samples(prev_learning_srcids,
                                   target_building,
                                   model_uuid,
-                                  crftype='crfsuite'):
+                                  crftype='crfsuite',
+                                  inc_num=10,
+                                  query_strategy='confidence'):
 
     logger = logging.getLogger()
     # Load ground truth
@@ -536,7 +538,7 @@ def query_active_learning_samples(prev_learning_srcids,
 
     # Predict CRF
     predicted_dict, score_dict = predict_func(model, sentence_dict, crftype)
-    query_strategy = 'confidence'
+    #query_strategy = 'confidence'
     if query_strategy == 'confidence':
         for srcid, score in score_dict.items():
             # Normalize with length
@@ -552,7 +554,6 @@ def query_active_learning_samples(prev_learning_srcids,
         
     added_cids = []
     new_srcids = []
-    new_srcid_num = 5
     new_srcid_cnt = 0
     for srcid, score in sorted_scores:
         if srcid not in prev_learning_srcids:
@@ -566,9 +567,15 @@ def query_active_learning_samples(prev_learning_srcids,
             added_cids.append(the_cid)
             new_srcids.append(srcid)
             new_srcid_cnt += 1
-            if new_srcid_cnt == new_srcid_num:
+            if new_srcid_cnt == inc_num:
                 break
     next_learning_srcids = prev_learning_srcids + new_srcids
+
+
+    # Finish Condition
+    fin_ratio = 0.9
+    for srcid in new_srcids:
+        pass
 
 
     ##########################
@@ -683,7 +690,10 @@ def char2ir_onestep(step_data,
                     target_building,
                     use_cluster_flag=False,
                     use_brick_flag=False,
-                    crftype='crfsuite'):
+                    crftype='crfsuite',
+                    inc_num=10,
+                    query_strategy='phrase_util'
+                    ):
     #                gen_next_step=True): TODO: Validate this
     step_data = deepcopy(step_data)
     begin_time = arrow.get()
@@ -696,7 +706,7 @@ def char2ir_onestep(step_data,
     model_uuid = learn_crf_model(building_list,
                     source_sample_num_list,
                     use_cluster_flag,
-                    use_brick_flag,
+                    False, #use_brick_flag,
                     crftype,
                     step_data,
                     False # Oversample Flag,
@@ -707,7 +717,7 @@ def char2ir_onestep(step_data,
                    source_sample_num_list,
                    target_building,
                    use_cluster_flag,
-                   use_brick_flag,
+                   False, #use_brick_flag,
                    crftype,
                    learning_srcids,
                    model_uuid=model_uuid
@@ -718,7 +728,9 @@ def char2ir_onestep(step_data,
                               learning_srcids, 
                               target_building,
                               model_uuid,
-                              crftype)
+                              crftype,
+                              inc_num,
+                              query_strategy)
     #next_step_data['iter_num'] = step_data['iter_num'] + 1
     next_step_data['learning_srcids'] = learning_srcids
     next_step_data['next_learning_srcids'] = new_learning_srcids
@@ -794,7 +806,8 @@ def char2ir_iteration(iter_num, custom_postfix='', *args):
         use_cluster_flag=False,
         use_brick_flag=False,
         crftype='crfsuite'
-        learning_srcids=[]):
+        inc_num=10
+        ):
     """
     logfilename = 'logs/char2ir_iter_{0}.log'.format(custom_postfix)
     set_logger(logfilename)

@@ -19,8 +19,9 @@ def char2tagset_onestep(step_data,
                         negative_flag=True,
                         debug_flag=True,
                         n_jobs=8, # TODO parameterize
-                        ts_flag=False):
-    pdb.set_trace()
+                        ts_flag=False,
+                        inc_num=10,
+                        ):
     begin_time = arrow.get()
     step_data = deepcopy(step_data)
     step_data['learning_srcids'] = step_data['next_learning_srcids']
@@ -30,7 +31,9 @@ def char2tagset_onestep(step_data,
                                      source_sample_num_list,
                                      target_building,
                                      use_cluster_flag,
-                                     use_brick_flag)
+                                     use_brick_flag,
+                                     crftype,
+                                     inc_num / 2)
 
     step_data = ir2tagset_onestep(step_data,
                                   building_list,
@@ -42,7 +45,8 @@ def char2tagset_onestep(step_data,
                                   negative_flag,
                                   debug_flag,
                                   n_jobs, # TODO parameterize
-                                  ts_flag)
+                                  ts_flag,
+                                  inc_num / 2)
     end_time = arrow.get()
     logging.info('An iteration takes ' + str(end_time - begin_time))
     return step_data
