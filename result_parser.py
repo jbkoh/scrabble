@@ -75,4 +75,3 @@ elif args.prog == 'iter_crf':
     print('Char MacroF1s')
     print(char_macrof1s)
     print('=================')
-

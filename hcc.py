@@ -210,6 +210,7 @@ class StructuredClassifierChain():
         Y = self._augment_labels_superclasses(Y)
         mapped_sub_fit = partial(self.sub_fit_proj, X, Y)
         self.base_classifiers = p.map(mapped_sub_fit, range(0,Y.shape[1]))
+        p.close()
 
     def serial_fit_proj(self, X, Y):
         self.base_classifiers = list()

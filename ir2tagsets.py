@@ -146,6 +146,7 @@ def entity_recognition_from_ground_truth(building_list,
                                          negative_flag=True,
                                          n_jobs=4,
                                          inc_num=10,
+                                         query_strategy='phrase_util',
                                          prev_step_data={
                                              'learning_srcids':[],
                                              'iter_cnt':0,
@@ -508,7 +509,6 @@ def entity_recognition_from_ground_truth(building_list,
           .format(next_step_data['macro_f1_history']))
 
     ###### Post processing to select next step learning srcids
-    query_strategy = 'phrase_util'
     """
     if query_strategy == 'util':
         phrase_usages = list(target_result_dict['phrase_usage'].values())
@@ -541,7 +541,8 @@ def entity_recognition_from_ground_truth(building_list,
                             test_sentence_dict,
                             test_phrase_dict,
                             target_pred_tagsets_dict,
-                            inc_num)
+                            inc_num,
+                            learning_srcids)
     elif query_strategy == 'entropy':
         entropies = get_entropy(target_prob_mat.T)
         sorted_entropies = sorted([(target_srcids[i], ent) for i, ent 
@@ -550,7 +551,7 @@ def entity_recognition_from_ground_truth(building_list,
         added_cids = []
         todo_srcids = []
         new_srcid_cnt = 0
-        for srcid, ent in sorted_entropies:
+        for srcid, _ in sorted_entropies:
             if srcid in learning_srcids:
                 continue
             the_cid = None
@@ -564,6 +565,46 @@ def entity_recognition_from_ground_truth(building_list,
             todo_srcids.append(srcid)
             new_srcid_cnt += 1
             if new_srcid_cnt == inc_num:
+                break
+    elif query_strategy == 'cmn':
+        conf_mat = np.abs(target_prob_mat - 0.5)
+        min_values = np.min(conf_mat, 1)
+        max_values = np.max(conf_mat, 1)
+        sorted_min_values = sorted([(target_srcids[i], min_val) for i, min_val 
+                                in enumerate(min_values)], key=itemgetter(1))
+        cluster_dict = get_cluster_dict(target_building)
+        added_cids = []
+        todo_srcids = []
+        new_srcid_cnt = 0
+        for srcid, _ in sorted_max_values:
+            if srcid in learning_srcids:
+                continue
+            the_cid = None
+            for cid, cluster in cluster_dict.items():
+                if srcid in cluster:
+                    the_cid = cid
+                    break
+            if the_cid in added_cids:
+                continue
+            added_cids.append(the_cid)
+            todo_srcids.append(srcid)
+            new_srcid_cnt += 1
+            if new_srcid_cnt == math.floor(inc_num / 2):
+                break
+        for srcid, _ in sorted_min_values:
+            if srcid in learning_srcids:
+                continue
+            the_cid = None
+            for cid, cluster in cluster_dict.items():
+                if srcid in cluster:
+                    the_cid = cid
+                    break
+            if the_cid in added_cids:
+                continue
+            added_cids.append(the_cid)
+            todo_srcids.append(srcid)
+            new_srcid_cnt += 1
+            if new_srcid_cnt == math.ceil(inc_num / 2):
                 break
     else:
         assert False
@@ -682,7 +723,7 @@ def entity_recognition_from_ground_truth_get_avg(N,
     print ('Averaged Macro F1: {0}'.format(macro_f1))
     print("FIN")
 
-def entity_recognition_iteration(iter_num, *args):
+def entity_recognition_iteration(iter_num, postfix, *args):
     step_data={
         'learning_srcids':[],
         'iter_cnt':0,
@@ -700,27 +741,31 @@ def entity_recognition_iteration(iter_num, *args):
         'metadata': {},
         'phrase_usage_history': []
     }
+    building_list = args[0]
+    target_building = args[2]
     step_datas = []
     step_datas.append(step_data)
     for i in range(0, iter_num):
-        _, step_data = entity_recognition_from_ground_truth(\
-                              building_list = args[0],\
-                              source_sample_num_list = args[1],\
-                              target_building = args[2],\
-                              use_cluster_flag = args[3],\
-                              use_brick_flag = args[4],\
-                              debug_flag = args[5],\
-                              eda_flag = args[6],\
-                              ts_flag = args[7], \
+        _, step_data = entity_recognition_from_ground_truth(
+                              building_list = building_list,
+                              source_sample_num_list = args[1],
+                              target_building = target_building,
+                              use_cluster_flag = args[3],
+                              use_brick_flag = args[4],
+                              debug_flag = args[5],
+                              eda_flag = args[6],
+                              ts_flag = args[7],
                               negative_flag = args[8],
-                              n_jobs = args[9],\
-                              inc_num = args[10],\
+                              n_jobs = args[9],
+                              inc_num = args[10],
+                              query_strategy = args[11],
                               prev_step_data = step_data
                             )
         step_datas.append(deepcopy(step_data))
     store_result(step_data)
-    with open('result/entity.json', 'w') as fp:
-        json.dump(step_datas, fp)
+    with open('result/entity_iter_{0}_{1}.json'\
+            .format(''.join(building_list+[target_building]), postfix), 'w') as fp:
+        json.dump(step_datas, fp, indent=2)
 
 def get_multi_buildings_data(building_list, srcids=[], \
                              eda_flag=False, token_type='justseparate'):
@@ -1898,6 +1943,54 @@ def determine_used_tokens_multiple(sentence_dict, token_label_dict, \
                                         tagsets_dict[srcid])
     return token_usage_dict
 
+def ir2tagset_al_query_samples_cmn(prob_mat,
+                                    target_srcids,
+                                    learning_srcids,
+                                    target_building):
+
+    conf_mat = np.abs(prob_mat - 0.5)
+    min_values = np.min(conf_mat, 1)
+    max_values = np.max(conf_mat, 1)
+    sorted_min_values = sorted([(target_srcids[i], min_val) for i, min_val 
+                                in enumerate(min_values)
+                                if target_srcids[i] not in learning_srcids], 
+                               key=itemgetter(1))
+    cluster_dict = get_cluster_dict(target_building)
+    added_cids = []
+    todo_srcids = []
+    new_srcid_cnt = 0
+    for srcid, _ in sorted_max_values:
+        if srcid in learning_srcids:
+            continue
+        the_cid = None
+        for cid, cluster in cluster_dict.items():
+            if srcid in cluster:
+                the_cid = cid
+                break
+        if the_cid in added_cids:
+            continue
+        added_cids.append(the_cid)
+        todo_srcids.append(srcid)
+        new_srcid_cnt += 1
+        if new_srcid_cnt == math.floor(inc_num / 2):
+            break
+    for srcid, _ in sorted_min_values:
+        if srcid in learning_srcids:
+            continue
+        the_cid = None
+        for cid, cluster in cluster_dict.items():
+            if srcid in cluster:
+                the_cid = cid
+                break
+        if the_cid in added_cids:
+            continue
+        added_cids.append(the_cid)
+        todo_srcids.append(srcid)
+        new_srcid_cnt += 1
+        if new_srcid_cnt == math.ceil(inc_num / 2):
+            break
+    return todo_srcids
+
 def ir2tagset_al_query_samples_phrase_util(test_srcids,
                                            building,
                                            sentence_dict,
@@ -2081,7 +2174,7 @@ def ir2tagset_onestep(step_data,
                      inc_num=5,
                      query_strategy='phrase_util'):
     
-    step_data['learning_srcids'] = step_data['next_learning_srcids']
+    #step_data['learning_srcids'] = step_data['next_learning_srcids']
 
     global tagset_list
     global total_srcid_dict
@@ -2168,7 +2261,7 @@ def ir2tagset_onestep(step_data,
                        crf_pred_point_dict, crf_phrase_dict, debug_flag)
 
     #query_strategy = 'entropy'
-    if query_strategy == 'token_util' and False:
+    if query_strategy == 'token_util':
         new_srcids = ir2tagset_al_query_samples_token_util(
                          learning_srcids,
                          target_building,
@@ -2193,6 +2286,14 @@ def ir2tagset_onestep(step_data,
                          learning_srcids,
                          target_building,
                          inc_num)
+    elif query_strategy == 'cmn':
+        new_srcids = ir2tagset_al_query_samples_cmn(
+                            target_prob_mat,
+                            crf_srcids,
+                            learning_srcids,
+                            target_building)
+    else:
+        raise ValueError('Query Strategy Wrong: {0}'.format(query_strategy))
 
     # Select srcids to ask for the next step
 
@@ -2201,6 +2302,7 @@ def ir2tagset_onestep(step_data,
     #updated_learning_srcids = sorted(todo_srcids + curr_learning_srcids)
 
     next_step_data = deepcopy(step_data)
+    next_step_data['next_learning_srcids'] += new_srcids
     if not next_step_data.get('result'):
         next_step_data['result'] = dict()
     if not next_step_data['result'].get('crf'):

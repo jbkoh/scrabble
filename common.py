@@ -199,7 +199,9 @@ def iteration_wrapper(iter_num, func, prev_data=None, *params):
                      'learning_srcids': [],
                      'model_uuid': None}
     for i in range(0, iter_num):
+        print('{0} th stage started'.format(prev_data['iter_num']))
         step_data = func(prev_data, *params)
+        print('{0} th stage finished'.format(prev_data['iter_num']))
         step_datas.append(step_data)
         prev_data = step_data
         prev_data['iter_num'] += 1

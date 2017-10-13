@@ -1,5 +1,6 @@
-import logging
+import pdb
 from copy import deepcopy
+import logging
 
 import arrow
 
@@ -21,6 +22,8 @@ def char2tagset_onestep(step_data,
                         n_jobs=8, # TODO parameterize
                         ts_flag=False,
                         inc_num=10,
+                        crfqs='confidence',
+                        entqs='phrase_util'
                         ):
     begin_time = arrow.get()
     step_data = deepcopy(step_data)
@@ -33,7 +36,8 @@ def char2tagset_onestep(step_data,
                                      use_cluster_flag,
                                      use_brick_flag,
                                      crftype,
-                                     inc_num / 2)
+                                     inc_num / 2,
+                                     crfqs)
 
     step_data = ir2tagset_onestep(step_data,
                                   building_list,
@@ -46,7 +50,8 @@ def char2tagset_onestep(step_data,
                                   debug_flag,
                                   n_jobs, # TODO parameterize
                                   ts_flag,
-                                  inc_num / 2)
+                                  inc_num / 2,
+                                  entqs)
     end_time = arrow.get()
     logging.info('An iteration takes ' + str(end_time - begin_time))
     return step_data

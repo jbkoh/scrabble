@@ -371,4 +371,4 @@ def structure_metadata(buildingName=None, tokenType=None, bigramFlag=False, vali
         sensor_df.set_index('source_id', inplace=True)
 #sensor_df = sensor_df.set_index('source_id')
 #sensor_df = sensor_df.groupby(sensor_df.index).first()
-        return sensor_df, nameList, cinameList, descList, unitList, bacnettypeList, wordList
+        return sensor_df, nameList, jcinameList, descList, unitList, bacnettypeList, wordList

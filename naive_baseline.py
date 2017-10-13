@@ -186,7 +186,6 @@ def naive_base(params):
                                   key=itemgetter(1), reverse=True)
         added_cids = []
         new_srcids = []
-        inc_num = 5
         new_srcid_cnt = 0
         cluster_dict = get_cluster_dict(target_building)
         for srcid, entropy in sorted_entropies:
@@ -219,19 +218,6 @@ def naive_base(params):
 
         test_truth_mat = binarizer.transform([truth_dict[srcid] for srcid in test_srcids])
 
-        """
-        prec_list = list()
-        rec_list = list()
-        f1_list = list()
-        for i in range(0,test_truth_mat.shape[1]):
-            true = test_truth_mat[:,i]
-            pred = pred_mat.toarray()[:,i]
-            prec, rec, f1, _ = precision_recall_fscore_support(true, pred)
-            if np.sum(true)!=0 or np.sum(pred)!=0:
-                prec_list.append(prec)
-                rec_list.append(rec)
-                f1_list.append(f1)
-        """
         if not isinstance(pred_mat, np.ndarray):
             pred_mat = pred_mat.toarray()
         if not isinstance(test_truth_mat, np.ndarray):

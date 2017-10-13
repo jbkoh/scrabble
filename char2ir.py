@@ -372,7 +372,7 @@ def crf_test(building_list,
 
     if not learning_srcids:
         learning_srcids = sorted(list(reduce(adder, model['source_list'].values())))
-    assert sorted(learning_srcids) == sorted(list(reduce(adder, model['source_list'].values())))
+    assert set(learning_srcids) == set(list(reduce(adder, model['source_list'].values())))
 
     result_metadata['learning_srcids'] = learning_srcids
 
@@ -538,37 +538,39 @@ def query_active_learning_samples(prev_learning_srcids,
 
     # Predict CRF
     predicted_dict, score_dict = predict_func(model, sentence_dict, crftype)
-    #query_strategy = 'confidence'
+        
+        
+    # Query new srcids for active learning
+    cluster_dict = get_cluster_dict(target_building)
     if query_strategy == 'confidence':
         for srcid, score in score_dict.items():
             # Normalize with length
             score_dict[srcid] = np.log(score) / len(sentence_dict[srcid])
         sorted_scores = sorted(score_dict.items(), key=itemgetter(1))
+
+        ### load word clusters not to select too similar samples.
+        added_cids = []
+        new_srcids = []
+        new_srcid_cnt = 0
+        for srcid, score in sorted_scores:
+            if srcid not in prev_learning_srcids:
+                the_cid = None
+                for cid, cluster in cluster_dict.items():
+                    if srcid in cluster:
+                        the_cid = cid
+                        break
+                if the_cid in added_cids:
+                    continue
+                added_cids.append(the_cid)
+                new_srcids.append(srcid)
+                new_srcid_cnt += 1
+                if new_srcid_cnt == inc_num:
+                    break
+    elif query_strategy == 'empty':
+        new_srcids = []
     else:
         assert False
 
-    # Query new srcids for active learning
-
-    ### load word clusters not to select too similar samples.
-    cluster_dict = get_cluster_dict(target_building)
-        
-    added_cids = []
-    new_srcids = []
-    new_srcid_cnt = 0
-    for srcid, score in sorted_scores:
-        if srcid not in prev_learning_srcids:
-            the_cid = None
-            for cid, cluster in cluster_dict.items():
-                if srcid in cluster:
-                    the_cid = cid
-                    break
-            if the_cid in added_cids:
-                continue
-            added_cids.append(the_cid)
-            new_srcids.append(srcid)
-            new_srcid_cnt += 1
-            if new_srcid_cnt == inc_num:
-                break
     next_learning_srcids = prev_learning_srcids + new_srcids
 
 
@@ -604,7 +606,10 @@ def query_active_learning_samples(prev_learning_srcids,
                         low_score_cnt += 1
                         low_score_srcids.append(sid)
                 break
-    high_score_rate = high_score_cnt / (high_score_cnt + low_score_cnt)
+    if high_score_cnt == 0 and low_score_cnt == 0:
+        high_score_rate = 0
+    else:
+        high_score_rate = high_score_cnt / (high_score_cnt + low_score_cnt)
 
     ### Check srcids in clusters related to newly added srcids
     subscore_dict = dict()
@@ -678,8 +683,9 @@ def query_active_learning_samples(prev_learning_srcids,
     new_word_counter = Counter(new_words)
     newly_found_words = set([word for word in new_words
                              if word in noncovered_word_counter.keys()])
-    logger.info('purity of new srcids ' + 
-                 str(len(newly_found_words) / len(new_word_counter)))
+    if len(new_word_counter):
+        logger.info('purity of new srcids ' + 
+                    str(len(newly_found_words) / len(new_word_counter)))
     
     return next_learning_srcids
     
@@ -692,7 +698,7 @@ def char2ir_onestep(step_data,
                     use_brick_flag=False,
                     crftype='crfsuite',
                     inc_num=10,
-                    query_strategy='phrase_util'
+                    query_strategy='confidence'
                     ):
     #                gen_next_step=True): TODO: Validate this
     step_data = deepcopy(step_data)

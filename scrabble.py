@@ -140,16 +140,16 @@ if __name__=='__main__':
                         help='postfix of result filename',
                         default='0',
                         dest = 'postfix')
-    parser.add_argument('-crf_qs', 
+    parser.add_argument('-crfqs', 
                         type=str,
                         help='Query strategy for CRF',
                         default='confidence',
                         dest = 'crfqs')
-    parser.add_argument('-entity_qs',
+    parser.add_argument('-entqs',
                         type=str,
                         help='Query strategy for CRF',
                         default='phrase_util',
-                        dest = 'entityqs')
+                        dest = 'entqs')
                         
 
     args = parser.parse_args()
@@ -175,7 +175,8 @@ if __name__=='__main__':
                   args.use_cluster_flag,
                   args.use_brick_flag,
                   args.crftype,
-                  args.inc_num
+                  args.inc_num,
+                  args.crfqs,
 #                  args.n_jobs)
                  )
         char2ir_iteration(args.iter_num, args.postfix, *params)
@@ -184,6 +185,7 @@ if __name__=='__main__':
     elif args.prog == 'entity':
         if args.avgnum == 1:
             entity_recognition_iteration(args.iter_num,
+                                         args.postfix,
                                          args.source_building_list,
                                          args.sample_num_list,
                                          args.target_building,
@@ -194,7 +196,8 @@ if __name__=='__main__':
                                          args.ts_flag,
                                          args.negative_flag,
                                          args.n_jobs,
-                                         args.inc_num
+                                         args.inc_num,
+                                         args.entqs
                                         )
             """
             params = (args.source_building_list,
@@ -246,7 +249,10 @@ if __name__=='__main__':
                   args.debug_flag,
                   args.n_jobs,
                   args.ts_flag,
-                  args.inc_num)
+                  args.inc_num,
+                  args.crfqs,
+                  args.entqs
+                  )
         char2tagset_iteration(args.iter_num, args.postfix, *params)
     elif args.prog == 'result':
         assert args.exp_type in ['crf', 'entity', 'crf_entity', 'entity_iter',
