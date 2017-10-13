@@ -9,6 +9,7 @@ from pprint import PrettyPrinter
 pp = PrettyPrinter()
 from multiprocessing import Pool, Manager, Process
 import pdb
+import math
 
 import arrow
 import numpy as np
@@ -572,6 +573,8 @@ def entity_recognition_from_ground_truth(building_list,
         max_values = np.max(conf_mat, 1)
         sorted_min_values = sorted([(target_srcids[i], min_val) for i, min_val 
                                 in enumerate(min_values)], key=itemgetter(1))
+        sorted_max_values = sorted([(target_srcids[i], max_val) for i, max_val 
+                                in enumerate(max_values)], key=itemgetter(1))
         cluster_dict = get_cluster_dict(target_building)
         added_cids = []
         todo_srcids = []

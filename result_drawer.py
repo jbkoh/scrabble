@@ -30,10 +30,10 @@ anon_building_dict = {
 }
 
 def crf_result():
-    source_target_list = [('ebu3b', 'bml'), ('ghc', 'ebu3b')]
-    n_list_list = [[(1000, 0), (1000,5), (1000,20), (1000,50), (1000,100), (1000, 150), (1000,200)],
-                   [(200, 0), (200,5), (200,20), (200,50), (200,100), (200, 150), (200,200)],
-                   [(0,5), (0,20), (0,50), (0,100), (0,150), (0,200)]]
+    source_target_list = [('ebu3b', 'ap_m'), ('ghc', 'ebu3b')]
+    #n_list_list = [#[(1000, 0), (1000,5), (1000,20), (1000,50), (1000,100), (1000, 150), (1000,200)],
+    #               [(200, 0), (200,5), (200,20), (200,50), (200,100), (200, 150), (200,200)],
+    #               [(0,5), (0,20), (0,50), (0,100), (0,150), (0,200)]]
     char_precs_list = list()
     phrase_f1s_list = list()
 #fig, ax = plt.subplots(1, 1)
@@ -42,89 +42,59 @@ def crf_result():
         axes = [axes]
     fig.set_size_inches(4, 1.5)
     cs = ['firebrick', 'deepskyblue']
+    filename_template = 'result/crf_iter_{0}_char2ir_iter_1.json'
 
     for i, (ax, (source, target)) in enumerate(zip(axes, source_target_list)):
         linestyles = ['--', '-.', '-']
         plot_list = list()
         legends_list = list()
-        for n_list in n_list_list:
-            target_n_list = [ns[1] for ns in n_list]
-            phrase_f1s = list()
-            char_macro_f1s = list()
-            phrase_macro_f1s = list()
-#pess_phrase_f1s = list()
-            char_precs = list()
-            for (n_s, n_t) in n_list:
-                if n_s == 0:
-                    building_list = [target]
-                    source_sample_num_list = [n_t]
-                elif n_t == 0:
-                    building_list = [source]
-                    source_sample_num_list = [n_s]
-                else:
-                    building_list = [source, target]
-                    source_sample_num_list = [n_s, n_t]
-                result_query = {
-                    'label_type': 'label',
-                    'token_type': 'justseparate',
-                    'use_cluster_flag': True,
-                    'building_list': building_list,
-                    'source_sample_num_list': source_sample_num_list,
-
-                    'target_building': target
-                }
-                result = get_crf_results(result_query)
-                try:
-                    assert result
-                except:
-                    print(n_t)
-                    pdb.set_trace()
-                    continue
-                    result = get_crf_results(result_query)
-                char_prec = result['char_precision'] * 100
-                char_precs.append(char_prec)
-                phrase_recall = result['phrase_recall'] * 100
-                phrase_prec = result['phrase_precision'] * 100
-                phrase_f1 = 2* phrase_prec  * phrase_recall \
-                                / (phrase_prec + phrase_recall)
-                phrase_f1s.append(phrase_f1)
-                char_macro_f1s.append(result['char_macro_f1'] * 100)
-                phrase_macro_f1s.append(result['phrase_macro_f1'] * 100)
-            xs = target_n_list
-            ys = [phrase_f1s, phrase_macro_f1s]
+        buildingfix = ''.join([source, target, target])
+        with open(filename_template.format(buildingfix), 'r') as fp:
+            with_src_data = json.load(fp)
+        source_num = 200
+        xs = [len(datum['learning_srcids']) - source_num for datum in with_src_data]
+        f1s = []
+        for datum in data:
+            prec = datum['result']['crf']['phrase_precision']
+            rec = datum['result']['crf']['phrase_recall']
+            f1 = 2 * prec * rec / (prec + rec)
+            f1s.append(f1)
+        macrof1s = [datum['result']['crf']['phrase_macro_f1'] 
+                    for datum in data]
+        ys = [f1s, macrof1s]
             #ys = [char_precs, phrase_f1s, char_macro_f1s, phrase_macro_f1s]
             #xlabel = '# of Target Building Samples'
-            xlabel = None
-            ylabel = 'Score (%)'
-            xtick = list(range(0, 205, 40))
-            #xtick = [0] + [5] + xtick[1:]
-            xtick_labels = [str(n) for n in xtick]
-            ytick = range(0,101,20)
-            ytick_labels = [str(n) for n in ytick]
-            xlim = (xtick[0]-2, xtick[-1]+5)
-            ylim = (ytick[0]-2, ytick[-1]+5)
-            if i == 0:
-                legends = [#'#S:{0}, Char Prec'.format(n_s),
-                    '#$B_S$:{0}'.format(n_s),
+        xlabel = None
+        ylabel = 'Score (%)'
+        xtick = list(range(0, 205, 40))
+        #xtick = [0] + [5] + xtick[1:]
+        xtick_labels = [str(n) for n in xtick]
+        ytick = range(0,101,20)
+        ytick_labels = [str(n) for n in ytick]
+        xlim = (xtick[0]-2, xtick[-1]+5)
+        ylim = (ytick[0]-2, ytick[-1]+5)
+        if i == 0:
+            legends = [#'#S:{0}, Char Prec'.format(n_s),
+                '#$B_S$:{0}'.format(n_s),
 #'#S:{0}, Char MF1'.format(n_s),
-                    '#$B_S$:{0}'.format(n_s),
-                ]
-            else:
-                legends = None
+                '#$B_S$:{0}'.format(n_s),
+            ]
+        else:
+            legends = None
 #legends_list += legends
-            title = None
-            _, plots = plotter.plot_multiple_2dline(xs, ys, xlabel, ylabel, xtick,\
-                             xtick_labels, ytick, ytick_labels, title, ax, fig, \
-                             ylim, xlim, legends, xtickRotate=0, \
-                             linestyles=[linestyles.pop()]*len(ys), cs=cs)
-            text = '{0} $\\Rightarrow$ {1}'.format(\
-                    anon_building_dict[source],
-                    anon_building_dict[target])
-            ax.text(0.8, 0.1, text, transform=ax.transAxes, ha='right',
-                    backgroundcolor='white'
-                    )#, alpha=0)
-            plot_list += plots
-            pdb.set_trace()
+        title = None
+        _, plots = plotter.plot_multiple_2dline(xs, ys, xlabel, ylabel, xtick,\
+                         xtick_labels, ytick, ytick_labels, title, ax, fig, \
+                         ylim, xlim, legends, xtickRotate=0, \
+                         linestyles=[linestyles.pop()]*len(ys), cs=cs)
+        text = '{0} $\\Rightarrow$ {1}'.format(\
+                anon_building_dict[source],
+                anon_building_dict[target])
+        ax.text(0.8, 0.1, text, transform=ax.transAxes, ha='right',
+                backgroundcolor='white'
+                )#, alpha=0)
+        plot_list += plots
+        pdb.set_trace()
 
 #fig.legend(plot_list, legends_list, 'upper center', ncol=3
 #            , bbox_to_anchor=(0.5,1.3),frameon=False)
@@ -388,114 +358,55 @@ def word_sim_comp():
 
 
 def entity_iter_result():
-    source_target_list = [('ebu3b', 'ap_m'), ('ghc', 'ebu3b')]
-    n_list_list = [(200,5),
-                   (0,5),]
-#                   (1000,1)]
+    source_target_list = [('ebu3b', 'ap_m'),
+                          ('ebu3b', 'ap_m'),
+                          #, ('ghc', 'ebu3b')
+                          ]
     ts_flag = False
     eda_flag = False
-    """
-    inc_num = 20
-    iter_num = 10
-    default_query = {
-        'metadata.label_type': 'label',
-        'metadata.token_type': 'justseparate',
-        'metadata.use_cluster_flag': True,
-        'metadata.building_list' : [],
-        'metadata.source_sample_num_list': [],
-        'metadata.target_building': '',
-        'metadata.ts_flag': ts_flag,
-        'metadata.eda_flag': eda_flag,
-        'metadata.use_brick_flag': True,
-        'metadata.negative_flag': True,
-        'metadata.inc_num': inc_num,
-    }
-    query_list = [deepcopy(default_query),
-                  deepcopy(default_query)]
-    query_list[1]['metadata.negative_flag'] = False
-    query_list[1]['metadata.use_brick_flag'] = False
-    """
-
-    filename_template_nosource_nosa =
-
-
     fig, axes = plt.subplots(1, len(source_target_list))
 #    axes = [ax]
     cs = ['firebrick', 'deepskyblue']
     for i, (ax, (source, target)) in enumerate(zip(axes, source_target_list)):
+
+        filename_template = 'result/entity_iter_{0}_{1}1.json'
+        prefixes = [(''.join([target]*2), 'nosource_nosa'),
+                    (''.join([target]*2), 'nosource_sa'),
+                    (''.join([source, target, target]), 'source_sa')]
         linestyles = [':', '-.', '-']
-        for query in query_list:
-            for ns in n_list_list:
-                if query['metadata.use_brick_flag'] and ns[0]==0:
-                    continue
-                n_s = ns[0]
-                if i==1 and ns[1]==5:
-                    n_t = 5
-                else:
-                    n_t = ns[1]
-
-                if n_s == 0:
-                    building_list = [target]
-                    source_sample_num_list = [n_t]
-                elif n_t == 0:
-                    building_list = [source]
-                    source_sample_num_list = [n_s]
-                else:
-                    building_list = [source, target]
-                    source_sample_num_list = [n_s, n_t]
-                query['metadata.building_list'] = building_list
-                query['metadata.source_sample_num_list'] = \
-                        source_sample_num_list
-                query['metadata.target_building'] = target
-                q = {'$and': [query, {'$where': \
-                                      'this.accuracy_history.length=={0}'\
-                                      .format(iter_num)}]}
-
-                result = get_entity_results(q)
-                try:
-                    assert result
-                except:
-                    print(n_t)
-                    pdb.set_trace()
-                    result = get_entity_results(query)
-                #point_precs = result['point_precision_history'][-1]
-                #point_recall = result['point_recall'][-1]
-                subset_accuracy_list = [val * 100 for val in result['subset_accuracy_history']]
-                accuracy_list = [val * 100 for val in result['accuracy_history']]
-                hierarchy_accuracy_list = [val * 100 for val in result['hierarchy_accuracy_history']]
-                weighted_f1_list = [val * 100 for val in result['weighted_f1_history']]
-                macro_f1_list = [val * 100 for val in result['macro_f1_history']]
-                exp_num = len(macro_f1_list)
-                target_n_list = list(range(n_t, inc_num*exp_num+1, inc_num))
-
-                xs = target_n_list
-                ys = [accuracy_list, macro_f1_list]
-                #xlabel = '# of Target Building Samples'
-                xlabel = None
-                ylabel = 'Score (%)'
-                xtick = range(0,205, 50)
-                xtick_labels = [str(n) for n in xtick]
-                ytick = range(0,102,20)
-                ytick_labels = [str(n) for n in ytick]
-                ylim = (ytick[0]-1, ytick[-1]+2)
-                if i==0:
-                    legends = [
-                        '{0}, SA: {1}'
-                        .format(n_s,
-                                oxer(query['metadata.use_brick_flag'])),
-                        '{0}, SA: {1}'
-                        .format(n_s,
-                                oxer(query['metadata.use_brick_flag']))
-                    ]
-                else:
-                    legends = None
-                title = None
-                plotter.plot_multiple_2dline(xs, ys, xlabel, ylabel, xtick,\
-                                 xtick_labels, ytick, ytick_labels, title, ax,\
-                                 fig, ylim, None, legends, xtickRotate=0, \
-                                 linestyles=[linestyles.pop()]*len(ys), cs=cs)
-                pdb.set_trace()
-
+        for buildingfix, optfix in prefixes:
+            filename = filename_template.format(buildingfix, optfix)
+            with open(filename, 'r') as fp:
+                data = json.load(fp)[1:]
+            sa_flag = 'X' if 'nosa' in optfix else 'O'
+            src_flag = '0' if 'nosource' in optfix else '200'
+            source_num = int(src_flag)
+            x = [len(set(datum['learning_srcids'])) - source_num for datum in data]
+            pdb.set_trace()
+            accuracy = [val * 100 for val in data[-1]['accuracy_history']]
+            macro_f1 = [val * 100 for val in data[-1]['macro_f1_history']]
+            ys = [accuracy, macro_f1]
+            xlabel = None
+            ylabel = 'Score (%)'
+            xtick = range(0,205, 50)
+            xtick_labels = [str(n) for n in xtick]
+            ytick = range(0,102,20)
+            ytick_labels = [str(n) for n in ytick]
+            ylim = (ytick[0]-1, ytick[-1]+2)
+            if i==0:
+                legends = [
+                    '{0}, SA: {1}'
+                    .format(src_flag, sa_flag),
+                    '{0}, SA: {1}'
+                    .format(src_flag, sa_flag)
+                ]
+            else:
+                legends = None
+            title = None
+            plotter.plot_multiple_2dline(x, ys, xlabel, ylabel, xtick,\
+                             xtick_labels, ytick, ytick_labels, title, ax,\
+                             fig, ylim, None, legends, xtickRotate=0, \
+                             linestyles=[linestyles.pop()]*len(ys), cs=cs)
 
     for ax in axes:
         ax.grid(True)
