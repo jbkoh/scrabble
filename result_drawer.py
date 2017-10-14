@@ -10,6 +10,7 @@ plt.rcParams['axes.labelpad'] = 0
 plt.rcParams['font.size'] = 8
 from matplotlib.backends.backend_pdf import PdfPages
 from matplotlib.axes import Axes
+import pdb
 
 import argparse
 import json
@@ -17,6 +18,8 @@ import subprocess
 import pdb
 from functools import reduce
 import re
+import numpy as np
+import os
 
 import plotter
 from plotter import save_fig
@@ -29,7 +32,43 @@ anon_building_dict = {
     'ghc': 'B-1'
 }
 
+def interpolate(x1, y1, x2, y2):
+    return (x1 * y2 + x2 * y1) / (x1 + x2)
+
+
+def lin_interpolated_avg(target_x, x_list, y_list):
+    target_y = []
+    for t_x in target_x:
+        t_y_cands = []
+        for given_x, given_y in zip(x_list, y_list):
+            assert len(given_x) == len(given_y)
+            left_x = -10000
+            right_x = 10000
+            left_y = None
+            right_y = None
+            for one_x, one_y in zip(given_x, given_y):
+                if one_x <= t_x:
+                    if one_x > left_x:
+                        left_x = one_x
+                        left_y = one_y
+                if one_x >= t_x:
+                    if one_x < right_x:
+                        right_x = one_x
+                        right_y = one_y
+            if left_x == right_x and right_x == t_x:
+                assert left_y == right_y
+                t_y_cand = left_y
+            else:
+                t_y_cand = interpolate(t_x - left_x, left_y, 
+                                       right_x - t_x, right_y)
+            t_y_cands.append(t_y_cand)
+        t_y = np.mean(t_y_cands)
+        target_y.append(t_y)
+    return target_y
+            
+
 def crf_result():
+    #source_target_list = [('ebu3b', 'ap_m'), ('ebu3b', 'ap_m')]
     source_target_list = [('ebu3b', 'ap_m'), ('ghc', 'ebu3b')]
     #n_list_list = [#[(1000, 0), (1000,5), (1000,20), (1000,50), (1000,100), (1000, 150), (1000,200)],
     #               [(200, 0), (200,5), (200,20), (200,50), (200,100), (200, 150), (200,200)],
@@ -42,62 +81,67 @@ def crf_result():
         axes = [axes]
     fig.set_size_inches(4, 1.5)
     cs = ['firebrick', 'deepskyblue']
-    filename_template = 'result/crf_iter_{0}_char2ir_iter_1.json'
+    filename_template = 'result/crf_iter_{0}_char2ir_iter_{1}.json'
+    n_s_list = [1000, 200, 0]
 
     for i, (ax, (source, target)) in enumerate(zip(axes, source_target_list)):
         linestyles = ['--', '-.', '-']
         plot_list = list()
         legends_list = list()
-        buildingfix = ''.join([source, target, target])
-        with open(filename_template.format(buildingfix), 'r') as fp:
-            with_src_data = json.load(fp)
-        source_num = 200
-        xs = [len(datum['learning_srcids']) - source_num for datum in with_src_data]
-        f1s = []
-        for datum in data:
-            prec = datum['result']['crf']['phrase_precision']
-            rec = datum['result']['crf']['phrase_recall']
-            f1 = 2 * prec * rec / (prec + rec)
-            f1s.append(f1)
-        macrof1s = [datum['result']['crf']['phrase_macro_f1'] 
-                    for datum in data]
-        ys = [f1s, macrof1s]
-            #ys = [char_precs, phrase_f1s, char_macro_f1s, phrase_macro_f1s]
-            #xlabel = '# of Target Building Samples'
-        xlabel = None
-        ylabel = 'Score (%)'
-        xtick = list(range(0, 205, 40))
-        #xtick = [0] + [5] + xtick[1:]
-        xtick_labels = [str(n) for n in xtick]
-        ytick = range(0,101,20)
-        ytick_labels = [str(n) for n in ytick]
-        xlim = (xtick[0]-2, xtick[-1]+5)
-        ylim = (ytick[0]-2, ytick[-1]+5)
-        if i == 0:
-            legends = [#'#S:{0}, Char Prec'.format(n_s),
-                '#$B_S$:{0}'.format(n_s),
-#'#S:{0}, Char MF1'.format(n_s),
-                '#$B_S$:{0}'.format(n_s),
-            ]
-        else:
-            legends = None
-#legends_list += legends
-        title = None
-        _, plots = plotter.plot_multiple_2dline(xs, ys, xlabel, ylabel, xtick,\
-                         xtick_labels, ytick, ytick_labels, title, ax, fig, \
-                         ylim, xlim, legends, xtickRotate=0, \
-                         linestyles=[linestyles.pop()]*len(ys), cs=cs)
-        text = '{0} $\\Rightarrow$ {1}'.format(\
-                anon_building_dict[source],
-                anon_building_dict[target])
-        ax.text(0.8, 0.1, text, transform=ax.transAxes, ha='right',
-                backgroundcolor='white'
-                )#, alpha=0)
-        plot_list += plots
-        pdb.set_trace()
+        for n_s in n_s_list:
+            if n_s == 0:
+                buildingfix = ''.join([target, target])
+            else:
+                buildingfix = ''.join([source, target, target])
+            n = n_s + 0
+            filename = filename_template.format(buildingfix, n)
+            if not os.path.exists(filename):
+                continue
+            with open(filename, 'r') as fp:
+                data = json.load(fp)
+            xs = [len(datum['learning_srcids']) - n_s for datum in data]
+            f1s = []
+            for datum in data:
+                prec = datum['result']['crf']['phrase_precision'] * 100
+                rec = datum['result']['crf']['phrase_recall'] * 100
+                f1 = 2 * prec * rec / (prec + rec)
+                f1s.append(f1)
+            macrof1s = [datum['result']['crf']['phrase_macro_f1'] * 100 
+                        for datum in data]
+            ys = [f1s, macrof1s]
+                #ys = [char_precs, phrase_f1s, char_macro_f1s, phrase_macro_f1s]
+                #xlabel = '# of Target Building Samples'
+            xlabel = None
+            ylabel = 'Score (%)'
+            xtick = list(range(0, 205, 40))
+            #xtick = [0] + [5] + xtick[1:]
+            xtick_labels = [str(n) for n in xtick]
+            ytick = range(0,101,20)
+            ytick_labels = [str(n) for n in ytick]
+            xlim = (xtick[0]-2, xtick[-1]+5)
+            ylim = (ytick[0]-2, ytick[-1]+5)
+            if i == 0 or n_s == 1000:
+                legends = [#'#S:{0}, Char Prec'.format(n_s),
+                    '#$B_S$:{0}'.format(n_s),
+    #'#S:{0}, Char MF1'.format(n_s),
+                    '#$B_S$:{0}'.format(n_s),
+                ]
+            else:
+                legends = None
+    #legends_list += legends
+            title = None
+            _, plots = plotter.plot_multiple_2dline(xs, ys, xlabel, ylabel, xtick,\
+                             xtick_labels, ytick, ytick_labels, title, ax, fig, \
+                             ylim, xlim, legends, xtickRotate=0, \
+                             linestyles=[linestyles.pop()]*len(ys), cs=cs)
+            text = '{0} $\\Rightarrow$ {1}'.format(\
+                    anon_building_dict[source],
+                    anon_building_dict[target])
+            ax.text(0.8, 0.1, text, transform=ax.transAxes, ha='right',
+                    backgroundcolor='white'
+                    )#, alpha=0)
+            plot_list += plots
 
-#fig.legend(plot_list, legends_list, 'upper center', ncol=3
-#            , bbox_to_anchor=(0.5,1.3),frameon=False)
     axes[0].legend(bbox_to_anchor=(0.15, 0.96), ncol=3, frameon=False)
     for ax in axes:
         ax.grid(True)
@@ -183,8 +227,8 @@ def crf_entity_result():
         ylabel_flag = False
         linestyles = ['-.', '-.']
         if i == 2:
-            data_labels = ['Baseline Accuracy w/ Source', 
-                           'Baseline Macro $F_1$ w/ Source']
+            data_labels = ['Baseline Accuracy w/o Source', 
+                           'Baseline Macro $F_1$ w/o Source']
         else:
             data_labels = None
         title = anon_building_dict[buildings[0]]
@@ -201,16 +245,45 @@ def crf_entity_result():
         if i == 2:
             ax.legend(bbox_to_anchor=(3.2, 1.45), ncol=4, frameon=False)
 
-        # Scrabble
-        #buildingfix = ''.join(list(buildings) + [buildings[-1]])
-        #filename = 'result/crf_entity_iter_{0}_char2tagset_iter_1.json'\
+        # Scrabble without source
         buildingfix = ''.join([buildings[-1]] * 2)
         filename = 'result/crf_entity_iter_{0}_char2tagset_iter_nosource1.json'\
                        .format(buildingfix)
+        if not os.path.exists(filename):
+            continue
         with open(filename, 'r') as fp:
             res = json.load(fp)
         source_num = 0
-        #source_num = 200 * (len(buildings) - 1)
+        srcid_lens = [len(r['learning_srcids']) - source_num for r in res]
+        accuracy = [r['result']['entity']['accuracy'] * 100 for r in res]
+        mf1s = [r['result']['entity']['macro_f1'] * 100 for r in res]
+        x = srcid_lens
+        ys = [accuracy, mf1s]
+        linestyles = ['-', '-']
+        if i == 2:
+            data_labels = ['Scrabble Accuracy w/o Src', 
+                           'Scrabble Macro $F_1$ w/o Src']
+        else:
+            data_labels = None
+        _, plot = plotter.plot_multiple_2dline(x, ys, xlabel, ylabel, xtick,
+                             xtick_labels, ytick, ytick_labels, title,
+                             ax, fig, ylim, xlim, data_labels, 0, linestyles,
+                                               cs, lw)
+        plot_list.append(plot)
+
+        # Scrabble with source
+        buildingfix = ''.join(list(buildings) + [buildings[-1]])
+        filename = 'result/crf_entity_iter_{0}_char2tagset_iter_1.json'\
+                       .format(buildingfix)
+        #buildingfix = ''.join([buildings[-1]] * 2)
+        #filename = 'result/crf_entity_iter_{0}_char2tagset_iter_nosource1.json'\
+        #               .format(buildingfix)
+        if not os.path.exists(filename):
+            continue
+        with open(filename, 'r') as fp:
+            res = json.load(fp)
+        #source_num = 0
+        source_num = 200 * (len(buildings) - 1)
         srcid_lens = [len(r['learning_srcids']) - source_num for r in res]
         accuracy = [r['result']['entity']['accuracy'] * 100 for r in res]
         mf1s = [r['result']['entity']['macro_f1'] * 100 for r in res]
@@ -226,6 +299,9 @@ def crf_entity_result():
                              xtick_labels, ytick, ytick_labels, title,
                              ax, fig, ylim, xlim, data_labels, 0, linestyles,
                                                cs, lw)
+        plot_list.append(plot)
+
+
 
         """
         # scrabble
@@ -284,8 +360,8 @@ def crf_entity_result():
                                                cs, lw)
         if i == 2:
             ax.legend(bbox_to_anchor=(3.2, 1.45), ncol=4, frameon=False)
-        """
         plot_list.append(plot)
+        """
 
 
     fig.set_size_inches(9, 1.5)
@@ -382,7 +458,6 @@ def entity_iter_result():
             src_flag = '0' if 'nosource' in optfix else '200'
             source_num = int(src_flag)
             x = [len(set(datum['learning_srcids'])) - source_num for datum in data]
-            pdb.set_trace()
             accuracy = [val * 100 for val in data[-1]['accuracy_history']]
             macro_f1 = [val * 100 for val in data[-1]['macro_f1_history']]
             ys = [accuracy, macro_f1]

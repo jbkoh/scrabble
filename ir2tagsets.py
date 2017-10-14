@@ -203,7 +203,6 @@ def entity_recognition_from_ground_truth(building_list,
     global tagset_list
     global total_srcid_dict
     global tree_depth_dict
-    inc_num = 10 # Sample increase step
     assert len(building_list) == len(source_sample_num_list)
 
     ########################## DATA INITIATION ##########################
@@ -544,6 +543,15 @@ def entity_recognition_from_ground_truth(building_list,
                             target_pred_tagsets_dict,
                             inc_num,
                             learning_srcids)
+    elif query_strategy == 'strict_phrase_util':
+        todo_srcids = ir2tagset_al_query_samples_strict_phrase_util(
+                            test_srcids,
+                            target_building,
+                            test_sentence_dict,
+                            test_phrase_dict,
+                            target_pred_tagsets_dict,
+                            inc_num,
+                            learning_srcids)
     elif query_strategy == 'entropy':
         entropies = get_entropy(target_prob_mat.T)
         sorted_entropies = sorted([(target_srcids[i], ent) for i, ent 
@@ -578,6 +586,7 @@ def entity_recognition_from_ground_truth(building_list,
         cluster_dict = get_cluster_dict(target_building)
         added_cids = []
         todo_srcids = []
+        """
         new_srcid_cnt = 0
         for srcid, _ in sorted_max_values:
             if srcid in learning_srcids:
@@ -592,8 +601,11 @@ def entity_recognition_from_ground_truth(building_list,
             added_cids.append(the_cid)
             todo_srcids.append(srcid)
             new_srcid_cnt += 1
-            if new_srcid_cnt == math.floor(inc_num / 2):
+            if new_srcid_cnt == math.floor(inc_num):
+            #if new_srcid_cnt == math.floor(inc_num / 2):
                 break
+            """
+        new_srcid_cnt = 0
         for srcid, _ in sorted_min_values:
             if srcid in learning_srcids:
                 continue
@@ -651,7 +663,8 @@ def entity_recognition_from_ground_truth(building_list,
     next_step_data['debug']['rate_correct_todo_tagsets'].append(todo_tagset_rate)
     next_step_data['debug']['rate_correct_todo_tagsets'].append(todo_tagset_rate)
 
-    next_step_data['learning_srcids'] = learning_srcids + todo_srcids * 3
+    # TODO: Validate this
+    next_step_data['learning_srcids'] = learning_srcids + todo_srcids * 4
 
     try:
         del next_step_data['_id']
@@ -872,6 +885,8 @@ def build_tagset_classifier(building_list, target_building,\
     # TODO: We could use word embedding like word2vec here instead.
     tagset_vectorizer = TfidfVectorizer(tokenizer=tokenizer,\
                                         vocabulary=vocab_dict)
+    #tagset_vectorizer = MeanEmbeddingVectorizer(tokenizer=tokenizer, 
+    #                                            vocabulary=vocab_dict)
     #tagset_vectorizer = CountVectorizer(tokenizer=tokenizer,\
     #                                    vocabulary=vocab_dict)
 
@@ -1977,6 +1992,7 @@ def ir2tagset_al_query_samples_cmn(prob_mat,
         new_srcid_cnt += 1
         if new_srcid_cnt == math.floor(inc_num / 2):
             break
+    new_srcid_cnt = 1
     for srcid, _ in sorted_min_values:
         if srcid in learning_srcids:
             continue
@@ -1992,6 +2008,60 @@ def ir2tagset_al_query_samples_cmn(prob_mat,
         new_srcid_cnt += 1
         if new_srcid_cnt == math.ceil(inc_num / 2):
             break
+    return todo_srcids
+
+
+def ir2tagset_al_query_samples_strict_phrase_util(test_srcids,
+                                                  building,
+                                                  sentence_dict,
+                                                  pred_phrase_dict,
+                                                  pred_tagsets_dict,
+                                                  inc_num,
+                                                  learning_srcids=[]):
+    phrase_usage_dict = {}
+    for srcid in test_srcids:
+        if srcid in learning_srcids:
+            continue
+        pred_tagsets = pred_tagsets_dict[srcid]
+        phrase_usage_dict[srcid] = determine_used_phrases(
+                                       pred_phrase_dict[srcid],
+                                       pred_tagsets)
+
+    """
+    phrase_usages = list(phrase_usage_dict.values())
+    mean_usage_rate = np.mean(phrase_usages)
+    std_usage_rate = np.std(phrase_usages)
+    threshold = mean_usage_rate - std_usage_rate
+    todo_sentence_dict = dict((srcid, alpha_tokenizer(''.join(
+                               sentence_dict[srcid])))
+                               for srcid, usage_rate
+                               in phrase_usage_dict.items()
+                               if usage_rate < threshold and srcid in test_srcids)
+    """
+    sorted_phrase_usages = sorted(phrase_usage_dict.items(), key=itemgetter(1))
+    cluster_dict = get_cluster_dict(building)
+    added_cids = []
+    #TODO: Init added_cids from learning_srcids
+
+
+    todo_srcids = []
+    new_srcid_cnt = 0
+    for srcid, _ in sorted_phrase_usages :
+        if srcid in learning_srcids:
+            continue
+        the_cid = None
+        for cid, cluster in cluster_dict.items():
+            if srcid in cluster:
+                the_cid = cid
+                break
+        if the_cid in added_cids:
+            continue
+        added_cids.append(the_cid)
+        todo_srcids.append(srcid)
+        new_srcid_cnt += 1
+        if new_srcid_cnt == inc_num:
+            break
+    pdb.set_trace()
     return todo_srcids
 
 def ir2tagset_al_query_samples_phrase_util(test_srcids,
