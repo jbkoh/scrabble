@@ -2099,6 +2099,23 @@ def ir2tagset_al_query_samples_phrase_util(test_srcids,
                           cluster_dict=cluster_dict,
                           shuffle_flag=False
                          )
+    #if the numbers are not enough randomly select more:
+    if len(todo_srcids) < inc_num:
+        more_num = inc_num - len(todo_srcids)
+        todo_sentence_dict = dict((srcid, alpha_tokenizer(''.join(
+                                   sentence_dict[srcid])))
+                                   for srcid, usage_rate
+                                   in phrase_usage_dict.items()
+                                   if srcid in test_srcids)
+        cluster_dict = get_cluster_dict(building)
+        todo_srcids = select_random_samples(building, \
+                              list(todo_sentence_dict.keys()),
+                              min(more_num, len(todo_sentence_dict)), \
+                              True,\
+                              reverse=True,
+                              cluster_dict=cluster_dict,
+                              shuffle_flag=True
+                             )
     return todo_srcids
 
 def ir2tagset_al_query_samples_token_util(learning_srcids,

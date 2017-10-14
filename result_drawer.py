@@ -35,6 +35,9 @@ anon_building_dict = {
 def interpolate(x1, y1, x2, y2):
     return (x1 * y2 + x2 * y1) / (x1 + x2)
 
+def extrapolate(xt, x1, y1, x2, y2):
+    return (xt*y2 - xt*y1 + x2*y1 - x1*y2) / (x2 - x1)
+
 
 def lin_interpolated_avg(target_x, x_list, y_list):
     target_y = []
@@ -46,21 +49,37 @@ def lin_interpolated_avg(target_x, x_list, y_list):
             right_x = 10000
             left_y = None
             right_y = None
-            for one_x, one_y in zip(given_x, given_y):
+            left_y_idx = None
+            right_y_dix = None
+            for i, (one_x, one_y) in enumerate(zip(given_x, given_y)):
                 if one_x <= t_x:
                     if one_x > left_x:
                         left_x = one_x
                         left_y = one_y
+                        left_y_idx = i
                 if one_x >= t_x:
                     if one_x < right_x:
                         right_x = one_x
                         right_y = one_y
+                        right_y_idx = i
             if left_x == right_x and right_x == t_x:
                 assert left_y == right_y
                 t_y_cand = left_y
             else:
-                t_y_cand = interpolate(t_x - left_x, left_y, 
-                                       right_x - t_x, right_y)
+                if not left_y:
+                    rr_x = given_x[right_y_idx + 1]
+                    rr_y = given_y[right_y_idx + 1]
+                    t_y_cand = extrapolate(t_x, right_x, right_y, rr_x, rr_y)
+                elif not right_y:
+                    ll_x = given_x[left_y_idx - 1]
+                    ll_y = given_y[left_y_idx - 1]
+                    t_y_cand = extrapolate(t_x, ll_x, ll_y, left_x, left_y)
+                elif left_y and right_y:
+                    t_y_cand = interpolate(t_x - left_x, left_y, 
+                                           right_x - t_x, right_y)
+                else:
+                    assert False
+
             t_y_cands.append(t_y_cand)
         t_y = np.mean(t_y_cands)
         target_y.append(t_y)
@@ -94,6 +113,7 @@ def crf_result():
             else:
                 buildingfix = ''.join([source, target, target])
             n = n_s + 0
+            """
             filename = filename_template.format(buildingfix, n)
             if not os.path.exists(filename):
                 continue
@@ -109,8 +129,34 @@ def crf_result():
             macrof1s = [datum['result']['crf']['phrase_macro_f1'] * 100 
                         for datum in data]
             ys = [f1s, macrof1s]
-                #ys = [char_precs, phrase_f1s, char_macro_f1s, phrase_macro_f1s]
-                #xlabel = '# of Target Building Samples'
+            """
+            xs = range(0, 201, 10)
+            x_cands = []
+            f1_cands = []
+            mf1_cands = []
+            for exp_num in range(0,5):
+                nfix = n + exp_num
+                filename = filename_template.format(buildingfix, nfix)
+                if not os.path.exists(filename):
+                    continue
+                with open(filename, 'r') as fp:
+                    data = json.load(fp)
+                x_cand = [len(datum['learning_srcids']) - n_s for datum in data]
+                f1_cand = []
+                for datum in data:
+                    prec = datum['result']['crf']['phrase_precision'] * 100
+                    rec = datum['result']['crf']['phrase_recall'] * 100
+                    f1 = 2 * prec * rec / (prec + rec)
+                    f1_cand.append(f1)
+                mf1_cand = [datum['result']['crf']['phrase_macro_f1'] * 100 
+                            for datum in data]
+                x_cands.append(x_cand)
+                f1_cands.append(f1_cand)
+                mf1_cands.append(mf1_cand)
+            f1s = lin_interpolated_avg(xs, x_cands, f1_cands)
+            mf1s = lin_interpolated_avg(xs, x_cands, mf1_cands)
+            ys = [f1s, mf1s]
+
             xlabel = None
             ylabel = 'Score (%)'
             xtick = list(range(0, 205, 40))
@@ -120,7 +166,7 @@ def crf_result():
             ytick_labels = [str(n) for n in ytick]
             xlim = (xtick[0]-2, xtick[-1]+5)
             ylim = (ytick[0]-2, ytick[-1]+5)
-            if i == 0 or n_s == 1000:
+            if i == 0:
                 legends = [#'#S:{0}, Char Prec'.format(n_s),
                     '#$B_S$:{0}'.format(n_s),
     #'#S:{0}, Char MF1'.format(n_s),
@@ -259,7 +305,7 @@ def crf_entity_result():
         mf1s = [r['result']['entity']['macro_f1'] * 100 for r in res]
         x = srcid_lens
         ys = [accuracy, mf1s]
-        linestyles = ['-', '-']
+        linestyles = ['--', '--']
         if i == 2:
             data_labels = ['Scrabble Accuracy w/o Src', 
                            'Scrabble Macro $F_1$ w/o Src']
@@ -435,8 +481,8 @@ def word_sim_comp():
 
 def entity_iter_result():
     source_target_list = [('ebu3b', 'ap_m'),
-                          ('ebu3b', 'ap_m'),
-                          #, ('ghc', 'ebu3b')
+                          #('ebu3b', 'ap_m'),
+                          ('ghc', 'ebu3b')
                           ]
     ts_flag = False
     eda_flag = False
@@ -445,22 +491,46 @@ def entity_iter_result():
     cs = ['firebrick', 'deepskyblue']
     for i, (ax, (source, target)) in enumerate(zip(axes, source_target_list)):
 
-        filename_template = 'result/entity_iter_{0}_{1}1.json'
+        filename_template = 'result/entity_iter_{0}_{1}{2}.json'
         prefixes = [(''.join([target]*2), 'nosource_nosa'),
                     (''.join([target]*2), 'nosource_sa'),
                     (''.join([source, target, target]), 'source_sa')]
         linestyles = [':', '-.', '-']
-        for buildingfix, optfix in prefixes:
-            filename = filename_template.format(buildingfix, optfix)
-            with open(filename, 'r') as fp:
-                data = json.load(fp)[1:]
+        for linestyle, (buildingfix, optfix) in zip(linestyles, prefixes):
             sa_flag = 'X' if 'nosa' in optfix else 'O'
             src_flag = '0' if 'nosource' in optfix else '200'
             source_num = int(src_flag)
+            """
+            filename = filename_template.format(buildingfix, optfix)
+            with open(filename, 'r') as fp:
+                data = json.load(fp)[1:]
             x = [len(set(datum['learning_srcids'])) - source_num for datum in data]
             accuracy = [val * 100 for val in data[-1]['accuracy_history']]
             macro_f1 = [val * 100 for val in data[-1]['macro_f1_history']]
             ys = [accuracy, macro_f1]
+            """
+            if sa_flag == 'X' and src_flag == '0':
+                pdb.set_trace()
+            x_t = range(30,201,10)
+            acc_cands = []
+            mf1_cands = []
+            x_cands = []
+            for exp_num in range(1,3):
+                filename = filename_template.format(buildingfix, optfix, exp_num)
+                if not os.path.exists(filename):
+                    continue
+                with open(filename, 'r') as fp:
+                    data = json.load(fp)[1:]
+                x = [len(set(datum['learning_srcids'])) - source_num for datum in data]
+                acc = [val * 100 for val in data[-1]['accuracy_history']]
+                mf1 = [val * 100 for val in data[-1]['macro_f1_history']]
+                x_cands.append(x)
+                acc_cands.append(acc)
+                mf1_cands.append(mf1)
+            mf1s = lin_interpolated_avg(x_t, x_cands, mf1_cands)
+            accs = lin_interpolated_avg(x_t, x_cands, acc_cands)
+            ys = [accs, mf1s]
+
             xlabel = None
             ylabel = 'Score (%)'
             xtick = range(0,205, 50)
@@ -478,10 +548,10 @@ def entity_iter_result():
             else:
                 legends = None
             title = None
-            plotter.plot_multiple_2dline(x, ys, xlabel, ylabel, xtick,\
+            plotter.plot_multiple_2dline(x_t, ys, xlabel, ylabel, xtick,\
                              xtick_labels, ytick, ytick_labels, title, ax,\
                              fig, ylim, None, legends, xtickRotate=0, \
-                             linestyles=[linestyles.pop()]*len(ys), cs=cs)
+                             linestyles=[linestyle]*len(ys), cs=cs)
 
     for ax in axes:
         ax.grid(True)

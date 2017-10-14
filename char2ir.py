@@ -566,6 +566,36 @@ def query_active_learning_samples(prev_learning_srcids,
                 new_srcid_cnt += 1
                 if new_srcid_cnt == inc_num:
                     break
+    elif query_strategy == 'strict_confidence':
+        for srcid, score in score_dict.items():
+            # Normalize with length
+            score_dict[srcid] = np.log(score) / len(sentence_dict[srcid])
+        sorted_scores = sorted(score_dict.items(), key=itemgetter(1))
+
+        ### load word clusters not to select too similar samples.
+        added_cids = set()
+        for srcid in prev_learning_srcids:
+            for cid, cluster in cluster_dict.items():
+                if srcid in cluster:
+                    added_cids.add(cid)
+        added_cids = list(added_cids)
+
+        new_srcids = []
+        new_srcid_cnt = 0
+        for srcid, score in sorted_scores:
+            if srcid not in prev_learning_srcids:
+                the_cid = None
+                for cid, cluster in cluster_dict.items():
+                    if srcid in cluster:
+                        the_cid = cid
+                        break
+                if the_cid in added_cids:
+                    continue
+                added_cids.append(the_cid)
+                new_srcids.append(srcid)
+                new_srcid_cnt += 1
+                if new_srcid_cnt == inc_num:
+                    break
     elif query_strategy == 'empty':
         new_srcids = []
     else:
