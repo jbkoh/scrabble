@@ -2042,13 +2042,13 @@ def ir2tagset_al_query_samples_strict_phrase_util(test_srcids,
     cluster_dict = get_cluster_dict(building)
     added_cids = []
     #TODO: Init added_cids from learning_srcids
+    cand_srcids = [srcid for srcid in phrase_usage_dict.keys()
+                   if srcid not in learning_srcids]
 
 
     todo_srcids = []
     new_srcid_cnt = 0
-    for srcid, _ in sorted_phrase_usages :
-        if srcid in learning_srcids:
-            continue
+    for srcid in cand_srcids:
         the_cid = None
         for cid, cluster in cluster_dict.items():
             if srcid in cluster:
@@ -2061,7 +2061,16 @@ def ir2tagset_al_query_samples_strict_phrase_util(test_srcids,
         new_srcid_cnt += 1
         if new_srcid_cnt == inc_num:
             break
-    pdb.set_trace()
+    if new_srcid_cnt < inc_num:
+        todo_srcids += select_random_samples(building,
+                                            cand_srcids,
+                                            inc_num - new_srcid_cnt,
+                                            use_cluster_flag=True,
+                                            token_type='justseparate',
+                                            reverse=True,
+                                            cluster_dict=None,
+                                            shuffle_flag=True
+                                            )
     return todo_srcids
 
 def ir2tagset_al_query_samples_phrase_util(test_srcids,
@@ -2362,6 +2371,15 @@ def ir2tagset_onestep(step_data,
         step_data['next_learning_srcids'] += new_srcids
     elif query_strategy == 'phrase_util':
         new_srcids = ir2tagset_al_query_samples_phrase_util(
+                            crf_srcids,
+                            target_building,
+                            crf_sentence_dict,
+                            crf_phrase_dict,
+                            crf_pred_tagsets_dict,
+                            inc_num,
+                            learning_srcids)
+    elif query_strategy == 'strict_phrase_util':
+        new_srcids = ir2tagset_al_query_samples_strict_phrase_util(
                             crf_srcids,
                             target_building,
                             crf_sentence_dict,

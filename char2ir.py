@@ -596,6 +596,16 @@ def query_active_learning_samples(prev_learning_srcids,
                 new_srcid_cnt += 1
                 if new_srcid_cnt == inc_num:
                     break
+        if new_srcid_cnt < inc_num:
+            new_srcids += select_random_samples(target_building,
+                                                cand_srcids,
+                                                inc_num - new_srcid_cnt,
+                                                use_cluster_flag=True,
+                                                token_type='justseparate',
+                                                reverse=True,
+                                                cluster_dict=None,
+                                                shuffle_flag=True
+                                                )
     elif query_strategy == 'empty':
         new_srcids = []
     else:

@@ -113,24 +113,7 @@ def crf_result():
             else:
                 buildingfix = ''.join([source, target, target])
             n = n_s + 0
-            """
-            filename = filename_template.format(buildingfix, n)
-            if not os.path.exists(filename):
-                continue
-            with open(filename, 'r') as fp:
-                data = json.load(fp)
-            xs = [len(datum['learning_srcids']) - n_s for datum in data]
-            f1s = []
-            for datum in data:
-                prec = datum['result']['crf']['phrase_precision'] * 100
-                rec = datum['result']['crf']['phrase_recall'] * 100
-                f1 = 2 * prec * rec / (prec + rec)
-                f1s.append(f1)
-            macrof1s = [datum['result']['crf']['phrase_macro_f1'] * 100 
-                        for datum in data]
-            ys = [f1s, macrof1s]
-            """
-            xs = range(0, 201, 10)
+            xs = [5] + list(range(10, 201, 10))
             x_cands = []
             f1_cands = []
             mf1_cands = []
@@ -156,25 +139,30 @@ def crf_result():
             f1s = lin_interpolated_avg(xs, x_cands, f1_cands)
             mf1s = lin_interpolated_avg(xs, x_cands, mf1_cands)
             ys = [f1s, mf1s]
+            # Print curr result
+            if n_s == 200 or n_s == 0:
+                print('=======')
+                print(source, target, n_s)
+                print('init F1: {0}'.format(f1s[0]))
+                print('init MF1: {0}'.format(mf1s[0]))
+                print('=======')
 
             xlabel = None
             ylabel = 'Score (%)'
-            xtick = list(range(0, 205, 40))
-            #xtick = [0] + [5] + xtick[1:]
+            xtick = [5] + list(range(40, 205, 40))
             xtick_labels = [str(n) for n in xtick]
             ytick = range(0,101,20)
             ytick_labels = [str(n) for n in ytick]
-            xlim = (xtick[0]-2, xtick[-1]+5)
+            xlim = (-5, xtick[-1]+5)
             ylim = (ytick[0]-2, ytick[-1]+5)
             if i == 0:
-                legends = [#'#S:{0}, Char Prec'.format(n_s),
+                legends = [
                     '#$B_S$:{0}'.format(n_s),
-    #'#S:{0}, Char MF1'.format(n_s),
                     '#$B_S$:{0}'.format(n_s),
                 ]
             else:
                 legends = None
-    #legends_list += legends
+
             title = None
             _, plots = plotter.plot_multiple_2dline(xs, ys, xlabel, ylabel, xtick,\
                              xtick_labels, ytick, ytick_labels, title, ax, fig, \
@@ -231,16 +219,19 @@ def crf_entity_result():
         xlabel = '# Target Building Samples'
         ys = [avg_acc, avg_mf1]
         x = sample_numbers
-        xtick = sample_numbers
-        xtick_labels = [str(no) for no in sample_numbers]
+        #xtick = sample_numbers
+        #xtick_labels = [str(no) for no in sample_numbers]
+        #xtick = [0] + [5] + xtick[1:]
+        xtick = list(range(0, 205, 40))
+        xtick_labels = [str(n) for n in xtick]
         ytick = list(range(0, 105, 20))
         ytick_labels = [str(no) for no in ytick]
         ylabel = 'Score (%)'
         ylabel_flag = False
         linestyles = [':', ':']
         if i == 2:
-            data_labels = ['Baseline Accuracy w/ Source', 
-                           'Baseline Macro $F_1$ w/ Source']
+            data_labels = ['Baseline Accuracy w/ $B_s$', 
+                           'Baseline Macro $F_1$ w/ $B_s$']
         else:
             data_labels = None
         title = anon_building_dict[buildings[0]]
@@ -265,16 +256,18 @@ def crf_entity_result():
         xlabel = '# Target Building Samples'
         ys = [avg_acc, avg_mf1]
         x = sample_numbers
-        xtick = sample_numbers
-        xtick_labels = [str(no) for no in sample_numbers]
+        #xtick = sample_numbers
+        #xtick_labels = [str(no) for no in sample_numbers]
+        xtick = list(range(0, 205, 40))
+        xtick_labels = [str(n) for n in xtick]
         ytick = list(range(0, 105, 20))
         ytick_labels = [str(no) for no in ytick]
         ylabel = 'Score (%)'
         ylabel_flag = False
         linestyles = ['-.', '-.']
         if i == 2:
-            data_labels = ['Baseline Accuracy w/o Source', 
-                           'Baseline Macro $F_1$ w/o Source']
+            data_labels = ['Baseline Acc w/o $B_s$', 
+                           'Baseline M-$F_1$ w/o $B_s$']
         else:
             data_labels = None
         title = anon_building_dict[buildings[0]]
@@ -288,9 +281,6 @@ def crf_entity_result():
                                                cs, lw)
         plot_list.append(plot)
         
-        if i == 2:
-            ax.legend(bbox_to_anchor=(3.2, 1.45), ncol=4, frameon=False)
-
         # Scrabble without source
         buildingfix = ''.join([buildings[-1]] * 2)
         filename = 'result/crf_entity_iter_{0}_char2tagset_iter_nosource1.json'\
@@ -307,8 +297,8 @@ def crf_entity_result():
         ys = [accuracy, mf1s]
         linestyles = ['--', '--']
         if i == 2:
-            data_labels = ['Scrabble Accuracy w/o Src', 
-                           'Scrabble Macro $F_1$ w/o Src']
+            data_labels = ['Scrabble Acc w/o $B_s$', 
+                           'Scrabble M-$F_1$ w/o $B_s$']
         else:
             data_labels = None
         _, plot = plotter.plot_multiple_2dline(x, ys, xlabel, ylabel, xtick,
@@ -319,11 +309,9 @@ def crf_entity_result():
 
         # Scrabble with source
         buildingfix = ''.join(list(buildings) + [buildings[-1]])
+        """
         filename = 'result/crf_entity_iter_{0}_char2tagset_iter_1.json'\
                        .format(buildingfix)
-        #buildingfix = ''.join([buildings[-1]] * 2)
-        #filename = 'result/crf_entity_iter_{0}_char2tagset_iter_nosource1.json'\
-        #               .format(buildingfix)
         if not os.path.exists(filename):
             continue
         with open(filename, 'r') as fp:
@@ -336,9 +324,37 @@ def crf_entity_result():
 
         x = srcid_lens
         ys = [accuracy, mf1s]
+        """
+
+        filename_template = 'result/crf_entity_iter_{0}_char2tagset_iter_{1}.json'
+        x = range(0, 205, 20)
+        x_cands = []
+        acc_cands = []
+        mf1_cands = []
+        for exp_num in range(0, 3):
+            filename = filename_template.format(buildingfix, exp_num)
+            if not os.path.exists(filename):
+                continue
+            with open(filename, 'r') as fp:
+                res = json.load(fp)
+            source_num = 200 * (len(buildings) - 1)
+            x_cand = [len(r['learning_srcids']) - source_num for r in res]
+            acc_cand = [r['result']['entity']['accuracy'] * 100 for r in res]
+            mf1_cand = [r['result']['entity']['macro_f1'] * 100 for r in res]
+            x_cands.append(x_cand)
+            acc_cands.append(acc_cand)
+            mf1_cands.append(mf1_cand)
+        acc = lin_interpolated_avg(x, x_cands, acc_cands)
+        mf1 = lin_interpolated_avg(x, x_cands, mf1_cands)
+        ys = [acc, mf1]
+        
+
+
+
         linestyles = ['-', '-']
         if i == 2:
-            data_labels = ['Scrabble Accuracy', 'Scrabble Macro $F_1$']
+            data_labels = ['Scrabble Acc w/ $B_s$', 
+                           'Scrabble M-$F_1$ w/ $B_s$']
         else:
             data_labels = None
         _, plot = plotter.plot_multiple_2dline(x, ys, xlabel, ylabel, xtick,
@@ -346,6 +362,10 @@ def crf_entity_result():
                              ax, fig, ylim, xlim, data_labels, 0, linestyles,
                                                cs, lw)
         plot_list.append(plot)
+
+        if i == 2:
+            ax.legend(bbox_to_anchor=(3.5, 1.53), ncol=4, frameon=False)
+            #ax.legend(bbox_to_anchor=(3.2, 1.45), ncol=4, frameon=False)
 
 
 
@@ -491,7 +511,8 @@ def entity_iter_result():
     cs = ['firebrick', 'deepskyblue']
     for i, (ax, (source, target)) in enumerate(zip(axes, source_target_list)):
 
-        filename_template = 'result/entity_iter_{0}_{1}{2}.json'
+        filename_template = 'result/entity_iter_{0}_{1}2.json'
+        #filename_template = 'result/entity_iter_{0}_{1}{2}.json'
         prefixes = [(''.join([target]*2), 'nosource_nosa'),
                     (''.join([target]*2), 'nosource_sa'),
                     (''.join([source, target, target]), 'source_sa')]
@@ -500,17 +521,18 @@ def entity_iter_result():
             sa_flag = 'X' if 'nosa' in optfix else 'O'
             src_flag = '0' if 'nosource' in optfix else '200'
             source_num = int(src_flag)
-            """
             filename = filename_template.format(buildingfix, optfix)
+            if not os.path.exists(filename):
+                continue
             with open(filename, 'r') as fp:
                 data = json.load(fp)[1:]
-            x = [len(set(datum['learning_srcids'])) - source_num for datum in data]
-            accuracy = [val * 100 for val in data[-1]['accuracy_history']]
-            macro_f1 = [val * 100 for val in data[-1]['macro_f1_history']]
-            ys = [accuracy, macro_f1]
+            x_t = [len(set(datum['learning_srcids'])) - source_num for datum in data]
+            accs = [val * 100 for val in data[-1]['accuracy_history']]
+            mf1s = [val * 100 for val in data[-1]['macro_f1_history']]
+            ys = [accs, mf1s]
             """
-            if sa_flag == 'X' and src_flag == '0':
-                pdb.set_trace()
+            #if sa_flag == 'X' and src_flag == '0':
+            #    pdb.set_trace()
             x_t = range(30,201,10)
             acc_cands = []
             mf1_cands = []
@@ -530,6 +552,7 @@ def entity_iter_result():
             mf1s = lin_interpolated_avg(x_t, x_cands, mf1_cands)
             accs = lin_interpolated_avg(x_t, x_cands, acc_cands)
             ys = [accs, mf1s]
+            """
 
             xlabel = None
             ylabel = 'Score (%)'
@@ -572,11 +595,11 @@ def entity_iter_result():
     legend_order = [0,1,2,3,4,5]
     new_handles = [handles[i] for i in legend_order]
     new_labels = [labels[i] for i in legend_order]
-    ax.legend(new_handles, new_labels, bbox_to_anchor=(0.15,0.96), ncol=3, frameon=False)
-    plt.text(0, 1.2, 'Accuracy: \nMacro $F_1$: ', ha='center', va='center',
+    ax.legend(new_handles, new_labels, bbox_to_anchor=(0.23,0.96), ncol=3, frameon=False)
+    #ax.legend(new_handles, new_labels, bbox_to_anchor=(0.23,1.35), ncol=3, frameon=False)
+    plt.text(0.1, 1.18, 'Accuracy: \nMacro $F_1$: ', ha='center', va='center',
             transform=ax.transAxes)
-    fig.text(0.5, -0.1, '# of Target Building Samples', ha='center', 
-            alpha=0)
+    fig.text(0.5, -0.1, '# of Target Building Samples', ha='center')
 
     for i, ax in enumerate(axes):
         if i != 0:

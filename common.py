@@ -20,7 +20,7 @@ def leave_one_word(s, w):
         s = w + '-' + s
     return s
 
-def find_keys(tv, d, crit):
+def find_keys(tv, d, crit=lambda x,y:x==y):
     keys = list()
     for k, v in d.items():
         if crit(tv, v):

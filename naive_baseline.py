@@ -184,7 +184,13 @@ def naive_base(params):
         sorted_entropies = sorted([(test_srcids[i], entropy) for i, entropy 
                                    in enumerate(entropies)], 
                                   key=itemgetter(1), reverse=True)
-        added_cids = []
+        added_cids = set()
+        """
+        for srcid in learning_srcids:
+            cid = find_keys(srcid, cluster_dict, crit=lambda x,y:x in y)[0]
+            added_cids.add(cid)
+            """
+
         new_srcids = []
         new_srcid_cnt = 0
         cluster_dict = get_cluster_dict(target_building)
@@ -197,7 +203,7 @@ def naive_base(params):
                         break
                 if the_cid in added_cids:
                     continue
-                added_cids.append(the_cid)
+                added_cids.add(the_cid)
                 new_srcids.append(srcid)
                 new_srcid_cnt += 1
                 if new_srcid_cnt == inc_num:
