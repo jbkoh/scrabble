@@ -611,7 +611,7 @@ def query_active_learning_samples(prev_learning_srcids,
     else:
         assert False
 
-    next_learning_srcids = prev_learning_srcids + new_srcids
+    next_learning_srcids = prev_learning_srcids + new_srcids * 3
 
 
     # Finish Condition

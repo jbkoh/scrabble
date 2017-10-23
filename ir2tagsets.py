@@ -10,6 +10,7 @@ pp = PrettyPrinter()
 from multiprocessing import Pool, Manager, Process
 import pdb
 import math
+import pickle
 
 import arrow
 import numpy as np
@@ -52,6 +53,7 @@ from hcc import StructuredClassifierChain
 from mongo_models import store_model, get_model, get_tags_mapping, \
                          get_crf_results, store_result, get_entity_results
 from char2ir import crf_test, learn_crf_model
+from time_series_to_ir import TimeSeriesToIR
 
 # Init Brick schema with customizations.
 
@@ -68,7 +70,11 @@ subclass_dict['networkadapter'] = list()
 subclass_dict['unknown'] = list()
 subclass_dict['none'] = list()
 
+ts_feature_filename = 'TS_Features/features.pkl'
+
+#tagset_classifier_type = 'RandomForest'
 tagset_classifier_type = 'StructuredCC'
+#tagset_classifier_type = 'CC'
 
 def init_srcids_dict():
     building_list = ['ebu3b', 'ap_m', 'bml', 'ghc']
@@ -120,6 +126,18 @@ def augment_tagset_tree(tagsets):
                 subclass_dict[classname].append(tagset)
                 subclass_dict[tagset] = []
                 extend_tree(tagset_tree, classname, {tagset:[]})
+
+def augment_ts(phrase_dict, srcids, ts2ir):
+    with open(ts_feature_filename, 'rb') as fp:
+        ts_features = pickle.load(fp, encoding='bytes')
+    ts_tags_pred = ts2ir.predict(ts_features, srcids)
+
+    tag_binarizer = ts2ir.get_binarizer()
+    pred_tags_list = tag_binarizer.inverse_transform(ts_tags_pred)
+
+    for srcid, pred_tags in zip(srcids, pred_tags_list):
+        phrase_dict[srcid] += list(pred_tags)
+    return phrase_dict
 
 def extend_tagset_list(new_tagsets):
     global tagset_list
@@ -1218,9 +1236,20 @@ def build_tagset_classifier(building_list, target_building,\
 
     elif tagset_classifier_type == 'CC':
         def meta_cc(**kwargs):
-            base_classifier = RandomForest()
+            feature_selector = SelectFromModel(LinearSVC(C=1))
+            #feature_selector = SelectFromModel(LinearSVC(C=0.01, penalty='l1', dual=False))
+            base_base_classifier = GradientBoostingClassifier(**kwargs)
+            #base_base_classifier = SGDClassifier(loss='modified_huber', penalty='elasticnet')
+            #base_base_classifier = PassiveAggressiveClassifier(loss='squared_hinge', C=0.1)
+            #base_base_classifier = LogisticRegression()
+            #base_base_classifier = RandomForestClassifier(**kwargs)
+            base_classifier = Pipeline([('feature_selection',
+                                         feature_selector),
+                                        ('classification',
+                                         base_base_classifier)
+                                       ])
             tagset_classifier = ClassifierChain(classifier=base_classifier)
-            return base_classifier
+            return tagset_classifier
         meta_classifier = meta_cc
         params_list_dict = {}
 
@@ -2121,7 +2150,6 @@ def ir2tagset_al_query_samples_phrase_util(test_srcids,
                               list(todo_sentence_dict.keys()),
                               min(more_num, len(todo_sentence_dict)), \
                               True,\
-                              reverse=True,
                               cluster_dict=cluster_dict,
                               shuffle_flag=True
                              )
@@ -2456,3 +2484,8 @@ def ir2tagset_iteration(iter_num, custom_postfix, *args):
         json.dump(step_datas, fp, indent=2)
     end_time = arrow.get()
     print(iter_num, " iterations took: ", end_time - begin_time)
+
+
+if __name__ == '__main__':
+    tree_depth_dict = calc_leaves_depth(tagset_tree)
+    print('max brick depth: {0}'.format(max(tree_depth_dict.values())))

@@ -157,7 +157,7 @@ def naive_base(params):
                                        shuffle_flag=False
                                        )
             else:
-                learning_srcids += new_srcids
+                learning_srcids += new_srcids * 3
                 pass
             if building == target_building:
                 test_srcids = [srcid for srcid in label_dict.keys() if srcid not in learning_srcids]
