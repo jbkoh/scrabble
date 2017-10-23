@@ -1,0 +1,43 @@
+
+{
+    "_Ch_01_Comp_01_Alrm_Gnrtr_Mde": [
+        "chiller",
+        "compressor",
+        "alarm"
+    ],
+    "_Ch_01_Comp_01_Alrm_HiCrnt": [
+        "chiller",
+        "compressor",
+        "high_current_alarm"
+    ],
+    "_Ch_01_Comp_01_Alrm_Lvng_Wtr": [
+        "chiller",
+        "compressor",
+        "water_alarm"
+    ],
+    "_Ch_01_Comp_01_Alrm_OvrCrnt": [
+        "chiller",
+        "compressor",
+        "alarm"
+    ],
+    "_Ch_01_Comp_01_Alrm_Press_Dis": [
+        "chiller",
+        "compressor",
+        "discharge_pressure_alarm"
+    ],
+    "_NAE_04_NAE~2d04~2fFC~2d2~2eFD~2d52-VAV~2d21~2d04~2eVAV~2d21~2d04-DA~2dVP~2eTrend1": [
+        "networkadapter-nae",
+        "vav",
+        "discharge_air_sensor"
+    ],
+    "_NAE_04_NAE~2d04~2fFC~2d1~2eFD~2d67-VAV~2d14~2d08~2eVAV~2d14~2d08-UNIT~2dENA~2eTrend1": [
+        "networkadapter-nae",
+        "vav",
+        "enable_command"
+    ],
+    "_NAE_04_NAE~2d04~2fFC~2d1~2eFD~2d45-VAV~2d18~2dP3~2eVAV~2d18~2dP3-UNIT~2dENA~2eTrend1": [
+        "networkadapter-nae",
+        "vav",
+        "enable_command"
+    ]
+}

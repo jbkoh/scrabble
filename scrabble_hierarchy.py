@@ -614,14 +614,19 @@ def learn_crf_model(building_list,
 
     # Learn Brick tags
 
-#    if use_brick_flag:
-#        with open('metadata/brick_tags_labels.json', 'r') as fp:
-#            tag_label_list = json.load(fp)
-#        for tag_labels in tag_label_list:
-#            char_tags = [' '] + list(map(itemgetter(0), tag_labels)) + [' ']
-#            char_labels = ['O'] + list(map(itemgetter(1), tag_labels)) + ['O']
-#            trainer.append(pycrfsuite.ItemSequence(
-#                calc_features(char_tags, None)), char_labels)
+    if use_brick_flag:
+        with open('metadata/brick_tags_labels.json', 'r') as fp:
+            tag_label_list = json.load(fp)
+        for tag_labels in tag_label_list:
+            # Append meaningless characters before and after the tag
+            # to make it separate from dependencies.
+            # But comment them out to check if it works.
+            #char_tags = [' '] + list(map(itemgetter(0), tag_labels)) + [' ']
+            char_tags = list(map(itemgetter(0), tag_labels))
+            #char_labels = ['O'] + list(map(itemgetter(1), tag_labels)) + ['O']
+            char_labels = list(map(itemgetter(1), tag_labels))
+            trainer.append(pycrfsuite.ItemSequence(
+                calc_features(char_tags, None)), char_labels)
 
 
     # Train and store the model file
@@ -723,7 +728,8 @@ def crf_test(building_list,
     sentence_dict = dict((srcid, sentence) 
                          for srcid, sentence 
                          in sentence_dict.items() 
-                         if target_label_dict.get(srcid))
+                         #if target_label_dict.get(srcid)
+                        )
 #    crf_model_file = 'model/crf_params_char_{0}_{1}_{2}_{3}_{4}.crfsuite'\
 #                        .format(source_building_name, 
 #                                token_type, 
@@ -744,6 +750,25 @@ def crf_test(building_list,
     precisionOfTrainingDataset = 0
     totalWordCount = 0
     error_rate_dict = dict()
+
+    readable_phrase_dict = dict()
+    bilou_dict = dict()
+    for srcid, predicted in predicted_dict.items():
+        sentence = sentence_dict[srcid]
+        phrases = list(set(_bilou_tagset_phraser(sentence, predicted)))
+        readable_phrase_dict[srcid] = [phrase for phrase in phrases \
+                                       if phrase not in ['leftidentifier', \
+                                                         'rightidentifier']]
+        bilous = list([char, bilou] for char, bilou in zip(sentence, predicted))
+        bilou_dict[srcid] = bilous
+    with open('result/{0}_bilous.json'.format(target_building), 'w') as fp:
+        json.dump(bilou_dict, fp, indent=2)
+
+    with open('result/{0}_readable_phrases.json'.format(target_building), 'w')\
+            as fp:
+        json.dump(readable_phrase_dict, fp, indent=2)
+
+    pdb.set_trace()
 
 
     for srcid, sentence_label in target_label_dict.items():

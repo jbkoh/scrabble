@@ -1,33 +1,77 @@
 import json
+import argparse
+from pprint import PrettyPrinter
+pp = PrettyPrinter(indent=2)
+    
+parser = argparse.ArgumentParser()
+parser.add_argument('-f',
+                    type=str,
+                    help='Result filename to summarize the result',
+                    dest='filename')
+parser.add_argument('-exp',
+                    type=str,
+                    help='Result filename to summarize the result',
+                    dest='filename')
+parser.add_argument(choices=['learn_crf', 'predict_crf', 'entity', 'crf_entity', \
+                                 'init', 'result', 'iter_crf'],
+                        dest = 'prog')
 
-filenames = ['biased_result', 'unbiased_result']
-config_list = ['building_list', 'sample_num_list', 'target_building', 'token_type', 'label_type', 'use_cluster_flag', 'use_brick_flag', 'debug_flag', 'eda_flag', 'ts_flag', 'nj']
+args = parser.parse_args()
 
-for filename in filenames:
-    results = list()
-    item_flag = False
-    with open(filename, 'r') as fp:
-        result = dict()
-        for line in fp.readlines():
-            if line[0:2] == '([':
-                result = dict()
-                result['config'] = dict()
-                result['result'] = dict()
-                line = line.replace('200,', '200;')
-                config_values = line[2:-2].split(', ')
+filename = args.filename
+
+with open(filename, 'r') as fp:
+    data = json.load(fp)
 
 
-                for config_key, config_value in zip(config_list, config_values):
-                    result['config'][config_key] = config_value
-                item_flag = True
-            elif item_flag and line[0:3] == 'Ave':
-                result_key = line.split(':')[0]
-                result_value = float(line.split(':')[-1])
-                result['result'][result_key] = result_value
-            else:
-                item_flag = False
-                if result:
-                    results.append(result)
-                    result = dict()
-    with open(filename + '.json', 'w') as fp:
-        json.dump(results, fp, indent=2)
+if args.prog == 'crf_entity':
+    source_nums = []
+    char_f1s = []
+    char_macrof1s = []
+    entity_accuracies = []
+    entity_macrof1s = []
+    for datum in data:
+        source_nums.append(dict())
+        for building, learning_srcids in datum['source_list'].items():
+            source_nums[-1][building] = len(learning_srcids)
+        char_f1s.append(datum['result']['crf']['char_weighted_f1']) # TODO:validate
+        char_macrof1s.append(datum['result']['crf']['char_macro_f1'])
+        entity_accuracies.append(datum['result']['entity']['accuracy'])
+        entity_macrof1s.append(datum['result']['entity']['macro_f1'])
+
+    print('Source Nums')
+    pp.pprint(source_nums)
+    print('=================')
+    print('Char F1s')
+    print(char_f1s)
+    print('=================')
+    print('Char MacroF1s')
+    print(char_macrof1s)
+    print('=================')
+    print('Entity Accuracies')
+    print(entity_accuracies)
+    print('=================')
+    print('Entity MacroF1s')
+    pp.pprint(entity_macrof1s)
+    print('=================')
+
+elif args.prog == 'iter_crf':
+    source_nums = []
+    char_f1s = []
+    char_macrof1s = []
+    for datum in data:
+        source_nums.append(dict())
+        for building, learning_srcids in datum['source_list'].items():
+            source_nums[-1][building] = len(learning_srcids)
+        char_f1s.append(datum['result']['crf']['char_weighted_f1']) # TODO:validate
+        char_macrof1s.append(datum['result']['crf']['char_macro_f1'])
+
+    print('Source Nums')
+    pp.pprint(source_nums)
+    print('=================')
+    print('Char F1s')
+    print(char_f1s)
+    print('=================')
+    print('Char MacroF1s')
+    print(char_macrof1s)
+    print('=================')
