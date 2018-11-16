@@ -55,6 +55,7 @@ Raw metadata you can retrieve from existing systems like BMSes.
         }
     }
     ```
+    ``VendorGivenName`` is commonly referred as point names also.
 
 ### LabeledMetadata
 LabeledMetadata containing different types of labels per entity.
