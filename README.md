@@ -109,13 +109,13 @@ LabeledMetadata containing different types of labels per entity.
         "point_tagset": "zone_temperature_sensor",
     }
     ```
-    In ``fullparsing``, you also need to put BIO tags to actual Brick Tags.
-    B = Beginning
-    I = Inside
-    O = Outside
-    If a character is in the starting position of a word (e.g., ``Z`` for ``ZN``), ``B_`` should be attached to actual label (e.g., ``B_Zone`` for ``Z``).
-    Everything else with a Brick Tag should attach ``I_`` (``I_Zone`` for ``N`` in ``ZN``)
-    If a character is not associated with any Brick Tag, label it as ``O``, which means nothing.
+    - In ``fullparsing``, you also need to put BIO tags to actual Brick Tags.
+        - B = Beginning
+            - If a character is in the starting position of a word (e.g., ``Z`` for ``ZN``), ``B_`` should be attached to actual label (e.g., ``B_Zone`` for ``Z``).
+        - I = Inside
+            - Everything else with a Brick Tag should attach ``I_`` (``I_Zone`` for ``N`` in ``ZN``)
+        - O = Outside
+            - If a character is not associated with any Brick Tag, label it as ``O``, which means nothing.
 
 
 ## How to Use it?
