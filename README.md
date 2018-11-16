@@ -91,7 +91,7 @@ LabeledMetadata containing different types of labels per entity.
                 [".", "O"],
                 ["Z", "B_zone"],
                 ["N", "I_zone"],
-                ["T", "I_temperature"]
+                ["T", "B_temperature"]
             ],
             "BACnetDescription": [
                 ["Z", "B_Zone"],
