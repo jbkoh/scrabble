@@ -1,0 +1,13 @@
+rdflib
+arrow
+pandas
+numpy
+python-crfsuite
+mongoengine
+scikit-multilearn
+joblib
+matplotlib
+dtw
+termcolor
+keras
+tensorflow

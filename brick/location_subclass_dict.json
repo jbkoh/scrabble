@@ -1,0 +1,55 @@
+{
+  "location": [
+    "outside",
+    "zone",
+    "lighting_zone",
+    "hvac_zone",
+    "city",
+    "room",
+    "server_room",
+    "laboratory",
+    "cold_box",
+    "freezer",
+    "hot_box",
+    "environment_box",
+    "space",
+    "floor",
+    "basement",
+    "roof",
+    "building",
+    "wing"
+  ],
+  "outside": [],
+  "zone": [
+    "lighting_zone",
+    "hvac_zone"
+  ],
+  "lighting_zone": [],
+  "hvac_zone": [],
+  "city": [],
+  "room": [
+    "server_room",
+    "laboratory",
+    "cold_box",
+    "freezer",
+    "hot_box",
+    "environment_box"
+  ],
+  "server_room": [],
+  "laboratory": [
+    "cold_box",
+    "freezer",
+    "hot_box",
+    "environment_box"
+  ],
+  "cold_box": [],
+  "freezer": [],
+  "hot_box": [],
+  "environment_box": [],
+  "space": [],
+  "floor": [],
+  "basement": [],
+  "roof": [],
+  "building": [],
+  "wing": []
+}

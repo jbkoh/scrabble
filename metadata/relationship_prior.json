@@ -1,0 +1,18 @@
+{
+    "damper": {
+        "vav": "isPartOf"
+    },
+    "valve": {
+        "vav": "isPartOf"
+    },
+    "point": {
+        "equipment": "isPointOf",
+        "location": "hasLocation"
+    },
+    "vav": {
+        "room": "feeds"
+    },
+    "return_fan": {
+        "ahu": "isPartOf"
+    }
+}
