@@ -1,6 +1,6 @@
 Scrabble
 ========
-Scrabble is a machine learning framework that can normalize unstructured metadata in Building Management Systems (BMS) such as point names into the structured metadata, [Brick](brickschema.org). It is evaluated in our own [paper](http://mesl.ucsd.edu/mesl-website/pubs/Jason_BuildSys2018Scrabble.pdf). This code base is implemented mainly for evaluating the results. If you would like to interactively add examples and get inferred results, please consider using [Plaster](https://github.com/plastering/plastering) together.
+Scrabble is a machine learning framework that can normalize unstructured metadata in Building Management Systems (BMS) such as point names into the structured metadata, [Brick](https://brickschema.org). It is evaluated in our own [paper](http://mesl.ucsd.edu/mesl-website/pubs/Jason_BuildSys2018Scrabble.pdf). This code base is implemented mainly for evaluating the results. If you would like to interactively add examples and get inferred results, please consider using [Plaster](https://github.com/plastering/plastering) together.
 
 ## General Procedure
 
