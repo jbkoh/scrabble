@@ -406,8 +406,10 @@ class Ir2Tagsets(BaseScrabble):
         return phrase_dict
 
     def _predict_and_proba(self, target_srcids, full_prob=False):
-        #return self.tagset_classifier, self.tagset_vectorizer, self.tagset_binarizer, self.ts2ir
-        phrase_dict = {srcid: self.phrase_dict[srcid] 
+        if not target_srcids:
+            return {}, {}
+
+        phrase_dict = {srcid: self.phrase_dict[srcid]
                        for srcid in target_srcids}
         if self.ts_flag:
             phrase_dict = self._augment_phrases_with_ts(phrase_dict, target_srcids, self.ts2ir)

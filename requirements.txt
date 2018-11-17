@@ -11,3 +11,5 @@ dtw
 termcolor
 keras
 tensorflow
+requests
+sklearn

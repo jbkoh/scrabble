@@ -146,7 +146,10 @@ def bilou_tagset_phraser(sentence, token_labels, keep_alltokens=False):
         if label[2:] in ['rightidentifier', 'leftidentifier'] \
                 and not keep_alltokens:
             continue
-        tag = label[0]
+        try:
+            tag = label[0]
+        except:
+            pdb.set_trace()
         if tag=='B':
             if curr_phrase:
             # Below is redundant if the other tags handles correctly.       

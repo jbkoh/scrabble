@@ -74,7 +74,7 @@
           [".", "O"],
           ["R", "B_room"],
           ["M", "I_room"],
-          ["-", ""],
+          ["-", "O"],
           ["1", "B_leftidentifier"],
           ["0", "I_leftidentifier"],
           ["1", "I_leftidentifier"],
