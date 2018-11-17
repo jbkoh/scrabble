@@ -1,0 +1,8 @@
+{
+    "0": ["building", "vav", "room", "networkadapter-nae", "zone_temperature_sensor"],
+    "1": ["building", "vav", "room", "networkadapter-nae", "supply_air_flow_sensor"],
+    "2": ["building", "crac", "networkadapter-nae", "networkadapter-vnd", "networkadapter-n2", "temperature_sensor"],
+    "3": ["building", "crac", "networkadapter-nae", "networkadapter-vnd", "networkadapter-n2", "temperature_sensor"],
+    "4": ["building", "ahu", "networkadapter-nae", "return_air_temperature_sensor", "networkadapter-dx", "networkadapter-n2"],
+    "5": ["building", "ahu", "networkadapter-nae", "outside_air_temperature_sensor", "networkadapter-dx", "networkadapter-n2"]
+}

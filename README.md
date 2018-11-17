@@ -154,8 +154,11 @@ LabeledMetadata containing different types of labels per entity.
     scrabble -task ir2tagsets -bl ap_m,ebu3b -nl 200,10 -ut true -neg true -c true -t ebu3b
     ```
 
+## Data
+Full datasets are under preparation for sharing. A small example data set can be found inside ``metadata/``
 
-### References
+
+## References
 1. *Scrabble: Transferrable Semi-Automated Semantic Metadata Normalization using Intermediate Representation*, BuildSys 2018.
 2. *Plaster: An Integration, Benchmark, and Development Framework for Metadata Normalization Methods*, BuildSys 2018.
 3. *Brick: Towards a unified metadata schema for buildings*, BuildSys 2016.
