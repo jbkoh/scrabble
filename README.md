@@ -29,7 +29,7 @@ It is best to run this with [Plaster](https://github.com/plastering/plastering).
 ### Example commands to run
 1. Complete the installation procedure and activate the virtualenv (``source env/bin/activate``).
 2. ``python scripts/ingest_example_data.py``
-3. ``scrabble -task scrabble -bl example -nl 1 -t example -neg true -ub true``
+3. ``scrabble -task scrabble -bl example -nl 1 -t example -neg true -ub true -iter 5 -inc 1``
 
 ## File Descriptions (./)
 1. `scripts/scrabble`: Main executable file. Once it's PIPped, you can run it in a command line.
