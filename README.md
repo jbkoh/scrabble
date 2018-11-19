@@ -6,7 +6,7 @@ Scrabble is a machine learning framework that can normalize unstructured metadat
 
 It is best to run this with [Plaster](https://github.com/plastering/plastering). Here, we only describe the procedure to run Scrabble alone.
 
-1. Store metadata and ground truth data following a MongoDB schema defined in ``scrabble/data_model.py``. Refer [Data Model](#datamodel) for detailed description.
+1. Store metadata and ground truth data following a MongoDB schema defined in ``scrabble/data_model.py``. Refer [Data Model](#datamodel) for detailed description and ``/scripts/ingest_example_data.py`` for an example.
 2. Run ``scrabble`` with proper options.
 3. Retrieve and process the results from the database. Example code: ``scripts/parse_scrabble_res.py``. (There will be better documents on this.)
 4. Put labels for chosen examples. (This is only supported with Plaster.)
@@ -22,7 +22,14 @@ It is best to run this with [Plaster](https://github.com/plastering/plastering).
 ### Install
 1. ``git clone https://github.com/jbkoh/scrabble.git``
 2. ``cd scrabble``
-3. ``python setup.py install`` (Note that it assumes to use TensorFlow instead of Theano for the backend of Keras.)
+3. ``virtualenv -p python3 env
+4. ``source env/bin/activate``
+5. ``python setup.py install`` (Note that it assumes to use TensorFlow instead of Theano for the backend of Keras.)
+
+### Example commands to run
+1. Complete the installation procedure and activate the virtualenv (``source env/bin/activate``).
+2. ``python scripts/ingest_example_data.py``
+3. ``scrabble -task scrabble -bl example -nl 1 -t example -neg true -ub true``
 
 ## File Descriptions (./)
 1. `scripts/scrabble`: Main executable file. Once it's PIPped, you can run it in a command line.
