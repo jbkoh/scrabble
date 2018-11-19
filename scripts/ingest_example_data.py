@@ -3,8 +3,6 @@ import json
 
 import pandas as pd
 
-import sys
-sys.path.insert(0, '/home/jbkoh/repo/scrabble_public')
 from scrabble.data_model import *
 
 point_postfixes = ['sensor',
