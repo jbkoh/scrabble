@@ -1,7 +1,7 @@
-SourceIdentifier,VendorGivenName,BACnetName,BACnetDescription,BACnetUnit
-0,BLDG.RM-1000..ZN-T,NAE 98 N2 2 VMA 111 ZN T,Zone Temperature,64
-1,BLDG.RM-10101..SUP-FLOW,NAE 99 N2 2 VMA 111 SUP FLOW,Actual Supply Flow,84
-2,BLDG.CRAC-0.TEMP,NAE 99 N2 2 VND 222 TEMP,Temperature,64
-3,BLDG.CRAC-9.TEMP,NAE 99 N2 2 VND 223 TEMP,Temperature,64
-4,BLDG.AH0-0.RA-T,NAE 99 N2 1 DX 88 RA T,Return Air Temp,64
-5,BLDG.AH0-0.OA-T,NAE 99 N2 1 DX 87 OA T,Outside Air Temp,64
+SourceIdentifier,VendorGivenName,BACnetName,BACnetDescription,BACnetUnit,BACnetObjectType
+0,BLDG.RM-1000..ZN-T,NAE 98 N2 2 VMA 111 ZN T,Zone Temperature,64,analog input
+1,BLDG.RM-10101..SUP-FLOW,NAE 99 N2 2 VMA 111 SUP FLOW,Actual Supply Flow,84,analog input
+2,BLDG.CRAC-0.TEMP,NAE 99 N2 2 VND 222 TEMP,Temperature,64,analog input
+3,BLDG.CRAC-9.TEMP,NAE 99 N2 2 VND 223 TEMP,Temperature,64,analog input
+4,BLDG.AH0-0.RA-T,NAE 99 N2 1 DX 88 RA T,Return Air Temp,64,analog input
+5,BLDG.AH0-0.OA-T,NAE 99 N2 1 DX 87 OA T,Outside Air Temp,64, analog input
