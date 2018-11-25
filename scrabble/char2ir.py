@@ -331,14 +331,8 @@ class Char2Ir(BaseScrabble):
                     sentence = self.merge_sentences(sentences)
                     predicted = tagger.tag(self._calc_features(sentence))
                     score = tagger.probability(predicted)
-                    #pdb.set_trace()
-                    #sep_indices = [i for i, c in enumerate(sentence) if c == '\t']
-                    #predicteds = self.divide_list(predicted, sep_indices)
-                    #for metadata_type, sentence in sentences.items():
-                    #    assert len(sentence) == len(predicteds[metadata_type])
                     predicteds['VendorGivenName'] = predicted
                     scores['VendorGivenName'] = score
-                    #pdb.set_trace()
                 else:
                     for metadata_type, sentence in sentences.items():
                         predicted = tagger.tag(self._calc_features(sentence))
@@ -395,18 +389,18 @@ class Char2Ir(BaseScrabble):
         acc = eval_func.sequential_accuracy(true_tags_list,
                                             pred_tags_list)
 
-        #pred = [preds[srcid] for srcid in preds.keys()]
-        #true = [self.label_dict[srcid] for srcid in preds.keys()]
-        #mlb = MultiLabelBinarizer()
-        #mlb.fit(pred + true)
-        #encoded_true = mlb.transform(true)
-        #encoded_pred = mlb.transform(pred)
-        #macro_f1 = f1_score(encoded_true, encoded_pred, average='macro')
-        #f1 = f1_score(encoded_true, encoded_pred, average='weighted')
+        pred = [preds[srcid] for srcid in preds.keys()]
+        true = [self.label_dict[srcid] for srcid in preds.keys()]
+        mlb = MultiLabelBinarizer()
+        mlb.fit(pred + true)
+        encoded_true = mlb.transform(true)
+        encoded_pred = mlb.transform(pred)
+        macro_f1 = f1_score(encoded_true, encoded_pred, average='macro')
+        f1 = f1_score(encoded_true, encoded_pred, average='weighted')
         res = {
             'accuracy': acc,
-            #'f1': f1,
-            #'macro_f1': macro_f1
+            'f1': f1,
+            'macro_f1': macro_f1
         }
         return res
 

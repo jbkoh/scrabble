@@ -129,8 +129,6 @@ class Scrabble(BaseScrabble):
         self.learning_srcids += srcids
         if self.task in ['scrabble', 'char2ir']:
             self.char2ir.update_model(srcids)
-        #phrases_pred = self.char2ir.predict(srcids)
-        #self.ir2tagsets.update_phrases(phrases_pred)
         if self.task in ['scrabble', 'ir2tagsets']:
             self.ir2tagsets.update_model(srcids)
 
